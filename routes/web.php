@@ -11,17 +11,24 @@ use App\Http\Controllers\c_rombo;
 use App\Http\Controllers\c_rombointegrantes;
 use App\Http\Controllers\c_integrantes;
 use App\Http\Controllers\c_editarintegrantes;
+use App\Http\Controllers\c_encuestaintegrantes;
 use App\Http\Controllers\vistaslineas\c_l1e1;
 
 //RUTAS GET
 Route::get('/',[c_index::class, 'fc_index'])->name('index');
 Route::get('/leerintegrantes',[c_integrantes::class,'fc_leerintegrantes'])->name('leerintegrantes');
+Route::get('/eliminarintegrantes',[c_integrantes::class, 'fc_eliminarintegrantes'])->name('eliminarintegrantes');
+
 Route::get('/cobertura',[c_prueba::class, 'fc_index'])->name('prueba');
 Route::get('/login',[c_login::class, 'fc_login'])->name('login');
 
 
 Route::get('/editarintegrantes',[c_editarintegrantes::class, 'fc_editarintegrantes'])->name('editarintegrantes');
-Route::get('/responderencuesta',[c_editarintegrantes::class, 'fc_responderencuesta'])->name('responderencuesta');
+Route::get('/responderencuesta',[c_editarintegrantes::class, 'fc_responderencuesta'])->name('responderencuesta'); 
+Route::get('/guardarintegrante',[c_editarintegrantes::class, 'fc_guardarintegrante'])->name('guardarintegrante');   
+Route::get('/guardaravatar',[c_editarintegrantes::class, 'fc_guardaravatar'])->name('guardaravatar');
+
+Route::get('/encuestaintegrantes',[c_encuestaintegrantes::class, 'fc_encuestaintegrantes'])->name('encuestaintegrantes');
 
 
 

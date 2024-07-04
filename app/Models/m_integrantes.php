@@ -17,7 +17,7 @@ class m_integrantes extends Model
     public function m_leerintegrantes($folio)
     {
         // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
-        $resultado = DB::select('SELECT * FROM dbmetodologia.t1_principalintegrantes where folio="'.$folio.'";       
+        $resultado = DB::select('SELECT * FROM dbmetodologia.t1_integranteshogar where folio="'.$folio.'";       
         ' );
 
         return $resultado;

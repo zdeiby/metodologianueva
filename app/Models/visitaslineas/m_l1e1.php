@@ -37,4 +37,12 @@ class m_l1e1 extends Model
 
         return $resultado;
     }
+
+    public function m_leerpaises()
+    {
+        $resultado = DB::select('SELECT * FROM dbmetodologia.t_paises;           
+        ' );
+
+        return $resultado;
+    }
 }

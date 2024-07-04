@@ -29,15 +29,18 @@
 </ul>
 
 <div id="myTabContent" class="tab-content"><br>
-  <div class="tab-pane fade active show" id="home" role="tabpanel">
+  <div class="tab-pane fade active show" id="home" role="tabpanel" style="overflow-x: auto; ">
   <table class="table table-hover">
       <thead class="table-light">
         <tr>
 
           <th scope="col">Nombres y apellidos</th>
           <th scope="col">Documento</th>
-          <th scope="col">Acciones</th>
+          <th scope="col">Encuesta</th>
+          <th scope="col">Editar</th>
           <th scope="col">Avatar</th>
+          <th scope="col">Eliminar</th>
+
         </tr>
       </thead>
       <tbody id="integrantes">
@@ -47,10 +50,15 @@
       </div>
         </div>
       </div>
+          <div class="row">
+            <div class="text-start col-5">
+                <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
+                </div>
+          <div class=" col">
+          <button type="button" class="btn btn-outline-primary" onclick="agregarintegrantes()">Agregar integrante</button>
+          </div>
+          </div>
       
-      <div class="text-center">
-      <button type="button" class="btn btn-primary ">Agregar integrante</button>
-      </div>
       </div>
     </div>
   </div>
@@ -65,6 +73,7 @@
       $(document).ready(function(){
         const folio = $('#folioContainer').attr('folio');
         const folioencriptado= $('#folioencriptado').val();
+        localStorage.setItem('folioencriptado',folioencriptado);
       $.ajax({
         url:'../index.php/leerintegrantes',
         data:{folio:folio, folioencriptado:folioencriptado},
@@ -72,6 +81,7 @@
         dataType:'JSON',
         success:function(data){
           $('#integrantes').html(data.foliosintegrante);
+          
         },
         error: function(xhr, status, error) {
                   console.log(xhr.responseText);
@@ -79,14 +89,67 @@
       })
       })
 
-      function editarintegrantes(folio,idintegrante){
+      function editarintegrantes(folio,idintegrante, folioencriptado){
         localStorage.setItem('folio',folio);
         localStorage.setItem('idintegrante', idintegrante);
         localStorage.setItem('folioencriptado', folioencriptado);
         window.location.href = '../editarintegrantes';
-
-
+      } 
+      function responderencuesta(folio,idintegrante, folioencriptado, nombre){
+        localStorage.setItem('folio',folio);
+        localStorage.setItem('idintegrante', idintegrante);
+        localStorage.setItem('folioencriptado', folioencriptado);
+        localStorage.setItem('nombre', nombre);
+        window.location.href = '../encuestaintegrantes';
+      } 
+      
+      function eliminarintegrantes(folio, idintegrante){
+        $.ajax({
+        url:'../index.php/eliminarintegrantes',
+        data:{folio:folio, idintegrante:idintegrante},
+        method: "GET",
+        dataType:'JSON',
+        success:function(data){
+                const folio1 = $('#folioContainer').attr('folio');
+              const folioencriptado1= $('#folioencriptado').val();
+            $.ajax({
+              url:'../index.php/leerintegrantes',
+              data:{folio:folio1, folioencriptado:folioencriptado1},
+              method: "GET",
+              dataType:'JSON',
+              success:function(data){
+                $('#integrantes').html(data.foliosintegrante);
+              },
+              error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+            })
+        },
+        error: function(xhr, status, error) {
+                  console.log(xhr.responseText);
+              }
+      })
       }
+
+      function agregarintegrantes(){
+        const folioencriptado= $('#folioencriptado').val();
+        const folio = $('#folioContainer').attr('folio');
+        localStorage.setItem('folio',folio);
+        localStorage.setItem('idintegrante','');
+        localStorage.setItem('folioencriptado', folioencriptado);
+        window.location.href = '../editarintegrantes';
+      }
+
+      function redirectToIntegrantes() {
+           var folio = window.localStorage.getItem('folioencriptado');
+           var url = "../rombointegrantes/:folio";
+           url = url.replace(':folio', folio);
+           window.location.href = url;
+       }
+
+      $('#volver').click(function(){
+        redirectToIntegrantes()
+      });
     </script>
 
 @endsection
