@@ -104,7 +104,7 @@
           </div></br>
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Accede a servicios de salud según su edad y necesidad?</label>
-            <div class="form-check">
+            <div class="form-check form-switch">
                 {!!$acceso3!!} </div>
           </div>
           <div class="col-md-6">
@@ -623,42 +623,41 @@
        
 
        $(document).ready(function() {
-        //  $('#formfisicoyemocional').on('submit', function(event) {
-        //      event.preventDefault(); // Detiene el envío del formulario
-             
-        //      var formData = $(this).serializeArray();
-        //      var data = {};
-        //      $(formData).each(function(index, obj) {
-        //          data[obj.name] = obj.value;
-        //      });
-        //      console.log(data);
-        //  });
-
-         $('#formfisicoyemocional').on('submit', function(event) {
+        $('#formfisicoyemocional').on('submit', function(event) {
         event.preventDefault(); // Detiene el envío del formulario
-        
+
         var formData = $(this).serializeArray();
         var data = {};
-
         $(formData).each(function(index, obj) {
-            // Verificar si el nombre ya existe en el objeto de datos
-            if (data[obj.name]) {
-                // Si ya existe, verificar si es un array
-                if (Array.isArray(data[obj.name])) {
-                    // Si es un array, agregar el nuevo valor al array
-                    data[obj.name].push(obj.value);
+            // Limpiar el nombre del campo quitando los corchetes []
+            var name = obj.name.replace('[]', '');
+            if (data[name]) {
+                if (Array.isArray(data[name])) {
+                    data[name].push(obj.value);
                 } else {
-                    // Si no es un array, convertirlo en un array y agregar el nuevo valor
-                    data[obj.name] = [data[obj.name], obj.value];
+                    data[name] = [data[name], obj.value];
                 }
             } else {
-                // Si no existe, simplemente agregarlo al objeto de datos
-                data[obj.name] = obj.value;
+                data[name] = obj.value;
             }
         });
 
+
         console.log(data);
-        
+
+        // Enviar los datos usando AJAX
+        $.ajax({
+            url: './fisicoyemocional',
+            method: $(this).attr('method'),
+            data: {data: data},
+            success: function(response) {
+              $('#siguiente').css('display','');
+              $('#identatario').removeAttr('disabled');
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
     });
 
     $('#formintelectual').on('submit', function(event) {
@@ -684,7 +683,18 @@
             }
         });
 
-        console.log(data);
+        $.ajax({
+            url: './intelectual',
+            method: $(this).attr('method'),
+            data: {data: data},
+            success: function(response) {
+              $('#siguiente2').css('display','');
+              $('#identatario').removeAttr('disabled');
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
         
     });
 

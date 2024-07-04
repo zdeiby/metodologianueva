@@ -197,38 +197,110 @@ class c_encuestaintegrantes extends Controller
         
     }
 
-    public function fc_guardarintegrante(Request $request){
-      $data = $request->all()['data'];
-      $dataWithoutId = Arr::except($data, ['idintegrante', 'folio']);
-      $folio = $data['folio'];
-      $idintegrante = $data['idintegrante'];
-      $now = Carbon::now();
-  
-      // Añadir created_at y updated_at
-      $dataWithoutId['updated_at'] = $now;
-  
-      // Verificar si el registro existe para decidir si añadir created_at
-      $exists = DB::table('dbmetodologia.t1_integranteshogar')
-          ->where('idintegrante', $idintegrante)
-          ->where('folio', $folio)
-          ->exists();
-  
-      if (!$exists) {
-          $dataWithoutId['created_at'] = $now;
-      }
-  
-      DB::table('dbmetodologia.t1_integranteshogar')->updateOrInsert(
-          [
-              'idintegrante' => $idintegrante,
-              'folio' => $folio,
-          ], // Condición para encontrar el registro existente
-          $dataWithoutId
-      );
-  
-      return response()->json(["request" => $dataWithoutId]);
-  }
 
+    public function fc_fisicoyemocional(Request $request)
+    {
+        $data = $request->all()['data'];
+        $dataWithoutId = Arr::except($data, ['idintegrante', 'folio']);
+        $folio = $data['folio'];
+        $idintegrante = $data['idintegrante'];
+        $now = Carbon::now();
+    
+        // Convertir campos específicos a JSON si son arrays y limpiar los nombres de los campos
+        $fieldsToConvertToJson = ['acceso3', 'consumospa3', 'psicosocial1', 'psicosocial2'];
+        foreach ($fieldsToConvertToJson as $field) {
+            if (isset($dataWithoutId[$field]) && is_array($dataWithoutId[$field])) {
+                $dataWithoutId[$field] = json_encode($dataWithoutId[$field]);
+            }
+        }
+    
+        // Añadir created_at y updated_at
+        $dataWithoutId['updated_at'] = $now;
+    
+        // Verificar si el registro existe para decidir si añadir created_at
+        $exists = DB::table('dbmetodologia.t1_integrantesfisicoyemocional')
+            ->where('idintegrante', $idintegrante)
+            ->where('folio', $folio)
+            ->exists();
+    
+        if (!$exists) {
+            $dataWithoutId['created_at'] = $now;
+        }
+    
+        // Verificar datos antes de la inserción
+        foreach ($dataWithoutId as $key => $value) {
+            if (is_array($value)) {
+                $dataWithoutId[$key] = json_encode($value);
+            }
+        }
+    
+        // Insertar o actualizar el registro
+        try {
+            DB::table('dbmetodologia.t1_integrantesfisicoyemocional')->updateOrInsert(
+                [
+                    'idintegrante' => $idintegrante,
+                    'folio' => $folio,
+                ], // Condición para encontrar el registro existente
+                $dataWithoutId
+            );
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    
+        return response()->json(["request" => $dataWithoutId]);
+    }
 
+    public function fc_intelectual(Request $request)
+    {
+        $data = $request->all()['data'];
+        $dataWithoutId = Arr::except($data, ['idintegrante', 'folio']);
+        $folio = $data['folio'];
+        $idintegrante = $data['idintegrante'];
+        $now = Carbon::now();
+    
+        // Convertir campos específicos a JSON si son arrays y limpiar los nombres de los campos
+        $fieldsToConvertToJson = ['acceso3', 'consumospa3', 'psicosocial1', 'psicosocial2'];
+        foreach ($fieldsToConvertToJson as $field) {
+            if (isset($dataWithoutId[$field]) && is_array($dataWithoutId[$field])) {
+                $dataWithoutId[$field] = json_encode($dataWithoutId[$field]);
+            }
+        }
+    
+        // Añadir created_at y updated_at
+        $dataWithoutId['updated_at'] = $now;
+    
+        // Verificar si el registro existe para decidir si añadir created_at
+        $exists = DB::table('dbmetodologia.t1_integrantesintelectual')
+            ->where('idintegrante', $idintegrante)
+            ->where('folio', $folio)
+            ->exists();
+    
+        if (!$exists) {
+            $dataWithoutId['created_at'] = $now;
+        }
+    
+        // Verificar datos antes de la inserción
+        foreach ($dataWithoutId as $key => $value) {
+            if (is_array($value)) {
+                $dataWithoutId[$key] = json_encode($value);
+            }
+        }
+    
+        // Insertar o actualizar el registro
+        try {
+            DB::table('dbmetodologia.t1_integrantesintelectual')->updateOrInsert(
+                [
+                    'idintegrante' => $idintegrante,
+                    'folio' => $folio,
+                ], // Condición para encontrar el registro existente
+                $dataWithoutId
+            );
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    
+        return response()->json(["request" => $dataWithoutId]);
+    }
 
 
 
