@@ -31,7 +31,8 @@ Route::get('/guardaravatar',[c_editarintegrantes::class, 'fc_guardaravatar'])->n
 Route::get('/encuestaintegrantes',[c_encuestaintegrantes::class, 'fc_encuestaintegrantes'])->name('encuestaintegrantes');
 Route::get('/fisicoyemocional',[c_encuestaintegrantes::class, 'fc_fisicoyemocional'])->name('fisicoyemocional');
 Route::get('/intelectual',[c_encuestaintegrantes::class, 'fc_intelectual'])->name('intelectual');
-
+Route::get('/financiero',[c_encuestaintegrantes::class, 'fc_financiero'])->name('financiero');
+Route::get('/legal',[c_encuestaintegrantes::class, 'fc_legal'])->name('legal');
 
 
 

@@ -276,7 +276,7 @@
             </div>
               <div class="text-end col">
                 <button class="btn btn-outline-success" type="submit">Guardar</button>
-                <div class="btn btn-outline-primary" id="volver2" style="display:none">Siguiente</div>
+                <div class="btn btn-outline-primary" id="siguiente2" style="display:none">Siguiente</div>
               </div>
           </div>
         </form> 
@@ -383,7 +383,7 @@
             </div>
               <div class="text-end col">
                 <button class="btn btn-outline-success" type="submit">Guardar</button>
-                <div class="btn btn-outline-primary" id="volver2" style="display:none">Siguiente</div>
+                <div class="btn btn-outline-primary" id="siguiente3" style="display:none">Siguiente</div>
               </div>
           </div>
         </form> 
@@ -426,7 +426,7 @@
             </div>
               <div class="text-end col">
                 <button class="btn btn-outline-success" type="submit">Guardar</button>
-                <div class="btn btn-outline-primary" id="volver2" style="display:none">Siguiente</div>
+                <div class="btn btn-outline-primary" id="volver" style="display:none">Siguiente</div>
               </div>
           </div>
         </form> 
@@ -595,7 +595,18 @@
         console.log('click');
         $('#identatario').tab('show');  
         
-      });  
+      }); 
+      $('#siguiente2').click(function(){
+        console.log('click');
+        $('#financiero').tab('show');  
+        
+      });
+      $('#siguiente3').click(function(){
+        console.log('click');
+        $('#legal').tab('show');  
+        
+      });
+    
       $('#atras').click(function(){
         console.log('click');
         $('#identificacion').tab('show');  
@@ -702,54 +713,75 @@
  
     $('#formfinanciero').on('submit', function(event) {
         event.preventDefault(); // Detiene el envío del formulario
-        
+
         var formData = $(this).serializeArray();
         var data = {};
-
         $(formData).each(function(index, obj) {
-            // Verificar si el nombre ya existe en el objeto de datos
-            if (data[obj.name]) {
-                // Si ya existe, verificar si es un array
-                if (Array.isArray(data[obj.name])) {
-                    // Si es un array, agregar el nuevo valor al array
-                    data[obj.name].push(obj.value);
+            // Limpiar el nombre del campo quitando los corchetes []
+            var name = obj.name.replace('[]', '');
+            if (data[name]) {
+                if (Array.isArray(data[name])) {
+                    data[name].push(obj.value);
                 } else {
-                    // Si no es un array, convertirlo en un array y agregar el nuevo valor
-                    data[obj.name] = [data[obj.name], obj.value];
+                    data[name] = [data[name], obj.value];
                 }
             } else {
-                // Si no existe, simplemente agregarlo al objeto de datos
-                data[obj.name] = obj.value;
+                data[name] = obj.value;
             }
         });
 
+
         console.log(data);
-        
+
+        // Enviar los datos usando AJAX
+        $.ajax({
+            url: './financiero',
+            method: $(this).attr('method'),
+            data: {data: data},
+            success: function(response) {
+              $('#siguiente3').css('display','');
+              $('#identatario').removeAttr('disabled');
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
     });
-    $('#formlegal').on('submit', function(event) {
-        event.preventDefault(); // Detiene el envío del formulario
-        
-        var formData = $(this).serializeArray();
-        var data = {};
 
-        $(formData).each(function(index, obj) {
-            // Verificar si el nombre ya existe en el objeto de datos
-            if (data[obj.name]) {
-                // Si ya existe, verificar si es un array
-                if (Array.isArray(data[obj.name])) {
-                    // Si es un array, agregar el nuevo valor al array
-                    data[obj.name].push(obj.value);
+
+    $('#formlegal').on('submit', function(event) {
+      event.preventDefault(); // Detiene el envío del formulario
+
+            var formData = $(this).serializeArray();
+            var data = {};
+            $(formData).each(function(index, obj) {
+                // Limpiar el nombre del campo quitando los corchetes []
+                var name = obj.name.replace('[]', '');
+                if (data[name]) {
+                    if (Array.isArray(data[name])) {
+                        data[name].push(obj.value);
+                    } else {
+                        data[name] = [data[name], obj.value];
+                    }
                 } else {
-                    // Si no es un array, convertirlo en un array y agregar el nuevo valor
-                    data[obj.name] = [data[obj.name], obj.value];
+                    data[name] = obj.value;
                 }
-            } else {
-                // Si no existe, simplemente agregarlo al objeto de datos
-                data[obj.name] = obj.value;
+            });
+
+            console.log(data,'hola')
+
+        $.ajax({
+            url: './legal',
+            method: $(this).attr('method'),
+            data: {data: data},
+            success: function(response) {
+              $('#volver').css('display','');
+              $('#identatario').removeAttr('disabled');
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
             }
         });
-
-        console.log(data);
         
     });
        
