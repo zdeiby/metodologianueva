@@ -19,6 +19,7 @@ class c_encuestaintegrantes extends Controller
       $comunas= $modelo->m_leercomunas();
    //   $lecpaises= $modelo->m_leerpaises();
 
+
       
       $sino = '<option value="">Seleccione </option>';
       foreach ($preguntas as $value) {
@@ -43,8 +44,10 @@ class c_encuestaintegrantes extends Controller
       $acceso3 = '';
       foreach ($preguntas as $value) {
           if ($value->id >= '47' && $value->id <= '61') {
-              $acceso3 .= '<input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso3' . $value->id . '" value="' . $value->id . '">';
-              $acceso3 .= '<label class="form-check-label" for="acceso3' . $value->id . '">' . $value->pregunta . '</label></br>';
+              $acceso3 .= '<div class="acceso3' . $value->id . '">
+              <label class="form-check-label acceso3' . $value->id . '"  for="acceso3' . $value->id . '">' . $value->pregunta . '</label>
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso3' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+              </div>';
           }
       }
       $tipodediscapacidad='<option value="">Seleccione </option>';
@@ -63,8 +66,10 @@ class c_encuestaintegrantes extends Controller
       $consumospa3='';
       foreach ($preguntas as $value) {
           if ($value->id >= '71' && $value->id <= '74') {
-              $consumospa3 .= '<input class="form-check-input" type="checkbox" name="consumospa3[]" id="consumospa3' . $value->id . '" value="' . $value->id . '">';
-              $consumospa3 .= '<label class="form-check-label" for="consumospa3' . $value->id . '">' . $value->pregunta . '</label></br>';
+            $consumospa3 .=     '<div class="consumospa3' . $value->id . '">
+              <label class="form-check-label consumospa3' . $value->id . '"  for="consumospa3' . $value->id . '">' . $value->pregunta . '</label>
+              <input class="form-check-input" type="checkbox" name="consumospa3[]" id="consumospa3' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+              </div>';
           }
       }
 
@@ -176,6 +181,22 @@ class c_encuestaintegrantes extends Controller
             'desempleo'=>$desempleo,'bancarizacion'=>$bancarizacion,
             'mecanismosdeproteccionddhh3'=>$mecanismosdeproteccionddhh3
            ]);
+            }
+
+            public function fc_leerpreguntas(Request $request){
+                $folio=$request->input('folio');
+                $idintegrante=$request->input('idintegrante');
+                $integrante = DB::table('t1_integrantesfisicoyemocional')
+                          ->where('idintegrante', '=', $idintegrante)
+                          ->first();
+
+                $imagenes=$request->input('idintegrante');
+                $imagen = DB::table('t1_integranteshogar')
+                        ->where('idintegrante', '=', $idintegrante)
+                        ->first();
+          
+          
+                return response()->json(["integrantes"=>$integrante, "imagen"=>$imagen]);
             }
 
 

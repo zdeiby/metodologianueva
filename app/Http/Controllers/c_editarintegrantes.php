@@ -77,24 +77,44 @@ class c_editarintegrantes extends Controller
               'paises'=>$paises,'tipodocumento'=>$tipodocumento,'sexo'=>$sexo,'orientacion'=>$orientacion, 'identidad'=>$identidad, 'etnia'=>$etnia, 'migrantes2'=>$migrantes2]);
             }
 
-
-    public function fc_responderencuesta(Request $request){
-      $folio=$request->input('folio');
-      $idintegrante=$request->input('idintegrante');
-      $integrante = DB::table('t1_integranteshogar')
-                ->where('idintegrante', '=', $idintegrante)
-                ->first();
-
-      $conteoIntegrantes = DB::table('t1_integranteshogar')
-      ->where('folio', $folio)
-      ->count();
-      $nuevoConteo = $conteoIntegrantes + 1;
-      $formateado = str_pad($nuevoConteo, 2, '0', STR_PAD_LEFT);
-
-      return response()->json(["integrantes"=>$integrante,'leerintegrantes'=> $formateado]);
-
-        
-    }
+            public function fc_responderencuesta(Request $request)
+            {
+                $folio = $request->input('folio');
+                $idintegrante = $request->input('idintegrante');
+                $integrante = DB::table('t1_integranteshogar')
+                            ->where('idintegrante', '=', $idintegrante)
+                            ->first();
+            
+                // Obtener todos los idintegrante existentes para el folio dado
+                $existingIntegrantes = DB::table('t1_integranteshogar')
+                    ->where('folio', $folio)
+                    ->pluck('idintegrante')
+                    ->toArray();
+            
+                // Extraer el número secuencial de los idintegrante existentes
+                $existingNumbers = array_map(function($id) use ($folio) {
+                    return (int) substr($id, strlen($folio));
+                }, $existingIntegrantes);
+            
+                // Ordenar los números secuenciales
+                sort($existingNumbers);
+            
+                // Determinar el siguiente número disponible
+                $nextNumber = 1;
+                foreach ($existingNumbers as $number) {
+                    if ($number != $nextNumber) {
+                        break;
+                    }
+                    $nextNumber++;
+                }
+            
+                // Formatear el nuevo identificador
+                $nuevoId = $folio . str_pad($nextNumber, 2, '0', STR_PAD_LEFT);
+            
+                return response()->json(["integrantes" => $integrante, 'leerintegrantes' => $nuevoId]);
+            }
+            
+            
 
     public function fc_guardarintegrante(Request $request){
       $data = $request->all()['data'];

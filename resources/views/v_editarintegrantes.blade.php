@@ -404,7 +404,7 @@
           $('#cualong').val((data.integrantes)?data.integrantes.cualong:'');
 
           if(localStorage.getItem('idintegrante') == ''){
-            localStorage.setItem('idintegrante',folio+data.leerintegrantes)
+            localStorage.setItem('idintegrante',data.leerintegrantes)
           }
           console.log(localStorage.getItem('idintegrante', 'hollsss'))
           $('#idintegrante1').val(localStorage.getItem('idintegrante'));

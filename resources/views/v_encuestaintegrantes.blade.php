@@ -72,7 +72,7 @@
 
 
         <div class="avatar text-center" style="cursor:pointer">
-          <img src="{{asset('avatares/1.png')}} " id="imagenDinamica" class="rounded-circle" alt="Avatar" style="width: 150px; height: 150px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <img src="{{asset('avatares/blanco.png')}} " id="imagenDinamica" class="rounded-circle" alt="Avatar" style="width: 150px; height: 150px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
         </div>
 
           <form id="formfisicoyemocional" class="row g-3 was-validated">     
@@ -104,8 +104,9 @@
           </div></br>
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Accede a servicios de salud según su edad y necesidad?</label>
-            <div class="form-check form-switch">
-                {!!$acceso3!!} </div>
+            <div class="form-check form-switch" id='acceso3-container'>
+                {!!$acceso3!!}
+               </div>
           </div>
           <div class="col-md-6">
             <label for="validationServer04" class="form-label">¿Presenta algún tipo de discapacidad?</label>
@@ -147,7 +148,7 @@
                 </div><br>
                 <div class="col-md-12">
                   <label for="validationServer04" class="form-label">¿Qué tipo de sustancia consume?</label>
-                    <div class="form-check">
+                    <div class="form-check" id="container-consumospa3">
                       {!!$consumospa3!!} 
                     </div>
                 </div><br>
@@ -165,23 +166,23 @@
                 </div>
                 <div class="col-md-12">
                   <label for="validationServer04" class="form-label">¿Ha tenido alguna consecuencia negativa debido al consumo?</label>
-                  <div class="form-check">
+                  <div class="form-check" id="container-consumospa6">
                       {!!$consumospa6!!} 
                     </div>
                 </div>
                 <div class="col-md-12">
                   <label for="validationServer04" class="form-label">¿El integrante del hogar  accede a servicios de salud mental, asesorias, terapias y/o atención psicosocial?</label>
-                  <div class="form-check">
+                  <div class="form-check" id="container-psicosocial1">
                       {!!$psicosocial1!!} 
                     </div>
                 </div>
                 <div class="col-md-12">
                   <label for="validationServer04" class="form-label">¿Qué estrategias implementa para  reducir el estrés y  para favorecer el bienestar emocional y fisico?</label>
-                  <div class="form-check">
+                  <div class="form-check" id="container-psicosocial2">
                       {!!$psicosocial2!!} 
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-12">
                   <label for="validationServer04" class="form-label">¿El integrante del hogar tiene plan exequial?</label>
                   <select class="form-control form-control-sm" id="planexequial" name="planexequial" aria-describedby="validationServer04Feedback" required="">
                     {{!!$sino!!}}
@@ -512,8 +513,39 @@
               }
       })
     }
+    $('#acceso2').css('display','none');
+    $('#acceso1').click(function(){
+      if($('#acceso1').val() == '2'){
+        $('#acceso2').css('display','none');
+        $('#acceso2').attr('required',false)
+      }else{
+        $('#acceso2').css('display','');
+        $('#acceso2').attr('required',true)
+
+      }
+    });
+
+
+    function calcularEdad(fechaNacimiento) {
+    var hoy = new Date();
+    var nacimiento = new Date(fechaNacimiento);
+    var edad = hoy.getFullYear() - nacimiento.getFullYear();
+    var mes = hoy.getMonth() - nacimiento.getMonth();
+
+    // Ajustar si el cumpleaños aún no ha sido este año
+    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+        edad--;
+    }
+console.log(edad)
+    return edad;
+}
     
     $(document).ready(function(){
+
+
+
+
+
       $('#volveratras').css('display','none');
       $('#idintegrante1').val(localStorage.getItem('idintegrante'));
       $('#idintegrante2').val(localStorage.getItem('idintegrante'));
@@ -525,10 +557,10 @@
       $('#folioinput4').val(localStorage.getItem('folio'));
 
 
-         var imagenUrl = localStorage.getItem('imagen');
-         if (imagenUrl) {
-             $('#imagenDinamica').attr('src', imagenUrl);
-         } 
+        //  var imagenUrl = localStorage.getItem('imagen');
+        //  if (imagenUrl) {
+        //      $('#imagenDinamica').attr('src', imagenUrl);
+        //  } 
         let folio=localStorage.getItem('folio');
         let idintegrante=localStorage.getItem('idintegrante');
         let nombre=localStorage.getItem('nombre');
@@ -537,54 +569,193 @@
         $('#nombre').html(`Nombre: ${nombre} `);
 
         $.ajax({
-        url:'./encuestaintegrantes',
+        url:'./leerpreguntas',
         data:{folio:folio, idintegrante:idintegrante},
         method: "GET",
         dataType:'JSON',
         success:function(data){
-          if(data.integrantes ==null){
-             // Correcto
+          let  edad = calcularEdad(data.imagen.fechanacimiento);
+
+          if(data.imagen.sexo =='13' && data.imagen.gestante=='1' && edad >= '12'){
+            $('.acceso347').css('display','');
+          }  else{
+            $('.acceso347').css('display','none');
+            $('#acceso347').css('display','none');
+
+          } if( edad <= '5'){
+            $('.acceso348').css('display','');
+            $('.acceso349').css('display','');
           }else{
-            $('#identatario').removeAttr('disabled');
-            $('#siguiente').css('display',''); 
-            $('#volver2').css('display','');}
-          //  $('#imagenDinamica').attr('src',`../public/avatares/${data.avatar}.png`)
-          $('#nombre1').val((data.integrantes)?data.integrantes.nombre1:'');
-          $('#nombre2').val((data.integrantes)?data.integrantes.nombre2:'');
-          $('#apellido1').val((data.integrantes)?data.integrantes.apellido1:'');
-          $('#apellido2').val((data.integrantes)?data.integrantes.apellido2:'');   
-          $('#nombreidentatario2').val((data.integrantes)?data.integrantes.nombreidentatario2:'');
-          $('#fechanacimiento').val((data.integrantes)?data.integrantes.fechanacimiento:'');      
-          $('#nombreidentatario1').val((data.integrantes)?data.integrantes.nombreidentatario1:'');
-          $('#documento').val((data.integrantes)?data.integrantes.documento:'');
-          $('#nacionalidad').val((data.integrantes)?data.integrantes.nacionalidad:''); 
-          $('#tipodocumento').val((data.integrantes)?data.integrantes.tipodocumento:'');
-          $('#representante').val((data.integrantes)?data.integrantes.representante:'');
-          $('#sexo').val((data.integrantes)?data.integrantes.sexo:'');
-          $('#hijos').val((data.integrantes)?data.integrantes.hijos:'');
-          $('#gestante').val((data.integrantes)?data.integrantes.gestante:'');
-          $('#lactante').val((data.integrantes)?data.integrantes.lactante:'');
-          $('#situacionmilitar').val((data.integrantes)?data.integrantes.situacionmilitar:'');
-          $('#certificacionetnica').val((data.integrantes)?data.integrantes.certificacionetnica:'');
-          $('#victima1').val((data.integrantes)?data.integrantes.victima1:'');
-          $('#victima2').val((data.integrantes)?data.integrantes.victima2:'');
-          $('#victima3').val((data.integrantes)?data.integrantes.victima3:'');
-          $('#migrantes1').val((data.integrantes)?data.integrantes.migrantes1:'');
-         // $('#orientacion').val((data.integrantes)?data.integrantes.orientacion:'');
-          $('#identidad').val((data.integrantes)?data.integrantes.identidad:'');
-          $('#etnia').val((data.integrantes)?data.integrantes.etnia:'');
-          $('#migrantes2').val((data.integrantes)?data.integrantes.migrantes2:'');
-          $('#cualidentidad').val((data.integrantes)?data.integrantes.cualidentidad:''); 
-        //  $('#cualorientacion').val((data.integrantes)?data.integrantes.cualorientacion:'');
-          $('#cualong').val((data.integrantes)?data.integrantes.cualong:'');
+            $('.acceso348').css('display','none');
+            $('.acceso349').css('display','none'); 
+            $('#acceso348').css('display','none');
+            $('#acceso349').css('display','none')
+          }
+          if( edad >= '12'){
+            $('.acceso352').css('display','');
+          } else{
+            $('.acceso352').css('display','none');
+            $('#acceso352').css('display','none');
+          }
+
+          if( edad >= '40'){
+            $('.acceso353').css('display','');
+          }else{
+            $('.acceso353').css('display','none');
+            $('#acceso353').css('display','none');
+          }
+          if( edad >= '25'){
+            $('.acceso354').css('display','');
+          }else{
+            $('.acceso354').css('display','none');
+            $('#acceso354').css('display','none');
+          }
+          if( edad >= '12' && edad <= '26'){
+            $('.acceso355').css('display','');
+          } else{
+            $('.acceso355').css('display','none');
+            $('#acceso355').css('display','none');
+          }
+          if (data.imagen.sexo == '13'  && edad >= '25' && data.imagen.identidad != '24'){
+            $('.acceso356').css('display','');
+          } else{
+            $('.acceso356').css('display','none');
+            $('#acceso356').css('display','none');
+          } if (data.imagen.sexo == '13'  && edad >= '40' && data.imagen.identidad != '24'){
+                    $('.acceso357').css('display','');
+          }else{
+            $('.acceso357').css('display','none');
+            $('#acceso357').css('display','none');
+          } if (data.imagen.sexo == '13'  && edad >= '18' && data.imagen.identidad != '24'){
+                    $('.acceso358').css('display','');
+          } else{
+            $('.acceso358').css('display','none');
+            $('#acceso358').css('display','none');
+          } if (data.imagen.sexo == '13'  && edad >= '45' && data.imagen.identidad != '24'){
+                    $('.acceso359').css('display','');
+          } else{
+            $('.acceso359').css('display','none');
+            $('#acceso359').css('display','none');
+          }if (data.imagen.sexo == '12'  && edad >= '50' && data.imagen.identidad != '25'){
+                    $('.acceso360').css('display','');
+                    $('.acceso361').css('display','');  
+          }else{
+            $('.acceso360').css('display','none');
+            $('.acceso361').css('display','none');
+            $('#acceso360').css('display','none');
+            $('#acceso361').css('display','none');
+          }
+
+
+
+
+
+
+        $('#imagenDinamica').attr('src',`../public/avatares/${(data.imagen.avatar)?data.imagen.avatar:((data.sexo == '12')?'../avatares/hombre_avatar':'../avatares/mujer_avatar')}.png`)
+
+    //     let acceso3 = JSON.parse(data.integrantes.acceso3); // ["49", "54"]
+          
+    // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
+                    let acceso3 = JSON.parse(data.integrantes.acceso3); // ["49", "54"]
+                    let consumospa3 = JSON.parse(data.integrantes.consumospa3); // ["49", "54"]
+                    let consumospa6 = JSON.parse(data.integrantes.consumospa6); // ["49", "54"]
+                    let psicosocial1 = JSON.parse(data.integrantes.psicosocial1); // ["49", "54"]
+                    let psicosocial2 = JSON.parse(data.integrantes.psicosocial2); // ["49", "54"]
+
+                  
+                  
+
+                // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
+                $('#acceso3-container input[type="checkbox"]').each(function() {
+                  let found = acceso3.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                         
+
+                          //$(this).prop('checked', false);    
+                });
+
+                $('#container-consumospa3 input[type="checkbox"]').each(function() {
+                  let found = consumospa3.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                });
+                $('#container-consumospa6 input[type="checkbox"]').each(function() {
+                    if (consumospa6.includes(this.value)) {
+                        $(this).prop('checked', true);
+                    } else {
+                        $(this).prop('checked', false);
+                    }
+                });
+                $('#container-psicosocial1 input[type="checkbox"]').each(function() {
+                    if (psicosocial1.includes(this.value)) {
+                        $(this).prop('checked', true);
+                    } else {
+                        $(this).prop('checked', false);
+                    }
+                });
+
+                $('#container-psicosocial2 input[type="checkbox"]').each(function() {
+                    if (psicosocial2.includes(this.value)) {
+                        $(this).prop('checked', true);
+                    } else {
+                        $(this).prop('checked', false);
+                    }
+                });
+
+
+           if(data.integrantes ==null){
+
+           }else{
+        //     $('#identatario').removeAttr('disabled');
+             $('#siguiente').css('display',''); 
+             $('#volver2').css('display','');
+            }
+           $('#regimendesalud').val((data.integrantes)?data.integrantes.regimendesalud:'');
+           $('#acceso1').val((data.integrantes)?data.integrantes.acceso1:'');
+           $('#acceso2').val((data.integrantes)?data.integrantes.acceso2:'');
+           $('#discapacidad').val((data.integrantes)?data.integrantes.discapacidad:'');   
+           $('#tipodediscapacidad').val((data.integrantes)?data.integrantes.tipodediscapacidad:'');
+           $('#atenciondiscapacidad').val((data.integrantes)?data.integrantes.atenciondiscapacidad:'');      
+           $('#certificadodiscapacidad').val((data.integrantes)?data.integrantes.certificadodiscapacidad:'');
+           $('#consumospa1').val((data.integrantes)?data.integrantes.consumospa1:'');
+           $('#consumospa2').val((data.integrantes)?data.integrantes.consumospa2:''); 
+           $('#consumospa4').val((data.integrantes)?data.integrantes.consumospa4:'');
+           $('#consumospa5').val((data.integrantes)?data.integrantes.consumospa5:'');
+           $('#planexequial').val((data.integrantes)?data.integrantes.planexequial:'');
+        //   $('#hijos').val((data.integrantes)?data.integrantes.hijos:'');
+        //   $('#gestante').val((data.integrantes)?data.integrantes.gestante:'');
+        //   $('#lactante').val((data.integrantes)?data.integrantes.lactante:'');
+        //   $('#situacionmilitar').val((data.integrantes)?data.integrantes.situacionmilitar:'');
+        //   $('#certificacionetnica').val((data.integrantes)?data.integrantes.certificacionetnica:'');
+        //   $('#victima1').val((data.integrantes)?data.integrantes.victima1:'');
+        //   $('#victima2').val((data.integrantes)?data.integrantes.victima2:'');
+        //   $('#victima3').val((data.integrantes)?data.integrantes.victima3:'');
+        //   $('#migrantes1').val((data.integrantes)?data.integrantes.migrantes1:'');
+        //  // $('#orientacion').val((data.integrantes)?data.integrantes.orientacion:'');
+        //   $('#identidad').val((data.integrantes)?data.integrantes.identidad:'');
+        //   $('#etnia').val((data.integrantes)?data.integrantes.etnia:'');
+        //   $('#migrantes2').val((data.integrantes)?data.integrantes.migrantes2:'');
+        //   $('#cualidentidad').val((data.integrantes)?data.integrantes.cualidentidad:''); 
+        // //  $('#cualorientacion').val((data.integrantes)?data.integrantes.cualorientacion:'');
+        //   $('#cualong').val((data.integrantes)?data.integrantes.cualong:'');
 
      
 
 
-
           
 
-        },
+         },
         error: function(xhr, status, error) {
                   console.log(xhr.responseText);
               }
@@ -638,20 +809,80 @@
         event.preventDefault(); // Detiene el envío del formulario
 
         var formData = $(this).serializeArray();
-        var data = {};
-        $(formData).each(function(index, obj) {
-            // Limpiar el nombre del campo quitando los corchetes []
-            var name = obj.name.replace('[]', '');
-            if (data[name]) {
-                if (Array.isArray(data[name])) {
-                    data[name].push(obj.value);
-                } else {
-                    data[name] = [data[name], obj.value];
-                }
+        var data = {
+              'acceso3': [
+                  { id: '47', valor: 'NO' },
+                  { id: '48', valor: 'NO' },
+                  { id: '49', valor: 'NO' },
+                  { id: '50', valor: 'NO' },
+                  { id: '51', valor: 'NO' },
+                  { id: '52', valor: 'NO' },
+                  { id: '53', valor: 'NO' },
+                  { id: '54', valor: 'NO' },
+                  { id: '55', valor: 'NO' },
+                  { id: '56', valor: 'NO' },
+                  { id: '57', valor: 'NO' },
+                  { id: '58', valor: 'NO' },
+                  { id: '59', valor: 'NO' },
+                  { id: '60', valor: 'NO' },
+                  { id: '61', valor: 'NO' },
+
+              ],
+              'consumospa3': [
+                  { id: '71', valor: 'NO' },
+                  { id: '72', valor: 'NO' },
+                  { id: '73', valor: 'NO' },
+                  { id: '74', valor: 'NO' },
+
+              ]
+          };
+
+          $(formData).each(function(index, obj) {
+    var name = obj.name.replace('[]', '');
+    var selector = '[name="' + obj.name + '"][value="' + obj.value + '"]';
+   // var respuesta = $(selector).attr('respuesta') || 'NO APLICA'; // Asegura obtener correctamente 'respuesta' o 'NO APLICA'
+   var element = $(selector);
+   var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
+    console.log(respuesta, 'respuesta');
+
+    if (name === 'acceso3' || name === 'consumospa3') {
+        // Buscar el objeto con el mismo id
+        var existingIndex = data[name].findIndex(item => item.id === obj.value);
+        if (existingIndex !== -1) {
+            // Reemplazar el valor del objeto existente
+            data[name][existingIndex].valor = respuesta;
+        } else {
+            // Agregar un nuevo objeto si no existe
+            data[name].push({ id: obj.value, valor: respuesta });
+        }
+    } else {
+        if (data[name]) {
+            if (Array.isArray(data[name])) {
+                data[name].push(obj.value);
             } else {
-                data[name] = obj.value;
+                data[name] = [data[name], obj.value];
+            }
+        } else {
+            data[name] = obj.value;
+        }
+    }
+});
+
+// Asegurar que todos los elementos en `acceso3` tienen un valor de 'respuesta'
+data['acceso3'].forEach(item => {
+            var selector = '[name="acceso3[]"][value="' + item.id + '"]';
+            if ($(selector).length === 0 || $(selector).is(':hidden')) {
+                item.valor = 'NO APLICA';
             }
         });
+
+  data['consumospa3'].forEach(item => {
+      var selector = '[name="consumospa3[]"][value="' + item.id + '"]';
+      if ($(selector).length === 0 || $(selector).is(':hidden')) {
+          item.valor = 'NO APLICA';
+      }
+  });
+
 
 
         console.log(data);

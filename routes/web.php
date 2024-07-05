@@ -33,6 +33,7 @@ Route::get('/fisicoyemocional',[c_encuestaintegrantes::class, 'fc_fisicoyemocion
 Route::get('/intelectual',[c_encuestaintegrantes::class, 'fc_intelectual'])->name('intelectual');
 Route::get('/financiero',[c_encuestaintegrantes::class, 'fc_financiero'])->name('financiero');
 Route::get('/legal',[c_encuestaintegrantes::class, 'fc_legal'])->name('legal');
+Route::get('/leerpreguntas',[c_encuestaintegrantes::class, 'fc_leerpreguntas'])->name('leerpreguntas');
 
 
 
