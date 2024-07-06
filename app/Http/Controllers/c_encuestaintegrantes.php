@@ -192,9 +192,13 @@ class c_encuestaintegrantes extends Controller
             public function fc_leerpreguntas(Request $request){
                 $folio=$request->input('folio');
                 $idintegrante=$request->input('idintegrante');
-                $integrante = DB::table('t1_integrantesfisicoyemocional')
+                $t1_integrantesfisicoyemocional = DB::table('t1_integrantesfisicoyemocional')
                           ->where('idintegrante', '=', $idintegrante)
                           ->first();
+
+                $t1_integrantesintelectual = DB::table('t1_integrantesintelectual')
+                        ->where('idintegrante', '=', $idintegrante)
+                        ->first();
 
                 $imagenes=$request->input('idintegrante');
                 $imagen = DB::table('t1_integranteshogar')
@@ -202,7 +206,7 @@ class c_encuestaintegrantes extends Controller
                         ->first();
           
           
-                return response()->json(["integrantes"=>$integrante, "imagen"=>$imagen]);
+                return response()->json(["integrantes"=>$t1_integrantesfisicoyemocional, "integrantesintelectual"=>$t1_integrantesintelectual, "imagen"=>$imagen]);
             }
 
 

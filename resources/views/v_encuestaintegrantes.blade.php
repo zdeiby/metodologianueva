@@ -380,7 +380,7 @@
     
           <div class="row pt-4">
             <div class="text-start col">
-              <div class="btn btn-outline-primary" id="atras">volver</div>
+              <div class="btn btn-outline-primary" id="atras2">volver</div>
             </div>
               <div class="text-end col">
                 <button class="btn btn-outline-success" type="submit">Guardar</button>
@@ -423,7 +423,7 @@
     
           <div class="row pt-4">
             <div class="text-start col">
-              <div class="btn btn-outline-primary" id="atras">volver</div>
+              <div class="btn btn-outline-primary" id="atras3">volver</div>
             </div>
               <div class="text-end col">
                 <button class="btn btn-outline-success" type="submit">Guardar</button>
@@ -721,14 +721,16 @@ console.log(edad)
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
                           }
                 });
-
+              
 
            if(data.integrantes ==null){
-
            }else{
-        //     $('#identatario').removeAttr('disabled');
-             $('#siguiente').css('display',''); 
+             $('#siguiente').css('display','');
              $('#volver2').css('display','');
+            }
+            if(data.integrantesintelectual ==null){
+            }else{
+              $('#siguiente2').css('display','');
             }
            $('#regimendesalud').val((data.integrantes)?data.integrantes.regimendesalud:'');
            $('#acceso1').val((data.integrantes)?data.integrantes.acceso1:'');
@@ -745,8 +747,17 @@ console.log(edad)
            $('#psicosocial1').val((data.integrantes)?data.integrantes.psicosocial1:'');
            $('#psicosocial2').val((data.integrantes)?data.integrantes.psicosocial2:'');
            $('#planexequial').val((data.integrantes)?data.integrantes.planexequial:'');
-        //   $('#hijos').val((data.integrantes)?data.integrantes.hijos:'');
-        //   $('#gestante').val((data.integrantes)?data.integrantes.gestante:'');
+        //   BIENESTAR INTELECTUAL
+           $('#alfabetizacion').val((data.integrantesintelectual)?data.integrantesintelectual.alfabetizacion:'');
+           $('#educacion').val((data.integrantesintelectual)?data.integrantesintelectual.educacion:'');
+           $('#niveleducativo1').val((data.integrantesintelectual)?data.integrantesintelectual.niveleducativo1:'');
+           $('#niveleducativo2').val((data.integrantesintelectual)?data.integrantesintelectual.niveleducativo2:'');
+           $('#niveleducativo5').val((data.integrantesintelectual)?data.integrantesintelectual.niveleducativo5:'');
+           $('#niveleducativo3').val((data.integrantesintelectual)?data.integrantesintelectual.niveleducativo3:'');
+           $('#niveleducativo4').val((data.integrantesintelectual)?data.integrantesintelectual.niveleducativo4:'');
+           $('#deseaaccedereducacion').val((data.integrantesintelectual)?data.integrantesintelectual.deseaaccedereducacion:'');
+           $('#alfabetizaciondigital').val((data.integrantesintelectual)?data.integrantesintelectual.alfabetizaciondigital:'');
+
         //   $('#lactante').val((data.integrantes)?data.integrantes.lactante:'');
         //   $('#situacionmilitar').val((data.integrantes)?data.integrantes.situacionmilitar:'');
         //   $('#certificacionetnica').val((data.integrantes)?data.integrantes.certificacionetnica:'');
@@ -793,8 +804,18 @@ console.log(edad)
       $('#atras').click(function(){
         console.log('click');
         $('#identificacion').tab('show');  
-        
-      });  
+      }); 
+      $('#atras2').click(function(){
+        console.log('click');
+        $('#identatario').tab('show');  
+      });
+      $('#atras3').click(function(){
+        console.log('click');
+        $('#financiero').tab('show');  
+      });   
+      
+
+
       $('#volver').click(function(){
         redirectToIntegrantes()
       });
