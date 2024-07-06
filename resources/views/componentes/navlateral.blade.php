@@ -390,7 +390,7 @@ main.min-main{
                         <span>Cobertura</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#">
                         <ion-icon name="close-outline"></ion-icon>
                         <span>Inactivar Folios</span>
@@ -407,7 +407,7 @@ main.min-main{
                         <ion-icon name="cog-outline"></ion-icon>
                         <span>Configuración</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="#">
                         <ion-icon name="log-out-outline"></ion-icon>

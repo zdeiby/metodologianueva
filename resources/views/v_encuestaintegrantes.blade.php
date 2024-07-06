@@ -114,14 +114,14 @@
             {{!!$sino!!}}
           </select>
           </div>
-          <div class="col-md-5">
+          <div class="col-md-6">
             <label for="validationServer04" class="form-label">¿Qué tipo de discapacidad presenta?</label>
             <select class="form-control form-control-sm" id="tipodediscapacidad" aria-describedby="validationServer04Feedback" name="tipodediscapacidad" required="">
             {{!!$tipodediscapacidad!!}}
           </select>
           </div>
 
-          <div class="col-md-7">
+          <div class="col-md-6">
             <label for="validationServer04" class="form-label">¿Accede o ha accedido a los servicios de salud  según su necesidad?
             </label>
             <select class="form-control form-control-sm" id="atenciondiscapacidad" name="atenciondiscapacidad" aria-describedby="validationServer04Feedback" required="">
@@ -691,26 +691,35 @@ console.log(edad)
                           }
                 });
                 $('#container-consumospa6 input[type="checkbox"]').each(function() {
-                    if (consumospa6.includes(this.value)) {
-                        $(this).prop('checked', true);
-                    } else {
-                        $(this).prop('checked', false);
-                    }
+                  let found = consumospa6.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
                 });
                 $('#container-psicosocial1 input[type="checkbox"]').each(function() {
-                    if (psicosocial1.includes(this.value)) {
-                        $(this).prop('checked', true);
-                    } else {
-                        $(this).prop('checked', false);
-                    }
+                  let found = psicosocial1.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
                 });
 
                 $('#container-psicosocial2 input[type="checkbox"]').each(function() {
-                    if (psicosocial2.includes(this.value)) {
-                        $(this).prop('checked', true);
-                    } else {
-                        $(this).prop('checked', false);
-                    }
+                  let found = psicosocial2.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
                 });
 
 
@@ -732,6 +741,9 @@ console.log(edad)
            $('#consumospa2').val((data.integrantes)?data.integrantes.consumospa2:''); 
            $('#consumospa4').val((data.integrantes)?data.integrantes.consumospa4:'');
            $('#consumospa5').val((data.integrantes)?data.integrantes.consumospa5:'');
+           $('#consumospa6').val((data.integrantes)?data.integrantes.consumospa6:'');
+           $('#psicosocial1').val((data.integrantes)?data.integrantes.psicosocial1:'');
+           $('#psicosocial2').val((data.integrantes)?data.integrantes.psicosocial2:'');
            $('#planexequial').val((data.integrantes)?data.integrantes.planexequial:'');
         //   $('#hijos').val((data.integrantes)?data.integrantes.hijos:'');
         //   $('#gestante').val((data.integrantes)?data.integrantes.gestante:'');
@@ -833,7 +845,38 @@ console.log(edad)
                   { id: '72', valor: 'NO' },
                   { id: '73', valor: 'NO' },
                   { id: '74', valor: 'NO' },
-
+              ],
+              'consumospa6': [
+                  { id: '81', valor: 'NO' },
+                  { id: '82', valor: 'NO' },
+                  { id: '83', valor: 'NO' },
+                  { id: '84', valor: 'NO' },
+                  { id: '85', valor: 'NO' },
+                  { id: '86', valor: 'NO' }, 
+              ],
+              'psicosocial1': [
+                  { id: '87', valor: 'NO' },
+                  { id: '88', valor: 'NO' },
+                  { id: '89', valor: 'NO' },
+                  { id: '90', valor: 'NO' },
+                  { id: '91', valor: 'NO' },
+              ],
+              'psicosocial2': [
+                  { id: '92', valor: 'NO' },
+                  { id: '93', valor: 'NO' },
+                  { id: '94', valor: 'NO' },
+                  { id: '95', valor: 'NO' },
+                  { id: '96', valor: 'NO' },
+                  { id: '97', valor: 'NO' },
+                  { id: '98', valor: 'NO' },
+                  { id: '99', valor: 'NO' },
+                  { id: '100', valor: 'NO' },
+                  { id: '101', valor: 'NO' },
+                  { id: '102', valor: 'NO' },
+                  { id: '103', valor: 'NO' },
+                  { id: '104', valor: 'NO' },
+                  { id: '105', valor: 'NO' },
+                  { id: '106', valor: 'NO' }, 
               ]
           };
 
@@ -845,7 +888,7 @@ console.log(edad)
    var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
     console.log(respuesta, 'respuesta');
 
-    if (name === 'acceso3' || name === 'consumospa3') {
+    if (name === 'acceso3' || name === 'consumospa3' || name === 'consumospa6' || name === 'psicosocial1'|| name === 'psicosocial2') {
         // Buscar el objeto con el mismo id
         var existingIndex = data[name].findIndex(item => item.id === obj.value);
         if (existingIndex !== -1) {
@@ -878,6 +921,27 @@ data['acceso3'].forEach(item => {
 
   data['consumospa3'].forEach(item => {
       var selector = '[name="consumospa3[]"][value="' + item.id + '"]';
+      if ($(selector).length === 0 || $(selector).is(':hidden')) {
+          item.valor = 'NO APLICA';
+      }
+  });
+
+  data['consumospa6'].forEach(item => {
+      var selector = '[name="consumospa6[]"][value="' + item.id + '"]';
+      if ($(selector).length === 0 || $(selector).is(':hidden')) {
+          item.valor = 'NO APLICA';
+      }
+  });
+
+  data['psicosocial1'].forEach(item => {
+      var selector = '[name="psicosocial1[]"][value="' + item.id + '"]';
+      if ($(selector).length === 0 || $(selector).is(':hidden')) {
+          item.valor = 'NO APLICA';
+      }
+  });
+
+  data['psicosocial2'].forEach(item => {
+      var selector = '[name="psicosocial2[]"][value="' + item.id + '"]';
       if ($(selector).length === 0 || $(selector).is(':hidden')) {
           item.valor = 'NO APLICA';
       }

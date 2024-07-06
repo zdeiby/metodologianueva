@@ -91,23 +91,29 @@ class c_encuestaintegrantes extends Controller
       $consumospa6='';
       foreach ($preguntas as $value) {
         if ($value->id >= '81' && $value->id <= '86') {
-          $consumospa6 .= '<input class="form-check-input" type="checkbox" name="consumospa6[]" id="consumospa6' . $value->id . '" value="' . $value->id . '">';
-          $consumospa6 .= '<label class="form-check-label" for="consumospa6' . $value->id . '">' . $value->pregunta . '</label></br>';
+          $consumospa6 .=  '<div class="consumospa6' . $value->id . '">
+          <label class="form-check-label consumospa6' . $value->id . '"  for="consumospa6' . $value->id . '">' . $value->pregunta . '</label>
+          <input class="form-check-input" type="checkbox" name="consumospa6[]" id="consumospa6' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          </div>';
     }
       }
 
       $psicosocial1='';
       foreach ($preguntas as $value) {
         if ($value->id >= '87' && $value->id <= '91') {
-          $psicosocial1 .= '<input class="form-check-input" type="checkbox" name="psicosocial1[]" id="psicosocial1' . $value->id . '" value="' . $value->id . '">';
-          $psicosocial1 .= '<label class="form-check-label" for="psicosocial1' . $value->id . '">' . $value->pregunta . '</label></br>';
+          $psicosocial1 .=  '<div class="psicosocial1' . $value->id . '">
+          <label class="form-check-label psicosocial1' . $value->id . '"  for="psicosocial1' . $value->id . '">' . $value->pregunta . '</label>
+          <input class="form-check-input" type="checkbox" name="psicosocial1[]" id="psicosocial1' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          </div>';
         }
       }
       $psicosocial2='';
       foreach ($preguntas as $value) {
         if ($value->id >= '92' && $value->id <= '106') {
-          $psicosocial2 .= '<input class="form-check-input" type="checkbox" name="psicosocial2[]" id="psicosocial2' . $value->id . '" value="' . $value->id . '">';
-          $psicosocial2 .= '<label class="form-check-label" for="psicosocial2' . $value->id . '">' . $value->pregunta . '</label></br>';
+          $psicosocial2 .= '<div class="psicosocial2' . $value->id . '">
+          <label class="form-check-label psicosocial2' . $value->id . '"  for="psicosocial2' . $value->id . '">' . $value->pregunta . '</label>
+          <input class="form-check-input" type="checkbox" name="psicosocial2[]" id="psicosocial2' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          </div>';
         }
       }
 

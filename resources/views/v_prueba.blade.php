@@ -41,7 +41,7 @@
               <th>Nombre del Representante</th>
               <th>Celular</th>     
               <th>Línea Estación</th>        
-              <th>Realizar visita</th>
+              <th>Gestión del hogar</th>
             </tr>
         </thead>
         <tbody >
@@ -54,7 +54,7 @@
                 <td>Primera Fase</td>
                 <td>
                   <form method="GET" action="{{ route('rombo', ['folio' => encrypt($value->folio) ]) }}" >
-                    <button type="submit" class="btn btn-primary"  id="l1e1">Realizar visita</button></form></td>
+                    <button type="submit" class="btn btn-primary"  id="l1e1">Realizar Gestión</button></form></td>
             </tr>
       @endforeach    
         </tbody>
@@ -66,7 +66,6 @@
               <th>Celular</th>     
               <th>Barrio</th>        
               <th>línea Estacion</th>
-
             </tr>
         </tfoot>
     </table>
