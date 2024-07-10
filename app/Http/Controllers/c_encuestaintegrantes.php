@@ -140,8 +140,10 @@ class c_encuestaintegrantes extends Controller
       $trabajoinfantil='';
       foreach ($preguntas as $value) {
         if ($value->id >= '137' && $value->id <= '146') {
-          $trabajoinfantil .= '<input class="form-check-input" type="checkbox" name="trabajoinfantil[]" id="trabajoinfantil' . $value->id . '" value="' . $value->id . '">';
-          $trabajoinfantil .= '<label class="form-check-label" for="trabajoinfantil' . $value->id . '">' . $value->pregunta . '</label></br>';
+          $trabajoinfantil .= '<div class="trabajoinfantil' . $value->id . '">
+          <label class="form-check-label trabajoinfantil' . $value->id . '"  for="trabajoinfantil' . $value->id . '">' . $value->pregunta . '</label>
+          <input class="form-check-input" type="checkbox" name="trabajoinfantil[]" id="trabajoinfantil' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          </div>';
         }
       }
 
@@ -162,16 +164,20 @@ class c_encuestaintegrantes extends Controller
       $bancarizacion='';
       foreach ($preguntas as $value) {
         if ($value->id >= '157' && $value->id <= '164') {
-          $bancarizacion .= '<input class="form-check-input" type="checkbox" name="bancarizacion[]" id="bancarizacion' . $value->id . '" value="' . $value->id . '">';
-          $bancarizacion .= '<label class="form-check-label" for="bancarizacion' . $value->id . '">' . $value->pregunta . '</label></br>';
+          $bancarizacion .= '<div class="bancarizacion' . $value->id . '">
+          <label class="form-check-label bancarizacion' . $value->id . '"  for="bancarizacion' . $value->id . '">' . $value->pregunta . '</label>
+          <input class="form-check-input" type="checkbox" name="bancarizacion[]" id="bancarizacion' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          </div>';
         }
       }
 
       $mecanismosdeproteccionddhh3='';
       foreach ($preguntas as $value) {
         if ($value->id >= '165' && $value->id <= '178') {
-          $mecanismosdeproteccionddhh3 .= '<input class="form-check-input" type="checkbox" name="mecanismosdeproteccionddhh3[]" id="mecanismosdeproteccionddhh3' . $value->id . '" value="' . $value->id . '">';
-          $mecanismosdeproteccionddhh3 .= '<label class="form-check-label" for="bancarizacion' . $value->id . '">' . $value->pregunta . '</label></br>';
+          $mecanismosdeproteccionddhh3 .= '<div class="mecanismosdeproteccionddhh3' . $value->id . '">
+          <label class="form-check-label mecanismosdeproteccionddhh3' . $value->id . '"  for="mecanismosdeproteccionddhh3' . $value->id . '">' . $value->pregunta . '</label>
+          <input class="form-check-input" type="checkbox" name="mecanismosdeproteccionddhh3[]" id="mecanismosdeproteccionddhh3' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          </div>';
         }
       }
 
@@ -200,13 +206,25 @@ class c_encuestaintegrantes extends Controller
                         ->where('idintegrante', '=', $idintegrante)
                         ->first();
 
-                $imagenes=$request->input('idintegrante');
+                $t1_integrantesfinanciero = DB::table('t1_integrantesfinanciero')
+                ->where('idintegrante', '=', $idintegrante)
+                ->first();
+
+                $t1_integranteslegal = DB::table('t1_integranteslegal')
+                ->where('idintegrante', '=', $idintegrante)
+                ->first();
+
+               // $imagenes=$request->input('idintegrante');
                 $imagen = DB::table('t1_integranteshogar')
                         ->where('idintegrante', '=', $idintegrante)
                         ->first();
+                $identitario = DB::table('t1_integrantesidentitario')
+                ->where('idintegrante', '=', $idintegrante)
+                ->first();
           
           
-                return response()->json(["integrantes"=>$t1_integrantesfisicoyemocional, "integrantesintelectual"=>$t1_integrantesintelectual, "imagen"=>$imagen]);
+                return response()->json(["integrantes"=>$t1_integrantesfisicoyemocional, "integrantesintelectual"=>$t1_integrantesintelectual, 
+                 "integrantesfinanciero"=>$t1_integrantesfinanciero, "integranteslegal"=>$t1_integranteslegal, "imagen"=>$imagen, "identitario"=>$identitario]);
             }
 
 

@@ -66,7 +66,7 @@
 
 
   <div class="avatar text-center" style="cursor:pointer">
-    <img src="{{asset('avatares/1.png')}} " id="imagenDinamica" class="rounded-circle" alt="Avatar" style="width: 150px; height: 150px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <img src="{{asset('avatares/blanco.png')}} " id="imagenDinamica" class="rounded-circle" alt="Avatar" style="width: 150px; height: 150px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
   </div>
 
           <form id="integranteshogar" class="row g-3 was-validated">     
@@ -80,16 +80,16 @@
 
             <label for="validationServer04" class="form-label">¿Cuál es su nombre completo?</label>
           <div class="col-md-3">
-            <input type="text" class="form-control form-control-sm " placeholder="Nombre 1" id="nombre1"  name="nombre1" value="" required>
+            <input type="text" class="form-control form-control-sm " placeholder="Nombre 1" oninput="convertirAMayusculas(this)" id="nombre1"  name="nombre1" value="" required>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control form-control-sm " placeholder="Nombre 2" id="nombre2"  name="nombre2" value="" >
+            <input type="text" class="form-control form-control-sm " placeholder="Nombre 2" oninput="convertirAMayusculas(this)" id="nombre2"  name="nombre2" value="" >
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control form-control-sm " placeholder="Apellido 1" id="apellido1" name="apellido1"  value="" required>
+            <input type="text" class="form-control form-control-sm " placeholder="Apellido 1" oninput="convertirAMayusculas(this)" id="apellido1" name="apellido1"  value="" required>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control form-control-sm " placeholder="Apellido 2" id="apellido2" name="apellido2"  value="" >
+            <input type="text" class="form-control form-control-sm " placeholder="Apellido 2" oninput="convertirAMayusculas(this)" id="apellido2" name="apellido2"  value="" >
           </div>
           <div class="col-md-12">
                   <label for="validationServer04" class="form-label">¿Tiene un nombre identitario o cómo te gusta que te llamen?</label>
@@ -195,7 +195,7 @@
           </div>
           <div class="col-md">
             <label for="validationServer04" class="form-label">¿Cúal?</label>
-            <input type="text" class="form-control form-control-sm" name="cualorientacion" id="cualorientacion" value="">
+            <input type="text" class="form-control form-control-sm" name="cualorientacion" oninput="convertirAMayusculas(this)" id="cualorientacion" value="">
           </div>
           <div class="col-md-6">
             <label for="validationServer04" class="form-label">¿Cuál es su identidad de género?</label>
@@ -251,7 +251,7 @@
           </div>
           <div class="col-md">
             <label for="validationServer04" class="form-label">¿Cúal?</label>
-            <input type="text" class="form-control form-control-sm" id="cualong" name="cualong" value="">
+            <input type="text" class="form-control form-control-sm" oninput="convertirAMayusculas(this)" id="cualong" name="cualong" value="">
           </div>
           <hr>
     
@@ -310,6 +310,9 @@
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
+
+
+
     
     function agregarImagen(id){
       $(`#${id}`).addClass('imagenselect');
@@ -348,10 +351,10 @@
     $(document).ready(function(){
       $('#volveratras').css('display','none');
     
-         var imagenUrl = localStorage.getItem('imagen');
-         if (imagenUrl) {
-             $('#imagenDinamica').attr('src', imagenUrl);
-         } 
+        //  var imagenUrl = localStorage.getItem('imagen');
+        //  if (imagenUrl) {
+        //      $('#imagenDinamica').attr('src', imagenUrl);
+        //  } 
         let folio=localStorage.getItem('folio');
         let idintegrante=localStorage.getItem('idintegrante');
         let nombre=localStorage.getItem('nombre');
@@ -366,8 +369,13 @@
         dataType:'JSON',
         success:function(data){
           if(data.integrantes ==null){
-             // Correcto
+            //$('#imagenDinamica').attr('src',`../public/avatares/${(data.integrantes.sexo == '12')?'../avatares/hombre_avatar':'../avatares/mujer_avatar'}.png`)
           }else{
+            
+              if(data.integrantes.avatar != null && data.integrantes.avatar !=''){$('#imagenDinamica').attr('src',`../public/avatares/${data.integrantes.avatar}.png`) }  
+                
+             
+
             $('#identatario').removeAttr('disabled');
             $('#siguiente').css('display',''); 
             $('#volver2').css('display','');}
@@ -386,22 +394,22 @@
           $('#tipodocumento').val((data.integrantes)?data.integrantes.tipodocumento:'');
           $('#representante').val((data.integrantes)?data.integrantes.representante:'');
           $('#sexo').val((data.integrantes)?data.integrantes.sexo:'');
-          $('#hijos').val((data.integrantes)?data.integrantes.hijos:'');
-          $('#gestante').val((data.integrantes)?data.integrantes.gestante:'');
-          $('#lactante').val((data.integrantes)?data.integrantes.lactante:'');
-          $('#situacionmilitar').val((data.integrantes)?data.integrantes.situacionmilitar:'');
-          $('#certificacionetnica').val((data.integrantes)?data.integrantes.certificacionetnica:'');
-          $('#victima1').val((data.integrantes)?data.integrantes.victima1:'');
-          $('#victima2').val((data.integrantes)?data.integrantes.victima2:'');
-          $('#victima3').val((data.integrantes)?data.integrantes.victima3:'');
-          $('#migrantes1').val((data.integrantes)?data.integrantes.migrantes1:'');
-          $('#orientacion').val((data.integrantes)?data.integrantes.orientacion:'');
-          $('#identidad').val((data.integrantes)?data.integrantes.identidad:'');
-          $('#etnia').val((data.integrantes)?data.integrantes.etnia:'');
-          $('#migrantes2').val((data.integrantes)?data.integrantes.migrantes2:'');
-          $('#cualidentidad').val((data.integrantes)?data.integrantes.cualidentidad:''); 
-          $('#cualorientacion').val((data.integrantes)?data.integrantes.cualorientacion:'');
-          $('#cualong').val((data.integrantes)?data.integrantes.cualong:'');
+          $('#hijos').val((data.integrantesidentitario)?data.integrantesidentitario.hijos:'');
+          $('#gestante').val((data.integrantesidentitario)?data.integrantesidentitario.gestante:'');
+          $('#lactante').val((data.integrantesidentitario)?data.integrantesidentitario.lactante:'');
+          $('#situacionmilitar').val((data.integrantesidentitario)?data.integrantesidentitario.situacionmilitar:'');
+          $('#certificacionetnica').val((data.integrantesidentitario)?data.integrantesidentitario.certificacionetnica:'');
+          $('#victima1').val((data.integrantesidentitario)?data.integrantesidentitario.victima1:'');
+          $('#victima2').val((data.integrantesidentitario)?data.integrantesidentitario.victima2:'');
+          $('#victima3').val((data.integrantesidentitario)?data.integrantesidentitario.victima3:'');
+          $('#migrantes1').val((data.integrantesidentitario)?data.integrantesidentitario.migrantes1:'');
+          $('#orientacion').val((data.integrantesidentitario)?data.integrantesidentitario.orientacion:'');
+          $('#identidad').val((data.integrantesidentitario)?data.integrantesidentitario.identidad:'');
+          $('#etnia').val((data.integrantesidentitario)?data.integrantesidentitario.etnia:'');
+          $('#migrantes2').val((data.integrantesidentitario)?data.integrantesidentitario.migrantes2:'');
+          $('#cualidentidad').val((data.integrantesidentitario)?data.integrantesidentitario.cualidentidad:''); 
+          $('#cualorientacion').val((data.integrantesidentitario)?data.integrantesidentitario.cualorientacion:'');
+          $('#cualong').val((data.integrantesidentitario)?data.integrantesidentitario.cualong:'');
 
           if(localStorage.getItem('idintegrante') == ''){
             localStorage.setItem('idintegrante',data.leerintegrantes)
@@ -484,13 +492,13 @@
     function enviarDatos2(data) {
         console.log('Datos del formulario:', data);
         $.ajax({
-                    url:'./guardarintegrante',
+                    url:'./guardaridentitario',
                     data:{data},
                     method: "GET",
                     dataType:'JSON',
                     success:function(data){
                       $('#volver2').css('display','');
-                      console.log('okl')
+                      console.log('ok2')
                     },
                     error: function(xhr, status, error) {
                               console.log(xhr.responseText);

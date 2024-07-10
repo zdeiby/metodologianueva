@@ -84,6 +84,10 @@ class c_editarintegrantes extends Controller
                 $integrante = DB::table('t1_integranteshogar')
                             ->where('idintegrante', '=', $idintegrante)
                             ->first();
+                            $integranteidentitario = DB::table('t1_integrantesidentitario')
+                            ->where('idintegrante', '=', $idintegrante)
+                            ->first();
+
             
                 // Obtener todos los idintegrante existentes para el folio dado
                 $existingIntegrantes = DB::table('t1_integranteshogar')
@@ -111,14 +115,14 @@ class c_editarintegrantes extends Controller
                 // Formatear el nuevo identificador
                 $nuevoId = $folio . str_pad($nextNumber, 2, '0', STR_PAD_LEFT);
             
-                return response()->json(["integrantes" => $integrante, 'leerintegrantes' => $nuevoId]);
+                return response()->json(["integrantes" => $integrante, 'leerintegrantes' => $nuevoId, 'integrantesidentitario'=>$integranteidentitario]);
             }
             
             
 
     public function fc_guardarintegrante(Request $request){
       $data = $request->all()['data'];
-      $dataWithoutId = Arr::except($data, ['idintegrante', 'folio']);
+      $dataWithoutId = Arr::except($data, ['idintegrante', 'folio',]);
       $folio = $data['folio'];
       $idintegrante = $data['idintegrante'];
       $now = Carbon::now();
@@ -143,8 +147,39 @@ class c_editarintegrantes extends Controller
           ], // Condición para encontrar el registro existente
           $dataWithoutId
       );
+
   
       return response()->json(["request" => $dataWithoutId]);
+  }
+
+  public function fc_guardaridentitario(Request $request){
+
+    $data = $request->all()['data'];
+    $dataWithoutId = Arr::except($data, ['idintegrante', 'folio',]);
+    $folio = $data['folio'];
+    $idintegrante = $data['idintegrante'];
+    $now = Carbon::now();
+
+    // Añadir created_at y updated_at
+    $dataWithoutId['updated_at'] = $now;
+    $exists2 = DB::table('dbmetodologia.t1_integrantesidentitario')
+    ->where('idintegrante', $idintegrante)
+    ->where('folio', $folio)
+    ->exists();
+
+    if (!$exists2) {
+        $dataWithoutId['created_at'] = $now;
+    }
+
+        DB::table('dbmetodologia.t1_integrantesidentitario')->updateOrInsert(
+          [
+              'idintegrante' => $idintegrante,
+              'folio' => $folio,
+          ], // Condición para encontrar el registro existente
+          $dataWithoutId
+      );
+      return response()->json(["request" => $dataWithoutId]);
+
   }
 
     public function fc_guardaravatar(Request $request){

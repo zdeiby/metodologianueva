@@ -33,7 +33,7 @@ class c_integrantes extends Controller
                   Editar
                   </button>
                   </td>
-                <td style="width:100px !important"><img src="' .(($value->avatar)? asset('avatares/'.$value->avatar. '.png'):(($value->sexo =="FEMENINO")?asset('avatares/mujer_avatar.png'):asset('avatares/hombre_avatar.png'))) . '" width="100%" alt=""></td>
+                <td style="width:100px !important"><img src="' .(($value->avatar)? asset('avatares/'.$value->avatar. '.png'):(($value->sexo =="13")?asset('avatares/mujer_avatar.png'):asset('avatares/hombre_avatar.png'))) . '" width="100%" alt=""></td>
                   <td class="align-middle align-center" style="text-align: center !important;">
                   <button class="btn btn-danger btn-sm" onclick="eliminarintegrantes('.$folio.','.$value->idintegrante.')">
                     x
@@ -50,6 +50,14 @@ class c_integrantes extends Controller
       ->where('folio', $request->input('folio'))
       ->where('idintegrante', $request->input('idintegrante'))
       ->delete();
+
+      DB::table('t1_integrantesidentitario')
+      ->where('folio', $request->input('folio'))
+      ->where('idintegrante', $request->input('idintegrante'))
+      ->delete();
+
+
+      
 
   return response()->json(['message' => 'Integrante eliminado con éxito']);
   }

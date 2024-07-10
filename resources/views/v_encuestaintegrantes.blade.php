@@ -96,8 +96,8 @@
             {{!!$sino!!}}
                       </select>
           </div>
-          <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Accedió al servicios en su EPS, IPS o servicio particular según esa necesidad?</label>
+          <div class="col-md-12 acceso2">
+            <label for="validationServer04" class="form-label ">¿Accedió al servicios en su EPS, IPS o servicio particular según esa necesidad?</label>
             <select class="form-control form-control-sm" id="acceso2" name="acceso2" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
@@ -301,7 +301,7 @@
         
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Cuáles de las siguientes actividades realiza para obtener ingresos?</label>
-            <div class="form-check">
+            <div class="form-check" id="container-trabajoinfantil">
                       {!!$trabajoinfantil!!} 
                     </div>
           </div>
@@ -355,7 +355,7 @@
           </div>
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Cuáles mecanismos o productos financieros conoce y ha usado o usa en la actualidad?</label>
-            <div class="form-check">
+            <div class="form-check" id="container-bancarizacion">
                       {!!$bancarizacion!!} 
                     </div>
           </div>
@@ -365,7 +365,7 @@
             {{!!$sino!!}}
           </select>
           </div>
-          <div class="col-md-3" >
+          <div class="col-md-12" >
           <label for="validationServer04" class="form-label">A cuánto equivalen las deudas que tienen actualmente?</label>
             <input type="number"  class="form-control form-control-sm  " id="endeudamiento3" name="endeudamiento3" value="" required="">
           </div>
@@ -408,7 +408,7 @@
         
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿De cuáles de las siguientes instituciones para la protección y garantía de sus derechos ha hecho uso?</label>
-            <div class="form-check">
+            <div class="form-check" id="container-mecanismosdeproteccionddhh3">
                       {!!$mecanismosdeproteccionddhh3!!} 
                     </div>
           </div>
@@ -513,13 +513,13 @@
               }
       })
     }
-    $('#acceso2').css('display','none');
+    $('.acceso2').css('display','none');
     $('#acceso1').click(function(){
       if($('#acceso1').val() == '2'){
-        $('#acceso2').css('display','none');
+        $('.acceso2').css('display','none');
         $('#acceso2').attr('required',false)
       }else{
-        $('#acceso2').css('display','');
+        $('.acceso2').css('display','');
         $('#acceso2').attr('required',true)
 
       }
@@ -576,7 +576,7 @@ console.log(edad)
         success:function(data){
           let  edad = calcularEdad(data.imagen.fechanacimiento);
 
-          if(data.imagen.sexo =='13' && data.imagen.gestante=='1' && edad >= '12'){
+          if(data.imagen.sexo =='13' && data.identitario.gestante=='1' && edad >= '12'){
             $('.acceso347').css('display','');
           }  else{
             $('.acceso347').css('display','none');
@@ -616,27 +616,27 @@ console.log(edad)
             $('.acceso355').css('display','none');
             $('#acceso355').css('display','none');
           }
-          if (data.imagen.sexo == '13'  && edad >= '25' && data.imagen.identidad != '24'){
+          if (data.imagen.sexo == '13'  && edad >= '25' && data.identitario.identidad != '24'){
             $('.acceso356').css('display','');
           } else{
             $('.acceso356').css('display','none');
             $('#acceso356').css('display','none');
-          } if (data.imagen.sexo == '13'  && edad >= '40' && data.imagen.identidad != '24'){
+          } if (data.imagen.sexo == '13'  && edad >= '40' && data.identitario.identidad != '24'){
                     $('.acceso357').css('display','');
           }else{
             $('.acceso357').css('display','none');
             $('#acceso357').css('display','none');
-          } if (data.imagen.sexo == '13'  && edad >= '18' && data.imagen.identidad != '24'){
+          } if (data.imagen.sexo == '13'  && edad >= '18' && data.identitario.identidad != '24'){
                     $('.acceso358').css('display','');
           } else{
             $('.acceso358').css('display','none');
             $('#acceso358').css('display','none');
-          } if (data.imagen.sexo == '13'  && edad >= '45' && data.imagen.identidad != '24'){
+          } if (data.imagen.sexo == '13'  && edad >= '45' && data.identitario.identidad != '24'){
                     $('.acceso359').css('display','');
           } else{
             $('.acceso359').css('display','none');
             $('#acceso359').css('display','none');
-          }if (data.imagen.sexo == '12'  && edad >= '50' && data.imagen.identidad != '25'){
+          }if (data.imagen.sexo == '12'  && edad >= '50' && data.identitario.identidad != '25'){
                     $('.acceso360').css('display','');
                     $('.acceso361').css('display','');  
           }else{
@@ -650,9 +650,14 @@ console.log(edad)
 
 
 
-
-        $('#imagenDinamica').attr('src',`../public/avatares/${(data.imagen.avatar)?data.imagen.avatar:((data.sexo == '12')?'../avatares/hombre_avatar':'../avatares/mujer_avatar')}.png`)
-
+        // console.log(data.imagen.avatar , 'avatar')
+ if(data.imagen.avatar != null){
+   $('#imagenDinamica').attr('src',`../public/avatares/${data.imagen.avatar}.png`) 
+  
+ }else{
+  console.log(data.imagen.avatar , 'avatar')
+  $('#imagenDinamica').attr('src',`../public/avatares/${(data.imagen.sexo == '12')?'../avatares/hombre_avatar':'../avatares/mujer_avatar'}.png`)
+ }
     //     let acceso3 = JSON.parse(data.integrantes.acceso3); // ["49", "54"]
           
     // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
@@ -661,8 +666,12 @@ console.log(edad)
                     let consumospa6 = JSON.parse(data.integrantes.consumospa6); // ["49", "54"]
                     let psicosocial1 = JSON.parse(data.integrantes.psicosocial1); // ["49", "54"]
                     let psicosocial2 = JSON.parse(data.integrantes.psicosocial2); // ["49", "54"]
+                    
+                    let trabajoinfantil = JSON.parse((data.integrantesfinanciero)?data.integrantesfinanciero.trabajoinfantil:'{}'); // ["49", "54"]
+                    let bancarizacion = JSON.parse((data.integrantesfinanciero)?data.integrantesfinanciero.bancarizacion:'{}'); // ["49", "54"]
+                    let mecanismosdeproteccionddhh3 = JSON.parse((data.integranteslegal)?data.integranteslegal.mecanismosdeproteccionddhh3:'{}'); // ["49", "54"]
 
-                  
+                  console.log(trabajoinfantil)
                   
 
                 // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
@@ -721,7 +730,43 @@ console.log(edad)
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
                           }
                 });
-              
+
+                if(Array.isArray(trabajoinfantil) && trabajoinfantil.length > 0) {
+                $('#container-trabajoinfantil input[type="checkbox"]').each(function() {
+                  let found = trabajoinfantil.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                });
+              }
+              if(Array.isArray(bancarizacion) && bancarizacion.length > 0){
+                $('#container-bancarizacion input[type="checkbox"]').each(function() {
+                  let found = bancarizacion.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                });
+              }
+              if(Array.isArray(mecanismosdeproteccionddhh3) && mecanismosdeproteccionddhh3.length > 0){
+                $('#container-mecanismosdeproteccionddhh3 input[type="checkbox"]').each(function() {
+                  let found = mecanismosdeproteccionddhh3.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                });
+              }
 
            if(data.integrantes ==null){
            }else{
@@ -731,6 +776,14 @@ console.log(edad)
             if(data.integrantesintelectual ==null){
             }else{
               $('#siguiente2').css('display','');
+            }
+            if(data.integrantesfinanciero ==null){
+            }else{
+              $('#siguiente3').css('display','');
+            }
+            if(data.integranteslegal ==null){
+            }else{
+              $('#volver').css('display','');
             }
            $('#regimendesalud').val((data.integrantes)?data.integrantes.regimendesalud:'');
            $('#acceso1').val((data.integrantes)?data.integrantes.acceso1:'');
@@ -757,23 +810,30 @@ console.log(edad)
            $('#niveleducativo4').val((data.integrantesintelectual)?data.integrantesintelectual.niveleducativo4:'');
            $('#deseaaccedereducacion').val((data.integrantesintelectual)?data.integrantesintelectual.deseaaccedereducacion:'');
            $('#alfabetizaciondigital').val((data.integrantesintelectual)?data.integrantesintelectual.alfabetizaciondigital:'');
+          
+          // BIENESTAR FINANCIERO
 
-        //   $('#lactante').val((data.integrantes)?data.integrantes.lactante:'');
-        //   $('#situacionmilitar').val((data.integrantes)?data.integrantes.situacionmilitar:'');
-        //   $('#certificacionetnica').val((data.integrantes)?data.integrantes.certificacionetnica:'');
-        //   $('#victima1').val((data.integrantes)?data.integrantes.victima1:'');
-        //   $('#victima2').val((data.integrantes)?data.integrantes.victima2:'');
-        //   $('#victima3').val((data.integrantes)?data.integrantes.victima3:'');
-        //   $('#migrantes1').val((data.integrantes)?data.integrantes.migrantes1:'');
-        //  // $('#orientacion').val((data.integrantes)?data.integrantes.orientacion:'');
-        //   $('#identidad').val((data.integrantes)?data.integrantes.identidad:'');
-        //   $('#etnia').val((data.integrantes)?data.integrantes.etnia:'');
-        //   $('#migrantes2').val((data.integrantes)?data.integrantes.migrantes2:'');
-        //   $('#cualidentidad').val((data.integrantes)?data.integrantes.cualidentidad:''); 
-        // //  $('#cualorientacion').val((data.integrantes)?data.integrantes.cualorientacion:'');
-        //   $('#cualong').val((data.integrantes)?data.integrantes.cualong:'');
+           $('#ingresos1').val((data.integrantesfinanciero)?data.integrantesfinanciero.ingresos1:'');
+           $('#trabajoinfantil').val((data.integrantesfinanciero)?data.integrantesfinanciero.trabajoinfantil:'');
+           $('#trabajo15a17anhos').val((data.integrantesfinanciero)?data.integrantesfinanciero.trabajo15a17anhos:'');
+           $('#ocupados').val((data.integrantesfinanciero)?data.integrantesfinanciero.ocupados:'');
+           $('#formalidaddelempleo').val((data.integrantesfinanciero)?data.integrantesfinanciero.formalidaddelempleo:'');
+           $('#ingresos2').val((data.integrantesfinanciero)?data.integrantesfinanciero.ingresos2:'');
+           $('#ingresos3').val((data.integrantesfinanciero)?data.integrantesfinanciero.ingresos3:'');
+           $('#desempleodelargaduracion').val((data.integrantesfinanciero)?data.integrantesfinanciero.desempleodelargaduracion:'');
+           $('#desempleo').val((data.integrantesfinanciero)?data.integrantesfinanciero.desempleo:'');
+           $('#intermediacionlaboral').val((data.integrantesfinanciero)?data.integrantesfinanciero.intermediacionlaboral:'');
+           $('#emprendimiento1').val((data.integrantesfinanciero)?data.integrantesfinanciero.emprendimiento1:'');
+           $('#bancarizacion').val((data.integrantesfinanciero)?data.integrantesfinanciero.bancarizacion:''); 
+           $('#endeudamiento1').val((data.integrantesfinanciero)?data.integrantesfinanciero.endeudamiento1:'');
+           $('#endeudamiento3').val((data.integrantesfinanciero)?data.integrantesfinanciero.endeudamiento3:'');
+           $('#endeudamiento2').val((data.integrantesfinanciero)?data.integrantesfinanciero.endeudamiento2:'');
 
-     
+              // BIENESTAR LEGAL
+
+           $('#mecanismosdeproteccionddhh').val((data.integranteslegal)?data.integranteslegal.mecanismosdeproteccionddhh:'');
+           $('#mecanismosdeproteccionddhh3').val((data.integranteslegal)?data.integranteslegal.mecanismosdeproteccionddhh3:'');
+           $('#mecanismoaccionconstitucional').val((data.integranteslegal)?data.integranteslegal.mecanismoaccionconstitucional:'');
 
 
           
@@ -898,7 +958,8 @@ console.log(edad)
                   { id: '104', valor: 'NO' },
                   { id: '105', valor: 'NO' },
                   { id: '106', valor: 'NO' }, 
-              ]
+              ],
+             
           };
 
           $(formData).each(function(index, obj) {
@@ -909,7 +970,8 @@ console.log(edad)
    var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
     console.log(respuesta, 'respuesta');
 
-    if (name === 'acceso3' || name === 'consumospa3' || name === 'consumospa6' || name === 'psicosocial1'|| name === 'psicosocial2') {
+    if (name === 'acceso3' || name === 'consumospa3' || name === 'consumospa6' 
+    || name === 'psicosocial1'|| name === 'psicosocial2' ) {
         // Buscar el objeto con el mismo id
         var existingIndex = data[name].findIndex(item => item.id === obj.value);
         if (existingIndex !== -1) {
@@ -967,6 +1029,7 @@ data['acceso3'].forEach(item => {
           item.valor = 'NO APLICA';
       }
   });
+
 
 
 
@@ -1030,24 +1093,77 @@ data['acceso3'].forEach(item => {
     $('#formfinanciero').on('submit', function(event) {
         event.preventDefault(); // Detiene el envío del formulario
 
+       
         var formData = $(this).serializeArray();
-        var data = {};
-        $(formData).each(function(index, obj) {
-            // Limpiar el nombre del campo quitando los corchetes []
-            var name = obj.name.replace('[]', '');
-            if (data[name]) {
-                if (Array.isArray(data[name])) {
-                    data[name].push(obj.value);
-                } else {
-                    data[name] = [data[name], obj.value];
-                }
-            } else {
-                data[name] = obj.value;
+        var data = {
+              'trabajoinfantil': [
+                  { id: '137', valor: 'NO' },
+                  { id: '138', valor: 'NO' },
+                  { id: '139', valor: 'NO' },
+                  { id: '140', valor: 'NO' },
+                  { id: '141', valor: 'NO' },
+                  { id: '142', valor: 'NO' },
+                  { id: '143', valor: 'NO' },
+                  { id: '144', valor: 'NO' },
+                  { id: '145', valor: 'NO' },
+                  { id: '146', valor: 'NO' },
+              ],
+              'bancarizacion': [
+                  { id: '157', valor: 'NO' },
+                  { id: '158', valor: 'NO' },
+                  { id: '159', valor: 'NO' },
+                  { id: '160', valor: 'NO' },
+                  { id: '161', valor: 'NO' },
+                  { id: '162', valor: 'NO' },
+                  { id: '163', valor: 'NO' },
+                  { id: '164', valor: 'NO' },   
+              ]
             }
-        });
+  
 
+        $(formData).each(function(index, obj) {
+    var name = obj.name.replace('[]', '');
+    var selector = '[name="' + obj.name + '"][value="' + obj.value + '"]';
+   // var respuesta = $(selector).attr('respuesta') || 'NO APLICA'; // Asegura obtener correctamente 'respuesta' o 'NO APLICA'
+   var element = $(selector);
+   var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
+    console.log(respuesta, 'respuesta');
 
-        console.log(data);
+    if (name === 'trabajoinfantil'  || name === 'bancarizacion' || name === 'mecanismosdeproteccionddhh3') {
+        // Buscar el objeto con el mismo id
+        var existingIndex = data[name].findIndex(item => item.id === obj.value);
+        if (existingIndex !== -1) {
+            // Reemplazar el valor del objeto existente
+            data[name][existingIndex].valor = respuesta;
+        } else {
+            // Agregar un nuevo objeto si no existe
+            data[name].push({ id: obj.value, valor: respuesta });
+        }
+    } else {
+        if (data[name]) {
+            if (Array.isArray(data[name])) {
+                data[name].push(obj.value);
+            } else {
+                data[name] = [data[name], obj.value];
+            }
+        } else {
+            data[name] = obj.value;
+        }
+    }
+});
+  data['trabajoinfantil'].forEach(item => {
+      var selector = '[name="trabajoinfantil[]"][value="' + item.id + '"]';
+      if ($(selector).length === 0 || $(selector).is(':hidden')) {
+          item.valor = 'NO APLICA';
+      }
+  });
+
+  data['bancarizacion'].forEach(item => {
+      var selector = '[name="bancarizacion[]"][value="' + item.id + '"]';
+      if ($(selector).length === 0 || $(selector).is(':hidden')) {
+          item.valor = 'NO APLICA';
+      }
+  });
 
         // Enviar los datos usando AJAX
         $.ajax({
@@ -1067,24 +1183,61 @@ data['acceso3'].forEach(item => {
 
     $('#formlegal').on('submit', function(event) {
       event.preventDefault(); // Detiene el envío del formulario
+      var formData = $(this).serializeArray();
+        var data = {
+          'mecanismosdeproteccionddhh3': [
+                            { id: '165', valor: 'NO' },
+                            { id: '166', valor: 'NO' },
+                            { id: '167', valor: 'NO' },
+                            { id: '168', valor: 'NO' },
+                            { id: '169', valor: 'NO' },
+                            { id: '170', valor: 'NO' },
+                            { id: '171', valor: 'NO' },
+                            { id: '172', valor: 'NO' },
+                            { id: '173', valor: 'NO' },
+                            { id: '174', valor: 'NO' },
+                            { id: '175', valor: 'NO' },
+                            { id: '176', valor: 'NO' },
+                            { id: '177', valor: 'NO' },
+                            { id: '178', valor: 'NO' },
+                        ]
+            };
+  $(formData).each(function(index, obj) {
+    var name = obj.name.replace('[]', '');
+    var selector = '[name="' + obj.name + '"][value="' + obj.value + '"]';
+   // var respuesta = $(selector).attr('respuesta') || 'NO APLICA'; // Asegura obtener correctamente 'respuesta' o 'NO APLICA'
+   var element = $(selector);
+   var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
+    console.log(respuesta, 'respuesta');
 
-            var formData = $(this).serializeArray();
-            var data = {};
-            $(formData).each(function(index, obj) {
-                // Limpiar el nombre del campo quitando los corchetes []
-                var name = obj.name.replace('[]', '');
-                if (data[name]) {
-                    if (Array.isArray(data[name])) {
-                        data[name].push(obj.value);
-                    } else {
-                        data[name] = [data[name], obj.value];
-                    }
-                } else {
-                    data[name] = obj.value;
-                }
-            });
-
-            console.log(data,'hola')
+    if ( name === 'mecanismosdeproteccionddhh3') {
+        // Buscar el objeto con el mismo id
+        var existingIndex = data[name].findIndex(item => item.id === obj.value);
+        if (existingIndex !== -1) {
+            // Reemplazar el valor del objeto existente
+            data[name][existingIndex].valor = respuesta;
+        } else {
+            // Agregar un nuevo objeto si no existe
+            data[name].push({ id: obj.value, valor: respuesta });
+        }
+    } else {
+        if (data[name]) {
+            if (Array.isArray(data[name])) {
+                data[name].push(obj.value);
+            } else {
+                data[name] = [data[name], obj.value];
+            }
+        } else {
+            data[name] = obj.value;
+        }
+    }
+});
+ data['mecanismosdeproteccionddhh3'].forEach(item => {
+      var selector = '[name="mecanismosdeproteccionddhh3[]"][value="' + item.id + '"]';
+      if ($(selector).length === 0 || $(selector).is(':hidden')) {
+          item.valor = 'NO APLICA';
+      }
+  });
 
         $.ajax({
             url: './legal',

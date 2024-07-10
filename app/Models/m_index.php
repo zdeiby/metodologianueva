@@ -28,7 +28,7 @@ class m_index extends Model
                     JOIN t_estacionestado 
                         ON t1_principalhogar.folio = t_estacionestado.folio 
                         AND t_estacionestado.idestacion = max_idestacion.ultimo_idestacion
-                    JOIN t1_principalintegrantes ON t1_principalhogar.idintegrantetitular = t1_principalintegrantes.idintegrante
+                    JOIN t1_integranteshogar ON t1_principalhogar.idintegrantetitular = t1_integranteshogar.idintegrante
                     ORDER BY t_estacionestado.idestacion;;
                     
         ' );
