@@ -140,6 +140,60 @@ class c_l1e1 extends Controller
           }
         }
 
+
+        $factoresderiesgovef = '';
+        foreach ($preguntas as $value) {
+            if ($value->id >= '265' && $value->id <= '278') {
+                $factoresderiesgovef .= '<div class="factoresderiesgovef' . $value->id . '">
+                <label class="form-check-label factoresderiesgovef' . $value->id . '"  for="factoresderiesgovef' . $value->id . '">' . $value->pregunta . '</label>
+                <input class="form-check-input" type="checkbox" name="factoresderiesgovef[]" id="factoresderiesgovef' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                </div>';
+            }
+        }
+        $vefviolenciaenelentorno = '';
+        foreach ($preguntas as $value) {
+            if ($value->id >= '279' && $value->id <= '285') {
+                $vefviolenciaenelentorno .= '<div class="vefviolenciaenelentorno' . $value->id . '">
+                <label class="form-check-label vefviolenciaenelentorno' . $value->id . '"  for="vefviolenciaenelentorno' . $value->id . '">' . $value->pregunta . '</label>
+                <input class="form-check-input" type="checkbox" name="vefviolenciaenelentorno[]" id="vefviolenciaenelentorno' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                </div>';
+            }
+        }
+
+        $rutasvef3 = '';
+        foreach ($preguntas as $value) {
+            if ($value->id >= '286' && $value->id <= '294') {
+                $rutasvef3 .= '<div class="rutasvef3' . $value->id . '">
+                <label class="form-check-label rutasvef3' . $value->id . '"  for="rutasvef3' . $value->id . '">' . $value->pregunta . '</label>
+                <input class="form-check-input" type="checkbox" name="rutasvef3[]" id="rutasvef3' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                </div>';
+            }
+        } $planeacionfinanciera4 = '';
+        foreach ($preguntas as $value) {
+            if ($value->id >= '295' && $value->id <= '297') {
+                $planeacionfinanciera4 .= '<div class="planeacionfinanciera4' . $value->id . '">
+                <label class="form-check-label planeacionfinanciera4' . $value->id . '"  for="planeacionfinanciera4' . $value->id . '">' . $value->pregunta . '</label>
+                <input class="form-check-input" type="checkbox" name="planeacionfinanciera4[]" id="planeacionfinanciera4' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                </div>';
+            }
+        } $disciplinapositiva = '';
+        foreach ($preguntas as $value) {
+            if ($value->id >= '298' && $value->id <= '304') {
+                $disciplinapositiva .= '<div class="disciplinapositiva' . $value->id . '">
+                <label class="form-check-label disciplinapositiva' . $value->id . '"  for="disciplinapositiva' . $value->id . '">' . $value->pregunta . '</label>
+                <input class="form-check-input" type="checkbox" name="disciplinapositiva[]" id="disciplinapositiva' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                </div>';
+            }
+        } $tiempolibre = '';
+        foreach ($preguntas as $value) {
+            if ($value->id >= '305' && $value->id <= '309') {
+                $tiempolibre .= '<div class="tiempolibre' . $value->id . '">
+                <label class="form-check-label tiempolibre' . $value->id . '"  for="tiempolibre' . $value->id . '">' . $value->pregunta . '</label>
+                <input class="form-check-input" type="checkbox" name="tiempolibre[]" id="tiempolibre' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                </div>';
+            }
+        }
+
   
         return view('vistaslineas/v_l1e1',["variable"=>$folio, 'tipologia'=>$tipologia,
         'sino'=>$sino,'condicionespecial'=>$condicionespecial,'condicionespecial'=>$condicionespecial,
@@ -147,7 +201,13 @@ class c_l1e1 extends Controller
         'familiacuidadora'=>$familiacuidadora, 'tipovivienda'=>$tipovivienda,'materialesdeparedes'=>$materialesdeparedes,
       'materialestecho'=>$materialesdetecho,'materialsuelo'=>$materialsuelo,
       'serviciospublicos'=>$serviciospublicos,'telecomunicaciones'=>$telecomunicaciones,'tipodetenenciau'=>$tipodetenenciau,
-      'documentodepropiedad'=>$documentodepropiedad,'numerodecomidas'=>$numerodecomidas
+      'documentodepropiedad'=>$documentodepropiedad,'numerodecomidas'=>$numerodecomidas,
+      'factoresderiesgovef'=>$factoresderiesgovef,
+      'vefviolenciaenelentorno'=>$vefviolenciaenelentorno,
+      'rutasvef3'=>$rutasvef3,
+      'planeacionfinanciera4'=>$planeacionfinanciera4,
+      'disciplinapositiva'=>$disciplinapositiva,
+      'tiempolibre'=>$tiempolibre,
     ]);
       }
 

@@ -77,7 +77,7 @@
           <img src="{{asset('avatares/blanco.png')}} " id="imagenDinamica" class="rounded-circle" alt="Avatar" style="width: 150px; height: 150px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
         </div> -->
 
-          <form id="formfisicoyemocional" class="row g-3 was-validated">     
+          <form id="formconformacionfamiliar" class="row g-3 was-validated">     
             
           <div class="col-md-3" style="display:none">
             <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput" name="folio" value="" >
@@ -415,12 +415,14 @@
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">En tu hogar, ¿se presenta actualmente alguna de las siguientes problemáticas?</label>
             <div class="form-check" id="container-factoresderiesgovef">
+              {!!$factoresderiesgovef!!}
                     </div>
           </div>
 
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Qué tipo de violencia se presenta actualmente?</label>
             <div class="form-check" id="container-vefviolenciaenelentorno">
+            {!!$vefviolenciaenelentorno!!}
                     </div>
           </div>
           <div class="col-md-12">
@@ -438,16 +440,19 @@
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Cuáles de los siguientes canales institucionales/ruta has activado?.</label>
             <div class="form-check" id="container-rutasvef3">
+            {!!$rutasvef3!!}
                     </div>
           </div>
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿En tu hogar toman decisiones conjuntas en relación a los siguientes temas?.</label>
             <div class="form-check" id="container-planeacionfinanciera4">
+            {!!$planeacionfinanciera4!!}
                     </div>
           </div>
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Cuáles de las siguientres estrategias de disciplina positiva  se implementan en el hogar para  fomentar el respeto mutuo y la resolución pacífica de conflictos?</label>
             <div class="form-check" id="container-disciplinapositiva">
+            {!!$disciplinapositiva!!}
                     </div>
           </div>
           <div class="col-md-12">
@@ -459,6 +464,7 @@
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Cuáles de las siguientes actividades realizan para el disfrute del tiempo libre en familia?.</label>
             <div class="form-check" id="container-tiempolibre">
+            {!!$tiempolibre!!}
                     </div>
           </div>
 
@@ -500,17 +506,17 @@
       <div class="modal-body">
       <img src="{{asset('avatares/1.png')}}" id="1" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('1')" alt="Avatar" style="width: 150px; height: 150px;">
       <img src="{{asset('avatares/2.png')}}" id="2" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('2')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/1.png')}}" id="3" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('3')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/1.png')}}" id="4" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('4')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/1.png')}}" id="5" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('5')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/1.png')}}" id="6" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('6')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/1.png')}}" id="7" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('7')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/1.png')}}" id="8" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('8')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/1.png')}}" id="9" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('9')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/1.png')}}" id="10" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('10')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/1.png')}}" id="11" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('11')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/1.png')}}" id="12" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('12')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/1.png')}}" id="13" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('13')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/3.png')}}" id="3" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('3')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/4.png')}}" id="4" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('4')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/5.png')}}" id="5" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('5')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/6.png')}}" id="6" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('6')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/7.png')}}" id="7" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('7')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/8.png')}}" id="8" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('8')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/9.png')}}" id="9" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('9')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/10.png')}}" id="10" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('10')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/11.png')}}" id="11" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('11')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/12.png')}}" id="12" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('12')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/13.png')}}" id="13" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('13')" alt="Avatar" style="width: 150px; height: 150px;">
 
       </div>
       <div class="modal-footer">
@@ -589,7 +595,7 @@ console.log(edad)
     return edad;
 }
     
-    $(document).ready(function(){
+ /*   $(document).ready(function(){
 
 
 
@@ -711,7 +717,7 @@ console.log(edad)
           
     // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
                     let condicionespecial = JSON.parse(data.integrantes.condicionespecial); // ["49", "54"]
-                    let consumospa3 = JSON.parse(data.integrantes.consumospa3); // ["49", "54"]
+                    let familiacuidadora = JSON.parse(data.integrantes.familiacuidadora); // ["49", "54"]
                     let consumospa6 = JSON.parse(data.integrantes.consumospa6); // ["49", "54"]
                     let psicosocial1 = JSON.parse(data.integrantes.psicosocial1); // ["49", "54"]
                     let psicosocial2 = JSON.parse(data.integrantes.psicosocial2); // ["49", "54"]
@@ -738,8 +744,8 @@ console.log(edad)
                           //$(this).prop('checked', false);    
                 });
 
-                $('#container-consumospa3 input[type="checkbox"]').each(function() {
-                  let found = consumospa3.find(item => item.id === this.value );
+                $('#container-familiacuidadora input[type="checkbox"]').each(function() {
+                  let found = familiacuidadora.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
@@ -892,7 +898,7 @@ console.log(edad)
                   console.log(xhr.responseText);
               }
       })
-      })
+      })    */
 
       $('#siguiente').click(function(){
         console.log('click');
@@ -939,7 +945,7 @@ console.log(edad)
 
       function redirectToIntegrantes() {
            var folio = window.localStorage.getItem('folioencriptado');
-           var url = "../public/integrantes/:folio";
+           var url = "../../public/rombointegrantes/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -947,68 +953,26 @@ console.log(edad)
        
 
        $(document).ready(function() {
-        $('#formfisicoyemocional').on('submit', function(event) {
+        $('#formconformacionfamiliar').on('submit', function(event) {
         event.preventDefault(); // Detiene el envío del formulario
 
         var formData = $(this).serializeArray();
         var data = {
               'condicionespecial': [
-                  { id: '47', valor: 'NO' },
-                  { id: '48', valor: 'NO' },
-                  { id: '49', valor: 'NO' },
-                  { id: '50', valor: 'NO' },
-                  { id: '51', valor: 'NO' },
-                  { id: '52', valor: 'NO' },
-                  { id: '53', valor: 'NO' },
-                  { id: '54', valor: 'NO' },
-                  { id: '55', valor: 'NO' },
-                  { id: '56', valor: 'NO' },
-                  { id: '57', valor: 'NO' },
-                  { id: '58', valor: 'NO' },
-                  { id: '59', valor: 'NO' },
-                  { id: '60', valor: 'NO' },
-                  { id: '61', valor: 'NO' },
-
+                  { id: '191', valor: 'NO' },
+                  { id: '192', valor: 'NO' },
+                  { id: '193', valor: 'NO' },
+                  { id: '194', valor: 'NO' },
+                  { id: '195', valor: 'NO' },
+                  { id: '196', valor: 'NO' },
               ],
-              'consumospa3': [
-                  { id: '71', valor: 'NO' },
-                  { id: '72', valor: 'NO' },
-                  { id: '73', valor: 'NO' },
-                  { id: '74', valor: 'NO' },
+              'familiacuidadora': [
+                  { id: '197', valor: 'NO' },
+                  { id: '198', valor: 'NO' },
+                  { id: '199', valor: 'NO' },
+                  { id: '200', valor: 'NO' },
               ],
-              'consumospa6': [
-                  { id: '81', valor: 'NO' },
-                  { id: '82', valor: 'NO' },
-                  { id: '83', valor: 'NO' },
-                  { id: '84', valor: 'NO' },
-                  { id: '85', valor: 'NO' },
-                  { id: '86', valor: 'NO' }, 
-              ],
-              'psicosocial1': [
-                  { id: '87', valor: 'NO' },
-                  { id: '88', valor: 'NO' },
-                  { id: '89', valor: 'NO' },
-                  { id: '90', valor: 'NO' },
-                  { id: '91', valor: 'NO' },
-              ],
-              'psicosocial2': [
-                  { id: '92', valor: 'NO' },
-                  { id: '93', valor: 'NO' },
-                  { id: '94', valor: 'NO' },
-                  { id: '95', valor: 'NO' },
-                  { id: '96', valor: 'NO' },
-                  { id: '97', valor: 'NO' },
-                  { id: '98', valor: 'NO' },
-                  { id: '99', valor: 'NO' },
-                  { id: '100', valor: 'NO' },
-                  { id: '101', valor: 'NO' },
-                  { id: '102', valor: 'NO' },
-                  { id: '103', valor: 'NO' },
-                  { id: '104', valor: 'NO' },
-                  { id: '105', valor: 'NO' },
-                  { id: '106', valor: 'NO' }, 
-              ],
-             
+            
           };
 
           $(formData).each(function(index, obj) {
@@ -1019,8 +983,7 @@ console.log(edad)
    var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
     console.log(respuesta, 'respuesta');
 
-    if (name === 'condicionespecial' || name === 'consumospa3' || name === 'consumospa6' 
-    || name === 'psicosocial1'|| name === 'psicosocial2' ) {
+    if (name === 'condicionespecial' || name === 'familiacuidadora'  ) {
         // Buscar el objeto con el mismo id
         var existingIndex = data[name].findIndex(item => item.id === obj.value);
         if (existingIndex !== -1) {
@@ -1051,53 +1014,29 @@ data['condicionespecial'].forEach(item => {
             }
         });
 
-  data['consumospa3'].forEach(item => {
-      var selector = '[name="consumospa3[]"][value="' + item.id + '"]';
+  data['familiacuidadora'].forEach(item => {
+      var selector = '[name="familiacuidadora[]"][value="' + item.id + '"]';
       if ($(selector).length === 0 || $(selector).is(':hidden')) {
           item.valor = 'NO APLICA';
       }
   });
-
-  data['consumospa6'].forEach(item => {
-      var selector = '[name="consumospa6[]"][value="' + item.id + '"]';
-      if ($(selector).length === 0 || $(selector).is(':hidden')) {
-          item.valor = 'NO APLICA';
-      }
-  });
-
-  data['psicosocial1'].forEach(item => {
-      var selector = '[name="psicosocial1[]"][value="' + item.id + '"]';
-      if ($(selector).length === 0 || $(selector).is(':hidden')) {
-          item.valor = 'NO APLICA';
-      }
-  });
-
-  data['psicosocial2'].forEach(item => {
-      var selector = '[name="psicosocial2[]"][value="' + item.id + '"]';
-      if ($(selector).length === 0 || $(selector).is(':hidden')) {
-          item.valor = 'NO APLICA';
-      }
-  });
-
-
-
 
         console.log(data);
 
         // Enviar los datos usando AJAX
-        $.ajax({
-            url: './fisicoyemocional',
-            method: $(this).attr('method'),
-            data: {data: data},
-            success: function(response) {
-              $('#siguiente').css('display','');
-              $('#datosgeograficos').removeAttr('disabled');
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
-    });
+    //     $.ajax({
+    //         url: './fisicoyemocional',
+    //         method: $(this).attr('method'),
+    //         data: {data: data},
+    //         success: function(response) {
+    //           $('#siguiente').css('display','');
+    //           $('#datosgeograficos').removeAttr('disabled');
+    //         },
+    //         error: function(xhr, status, error) {
+    //             console.error(error);
+    //         }
+    //     });
+     });
 
     $('#formdatosgeograficos').on('submit', function(event) {
         event.preventDefault(); // Detiene el envío del formulario
