@@ -217,6 +217,46 @@ class c_l1e1 extends Controller
 
 
 
+      public function fc_leerpreguntashogar(Request $request){
+        $folio=$request->input('folio');
+        $t1_hogarconformacionfamiliar = DB::table('t1_hogarconformacionfamiliar')
+                  ->where('folio', '=', $folio)
+                  ->first();
+
+        $t1_hogardatoseconomicos = DB::table('t1_hogardatoseconomicos')
+                ->where('folio', '=', $folio)
+                ->first();
+
+        $t1_hogarcondicioneshabitabilidad = DB::table('t1_hogarcondicioneshabitabilidad')
+        ->where('folio', '=', $folio)
+        ->first();
+
+        $t1_hogarcondicionesalimentarias = DB::table('t1_hogarcondicionesalimentarias')
+        ->where('folio', '=', $folio)
+        ->first();
+
+        $t1_hogarentornofamiliar = DB::table('t1_hogarentornofamiliar')
+        ->where('folio', '=', $folio)
+        ->first();
+
+       // $imagenes=$request->input('idintegrante');
+        $imagen = DB::table('t1_integranteshogar')
+                ->where('folio', '=', $folio)
+                ->first();
+        $identitario = DB::table('t1_integrantesidentitario')
+        ->where('folio', '=', $folio)
+        ->first();
+  
+  
+        return response()->json(["hogarconformacionfamiliar"=>$t1_hogarconformacionfamiliar, "hogardatoseconomicos"=>$t1_hogardatoseconomicos, 
+         "hogarcondicioneshabitabilidad"=>$t1_hogarcondicioneshabitabilidad, "hogarcondicionesalimentarias"=>$t1_hogarcondicionesalimentarias, 
+         "imagen"=>$imagen, "hogarentornofamiliar"=>$t1_hogarentornofamiliar
+        ]);
+    }
+
+
+
+
 
       public function fc_conformacionfamiliar(Request $request)
       {
@@ -286,7 +326,7 @@ class c_l1e1 extends Controller
            $dataWithoutId['updated_at'] = $now;
       
            // Verificar si el registro existe para decidir si añadir created_at
-           $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
+           $exists = DB::table('dbmetodologia.t1_hogardatoseconomicos')
                ->where('folio', $folio)
                ->exists();
       
@@ -303,7 +343,7 @@ class c_l1e1 extends Controller
       
            // Insertar o actualizar el registro
            try {
-               DB::table('dbmetodologia.t1_hogarconformacionfamiliar')->updateOrInsert(
+               DB::table('dbmetodologia.t1_hogardatoseconomicos')->updateOrInsert(
                    [
                        'folio' => $folio,
                    ], // Condición para encontrar el registro existente
@@ -325,7 +365,7 @@ class c_l1e1 extends Controller
           $now = Carbon::now();
       
            // Convertir campos específicos a JSON si son arrays y limpiar los nombres de los campos
-           $fieldsToConvertToJson = ['condicionespecial', 'familiacuidadora'];
+           $fieldsToConvertToJson = ['serviciospublicos', 'telecomunicaciones', 'documentodepropiedad'];
            foreach ($fieldsToConvertToJson as $field) {
                if (isset($dataWithoutId[$field]) && is_array($dataWithoutId[$field])) {
                    $dataWithoutId[$field] = json_encode($dataWithoutId[$field]);
@@ -336,7 +376,7 @@ class c_l1e1 extends Controller
            $dataWithoutId['updated_at'] = $now;
       
            // Verificar si el registro existe para decidir si añadir created_at
-           $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
+           $exists = DB::table('dbmetodologia.t1_hogarcondicioneshabitabilidad')
                ->where('folio', $folio)
                ->exists();
       
@@ -353,7 +393,7 @@ class c_l1e1 extends Controller
       
            // Insertar o actualizar el registro
            try {
-               DB::table('dbmetodologia.t1_hogarconformacionfamiliar')->updateOrInsert(
+               DB::table('dbmetodologia.t1_hogarcondicioneshabitabilidad')->updateOrInsert(
                    [
                        'folio' => $folio,
                    ], // Condición para encontrar el registro existente
@@ -385,7 +425,7 @@ class c_l1e1 extends Controller
            $dataWithoutId['updated_at'] = $now;
       
            // Verificar si el registro existe para decidir si añadir created_at
-           $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
+           $exists = DB::table('dbmetodologia.t1_hogarcondicionesalimentarias')
                ->where('folio', $folio)
                ->exists();
       
@@ -402,7 +442,7 @@ class c_l1e1 extends Controller
       
            // Insertar o actualizar el registro
            try {
-               DB::table('dbmetodologia.t1_hogarconformacionfamiliar')->updateOrInsert(
+               DB::table('dbmetodologia.t1_hogarcondicionesalimentarias')->updateOrInsert(
                    [
                        'folio' => $folio,
                    ], // Condición para encontrar el registro existente
@@ -423,7 +463,8 @@ class c_l1e1 extends Controller
           $now = Carbon::now();
       
            // Convertir campos específicos a JSON si son arrays y limpiar los nombres de los campos
-           $fieldsToConvertToJson = ['condicionespecial', 'familiacuidadora'];
+           $fieldsToConvertToJson = ['factoresderiesgovef', 'vefviolenciaenelentorno', 'rutasvef3'
+           , 'planeacionfinanciera4', 'disciplinapositiva', 'tiempolibre'];
            foreach ($fieldsToConvertToJson as $field) {
                if (isset($dataWithoutId[$field]) && is_array($dataWithoutId[$field])) {
                    $dataWithoutId[$field] = json_encode($dataWithoutId[$field]);
@@ -434,7 +475,7 @@ class c_l1e1 extends Controller
            $dataWithoutId['updated_at'] = $now;
       
            // Verificar si el registro existe para decidir si añadir created_at
-           $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
+           $exists = DB::table('dbmetodologia.t1_hogarentornofamiliar')
                ->where('folio', $folio)
                ->exists();
       
@@ -451,7 +492,7 @@ class c_l1e1 extends Controller
       
            // Insertar o actualizar el registro
            try {
-               DB::table('dbmetodologia.t1_hogarconformacionfamiliar')->updateOrInsert(
+               DB::table('dbmetodologia.t1_hogarentornofamiliar')->updateOrInsert(
                    [
                        'folio' => $folio,
                    ], // Condición para encontrar el registro existente

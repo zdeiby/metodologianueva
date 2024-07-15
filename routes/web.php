@@ -42,6 +42,8 @@ Route::get('/datoseconomicos',[c_l1e1::class, 'fc_datoseconomicos'])->name('dato
 Route::get('/condicioneshabitabilidad',[c_l1e1::class, 'fc_condicioneshabitabilidad'])->name('condicioneshabitabilidad');
 Route::get('/accesoalimentos',[c_l1e1::class, 'fc_accesoalimentos'])->name('accesoalimentos');
 Route::get('/entornofamiliar',[c_l1e1::class, 'fc_entornofamiliar'])->name('entornofamiliar');
+Route::get('/leerpreguntashogar',[c_l1e1::class, 'fc_leerpreguntashogar'])->name('leerpreguntashogar');
+
 
 
 Route::get('/register',[c_register::class,'fc_register'])->name('register');

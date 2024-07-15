@@ -97,15 +97,22 @@
                     {{!!$sino!!}}
                   </select>
                 </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label for="validationServer04" class="form-label">¿Cuál es su nombre identitario?</label>
                 <input type="text" class="form-control form-control-sm "  id="nombreidentatario2" name="nombreidentatario2"  value="" >
 
             </div>
             <div class="col-md-6">
             <label for="validationServer04" class="form-label">¿Cuál es tu fecha de nacimiento?</label>
-            <input type="date" class="form-control form-control-sm "  name="fechanacimiento"  id="fechanacimiento" value="" required>
+            <input type="date" oninput="calcularedad(this.value)" class="form-control form-control-sm "  name="fechanacimiento"  id="fechanacimiento" value="" required>
           </div>
+          <div class="form-group col-sm">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0"></p><h6>Edad:</h6><p></p>
+                    <p class="mb-0"></p><h5 id="edad" name="edad">0</h5><p></p>
+                    <input style="display:none" type="text" id="edadinput" name="edad">
+                </blockquote>
+            </div>
           <div class="col-md-6">
                 <label for="validationServer04" class="form-label">¿Cuál es su país de nacimiento?</label>
                 <select class="form-control form-control-sm" id="nacionalidad" name="nacionalidad" aria-describedby="validationServer04Feedback" required="">
@@ -394,6 +401,8 @@
           $('#tipodocumento').val((data.integrantes)?data.integrantes.tipodocumento:'');
           $('#representante').val((data.integrantes)?data.integrantes.representante:'');
           $('#sexo').val((data.integrantes)?data.integrantes.sexo:'');
+          $('#edadinput').val((data.integrantes)?data.integrantes.edad:'');
+          $('#edad').html((data.integrantes)?data.integrantes.edad:'0');
           $('#hijos').val((data.integrantesidentitario)?data.integrantesidentitario.hijos:'');
           $('#gestante').val((data.integrantesidentitario)?data.integrantesidentitario.gestante:'');
           $('#lactante').val((data.integrantesidentitario)?data.integrantesidentitario.lactante:'');
@@ -520,6 +529,26 @@
 
    
 });
+
+
+function calcularedad(fechaNacimiento) {
+    // Obtener la fecha actual
+    var fechaActual = new Date();
+    
+    // Convertir la fecha de nacimiento a objeto Date
+    var fechaNac = new Date(fechaNacimiento);
+    
+    // Calcular la diferencia en milisegundos entre las fechas
+    var edadMilisegundos = fechaActual - fechaNac;
+    
+    // Convertir los milisegundos a años
+    var edadAnios = Math.floor(edadMilisegundos / 1000 / 60 / 60 / 24 / 365.25);
+    if(edadAnios >0){
+    // Mostrar la edad en el elemento HTML con id="edad"
+    document.getElementById("edad").textContent = edadAnios;
+    $('#edadinput').val(edadAnios);
+  }
+}
 
 
     </script>

@@ -190,20 +190,20 @@
           <div class="row">       
             <div class="form-group col-sm">
                 <label for="dirCampo1">Via principal:</label>
-                <select class="form-control form-control-sm" id="dirCampo1" oninput="llenarotrocampo()" required="">
+                <select class="form-control form-control-sm" id="dirCampo1" name="dirCampo1" oninput="llenarotrocampo()" required="">
                     <option value=""> SELECCIONE </option><option value="1"> AUTOPISTA </option><option value="2"> AVENIDA </option><option value="3"> AVENIDA CALLE </option><option value="4"> AVENIDA CARRERA </option><option value="5"> BULEVAR </option><option value="6"> CALLE </option><option value="7"> CARRERA </option><option value="8"> CIRCULAR </option><option value="10"> CIRCUNVALAR </option><option value="11"> CTAS CORRIDAS </option><option value="12"> DIAGONAL </option><option value="9"> KILOMETRO </option><option value="20"> OTRA </option><option value="13"> PASAJE </option><option value="14"> PASEO </option><option value="15"> PEATONAL </option><option value="16"> TRANSVERSAL </option><option value="17"> TRONCAL </option><option value="18"> VARIANTE </option><option value="19"> VIA </option>                </select>
             </div>
             <div class="form-group col-sm">
                 <label for="dirCampo2">Número<br></label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo2" style="text-transform: uppercase;" required="" onkeypress="return soloNumeros(event)" oninput="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo2" name="dirCampo2" style="text-transform: uppercase;" required="" onkeypress="return soloNumeros(event)" oninput="llenarotrocampo();" value="">
             </div>
             <div class="form-group col-sm">
                 <label for="dirCampo3">Prefijo<br></label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo3" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" oninput="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo3" name="dirCampo3" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" oninput="llenarotrocampo();" value="">
             </div>
             <div class="form-group col-sm">
                 <label for="dirCampo4">Nombre vía<br></label>
-                <select class="form-control form-control-sm" id="dirCampo4" oninput="llenarotrocampo()">
+                <select class="form-control form-control-sm" id="dirCampo4" name="dirCampo4" oninput="llenarotrocampo()">
                     <option value=""> SELECCIONE </option><option value="5"> BIS </option><option value="3"> ESTE </option><option value="2"> NORTE </option><option value="4"> OESTE </option><option value="1"> SUR </option>                </select>
             </div>  
             <div class="form-group col-sm-1">
@@ -215,15 +215,15 @@
         <div class="row">
             <div class="form-group col-sm">
                 <label for="dirCampo5">Via secundaria:</label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo5" style="text-transform: uppercase;" onkeypress="return soloNumeros(event)" oninput="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo5" name="dirCampo5" style="text-transform: uppercase;" onkeypress="return soloNumeros(event)" oninput="llenarotrocampo();" value="">
             </div>
             <div class="form-group col-sm">
                 <label for="dirCampo6">Prefijo<br></label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo6" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" oninput="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo6" name="dirCampo6" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" oninput="llenarotrocampo();" value="">
             </div>
             <div class="form-group col-sm">
                 <label for="dirCampo7">cuadrante<br></label>
-                <select class="form-control form-control-sm" id="dirCampo7" oninput="llenarotrocampo()">
+                <select class="form-control form-control-sm" id="dirCampo7" name="dirCampo7" oninput="llenarotrocampo()">
                     <option value=""> SELECCIONE </option><option value="5"> BIS </option><option value="3"> ESTE </option><option value="2"> NORTE </option><option value="4"> OESTE </option><option value="1"> SUR </option>                </select>
             </div>
             <div class="form-group col-sm-1">
@@ -232,13 +232,13 @@
             </div> 
             <div class="form-group col-sm">
                 <label for="dirCampo8">Placa<br></label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo8" style="text-transform: uppercase;" onkeypress="return soloNumeros(event)" oninput="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo8" name="dirCampo8" style="text-transform: uppercase;" onkeypress="return soloNumeros(event)" oninput="llenarotrocampo();" value="">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm">
                 <label for="dirCampo9">Complemento:</label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo9" style="text-transform: uppercase;" oninput="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo9" name="dirCampo9" style="text-transform: uppercase;" oninput="llenarotrocampo();" value="">
             </div>
         </div>
         <br>
@@ -397,7 +397,7 @@
             </div>
               <div class="text-end col">
                 <button class="btn btn-outline-success" type="submit">Guardar</button>
-                <div class="btn btn-outline-primary" id="volver" style="display:none">Siguiente</div>
+                <div class="btn btn-outline-primary" id="siguiente4" style="display:none">Siguiente</div>
               </div>
           </div>
         </form> 
@@ -413,8 +413,8 @@
           </div> -->
         
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">En tu hogar, ¿se presenta actualmente alguna de las siguientes problemáticas?</label>
-            <div class="form-check" id="container-factoresderiesgovef">
+            <label for="validationServer04" class="form-label ">En tu hogar, ¿se presenta actualmente alguna de las siguientes problemáticas?</label>
+            <div class="form-check form-switch" id="container-factoresderiesgovef">
               {!!$factoresderiesgovef!!}
                     </div>
           </div>
@@ -445,7 +445,7 @@
           </div>
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿En tu hogar toman decisiones conjuntas en relación a los siguientes temas?.</label>
-            <div class="form-check" id="container-planeacionfinanciera4">
+            <div class="form-check form-switch" id="container-planeacionfinanciera4">
             {!!$planeacionfinanciera4!!}
                     </div>
           </div>
@@ -473,7 +473,7 @@
     
           <div class="row pt-4">
             <div class="text-start col">
-              <div class="btn btn-outline-primary" id="atras3">volver</div>
+              <div class="btn btn-outline-primary" id="atras4">volver</div>
             </div>
               <div class="text-end col">
                 <button class="btn btn-outline-success" type="submit">Guardar</button>
@@ -534,7 +534,7 @@
 
     <script>
     
-    function agregarImagen(id){
+    /* function agregarImagen(id){
       $(`#${id}`).addClass('imagenselect');
       for (let index = 0; index < 14; index++) {
         if(id == index){
@@ -566,7 +566,7 @@
                   console.log(xhr.responseText);
               }
       })
-    }
+    } */
     $('.familiamultiespecie2').css('display','none');
 
     $('#familiamultiespecie1').click(function(){
@@ -595,139 +595,34 @@ console.log(edad)
     return edad;
 }
     
- /*   $(document).ready(function(){
-
-
-
-
-
+   $(document).ready(function(){
       $('#volveratras').css('display','none');
-      $('#idintegrante1').val(localStorage.getItem('idintegrante'));
-      $('#idintegrante2').val(localStorage.getItem('idintegrante'));
-      $('#idintegrante3').val(localStorage.getItem('idintegrante'));
-      $('#idintegrante4').val(localStorage.getItem('idintegrante'));
-      $('#folioinput').val(localStorage.getItem('folio'));
-      $('#folioinput2').val(localStorage.getItem('folio'));
-      $('#folioinput3').val(localStorage.getItem('folio'));
-      $('#folioinput4').val(localStorage.getItem('folio'));
 
-
-        //  var imagenUrl = localStorage.getItem('imagen');
-        //  if (imagenUrl) {
-        //      $('#imagenDinamica').attr('src', imagenUrl);
-        //  } 
-        let folio=localStorage.getItem('folio');
-        let idintegrante=localStorage.getItem('idintegrante');
-        let nombre=localStorage.getItem('nombre');
-        $('#folio').html(`Folio: ${folio} `);
-        $('#idintegrante').html(`Idintegrante: ${idintegrante} `);
-        $('#nombre').html(`Nombre: ${nombre} `);
-
+    let folio=$('#folioinput').val();
         $.ajax({
-        url:'./leerpreguntas',
-        data:{folio:folio, idintegrante:idintegrante},
+        url:'../leerpreguntashogar',
+        data:{folio:folio},
         method: "GET",
         dataType:'JSON',
         success:function(data){
-          let  edad = calcularEdad(data.imagen.fechanacimiento);
-
-          if(data.imagen.sexo =='13' && data.identitario.gestante=='1' && edad >= '12'){
-            $('.condicionespecial47').css('display','');
-          }  else{
-            $('.condicionespecial47').css('display','none');
-            $('#condicionespecial47').css('display','none');
-
-          } if( edad <= '5'){
-            $('.condicionespecial48').css('display','');
-            $('.condicionespecial49').css('display','');
-          }else{
-            $('.condicionespecial48').css('display','none');
-            $('.condicionespecial49').css('display','none'); 
-            $('#condicionespecial48').css('display','none');
-            $('#condicionespecial49').css('display','none')
-          }
-          if( edad >= '12'){
-            $('.condicionespecial52').css('display','');
-          } else{
-            $('.condicionespecial52').css('display','none');
-            $('#condicionespecial52').css('display','none');
-          }
-
-          if( edad >= '40'){
-            $('.condicionespecial53').css('display','');
-          }else{
-            $('.condicionespecial53').css('display','none');
-            $('#condicionespecial53').css('display','none');
-          }
-          if( edad >= '25'){
-            $('.condicionespecial54').css('display','');
-          }else{
-            $('.condicionespecial54').css('display','none');
-            $('#condicionespecial54').css('display','none');
-          }
-          if( edad >= '12' && edad <= '26'){
-            $('.condicionespecial55').css('display','');
-          } else{
-            $('.condicionespecial55').css('display','none');
-            $('#condicionespecial55').css('display','none');
-          }
-          if (data.imagen.sexo == '13'  && edad >= '25' && data.identitario.identidad != '24'){
-            $('.condicionespecial56').css('display','');
-          } else{
-            $('.condicionespecial56').css('display','none');
-            $('#condicionespecial56').css('display','none');
-          } if (data.imagen.sexo == '13'  && edad >= '40' && data.identitario.identidad != '24'){
-                    $('.condicionespecial57').css('display','');
-          }else{
-            $('.condicionespecial57').css('display','none');
-            $('#condicionespecial57').css('display','none');
-          } if (data.imagen.sexo == '13'  && edad >= '18' && data.identitario.identidad != '24'){
-                    $('.condicionespecial58').css('display','');
-          } else{
-            $('.condicionespecial58').css('display','none');
-            $('#condicionespecial58').css('display','none');
-          } if (data.imagen.sexo == '13'  && edad >= '45' && data.identitario.identidad != '24'){
-                    $('.condicionespecial59').css('display','');
-          } else{
-            $('.condicionespecial59').css('display','none');
-            $('#condicionespecial59').css('display','none');
-          }if (data.imagen.sexo == '12'  && edad >= '50' && data.identitario.identidad != '25'){
-                    $('.condicionespecial60').css('display','');
-                    $('.condicionespecial61').css('display','');  
-          }else{
-            $('.condicionespecial60').css('display','none');
-            $('.condicionespecial61').css('display','none');
-            $('#condicionespecial60').css('display','none');
-            $('#condicionespecial61').css('display','none');
-          }
-
-
-
-
-
-        // console.log(data.imagen.avatar , 'avatar')
- if(data.imagen.avatar != null){
-   $('#imagenDinamica').attr('src',`../public/avatares/${data.imagen.avatar}.png`) 
-  
- }else{
-  console.log(data.imagen.avatar , 'avatar')
-  $('#imagenDinamica').attr('src',`../public/avatares/${(data.imagen.sexo == '12')?'../avatares/hombre_avatar':'../avatares/mujer_avatar'}.png`)
- }
+    
     //     let condicionespecial = JSON.parse(data.integrantes.condicionespecial); // ["49", "54"]
           
     // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
-                    let condicionespecial = JSON.parse(data.integrantes.condicionespecial); // ["49", "54"]
-                    let familiacuidadora = JSON.parse(data.integrantes.familiacuidadora); // ["49", "54"]
-                    let consumospa6 = JSON.parse(data.integrantes.consumospa6); // ["49", "54"]
-                    let psicosocial1 = JSON.parse(data.integrantes.psicosocial1); // ["49", "54"]
-                    let psicosocial2 = JSON.parse(data.integrantes.psicosocial2); // ["49", "54"]
+                    let condicionespecial = JSON.parse(data.hogarconformacionfamiliar.condicionespecial); // ["49", "54"]
+                    let familiacuidadora = JSON.parse(data.hogarconformacionfamiliar.familiacuidadora); // ["49", "54"]
                     
-                    let trabajoinfantil = JSON.parse((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.trabajoinfantil:'{}'); // ["49", "54"]
-                    let telecomunicaciones = JSON.parse((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.telecomunicaciones:'{}'); // ["49", "54"]
-                    let numerocomidas3 = JSON.parse((data.integrantesaccesoalimentos)?data.integrantesaccesoalimentos.numerocomidas3:'{}'); // ["49", "54"]
+                    let serviciospublicos = JSON.parse((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.serviciospublicos:'{}'); // ["49", "54"]
+                    let telecomunicaciones = JSON.parse((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.telecomunicaciones:'{}'); // ["49", "54"]
+                    let documentodepropiedad = JSON.parse((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.documentodepropiedad:'{}'); // ["49", "54"]
 
-                  console.log(trabajoinfantil)
-                  
+                    let factoresderiesgovef = JSON.parse((data.hogarentornofamiliar)?data.hogarentornofamiliar.factoresderiesgovef:'{}'); // ["49", "54"]
+                    let vefviolenciaenelentorno = JSON.parse((data.hogarentornofamiliar)?data.hogarentornofamiliar.vefviolenciaenelentorno:'{}'); // ["49", "54"]
+                    let rutasvef3 = JSON.parse((data.hogarentornofamiliar)?data.hogarentornofamiliar.rutasvef3:'{}'); // ["49", "54"]
+                    let planeacionfinanciera4 = JSON.parse((data.hogarentornofamiliar)?data.hogarentornofamiliar.planeacionfinanciera4:'{}'); // ["49", "54"]
+                    let disciplinapositiva = JSON.parse((data.hogarentornofamiliar)?data.hogarentornofamiliar.disciplinapositiva:'{}'); // ["49", "54"]
+                    let tiempolibre = JSON.parse((data.hogarentornofamiliar)?data.hogarentornofamiliar.tiempolibre:'{}'); // ["49", "54"]
+
 
                 // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
                 $('#condicionespecial-container input[type="checkbox"]').each(function() {
@@ -744,7 +639,7 @@ console.log(edad)
                           //$(this).prop('checked', false);    
                 });
 
-                $('#container-familiacuidadora input[type="checkbox"]').each(function() {
+                $('#familiacuidadora-container input[type="checkbox"]').each(function() {
                   let found = familiacuidadora.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
@@ -754,41 +649,11 @@ console.log(edad)
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
                           }
                 });
-                $('#container-consumospa6 input[type="checkbox"]').each(function() {
-                  let found = consumospa6.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
-                          if (found.valor == 'SI') { 
-                            $(this).prop('checked', true);
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
-                          } else {
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
-                          }
-                });
-                $('#container-psicosocial1 input[type="checkbox"]').each(function() {
-                  let found = psicosocial1.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
-                          if (found.valor == 'SI') { 
-                            $(this).prop('checked', true);
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
-                          } else {
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
-                          }
-                });
+               
 
-                $('#container-psicosocial2 input[type="checkbox"]').each(function() {
-                  let found = psicosocial2.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
-                          if (found.valor == 'SI') { 
-                            $(this).prop('checked', true);
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
-                          } else {
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
-                          }
-                });
-
-                if(Array.isArray(trabajoinfantil) && trabajoinfantil.length > 0) {
-                $('#container-trabajoinfantil input[type="checkbox"]').each(function() {
-                  let found = trabajoinfantil.find(item => item.id === this.value );
+                if(Array.isArray(serviciospublicos) && serviciospublicos.length > 0) {
+                $('#serviciospublicos-container input[type="checkbox"]').each(function() {
+                  let found = serviciospublicos.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
@@ -799,7 +664,7 @@ console.log(edad)
                 });
               }
               if(Array.isArray(telecomunicaciones) && telecomunicaciones.length > 0){
-                $('#container-telecomunicaciones input[type="checkbox"]').each(function() {
+                $('#telecomunicaciones-container input[type="checkbox"]').each(function() {
                   let found = telecomunicaciones.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
@@ -810,9 +675,9 @@ console.log(edad)
                           }
                 });
               }
-              if(Array.isArray(numerocomidas3) && numerocomidas3.length > 0){
-                $('#container-numerocomidas3 input[type="checkbox"]').each(function() {
-                  let found = numerocomidas3.find(item => item.id === this.value );
+              if(Array.isArray(documentodepropiedad) && documentodepropiedad.length > 0){
+                $('#documentodepropiedad-container input[type="checkbox"]').each(function() {
+                  let found = documentodepropiedad.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
@@ -823,72 +688,163 @@ console.log(edad)
                 });
               }
 
-           if(data.integrantes ==null){
+
+
+
+
+
+
+
+
+
+              if(Array.isArray(factoresderiesgovef) && factoresderiesgovef.length > 0){
+                $('#container-factoresderiesgovef input[type="checkbox"]').each(function() {
+                  let found = factoresderiesgovef.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                });
+              }  if(Array.isArray(vefviolenciaenelentorno) && vefviolenciaenelentorno.length > 0){
+                $('#container-vefviolenciaenelentorno input[type="checkbox"]').each(function() {
+                  let found = vefviolenciaenelentorno.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                });
+              }
+              if(Array.isArray(rutasvef3) && rutasvef3.length > 0){
+                $('#container-rutasvef3 input[type="checkbox"]').each(function() {
+                  let found = rutasvef3.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                });
+              }
+              if(Array.isArray(planeacionfinanciera4) && planeacionfinanciera4.length > 0){
+                $('#container-planeacionfinanciera4 input[type="checkbox"]').each(function() {
+                  let found = planeacionfinanciera4.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                });
+              }
+              if(Array.isArray(disciplinapositiva) && disciplinapositiva.length > 0){
+                $('#container-disciplinapositiva input[type="checkbox"]').each(function() {
+                  let found = disciplinapositiva.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                });
+              }
+              if(Array.isArray(tiempolibre) && tiempolibre.length > 0){
+                $('#container-tiempolibre input[type="checkbox"]').each(function() {
+                  let found = tiempolibre.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                });
+              }
+
+
+
+
+
+           if(data.hogarconformacionfamiliar ==null){
            }else{
              $('#siguiente').css('display','');
              $('#volver2').css('display','');
             }
-            if(data.integrantesintelectual ==null){
+            if(data.hogardatoseconomicos ==null){
             }else{
               $('#siguiente2').css('display','');
             }
-            if(data.integrantescondicioneshabitabilidad ==null){
+            if(data.hogarcondicioneshabitabilidad ==null){
             }else{
               $('#siguiente3').css('display','');
             }
-            if(data.integrantesaccesoalimentos ==null){
+            if(data.hogarcondicionesalimentarias ==null){
+            }else{
+              $('#siguiente4').css('display','');
+            }
+            if(data.hogarentornofamiliar ==null){
             }else{
               $('#volver').css('display','');
             }
-           $('#tipologia').val((data.integrantes)?data.integrantes.tipologia:'');
-           $('#familiamultiespecie1').val((data.integrantes)?data.integrantes.familiamultiespecie1:'');
-           $('#familiamultiespecie2').val((data.integrantes)?data.integrantes.familiamultiespecie2:'');
-           $('#discapacidad').val((data.integrantes)?data.integrantes.discapacidad:'');   
-           $('#estrato').val((data.integrantes)?data.integrantes.estrato:'');
-           $('#atenciondiscapacidad').val((data.integrantes)?data.integrantes.atenciondiscapacidad:'');      
-           $('#certificadodiscapacidad').val((data.integrantes)?data.integrantes.certificadodiscapacidad:'');
-           $('#consumospa1').val((data.integrantes)?data.integrantes.consumospa1:'');
-           $('#consumospa2').val((data.integrantes)?data.integrantes.consumospa2:''); 
-           $('#consumospa4').val((data.integrantes)?data.integrantes.consumospa4:'');
-           $('#consumospa5').val((data.integrantes)?data.integrantes.consumospa5:'');
-           $('#consumospa6').val((data.integrantes)?data.integrantes.consumospa6:'');
-           $('#psicosocial1').val((data.integrantes)?data.integrantes.psicosocial1:'');
-           $('#psicosocial2').val((data.integrantes)?data.integrantes.psicosocial2:'');
-           $('#planexequial').val((data.integrantes)?data.integrantes.planexequial:'');
-        //   BIENESTAR INTELECTUAL
-           $('#estrato').val((data.integrantesintelectual)?data.integrantesintelectual.estrato:'');
-           $('#educacion').val((data.integrantesintelectual)?data.integrantesintelectual.educacion:'');
-           $('#comuna').val((data.integrantesintelectual)?data.integrantesintelectual.comuna:'');
-           $('#barrio').val((data.integrantesintelectual)?data.integrantesintelectual.barrio:'');
-           $('#campesina').val((data.integrantesintelectual)?data.integrantesintelectual.campesina:'');
-           $('#tipovivienda').val((data.integrantesintelectual)?data.integrantesintelectual.tipovivienda:'');
-           $('#materialesdeparedes').val((data.integrantesintelectual)?data.integrantesintelectual.materialesdeparedes:'');
-           $('#materialestecho').val((data.integrantesintelectual)?data.integrantesintelectual.materialestecho:'');
-           $('#materialsuelo').val((data.integrantesintelectual)?data.integrantesintelectual.materialsuelo:'');
+          $('#tipologia').val((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.tipologia:'');
+          $('#familiamultiespecie1').val((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.familiamultiespecie1:'');
+          $('#familiamultiespecie2').val((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.familiamultiespecie2:'');
+          $('#familiacuidadoracual').val((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.familiacuidadoracual:'');   
+          $('#familiacuidadora2').val((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.familiacuidadora2:'');
           
+            //   DATOS GEOGRAFICOS Y ECONOMICOS
+
+          $('#estrato').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.estrato:'');      
+          $('#comuna').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.comuna:'');
+          $('#barrio').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.barrio:'');
+          $('#ubicacion').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.ubicacion:''); 
+          $('#campesina').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.campesina:'');
+          $('#dirCampo1').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo1:'');
+          $('#dirCampo2').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo2:'');
+          $('#dirCampo3').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo3:'');
+          $('#dirCampo4').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo4:'');
+          $('#dirCampo5').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo5:'');
+          $('#dirCampo6').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo6:'');
+          $('#dirCampo7').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo7:'');
+          $('#dirCampo8').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo8:'');
+          $('#dirCampo9').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo9:'');
+          $('#direccion').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.direccion:'');
+
+        //   CONDICIONES DE HABILITABILIDAD 
+
+            $('#tipovivienda').val((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.tipovivienda:'');
+            $('#materialesdeparedes').val((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.materialesdeparedes:'');
+            $('#materialestecho').val((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.materialestecho:'');
+            $('#materialsuelo').val((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.materialsuelo:'');
+            $('#banococina').val((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.banococina:'');
+            $('#hacimiento').val((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.hacimiento:'');
+            $('#tipodetenenciau').val((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.tipodetenenciau:'');
+
+            //ACCESO Y DISPONIBILIDAD DE ALIMENTOS
+
+            
+           $('#numerocomidas').val((data.hogarcondicionesalimentarias)?data.hogarcondicionesalimentarias.numerocomidas:'');
+           $('#accesibilidadalimentos1').val((data.hogarcondicionesalimentarias)?data.hogarcondicionesalimentarias.accesibilidadalimentos1:'');
+           $('#accesibilidadalimentos2').val((data.hogarcondicionesalimentarias)?data.hogarcondicionesalimentarias.accesibilidadalimentos2:'');
+           $('#accesibilidadalimentos3').val((data.hogarcondicionesalimentarias)?data.hogarcondicionesalimentarias.accesibilidadalimentos3:'');
+           $('#accesibilidad').val((data.hogarcondicionesalimentarias)?data.hogarcondicionesalimentarias.accesibilidad:'');
+
           // BIENESTAR condicioneshabitabilidad
 
-           $('#ingresos1').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.ingresos1:'');
-           $('#trabajoinfantil').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.trabajoinfantil:'');
-           $('#trabajo15a17anhos').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.trabajo15a17anhos:'');
-           $('#ocupados').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.ocupados:'');
-           $('#formalidaddelempleo').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.formalidaddelempleo:'');
-           $('#ingresos2').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.ingresos2:'');
-           $('#ingresos3').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.ingresos3:'');
-           $('#desempleodelargaduracion').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.desempleodelargaduracion:'');
-           $('#desempleo').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.desempleo:'');
-           $('#intermediacionlaboral').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.intermediacionlaboral:'');
-           $('#emprendimiento1').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.emprendimiento1:'');
-           $('#telecomunicaciones').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.telecomunicaciones:''); 
-           $('#endeudamiento1').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.endeudamiento1:'');
-           $('#endeudamiento3').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.endeudamiento3:'');
-           $('#endeudamiento2').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.endeudamiento2:'');
-
+           $('#rutasvef1').val((data.hogarentornofamiliar)?data.hogarentornofamiliar.rutasvef1:'');
+           $('#rutasvef2').val((data.hogarentornofamiliar)?data.hogarentornofamiliar.rutasvef2:'');
+           $('#redesdeapoyo').val((data.hogarentornofamiliar)?data.hogarentornofamiliar.redesdeapoyo:'');
+          
               // BIENESTAR accesoalimentos
 
-           $('#numerocomidas').val((data.integrantesaccesoalimentos)?data.integrantesaccesoalimentos.numerocomidas:'');
-           $('#numerocomidas3').val((data.integrantesaccesoalimentos)?data.integrantesaccesoalimentos.numerocomidas3:'');
-           $('#accesibilidadalimentos1').val((data.integrantesaccesoalimentos)?data.integrantesaccesoalimentos.accesibilidadalimentos1:'');
 
 
           
@@ -898,35 +854,44 @@ console.log(edad)
                   console.log(xhr.responseText);
               }
       })
-      })    */
+      })    
 
       $('#siguiente').click(function(){
         console.log('click');
-        $('#datosgeograficos').tab('show');  
+        $('#datosgeograficosmenu').tab('show');  
         
       }); 
       $('#siguiente2').click(function(){
         console.log('click');
-        $('#condicioneshabitabilidad').tab('show');  
+        $('#condicioneshabitabilidadmenu').tab('show');  
         
       });
       $('#siguiente3').click(function(){
         console.log('click');
-        $('#accesoalimentos').tab('show');  
+        $('#accesoalimentosmenu').tab('show');  
+        
+      });
+      $('#siguiente4').click(function(){
+        console.log('click');
+        $('#entornofamiliarmenu').tab('show');  
         
       });
     
       $('#atras').click(function(){
         console.log('click');
-        $('#conformacionfamiliar').tab('show');  
+        $('#conformacionfamiliarmenu').tab('show');  
       }); 
       $('#atras2').click(function(){
         console.log('click');
-        $('#datosgeograficos').tab('show');  
+        $('#datosgeograficosmenu').tab('show');  
       });
       $('#atras3').click(function(){
         console.log('click');
-        $('#condicioneshabitabilidad').tab('show');  
+        $('#condicioneshabitabilidadmenu').tab('show');  
+      }); 
+      $('#atras4').click(function(){
+        console.log('click');
+        $('#accesoalimentosmenu').tab('show');  
       });   
       
 
@@ -1209,7 +1174,7 @@ data['condicionespecial'].forEach(item => {
              method: $(this).attr('method'),
              data: {data: data},
              success: function(response) {
-               $('#volver').css('display','');
+               $('#siguiente4').css('display','');
                $('#datosgeograficos').removeAttr('disabled');
              },
              error: function(xhr, status, error) {
@@ -1368,7 +1333,7 @@ data['condicionespecial'].forEach(item => {
                     method: $(this).attr('method'),
                     data: {data: data},
                     success: function(response) {
-                      $('#siguiente3').css('display','');
+                      $('#volver').css('display','');
                       $('#datosgeograficos').removeAttr('disabled');
                     },
                     error: function(xhr, status, error) {
