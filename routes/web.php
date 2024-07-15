@@ -37,6 +37,11 @@ Route::get('/financiero',[c_encuestaintegrantes::class, 'fc_financiero'])->name(
 Route::get('/legal',[c_encuestaintegrantes::class, 'fc_legal'])->name('legal');
 Route::get('/leerpreguntas',[c_encuestaintegrantes::class, 'fc_leerpreguntas'])->name('leerpreguntas');
 
+Route::get('/conformacionfamiliar',[c_l1e1::class, 'fc_conformacionfamiliar'])->name('conformacionfamiliar');
+Route::get('/datoseconomicos',[c_l1e1::class, 'fc_datoseconomicos'])->name('datoseconomicos');
+Route::get('/condicioneshabitabilidad',[c_l1e1::class, 'fc_condicioneshabitabilidad'])->name('condicioneshabitabilidad');
+Route::get('/accesoalimentos',[c_l1e1::class, 'fc_accesoalimentos'])->name('accesoalimentos');
+Route::get('/entornofamiliar',[c_l1e1::class, 'fc_entornofamiliar'])->name('entornofamiliar');
 
 
 Route::get('/register',[c_register::class,'fc_register'])->name('register');

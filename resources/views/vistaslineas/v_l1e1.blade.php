@@ -38,7 +38,7 @@
             </div> -->
         </div>
 
-    <div><span class="badge bg-success mt-2" id="folio"></span>
+    <div><span class="badge bg-success mt-2" id="folio">Folio: {{ decrypt($variable) }}</span>
     <span class="badge bg-primary" style="display:" id="idintegrante"></span>
     <span class="badge bg-primary" style="background:#0dcaf0 !important; color:white" id="nombre"></span><br>
     </div>
@@ -80,11 +80,11 @@
           <form id="formconformacionfamiliar" class="row g-3 was-validated">     
             
           <div class="col-md-3" style="display:none">
-            <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput" name="folio" value="" >
+            <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput" name="folio" value="{{ decrypt($variable) }}" >
           </div>
-          <div class="col-md-3" style="display:none">
+          <!-- <div class="col-md-3" style="display:none">
             <input type="text"  class="form-control form-control-sm  " id="idintegrante1" name="idintegrante" value="" >
-          </div>
+          </div> -->
 
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Cuál de las siguientes tipologías describe mejor la estructura de tu familia?</label>
@@ -149,11 +149,11 @@
   <div class="tab-pane fade " id="datosgeograficos" role="tabpanel" aria-labelledby="datosgeograficos">
   <form class="row g-3 was-validated" id="formdatosgeograficos">
   <div class="col-md-3" style="display:none">
-            <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput2" name="folio" value="" required="">
+            <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput2" name="folio" value="{{ decrypt($variable) }}" required="">
           </div>
-          <div class="col-md-3" style="display:none">
+          <!-- <div class="col-md-3" style="display:none">
             <input type="text"  class="form-control form-control-sm  " id="idintegrante2" name="idintegrante" value="" required="">
-          </div>
+          </div> -->
         <div class="col-md-12">
                   <label for="validationServer04" class="form-label">¿Qué estrato tiene la vivienda?</label>
                   <select class="form-control form-control-sm" id="estrato" name="estrato" aria-describedby="validationServer04Feedback" required="">
@@ -190,20 +190,20 @@
           <div class="row">       
             <div class="form-group col-sm">
                 <label for="dirCampo1">Via principal:</label>
-                <select class="form-control form-control-sm" id="dirCampo1" onchange="llenarotrocampo()" required="">
+                <select class="form-control form-control-sm" id="dirCampo1" oninput="llenarotrocampo()" required="">
                     <option value=""> SELECCIONE </option><option value="1"> AUTOPISTA </option><option value="2"> AVENIDA </option><option value="3"> AVENIDA CALLE </option><option value="4"> AVENIDA CARRERA </option><option value="5"> BULEVAR </option><option value="6"> CALLE </option><option value="7"> CARRERA </option><option value="8"> CIRCULAR </option><option value="10"> CIRCUNVALAR </option><option value="11"> CTAS CORRIDAS </option><option value="12"> DIAGONAL </option><option value="9"> KILOMETRO </option><option value="20"> OTRA </option><option value="13"> PASAJE </option><option value="14"> PASEO </option><option value="15"> PEATONAL </option><option value="16"> TRANSVERSAL </option><option value="17"> TRONCAL </option><option value="18"> VARIANTE </option><option value="19"> VIA </option>                </select>
             </div>
             <div class="form-group col-sm">
                 <label for="dirCampo2">Número<br></label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo2" style="text-transform: uppercase;" required="" onkeypress="return soloNumeros(event)" onchange="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo2" style="text-transform: uppercase;" required="" onkeypress="return soloNumeros(event)" oninput="llenarotrocampo();" value="">
             </div>
             <div class="form-group col-sm">
                 <label for="dirCampo3">Prefijo<br></label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo3" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" onchange="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo3" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" oninput="llenarotrocampo();" value="">
             </div>
             <div class="form-group col-sm">
                 <label for="dirCampo4">Nombre vía<br></label>
-                <select class="form-control form-control-sm" id="dirCampo4" onchange="llenarotrocampo()">
+                <select class="form-control form-control-sm" id="dirCampo4" oninput="llenarotrocampo()">
                     <option value=""> SELECCIONE </option><option value="5"> BIS </option><option value="3"> ESTE </option><option value="2"> NORTE </option><option value="4"> OESTE </option><option value="1"> SUR </option>                </select>
             </div>  
             <div class="form-group col-sm-1">
@@ -215,15 +215,15 @@
         <div class="row">
             <div class="form-group col-sm">
                 <label for="dirCampo5">Via secundaria:</label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo5" style="text-transform: uppercase;" onkeypress="return soloNumeros(event)" onchange="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo5" style="text-transform: uppercase;" onkeypress="return soloNumeros(event)" oninput="llenarotrocampo();" value="">
             </div>
             <div class="form-group col-sm">
                 <label for="dirCampo6">Prefijo<br></label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo6" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" onchange="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo6" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" oninput="llenarotrocampo();" value="">
             </div>
             <div class="form-group col-sm">
                 <label for="dirCampo7">cuadrante<br></label>
-                <select class="form-control form-control-sm" id="dirCampo7" onchange="llenarotrocampo()">
+                <select class="form-control form-control-sm" id="dirCampo7" oninput="llenarotrocampo()">
                     <option value=""> SELECCIONE </option><option value="5"> BIS </option><option value="3"> ESTE </option><option value="2"> NORTE </option><option value="4"> OESTE </option><option value="1"> SUR </option>                </select>
             </div>
             <div class="form-group col-sm-1">
@@ -232,20 +232,20 @@
             </div> 
             <div class="form-group col-sm">
                 <label for="dirCampo8">Placa<br></label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo8" style="text-transform: uppercase;" onkeypress="return soloNumeros(event)" onchange="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo8" style="text-transform: uppercase;" onkeypress="return soloNumeros(event)" oninput="llenarotrocampo();" value="">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm">
                 <label for="dirCampo9">Complemento:</label>
-                <input type="text" class="form-control form-control-sm" id="dirCampo9" style="text-transform: uppercase;" onchange="llenarotrocampo();" value="">
+                <input type="text" class="form-control form-control-sm" id="dirCampo9" style="text-transform: uppercase;" oninput="llenarotrocampo();" value="">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="form-group col-sm">
                 <label for="direccion">Direccion:</label>
-                <input type="text" class="form-control form-control-sm form-control-plaintext" id="direccion" style="text-transform: uppercase;" value="" readonly="">
+                <input type="text" class="form-control form-control-sm form-control-plaintext" id="direccion" name="direccion" style="text-transform: uppercase;" value="" readonly="">
             </div>
         </div>
         </div>
@@ -268,11 +268,11 @@
   <div class="tab-pane fade " id="tabla3" role="tabpanel" aria-labelledby="condicioneshabitabilidad">
   <form class="row g-3 was-validated" id="formcondicioneshabitabilidad">
   <div class="col-md-3" style="display:none">
-            <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput3" name="folio" value="" required="">
+            <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput3" name="folio" value="{{ decrypt($variable) }}" required="">
           </div>
-          <div class="col-md-3" style="display:none">
+          <!-- <div class="col-md-3" style="display:none">
             <input type="text"  class="form-control form-control-sm  " id="idintegrante3" name="idintegrante" value="" required="">
-          </div>
+          </div> -->
 
           <div class="col-md-3">
             <label for="validationServer04" class="form-label">¿Qué tipo de vivienda es?</label>
@@ -352,11 +352,11 @@
   <div class="tab-pane fade " id="accesoalimentos" role="tabpanel" aria-labelledby="accesoalimentos">
   <form class="row g-3 was-validated" id="formaccesoalimentos">
   <div class="col-md-3" style="display:none">
-            <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput4" name="folio" value="" required="">
+            <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput4" name="folio" value="{{ decrypt($variable) }}" required="">
           </div>
-          <div class="col-md-3" style="display:none">
+          <!-- <div class="col-md-3" style="display:none">
             <input type="text"  class="form-control form-control-sm  " id="idintegrante4" name="idintegrante" value="" required="">
-          </div>
+          </div> -->
         <div class="col-md-12">
                   <label for="validationServer04" class="form-label">¿En tu hogar, cuántas comidas se consumen al día en promedio?</label>
                   <select class="form-control form-control-sm" id="numerocomidas" name="numerocomidas" aria-describedby="validationServer04Feedback" required="">
@@ -406,11 +406,11 @@
         <div class="tab-pane fade " id="entornofamiliar" role="tabpanel" aria-labelledby="entornofamiliar">
   <form class="row g-3 was-validated" id="formentornofamiliar">
   <div class="col-md-3" style="display:none">
-            <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput4" name="folio" value="" required="">
+            <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput5" name="folio" value="{{ decrypt($variable) }}" required="">
           </div>
-          <div class="col-md-3" style="display:none">
+          <!-- <div class="col-md-3" style="display:none">
             <input type="text"  class="form-control form-control-sm  " id="idintegrante4" name="idintegrante" value="" required="">
-          </div>
+          </div> -->
         
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">En tu hogar, ¿se presenta actualmente alguna de las siguientes problemáticas?</label>
@@ -457,7 +457,7 @@
           </div>
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Cuándo en tu hogar se presenta una dificultad cuentas con una red de apoyo (familia, vecinos, otro)?</label>
-            <select class="form-control form-control-sm" id="rutasvef2" name="rutasvef2" aria-describedby="validationServer04Feedback" required="">
+            <select class="form-control form-control-sm" id="redesdeapoyo" name="redesdeapoyo" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sino!!}}
                 </select>
           </div>
@@ -723,7 +723,7 @@ console.log(edad)
                     let psicosocial2 = JSON.parse(data.integrantes.psicosocial2); // ["49", "54"]
                     
                     let trabajoinfantil = JSON.parse((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.trabajoinfantil:'{}'); // ["49", "54"]
-                    let bancarizacion = JSON.parse((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.bancarizacion:'{}'); // ["49", "54"]
+                    let telecomunicaciones = JSON.parse((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.telecomunicaciones:'{}'); // ["49", "54"]
                     let numerocomidas3 = JSON.parse((data.integrantesaccesoalimentos)?data.integrantesaccesoalimentos.numerocomidas3:'{}'); // ["49", "54"]
 
                   console.log(trabajoinfantil)
@@ -798,9 +798,9 @@ console.log(edad)
                           }
                 });
               }
-              if(Array.isArray(bancarizacion) && bancarizacion.length > 0){
-                $('#container-bancarizacion input[type="checkbox"]').each(function() {
-                  let found = bancarizacion.find(item => item.id === this.value );
+              if(Array.isArray(telecomunicaciones) && telecomunicaciones.length > 0){
+                $('#container-telecomunicaciones input[type="checkbox"]').each(function() {
+                  let found = telecomunicaciones.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
@@ -879,7 +879,7 @@ console.log(edad)
            $('#desempleo').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.desempleo:'');
            $('#intermediacionlaboral').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.intermediacionlaboral:'');
            $('#emprendimiento1').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.emprendimiento1:'');
-           $('#bancarizacion').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.bancarizacion:''); 
+           $('#telecomunicaciones').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.telecomunicaciones:''); 
            $('#endeudamiento1').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.endeudamiento1:'');
            $('#endeudamiento3').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.endeudamiento3:'');
            $('#endeudamiento2').val((data.integrantescondicioneshabitabilidad)?data.integrantescondicioneshabitabilidad.endeudamiento2:'');
@@ -1024,18 +1024,18 @@ data['condicionespecial'].forEach(item => {
         console.log(data);
 
         // Enviar los datos usando AJAX
-    //     $.ajax({
-    //         url: './fisicoyemocional',
-    //         method: $(this).attr('method'),
-    //         data: {data: data},
-    //         success: function(response) {
-    //           $('#siguiente').css('display','');
-    //           $('#datosgeograficos').removeAttr('disabled');
-    //         },
-    //         error: function(xhr, status, error) {
-    //             console.error(error);
-    //         }
-    //     });
+          $.ajax({
+              url: '../conformacionfamiliar',
+              method: $(this).attr('method'),
+              data: {data: data},
+              success: function(response) {
+                $('#siguiente').css('display','');
+                $('#datosgeograficos').removeAttr('disabled');
+              },
+              error: function(xhr, status, error) {
+                  console.error(error);
+              }
+          });
      });
 
     $('#formdatosgeograficos').on('submit', function(event) {
@@ -1061,21 +1061,23 @@ data['condicionespecial'].forEach(item => {
             }
         });
 
-        $.ajax({
-            url: './intelectual',
-            method: $(this).attr('method'),
-            data: {data: data},
-            success: function(response) {
-              $('#siguiente2').css('display','');
-              $('#datosgeograficos').removeAttr('disabled');
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
+        console.log(data);
+
+         $.ajax({
+             url: '../datoseconomicos',
+             method: $(this).attr('method'),
+             data: {data: data},
+             success: function(response) {
+               $('#siguiente2').css('display','');
+               $('#datosgeograficos').removeAttr('disabled');
+             },
+             error: function(xhr, status, error) {
+                 console.error(error);
+             }
+         });  
         
     });
-
+    
          
  
     $('#formcondicioneshabitabilidad').on('submit', function(event) {
@@ -1084,27 +1086,28 @@ data['condicionespecial'].forEach(item => {
        
         var formData = $(this).serializeArray();
         var data = {
-              'trabajoinfantil': [
-                  { id: '137', valor: 'NO' },
-                  { id: '138', valor: 'NO' },
-                  { id: '139', valor: 'NO' },
-                  { id: '140', valor: 'NO' },
-                  { id: '141', valor: 'NO' },
-                  { id: '142', valor: 'NO' },
-                  { id: '143', valor: 'NO' },
-                  { id: '144', valor: 'NO' },
-                  { id: '145', valor: 'NO' },
-                  { id: '146', valor: 'NO' },
+              'serviciospublicos': [
+                  { id: '242', valor: 'NO' },
+                  { id: '243', valor: 'NO' },
+                  { id: '244', valor: 'NO' },
+                  { id: '245', valor: 'NO' },
+                  { id: '246', valor: 'NO' },
+                  { id: '247', valor: 'NO' },
               ],
-              'bancarizacion': [
-                  { id: '157', valor: 'NO' },
-                  { id: '158', valor: 'NO' },
-                  { id: '159', valor: 'NO' },
-                  { id: '160', valor: 'NO' },
-                  { id: '161', valor: 'NO' },
-                  { id: '162', valor: 'NO' },
-                  { id: '163', valor: 'NO' },
-                  { id: '164', valor: 'NO' },   
+              'telecomunicaciones': [
+                  { id: '248', valor: 'NO' },
+                  { id: '249', valor: 'NO' },
+                  { id: '250', valor: 'NO' },
+                  { id: '251', valor: 'NO' },
+                  { id: '252', valor: 'NO' },
+                  { id: '253', valor: 'NO' },
+                  { id: '254', valor: 'NO' },
+                  { id: '255', valor: 'NO' },   
+              ],
+              'documentodepropiedad': [
+                  { id: '262', valor: 'NO' },
+                  { id: '263', valor: 'NO' },
+                  { id: '264', valor: 'NO' },
               ]
             }
   
@@ -1117,7 +1120,7 @@ data['condicionespecial'].forEach(item => {
    var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
     console.log(respuesta, 'respuesta');
 
-    if (name === 'trabajoinfantil'  || name === 'bancarizacion' || name === 'numerocomidas3') {
+    if (name === 'serviciospublicos'  || name === 'telecomunicaciones' || name === 'documentodepropiedad') {
         // Buscar el objeto con el mismo id
         var existingIndex = data[name].findIndex(item => item.id === obj.value);
         if (existingIndex !== -1) {
@@ -1139,23 +1142,32 @@ data['condicionespecial'].forEach(item => {
         }
     }
 });
-  data['trabajoinfantil'].forEach(item => {
-      var selector = '[name="trabajoinfantil[]"][value="' + item.id + '"]';
+  data['serviciospublicos'].forEach(item => {
+      var selector = '[name="serviciospublicos[]"][value="' + item.id + '"]';
       if ($(selector).length === 0 || $(selector).is(':hidden')) {
           item.valor = 'NO APLICA';
       }
   });
 
-  data['bancarizacion'].forEach(item => {
-      var selector = '[name="bancarizacion[]"][value="' + item.id + '"]';
+  data['telecomunicaciones'].forEach(item => {
+      var selector = '[name="telecomunicaciones[]"][value="' + item.id + '"]';
       if ($(selector).length === 0 || $(selector).is(':hidden')) {
           item.valor = 'NO APLICA';
       }
   });
+
+  data['documentodepropiedad'].forEach(item => {
+      var selector = '[name="documentodepropiedad[]"][value="' + item.id + '"]';
+      if ($(selector).length === 0 || $(selector).is(':hidden')) {
+          item.valor = 'NO APLICA';
+      }
+  });
+
+  console.log(data)
 
         // Enviar los datos usando AJAX
         $.ajax({
-            url: './condicioneshabitabilidad',
+            url: '../condicioneshabitabilidad',
             method: $(this).attr('method'),
             data: {data: data},
             success: function(response) {
@@ -1172,75 +1184,199 @@ data['condicionespecial'].forEach(item => {
     $('#formaccesoalimentos').on('submit', function(event) {
       event.preventDefault(); // Detiene el envío del formulario
       var formData = $(this).serializeArray();
-        var data = {
-          'numerocomidas3': [
-                            { id: '165', valor: 'NO' },
-                            { id: '166', valor: 'NO' },
-                            { id: '167', valor: 'NO' },
-                            { id: '168', valor: 'NO' },
-                            { id: '169', valor: 'NO' },
-                            { id: '170', valor: 'NO' },
-                            { id: '171', valor: 'NO' },
-                            { id: '172', valor: 'NO' },
-                            { id: '173', valor: 'NO' },
-                            { id: '174', valor: 'NO' },
-                            { id: '175', valor: 'NO' },
-                            { id: '176', valor: 'NO' },
-                            { id: '177', valor: 'NO' },
-                            { id: '178', valor: 'NO' },
-                        ]
-            };
-  $(formData).each(function(index, obj) {
-    var name = obj.name.replace('[]', '');
-    var selector = '[name="' + obj.name + '"][value="' + obj.value + '"]';
-   // var respuesta = $(selector).attr('respuesta') || 'NO APLICA'; // Asegura obtener correctamente 'respuesta' o 'NO APLICA'
-   var element = $(selector);
-   var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
-    console.log(respuesta, 'respuesta');
+        var data = {};
 
-    if ( name === 'numerocomidas3') {
-        // Buscar el objeto con el mismo id
-        var existingIndex = data[name].findIndex(item => item.id === obj.value);
-        if (existingIndex !== -1) {
-            // Reemplazar el valor del objeto existente
-            data[name][existingIndex].valor = respuesta;
-        } else {
-            // Agregar un nuevo objeto si no existe
-            data[name].push({ id: obj.value, valor: respuesta });
-        }
-    } else {
-        if (data[name]) {
-            if (Array.isArray(data[name])) {
-                data[name].push(obj.value);
+        $(formData).each(function(index, obj) {
+            // Verificar si el nombre ya existe en el objeto de datos
+            if (data[obj.name]) {
+                // Si ya existe, verificar si es un array
+                if (Array.isArray(data[obj.name])) {
+                    // Si es un array, agregar el nuevo valor al array
+                    data[obj.name].push(obj.value);
+                } else {
+                    // Si no es un array, convertirlo en un array y agregar el nuevo valor
+                    data[obj.name] = [data[obj.name], obj.value];
+                }
             } else {
-                data[name] = [data[name], obj.value];
+                // Si no existe, simplemente agregarlo al objeto de datos
+                data[obj.name] = obj.value;
             }
-        } else {
-            data[name] = obj.value;
-        }
-    }
-});
- data['numerocomidas3'].forEach(item => {
-      var selector = '[name="numerocomidas3[]"][value="' + item.id + '"]';
-      if ($(selector).length === 0 || $(selector).is(':hidden')) {
-          item.valor = 'NO APLICA';
-      }
-  });
 
-        $.ajax({
-            url: './accesoalimentos',
-            method: $(this).attr('method'),
-            data: {data: data},
-            success: function(response) {
-              $('#volver').css('display','');
-              $('#datosgeograficos').removeAttr('disabled');
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
+            })
+ console.log(data)
+         $.ajax({
+             url: '../accesoalimentos',
+             method: $(this).attr('method'),
+             data: {data: data},
+             success: function(response) {
+               $('#volver').css('display','');
+               $('#datosgeograficos').removeAttr('disabled');
+             },
+             error: function(xhr, status, error) {
+                 console.error(error);
+             }
+         });
         
     });
+
+ $('#formentornofamiliar').on('submit', function(event) {
+        event.preventDefault(); // Detiene el envío del formulario
+
+       
+        var formData = $(this).serializeArray();
+        var data = {
+              'factoresderiesgovef': [
+                  { id: '265', valor: 'NO' },
+                  { id: '266', valor: 'NO' },
+                  { id: '267', valor: 'NO' },
+                  { id: '268', valor: 'NO' },
+                  { id: '269', valor: 'NO' },
+                  { id: '270', valor: 'NO' },
+                  { id: '271', valor: 'NO' },
+                  { id: '272', valor: 'NO' },
+                  { id: '273', valor: 'NO' },
+                  { id: '274', valor: 'NO' },
+                  { id: '275', valor: 'NO' },
+                  { id: '276', valor: 'NO' },
+                  { id: '277', valor: 'NO' },
+                  { id: '278', valor: 'NO' },
+
+              ],
+              'vefviolenciaenelentorno': [
+                  { id: '279', valor: 'NO' },
+                  { id: '280', valor: 'NO' },
+                  { id: '281', valor: 'NO' },
+                  { id: '282', valor: 'NO' },
+                  { id: '283', valor: 'NO' },
+                  { id: '284', valor: 'NO' },
+                  { id: '285', valor: 'NO' },
+              ],
+              'rutasvef3': [
+                  { id: '286', valor: 'NO' },
+                  { id: '287', valor: 'NO' },
+                  { id: '288', valor: 'NO' },
+                  { id: '289', valor: 'NO' },
+                  { id: '290', valor: 'NO' },
+                  { id: '291', valor: 'NO' },
+                  { id: '292', valor: 'NO' },
+                  { id: '293', valor: 'NO' },
+                  { id: '294', valor: 'NO' },
+              ],
+              'planeacionfinanciera4': [
+                  { id: '295', valor: 'NO' },
+                  { id: '296', valor: 'NO' },
+                  { id: '297', valor: 'NO' },
+              ],
+              'disciplinapositiva': [
+                  { id: '298', valor: 'NO' },
+                  { id: '299', valor: 'NO' },
+                  { id: '300', valor: 'NO' },
+                  { id: '301', valor: 'NO' },
+                  { id: '302', valor: 'NO' },
+                  { id: '303', valor: 'NO' },
+                  { id: '304', valor: 'NO' },
+              ],
+              'tiempolibre': [
+                  { id: '305', valor: 'NO' },
+                  { id: '306', valor: 'NO' },
+                  { id: '307', valor: 'NO' },
+                  { id: '308', valor: 'NO' },
+                  { id: '309', valor: 'NO' },
+              ]
+            }
+            
+
+        $(formData).each(function(index, obj) {
+            var name = obj.name.replace('[]', '');
+            var selector = '[name="' + obj.name + '"][value="' + obj.value + '"]';
+          // var respuesta = $(selector).attr('respuesta') || 'NO APLICA'; // Asegura obtener correctamente 'respuesta' o 'NO APLICA'
+          var element = $(selector);
+          var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
+            console.log(respuesta, 'respuesta');
+
+            if (name === 'factoresderiesgovef'  || name === 'vefviolenciaenelentorno' 
+            || name === 'rutasvef3' || name === 'planeacionfinanciera4' 
+            || name === 'disciplinapositiva' || name === 'tiempolibre') {
+                // Buscar el objeto con el mismo id
+                var existingIndex = data[name].findIndex(item => item.id === obj.value);
+                if (existingIndex !== -1) {
+                    // Reemplazar el valor del objeto existente
+                    data[name][existingIndex].valor = respuesta;
+                } else {
+                    // Agregar un nuevo objeto si no existe
+                    data[name].push({ id: obj.value, valor: respuesta });
+                }
+            } else {
+                if (data[name]) {
+                    if (Array.isArray(data[name])) {
+                        data[name].push(obj.value);
+                    } else {
+                        data[name] = [data[name], obj.value];
+                    }
+                } else {
+                    data[name] = obj.value;
+                }
+            }
+        });
+          data['factoresderiesgovef'].forEach(item => {
+              var selector = '[name="factoresderiesgovef[]"][value="' + item.id + '"]';
+              if ($(selector).length === 0 || $(selector).is(':hidden')) {
+                  item.valor = 'NO APLICA';
+              }
+          });
+
+          data['vefviolenciaenelentorno'].forEach(item => {
+              var selector = '[name="vefviolenciaenelentorno[]"][value="' + item.id + '"]';
+              if ($(selector).length === 0 || $(selector).is(':hidden')) {
+                  item.valor = 'NO APLICA';
+              }
+          });
+
+          data['rutasvef3'].forEach(item => {
+              var selector = '[name="rutasvef3[]"][value="' + item.id + '"]';
+              if ($(selector).length === 0 || $(selector).is(':hidden')) {
+                  item.valor = 'NO APLICA';
+              }
+          });
+
+          data['planeacionfinanciera4'].forEach(item => {
+              var selector = '[name="planeacionfinanciera4[]"][value="' + item.id + '"]';
+              if ($(selector).length === 0 || $(selector).is(':hidden')) {
+                  item.valor = 'NO APLICA';
+              }
+          });
+
+          data['disciplinapositiva'].forEach(item => {
+              var selector = '[name="disciplinapositiva[]"][value="' + item.id + '"]';
+              if ($(selector).length === 0 || $(selector).is(':hidden')) {
+                  item.valor = 'NO APLICA';
+              }
+          });
+
+          data['tiempolibre'].forEach(item => {
+              var selector = '[name="tiempolibre[]"][value="' + item.id + '"]';
+              if ($(selector).length === 0 || $(selector).is(':hidden')) {
+                  item.valor = 'NO APLICA';
+              }
+          });
+
+          console.log(data)
+
+                // Enviar los datos usando AJAX
+               $.ajax({
+                    url: '../entornofamiliar',
+                    method: $(this).attr('method'),
+                    data: {data: data},
+                    success: function(response) {
+                      $('#siguiente3').css('display','');
+                      $('#datosgeograficos').removeAttr('disabled');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+
        
 
     function enviarDatos(data) {

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\m_login;
 use App\Models\visitaslineas\m_l1e1;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class c_l1e1 extends Controller
 {
@@ -215,22 +218,250 @@ class c_l1e1 extends Controller
 
 
 
-      public function fc_l2e1(Request $request){
+      public function fc_conformacionfamiliar(Request $request)
+      {
+          $data = $request->all()['data'];
+          $dataWithoutId = Arr::except($data, ['folio']);
+          $folio = $data['folio'];
+          $now = Carbon::now();
       
-        $folio=$request->input('folio');
-        return view('vistaslineas/v_l2e1',["variable"=>$folio]);
+           // Convertir campos específicos a JSON si son arrays y limpiar los nombres de los campos
+           $fieldsToConvertToJson = ['condicionespecial', 'familiacuidadora'];
+           foreach ($fieldsToConvertToJson as $field) {
+               if (isset($dataWithoutId[$field]) && is_array($dataWithoutId[$field])) {
+                   $dataWithoutId[$field] = json_encode($dataWithoutId[$field]);
+               }
+           }
+      
+        //   // Añadir created_at y updated_at
+           $dataWithoutId['updated_at'] = $now;
+      
+           // Verificar si el registro existe para decidir si añadir created_at
+           $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
+               ->where('folio', $folio)
+               ->exists();
+      
+           if (!$exists) {
+               $dataWithoutId['created_at'] = $now;
+           }
+      
+           // Verificar datos antes de la inserción
+           foreach ($dataWithoutId as $key => $value) {
+               if (is_array($value)) {
+                   $dataWithoutId[$key] = json_encode($value);
+               }
+           }
+      
+           // Insertar o actualizar el registro
+           try {
+               DB::table('dbmetodologia.t1_hogarconformacionfamiliar')->updateOrInsert(
+                   [
+                       'folio' => $folio,
+                   ], // Condición para encontrar el registro existente
+                   $dataWithoutId
+               );
+           } catch (\Exception $e) {
+               return response()->json(['error' => $e->getMessage()], 500);
+           }
+      
+          return response()->json(["request" => 'ok']);
       }
 
-      public function fc_l3e1(Request $request){
+      public function fc_datoseconomicos(Request $request)
+      {
+          $data = $request->all()['data'];
+          $dataWithoutId = Arr::except($data, ['folio']);
+          $folio = $data['folio'];
+          $now = Carbon::now();
       
-        $folio=$request->input('folio');
-        return view('vistaslineas/v_l3e1',["variable"=>$folio]);
+           // Convertir campos específicos a JSON si son arrays y limpiar los nombres de los campos
+           $fieldsToConvertToJson = ['condicionespecial', 'familiacuidadora'];
+           foreach ($fieldsToConvertToJson as $field) {
+               if (isset($dataWithoutId[$field]) && is_array($dataWithoutId[$field])) {
+                   $dataWithoutId[$field] = json_encode($dataWithoutId[$field]);
+               }
+           }
+      
+        //   // Añadir created_at y updated_at
+           $dataWithoutId['updated_at'] = $now;
+      
+           // Verificar si el registro existe para decidir si añadir created_at
+           $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
+               ->where('folio', $folio)
+               ->exists();
+      
+           if (!$exists) {
+               $dataWithoutId['created_at'] = $now;
+           }
+      
+           // Verificar datos antes de la inserción
+           foreach ($dataWithoutId as $key => $value) {
+               if (is_array($value)) {
+                   $dataWithoutId[$key] = json_encode($value);
+               }
+           }
+      
+           // Insertar o actualizar el registro
+           try {
+               DB::table('dbmetodologia.t1_hogarconformacionfamiliar')->updateOrInsert(
+                   [
+                       'folio' => $folio,
+                   ], // Condición para encontrar el registro existente
+                   $dataWithoutId
+               );
+           } catch (\Exception $e) {
+               return response()->json(['error' => $e->getMessage()], 500);
+           }
+      
+          return response()->json(["request" => 'ok']);
       }
 
-      public function fc_l4e1(Request $request){
+
+      public function fc_condicioneshabitabilidad(Request $request)
+      {
+          $data = $request->all()['data'];
+          $dataWithoutId = Arr::except($data, ['folio']);
+          $folio = $data['folio'];
+          $now = Carbon::now();
       
-        $folio=$request->input('folio');
-        return view('vistaslineas/v_l4e1',["variable"=>$folio]);
+           // Convertir campos específicos a JSON si son arrays y limpiar los nombres de los campos
+           $fieldsToConvertToJson = ['condicionespecial', 'familiacuidadora'];
+           foreach ($fieldsToConvertToJson as $field) {
+               if (isset($dataWithoutId[$field]) && is_array($dataWithoutId[$field])) {
+                   $dataWithoutId[$field] = json_encode($dataWithoutId[$field]);
+               }
+           }
+      
+        //   // Añadir created_at y updated_at
+           $dataWithoutId['updated_at'] = $now;
+      
+           // Verificar si el registro existe para decidir si añadir created_at
+           $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
+               ->where('folio', $folio)
+               ->exists();
+      
+           if (!$exists) {
+               $dataWithoutId['created_at'] = $now;
+           }
+      
+           // Verificar datos antes de la inserción
+           foreach ($dataWithoutId as $key => $value) {
+               if (is_array($value)) {
+                   $dataWithoutId[$key] = json_encode($value);
+               }
+           }
+      
+           // Insertar o actualizar el registro
+           try {
+               DB::table('dbmetodologia.t1_hogarconformacionfamiliar')->updateOrInsert(
+                   [
+                       'folio' => $folio,
+                   ], // Condición para encontrar el registro existente
+                   $dataWithoutId
+               );
+           } catch (\Exception $e) {
+               return response()->json(['error' => $e->getMessage()], 500);
+           }
+      
+          return response()->json(["request" => 'ok']);
+      }
+
+      public function fc_accesoalimentos(Request $request)
+      {
+          $data = $request->all()['data'];
+          $dataWithoutId = Arr::except($data, ['folio']);
+          $folio = $data['folio'];
+          $now = Carbon::now();
+      
+           // Convertir campos específicos a JSON si son arrays y limpiar los nombres de los campos
+           $fieldsToConvertToJson = ['condicionespecial', 'familiacuidadora'];
+           foreach ($fieldsToConvertToJson as $field) {
+               if (isset($dataWithoutId[$field]) && is_array($dataWithoutId[$field])) {
+                   $dataWithoutId[$field] = json_encode($dataWithoutId[$field]);
+               }
+           }
+      
+        //   // Añadir created_at y updated_at
+           $dataWithoutId['updated_at'] = $now;
+      
+           // Verificar si el registro existe para decidir si añadir created_at
+           $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
+               ->where('folio', $folio)
+               ->exists();
+      
+           if (!$exists) {
+               $dataWithoutId['created_at'] = $now;
+           }
+      
+           // Verificar datos antes de la inserción
+           foreach ($dataWithoutId as $key => $value) {
+               if (is_array($value)) {
+                   $dataWithoutId[$key] = json_encode($value);
+               }
+           }
+      
+           // Insertar o actualizar el registro
+           try {
+               DB::table('dbmetodologia.t1_hogarconformacionfamiliar')->updateOrInsert(
+                   [
+                       'folio' => $folio,
+                   ], // Condición para encontrar el registro existente
+                   $dataWithoutId
+               );
+           } catch (\Exception $e) {
+               return response()->json(['error' => $e->getMessage()], 500);
+           }
+      
+          return response()->json(["request" => 'ok']);
+      }
+
+      public function fc_entornofamiliar(Request $request)
+      {
+          $data = $request->all()['data'];
+          $dataWithoutId = Arr::except($data, ['folio']);
+          $folio = $data['folio'];
+          $now = Carbon::now();
+      
+           // Convertir campos específicos a JSON si son arrays y limpiar los nombres de los campos
+           $fieldsToConvertToJson = ['condicionespecial', 'familiacuidadora'];
+           foreach ($fieldsToConvertToJson as $field) {
+               if (isset($dataWithoutId[$field]) && is_array($dataWithoutId[$field])) {
+                   $dataWithoutId[$field] = json_encode($dataWithoutId[$field]);
+               }
+           }
+      
+        //   // Añadir created_at y updated_at
+           $dataWithoutId['updated_at'] = $now;
+      
+           // Verificar si el registro existe para decidir si añadir created_at
+           $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
+               ->where('folio', $folio)
+               ->exists();
+      
+           if (!$exists) {
+               $dataWithoutId['created_at'] = $now;
+           }
+      
+           // Verificar datos antes de la inserción
+           foreach ($dataWithoutId as $key => $value) {
+               if (is_array($value)) {
+                   $dataWithoutId[$key] = json_encode($value);
+               }
+           }
+      
+           // Insertar o actualizar el registro
+           try {
+               DB::table('dbmetodologia.t1_hogarconformacionfamiliar')->updateOrInsert(
+                   [
+                       'folio' => $folio,
+                   ], // Condición para encontrar el registro existente
+                   $dataWithoutId
+               );
+           } catch (\Exception $e) {
+               return response()->json(['error' => $e->getMessage()], 500);
+           }
+      
+          return response()->json(["request" => 'ok']);
       }
 
     

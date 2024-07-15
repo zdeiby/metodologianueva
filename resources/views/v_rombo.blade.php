@@ -74,7 +74,7 @@
                     <div >
                       <label for="" style="color:white;font-size:18px">Triage</label>
                     </div>
-                    <img src="https://unidadfamiliamedellin.com.co/Inventario/fotos/banner3.jpg" style="border-radius:10px" width="100%" alt="">
+                    <img src="{{ asset('imagenes/banner1.jpg')}}" style="border-radius:10px" width="100%" alt="">
                     <br> 
                     <label for="" style="color:white;font-size:15px; padding-bottom:5px;padding-top:4px; text-decoration: underline;cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">Más información</label><br>
                     <form method="GET" action="../rombointegrantes/{{$variable}}" ><button type="submit" class="btn btn-primary">Ir a hogar</button></form>
