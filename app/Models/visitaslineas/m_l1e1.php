@@ -40,7 +40,7 @@ class m_l1e1 extends Model
 
     public function m_leerpaises()
     {
-        $resultado = DB::select('SELECT * FROM dbmetodologia.t_paises;           
+        $resultado = DB::select('SELECT * FROM dbmetodologia.t_paises order by(pais);           
         ' );
 
         return $resultado;

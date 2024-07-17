@@ -1,7 +1,6 @@
 @extends('componentes.navlateral')
 
 @section('title', 'editarintegrantes')
-
 @section('content')
 
 <style>
@@ -18,6 +17,44 @@
     background-color: #e0e0e0;
   }
 </style>
+<style>
+        .select-wrapper {
+            position: relative;
+        }
+        .select-wrapper select {
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+        }
+        .select-wrapper .dropdown-menu {
+            display: none;
+            position: absolute;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+        }
+        .select-wrapper .dropdown-menu.show {
+            display: block;
+        }
+        .select-wrapper .dropdown-menu .dropdown-item {
+            cursor: pointer;
+        }
+        .select-wrapper .dropdown-menu .dropdown-item:hover {
+            background-color: #f1f1f1;
+            color:black;
+        }
+        .select-wrapper .dropdown-menu .search-box {
+            width: 100%;
+            box-sizing: border-box;
+            padding: .375rem .75rem;
+            border: none;
+            border-bottom: 1px solid #ced4da;
+        }
+    </style>
 
 <div class="container">
     <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class=""  >
@@ -78,7 +115,7 @@
             <input type="text" placeholder="idintegrante" class="form-control form-control-sm  " id="idintegrante1" name="idintegrante" value="" >
           </div>
 
-            <label for="validationServer04" class="form-label">¿Cuál es su nombre completo?</label>
+            <label for="validationServer04" class="form-label">¿Cuál es tu nombre completo?</label>
           <div class="col-md-3">
             <input type="text" class="form-control form-control-sm " placeholder="Nombre 1" oninput="convertirAMayusculas(this)" id="nombre1"  name="nombre1" value="" required>
           </div>
@@ -92,19 +129,19 @@
             <input type="text" class="form-control form-control-sm " placeholder="Apellido 2" oninput="convertirAMayusculas(this)" id="apellido2" name="apellido2"  value="" >
           </div>
           <div class="col-md-12">
-                  <label for="validationServer04" class="form-label">¿Tiene un nombre identitario o cómo te gusta que te llamen?</label>
+                  <label for="validationServer04" class="form-label">¿Tienes un nombre identitario o cómo te gusta que te llamen?</label>
                   <select class="form-control form-control-sm" id="nombreidentatario1" name="nombreidentatario1" aria-describedby="validationServer04Feedback" required="">
                     {{!!$sino!!}}
                   </select>
                 </div>
-            <div class="col-md-12">
-                <label for="validationServer04" class="form-label">¿Cuál es su nombre identitario?</label>
-                <input type="text" class="form-control form-control-sm "  id="nombreidentatario2" name="nombreidentatario2"  value="" >
+            <div class="col-md-12" id="nombreidentatario2div" >
+                <label for="validationServer04" class="form-label">¿Cuál es tu nombre identitario?</label>
+                <input type="text" class="form-control form-control-sm "  id="nombreidentatario2" name="nombreidentatario2"  value=""  >
 
             </div>
             <div class="col-md-6">
             <label for="validationServer04" class="form-label">¿Cuál es tu fecha de nacimiento?</label>
-            <input type="date" oninput="calcularedad(this.value)" class="form-control form-control-sm "  name="fechanacimiento"  id="fechanacimiento" value="" required>
+            <input type="date"  min="1900-01-01"  oninput="calcularedad(this.value)" class="form-control form-control-sm "  name="fechanacimiento"  id="fechanacimiento" value="" required>
           </div>
           <div class="form-group col-sm">
                 <blockquote class="blockquote text-center">
@@ -113,30 +150,51 @@
                     <input style="display:none" type="text" id="edadinput" name="edad">
                 </blockquote>
             </div>
-          <div class="col-md-6">
-                <label for="validationServer04" class="form-label">¿Cuál es su país de nacimiento?</label>
+          <!-- <div class="col-md-6">
+                <label for="validationServer04" class="form-label">¿Cuál es tu país de nacimiento?</label>
                 <select class="form-control form-control-sm" id="nacionalidad" name="nacionalidad" aria-describedby="validationServer04Feedback" required="">
-                {{!!$paises!!}}
+               
               </select>
-            </div>
+            </div>  -->
+
             <div class="col-md-6">
-                <label for="validationServer04" class="form-label">¿Qué tipo de documento de identidad tiene?</label>
+                <label for="nacionalidad" class="form-label">¿Cuál es tu país de nacimiento?</label>
+                <div class="select-wrapper">
+                    <select class="form-control form-control-sm" id="nacionalidad"  name="nacionalidad" aria-describedby="validationServer04Feedback" required="">
+                    {!!$paises!!}
+                    </select>
+                    <div class="dropdown-menu" id="dropdown-menu">
+                        <input type="text" class="form-control search-box" id="searchBox" placeholder="Busca tu país...">
+                        <div id="dropdown-options">
+                            <!-- Las opciones del select se replicarán aquí -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="col-md-6" >
+                <label for="validationServer04" class="form-label">¿Qué tipo de documento de identidad tienes?</label>
                 <select class="form-control form-control-sm" id="tipodocumento" name="tipodocumento" aria-describedby="validationServer04Feedback" required="">
                 {{!!$tipodocumento!!}}
               </select>
             </div>
-            <div class="col-md-4">
-            <label for="validationServer04" class="form-label">¿cuál es el número de su documento?</label>
-            <input type="number" class="form-control form-control-sm "  name="documento"  id="documento" value="" required>
+            <div class="col-md" id="documentodiv" >
+            <label for="validationServer04" class="form-label">¿cuál es el número de tu documento?</label>
+            <input type="number" class="form-control form-control-sm "  name="documento"  id="documento" value="" >
           </div>
-          <div class="col-md-4">
-                <label for="validationServer04" class="form-label">¿Es el/la representante del hogar?</label>
+          <div class="col-md">
+                <label for="validationServer04" class="form-label">¿Eres el/la representante del hogar?</label>
                 <select class="form-control form-control-sm" id="representante" name="representante" aria-describedby="validationServer04Feedback" required="">
                 {{!!$sino!!}}
               </select>
             </div>
-            <div class="col-md-4">
-                <label for="validationServer04" class="form-label">¿Cuál es su sexo?</label>
+            <div class="col-md">
+                <label for="validationServer04" class="form-label">¿Cuál es tu sexo?</label>
                 <select class="form-control form-control-sm" id="sexo" name="sexo" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sexo!!}}
                 </select>
@@ -169,89 +227,89 @@
           <div class="col-md-3" style="display:none">
             <input type="text" placeholder="idintegrante" class="form-control form-control-sm  " id="idintegrante2" name="idintegrante" value="" required="">
           </div>
-        <div class="col-md-4">
-                  <label for="validationServer04" class="form-label">¿Ha tenido hijos?</label>
+        <div class="col-md-4" id="hijosdiv">
+                  <label for="validationServer04" class="form-label">¿Has tenido hijos?</label>
                   <select class="form-control form-control-sm" id="hijos" name="hijos" aria-describedby="validationServer04Feedback" required="">
                     {{!!$sino!!}}
                 </select>
                 </div>
         
-          <div class="col-md-4">
-            <label for="validationServer04" class="form-label">¿Es una mujer gestante?</label>
-            <select class="form-control form-control-sm" id="gestante" name="gestante" aria-describedby="validationServer04Feedback" required="">
+          <div class="col-md-4" id="gestantediv">
+            <label for="validationServer04" class="form-label">¿Eres una mujer gestante?</label>
+            <select class="form-control form-control-sm" id="gestante" name="gestante" aria-describedby="validationServer04Feedback" required>
             {{!!$sino!!}}            
           </select>
           </div>
-          <div class="col-md-4">
-            <label for="validationServer04" class="form-label">¿Es una mujer lactante?</label>
-            <select class="form-control form-control-sm" id="lactante" name="lactante" aria-describedby="validationServer04Feedback" required="">
+          <div class="col-md-4" id="lactantediv">
+            <label for="validationServer04" class="form-label">¿Eres una mujer lactante?</label>
+            <select class="form-control form-control-sm" id="lactante" name="lactante" aria-describedby="validationServer04Feedback" required>
             {{!!$sino!!}}     
                 </select>
           </div>
-          <div class="col-md-4">
-            <label for="validationServer04" class="form-label">¿Tiene resuelta su situación militar?</label>
+          <div class="col-md-4" id="situacionmilitardiv">
+            <label for="validationServer04" class="form-label">¿Tienes resuelta su situación militar?</label>
             <select class="form-control form-control-sm" id="situacionmilitar" name="situacionmilitar" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}         
              </select>
           </div>
-          <div class="col-md-4">
-            <label for="validationServer04" class="form-label">¿Cuál es su orientación sexual?            </label>
+          <div class="col-md-4" id="orientaciondiv">
+            <label for="validationServer04" class="form-label">¿Cuál es tu orientación sexual?            </label>
             <select class="form-control form-control-sm" id="orientacion" name="orientacion" aria-describedby="validationServer04Feedback" required="">
             {{!!$orientacion!!}}
           </select>
           </div>
-          <div class="col-md">
+          <div class="col-md" id="cualorientaciondiv">
             <label for="validationServer04" class="form-label">¿Cúal?</label>
             <input type="text" class="form-control form-control-sm" name="cualorientacion" oninput="convertirAMayusculas(this)" id="cualorientacion" value="">
           </div>
-          <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿Cuál es su identidad de género?</label>
+          <div class="col-md-6" id="identidaddiv">
+            <label for="validationServer04" class="form-label">¿Cuál es tu identidad de género?</label>
             <select class="form-control form-control-sm" id="identidad" name="identidad" aria-describedby="validationServer04Feedback" required="">
             {{!!$identidad!!}}
           </select>
           </div>
-          <div class="col-md">
+          <div class="col-md" id="cualidentidaddiv">
             <label for="validationServer04" class="form-label">¿Cúal?</label>
             <input type="text" class="form-control form-control-sm" id="cualidentidad" name="cualidentidad" value="">
           </div>
           <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿Pertenece a algún grupo étnico?</label>
+            <label for="validationServer04" class="form-label">¿Perteneces a algún grupo étnico?</label>
             <select class="form-control form-control-sm" id="etnia" name="etnia" aria-describedby="validationServer04Feedback" required="">
             {{!!$etnia!!}}
           </select>
           </div>
           <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿Cuenta con certificación de pertenencia étnica?</label>
+            <label for="validationServer04" class="form-label">¿Cuentas con certificación de pertenencia étnica?</label>
             <select class="form-control form-control-sm" id="certificacionetnica" name="certificacionetnica" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
                       </select>
           </div>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Es víctima del conflicto armado colombiano?</label>
+            <label for="validationServer04" class="form-label">¿Eres víctima del conflicto armado colombiano?</label>
             <select class="form-control form-control-sm" id="victima1" name="victima1" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
           </div>
           <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿Está reconocido como víctima del conflicto armado colombiano y cuenta con RUV?            </label>
+            <label for="validationServer04" class="form-label">¿Estás reconocido como víctima del conflicto armado colombiano y cuentas con RUV?            </label>
             <select class="form-control form-control-sm" id="victima2" name="victima2" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
           </div>
           <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿Ha recibido algún tipo de reparación o apoyo derivado del reconocimiento como víctima del conflcto armado colombiano?</label>
+            <label for="validationServer04" class="form-label">¿Has recibido algún tipo de reparación o apoyo derivado del reconocimiento como víctima del conflcto armado colombiano?</label>
             <select class="form-control form-control-sm" id="victima3" name="victima3" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
           </div>
           <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿Requiere  asistencia para su regularización e identificación en el territorio nacional?</label>
+            <label for="validationServer04" class="form-label">¿Requieres  asistencia para su regularización e identificación en el territorio nacional?</label>
             <select class="form-control form-control-sm" id="migrantes1" name="migrantes1" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
           </div>
           <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿Qué instancias ha utilizado el hogar para la regularización e identificación en el territorio nacional?</label>
+            <label for="validationServer04" class="form-label">¿Qué instancias has utilizado el hogar para la regularización e identificación en el territorio nacional?</label>
             <select class="form-control form-control-sm" id="migrantes2" name="migrantes2" aria-describedby="validationServer04Feedback" required="">
             {{!!$migrantes2!!}}
           </select>
@@ -428,7 +486,40 @@
           $('#idintegrante2').val(localStorage.getItem('idintegrante'));
 
 
-          
+          if($('#tipodocumento').val()=='11'){
+            $('#documentodiv').css('display','none')
+          }
+          if($('#nombreidentatario1').val()=='1'){
+            $('#nombreidentatario2div').css('display','')
+          }else{
+            $('#nombreidentatario2div').css('display','none')
+          }
+          if($('#sexo').val()=='13' && $('#edad').html() >= '12'){
+            $('#gestantediv').css('display','');
+            $('#lactantediv').css('display','');
+            $('#situacionmilitardiv').css('display','none');
+
+          }
+          if($('#sexo').val()=='12' && $('#edad').html() >= '12'){ 
+            $('#gestantediv').css('display','none');
+            $('#lactantediv').css('display','none');
+            $('#situacionmilitar').css('display','');
+          }
+          if($('#sexo').val()=='12' && $('#edad').html() <= '12' || $('#sexo').val()=='13' && $('#edad').html() <= '12'){ 
+            $('#gestantediv').css('display','none');
+            $('#lactantediv').css('display','none');
+            $('#situacionmilitardiv').css('display','none');
+
+            $('#orientaciondiv').css('display','none');
+            $('#cualorientaciondiv').css('display','none');
+            $('#identidaddiv').css('display','none');
+            $('#cualidentidaddiv').css('display','none');
+            $('#hijosdiv').css('display','none');
+          }
+
+ 
+         
+
 
         },
         error: function(xhr, status, error) {
@@ -531,25 +622,346 @@
 });
 
 
-function calcularedad(fechaNacimiento) {
-    // Obtener la fecha actual
-    var fechaActual = new Date();
-    
-    // Convertir la fecha de nacimiento a objeto Date
-    var fechaNac = new Date(fechaNacimiento);
-    
-    // Calcular la diferencia en milisegundos entre las fechas
-    var edadMilisegundos = fechaActual - fechaNac;
-    
-    // Convertir los milisegundos a años
-    var edadAnios = Math.floor(edadMilisegundos / 1000 / 60 / 60 / 24 / 365.25);
-    if(edadAnios >0){
-    // Mostrar la edad en el elemento HTML con id="edad"
-    document.getElementById("edad").textContent = edadAnios;
-    $('#edadinput').val(edadAnios);
-  }
-}
 
+
+$('#nombreidentatario1').change(function(){
+  if($('#nombreidentatario1').val()=='1'){
+    $('#nombreidentatario2div').css('display','');
+    $('#nombreidentatario2').attr('required', 'required');
+
+  }else{
+    $('#nombreidentatario2div').css('display','none');
+    $('#nombreidentatario2').removeAttr('required');
+    $('#nombreidentatario2').val('');
+
+
+  }
+})
+
+$('#tipodocumento').change(function(){
+  if($('#tipodocumento').val()=='11'){
+    $('#documentodiv').css('display','none');
+    $('#documento').removeAttr('required');
+    $('#documento').val('');
+  }else{
+    $('#documentodiv').css('display','');
+    $('#documento').attr('required', 'required');
+  }
+})
+
+
+
+$('#nacionalidad').on('change', function() {
+    console.log('gola')
+ });
+
+      
+// if($('#nacionalidad').val()=='343'){
+//     $('#tipodocumento option[value="7"]').hide();
+//     $('#tipodocumento option[value="8"]').hide();
+//     $('#tipodocumento option[value="9"]').hide();
+//     $('#tipodocumento option[value="10"]').hide();
+//   }else{
+   
+//   }
+
+$('#sexo').change(function(){
+  $('#siguiente').css('display','none');
+  $('#volver2').css('display','none');
+
+  $('#identatario').attr('disabled',true);
+  if($('#sexo').val()=='12' && $('#edad').html() >= '12'){  
+    $('#gestantediv').css('display','none');
+    $('#lactantediv').css('display','none');
+    $('#situacionmilitardiv').css('display','');
+    $('#gestante').removeAttr('required');
+    $('#gestante').val('');
+    $('#lactante').val(''); 
+    $('#situacionmilitar').val('');
+    $('#orientacion').val('');
+    $('#identidad').val('');
+    $('#cualidentidad').val('');
+    $('#hijos').val('');
+    $('#lactante').removeAttr('required');
+    $('#situacionmilitar').attr('required', 'required');
+    $('#orientaciondiv').css('display','');
+    $('#cualorientaciondiv').css('display','');
+    $('#identidaddiv').css('display','');
+    $('#cualidentidaddiv').css('display','');
+    $('#hijosdiv').css('display','none');
+    $('#hijos').removeAttr('required');
+
+  }
+  if($('#sexo').val()=='13' && $('#edad').html() >= '12'){  
+    $('#gestantediv').css('display','');
+    $('#lactantediv').css('display','');
+    $('#situacionmilitardiv').css('display','none');
+    $('#situacionmilitar').val('');
+    $('#gestante').val('');
+    $('#lactante').val(''); 
+    $('#situacionmilitar').val('');
+    $('#orientacion').val('');
+    $('#identidad').val('');
+    $('#cualidentidad').val('');
+    $('#hijos').val('');
+    $('#situacionmilitar').removeAttr('required');
+    $('#hijos').attr('required', 'required');
+    $('#gestante').attr('required', 'required');
+    $('#lactante').attr('required', 'required');
+    $('#orientacion').attr('required', 'required');
+    $('#identidad').attr('required', 'required');
+
+
+    $('#orientaciondiv').css('display','');
+    $('#cualorientaciondiv').css('display','');
+    $('#identidaddiv').css('display','');
+    $('#cualidentidaddiv').css('display','');
+    $('#hijosdiv').css('display','');
+  } 
+  if($('#sexo').val()=='13' && $('#edad').html() <= '12' || $('#sexo').val()=='12' && $('#edad').html() <= '12' ){  
+    $('#gestante').val('');
+    $('#lactante').val(''); 
+    $('#situacionmilitar').val('');
+    $('#orientacion').val('');
+    $('#identidad').val('');
+    $('#cualidentidad').val('');
+    $('#hijos').val('');
+    $('#gestantediv').css('display','none');
+    $('#lactantediv').css('display','none');
+    $('#gestante').removeAttr('required');
+    $('#lactante').removeAttr('required');
+    $('#orientacion').removeAttr('required');
+    $('#identidad').removeAttr('required');
+    $('#cualidentidad').removeAttr('required');
+    $('#hijos').removeAttr('required');
+    $('#situacionmilitardiv').css('display','none');
+    $('#gestantediv').css('display','none');
+    $('#lactantediv').css('display','none');
+    $('#orientaciondiv').css('display','none');
+    $('#cualorientaciondiv').css('display','none');
+    $('#identidaddiv').css('display','none');
+    $('#cualidentidaddiv').css('display','none');
+    $('#hijosdiv').css('display','none');
+   // $('#situacionmilitar').removeAttr('required');
+  }
+ else{
+   
+  }
+
+})
+
+
+// function calcularedad(fechaNacimiento) {
+//     // Obtener la fecha actual
+//     var fechaActual = new Date();
+    
+//     // Convertir la fecha de nacimiento a objeto Date
+//     var fechaNac = new Date(fechaNacimiento);
+    
+//     // Calcular la diferencia en milisegundos entre las fechas
+//     var edadMilisegundos = fechaActual - fechaNac;
+    
+//     // Convertir los milisegundos a años
+//     var edadAnios = Math.floor(edadMilisegundos / 1000 / 60 / 60 / 24 / 365.25);
+
+//     // Mostrar la edad en el elemento HTML con id="edad"
+//     document.getElementById("edad").textContent = edadAnios;
+//     $('#edadinput').val(edadAnios);
+
+// }
+const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // Los meses van de 0 a 11
+        const dd = String(today.getDate()).padStart(2, '0');
+        const todayFormatted = `${yyyy}-${mm}-${dd}`;
+
+        $('#fechanacimiento').attr('max', todayFormatted);
+
+        $('#fechanacimiento').on('input', function() {
+            calcularedad(this.value);
+        });
+
+function calcularedad(fechaNacimiento) {
+        // Obtener la fecha actual
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // Los meses van de 0 a 11
+        const dd = String(today.getDate()).padStart(2, '0');
+        const todayFormatted = `${yyyy}-${mm}-${dd}`;
+
+        // Validar si la fecha ingresada es mayor a la fecha actual
+        const inputDate = new Date(fechaNacimiento);
+        if (inputDate > today) {
+            $('#fechanacimiento').val(todayFormatted);
+            fechaNacimiento = todayFormatted;
+        }
+
+        // Convertir la fecha de nacimiento a objeto Date
+        var fechaNac = new Date(fechaNacimiento);
+        
+        // Calcular la diferencia en milisegundos entre las fechas
+        var edadMilisegundos = today - fechaNac;
+        
+        // Convertir los milisegundos a años
+        var edadAnios = Math.floor(edadMilisegundos / 1000 / 60 / 60 / 24 / 365.25);
+
+        // Mostrar la edad en el elemento HTML con id="edad"
+        document.getElementById("edad").textContent = edadAnios;
+        $('#edadinput').val(edadAnios);
+    }
+
+
+//BUSCAR PAISES
+
+
+document.addEventListener('DOMContentLoaded', function() {
+        const selectElement = document.getElementById('nacionalidad');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const searchBox = document.getElementById('searchBox');
+        const dropdownOptions = document.getElementById('dropdown-options');
+
+        function populateDropdownOptions() {
+            dropdownOptions.innerHTML = '';
+            Array.from(selectElement.options).forEach(option => {
+                if (option.value) {
+                    const div = document.createElement('div');
+                    div.className = 'dropdown-item';
+                    div.textContent = option.textContent;
+                    div.dataset.value = option.value;
+                    dropdownOptions.appendChild(div);
+                }
+            });
+        }
+
+        selectElement.addEventListener('mousedown', function(event) {
+            event.preventDefault(); // Previene el comportamiento por defecto del select
+            populateDropdownOptions();
+            dropdownMenu.classList.add('show');
+            searchBox.focus();
+        });
+
+        searchBox.addEventListener('input', function() {
+            const searchTerm = searchBox.value.toLowerCase();
+            Array.from(dropdownOptions.children).forEach(option => {
+                if (option.textContent.toLowerCase().includes(searchTerm)) {
+                    option.style.display = '';
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+        });
+
+        dropdownOptions.addEventListener('click', function(event) {
+            const option = event.target;
+            if (option.classList.contains('dropdown-item')) {
+                selectElement.value = option.dataset.value;
+                dropdownMenu.classList.remove('show');
+                $(selectElement).trigger('change'); // Trigger the change event
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.select-wrapper')) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+
+        selectElement.addEventListener('blur', function() {
+            setTimeout(function() {
+                if (!document.activeElement.closest('.select-wrapper')) {
+                    dropdownMenu.classList.remove('show');
+                }
+            }, 200);
+        });
+
+        // Listener para el evento change
+        $(selectElement).on('change', function() {
+            console.log('El país ha cambiado a: ' + $(this).val());
+                $('#tipodocumento').val('');
+          if($(this).val()=='343'){
+              $('#tipodocumento option[value="7"]').hide();
+              $('#tipodocumento option[value="8"]').hide();
+              $('#tipodocumento option[value="9"]').hide();
+              $('#tipodocumento option[value="10"]').hide();
+              $('#tipodocumento option[value="3"]').show();
+              $('#tipodocumento option[value="4"]').show();
+              $('#tipodocumento option[value="5"]').show();
+              $('#tipodocumento option[value="6"]').show();
+            }else{
+              $('#tipodocumento option[value="3"]').hide();
+              $('#tipodocumento option[value="4"]').hide();
+              $('#tipodocumento option[value="5"]').hide();
+              $('#tipodocumento option[value="6"]').hide();
+              $('#tipodocumento option[value="7"]').show();
+              $('#tipodocumento option[value="8"]').show();
+              $('#tipodocumento option[value="9"]').show();
+              $('#tipodocumento option[value="10"]').show();
+            }
+        });
+    });
+
+
+  
+// document.addEventListener('DOMContentLoaded', function() {
+//             const selectElement = document.getElementById('nacionalidad');
+//             const dropdownMenu = document.getElementById('dropdown-menu');
+//             const searchBox = document.getElementById('searchBox');
+//             const dropdownOptions = document.getElementById('dropdown-options');
+
+//             function populateDropdownOptions() {
+//                 dropdownOptions.innerHTML = '';
+//                 Array.from(selectElement.options).forEach(option => {
+//                     if (option.value) {
+//                         const div = document.createElement('div');
+//                         div.className = 'dropdown-item';
+//                         div.textContent = option.textContent;
+//                         div.dataset.value = option.value;
+//                         dropdownOptions.appendChild(div);
+//                     }
+//                 });
+//             }
+
+//             selectElement.addEventListener('mousedown', function(event) {
+//                 event.preventDefault(); // Previene el comportamiento por defecto del select
+//                 populateDropdownOptions();
+//                 dropdownMenu.classList.add('show');
+//                 searchBox.focus();
+//             });
+
+//             searchBox.addEventListener('input', function() {
+//                 const searchTerm = searchBox.value.toLowerCase();
+//                 Array.from(dropdownOptions.children).forEach(option => {
+//                     if (option.textContent.toLowerCase().includes(searchTerm)) {
+//                         option.style.display = '';
+//                     } else {
+//                         option.style.display = 'none';
+//                     }
+//                 });
+//             });
+
+//             dropdownOptions.addEventListener('click', function(event) {
+//                 const option = event.target;
+//                 if (option.classList.contains('dropdown-item')) {
+//                     selectElement.value = option.dataset.value;
+//                     dropdownMenu.classList.remove('show');
+//                 }
+//             });
+
+//             document.addEventListener('click', function(event) {
+//                 if (!event.target.closest('.select-wrapper')) {
+//                     dropdownMenu.classList.remove('show');
+//                 }
+//             });
+
+//             selectElement.addEventListener('blur', function() {
+//                 setTimeout(function() {
+//                     if (!document.activeElement.closest('.select-wrapper')) {
+//                         dropdownMenu.classList.remove('show');
+//                     }
+//                 }, 200);
+//             });
+            
+//         });
 
     </script>
  
