@@ -541,11 +541,9 @@
 
           };
             if($('#etnia').val() == '37'){
-              $('#certificacionetnica').prop('disabled',true);
-              $('#certificacionetnica').val('2');
+              $('#certificacionetnicadiv').css('display','none')
             }else{
-              $('#certificacionetnica').prop('disabled',false);
-              //$('#certificacionetnica').val('');
+              $('#certificacionetnica').css('display','')
             }
             if($('#nacionalidad').val() == '343' ){
               $('#victima1div').css('display','');
@@ -616,6 +614,30 @@
                 $('#victima3').removeAttr('required');
 
               }
+
+
+              if($('#nacionalidad').val() == '343'){
+              $('#tipodocumento option[value="7"]').hide();
+              $('#tipodocumento option[value="8"]').hide();
+              $('#tipodocumento option[value="9"]').hide();
+              $('#tipodocumento option[value="10"]').hide();
+              $('#tipodocumento option[value="3"]').show();
+              $('#tipodocumento option[value="4"]').show();
+              $('#tipodocumento option[value="5"]').show();
+              $('#tipodocumento option[value="6"]').hide();
+              $('#tipodocumento option[value="11"]').show();
+            }else{
+              $('#tipodocumento option[value="3"]').hide();
+              $('#tipodocumento option[value="4"]').hide();
+              $('#tipodocumento option[value="5"]').hide();
+              $('#tipodocumento option[value="6"]').show();
+              $('#tipodocumento option[value="7"]').show();
+              $('#tipodocumento option[value="8"]').show();
+              $('#tipodocumento option[value="9"]').show();
+              $('#tipodocumento option[value="10"]').show();
+              $('#tipodocumento option[value="11"]').hide();
+
+            }
 
 
 
@@ -953,11 +975,16 @@ $('#identidad').change(function(){
 
 $('#etnia').change(function(){
   if($('#etnia').val() == '37'){
-    $('#certificacionetnica').prop('disabled',true);
-    $('#certificacionetnica').val('2');
-  }else{
-    $('#certificacionetnica').prop('disabled',false);
+    $('#certificacionetnicadiv').css('display','none');
     $('#certificacionetnica').val('');
+    $('#certificacionetnica').removeAttr('required');
+
+  }else{
+    $('#certificacionetnicadiv').css('display','');
+    $('#certificacionetnica').val('');
+    $('#certificacionetnica').attr('required', 'required');
+
+    
   }
 })
 
@@ -1179,7 +1206,9 @@ document.addEventListener('DOMContentLoaded', function() {
               $('#tipodocumento option[value="3"]').show();
               $('#tipodocumento option[value="4"]').show();
               $('#tipodocumento option[value="5"]').show();
-              $('#tipodocumento option[value="6"]').show();
+              $('#tipodocumento option[value="6"]').hide();
+              $('#tipodocumento option[value="11"]').show();
+
             }else{
               $('#victima1div').css('display','none');
               $('#victima1').removeAttr('required');
@@ -1198,11 +1227,13 @@ document.addEventListener('DOMContentLoaded', function() {
               $('#tipodocumento option[value="3"]').hide();
               $('#tipodocumento option[value="4"]').hide();
               $('#tipodocumento option[value="5"]').hide();
-              $('#tipodocumento option[value="6"]').hide();
+              $('#tipodocumento option[value="6"]').show();
               $('#tipodocumento option[value="7"]').show();
               $('#tipodocumento option[value="8"]').show();
               $('#tipodocumento option[value="9"]').show();
               $('#tipodocumento option[value="10"]').show();
+              $('#tipodocumento option[value="11"]').hide();
+
             }
         });
     });

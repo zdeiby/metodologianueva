@@ -40,7 +40,10 @@
 
     <div><span class="badge bg-success mt-2" id="folio"></span>
     <span class="badge bg-primary" style="display:" id="idintegrante"></span>
-    <span class="badge bg-primary" style="background:#0dcaf0 !important; color:white" id="nombre"></span><br>
+    <span class="badge bg-primary" style="background:#a80a85 !important; color:white" id="nombre"></span>
+    <span class="badge bg-primary" style="background:#0dcaf0 !important; color:white" id="sexointegrante"></span>
+    <span class="badge bg-primary" style="background:#FF8803 !important; color:white" id="edadintegrante"></span>
+
     </div>
 
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -108,81 +111,85 @@
                 {!!$acceso3!!}
                </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md">
             <label for="validationServer04" class="form-label">¿Presenta algún tipo de discapacidad?</label>
             <select class="form-control form-control-sm" id="discapacidad" aria-describedby="validationServer04Feedback" name="discapacidad" required="">
             {{!!$sino!!}}
           </select>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" id="tipodediscapacidaddiv">
             <label for="validationServer04" class="form-label">¿Qué tipo de discapacidad presenta?</label>
             <select class="form-control form-control-sm" id="tipodediscapacidad" aria-describedby="validationServer04Feedback" name="tipodediscapacidad" required="">
             {{!!$tipodediscapacidad!!}}
           </select>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-6" id="atenciondiscapacidaddiv">
             <label for="validationServer04" class="form-label">¿Accede o ha accedido a los servicios de salud  según su necesidad?
             </label>
             <select class="form-control form-control-sm" id="atenciondiscapacidad" name="atenciondiscapacidad" aria-describedby="validationServer04Feedback" required="">
             {{!!$atenciondiscapacidad!!}}
           </select>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" id="certificadodiscapacidaddiv">
                   <label for="validationServer04" class="form-label">¿Cuenta con certificado de discapacidad?</label>
                   <select class="form-control form-control-sm" id="certificadodiscapacidad" name="certificadodiscapacidad" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sino!!}}
                 </select>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12" id="consumospa1div">
                   <label for="validationServer04" class="form-label">¿Presenta consumo SPA? (incluyendo sustancias legales como el tabajo y el alcohol).</label>
                   <select class="form-control form-control-sm" id="consumospa1" name="consumospa1" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sino!!}}
                 </select>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12" id="consumospa2div">
                   <label for="validationServer04" class="form-label">¿Ha accedido a servicios de intervención frente al consumo SPA y sus consecuencias?</label>
                   <select class="form-control form-control-sm" id="consumospa2" name="consumospa2" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sino!!}}
                 </select>
                 </div><br>
-                <div class="col-md-12">
+                <div class="col-md-12" id="consumospa3div">
                   <label for="validationServer04" class="form-label">¿Qué tipo de sustancia consume?</label>
-                    <div class="form-check" id="container-consumospa3">
+                    <div class="form-check form-switch" id="container-consumospa3">
                       {!!$consumospa3!!} 
                     </div>
                 </div><br>
-                <div class="col-md-6">
+                <div class="col-md-6" id="consumospa4div">
                   <label for="validationServer04" class="form-label">¿Qué tipo de consumo presenta?</label>
                   <select class="form-control form-control-sm" id="consumospa4" name="consumospa4" aria-describedby="validationServer04Feedback" required="">
                   {{!!$consumospa4!!}}
                   </select>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" id="consumospa5div">
                   <label for="validationServer04" class="form-label">¿Cuál es el principal motivo de su consumo?</label>
                   <select class="form-control form-control-sm" id="consumospa5" name="consumospa5" aria-describedby="validationServer04Feedback" required="">
                   {{!!$consumospa5!!}} 
                 </select>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12" id="consumospa6div">
                   <label for="validationServer04" class="form-label">¿Ha tenido alguna consecuencia negativa debido al consumo?</label>
-                  <div class="form-check" id="container-consumospa6">
+                  <div class="form-check form-switch" id="container-consumospa6">
                       {!!$consumospa6!!} 
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12" id="psicosocial1div">
                   <label for="validationServer04" class="form-label">¿El integrante del hogar  accede a servicios de salud mental, asesorias, terapias y/o atención psicosocial?</label>
-                  <div class="form-check" id="container-psicosocial1">
+                  <div class="form-check form-switch" id="container-psicosocial1">
                       {!!$psicosocial1!!} 
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12" id="psicosocial2div">
                   <label for="validationServer04" class="form-label">¿Qué estrategias implementa para  reducir el estrés y  para favorecer el bienestar emocional y fisico?</label>
-                  <div class="form-check" id="container-psicosocial2">
+                  <div class="form-check form-switch" id="container-psicosocial2">
                       {!!$psicosocial2!!} 
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md" id="cualpsicosocial2div" style="display:none">
+                  <label for="validationServer04" class="form-label">¿Cúal?</label>
+                  <input type="text" class="form-control form-control-sm" name="cualpsicosocial2" oninput="convertirAMayusculas(this)" id="cualpsicosocial2" value="">
+                </div>
+                <div class="col-md-12" id="planexequialdiv">
                   <label for="validationServer04" class="form-label">¿El integrante del hogar tiene plan exequial?</label>
                   <select class="form-control form-control-sm" id="planexequial" name="planexequial" aria-describedby="validationServer04Feedback" required="">
                     {{!!$sino!!}}
@@ -301,7 +308,7 @@
         
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Cuáles de las siguientes actividades realiza para obtener ingresos?</label>
-            <div class="form-check" id="container-trabajoinfantil">
+            <div class="form-check form-switch" id="container-trabajoinfantil">
                       {!!$trabajoinfantil!!} 
                     </div>
           </div>
@@ -355,7 +362,7 @@
           </div>
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Cuáles mecanismos o productos financieros conoce y ha usado o usa en la actualidad?</label>
-            <div class="form-check" id="container-bancarizacion">
+            <div class="form-check form-switch" id="container-bancarizacion">
                       {!!$bancarizacion!!} 
                     </div>
           </div>
@@ -408,7 +415,7 @@
         
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿De cuáles de las siguientes instituciones para la protección y garantía de sus derechos ha hecho uso?</label>
-            <div class="form-check" id="container-mecanismosdeproteccionddhh3">
+            <div class="form-check form-switch" id="container-mecanismosdeproteccionddhh3">
                       {!!$mecanismosdeproteccionddhh3!!} 
                     </div>
           </div>
@@ -513,17 +520,142 @@
               }
       })
     }
-    $('.acceso2').css('display','none');
-    $('#acceso1').click(function(){
-      if($('#acceso1').val() == '2'){
+  
+    $('#acceso1').change(function(){
+      if($('#acceso1').val() == '2' || $('#acceso1').val() == ''){
         $('.acceso2').css('display','none');
-        $('#acceso2').attr('required',false)
+        $('#acceso2').attr('required',false);
+        $('#acceso2').val('');
       }else{
         $('.acceso2').css('display','');
-        $('#acceso2').attr('required',true)
-
+        $('#acceso2').attr('required',true);
+        $('#acceso2').val('');
       }
     });
+
+    $('#discapacidad').change(function(){
+      if($('#discapacidad').val() == '2' || $('#acceso1').val() == ''){
+        $('#tipodediscapacidaddiv').css('display','none');
+        $('#tipodediscapacidad').attr('required',false);
+        $('#tipodediscapacidad').val('');
+
+        $('#atenciondiscapacidaddiv').css('display','none');
+        $('#atenciondiscapacidad').attr('required',false);
+        $('#atenciondiscapacidad').val('');
+
+        $('#certificadodiscapacidaddiv').css('display','none');
+        $('#certificadodiscapacidad').attr('required',false);
+        $('#certificadodiscapacidad').val('');
+
+      }else{
+        $('#tipodediscapacidaddiv').css('display','');
+        $('#tipodediscapacidad').attr('required',true);
+        $('#tipodediscapacidad').val('');
+
+        $('#atenciondiscapacidaddiv').css('display','');
+        $('#atenciondiscapacidad').attr('required',true);
+        $('#atenciondiscapacidad').val('');
+
+        $('#certificadodiscapacidaddiv').css('display','');
+        $('#certificadodiscapacidad').attr('required',true);
+        $('#certificadodiscapacidad').val('');
+      }
+    });
+
+
+    $('#consumospa1').change(function(){
+      if($('#consumospa1').val() == '2' || $('#consumospa1').val() == ''){
+        $('#consumospa2div').css('display','none');
+        $('#consumospa2').attr('required',false);
+        $('#consumospa2').val('');
+
+        $('.consumospa371').css('display','none');
+        $('#consumospa371').css('display','none');
+        $('.consumospa372').css('display','none');
+        $('#consumospa372').css('display','none');
+        $('.consumospa373').css('display','none');
+        $('#consumospa373').css('display','none');
+        $('.consumospa374').css('display','none');
+        $('#consumospa374').css('display','none');
+        $('#consumospa3div').css('display','none');
+        $('#consumospa4div').css('display','none');
+        $('#consumospa4').attr('required',false);
+        $('#consumospa5div').css('display','none');
+        $('#consumospa5').attr('required',false);
+        $('#consumospa4').val('');
+        $('#consumospa5').val('');
+
+        $('.consumospa681').css('display','none');
+        $('#consumospa681').css('display','none');
+        $('.consumospa682').css('display','none');
+        $('#consumospa682').css('display','none');
+        $('.consumospa683').css('display','none');
+        $('#consumospa683').css('display','none');
+        $('.consumospa684').css('display','none');
+        $('#consumospa684').css('display','none');
+        $('.consumospa685').css('display','none');
+        $('#consumospa685').css('display','none');
+        $('.consumospa686').css('display','none');
+        $('#consumospa686').css('display','none');
+        $('#consumospa6div').css('display','none');
+
+        $('input[name="consumospa3[]"]').prop('checked', false);
+        $('input[name="consumospa6[]"]').prop('checked', false);
+
+       
+      }else{
+        $('#consumospa2div').css('display','');
+        $('#consumospa2').attr('required',true);
+        $('#consumospa4').attr('required',true);
+        $('#consumospa5').attr('required',true);
+
+        $('#consumospa2').val('');
+
+        $('.consumospa371').css('display','');
+        $('#consumospa371').css('display','');
+        $('.consumospa372').css('display','');
+        $('#consumospa372').css('display','');
+        $('.consumospa373').css('display','');
+        $('#consumospa373').css('display','');
+        $('.consumospa374').css('display','');
+        $('#consumospa374').css('display','');
+        $('#consumospa3div').css('display','');
+        $('#consumospa4div').css('display','');
+        $('#consumospa5div').css('display','');
+
+        $('.consumospa681').css('display','');
+        $('#consumospa681').css('display','');
+        $('.consumospa682').css('display','');
+        $('#consumospa682').css('display','');
+        $('.consumospa683').css('display','');
+        $('#consumospa683').css('display','');
+        $('.consumospa684').css('display','');
+        $('#consumospa684').css('display','');
+        $('.consumospa685').css('display','');
+        $('#consumospa685').css('display','');
+        $('.consumospa686').css('display','');
+        $('#consumospa686').css('display',''); 
+        $('#consumospa6div').css('display','');
+      }
+    });
+
+    $('input[name="consumospa6[]"]').change(function() {
+        if ($(this).attr('id') === 'consumospa681' && $(this).is(':checked')) {
+          $('input[name="consumospa6[]"]').not('#consumospa681').closest('div').hide();
+        } else if ($(this).attr('id') === 'consumospa681' && !$(this).is(':checked')) {
+          $('input[name="consumospa6[]"]').closest('div').show();
+        }
+      });
+
+      $('#psicosocial2106').change(function() {
+        if ($(this).is(':checked')) {
+          $('#cualpsicosocial2div').css('display', '');
+          $('#cualpsicosocial2').val('');
+        } else {
+          $('#cualpsicosocial2div').css('display', 'none');
+          $('#cualpsicosocial2').val('');
+        }
+      });
 
 
     function calcularEdad(fechaNacimiento) {
@@ -575,7 +707,8 @@ console.log(edad)
         dataType:'JSON',
         success:function(data){
           let  edad = calcularEdad(data.imagen.fechanacimiento);
-
+          $('#edadintegrante').html(`Edad: ${edad} `);
+          $('#sexointegrante').html(`Sexo: ${(data.imagen.sexo == '12')?'Hombre':'Mujer'} `);
           if(data.imagen.sexo =='13' && data.identitario.gestante=='1' && edad >= '12'){
             $('.acceso347').css('display','');
           }  else{
@@ -645,6 +778,7 @@ console.log(edad)
             $('#acceso360').css('display','none');
             $('#acceso361').css('display','none');
           }
+          
 
 
 
@@ -799,6 +933,7 @@ console.log(edad)
            $('#consumospa6').val((data.integrantes)?data.integrantes.consumospa6:'');
            $('#psicosocial1').val((data.integrantes)?data.integrantes.psicosocial1:'');
            $('#psicosocial2').val((data.integrantes)?data.integrantes.psicosocial2:'');
+           $('#cualpsicosocial2').val((data.integrantes)?data.integrantes.cualpsicosocial2:'');
            $('#planexequial').val((data.integrantes)?data.integrantes.planexequial:'');
         //   BIENESTAR INTELECTUAL
            $('#alfabetizacion').val((data.integrantesintelectual)?data.integrantesintelectual.alfabetizacion:'');
@@ -835,7 +970,257 @@ console.log(edad)
            $('#mecanismosdeproteccionddhh3').val((data.integranteslegal)?data.integranteslegal.mecanismosdeproteccionddhh3:'');
            $('#mecanismoaccionconstitucional').val((data.integranteslegal)?data.integranteslegal.mecanismoaccionconstitucional:'');
 
+           if($('#acceso1').val() == '2' || $('#acceso1').val() == ''){
+              $('.acceso2').css('display','none');
+              $('#acceso2').attr('required',false)
+            }else{
+              $('.acceso2').css('display','');
+              $('#acceso2').attr('required',true)
+            }
 
+            if($('#discapacidad').val() == '2' || $('#acceso1').val() == ''){
+              $('#tipodediscapacidaddiv').css('display','none');
+              $('#tipodediscapacidad').attr('required',false);
+
+              $('#atenciondiscapacidaddiv').css('display','none');
+              $('#atenciondiscapacidad').attr('required',false);
+
+              $('#certificadodiscapacidaddiv').css('display','none');
+              $('#certificadodiscapacidad').attr('required',false);
+              $('#certificadodiscapacidad').val('');
+
+            }else{
+              $('#tipodediscapacidaddiv').css('display','');
+              $('#tipodediscapacidad').attr('required',true);
+
+              $('#atenciondiscapacidaddiv').css('display','');
+              $('#atenciondiscapacidad').attr('required',true);
+
+              $('#certificadodiscapacidaddiv').css('display','');
+              $('#certificadodiscapacidad').attr('required',true);
+            }
+
+            if(edad >= '8'){
+              $('#consumospa1div').css('display','');
+              $('#consumospa2div').css('display','');
+              $('.consumospa371').css('display','');
+              $('.consumospa372').css('display','');
+              $('.consumospa373').css('display','');
+              $('.consumospa374').css('display','');
+              $('#consumospa3div').css('display','');
+              $('#consumospa4div').css('display','');
+              $('#consumospa5div').css('display','');
+
+              $('.consumospa681').css('display','');
+              $('#consumospa681').css('display','');
+              $('.consumospa682').css('display','');
+              $('#consumospa682').css('display','');
+              $('.consumospa683').css('display','');
+              $('#consumospa683').css('display','');
+              $('.consumospa684').css('display','');
+              $('#consumospa684').css('display','');
+              $('.consumospa685').css('display','');
+              $('#consumospa685').css('display','');
+              $('.consumospa686').css('display','');
+              $('#consumospa686').css('display',''); 
+              $('#consumospa6div').css('display','');  
+           
+
+            }else{
+              $('#consumospa1div').css('display','none');
+              $('#consumospa1').val('');
+              $('#consumospa1').attr('required',false);
+
+              $('#consumospa2div').css('display','none');
+              $('#consumospa2').val('');
+              $('#consumospa2').attr('required',false);
+
+              $('.consumospa371').css('display','none');
+              $('#consumospa371').css('display','none');
+              $('.consumospa372').css('display','none');
+              $('#consumospa372').css('display','none');
+              $('.consumospa373').css('display','none');
+              $('#consumospa373').css('display','none');
+              $('.consumospa374').css('display','none');
+              $('#consumospa374').css('display','none');
+              $('#consumospa3div').css('display','none');
+              $('#consumospa4div').css('display','none');
+              $('#consumospa4').attr('required',false);
+              $('#consumospa5div').css('display','none');
+              $('#consumospa5').attr('required',false);
+              $('#consumospa4').val('');
+              $('#consumospa5').val('');
+
+              $('.consumospa681').css('display','none');
+              $('#consumospa681').css('display','none');
+              $('.consumospa682').css('display','none');
+              $('#consumospa682').css('display','none');
+              $('.consumospa683').css('display','none');
+              $('#consumospa683').css('display','none');
+              $('.consumospa684').css('display','none');
+              $('#consumospa684').css('display','none');
+              $('.consumospa685').css('display','none');
+              $('#consumospa685').css('display','none');
+              $('.consumospa686').css('display','none');
+              $('#consumospa686').css('display','none');
+              $('#consumospa6div').css('display','none');
+        
+            }
+
+            if(edad >= '15'){
+
+              $('.psicosocial292').css('display','');
+              $('#psicosocial292').css('display','');
+              $('.psicosocial293').css('display','');
+              $('#psicosocial293').css('display','');
+              $('.psicosocial294').css('display','');
+              $('#psicosocial294').css('display','');
+              $('.psicosocial295').css('display','');
+              $('#psicosocial295').css('display','');
+              $('.psicosocial296').css('display','');
+              $('#psicosocial296').css('display','');
+              $('.psicosocial297').css('display','');
+              $('#psicosocial297').css('display','');
+              $('.psicosocial298').css('display','');
+              $('#psicosocial298').css('display',''); 
+              $('.psicosocial299').css('display','');
+              $('#psicosocial299').css('display',''); 
+              $('.psicosocial2100').css('display','');
+              $('#psicosocial2100').css('display','');
+              $('.psicosocial2101').css('display','');
+              $('#psicosocial2101').css('display','');
+              $('.psicosocial2102').css('display','');
+              $('#psicosocial2102').css('display','');
+              $('.psicosocial2103').css('display','');
+              $('#psicosocial2103').css('display','');
+              $('.psicosocial2104').css('display','');
+              $('#psicosocial2104').css('display','');
+              $('.psicosocial2105').css('display','');
+              $('#psicosocial2105').css('display','');
+              $('.psicosocial2106').css('display','');
+              $('#psicosocial2106').css('display','');  
+              $('#psicosocial2div').css('display','');
+              $('#cualpsicosocial2').css('display','');
+
+            }else{
+              $('.psicosocial292').css('display','none');
+              $('#psicosocial292').css('display','none');
+              $('.psicosocial293').css('display','none');
+              $('#psicosocial293').css('display','none');
+              $('.psicosocial294').css('display','none');
+              $('#psicosocial294').css('display','none');
+              $('.psicosocial295').css('display','none');
+              $('#psicosocial295').css('display','none');
+              $('.psicosocial296').css('display','none');
+              $('#psicosocial296').css('display','none');
+              $('.psicosocial297').css('display','none');
+              $('#psicosocial297').css('display','none');
+              $('.psicosocial298').css('display','none');
+              $('#psicosocial298').css('display','none'); 
+              $('.psicosocial299').css('display','none');
+              $('#psicosocial299').css('display','none'); 
+              $('.psicosocial2100').css('display','none');
+              $('#psicosocial2100').css('display','none');
+              $('.psicosocial2101').css('display','none');
+              $('#psicosocial2101').css('display','none');
+              $('.psicosocial2102').css('display','none');
+              $('#psicosocial2102').css('display','none');
+              $('.psicosocial2103').css('display','none');
+              $('#psicosocial2103').css('display','none');
+              $('.psicosocial2104').css('display','none');
+              $('#psicosocial2104').css('display','none');
+              $('.psicosocial2105').css('display','none');
+              $('#psicosocial2105').css('display','none');
+              $('.psicosocial2106').css('display','none');
+              $('#psicosocial2106').css('display','none');  
+              $('#psicosocial2div').css('display','none');
+              $('#cualpsicosocial2').css('display','none');
+              $('#cualpsicosocial2').val('');
+
+            }
+
+            if($('#consumospa1').val() == '2' || $('#consumospa1').val() == ''){
+        $('#consumospa2div').css('display','none');
+        $('#consumospa2').attr('required',false);
+
+        $('.consumospa371').css('display','none');
+        $('#consumospa371').css('display','none');
+        $('.consumospa372').css('display','none');
+        $('#consumospa372').css('display','none');
+        $('.consumospa373').css('display','none');
+        $('#consumospa373').css('display','none');
+        $('.consumospa374').css('display','none');
+        $('#consumospa374').css('display','none');
+        $('#consumospa3div').css('display','none');
+        $('#consumospa4div').css('display','none');
+        $('#consumospa4').attr('required',false);
+        $('#consumospa5div').css('display','none');
+        $('#consumospa5').attr('required',false);
+
+        $('.consumospa681').css('display','none');
+        $('#consumospa681').css('display','none');
+        $('.consumospa682').css('display','none');
+        $('#consumospa682').css('display','none');
+        $('.consumospa683').css('display','none');
+        $('#consumospa683').css('display','none');
+        $('.consumospa684').css('display','none');
+        $('#consumospa684').css('display','none');
+        $('.consumospa685').css('display','none');
+        $('#consumospa685').css('display','none');
+        $('.consumospa686').css('display','none');
+        $('#consumospa686').css('display','none');
+        $('#consumospa6div').css('display','none');
+
+        $('input[name="consumospa3[]"]').prop('checked', false);
+        $('input[name="consumospa6[]"]').prop('checked', false);
+
+       
+      }else{
+        $('#consumospa2div').css('display','');
+        $('#consumospa2').attr('required',true);
+        $('#consumospa4').attr('required',true);
+        $('#consumospa5').attr('required',true);
+
+
+        $('.consumospa371').css('display','');
+        $('#consumospa371').css('display','');
+        $('.consumospa372').css('display','');
+        $('#consumospa372').css('display','');
+        $('.consumospa373').css('display','');
+        $('#consumospa373').css('display','');
+        $('.consumospa374').css('display','');
+        $('#consumospa374').css('display','');
+        $('#consumospa3div').css('display','');
+        $('#consumospa4div').css('display','');
+        $('#consumospa5div').css('display','');
+
+        $('.consumospa681').css('display','');
+        $('#consumospa681').css('display','');
+        $('.consumospa682').css('display','');
+        $('#consumospa682').css('display','');
+        $('.consumospa683').css('display','');
+        $('#consumospa683').css('display','');
+        $('.consumospa684').css('display','');
+        $('#consumospa684').css('display','');
+        $('.consumospa685').css('display','');
+        $('#consumospa685').css('display','');
+        $('.consumospa686').css('display','');
+        $('#consumospa686').css('display',''); 
+        $('#consumospa6div').css('display','');
+        
+      }
+
+      if ($('#consumospa681').is(':checked')) {
+        $('input[name="consumospa6[]"]').not('#consumospa681').closest('div').hide();
+      } else {
+        $('input[name="consumospa6[]"]').closest('div').show();
+      }
+
+      if ($('#psicosocial2106').is(':checked')) {
+          $('#cualpsicosocial2div').css('display', '');
+        } else {
+          $('#cualpsicosocial2div').css('display', 'none');
+        }
           
 
          },
