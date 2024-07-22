@@ -44,9 +44,9 @@ class c_encuestaintegrantes extends Controller
       $acceso3 = '';
       foreach ($preguntas as $value) {
           if ($value->id >= '47' && $value->id <= '61') {
-              $acceso3 .= '<div class="acceso3' . $value->id . '">
+              $acceso3 .= '<div class="acceso3' . $value->id . '" >
               <label class="form-check-label acceso3' . $value->id . '"  for="acceso3' . $value->id . '">' . $value->pregunta . '</label>
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso3' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso3' . $value->id . '" value="' . $value->id . '" respuesta="SI" required >
               </div>';
           }
       }
@@ -68,7 +68,7 @@ class c_encuestaintegrantes extends Controller
           if ($value->id >= '71' && $value->id <= '74') {
             $consumospa3 .=     '<div class="consumospa3' . $value->id . '">
               <label class="form-check-label consumospa3' . $value->id . '"  for="consumospa3' . $value->id . '">' . $value->pregunta . '</label>
-              <input class="form-check-input" type="checkbox" name="consumospa3[]" id="consumospa3' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="consumospa3[]" id="consumospa3' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
               </div>';
           }
       }
@@ -93,7 +93,7 @@ class c_encuestaintegrantes extends Controller
         if ($value->id >= '81' && $value->id <= '86') {
           $consumospa6 .=  '<div class="consumospa6' . $value->id . '">
           <label class="form-check-label consumospa6' . $value->id . '"  for="consumospa6' . $value->id . '">' . $value->pregunta . '</label>
-          <input class="form-check-input" type="checkbox" name="consumospa6[]" id="consumospa6' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          <input class="form-check-input" type="checkbox" name="consumospa6[]" id="consumospa6' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
           </div>';
     }
       }
@@ -103,7 +103,7 @@ class c_encuestaintegrantes extends Controller
         if ($value->id >= '87' && $value->id <= '91') {
           $psicosocial1 .=  '<div class="psicosocial1' . $value->id . '">
           <label class="form-check-label psicosocial1' . $value->id . '"  for="psicosocial1' . $value->id . '">' . $value->pregunta . '</label>
-          <input class="form-check-input" type="checkbox" name="psicosocial1[]" id="psicosocial1' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          <input class="form-check-input" type="checkbox" name="psicosocial1[]" id="psicosocial1' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
           </div>';
         }
       }
@@ -112,7 +112,7 @@ class c_encuestaintegrantes extends Controller
         if ($value->id >= '92' && $value->id <= '106') {
           $psicosocial2 .= '<div class="psicosocial2' . $value->id . '">
           <label class="form-check-label psicosocial2' . $value->id . '"  for="psicosocial2' . $value->id . '">' . $value->pregunta . '</label>
-          <input class="form-check-input" type="checkbox" name="psicosocial2[]" id="psicosocial2' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          <input class="form-check-input" type="checkbox" name="psicosocial2[]" id="psicosocial2' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
           </div>';
         }
       }
@@ -142,7 +142,7 @@ class c_encuestaintegrantes extends Controller
         if ($value->id >= '137' && $value->id <= '146') {
           $trabajoinfantil .= '<div class="trabajoinfantil' . $value->id . '">
           <label class="form-check-label trabajoinfantil' . $value->id . '"  for="trabajoinfantil' . $value->id . '">' . $value->pregunta . '</label>
-          <input class="form-check-input" type="checkbox" name="trabajoinfantil[]" id="trabajoinfantil' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          <input class="form-check-input" type="checkbox" name="trabajoinfantil[]" id="trabajoinfantil' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
           </div>';
         }
       }
@@ -166,7 +166,7 @@ class c_encuestaintegrantes extends Controller
         if ($value->id >= '157' && $value->id <= '164') {
           $bancarizacion .= '<div class="bancarizacion' . $value->id . '">
           <label class="form-check-label bancarizacion' . $value->id . '"  for="bancarizacion' . $value->id . '">' . $value->pregunta . '</label>
-          <input class="form-check-input" type="checkbox" name="bancarizacion[]" id="bancarizacion' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          <input class="form-check-input" type="checkbox" name="bancarizacion[]" id="bancarizacion' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
           </div>';
         }
       }
@@ -176,7 +176,7 @@ class c_encuestaintegrantes extends Controller
         if ($value->id >= '165' && $value->id <= '178') {
           $mecanismosdeproteccionddhh3 .= '<div class="mecanismosdeproteccionddhh3' . $value->id . '">
           <label class="form-check-label mecanismosdeproteccionddhh3' . $value->id . '"  for="mecanismosdeproteccionddhh3' . $value->id . '">' . $value->pregunta . '</label>
-          <input class="form-check-input" type="checkbox" name="mecanismosdeproteccionddhh3[]" id="mecanismosdeproteccionddhh3' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+          <input class="form-check-input" type="checkbox" name="mecanismosdeproteccionddhh3[]" id="mecanismosdeproteccionddhh3' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
           </div>';
         }
       }

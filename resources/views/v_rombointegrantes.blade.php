@@ -68,18 +68,18 @@
                         <!-- <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">Visita</div> -->
                         <img class="" src="{{ asset('assets/img/iconos/3.jpg')}}" width="100%" alt="">
                         <br> <br>
-                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">AGREGAR INTEGRANTES</div>
+                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">GESTIÓN DE INTEGRANTES</div>
 
                     </div>
                 </div>
                 <div class="info" style="text-align: center;">
                     <div >
-                      <label for="" style="color:white;font-size:18px">Agregar integrantes</label>
+                      <label for="" style="color:white;font-size:18px">Gestión de integrantes</label>
                     </div>
                     <img src="{{ asset('assets/img/iconos/7.jpg')}}" style="border-radius:10px" width="100%" alt="">
                     <br> 
                     <label for="" style="color:white;font-size:15px; padding-bottom:5px;padding-top:4px; text-decoration: underline;cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2">Más información</label><br>
-                    <form method="GET" action="../integrantes/{{$variable}}" ><button type="submit" class="btn btn-primary">Ir a agregar integrantes</button></form>
+                    <form method="GET" action="../integrantes/{{$variable}}" ><button type="submit" class="btn btn-primary">Ir a Gestión de integrantes</button></form>
                     
                 </div>
             </div>
@@ -104,7 +104,7 @@
                     <img src="{{ asset('assets/img/iconos/6.jpg')}}" style="border-radius:10px" width="100%" alt="">
                     <br> 
                     <label for="" style="color:white;font-size:15px; padding-bottom:5px;padding-top:4px; text-decoration: underline;cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">Más información</label><br>
-                    <form method="GET" action="../1/{{$variable}}" ><button type="submit" class="btn btn-primary">Ir encuesta de hogar</button></form>
+                    <form method="GET" action="../1/{{$variable}}" ><button type="submit" class="btn btn-primary">Ir a encuesta de hogar</button></form>
                     
                 </div>
             </div>
@@ -322,7 +322,7 @@
       </div>
       <div class="modal-body" >
         <div class="text-center">
-             <label  for="" style="font-size:20px;color:#0dcaf0">¿Qué es agregar integrantes?</label><hr>
+             <label  for="" style="font-size:20px;color:#0dcaf0">¿Qué es gestión de integrantes?</label><hr>
         </div>
      
         <label for="">Es donde se recolecta la información de los integrantes del hogar...</label>

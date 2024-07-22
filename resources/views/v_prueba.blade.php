@@ -40,7 +40,7 @@
               <th>Documento</th>
               <th>Nombre del Representante</th>
               <th>Celular</th>     
-              <th>Línea Estación</th>        
+              <th>Visita</th>        
               <th>Gestión del hogar</th>
             </tr>
         </thead>
@@ -51,7 +51,7 @@
                 <td>{{$value->documento}}</td>
                 <td>{{$value->nombre1}} {{$value->nombre2}} {{$value->apellido1}} {{$value->apellido2}}</td>
                 <td>{{$value->celular}}</td>
-                <td>Primera Fase</td>
+                <td>Triage</td>
                 <td>
                   <form method="GET" action="{{ route('rombo', ['folio' => encrypt($value->folio) ]) }}" >
                     <button type="submit" class="btn btn-primary"  id="l1e1">Realizar Gestión</button></form></td>
@@ -64,8 +64,8 @@
               <th>Documento</th>
               <th>Nombre del Representante</th>
               <th>Celular</th>     
-              <th>Barrio</th>        
-              <th>línea Estacion</th>
+              <th>Visita</th>        
+              <th>Gestión del hogar</th>
             </tr>
         </tfoot>
     </table>
@@ -103,7 +103,7 @@
         <strong>Documento: </strong>{{$value->documento}}<br>
         <strong>Nombre: </strong>{{$value->nombre1}} {{$value->nombre2}} {{$value->apellido1}} {{$value->apellido2}}<br>
         <strong>Celular: </strong>{{$value->celular}}<br>
-        <strong>Linea: </strong>Primera Fase<br>
+        <strong>Linea: </strong>Triage<br>
         <hr>
 <div class="text-center">
       <form method="GET" action="rombo/{{encrypt($value->folio)}}"><input type="hidden" name="folio" value="{{encrypt($value->folio)}}"><button type="submit" class="btn btn-primary"  id="l1e1">Realizar visita</button></form>

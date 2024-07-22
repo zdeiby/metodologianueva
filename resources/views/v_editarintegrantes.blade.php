@@ -529,15 +529,17 @@
 
           }
           if($('#orientacion').val() == '20'){
-            $('#cualorientaciondiv').css('display','')
+            $('#cualorientaciondiv').css('display','');
+
           }else{
-            $('#cualorientaciondiv').css('display','none')
+            $('#cualorientaciondiv').css('display','none');
 
           };
           if($('#identidad').val() == '28'){
-            $('#cualidentidaddiv').css('display','')
+            $('#cualidentidaddiv').css('display','');
+
           }else{
-            $('#cualidentidaddiv').css('display','none')
+            $('#cualidentidaddiv').css('display','none');
 
           };
             if($('#etnia').val() == '37'){
@@ -950,6 +952,7 @@ $('#fechanacimiento').change(function(){
 })
 
 $('#orientacion').change(function(){
+
   if($('#orientacion').val() == '20'){
     $('#cualorientaciondiv').css('display','');
     $('#cualorientacion').val('');
@@ -959,17 +962,19 @@ $('#orientacion').change(function(){
     $('#cualorientacion').val('');
     $('#cualorientacion').removeAttr('required');
   }
-})
+});
+
+
 
 $('#identidad').change(function(){
   if($('#identidad').val() == '28'){
     $('#cualidentidaddiv').css('display','');
     $('#cualidentidad').val('');
-    $('#cualorientacion').attr('required', 'required');
+    $('#cualidentidad').attr('required', 'required');
   }else{
     $('#cualidentidaddiv').css('display','none');
     $('#cualidentidad').val('');
-    $('#cualorientacion').removeAttr('required');
+    $('#cualidentidad').removeAttr('required');
   }
 });
 
@@ -989,7 +994,7 @@ $('#etnia').change(function(){
 })
 
 $('#migrantes2').change(function(){
-  if($('#migrantes2').val() == '42'){
+  if($('#migrantes2').val() == '41'){
     $('#cualongdiv').css('display','');
     $('#cualong').val('');
     $('#cualong').attr('required', 'required');

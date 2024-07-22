@@ -28,7 +28,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
                                             <div class="text-uppercase text-primary fw-bold text-xs mb-1" style="font-size:10px"><span>Total Folios</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span id="totalgrupos">165</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span id="totalgrupos">En construcción</span></div>
                                         </div>
                                         <div class="col-auto"><ion-icon  name="home-outline" style="font-size:30px; color:gray"></ion-icon></div>
                                     </div>
@@ -41,7 +41,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
                                             <div class="text-uppercase text-success fw-bold text-xs mb-1" style="font-size:10px"><span>Total Visitas Realizadas</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span  id="totalgruposabiertos">120</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span  id="totalgruposabiertos">En construcción</span></div>
                                         </div>
                                         <div class="col-auto"><ion-icon  name="home-outline" style="font-size:30px; color:gray"></div>
                                     </div>
@@ -56,11 +56,11 @@
                                             <div class="text-uppercase text-info fw-bold text-xs mb-1" style="font-size:10px"><span>Total Visitas Abiertas</span></div>
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="text-dark fw-bold h5 mb-0 me-3"><span  id="totalgruposcerrados">100</span></div>
+                                                    <div class="text-dark fw-bold h5 mb-0 me-3"><span  id="totalgruposcerrados">En construcción</span></div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm">
-                                                        <div class="progress-bar bg-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="visually-hidden">50%</span></div>
+                                                        <div class="progress-bar bg-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="visually-hidden">En construcción</span></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -76,7 +76,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
                                             <div class="text-uppercase text-warning fw-bold text-xs mb-1" style="font-size:10px"><span>Total visitas sin realizar</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span  id="totalsesiones">100</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span  id="totalsesiones">En construcción</span></div>
                                         </div>
                                         <div class="col-auto"><ion-icon  name="home-outline" style="font-size:30px; color:gray"></div>
                                     </div>
@@ -158,7 +158,7 @@
             labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             datasets: [{
                 label: 'Total Visitas Por Mes',
-                data: [0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 0],
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: false,
@@ -196,7 +196,7 @@
     var doughnutChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Activos (97)', 'Cerrados (67)', 'Interrumpidos (0)', 'Pendientes (0)', 'Eliminados (1)'],
+            labels: ['Activos (En construcción)', 'Cerrados (En construcción)', 'Interrumpidos (En construcción)', 'Pendientes (En construcción)', 'Eliminados (En construcción)'],
             datasets: [{
                 data: [97, 67, 0, 0, 1],
                 backgroundColor: [

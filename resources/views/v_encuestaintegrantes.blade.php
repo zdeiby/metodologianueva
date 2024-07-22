@@ -69,6 +69,21 @@
 
 
 
+<style>
+  .invalid-checkbox {
+      border: 1px solid red;
+      border-radius: 4px;
+      padding: 10px;
+    }
+</style>
+
+
+
+
+
+
+
+
 <div id="myTabContent" class="tab-content"><br>
   <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="identificacion">
     <div class="text-center"><label for="">Avatar</label></div>
@@ -88,99 +103,99 @@
           </div>
 
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Cuenta con afiliación al sistema de salud?</label>
+            <label for="validationServer04" class="form-label">¿Cuentas con afiliación al sistema de salud?</label>
             <select class="form-control form-control-sm" id="regimendesalud" name="regimendesalud" aria-describedby="validationServer04Feedback" required="">
               {{!!$regimendesalud!!}}
           </select>
           </div>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿En el último mes ha tenido alguna enfermedad, accidente o problema odontológico que no implicó hospitalización?</label>
+            <label for="validationServer04" class="form-label">¿En el último mes has tenido alguna enfermedad, accidente o problema odontológico que no implicó hospitalización?</label>
             <select class="form-control form-control-sm" id="acceso1" name="acceso1" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
                       </select>
           </div>
           <div class="col-md-12 acceso2">
-            <label for="validationServer04" class="form-label ">¿Accedió al servicios en su EPS, IPS o servicio particular según esa necesidad?</label>
+            <label for="validationServer04" class="form-label ">Accediste al servicios en tu EPS, IPS o servicio particular según esa necesidad?</label>
             <select class="form-control form-control-sm" id="acceso2" name="acceso2" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
           </div></br>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Accede a servicios de salud según su edad y necesidad?</label>
+            <label for="validationServer04" class="form-label">¿Accedes a servicios de salud según tu edad y necesidad?</label>
             <div class="form-check form-switch" id='acceso3-container'>
                 {!!$acceso3!!}
                </div>
           </div>
           <div class="col-md">
-            <label for="validationServer04" class="form-label">¿Presenta algún tipo de discapacidad?</label>
+            <label for="validationServer04" class="form-label">¿Presentas algún tipo de discapacidad?</label>
             <select class="form-control form-control-sm" id="discapacidad" aria-describedby="validationServer04Feedback" name="discapacidad" required="">
             {{!!$sino!!}}
           </select>
           </div>
           <div class="col-md-6" id="tipodediscapacidaddiv">
-            <label for="validationServer04" class="form-label">¿Qué tipo de discapacidad presenta?</label>
+            <label for="validationServer04" class="form-label">¿Qué tipo de discapacidad presentas?</label>
             <select class="form-control form-control-sm" id="tipodediscapacidad" aria-describedby="validationServer04Feedback" name="tipodediscapacidad" required="">
             {{!!$tipodediscapacidad!!}}
           </select>
           </div>
 
           <div class="col-md-6" id="atenciondiscapacidaddiv">
-            <label for="validationServer04" class="form-label">¿Accede o ha accedido a los servicios de salud  según su necesidad?
+            <label for="validationServer04" class="form-label">¿Accedes o ha accedido a los servicios de salud  según tu necesidad?
             </label>
             <select class="form-control form-control-sm" id="atenciondiscapacidad" name="atenciondiscapacidad" aria-describedby="validationServer04Feedback" required="">
             {{!!$atenciondiscapacidad!!}}
           </select>
           </div>
           <div class="col-md-6" id="certificadodiscapacidaddiv">
-                  <label for="validationServer04" class="form-label">¿Cuenta con certificado de discapacidad?</label>
+                  <label for="validationServer04" class="form-label">¿Cuentas con certificado de discapacidad?</label>
                   <select class="form-control form-control-sm" id="certificadodiscapacidad" name="certificadodiscapacidad" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sino!!}}
                 </select>
                 </div>
                 <div class="col-md-12" id="consumospa1div">
-                  <label for="validationServer04" class="form-label">¿Presenta consumo SPA? (incluyendo sustancias legales como el tabajo y el alcohol).</label>
+                  <label for="validationServer04" class="form-label">¿Presentas consumo SPA? (incluyendo sustancias legales como el tabajo y el alcohol).</label>
                   <select class="form-control form-control-sm" id="consumospa1" name="consumospa1" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sino!!}}
                 </select>
                 </div>
                 <div class="col-md-12" id="consumospa2div">
-                  <label for="validationServer04" class="form-label">¿Ha accedido a servicios de intervención frente al consumo SPA y sus consecuencias?</label>
+                  <label for="validationServer04" class="form-label">¿Has accedido a servicios de intervención frente al consumo SPA y sus consecuencias?</label>
                   <select class="form-control form-control-sm" id="consumospa2" name="consumospa2" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sino!!}}
                 </select>
                 </div><br>
                 <div class="col-md-12" id="consumospa3div">
-                  <label for="validationServer04" class="form-label">¿Qué tipo de sustancia consume?</label>
+                  <label for="validationServer04" class="form-label">¿Qué tipo de sustancia consumes?</label>
                     <div class="form-check form-switch" id="container-consumospa3">
                       {!!$consumospa3!!} 
                     </div>
                 </div><br>
                 <div class="col-md-6" id="consumospa4div">
-                  <label for="validationServer04" class="form-label">¿Qué tipo de consumo presenta?</label>
+                  <label for="validationServer04" class="form-label">¿Qué tipo de consumo presentas?</label>
                   <select class="form-control form-control-sm" id="consumospa4" name="consumospa4" aria-describedby="validationServer04Feedback" required="">
                   {{!!$consumospa4!!}}
                   </select>
                 </div>
                 <div class="col-md-6" id="consumospa5div">
-                  <label for="validationServer04" class="form-label">¿Cuál es el principal motivo de su consumo?</label>
+                  <label for="validationServer04" class="form-label">¿Cuál es el principal motivo de tu consumo?</label>
                   <select class="form-control form-control-sm" id="consumospa5" name="consumospa5" aria-describedby="validationServer04Feedback" required="">
                   {{!!$consumospa5!!}} 
                 </select>
                 </div>
                 <div class="col-md-12" id="consumospa6div">
-                  <label for="validationServer04" class="form-label">¿Ha tenido alguna consecuencia negativa debido al consumo?</label>
+                  <label for="validationServer04" class="form-label">¿Has tenido alguna consecuencia negativa debido al consumo?</label>
                   <div class="form-check form-switch" id="container-consumospa6">
                       {!!$consumospa6!!} 
                     </div>
                 </div>
                 <div class="col-md-12" id="psicosocial1div">
-                  <label for="validationServer04" class="form-label">¿El integrante del hogar  accede a servicios de salud mental, asesorias, terapias y/o atención psicosocial?</label>
+                  <label for="validationServer04" class="form-label">¿Accedes a servicios de salud mental, asesorias, terapias y/o atención psicosocial?</label>
                   <div class="form-check form-switch" id="container-psicosocial1">
                       {!!$psicosocial1!!} 
                     </div>
                 </div>
                 <div class="col-md-12" id="psicosocial2div">
-                  <label for="validationServer04" class="form-label">¿Qué estrategias implementa para  reducir el estrés y  para favorecer el bienestar emocional y fisico?</label>
+                  <label for="validationServer04" class="form-label">¿Qué estrategias implementas para  reducir el estrés y  para favorecer el bienestar emocional y fisico?</label>
                   <div class="form-check form-switch" id="container-psicosocial2">
                       {!!$psicosocial2!!} 
                     </div>
@@ -190,7 +205,7 @@
                   <input type="text" class="form-control form-control-sm" name="cualpsicosocial2" oninput="convertirAMayusculas(this)" id="cualpsicosocial2" value="">
                 </div>
                 <div class="col-md-12" id="planexequialdiv">
-                  <label for="validationServer04" class="form-label">¿El integrante del hogar tiene plan exequial?</label>
+                  <label for="validationServer04" class="form-label">¿Tienes un plan exequial?</label>
                   <select class="form-control form-control-sm" id="planexequial" name="planexequial" aria-describedby="validationServer04Feedback" required="">
                     {{!!$sino!!}}
                 </select>
@@ -222,55 +237,55 @@
           <div class="col-md-3" style="display:none">
             <input type="text"  class="form-control form-control-sm  " id="idintegrante2" name="idintegrante" value="" required="">
           </div>
-        <div class="col-md-4">
-                  <label for="validationServer04" class="form-label">¿Sabe leer y escribir?</label>
+        <div class="col-md-4" id="alfabetizaciondiv">
+                  <label for="validationServer04" class="form-label">¿Sabes leer y escribir?</label>
                   <select class="form-control form-control-sm" id="alfabetizacion" name="alfabetizacion" aria-describedby="validationServer04Feedback" required="">
                     {{!!$sino!!}}
                 </select>
                 </div>
         
-          <div class="col-md-4">
-            <label for="validationServer04" class="form-label">¿Está estudiando actualmente?</label>
+          <div class="col-md-6">
+            <label for="validationServer04" class="form-label">¿Estás estudiando actualmente?</label>
             <select class="form-control form-control-sm" id="educacion" name="educacion" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}            
           </select>
           </div>
-          <div class="col-md-4">
-            <label for="validationServer04" class="form-label">¿Cuál es su nivel educativo alcanzado?</label>
+          <div class="col-md-6" id="niveleducativo1div">
+            <label for="validationServer04" class="form-label">¿Cuál es tu nivel educativo alcanzado?</label>
             <select class="form-control form-control-sm" id="niveleducativo1" name="niveleducativo1" aria-describedby="validationServer04Feedback" required="">
             {{!!$niveleducativo1!!}}     
                 </select>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" id="niveleducativo2div" style="display:none">
             <label for="validationServer04" class="form-label">¿Cuál fue el último grado alcanzado?</label>
-            <select class="form-control form-control-sm" id="niveleducativo2" name="niveleducativo2" aria-describedby="validationServer04Feedback" required="">
+            <select class="form-control form-control-sm" id="niveleducativo2" name="niveleducativo2" aria-describedby="validationServer04Feedback" >
             {{!!$niveleducativo2!!}}         
              </select>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" id="niveleducativo5div" style="display:none">
             <label for="validationServer04" class="form-label">¿Cuál es el titulo obtenido?</label>
             <input type="text"  class="form-control form-control-sm  " id="niveleducativo5" name="niveleducativo5" value="" >
           </div>
-          <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿El integrantes del hogar que no ha completado su educación básica accede a programas de alfabetización y/o educación para adultos?</label>
+          <div class="col-md-12" id="niveleducativo3div">
+            <label for="validationServer04" class="form-label">¿Accedes a programas de alfabetización y/o educación para adultos?</label>
             <select class="form-control form-control-sm" id="niveleducativo3" name="niveleducativo3" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}    
           </select>
           </div>
-          <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿El integrante del hogar desea continuar con su formación post secundaria?</label>
+          <div class="col-md-12" id="niveleducativo4div">
+            <label for="validationServer04" class="form-label">¿Deseas continuar con tu formación post secundaria?</label>
             <select class="form-control form-control-sm" id="niveleducativo4" name="niveleducativo4" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}    
           </select>
           </div>
-          <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿El integrantes del hogar mayor de 16 años desea acceder a educación para el trabajo y el desarrollo humano?</label>
+          <div class="col-md-12" id="deseaaccedereducaciondiv">
+            <label for="validationServer04" class="form-label">¿Deseas acceder a educación para el trabajo y el desarrollo humano?</label>
             <select class="form-control form-control-sm" id="deseaaccedereducacion" name="deseaaccedereducacion" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
                       </select>
           </div>
-          <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Conoce el manejo de las TIC?</label>
+          <div class="col-md-12" id="alfabetizaciondigitaldiv">
+            <label for="validationServer04" class="form-label">¿Conoces el manejo de las TIC?</label>
             <select class="form-control form-control-sm" id="alfabetizaciondigital" name="alfabetizaciondigital" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
@@ -300,84 +315,88 @@
             <input type="text"  class="form-control form-control-sm  " id="idintegrante3" name="idintegrante" value="" required="">
           </div>
         <div class="col-md-12">
-                  <label for="validationServer04" class="form-label">¿Realiza actividades que le generen ingresos económicos?</label>
+                  <label for="validationServer04" class="form-label">¿Realizas actividades que te generen ingresos económicos?</label>
                   <select class="form-control form-control-sm" id="ingresos1" name="ingresos1" aria-describedby="validationServer04Feedback" required="">
                     {{!!$ingresos1!!}}
                 </select>
                 </div>
         
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Cuáles de las siguientes actividades realiza para obtener ingresos?</label>
+            <label for="validationServer04" class="form-label">¿Cuáles de las siguientes actividades realizas para obtener ingresos?</label>
             <div class="form-check form-switch" id="container-trabajoinfantil">
                       {!!$trabajoinfantil!!} 
                     </div>
           </div>
+          <div class="col-md-12" >
+          <label for="validationServer04" class="form-label">¿Cuántas horas a la semana en promedio dedica a esta labor?</label>
+            <input type="text"  class="form-control form-control-sm  " id="trabajoinfantil2" name="trabajoinfantil2" value="" required="">
+          </div>
           <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿Tiene permiso del ministerio de trabajo?</label>
+            <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label>
             <select class="form-control form-control-sm" id="trabajo15a17anhos" name="trabajo15a17anhos" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}     
                 </select>
           </div>
           <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿De cuál actividad derivan sus ingresos?</label>
+            <label for="validationServer04" class="form-label">¿De cuál actividad derivan tus ingresos?</label>
             <select class="form-control form-control-sm" id="ocupados" name="ocupados" aria-describedby="validationServer04Feedback" required="">
             {{!!$ocupados!!}}         
              </select>
           </div>
           <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿Cotiza a fondo de pensiones?</label>
+            <label for="validationServer04" class="form-label">¿Cotizas al fondo de pensiones?</label>
             <select class="form-control form-control-sm" id="formalidaddelempleo" name="formalidaddelempleo" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}     
           </select>
           </div>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿A cuánto ascienden sus ingresos fijos al mes?   (ingresos por alguna renta o pensión de jubilación, subsidios, etc)</label>
+            <label for="validationServer04" class="form-label">¿A cuánto ascienden tus ingresos fijos al mes?   (ingresos por alguna renta o pensión de jubilación, subsidios, etc)</label>
             <input type="number"  class="form-control form-control-sm  " id="ingresos2" name="ingresos2" value="" required="">
           </div>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿A cuánto ascienden sus ingresos fijos al mes? (horas extras, comisiones, premios, ganancia por alguna inversión que haga, trabajos independientes)</label>
+            <label for="validationServer04" class="form-label">¿A cuánto ascienden tus ingresos fijos al mes? (horas extras, comisiones, premios, ganancia por alguna inversión que haga, trabajos independientes)</label>
             <input type="number"  class="form-control form-control-sm  " id="ingresos3" name="ingresos3" value="" required="">
           </div>
           <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿Cuántos meses lleva desempleado?</label>
+            <label for="validationServer04" class="form-label">¿Cuántos meses llevas desempleado?</label>
             <input type="number"  class="form-control form-control-sm  " id="desempleodelargaduracion" name="desempleodelargaduracion" value="" required="">
           </div>
           <div class="col-md-6">
-            <label for="validationServer04" class="form-label">¿Qué expectativa tiene para generar ingresos?</label>
+            <label for="validationServer04" class="form-label">¿Qué expectativas tiene para generar ingresos?</label>
             <select class="form-control form-control-sm" id="desempleo" name="desempleo" aria-describedby="validationServer04Feedback" required="">
             {{!!$desempleo!!}}
           </select>
           </div>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Ha accedido a servicios de intermediación laboral?</label>
+            <label for="validationServer04" class="form-label">¿Has accedido a servicios de intermediación laboral?</label>
             <select class="form-control form-control-sm" id="intermediacionlaboral" name="intermediacionlaboral" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
           </div>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Ha recibido educación o asistido a programas de formación y/o apoyo al emprendimiento e innovación?</label>
+            <label for="validationServer04" class="form-label">¿Has recibido educación o has asistido a programas de formación y/o apoyo al emprendimiento e innovación?</label>
             <select class="form-control form-control-sm" id="emprendimiento1" name="emprendimiento1" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
           </div>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Cuáles mecanismos o productos financieros conoce y ha usado o usa en la actualidad?</label>
+            <label for="validationServer04" class="form-label">¿Cuáles mecanismos o productos financieros conoced y has usado o usa en la actualidad?</label>
             <div class="form-check form-switch" id="container-bancarizacion">
                       {!!$bancarizacion!!} 
                     </div>
           </div>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Actualmente tiene deudas?</label>
+            <label for="validationServer04" class="form-label">¿Actualmente tienes deudas?</label>
             <select class="form-control form-control-sm" id="endeudamiento1" name="endeudamiento1" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
           </div>
           <div class="col-md-12" >
-          <label for="validationServer04" class="form-label">A cuánto equivalen las deudas que tienen actualmente?</label>
+          <label for="validationServer04" class="form-label">A cuánto equivalen las deudas que tienes actualmente?</label>
             <input type="number"  class="form-control form-control-sm  " id="endeudamiento3" name="endeudamiento3" value="" required="">
           </div>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Está interesado en refinanciar todas sus deudas y consolidarlas en un solo crédito?</label>
+            <label for="validationServer04" class="form-label">¿Estás interesado en refinanciar todas tus deudas y consolidarlas en un solo crédito?</label>
             <select class="form-control form-control-sm" id="endeudamiento2" name="endeudamiento2" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
@@ -407,20 +426,20 @@
             <input type="text"  class="form-control form-control-sm  " id="idintegrante4" name="idintegrante" value="" required="">
           </div>
         <div class="col-md-12">
-                  <label for="validationServer04" class="form-label">¿Conoce las instituciones de administración de justicia y de garantía de derechos existentes en el territorio?</label>
+                  <label for="validationServer04" class="form-label">¿Conoces las instituciones de administración de justicia y de garantía de derechos existentes en el territorio?</label>
                   <select class="form-control form-control-sm" id="mecanismosdeproteccionddhh" name="mecanismosdeproteccionddhh" aria-describedby="validationServer04Feedback" required="">
                     {{!!$sino!!}}
                 </select>
                 </div>
         
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿De cuáles de las siguientes instituciones para la protección y garantía de sus derechos ha hecho uso?</label>
+            <label for="validationServer04" class="form-label">¿De cuáles de las siguientes instituciones para la protección y garantía de tus derechos has hecho uso?</label>
             <div class="form-check form-switch" id="container-mecanismosdeproteccionddhh3">
                       {!!$mecanismosdeproteccionddhh3!!} 
                     </div>
           </div>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Ha usado alguno de los mecanismo o acción constitucional para la protección de los derechos humanos?</label>
+            <label for="validationServer04" class="form-label">¿Has usado alguno de los mecanismo o acción constitucional para la protección de los derechos humanos?</label>
             <select class="form-control form-control-sm" id="mecanismoaccionconstitucional" name="mecanismoaccionconstitucional" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}     
                 </select>
@@ -601,6 +620,8 @@
 
         $('input[name="consumospa3[]"]').prop('checked', false);
         $('input[name="consumospa6[]"]').prop('checked', false);
+        $('input[name="consumospa3[]"]').removeAttr('required');
+        $('input[name="consumospa6[]"]').removeAttr('required');
 
        
       }else{
@@ -636,6 +657,9 @@
         $('.consumospa686').css('display','');
         $('#consumospa686').css('display',''); 
         $('#consumospa6div').css('display','');
+        $('input[name="consumospa3[]"]').attr('required', 'required');
+        $('input[name="consumospa6[]"]').attr('required', 'required');
+
       }
     });
 
@@ -651,11 +675,240 @@
         if ($(this).is(':checked')) {
           $('#cualpsicosocial2div').css('display', '');
           $('#cualpsicosocial2').val('');
+          $('#cualpsicosocial2').attr('required', 'required');
+
         } else {
           $('#cualpsicosocial2div').css('display', 'none');
           $('#cualpsicosocial2').val('');
+          $('#cualpsicosocial2').removeAttr('required');
+
         }
       });
+
+      $('#niveleducativo1').change(function() { console.log($('#edadintegrante').val())
+        if (($(this).val() == "107" || $(this).val() == "108" || $(this).val() == "109") && $('#edadintegrante').val() >= '18') {
+          $('#niveleducativo2div').css('display', 'none');
+          $('#niveleducativo4div').css('display', 'none'); 
+          $('#niveleducativo5div').css('display', 'none');
+          $('#niveleducativo3div').css('display', '');
+          $('#niveleducativo3').val('');
+          $('#niveleducativo4').val('');
+          $('#niveleducativo3').attr('required', 'required');
+          $('#niveleducativo2').val('');
+          $('#niveleducativo5').val('');
+          $('#niveleducativo2').removeAttr('required');
+          $('#niveleducativo5').removeAttr('required');
+          $('#niveleducativo4').removeAttr('required');
+         } 
+        if (($(this).val() == "107" || $(this).val() == "108" || $(this).val() == "109") && $('#edadintegrante').val() <= '18') {
+          $('#niveleducativo2div').css('display', 'none');
+          $('#niveleducativo4div').css('display', 'none'); 
+          $('#niveleducativo5div').css('display', 'none');
+          $('#niveleducativo3div').css('display', 'none');
+          $('#niveleducativo3').val('');
+          $('#niveleducativo4').val('');
+          $('#niveleducativo3').removeAttr('required');
+          $('#niveleducativo2').val('');
+          $('#niveleducativo5').val('');
+          $('#niveleducativo2').removeAttr('required');
+          $('#niveleducativo5').removeAttr('required');
+          $('#niveleducativo4').removeAttr('required');
+          $('#alfabetizacion').removeAttr('required');
+          $('#alfabetizacion').val('');
+          $('#alfabetizaciondigital').removeAttr('required');
+          $('#alfabetizaciondigital').val('');
+         } 
+        //  else {
+        //   $('#niveleducativo2div').css('display', '');
+        //   $('#niveleducativo5div').css('display', '');
+        //   $('#niveleducativo2').val('');
+        //   $('#niveleducativo5').val('');
+        //   $('#niveleducativo2').attr('required', 'required');
+        //   $('#niveleducativo5').attr('required', 'required');
+        // }
+
+        if ($(this).val() == "110") {
+          $('#niveleducativo2div').css('display', '');
+          $('#niveleducativo2').attr('required', 'required');
+          $('#niveleducativo2').val('');
+          $('#niveleducativo3div').css('display','none');
+            $('#niveleducativo3').val('');
+            $('#niveleducativo3').removeAttr('required');
+            $('#niveleducativo4div').css('display','none');
+            $('#niveleducativo4').val('');
+            $('#niveleducativo4').removeAttr('required');
+            $('#niveleducativo5div').css('display','none');
+          $('#niveleducativo5').val('');
+          $('#niveleducativo5').removeAttr('required');
+          $('#niveleducativo2 option[value="123"]').show();
+          $('#niveleducativo2 option[value="124"]').show();
+          $('#niveleducativo2 option[value="125"]').show();
+          $('#niveleducativo2 option[value="126"]').show();
+          $('#niveleducativo2 option[value="127"]').show();
+          $('#niveleducativo2 option[value="128"]').hide();
+          $('#niveleducativo2 option[value="129"]').hide();
+          $('#niveleducativo2 option[value="130"]').hide();
+          $('#niveleducativo2 option[value="131"]').hide();
+          $('#niveleducativo2 option[value="132"]').hide();
+          $('#niveleducativo2 option[value="133"]').hide();
+
+        }
+
+        if ($(this).val() == "111") {
+          $('#niveleducativo2div').css('display', '');
+          $('#niveleducativo2').attr('required', 'required');
+          $('#niveleducativo2').val('');
+          $('#niveleducativo3div').css('display','none');
+            $('#niveleducativo3').val('');
+            $('#niveleducativo3').removeAttr('required');
+            $('#niveleducativo4div').css('display','none');
+            $('#niveleducativo4').val('');
+            $('#niveleducativo4').removeAttr('required');
+            $('#niveleducativo5div').css('display','none');
+          $('#niveleducativo5').val('');
+          $('#niveleducativo5').removeAttr('required');
+          $('#niveleducativo2 option[value="123"]').hide();
+          $('#niveleducativo2 option[value="124"]').hide();
+          $('#niveleducativo2 option[value="125"]').hide();
+          $('#niveleducativo2 option[value="126"]').hide();
+          $('#niveleducativo2 option[value="127"]').hide();
+          $('#niveleducativo2 option[value="128"]').show(); 
+          $('#niveleducativo2 option[value="129"]').show();
+          $('#niveleducativo2 option[value="130"]').show();
+          $('#niveleducativo2 option[value="131"]').show();
+          $('#niveleducativo2 option[value="132"]').hide();
+          $('#niveleducativo2 option[value="133"]').hide();
+        }
+        if ($(this).val() == "112") {
+          $('#niveleducativo2div').css('display', '');
+          $('#niveleducativo2').attr('required', 'required');
+          $('#niveleducativo2').val('');
+          $('#niveleducativo3div').css('display','none');
+            $('#niveleducativo3').val('');
+            $('#niveleducativo3').removeAttr('required');
+            $('#niveleducativo4div').css('display','none');
+            $('#niveleducativo4').val('');
+            $('#niveleducativo4').removeAttr('required');
+            $('#niveleducativo5div').css('display','none');
+          $('#niveleducativo5').val('');
+          $('#niveleducativo5').removeAttr('required');
+          $('#niveleducativo2 option[value="123"]').hide();
+          $('#niveleducativo2 option[value="124"]').hide();
+          $('#niveleducativo2 option[value="125"]').hide();
+          $('#niveleducativo2 option[value="126"]').hide();
+          $('#niveleducativo2 option[value="127"]').hide();
+          $('#niveleducativo2 option[value="128"]').hide(); 
+          $('#niveleducativo2 option[value="129"]').hide();
+          $('#niveleducativo2 option[value="130"]').hide();
+          $('#niveleducativo2 option[value="131"]').hide();
+          $('#niveleducativo2 option[value="132"]').show();
+          $('#niveleducativo2 option[value="133"]').show();
+        }
+        if (($(this).val() == "113" || $(this).val() == "114" || $(this).val() == "115" || $(this).val() == "117" ||  $(this).val() == "119" ||  $(this).val() == "121") && $('#edadintegrante').val() >= '15') {   //9.5
+          $('#niveleducativo4div').css('display', '');
+          $('#niveleducativo4').val('');
+          $('#niveleducativo4').attr('required', 'required');
+          $('#niveleducativo2div').css('display','none');
+          $('#niveleducativo2').val('');
+          $('#niveleducativo2').removeAttr('required');
+          $('#niveleducativo3div').css('display','none');
+          $('#niveleducativo3').val('');
+          $('#niveleducativo3').removeAttr('required');
+          $('#niveleducativo5div').css('display','none');
+          $('#niveleducativo5').val('');
+          $('#niveleducativo5').removeAttr('required');
+        }
+        if (($(this).val() == "113" || $(this).val() == "114" || $(this).val() == "115" || $(this).val() == "117" ||  $(this).val() == "119" ||  $(this).val() == "121") && $('#edadintegrante').val() <= '15') {   //9.5
+          $('#niveleducativo4div').css('display', 'none');
+          $('#niveleducativo4').val('');
+          $('#niveleducativo4').removeAttr('required');
+          $('#niveleducativo2div').css('display','none');
+          $('#niveleducativo2').val('');
+          $('#niveleducativo2').removeAttr('required');
+          $('#niveleducativo3div').css('display','none');
+          $('#niveleducativo3').val('');
+          $('#niveleducativo3').removeAttr('required');
+          $('#niveleducativo5div').css('display','none');
+          $('#niveleducativo5').val('');
+          $('#niveleducativo5').removeAttr('required');
+          $('#alfabetizacion').removeAttr('required');
+          $('#alfabetizacion').val('');
+          $('#alfabetizaciondigital').removeAttr('required');
+          $('#alfabetizaciondigital').val('');
+        }
+
+
+        if ( $(this).val() == "116" || $(this).val() == "118" ||  $(this).val() == "120" ||  $(this).val() == "122") {     // 9.3.2
+          $('#niveleducativo4div').css('display', 'none');
+          $('#niveleducativo4').val('');
+          $('#niveleducativo4').removeAttr('required');
+          $('#niveleducativo2div').css('display','none');
+          $('#niveleducativo2').val('');
+          $('#niveleducativo2').removeAttr('required');
+          $('#niveleducativo3div').css('display','none');
+          $('#niveleducativo3').val('');
+          $('#niveleducativo3').removeAttr('required');
+          $('#niveleducativo5div').css('display','');
+          $('#niveleducativo5').val('');
+          $('#niveleducativo5').attr('required', 'required');
+          
+        }
+
+        
+      });
+
+      if($('#edadintegrante').val() >= '18'){
+            $('#niveleducativo3').attr('required', 'required');
+            $('#niveleducativo3div').css('display', '');
+          //  $('#niveleducativo3').val('');
+          }
+          if($('#edadintegrante').val() <= '18'){
+            $('#niveleducativo3').removeAttr('required');
+            $('#niveleducativo3div').css('display', 'none');
+           // $('#niveleducativo3').val('');
+          }
+
+          if($('#edadintegrante').val() >= '15'){
+            $('#niveleducativo4').attr('required', 'required');
+            $('#niveleducativo4div').css('display', '');
+            $('#niveleducativo4').val('');
+          } 
+          if($('#edadintegrante').val() <= '15'){
+            $('#niveleducativo4').removeAttr('required');
+            $('#niveleducativo4div').css('display', 'none');
+           // $('#niveleducativo3').val('');
+          }
+          if($('#edadintegrante').val() >= '16'){
+            $('#alfabetizaciondigital').attr('required', 'required');
+            $('#alfabetizaciondigitaldiv').css('display', '');
+            $('#alfabetizaciondigital').val('');
+          }
+          if($('#edadintegrante').val() <= '16'){
+            $('#alfabetizaciondigital').removeAttr('required');
+            $('#alfabetizaciondigitaldiv').css('display', 'none');
+           // $('#niveleducativo3').val('');
+          }
+          if($('#edadintegrante').val() >= '16'){
+            $('#deseaaccedereducacion').attr('required', 'required');
+            $('#deseaaccedereducaciondiv').css('display', '');
+          } 
+          if($('#edadintegrante').val() <= '16'){
+            $('#deseaaccedereducacion').removeAttr('required');
+            $('#deseaaccedereducaciondiv').css('display', 'none');
+           // $('#niveleducativo3').val('');
+          }
+
+          if($('#edadintegrante').val() >= '15'){
+            $('#alfabetizacion').attr('required', 'required');
+            $('#alfabetizaciondiv').css('display', '');
+          } 
+          if($('#edadintegrante').val() <= '15'){
+            $('#alfabetizacion').removeAttr('required');
+            $('#dalfabetizaciondiv').css('display', 'none');
+           // $('#niveleducativo3').val('');
+          }
+
+      
 
 
     function calcularEdad(fechaNacimiento) {
@@ -708,6 +961,7 @@ console.log(edad)
         success:function(data){
           let  edad = calcularEdad(data.imagen.fechanacimiento);
           $('#edadintegrante').html(`Edad: ${edad} `);
+          $('#edadintegrante').val(edad);
           $('#sexointegrante').html(`Sexo: ${(data.imagen.sexo == '12')?'Hombre':'Mujer'} `);
           if(data.imagen.sexo =='13' && data.identitario.gestante=='1' && edad >= '12'){
             $('.acceso347').css('display','');
@@ -795,11 +1049,11 @@ console.log(edad)
     //     let acceso3 = JSON.parse(data.integrantes.acceso3); // ["49", "54"]
           
     // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
-                    let acceso3 = JSON.parse(data.integrantes.acceso3); // ["49", "54"]
-                    let consumospa3 = JSON.parse(data.integrantes.consumospa3); // ["49", "54"]
-                    let consumospa6 = JSON.parse(data.integrantes.consumospa6); // ["49", "54"]
-                    let psicosocial1 = JSON.parse(data.integrantes.psicosocial1); // ["49", "54"]
-                    let psicosocial2 = JSON.parse(data.integrantes.psicosocial2); // ["49", "54"]
+                    let acceso3 = JSON.parse((data.integrantes)?data.integrantes.acceso3:'{}'); // ["49", "54"]
+                    let consumospa3 = JSON.parse((data.integrantes)?data.integrantes.consumospa3:'{}'); // ["49", "54"]
+                    let consumospa6 = JSON.parse((data.integrantes)?data.integrantes.consumospa6:'{}'); // ["49", "54"]
+                    let psicosocial1 = JSON.parse((data.integrantes)?data.integrantes.psicosocial1:'{}'); // ["49", "54"]
+                    let psicosocial2 = JSON.parse((data.integrantes)?data.integrantes.psicosocial2:'{}'); // ["49", "54"]
                     
                     let trabajoinfantil = JSON.parse((data.integrantesfinanciero)?data.integrantesfinanciero.trabajoinfantil:'{}'); // ["49", "54"]
                     let bancarizacion = JSON.parse((data.integrantesfinanciero)?data.integrantesfinanciero.bancarizacion:'{}'); // ["49", "54"]
@@ -807,8 +1061,7 @@ console.log(edad)
 
                   console.log(trabajoinfantil)
                   
-
-                // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
+                  if(Array.isArray(acceso3) && acceso3.length > 0) {
                 $('#acceso3-container input[type="checkbox"]').each(function() {
                   let found = acceso3.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
@@ -821,8 +1074,9 @@ console.log(edad)
                          
 
                           //$(this).prop('checked', false);    
-                });
+                });}
 
+                if(Array.isArray(consumospa3) && consumospa3.length > 0) {
                 $('#container-consumospa3 input[type="checkbox"]').each(function() {
                   let found = consumospa3.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
@@ -832,7 +1086,9 @@ console.log(edad)
                           } else {
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
                           }
-                });
+                });}
+
+                if(Array.isArray(consumospa6) && consumospa6.length > 0) {
                 $('#container-consumospa6 input[type="checkbox"]').each(function() {
                   let found = consumospa6.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
@@ -842,7 +1098,9 @@ console.log(edad)
                           } else {
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
                           }
-                });
+                });}
+
+                if(Array.isArray(psicosocial1) && psicosocial1.length > 0) {
                 $('#container-psicosocial1 input[type="checkbox"]').each(function() {
                   let found = psicosocial1.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
@@ -852,8 +1110,9 @@ console.log(edad)
                           } else {
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
                           }
-                });
+                });}
 
+                if(Array.isArray(psicosocial2) && psicosocial2.length > 0) {
                 $('#container-psicosocial2 input[type="checkbox"]').each(function() {
                   let found = psicosocial2.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
@@ -863,7 +1122,7 @@ console.log(edad)
                           } else {
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
                           }
-                });
+                });}
 
                 if(Array.isArray(trabajoinfantil) && trabajoinfantil.length > 0) {
                 $('#container-trabajoinfantil input[type="checkbox"]').each(function() {
@@ -1001,6 +1260,7 @@ console.log(edad)
             }
 
             if(edad >= '8'){
+              console.log('hola')
               $('#consumospa1div').css('display','');
               $('#consumospa2div').css('display','');
               $('.consumospa371').css('display','');
@@ -1027,6 +1287,7 @@ console.log(edad)
            
 
             }else{
+              console.log('hola else')
               $('#consumospa1div').css('display','none');
               $('#consumospa1').val('');
               $('#consumospa1').attr('required',false);
@@ -1066,6 +1327,8 @@ console.log(edad)
               $('#consumospa6div').css('display','none');
         
             }
+console.log(edad)
+            
 
             if(edad >= '15'){
 
@@ -1101,6 +1364,8 @@ console.log(edad)
               $('#psicosocial2106').css('display','');  
               $('#psicosocial2div').css('display','');
               $('#cualpsicosocial2').css('display','');
+              $('#alfabetizaciondiv').css('display','');
+              
 
             }else{
               $('.psicosocial292').css('display','none');
@@ -1136,6 +1401,9 @@ console.log(edad)
               $('#psicosocial2div').css('display','none');
               $('#cualpsicosocial2').css('display','none');
               $('#cualpsicosocial2').val('');
+              $('#alfabetizaciondiv').css('display','none');
+              $('#alfabetizacion').val('');
+
 
             }
 
@@ -1217,10 +1485,205 @@ console.log(edad)
       }
 
       if ($('#psicosocial2106').is(':checked')) {
-          $('#cualpsicosocial2div').css('display', '');
+          $('#cualpsicosocial2div').css('display', '');          
+          $('#cualpsicosocial2').attr('required', 'required');
+
         } else {
           $('#cualpsicosocial2div').css('display', 'none');
+          $('#cualpsicosocial2').removeAttr('required');
         }
+
+        if ($('input[name="acceso3[]"]:visible:checked').length > 0) {
+          $('input[name="acceso3[]"]').removeAttr('required');
+        }else{
+          $('input[name="acceso3[]"]:hidden').removeAttr('required');
+        }
+
+        if ($('input[name="consumospa3[]"]:visible:checked').length > 0) {
+          $('input[name="consumospa3[]"]').removeAttr('required');
+        }else{
+          $('input[name="consumospa3[]"]:hidden').removeAttr('required');
+        }
+        if ($('input[name="consumospa6[]"]:visible:checked').length > 0) {
+              $('input[name="consumospa6[]"]').removeAttr('required');
+            }else{
+             $('input[name="consumospa6[]"]:hidden').removeAttr('required');
+            }
+        if ($('input[name="psicosocial1[]"]:visible:checked').length > 0) {
+            $('input[name="psicosocial1[]"]').removeAttr('required');
+          }else{
+            $('input[name="psicosocial1[]"]:hidden').removeAttr('required');
+          }
+        if ($('input[name="psicosocial2[]"]:visible:checked').length > 0) {
+            $('input[name="psicosocial2[]"]').removeAttr('required');
+          }else{
+           $('input[name="psicosocial2[]"]:hidden').removeAttr('required');
+          }
+
+
+
+  if (($('#niveleducativo1').val() == "107" || $('#niveleducativo1').val() == "108" || $('#niveleducativo1').val() == "109") && $('#edadintegrante').val() >= '18') {
+           $('#niveleducativo2div').css('display', 'none');
+           $('#niveleducativo4div').css('display', 'none'); 
+           $('#niveleducativo5div').css('display', 'none');
+           $('#niveleducativo3div').css('display', '');
+           $('#niveleducativo3').attr('required', 'required');
+           $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo5').removeAttr('required');
+           $('#niveleducativo4').removeAttr('required');
+          } 
+         if (($('#niveleducativo1').val() == "107" || $('#niveleducativo1').val() == "108" || $('#niveleducativo1').val() == "109") && $('#edadintegrante').val() <= '18') {
+           $('#niveleducativo2div').css('display', 'none');
+           $('#niveleducativo4div').css('display', 'none'); 
+           $('#niveleducativo5div').css('display', 'none');
+           $('#niveleducativo3div').css('display', 'none');
+           $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo5').removeAttr('required');
+           $('#niveleducativo4').removeAttr('required');
+           $('#alfabetizacion').removeAttr('required');
+           $('#alfabetizaciondigital').removeAttr('required');
+          } 
+         //  else {
+         //   $('#niveleducativo2div').css('display', '');
+         //   $('#niveleducativo5div').css('display', '');
+         //   $('#niveleducativo2').val('');
+         //   $('#niveleducativo5').val('');
+         //   $('#niveleducativo2').attr('required', 'required');
+         //   $('#niveleducativo5').attr('required', 'required');
+         // }
+
+         if ($('#niveleducativo1').val() == "110") {
+           $('#niveleducativo2div').css('display', '');
+           $('#niveleducativo2').attr('required', 'required');
+           $('#niveleducativo3div').css('display','none');
+             $('#niveleducativo3').removeAttr('required');
+             $('#niveleducativo4div').css('display','none');
+             $('#niveleducativo4').removeAttr('required');
+             $('#niveleducativo5div').css('display','none');
+           $('#niveleducativo5').removeAttr('required');
+           $('#niveleducativo2 option[value="123"]').show();
+           $('#niveleducativo2 option[value="124"]').show();
+           $('#niveleducativo2 option[value="125"]').show();
+           $('#niveleducativo2 option[value="126"]').show();
+           $('#niveleducativo2 option[value="127"]').show();
+           $('#niveleducativo2 option[value="128"]').hide();
+           $('#niveleducativo2 option[value="129"]').hide();
+           $('#niveleducativo2 option[value="130"]').hide();
+           $('#niveleducativo2 option[value="131"]').hide();
+           $('#niveleducativo2 option[value="132"]').hide();
+           $('#niveleducativo2 option[value="133"]').hide();
+
+         }
+
+         if ($('#niveleducativo1').val() == "111") {
+           $('#niveleducativo2div').css('display', '');
+           $('#niveleducativo2').attr('required', 'required');
+           $('#niveleducativo3div').css('display','none');
+             $('#niveleducativo3').removeAttr('required');
+             $('#niveleducativo4div').css('display','none');
+             $('#niveleducativo4').removeAttr('required');
+             $('#niveleducativo5div').css('display','none');
+           $('#niveleducativo5').removeAttr('required');
+           $('#niveleducativo2 option[value="123"]').hide();
+           $('#niveleducativo2 option[value="124"]').hide();
+           $('#niveleducativo2 option[value="125"]').hide();
+           $('#niveleducativo2 option[value="126"]').hide();
+           $('#niveleducativo2 option[value="127"]').hide();
+           $('#niveleducativo2 option[value="128"]').show(); 
+           $('#niveleducativo2 option[value="129"]').show();
+           $('#niveleducativo2 option[value="130"]').show();
+           $('#niveleducativo2 option[value="131"]').show();
+           $('#niveleducativo2 option[value="132"]').hide();
+           $('#niveleducativo2 option[value="133"]').hide();
+         }
+         if ($('#niveleducativo1').val() == "112") {
+           $('#niveleducativo2div').css('display', '');
+           $('#niveleducativo2').attr('required', 'required');
+           $('#niveleducativo3div').css('display','none');
+             $('#niveleducativo3').removeAttr('required');
+             $('#niveleducativo4div').css('display','none');
+             $('#niveleducativo4').removeAttr('required');
+             $('#niveleducativo5div').css('display','none');
+           $('#niveleducativo5').removeAttr('required');
+           $('#niveleducativo2 option[value="123"]').hide();
+           $('#niveleducativo2 option[value="124"]').hide();
+           $('#niveleducativo2 option[value="125"]').hide();
+           $('#niveleducativo2 option[value="126"]').hide();
+           $('#niveleducativo2 option[value="127"]').hide();
+           $('#niveleducativo2 option[value="128"]').hide(); 
+           $('#niveleducativo2 option[value="129"]').hide();
+           $('#niveleducativo2 option[value="130"]').hide();
+           $('#niveleducativo2 option[value="131"]').hide();
+           $('#niveleducativo2 option[value="132"]').show();
+           $('#niveleducativo2 option[value="133"]').show();
+         }
+         if (($('#niveleducativo1').val() == "113" || $('#niveleducativo1').val() == "114" || $('#niveleducativo1').val() == "115" || $('#niveleducativo1').val() == "117" ||  $('#niveleducativo1').val() == "119" ||  $('#niveleducativo1').val() == "121") && $('#edadintegrante').val() >= '15') {   //9.5
+           $('#niveleducativo4div').css('display', '');
+           $('#niveleducativo4').attr('required', 'required');
+           $('#niveleducativo2div').css('display','none');
+           $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo3div').css('display','none');
+           $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo5div').css('display','none');
+           $('#niveleducativo5').removeAttr('required');
+         }
+         if (($('#niveleducativo1').val() == "113" || $('#niveleducativo1').val() == "114" || $('#niveleducativo1').val() == "115" || $('#niveleducativo1').val() == "117" ||  $('#niveleducativo1').val() == "119" ||  $('#niveleducativo1').val() == "121") && $('#edadintegrante').val() <= '15') {   //9.5
+           $('#niveleducativo4div').css('display', 'none');
+           $('#niveleducativo4').removeAttr('required');
+           $('#niveleducativo2div').css('display','none');
+           $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo3div').css('display','none');
+           $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo5div').css('display','none');
+           $('#niveleducativo5').removeAttr('required');
+           $('#alfabetizacion').removeAttr('required');
+           $('#alfabetizaciondigital').removeAttr('required');
+         }
+
+
+         if ( $('#niveleducativo1').val() == "116" || $('#niveleducativo1').val() == "118" ||  $('#niveleducativo1').val() == "120" ||  $('#niveleducativo1').val() == "122") {     // 9.3.2
+           $('#niveleducativo4div').css('display', 'none');
+           $('#niveleducativo4').removeAttr('required');
+           $('#niveleducativo2div').css('display','none');
+           $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo3div').css('display','none');
+           $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo5div').css('display','');
+           $('#niveleducativo5').attr('required', 'required');
+          
+         }
+
+          if($('#edadintegrante').val() >= '16'){
+            $('#alfabetizaciondigital').attr('required', 'required');
+            $('#alfabetizaciondigitaldiv').css('display', '');
+          }
+          if($('#edadintegrante').val() <= '16'){
+            $('#alfabetizaciondigital').removeAttr('required');
+            $('#alfabetizaciondigitaldiv').css('display', 'none');
+           // $('#niveleducativo3').val('');
+          }
+          if($('#edadintegrante').val() >= '16'){
+            $('#deseaaccedereducacion').attr('required', 'required');
+            $('#deseaaccedereducaciondiv').css('display', '');
+          } 
+          if($('#edadintegrante').val() <= '16'){
+            $('#deseaaccedereducacion').removeAttr('required');
+            $('#deseaaccedereducaciondiv').css('display', 'none');
+           // $('#niveleducativo3').val('');
+          }
+
+          if($('#edadintegrante').val() >= '15'){
+            $('#alfabetizacion').attr('required', 'required');
+            $('#alfabetizaciondiv').css('display', '');
+          } 
+          if($('#edadintegrante').val() <= '15'){
+            $('#alfabetizacion').removeAttr('required');
+            $('#dalfabetizaciondiv').css('display', 'none');
+           // $('#niveleducativo3').val('');
+          }
+
+          
           
 
          },
@@ -1280,12 +1743,51 @@ console.log(edad)
            window.location.href = url;
        }
 
-       
+       $('input[name="acceso3[]"]').change(function() {
+        if ($('input[name="acceso3[]"]:visible:checked').length > 0) {
+          $('input[name="acceso3[]"]').removeAttr('required');
+        }else{
+          $('input[name="acceso3[]"]').attr('required', 'required');
+
+        }
+      });
+
+      $('input[name="consumospa3[]"]').change(function() {
+      if ($('input[name="consumospa3[]"]:visible:checked').length > 0) {
+          $('input[name="consumospa3[]"]').removeAttr('required');
+        }else{
+          $('input[name="consumospa3[]"]').attr('required', 'required');
+        }
+      });
+
+      $('input[name="consumospa6[]"]').change(function() {
+      if ($('input[name="consumospa6[]"]:visible:checked').length > 0) {
+          $('input[name="consumospa6[]"]').removeAttr('required');
+        }else{
+          $('input[name="consumospa6[]"]').attr('required', 'required');
+        }
+      });
+      $('input[name="psicosocial1[]"]').change(function() {
+      if ($('input[name="psicosocial1[]"]:visible:checked').length > 0) {
+          $('input[name="psicosocial1[]"]').removeAttr('required');
+        }else{
+          $('input[name="psicosocial1[]"]').attr('required', 'required');
+        }
+      });
+      $('input[name="psicosocial2[]"]').change(function() {
+      if ($('input[name="psicosocial2[]"]:visible:checked').length > 0) {
+          $('input[name="psicosocial2[]"]').removeAttr('required');
+        }else{
+          $('input[name="psicosocial2[]"]').attr('required', 'required');
+        }
+      });
 
        $(document).ready(function() {
         $('#formfisicoyemocional').on('submit', function(event) {
-        event.preventDefault(); // Detiene el envío del formulario
+       
 
+          
+        event.preventDefault(); // Detiene el envío del formulario
         var formData = $(this).serializeArray();
         var data = {
               'acceso3': [
