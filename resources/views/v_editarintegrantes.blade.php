@@ -188,13 +188,13 @@
             <input type="number" class="form-control form-control-sm "  name="documento"  id="documento" value="" >
           </div>
           <div class="col-md">
-                <label for="validationServer04" class="form-label">¿Eres el/la jefe del hogar?</label>
+                <label for="validationServer04" class="form-label">¿Eres el/la representante del hogar?</label>
                 <select class="form-control form-control-sm" id="representante" name="representante" aria-describedby="validationServer04Feedback" required="">
                 {{!!$sino!!}}
               </select>
             </div>
             <div class="col-md">
-                <label for="validationServer04" class="form-label">¿Cuál es tu sexo de nacimiento?</label>
+                <label for="validationServer04" class="form-label">¿Cuál es tu sexo?</label>
                 <select class="form-control form-control-sm" id="sexo" name="sexo" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sexo!!}}
                 </select>
@@ -247,13 +247,13 @@
                 </select>
           </div>
           <div class="col-md-4" id="situacionmilitardiv">
-            <label for="validationServer04" class="form-label">¿Tienes resuelta tu situación militar?</label>
+            <label for="validationServer04" class="form-label">¿Tienes resuelta su situación militar?</label>
             <select class="form-control form-control-sm" id="situacionmilitar" name="situacionmilitar" aria-describedby="validationServer04Feedback" >
             {{!!$sino!!}}         
              </select>
           </div>
           <div class="col-md-6" id="orientaciondiv">
-            <label for="validationServer04" class="form-label">¿Cuál es tu orientación sexual?</label>
+            <label for="validationServer04" class="form-label">¿Cuál es tu orientación sexual?            </label>
             <select class="form-control form-control-sm" id="orientacion" name="orientacion" aria-describedby="validationServer04Feedback" required="">
             {{!!$orientacion!!}}
           </select>
@@ -291,7 +291,7 @@
           </select>
           </div>
           <div class="col-md-6" id="victima2div">
-            <label for="validationServer04" class="form-label">¿Estás reconocido como víctima del conflicto armado colombiano y cuentas con RUV?</label>
+            <label for="validationServer04" class="form-label">¿Estás reconocido como víctima del conflicto armado colombiano y cuentas con RUV?            </label>
             <select class="form-control form-control-sm" id="victima2" name="victima2" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
@@ -303,13 +303,13 @@
           </select>
           </div>
           <div class="col-md-6" id="migrantes1div">
-            <label for="validationServer04" class="form-label">¿Requieres  asistencia para la regularización e identificación en el territorio nacional?</label>
+            <label for="validationServer04" class="form-label">¿Requieres  asistencia para su regularización e identificación en el territorio nacional?</label>
             <select class="form-control form-control-sm" id="migrantes1" name="migrantes1" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
           </div>
           <div class="col-md-6" id="migrantes2div">
-            <label for="validationServer04" class="form-label">¿Qué instancias has utilizado para la regularización e identificación en el territorio nacional?</label>
+            <label for="validationServer04" class="form-label">¿Qué instancias has utilizado el hogar para la regularización e identificación en el territorio nacional?</label>
             <select class="form-control form-control-sm" id="migrantes2" name="migrantes2" aria-describedby="validationServer04Feedback" required="">
             {{!!$migrantes2!!}}
           </select>
@@ -494,40 +494,78 @@
           }else{
             $('#nombreidentatario2div').css('display','none')
           }
-          if($('#sexo').val()=='13' && $('#edad').html() >= '12'){
-            $('#gestantediv').css('display','');
-            $('#lactantediv').css('display','');
-            $('#situacionmilitardiv').css('display','none');
+       
 
-          }
-          if($('#sexo').val()=='12' && $('#edad').html() >= '12'){ 
-            $('#gestantediv').css('display','none');
-            $('#lactantediv').css('display','none');
-            $('#situacionmilitardiv').css('display','');
-            $('#situacionmilitar').attr('required', 'required');
-            $('#hijosdiv').css('display','none');
-            $('#hijos').removeAttr('required');
-            $('#gestante').removeAttr('required');
-            $('#lactante').removeAttr('required');
+          if($('#sexo').val()=='12' && parseInt($('#edad').html()) >= '12' && parseInt($('#edad').html()) <= '17'){  
+              $('#gestantediv').css('display','none');
+              $('#lactantediv').css('display','none');
+              $('#situacionmilitardiv').css('display','none');
+              $('#gestante').removeAttr('required');
+              $('#lactante').removeAttr('required');
+              $('#situacionmilitar').removeAttr('required');
+              $('#orientaciondiv').css('display','');
+              $('#orientacion').attr('required','required');
+              $('#identidad').attr('required','required');
+              $('#cualorientaciondiv').css('display','');
+              $('#identidaddiv').css('display','');
+              $('#cualidentidaddiv').css('display','');
+              $('#hijosdiv').css('display','none');
+              $('#hijos').removeAttr('required');
+            }
 
-          }
-          if($('#sexo').val()=='12' && $('#edad').html() <= '12' || $('#sexo').val()=='13' && $('#edad').html() <= '12'){ 
-            $('#gestantediv').css('display','none');
-            $('#lactantediv').css('display','none');
-            $('#situacionmilitardiv').css('display','none');
+        if($('#sexo').val()=='12' && parseInt($('#edad').html()) >= '18'){  
+          $('#gestantediv').css('display','none');
+          $('#lactantediv').css('display','none');
+          $('#situacionmilitardiv').css('display','');
+          $('#gestante').removeAttr('required');
+          $('#lactante').removeAttr('required');
+          $('#situacionmilitar').attr('required','required');
+          $('#orientaciondiv').css('display','');
+          $('#cualorientaciondiv').css('display','');
+          $('#identidaddiv').css('display','');
+          $('#cualidentidaddiv').css('display','');
+          $('#hijosdiv').css('display','none');
+          $('#hijos').removeAttr('required');
+        }
 
-            $('#orientaciondiv').css('display','none');
-            $('#cualorientaciondiv').css('display','none');
-            $('#identidaddiv').css('display','none');
-            $('#cualidentidaddiv').css('display','none');
-            $('#hijosdiv').css('display','none');
-            $('#hijos').removeAttr('required');
-            $('#gestante').removeAttr('required');
-            $('#lactante').removeAttr('required');
-            $('#orientacion').removeAttr('required');
-            $('#identidad').removeAttr('required');
 
-          }
+        if($('#sexo').val()=='13' && parseInt($('#edad').html()) >= '12'){  
+          $('#gestantediv').css('display','');
+          $('#lactantediv').css('display','');
+          $('#situacionmilitardiv').css('display','none');
+          $('#situacionmilitar').removeAttr('required');
+          $('#hijos').attr('required', 'required');
+          $('#gestante').attr('required', 'required');
+          $('#lactante').attr('required', 'required');
+          $('#orientacion').attr('required', 'required');
+          $('#identidad').attr('required', 'required');
+          $('#orientaciondiv').css('display','');
+          $('#cualorientaciondiv').css('display','');
+          $('#identidaddiv').css('display','');
+          $('#cualidentidaddiv').css('display','');
+          $('#hijosdiv').css('display','');
+        } 
+        if($('#sexo').val()=='13' && parseInt($('#edad').html())  <= '12'|| $('#sexo').val()=='12' && parseInt($('#edad').html()) <= '12' ){  
+          $('#gestantediv').css('display','none');
+          $('#lactantediv').css('display','none');
+          $('#gestante').removeAttr('required');
+          $('#lactante').removeAttr('required');
+          $('#orientacion').removeAttr('required');
+          $('#identidad').removeAttr('required');
+          $('#cualidentidad').removeAttr('required');
+          $('#hijos').removeAttr('required');
+          $('#situacionmilitardiv').css('display','none');
+          $('#gestantediv').css('display','none');
+          $('#lactantediv').css('display','none');
+          $('#orientaciondiv').css('display','none');
+          $('#cualorientaciondiv').css('display','none');
+          $('#identidaddiv').css('display','none');
+          $('#cualidentidaddiv').css('display','none');
+          $('#hijosdiv').css('display','none');
+          $('#situacionmilitar').removeAttr('required');
+        }
+
+
           if($('#orientacion').val() == '20'){
             $('#cualorientaciondiv').css('display','');
 
@@ -790,7 +828,32 @@ $('#sexo').change(function(){
   $('#volver2').css('display','none');
 
   $('#identatario').attr('disabled',true);
-  if($('#sexo').val()=='12' && $('#edad').html() >= '12'){  
+  if($('#sexo').val()=='12' && parseInt($('#edad').html()) >= '12' && parseInt($('#edad').html()) <= '17'){  
+    $('#gestantediv').css('display','none');
+    $('#lactantediv').css('display','none');
+    $('#situacionmilitardiv').css('display','none');
+    $('#gestante').removeAttr('required');
+    $('#gestante').val('');
+    $('#lactante').val(''); 
+    $('#situacionmilitar').val('');
+    $('#orientacion').val('');
+    $('#identidad').val('');
+    $('#cualidentidad').val('');
+    $('#hijos').val('');
+    $('#lactante').removeAttr('required');
+    $('#situacionmilitar').removeAttr('required');
+    $('#orientaciondiv').css('display','');
+    $('#orientacion').attr('required','required');
+    $('#identidad').attr('required','required');
+
+    $('#cualorientaciondiv').css('display','');
+    $('#identidaddiv').css('display','');
+    $('#cualidentidaddiv').css('display','');
+    $('#hijosdiv').css('display','none');
+    $('#hijos').removeAttr('required');
+  }
+
+  if($('#sexo').val()=='12' && parseInt($('#edad').html()) >= '18'){  
     $('#gestantediv').css('display','none');
     $('#lactantediv').css('display','none');
     $('#situacionmilitardiv').css('display','');
@@ -803,16 +866,17 @@ $('#sexo').change(function(){
     $('#cualidentidad').val('');
     $('#hijos').val('');
     $('#lactante').removeAttr('required');
-    $('#situacionmilitar').attr('required', 'required');
+    $('#situacionmilitar').attr('required','required');
     $('#orientaciondiv').css('display','');
     $('#cualorientaciondiv').css('display','');
     $('#identidaddiv').css('display','');
     $('#cualidentidaddiv').css('display','');
     $('#hijosdiv').css('display','none');
     $('#hijos').removeAttr('required');
-
   }
-  if($('#sexo').val()=='13' && $('#edad').html() >= '12'){  
+
+
+  if($('#sexo').val()=='13' && parseInt($('#edad').html()) >= '12'){  
     $('#gestantediv').css('display','');
     $('#lactantediv').css('display','');
     $('#situacionmilitardiv').css('display','none');
@@ -830,15 +894,14 @@ $('#sexo').change(function(){
     $('#lactante').attr('required', 'required');
     $('#orientacion').attr('required', 'required');
     $('#identidad').attr('required', 'required');
-
-
     $('#orientaciondiv').css('display','');
     $('#cualorientaciondiv').css('display','');
     $('#identidaddiv').css('display','');
     $('#cualidentidaddiv').css('display','');
     $('#hijosdiv').css('display','');
   } 
-  if($('#sexo').val()=='13' && $('#edad').html() <= '12' || $('#sexo').val()=='12' && $('#edad').html() <= '12' ){  
+  if($('#sexo').val()=='13' && parseInt($('#edad').html())  <= '12'|| $('#sexo').val()=='12' && parseInt($('#edad').html()) <= '12' ){  
+    console.log('hola, ermtre edad',$('#edad').html() )
     $('#gestante').val('');
     $('#lactante').val(''); 
     $('#situacionmilitar').val('');
@@ -862,10 +925,7 @@ $('#sexo').change(function(){
     $('#identidaddiv').css('display','none');
     $('#cualidentidaddiv').css('display','none');
     $('#hijosdiv').css('display','none');
-   // $('#situacionmilitar').removeAttr('required');
-  }
- else{
-   
+    $('#situacionmilitar').removeAttr('required');
   }
 
 })
@@ -877,7 +937,32 @@ $('#fechanacimiento').change(function(){
   $('#volver2').css('display','none');
 
   $('#identatario').attr('disabled',true);
-  if($('#sexo').val()=='12' && $('#edad').html() >= '12'){  
+  if($('#sexo').val()=='12' && parseInt($('#edad').html()) >= '12' && parseInt($('#edad').html()) <= '17'){  
+    $('#gestantediv').css('display','none');
+    $('#lactantediv').css('display','none');
+    $('#situacionmilitardiv').css('display','none');
+    $('#gestante').removeAttr('required');
+    $('#gestante').val('');
+    $('#lactante').val(''); 
+    $('#situacionmilitar').val('');
+    $('#orientacion').val('');
+    $('#identidad').val('');
+    $('#cualidentidad').val('');
+    $('#hijos').val('');
+    $('#lactante').removeAttr('required');
+    $('#situacionmilitar').removeAttr('required');
+    $('#orientaciondiv').css('display','');
+    $('#orientacion').attr('required','required');
+    $('#identidad').attr('required','required');
+
+    $('#cualorientaciondiv').css('display','');
+    $('#identidaddiv').css('display','');
+    $('#cualidentidaddiv').css('display','');
+    $('#hijosdiv').css('display','none');
+    $('#hijos').removeAttr('required');
+  }
+
+  if($('#sexo').val()=='12' && parseInt($('#edad').html()) >= '18'){  
     $('#gestantediv').css('display','none');
     $('#lactantediv').css('display','none');
     $('#situacionmilitardiv').css('display','');
@@ -890,16 +975,17 @@ $('#fechanacimiento').change(function(){
     $('#cualidentidad').val('');
     $('#hijos').val('');
     $('#lactante').removeAttr('required');
-    $('#situacionmilitar').attr('required', 'required');
+    $('#situacionmilitar').attr('required','required');
     $('#orientaciondiv').css('display','');
     $('#cualorientaciondiv').css('display','');
     $('#identidaddiv').css('display','');
     $('#cualidentidaddiv').css('display','');
     $('#hijosdiv').css('display','none');
     $('#hijos').removeAttr('required');
-
   }
-  if($('#sexo').val()=='13' && $('#edad').html() >= '12'){  
+
+
+  if($('#sexo').val()=='13' && parseInt($('#edad').html()) >= '12'){  
     $('#gestantediv').css('display','');
     $('#lactantediv').css('display','');
     $('#situacionmilitardiv').css('display','none');
@@ -917,19 +1003,17 @@ $('#fechanacimiento').change(function(){
     $('#lactante').attr('required', 'required');
     $('#orientacion').attr('required', 'required');
     $('#identidad').attr('required', 'required');
-
-
     $('#orientaciondiv').css('display','');
     $('#cualorientaciondiv').css('display','');
     $('#identidaddiv').css('display','');
     $('#cualidentidaddiv').css('display','');
     $('#hijosdiv').css('display','');
   } 
-  if($('#sexo').val()=='13' && $('#edad').html() <= '12' || $('#sexo').val()=='12' && $('#edad').html() <= '12' ){  
+  if($('#sexo').val()=='13' && parseInt($('#edad').html())  <= '12'|| $('#sexo').val()=='12' && parseInt($('#edad').html()) <= '12' ){  
+    console.log('hola, ermtre edad',$('#edad').html() )
     $('#gestante').val('');
     $('#lactante').val(''); 
     $('#situacionmilitar').val('');
-    $('#situacionmilitar').removeAttr('required');
     $('#orientacion').val('');
     $('#identidad').val('');
     $('#cualidentidad').val('');
@@ -950,7 +1034,7 @@ $('#fechanacimiento').change(function(){
     $('#identidaddiv').css('display','none');
     $('#cualidentidaddiv').css('display','none');
     $('#hijosdiv').css('display','none');
-   // $('#situacionmilitar').removeAttr('required');
+    $('#situacionmilitar').removeAttr('required');
   }
  else{
    
