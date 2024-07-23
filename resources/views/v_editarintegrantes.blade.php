@@ -929,6 +929,7 @@ $('#fechanacimiento').change(function(){
     $('#gestante').val('');
     $('#lactante').val(''); 
     $('#situacionmilitar').val('');
+    $('#situacionmilitar').removeAttr('required');
     $('#orientacion').val('');
     $('#identidad').val('');
     $('#cualidentidad').val('');
