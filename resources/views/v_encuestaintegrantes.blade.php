@@ -1272,15 +1272,721 @@
               $('#trabajo15a17anhosdiv').css('display', '');
               $('#trabajo15a17anhos').val(''); 
               $('#trabajo15a17anhos').attr('required','required');
+              $('#ocupadosdiv').css('display', '');
+              $('#ocupados').val(''); 
+              $('#ocupados').attr('required','required');
+              $('#formalidaddelempleodiv').css('display', '');
+              $('#formalidaddelempleo').val(''); 
+              $('#formalidaddelempleo').attr('required','required');
+              $('#ingresos2div').css('display', '');
+              $('#ingresos2').val(''); 
+              $('#ingresos2').attr('required','required');         
+              $('#ingresos3div').css('display', '');
+              $('#ingresos3').val(''); 
+              $('#ingresos3').attr('required','required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+              $('input[name="bancarizacion[]"]').attr('required', 'required');
+              $('input[name="bancarizacion[]"]').prop('checked', false);
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').val(''); 
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento2').val(''); 
+              $('#endeudamiento2').attr('required','required');
+              $('#endeudamiento3div').css('display', '');
+              $('#endeudamiento3').val(''); 
+              $('#endeudamiento3').attr('required','required');
+              $('#desempleodelargaduraciondiv').css('display', 'none');
+              $('#desempleodelargaduracion').val(''); 
+              $('#desempleodelargaduracion').removeAttr('required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').val(''); 
+              $('#desempleo').removeAttr('required');
              }
-            
-           // else{
-               
 
-            //   //$('input[name="trabajoinfantil[]"]').removeAttr('required');
+               if(($('#ingresos1').val() == '135' || $('#ingresos1').val() == '' ) && ($('#edadintegrante').val() >= '15' && $('#edadintegrante').val() <= '18')){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').val('');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').val('');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').prop('checked', false);
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').val(''); 
+              $('#trabajo15a17anhos').removeAttr('required');  
+              $('#ingresos2div').css('display', 'none');
+              $('#ingresos2').val(''); 
+              $('#ingresos2').removeAttr('required');         
+              $('#ingresos3div').css('display', 'none');
+              $('#ingresos3').val(''); 
+              $('#ingresos3').removeAttr('required');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').val(''); 
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').val(''); 
+              $('#desempleo').removeAttr('required');
+              $('#intermediacionlaboraldiv').css('display', 'none');
+              $('#intermediacionlaboral').val(''); 
+              $('#intermediacionlaboral').removeAttr('required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
 
-            // }
+
+              $('input[name="bancarizacion[]"]').prop('checked', false);
+              $('input[name="bancarizacion[]"]').attr('required', 'required');
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').val(''); 
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento2').val(''); 
+              $('#endeudamiento2').attr('required','required');
+              $('#endeudamiento3div').css('display', '');
+              $('#endeudamiento3').val('');
+              $('#endeudamiento3').attr('required','required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').val('');
+              $('#emprendimiento1').removeAttr('required');
+              $('#ocupadosdiv').css('display', 'none');
+              $('#ocupados').val(''); 
+              $('#ocupados').removeAttr('required');
+              $('#formalidaddelempleodiv').css('display', 'none');
+              $('#formalidaddelempleo').val(''); 
+              $('#formalidaddelempleo').removeAttr('required');
+             }
+
+             if(($('#ingresos1').val() == '136' ) && ($('#edadintegrante').val() >= '15' && $('#edadintegrante').val() <= '18')){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').val('');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').val('');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').prop('checked', false);
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').val(''); 
+              $('#trabajo15a17anhos').removeAttr('required');  
+              $('#ingresos3div').css('display', '');
+              $('#ingresos3').val(''); 
+              $('#ingresos3').attr('required','required');         
+              $('#ingresos2div').css('display', 'none');
+              $('#ingresos2').val(''); 
+              $('#ingresos2').removeAttr('required');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').val(''); 
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').val(''); 
+              $('#desempleo').removeAttr('required');
+              $('#intermediacionlaboraldiv').css('display', 'none');
+              $('#intermediacionlaboral').val(''); 
+              $('#intermediacionlaboral').removeAttr('required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+
+
+              $('input[name="bancarizacion[]"]').prop('checked', false);
+              $('input[name="bancarizacion[]"]').attr('required', 'required');
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').val(''); 
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento2').val(''); 
+              $('#endeudamiento2').attr('required','required');
+              $('#endeudamiento3div').css('display', '');
+              $('#endeudamiento3').val('');
+              $('#emprendimiento2').val('');  
+              $('#endeudamiento3').attr('required','required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').val(''); 
+              $('#emprendimiento1').removeAttr('required');
+              $('#ocupadosdiv').css('display', 'none');
+              $('#ocupados').val(''); 
+              $('#ocupados').removeAttr('required');
+              $('#formalidaddelempleodiv').css('display', 'none');
+              $('#formalidaddelempleo').val(''); 
+              $('#formalidaddelempleo').removeAttr('required');
+             }
+
+
+
+
+
+//18 a 66
+
+
+
+if($('#ingresos1').val() == '134' && ($('#edadintegrante').val() >= '18' && $('#edadintegrante').val() <= '66')){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').val(''); 
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2').val('');
+              $('input[name="trabajoinfantil[]"]').prop('checked', false);
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').val(''); 
+              $('#trabajo15a17anhos').removeAttr('required');
+              $('#ocupadosdiv').css('display', '');
+              $('#ocupados').val(''); 
+              $('#ocupados').attr('required','required');
+              $('#formalidaddelempleodiv').css('display', '');
+              $('#formalidaddelempleo').val(''); 
+              $('#formalidaddelempleo').attr('required','required');
+              $('#ingresos3div').css('display', '');
+              $('#ingresos3').val(''); 
+              $('#ingresos3').attr('required','required');         
+              $('#ingresos2div').css('display', '');
+              $('#ingresos2').val(''); 
+              $('#ingresos2').attr('required','required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+              $('input[name="bancarizacion[]"]').attr('required', 'required');
+              $('input[name="bancarizacion[]"]').prop('checked', false);
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').val(''); 
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento2').val(''); 
+              $('#endeudamiento2').attr('required','required');
+              $('#endeudamiento3div').css('display', '');
+              $('#endeudamiento3').val(''); 
+              $('#endeudamiento3').attr('required','required');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').val(''); 
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').val(''); 
+              $('#desempleo').removeAttr('required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').val('');
+              $('#emprendimiento1').removeAttr('required');
+             }
+
+               if(($('#ingresos1').val() == '135' || $('#ingresos1').val() == '' ) && ($('#edadintegrante').val() >= '18' && $('#edadintegrante').val() <= '66')){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').val('');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').val('');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').prop('checked', false);
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').val(''); 
+              $('#trabajo15a17anhos').removeAttr('required');  
+              $('#ingresos2div').css('display', 'none');
+              $('#ingresos2').val(''); 
+              $('#ingresos2').removeAttr('required');         
+              $('#ingresos3div').css('display', 'none');
+              $('#ingresos3').val(''); 
+              $('#ingresos3').removeAttr('required');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').val(''); 
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', '');
+              $('#desempleo').val(''); 
+              $('#desempleo').attr('required','required');
+              $('#intermediacionlaboraldiv').css('display', 'none');
+              $('#intermediacionlaboral').val(''); 
+              $('#intermediacionlaboral').removeAttr('required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+
+
+              $('input[name="bancarizacion[]"]').prop('checked', false);
+              $('input[name="bancarizacion[]"]').attr('required', 'required');
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').val(''); 
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento2').val(''); 
+              $('#endeudamiento2').attr('required','required');
+              $('#endeudamiento3div').css('display', '');
+              $('#endeudamiento3').val('');
+              $('#endeudamiento3').attr('required','required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').val('');
+              $('#emprendimiento1').removeAttr('required');
+              $('#ocupadosdiv').css('display', 'none');
+              $('#ocupados').val(''); 
+              $('#ocupados').removeAttr('required');
+              $('#formalidaddelempleodiv').css('display', 'none');
+              $('#formalidaddelempleo').val(''); 
+              $('#formalidaddelempleo').removeAttr('required');
+             }
+
+             if(($('#ingresos1').val() == '136' ) && ($('#edadintegrante').val() >= '18' && $('#edadintegrante').val() <= '66')){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').val('');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').val('');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').prop('checked', false);
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').val(''); 
+              $('#trabajo15a17anhos').removeAttr('required');  
+              $('#ingresos2div').css('display', '');
+              $('#ingresos2').val(''); 
+              $('#ingresos2').attr('required','required');         
+              $('#ingresos3div').css('display', '');
+              $('#ingresos3').val(''); 
+              $('#ingresos3').attr('required','required');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').val(''); 
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').val(''); 
+              $('#desempleo').removeAttr('required');
+              $('#intermediacionlaboraldiv').css('display', 'none');
+              $('#intermediacionlaboral').val(''); 
+              $('#intermediacionlaboral').removeAttr('required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+
+
+              $('input[name="bancarizacion[]"]').prop('checked', false);
+              $('input[name="bancarizacion[]"]').attr('required', 'required');
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').val(''); 
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento2').val(''); 
+              $('#endeudamiento2').attr('required','required');
+              $('#endeudamiento3div').css('display', '');
+              $('#endeudamiento3').val('');
+              $('#emprendimiento2').val('');  
+              $('#endeudamiento3').attr('required','required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').val(''); 
+              $('#emprendimiento1').removeAttr('required');
+              $('#ocupadosdiv').css('display', 'none');
+              $('#ocupados').val(''); 
+              $('#ocupados').removeAttr('required');
+              $('#formalidaddelempleodiv').css('display', 'none');
+              $('#formalidaddelempleo').val(''); 
+              $('#formalidaddelempleo').removeAttr('required');
+             }
+
+// FIN DE 18 a 66 
+
+if(($('#ingresos1').val() == '136' ) && ($('#edadintegrante').val() >= '66' )){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').val('');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').val('');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').prop('checked', false);
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').val(''); 
+              $('#trabajo15a17anhos').removeAttr('required');  
+              $('#ingresos2div').css('display', '');
+              $('#ingresos2').val(''); 
+              $('#ingresos2').attr('required','required');         
+              $('#ingresos3div').css('display', '');
+              $('#ingresos3').val(''); 
+              $('#ingresos3').attr('required','required');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').val(''); 
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').val(''); 
+              $('#desempleo').removeAttr('required');
+              $('#intermediacionlaboraldiv').css('display', 'none');
+              $('#intermediacionlaboral').val(''); 
+              $('#intermediacionlaboral').removeAttr('required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+
+
+              $('input[name="bancarizacion[]"]').prop('checked', false);
+              $('input[name="bancarizacion[]"]').attr('required', 'required');
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').val(''); 
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento2').val(''); 
+              $('#endeudamiento2').attr('required','required');
+              $('#endeudamiento3div').css('display', '');
+              $('#endeudamiento3').val('');
+              $('#emprendimiento2').val('');  
+              $('#endeudamiento3').attr('required','required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').val(''); 
+              $('#emprendimiento1').removeAttr('required');
+              $('#ocupadosdiv').css('display', 'none');
+              $('#ocupados').val(''); 
+              $('#ocupados').removeAttr('required');
+              $('#formalidaddelempleodiv').css('display', 'none');
+              $('#formalidaddelempleo').val(''); 
+              $('#formalidaddelempleo').removeAttr('required');
+             }
+             })
+
+
+             $('#desempleo').change(function(){
+              if($('#desempleo').val() == '152' || $('#desempleo').val() == '153'){
+                $('#intermediacionlaboraldiv').css('display','');
+                $('#intermediacionlaboral').attr('required','required');
+                $('#intermediacionlaboral').val('');
+              }else{
+                $('#intermediacionlaboraldiv').css('display','none');
+                $('#intermediacionlaboral').removeAttr('required');
+                $('#intermediacionlaboral').val('');
+              }
+              if($('#desempleo').val() == '154' || $('#desempleo').val() == '155'){
+                $('#emprendimiento1div').css('display','');
+                $('#emprendimiento1').attr('required','required');
+                $('#emprendimiento1').val('');
+              }else{
+                $('#emprendimiento1div').css('display','none');
+                $('#emprendimiento1').removeAttr('required');
+                $('#emprendimiento1').val('');
+              }
+
+
           });
+
+// FIN DE 18 a 66
+
+
+          $('#endeudamiento1').change(function(){
+              if($('#endeudamiento1').val() == '1'){
+                $('#endeudamiento3div').css('display','');
+                $('#endeudamiento2div').css('display','');
+                $('#endeudamiento3').attr('required','required');
+                $('#endeudamiento2').attr('required','required');
+                $('#endeudamiento2').val(''); 
+                $('#endeudamiento3').val(''); 
+              }else{
+                $('#endeudamiento3div').css('display','none');
+                $('#endeudamiento2div').css('display','none');
+                $('#endeudamiento2').removeAttr('required');
+                $('#endeudamiento3').removeAttr('required');
+                $('#endeudamiento2').val(''); 
+                $('#endeudamiento3').val(''); 
+              }
+             })
+
+
+             if( $('#edadintegrante').val() >= '15' && $('#edadintegrante').val() <= '18'){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').val(''); 
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2').val('');
+              $('input[name="trabajoinfantil[]"]').prop('checked', false);
+              $('#trabajo15a17anhosdiv').css('display', '');
+              $('#trabajo15a17anhos').val(''); 
+              $('#trabajo15a17anhos').attr('required','required');
+              $('#ocupadosdiv').css('display', '');
+              $('#ocupados').val(''); 
+              $('#ocupados').attr('required','required');
+              $('#formalidaddelempleodiv').css('display', '');
+              $('#formalidaddelempleo').val(''); 
+              $('#formalidaddelempleo').attr('required','required');
+              $('#ingresos2div').css('display', '');
+              $('#ingresos2').val(''); 
+              $('#ingresos2').attr('required','required');         
+              $('#ingresos3div').css('display', '');
+              $('#ingresos3').val(''); 
+              $('#ingresos3').attr('required','required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+              $('input[name="bancarizacion[]"]').attr('required', 'required');
+              $('input[name="bancarizacion[]"]').prop('checked', false);
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').val(''); 
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento2').val(''); 
+              $('#endeudamiento2').attr('required','required');
+              $('#endeudamiento3div').css('display', '');
+              $('#endeudamiento3').val(''); 
+              $('#endeudamiento3').attr('required','required');
+              $('#desempleodelargaduraciondiv').css('display', 'none');
+              $('#desempleodelargaduracion').val(''); 
+              $('#desempleodelargaduracion').removeAttr('required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').val(''); 
+              $('#desempleo').removeAttr('required');
+             }
 
           if($('#edadintegrante').val() <= '14'){
               $('.trabajoinfantil137').css('display','');
@@ -2314,8 +3020,6 @@ console.log(edad)
               $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').removeAttr('required');
-              $('input[name="trabajoinfantil[]"]').removeAttr('required');
-              $('input[name="trabajoinfantil[]"]').prop('checked', false);
               $('#trabajo15a17anhosdiv').css('display', 'none');
               $('#trabajo15a17anhos').val(''); 
               $('#trabajo15a17anhos').removeAttr('required');  
@@ -2324,7 +3028,6 @@ console.log(edad)
               $('#ingresos3div').css('display', 'none');
               $('#ingresos3').removeAttr('required');
               $('#desempleodelargaduraciondiv').css('display', 'none');
-              $('#desempleodelargaduracion').val(''); 
               $('#desempleodelargaduracion').removeAttr('required');
               $('#desempleodiv').css('display', 'none');
               $('#desempleo').removeAttr('required');
@@ -2423,6 +3126,215 @@ console.log(edad)
               $('#ocupados').removeAttr('required');
              }
 
+            
+
+             if(($('#ingresos1').val() == '135' || $('#ingresos1').val() == '' ) && ($('#edadintegrante').val() >= '15' && $('#edadintegrante').val() <= '18')){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').removeAttr('required');  
+              $('#ingresos2div').css('display', 'none');
+              $('#ingresos2').removeAttr('required');         
+              $('#ingresos3div').css('display', 'none');
+              $('#ingresos3').removeAttr('required');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').removeAttr('required');
+              $('#intermediacionlaboraldiv').css('display', 'none');
+              $('#intermediacionlaboral').removeAttr('required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+
+
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento3div').css('display', '');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').removeAttr('required');
+              $('#ocupadosdiv').css('display', 'none');
+              $('#ocupados').removeAttr('required');
+              $('#formalidaddelempleodiv').css('display', 'none');
+              $('#formalidaddelempleo').removeAttr('required');
+             }
+
+             if(($('#ingresos1').val() == '136' ) && ($('#edadintegrante').val() >= '15' && $('#edadintegrante').val() <= '18')){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').removeAttr('required');  
+              $('#ingresos3div').css('display', '');
+              $('#ingresos3').attr('required','required');         
+              $('#ingresos2div').css('display', 'none');
+              $('#ingresos2').removeAttr('required');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').removeAttr('required');
+              $('#intermediacionlaboraldiv').css('display', 'none');
+              $('#intermediacionlaboral').removeAttr('required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+
+
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento2').attr('required','required');
+              $('#endeudamiento3div').css('display', '');
+              $('#endeudamiento3').attr('required','required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').removeAttr('required');
+              $('#ocupadosdiv').css('display', 'none');
+              $('#ocupados').removeAttr('required');
+              $('#formalidaddelempleodiv').css('display', 'none');
+              $('#formalidaddelempleo').removeAttr('required');
+             }
+
+             if($('#ingresos1').val() == '134' && ($('#edadintegrante').val() >= '15' && $('#edadintegrante').val() <= '18')){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').prop('checked', false);
+              $('#trabajo15a17anhosdiv').css('display', '');
+              $('#trabajo15a17anhos').attr('required','required');
+              $('#ocupadosdiv').css('display', '');
+              $('#ocupados').attr('required','required');
+              $('#formalidaddelempleodiv').css('display', '');
+              $('#formalidaddelempleo').attr('required','required');
+              $('#ingresos2div').css('display', '');
+              $('#ingresos2').attr('required','required');         
+              $('#ingresos3div').css('display', '');
+              $('#ingresos3').attr('required','required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento3div').css('display', '');
+              $('#desempleodelargaduraciondiv').css('display', 'none');
+              $('#desempleodelargaduracion').removeAttr('required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').removeAttr('required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').removeAttr('required');     
+             }
+
+
+        
+
 
 
             if ($('#trabajoinfantil146').is(':checked')) {
@@ -2434,7 +3346,333 @@ console.log(edad)
                   $('#cualtrabajoinfantil').removeAttr('required');
 
                 }
-        
+
+
+// 18 a 66
+
+
+                if($('#ingresos1').val() == '134' && ($('#edadintegrante').val() >= '18' && $('#edadintegrante').val() <= '66')){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').removeAttr('required');
+              $('#ocupadosdiv').css('display', '');
+              $('#ocupados').attr('required','required');
+              $('#formalidaddelempleodiv').css('display', '');
+              $('#formalidaddelempleo').attr('required','required');
+              $('#ingresos3div').css('display', '');
+              $('#ingresos3').attr('required','required');         
+              $('#ingresos2div').css('display', '');
+              $('#ingresos2').attr('required','required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento3div').css('display', '');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').removeAttr('required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').removeAttr('required');
+             }
+
+               if(($('#ingresos1').val() == '135' || $('#ingresos1').val() == '' ) && ($('#edadintegrante').val() >= '18' && $('#edadintegrante').val() <= '66')){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').removeAttr('required');  
+              $('#ingresos2div').css('display', 'none');
+              $('#ingresos2').removeAttr('required');         
+              $('#ingresos3div').css('display', 'none');
+              $('#ingresos3').removeAttr('required');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', '');
+              $('#desempleo').attr('required','required');
+              $('#intermediacionlaboraldiv').css('display', 'none');
+              $('#intermediacionlaboral').removeAttr('required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+
+
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento3div').css('display', '');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').removeAttr('required');
+              $('#ocupadosdiv').css('display', 'none');
+              $('#ocupados').removeAttr('required');
+              $('#formalidaddelempleodiv').css('display', 'none');
+              $('#formalidaddelempleo').val(''); 
+              $('#formalidaddelempleo').removeAttr('required');
+             }
+
+             if(($('#ingresos1').val() == '136' ) && ($('#edadintegrante').val() >= '18' && $('#edadintegrante').val() <= '66')){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').prop('checked', false);
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').val(''); 
+              $('#trabajo15a17anhos').removeAttr('required');  
+              $('#ingresos2div').css('display', '');
+              $('#ingresos2').attr('required','required');         
+              $('#ingresos3div').css('display', '');
+              $('#ingresos3').attr('required','required');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').removeAttr('required');
+              $('#intermediacionlaboraldiv').css('display', 'none');
+              $('#intermediacionlaboral').removeAttr('required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+
+
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento2').attr('required','required');
+              $('#endeudamiento3').attr('required','required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').removeAttr('required');
+              $('#ocupadosdiv').css('display', 'none');
+              $('#ocupados').removeAttr('required');
+              $('#formalidaddelempleodiv').css('display', 'none');
+              $('#formalidaddelempleo').removeAttr('required');
+             }
+
+
+             if($('#desempleo').val() == '152' || $('#desempleo').val() == '153'){
+                $('#intermediacionlaboraldiv').css('display','');
+                $('#intermediacionlaboral').attr('required','required');
+              }else{
+                $('#intermediacionlaboraldiv').css('display','none');
+                $('#intermediacionlaboral').removeAttr('required');
+              }
+              if($('#desempleo').val() == '154' || $('#desempleo').val() == '155'){
+                $('#emprendimiento1div').css('display','');
+                $('#emprendimiento1').attr('required','required');
+              }else{
+                $('#emprendimiento1div').css('display','none');
+                $('#emprendimiento1').removeAttr('required');
+              }
+
+              if($('#endeudamiento1').val() == '1'){
+                 $('#endeudamiento3div').css('display','');
+                 $('#endeudamiento2div').css('display','');
+
+               }else{
+                 $('#endeudamiento3div').css('display','none');
+                 $('#endeudamiento2div').css('display','none');
+               }
+             
+
+             // FIN 18 a 66
+             if($('#edadintegrante').val() >= '66' ){
+          $('#ingresos1 option[value="134"]').hide();
+          $('#ingresos1 option[value="135"]').hide();     
+          console.log('mas de 66')
+        }else{
+            $('#ingresos1 option[value="134"]').show();
+            $('#ingresos1 option[value="135"]').show();
+        }
+
+
+        if(($('#ingresos1').val() == '136' ) && ($('#edadintegrante').val() >= '66' )){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('#trabajoinfantildiv').css('display','none');
+              $('#cualtrabajoinfantildiv').css('display', 'none');
+              $('#cualtrabajoinfantil').removeAttr('required');
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').removeAttr('required');  
+              $('#ingresos2div').css('display', '');
+              $('#ingresos2').attr('required','required');         
+              $('#ingresos3div').css('display', '');
+              $('#ingresos3').attr('required','required');
+              $('#desempleodelargaduraciondiv').css('display', '');
+              $('#desempleodelargaduracion').attr('required','required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').removeAttr('required');
+              $('#intermediacionlaboraldiv').css('display', 'none');
+              $('#intermediacionlaboral').removeAttr('required');
+              $('.bancarizacion157').css('display','');
+              $('#bancarizacion157').css('display','');
+              $('.bancarizacion158').css('display','');
+              $('#bancarizacion158').css('display','');
+              $('.bancarizacion159').css('display','');
+              $('#bancarizacion159').css('display','');
+              $('.bancarizacion160').css('display','');
+              $('#bancarizacion160').css('display','');
+              $('.bancarizacion161').css('display','');
+              $('#bancarizacion161').css('display','');
+              $('.bancarizacion162').css('display','');
+              $('#bancarizacion162').css('display','');
+              $('.bancarizacion163').css('display','');
+              $('#bancarizacion163').css('display','');
+              $('.bancarizacion164').css('display','');
+              $('#bancarizacion164').css('display','');
+              $('#bancarizaciondiv').css('display','');
+
+
+              $('#endeudamiento1div').css('display', '');
+              $('#endeudamiento1').attr('required','required');
+              $('#endeudamiento2div').css('display', '');
+              $('#endeudamiento3div').css('display', '');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').removeAttr('required');
+              $('#ocupadosdiv').css('display', 'none');
+              $('#ocupados').removeAttr('required');
+              $('#formalidaddelempleodiv').css('display', 'none');
+              $('#formalidaddelempleo').removeAttr('required');
+             }
+
+             if($('#endeudamiento1').val() == '1'){
+                 $('#endeudamiento3div').css('display','');
+                 $('#endeudamiento2div').css('display','');
+
+               }else{
+                 $('#endeudamiento3div').css('display','none');
+                 $('#endeudamiento2div').css('display','none');
+               }
 
          },
         error: function(xhr, status, error) {
