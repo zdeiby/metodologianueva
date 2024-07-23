@@ -309,7 +309,7 @@
           </select>
           </div>
           <div class="col-md-6" id="migrantes2div">
-            <label for="validationServer04" class="form-label">¿Qué instancias has utilizado para la regularización e identificación en el territorio nacional?.</label>
+            <label for="validationServer04" class="form-label">¿Qué instancias has utilizado para la regularización e identificación en el territorio nacional?</label>
             <select class="form-control form-control-sm" id="migrantes2" name="migrantes2" aria-describedby="validationServer04Feedback" required="">
             {{!!$migrantes2!!}}
           </select>
