@@ -115,7 +115,7 @@
             <input type="text" placeholder="idintegrante" class="form-control form-control-sm  " id="idintegrante1" name="idintegrante" value="" >
           </div>
 
-            <label for="validationServer04" class="form-label">¿Cuál es tu nombre completo?</label>
+            <label for="validationServer04" class="form-label">¿Cuál es tu nombre completo?xxx</label>
           <div class="col-md-3">
             <input type="text" class="form-control form-control-sm " placeholder="Nombre 1" oninput="convertirAMayusculas(this)" id="nombre1"  name="nombre1" value="" required>
           </div>
