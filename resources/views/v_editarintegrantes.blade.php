@@ -188,13 +188,13 @@
             <input type="number" class="form-control form-control-sm "  name="documento"  id="documento" value="" >
           </div>
           <div class="col-md">
-                <label for="validationServer04" class="form-label">¿Eres el/la representante del hogar?</label>
+                <label for="validationServer04" class="form-label">¿Eres el/la jefe del hogar?</label>
                 <select class="form-control form-control-sm" id="representante" name="representante" aria-describedby="validationServer04Feedback" required="">
                 {{!!$sino!!}}
               </select>
             </div>
             <div class="col-md">
-                <label for="validationServer04" class="form-label">¿Cuál es tu sexo?</label>
+                <label for="validationServer04" class="form-label">¿Cuál es tu sexo de nacimiento?</label>
                 <select class="form-control form-control-sm" id="sexo" name="sexo" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sexo!!}}
                 </select>
@@ -247,13 +247,13 @@
                 </select>
           </div>
           <div class="col-md-4" id="situacionmilitardiv">
-            <label for="validationServer04" class="form-label">¿Tienes resuelta su situación militar?</label>
+            <label for="validationServer04" class="form-label">¿Tienes resuelta tu situación militar?</label>
             <select class="form-control form-control-sm" id="situacionmilitar" name="situacionmilitar" aria-describedby="validationServer04Feedback" >
             {{!!$sino!!}}         
              </select>
           </div>
           <div class="col-md-6" id="orientaciondiv">
-            <label for="validationServer04" class="form-label">¿Cuál es tu orientación sexual?            </label>
+            <label for="validationServer04" class="form-label">¿Cuál es tu orientación sexual?</label>
             <select class="form-control form-control-sm" id="orientacion" name="orientacion" aria-describedby="validationServer04Feedback" required="">
             {{!!$orientacion!!}}
           </select>
@@ -291,7 +291,7 @@
           </select>
           </div>
           <div class="col-md-6" id="victima2div">
-            <label for="validationServer04" class="form-label">¿Estás reconocido como víctima del conflicto armado colombiano y cuentas con RUV?            </label>
+            <label for="validationServer04" class="form-label">¿Estás reconocido como víctima del conflicto armado colombiano y cuentas con RUV?</label>
             <select class="form-control form-control-sm" id="victima2" name="victima2" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
@@ -303,13 +303,13 @@
           </select>
           </div>
           <div class="col-md-6" id="migrantes1div">
-            <label for="validationServer04" class="form-label">¿Requieres  asistencia para su regularización e identificación en el territorio nacional?</label>
+            <label for="validationServer04" class="form-label">¿Requieres  asistencia para la regularización e identificación en el territorio nacional?</label>
             <select class="form-control form-control-sm" id="migrantes1" name="migrantes1" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
           </div>
           <div class="col-md-6" id="migrantes2div">
-            <label for="validationServer04" class="form-label">¿Qué instancias has utilizado el hogar para la regularización e identificación en el territorio nacional?</label>
+            <label for="validationServer04" class="form-label">¿Qué instancias has utilizado para la regularización e identificación en el territorio nacional?</label>
             <select class="form-control form-control-sm" id="migrantes2" name="migrantes2" aria-describedby="validationServer04Feedback" required="">
             {{!!$migrantes2!!}}
           </select>
