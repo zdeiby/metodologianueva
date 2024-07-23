@@ -644,7 +644,13 @@
 
 
 
-
+            if($('#migrantes2').val() == '41'){
+                $('#cualongdiv').css('display','');
+                $('#cualong').attr('required', 'required');
+              }else{
+                $('#cualongdiv').css('display','none');
+                $('#cualong').removeAttr('required');
+              }
 
            
 
