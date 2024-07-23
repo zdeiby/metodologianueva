@@ -429,24 +429,28 @@
           <div class="col-md-3" style="display:none">
             <input type="text"  class="form-control form-control-sm  " id="idintegrante4" name="idintegrante" value="" required="">
           </div>
-        <div class="col-md-12">
+        <div class="col-md-12" id="mecanismosdeproteccionddhhdiv">
                   <label for="validationServer04" class="form-label">¿Conoces las instituciones de administración de justicia y de garantía de derechos existentes en el territorio?</label>
                   <select class="form-control form-control-sm" id="mecanismosdeproteccionddhh" name="mecanismosdeproteccionddhh" aria-describedby="validationServer04Feedback" required="">
                     {{!!$sino!!}}
                 </select>
                 </div>
         
-          <div class="col-md-12">
+          <div class="col-md-12" id="mecanismosdeproteccionddhh3div">
             <label for="validationServer04" class="form-label">¿De cuáles de las siguientes instituciones para la protección y garantía de tus derechos has hecho uso?</label>
             <div class="form-check form-switch" id="container-mecanismosdeproteccionddhh3">
                       {!!$mecanismosdeproteccionddhh3!!} 
                     </div>
           </div>
-          <div class="col-md-12">
+          <div class="col-md-12" id="mecanismoaccionconstitucionaldiv">
             <label for="validationServer04" class="form-label">¿Has usado alguno de los mecanismo o acción constitucional para la protección de los derechos humanos?</label>
             <select class="form-control form-control-sm" id="mecanismoaccionconstitucional" name="mecanismoaccionconstitucional" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}     
                 </select>
+          </div>
+
+          <div style="display:mne" id="menorespreguntaslegaldiv">
+            Las preguntas de Bienestar legal no aplican para integrantes menores de edad, para continuar clic en guardar y luego siguiente.
           </div>
          
           <hr>
@@ -2133,6 +2137,8 @@ if(($('#ingresos1').val() == '136' ) && ($('#edadintegrante').val() >= '66' )){
 
                 }
               });
+
+         
           
 
     function calcularEdad(fechaNacimiento) {
@@ -3673,6 +3679,86 @@ console.log(edad)
                  $('#endeudamiento3div').css('display','none');
                  $('#endeudamiento2div').css('display','none');
                }
+
+
+               if($('#edadintegrante').val() >= '18'){
+                $('#mecanismosdeproteccionddhhdiv').css('display','');
+                $('#mecanismosdeproteccionddhh').attr('required','required');
+                $('.mecanismosdeproteccionddhh3165').css('display','');
+                $('#mecanismosdeproteccionddhh3165').css('display','');
+                $('.mecanismosdeproteccionddhh3166').css('display','');
+                $('#mecanismosdeproteccionddhh3166').css('display','');
+                $('.mecanismosdeproteccionddhh3167').css('display','');
+                $('#mecanismosdeproteccionddhh3167').css('display','');
+                $('.mecanismosdeproteccionddhh3168').css('display','');
+                $('#mecanismosdeproteccionddhh3168').css('display','');
+                $('.mecanismosdeproteccionddhh3169').css('display','');
+                $('#mecanismosdeproteccionddhh3169').css('display','');
+                $('.mecanismosdeproteccionddhh3170').css('display','');
+                $('#mecanismosdeproteccionddhh3170').css('display','');
+                $('.mecanismosdeproteccionddhh3171').css('display','');
+                $('#mecanismosdeproteccionddhh3171').css('display','');
+                $('.mecanismosdeproteccionddhh3172').css('display','');
+                $('#mecanismosdeproteccionddhh3172').css('display','');
+                $('.mecanismosdeproteccionddhh3173').css('display','');
+                $('#mecanismosdeproteccionddhh3173').css('display','');
+                $('.mecanismosdeproteccionddhh3174').css('display','');
+                $('#mecanismosdeproteccionddhh3174').css('display','');
+                $('.mecanismosdeproteccionddhh3175').css('display','');
+                $('#mecanismosdeproteccionddhh3175').css('display','');
+                $('.mecanismosdeproteccionddhh3176').css('display','');
+                $('#mecanismosdeproteccionddhh3176').css('display','');
+                $('.mecanismosdeproteccionddhh3177').css('display','');
+                $('#mecanismosdeproteccionddhh3177').css('display','');
+                $('.mecanismosdeproteccionddhh3178').css('display','');
+                $('#mecanismosdeproteccionddhh3178').css('display','');
+                $('input[name="trabajoinfantil[]"]').prop('checked', false);
+                $('#mecanismoaccionconstitucionaldiv').css('display','');
+                $('#mecanismoaccionconstitucional').attr('required','required');
+                
+              }
+
+               if($('#edadintegrante').val() >= '0' && $('#edadintegrante').val() <= '17'){
+                 $('#mecanismosdeproteccionddhhdiv').css('display','none');
+                 $('#mecanismosdeproteccionddhh').val('0');
+                 $('#mecanismosdeproteccionddhh').removeAttr('required');
+                 $('.mecanismosdeproteccionddhh3165').css('display','none');
+                 $('#mecanismosdeproteccionddhh3165').css('display','none');
+                 $('.mecanismosdeproteccionddhh3166').css('display','none');
+                 $('#mecanismosdeproteccionddhh3166').css('display','none');
+                 $('.mecanismosdeproteccionddhh3167').css('display','none');
+                 $('#mecanismosdeproteccionddhh3167').css('display','none');
+                 $('.mecanismosdeproteccionddhh3168').css('display','none');
+                 $('#mecanismosdeproteccionddhh3168').css('display','none');
+                 $('.mecanismosdeproteccionddhh3169').css('display','none');
+                 $('#mecanismosdeproteccionddhh3169').css('display','none');
+                 $('.mecanismosdeproteccionddhh3170').css('display','none');
+                 $('#mecanismosdeproteccionddhh3170').css('display','none');
+                 $('.mecanismosdeproteccionddhh3171').css('display','none');
+                 $('#mecanismosdeproteccionddhh3171').css('display','none');
+                 $('.mecanismosdeproteccionddhh3172').css('display','none');
+                 $('#mecanismosdeproteccionddhh3172').css('display','none');
+                 $('.mecanismosdeproteccionddhh3173').css('display','none');
+                 $('#mecanismosdeproteccionddhh3173').css('display','none');
+                 $('.mecanismosdeproteccionddhh3174').css('display','none');
+                 $('#mecanismosdeproteccionddhh3174').css('display','none');
+                 $('.mecanismosdeproteccionddhh3175').css('display','none');
+                 $('#mecanismosdeproteccionddhh3175').css('display','none');
+                 $('.mecanismosdeproteccionddhh3176').css('display','none');
+                 $('#mecanismosdeproteccionddhh3176').css('display','none');
+                 $('.mecanismosdeproteccionddhh3177').css('display','none');
+                 $('#mecanismosdeproteccionddhh3177').css('display','none');
+                 $('.mecanismosdeproteccionddhh3178').css('display','none');
+                 $('#mecanismosdeproteccionddhh3178').css('display','none');
+                 $('#mecanismosdeproteccionddhh3div').css('display','none');
+                 $('input[name="trabajoinfantil[]"]').prop('checked', false);
+                 $('#mecanismoaccionconstitucionaldiv').css('display','none');
+                 $('#mecanismoaccionconstitucional').val('0');
+                 $('#mecanismoaccionconstitucional').removeAttr('required');
+                 $('#menorespreguntaslegaldiv').css('display','');
+                 
+            
+              }
 
          },
         error: function(xhr, status, error) {
