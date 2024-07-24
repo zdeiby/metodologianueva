@@ -256,7 +256,7 @@
                 </select>
           </div>
           <div class="col-md-6" id="niveleducativo2div" style="display:none">
-            <label for="validationServer04" class="form-label">¿Cuál fue el último grado alcanzado?</label>
+            <label for="validationServer04" class="form-label">¿Cuál fue el último grado que alcanzaste?</label>
             <select class="form-control form-control-sm" id="niveleducativo2" name="niveleducativo2" aria-describedby="validationServer04Feedback" >
             {{!!$niveleducativo2!!}}         
              </select>
@@ -353,11 +353,11 @@
           </select>
           </div>
           <div class="col-md-12" id="ingresos2div">
-            <label for="validationServer04" class="form-label">¿A cuánto ascienden tus ingresos fijos al mes?   (ingresos por alguna renta o pensión de jubilación, subsidios, etc)</label>
+            <label for="validationServer04" class="form-label">¿A cuánto ascienden tus ingresos fijos al mes? (ingresos por alguna renta o pensión de jubilación, subsidios, etc)</label>
             <input type="number"  class="form-control form-control-sm  " id="ingresos2" name="ingresos2" value="" required="">
           </div>
           <div class="col-md-12" id="ingresos3div">
-            <label for="validationServer04" class="form-label">¿A cuánto ascienden tus ingresos fijos al mes? (horas extras, comisiones, premios, ganancia por alguna inversión que haga, trabajos independientes)</label>
+            <label for="validationServer04" class="form-label">¿A cuánto ascienden tus ingresos variables al mes? (horas extras, comisiones, premios, ganancia por alguna inversión que haga, trabajos independientes)</label>
             <input type="number"  class="form-control form-control-sm  " id="ingresos3" name="ingresos3" value="" required="">
           </div>
           <div class="col-md-6" id="desempleodelargaduraciondiv">
@@ -365,7 +365,7 @@
             <input type="number"  class="form-control form-control-sm  " id="desempleodelargaduracion" name="desempleodelargaduracion" value="" required="">
           </div>
           <div class="col-md-6" id="desempleodiv">
-            <label for="validationServer04" class="form-label">¿Qué expectativas tiene para generar ingresos?</label>
+            <label for="validationServer04" class="form-label">¿Qué expectativa tienes para generar ingresos?</label>
             <select class="form-control form-control-sm" id="desempleo" name="desempleo" aria-describedby="validationServer04Feedback" required="">
             {{!!$desempleo!!}}
           </select>
@@ -383,7 +383,7 @@
           </select>
           </div>
           <div class="col-md-12" id="bancarizaciondiv">
-            <label for="validationServer04" class="form-label">¿Cuáles mecanismos o productos financieros conoced y has usado o usa en la actualidad?</label>
+            <label for="validationServer04" class="form-label">¿Cuáles mecanismos o productos financieros conoces, has usado o usas en la actualidad?</label>
             <div class="form-check form-switch" id="container-bancarizacion">
                       {!!$bancarizacion!!} 
                     </div>
@@ -395,7 +395,7 @@
           </select>
           </div>
           <div class="col-md-12" id="endeudamiento3div">
-          <label for="validationServer04" class="form-label">A cuánto equivalen las deudas que tienes actualmente?</label>
+          <label for="validationServer04" class="form-label">¿A cuánto equivalen las deudas que tienes actualmente?</label>
             <input type="number"  class="form-control form-control-sm  " id="endeudamiento3" name="endeudamiento3" value="" required="">
           </div>
           <div class="col-md-12" id="endeudamiento2div">
@@ -429,7 +429,7 @@
             <input type="text"  class="form-control form-control-sm  " id="idintegrante4" name="idintegrante" value="" required="">
           </div>
         <div class="col-md-12" id="mecanismosdeproteccionddhhdiv">
-                  <label for="validationServer04" class="form-label">¿Conoces las instituciones de administración de justicia y de garantía de derechos existentes en el territorio?</label>
+                  <label for="validationServer04" class="form-label">¿Conoces las instituciones de administración de justicia y de garantía de derechos?</label>
                   <select class="form-control form-control-sm" id="mecanismosdeproteccionddhh" name="mecanismosdeproteccionddhh" aria-describedby="validationServer04Feedback" required="">
                     {{!!$sino!!}}
                 </select>
