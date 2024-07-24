@@ -19,6 +19,9 @@
   }
 </style>
 
+
+
+
 <div class="container">
     <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class=""  >
 <!-- <form class="d-flex pb-4" role="search">
