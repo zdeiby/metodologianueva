@@ -115,7 +115,7 @@
                       </select>
           </div>
           <div class="col-md-12 acceso2">
-            <label for="validationServer04" class="form-label ">Accediste al servicios en tu EPS, IPS o servicio particular según esa necesidad?</label>
+            <label for="validationServer04" class="form-label ">¿Accediste a servicios en tu EPS, IPS o servicio particular según esa necesidad?</label>
             <select class="form-control form-control-sm" id="acceso2" name="acceso2" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
           </select>
@@ -140,20 +140,19 @@
           </div>
 
           <div class="col-md-6" id="atenciondiscapacidaddiv">
-            <label for="validationServer04" class="form-label">¿Accedes o ha accedido a los servicios de salud  según tu necesidad?
-            </label>
+            <label for="validationServer04" class="form-label">¿Accedes o has accedido a los servicios de salud  según tu necesidad?</label>
             <select class="form-control form-control-sm" id="atenciondiscapacidad" name="atenciondiscapacidad" aria-describedby="validationServer04Feedback" required="">
             {{!!$atenciondiscapacidad!!}}
           </select>
           </div>
           <div class="col-md-6" id="certificadodiscapacidaddiv">
-                  <label for="validationServer04" class="form-label">¿Cuentas con certificado de discapacidad?</label>
+                  <label for="validationServer04" class="form-label">¿Cuentas con certificado de discapacidad expedido por Alcaldía de Medellín o el soporte médico correspondiente?</label>
                   <select class="form-control form-control-sm" id="certificadodiscapacidad" name="certificadodiscapacidad" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sino!!}}
                 </select>
                 </div>
                 <div class="col-md-12" id="consumospa1div">
-                  <label for="validationServer04" class="form-label">¿Presentas consumo SPA? (incluyendo sustancias legales como el tabajo y el alcohol).</label>
+                  <label for="validationServer04" class="form-label">¿Presentas consumo SPA? (incluyendo sustancias legales como el tabaco y el alcohol).</label>
                   <select class="form-control form-control-sm" id="consumospa1" name="consumospa1" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sino!!}}
                 </select>
