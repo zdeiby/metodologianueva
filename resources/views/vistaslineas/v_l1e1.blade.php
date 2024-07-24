@@ -672,15 +672,26 @@
 
                 // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
                 if(Array.isArray(condicionespecial) && condicionespecial.length > 0) {
-                  $('#condicionespecial-container input[type="checkbox"]').change(function() {
-        var conditionId = $(this).val();
-        if ($(this).is(':checked')) {
-            $('#integrantes-' + conditionId + '-container').show(); // Mostrar el contenedor de integrantes específico
-        } else {
-            $('#integrantes-' + conditionId + '-container').hide(); // Ocultar el contenedor de integrantes específico
-            $('#integrantes-' + conditionId + '-container input[type="checkbox"]').prop('checked', false); // Deseleccionar los integrantes
-        }
-    });}
+                    condicionespecial.forEach(function(item) {
+                        var conditionId = item.id;
+                        var valor = item.valor;
+                        var integrantes = item.idintegrante || [];
+
+                        if (valor === "SI") {
+                            $('#condicionespecial' + conditionId).prop('checked', true);
+                            $('#integrantes-condicionespecial' + conditionId + '-container').show(); // Mostrar el contenedor de integrantes específico
+
+                            // Marcar los integrantes correspondientes
+                            integrantes.forEach(function(integranteId) {
+                                $('#integrantes-condicionespecial' + conditionId + '-container input[value="' + integranteId + '"]').prop('checked', true);
+                            });
+                        } else {
+                            $('#condicionespecial' + conditionId).prop('checked', false);
+                            $('#integrantes-condicionespecial' + conditionId + '-container').hide(); // Ocultar el contenedor de integrantes específico
+                        }
+                    });}
+
+
                 if(Array.isArray(familiacuidadora) && familiacuidadora.length > 0) {
                 $('#familiacuidadora-container input[type="checkbox"]').each(function() {
                   let found = familiacuidadora.find(item => item.id === this.value );
@@ -915,18 +926,34 @@
                                    // console.log(xhr.responseText);
                                 }
                         })
-                      
-              if ($('input[name="laboresdecuidado[]"]:visible:checked').length > 0) {
-                $('input[name="laboresdecuidado[]"]').removeAttr('required');
-              }else{
-                $('input[name="laboresdecuidado[]"]:hidden').removeAttr('required');
-              }
 
-              if ($('input[name="condicionespecial[]"]:visible:checked').length > 0) {
-                $('input[name="condicionespecial[]"]').removeAttr('required');
-              }else{
-                $('input[name="condicionespecial[]"]:hidden').removeAttr('required');
-              }
+
+                        if ($('input[name="laboresdecuidado[]"]:visible:checked').length > 0) {
+                                $('input[name="laboresdecuidado[]"]').removeAttr('required');
+                              }else{
+                                $('input[name="laboresdecuidado[]"]:hidden').removeAttr('required');
+                              }
+                          
+                    
+
+                              
+                    if ($('input[name="condicionespecial[]"]:visible:checked').length > 0) {
+                          $('input[name="condicionespecial[]"]').removeAttr('required');
+                      } else {
+                          $('input[name="condicionespecial[]"]:hidden').removeAttr('required');
+                      }
+
+
+                      if ($('#condicionespecial196').is(':checked')) {
+                                // Desmarcar todos los otros checkboxes y ocultar sus contenedores de integrantes
+                                $('#condicionespecial-container input[type="checkbox"]').not('#condicionespecial196').prop('checked', false);
+                                $('.integrantes-container').hide();
+                                $('.integrantes-container input[type="checkbox"]').prop('checked', false);
+                            }
+                            
+                     
+
+               
          },
         error: function(xhr, status, error) {
                   //console.log(xhr.responseText);
@@ -996,55 +1023,62 @@
        
 
        $(document).ready(function() {
-        $('#formconformacionfamiliar').on('submit', function(event) {
+     
+
+
+
+
+
+          $('#formconformacionfamiliar').on('submit', function (event) {
         event.preventDefault(); // Detiene el envío del formulario
 
         var formData = $(this).serializeArray();
         var data = {
-          'condicionespecial': [
-                { id: '191', valor: 'NO', idintegrante: [] },
-                { id: '192', valor: 'NO', idintegrante: [] },
-                { id: '193', valor: 'NO', idintegrante: [] },
-                { id: '194', valor: 'NO', idintegrante: [] },
-                { id: '195', valor: 'NO', idintegrante: [] },
-                { id: '196', valor: 'NO', idintegrante: [] }
-            ],
-              'familiacuidadora': [
-                  { id: '197', valor: 'NO' },
-                  { id: '198', valor: 'NO' },
-                  { id: '199', valor: 'NO' },
-                  { id: '200', valor: 'NO' },
-              ],
-            
-          };
-          $(formData).each(function(index, obj) {
+            'condicionespecial': [],
+            'familiacuidadora': [],
+            'laboresdecuidado': []
+        };
+
+        $(formData).each(function (index, obj) {
             var name = obj.name.replace('[]', '');
             var selector = '[name="' + obj.name + '"][value="' + obj.value + '"]';
             var element = $(selector);
-            var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
+            var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA');
 
             if (name === 'condicionespecial') {
-                // Buscar el objeto con el mismo id
                 var existingIndex = data[name].findIndex(item => item.id === obj.value);
                 if (existingIndex !== -1) {
-                    // Reemplazar el valor del objeto existente
                     data[name][existingIndex].valor = respuesta;
 
-                    // Agregar integrantes seleccionados
                     var integrantes = [];
-                    $('#integrantes-condicionespecial' + obj.value + '-container input[type="checkbox"]:checked').each(function() {
-                        integrantes.push($(this).val());
+                    $('#integrantes-condicionespecial' + obj.value + '-container input[type="checkbox"]:checked').each(function () {
+                        var integranteId = $(this).val();
+                        if (!integrantes.includes(integranteId)) {
+                            integrantes.push(integranteId);
+                        }
                     });
                     data[name][existingIndex].idintegrante = integrantes;
                 } else {
-                    // Agregar un nuevo objeto si no existe
+                    var newIntegrantes = $('#integrantes-condicionespecial' + obj.value + '-container input[type="checkbox"]:checked').map(function () {
+                        return $(this).val();
+                    }).get();
+
                     data[name].push({
                         id: obj.value,
                         valor: respuesta,
-                        idintegrante: $('#integrantes-condicionespecial' + obj.value + '-container input[type="checkbox"]:checked').map(function() {
-                            return $(this).val();
-                        }).get()
+                        idintegrante: newIntegrantes
                     });
+                }
+            } else if (name === 'familiacuidadora') {
+                var existingIndex = data[name].findIndex(item => item.id === obj.value);
+                if (existingIndex !== -1) {
+                    data[name][existingIndex].valor = respuesta;
+                } else {
+                    data[name].push({ id: obj.value, valor: respuesta });
+                }
+            } else if (name === 'laboresdecuidado') {
+                if (!data[name].includes(obj.value)) {
+                    data[name].push(obj.value);
                 }
             } else {
                 if (data[name]) {
@@ -1059,47 +1093,72 @@
             }
         });
 
-// Asegurar que todos los elementos en `condicionespecial` tienen un valor de 'respuesta'
-data['condicionespecial'].forEach(item => {
+        data['condicionespecial'].forEach(item => {
             var selector = '[name="condicionespecial[]"][value="' + item.id + '"]';
             if ($(selector).length === 0 || $(selector).is(':hidden')) {
                 item.valor = 'NO APLICA';
             }
         });
 
-  data['familiacuidadora'].forEach(item => {
-      var selector = '[name="familiacuidadora[]"][value="' + item.id + '"]';
-      if ($(selector).length === 0 || $(selector).is(':hidden')) {
-          item.valor = 'NO APLICA';
-      }
-  });
+        data['familiacuidadora'].forEach(item => {
+            var selector = '[name="familiacuidadora[]"][value="' + item.id + '"]';
+            if ($(selector).length === 0 || $(selector).is(':hidden')) {
+                item.valor = 'NO APLICA';
+            }
+        });
 
-        console.log(data);
-
-        // Enviar los datos usando AJAX
-          $.ajax({
-              url: '../conformacionfamiliar',
-              method: $(this).attr('method'),
-              data: {data: data},
-              success: function(response) {
-                $('#siguiente').css('display','');
+        $.ajax({
+            url: '../conformacionfamiliar',
+            method: $(this).attr('method'),
+            data: { data: data },
+            success: function (response) {
+                $('#siguiente').css('display', '');
                 $('#datosgeograficos').removeAttr('disabled');
-              },
-              error: function(xhr, status, error) {
-                  console.error(error);
-              }
-          });
-     });
+            },
+            error: function (xhr, status, error) {
+            }
+        });
+    });
 
-     $('#condicionespecial-container input[type="checkbox"]').change(function() {
-        var conditionId = $(this).val();
+    $('#condicionespecial196').change(function() {
         if ($(this).is(':checked')) {
-            $('#integrantes-condicionespecial' + conditionId + '-container').show(); // Mostrar el contenedor de integrantes específico
-        } else {
-            $('#integrantes-condicionespecial' + conditionId + '-container').hide(); // Ocultar el contenedor de integrantes específico
-            $('#integrantes-condicionespecial' + conditionId + '-container input[type="checkbox"]').prop('checked', false); // Deseleccionar los integrantes
+            // Desmarcar todos los otros checkboxes y ocultar sus contenedores de integrantes
+            $('#condicionespecial-container input[type="checkbox"]').not(this).prop('checked', false).trigger('change');
+            $('.integrantes-container').hide();
+            $('.integrantes-container input[type="checkbox"]').prop('checked', false);
         }
     });
+
+    $('#condicionespecial-container input[type="checkbox"]').not('#condicionespecial196').change(function() {
+        if ($(this).is(':checked')) {
+            // Desmarcar el checkbox de "Ninguna"
+            $('#condicionespecial196').prop('checked', false);
+        }
+    });
+
+
+
+
+    $('input[name="laboresdecuidado[]"]').change(function () {
+        if ($('input[name="laboresdecuidado[]"]:visible:checked').length > 0) {
+            $('input[name="laboresdecuidado[]"]').removeAttr('required');
+        } else {
+            $('input[name="laboresdecuidado[]"]').attr('required', 'required');
+        }
+    });
+
+    $('input[name="condicionespecial[]"]').change(function () {
+        if ($('input[name="condicionespecial[]"]:visible:checked').length > 0) {
+            $('input[name="condicionespecial[]"]').removeAttr('required');
+        } else {
+            $('input[name="condicionespecial[]"]').attr('required', 'required');
+        }
+    });
+
+
+
+
+
 
     $('#formdatosgeograficos').on('submit', function(event) {
         event.preventDefault(); // Detiene el envío del formulario
@@ -1583,21 +1642,46 @@ $('#ubicacion').change(function(){
 });
 
 
-$('input[name="laboresdecuidado[]"]').change(function() {
-      if ($('input[name="laboresdecuidado[]"]:visible:checked').length > 0) {
-          $('input[name="laboresdecuidado[]"]').removeAttr('required');
-        }else{
-          $('input[name="laboresdecuidado[]"]').attr('required', 'required');
-        }
-      });
 
-      $('input[name="condicionespecial[]"]').change(function() {
-      if ($('input[name="condicionespecial[]"]:visible:checked').length > 0) {
-          $('input[name="condicionespecial[]"]').removeAttr('required');
-        }else{
-          $('input[name="condicionespecial[]"]').attr('required', 'required');
+ 
+
+
+
+   
+
+    // Manejar el cambio de los otros checkboxes
+  
+    // Mostrar/ocultar el contenedor de integrantes según la selección de condiciones especiales
+    $('#condicionespecial-container input[type="checkbox"]').change(function() {
+        var conditionId = $(this).val();
+        if ($(this).is(':checked')) {
+            $('#integrantes-condicionespecial' + conditionId + '-container').show(); // Mostrar el contenedor de integrantes específico
+        } else {
+            $('#integrantes-condicionespecial' + conditionId + '-container').hide(); // Ocultar el contenedor de integrantes específico
+            $('#integrantes-condicionespecial' + conditionId + '-container input[type="checkbox"]').prop('checked', false); // Deseleccionar los integrantes
         }
-      });
+    });
+
+    // Validar los checkboxes de "laboresdecuidado"
+    $('input[name="laboresdecuidado[]"]').change(function() {
+        if ($('input[name="laboresdecuidado[]"]:visible:checked').length > 0) {
+            $('input[name="laboresdecuidado[]"]').removeAttr('required');
+        } else {
+            $('input[name="laboresdecuidado[]"]').attr('required', 'required');
+        }
+    });
+
+    // Validar los checkboxes de "condicionespecial"
+    $('input[name="condicionespecial[]"]').change(function() {
+        if ($('input[name="condicionespecial[]"]:visible:checked').length > 0) {
+            $('input[name="condicionespecial[]"]').removeAttr('required');
+        } else {
+            $('input[name="condicionespecial[]"]').attr('required', 'required');
+        }
+    });
+
+
+ 
 
     //SOLO LETRAS 
 

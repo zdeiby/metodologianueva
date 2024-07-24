@@ -40,14 +40,22 @@ class c_l1e1 extends Controller
               </div>';
         }
 
+        $integrantes2 = '';
+        foreach ($leerintegrantes as $value) {
+            $integrantes2 .= '<div class="integrantes2' . $value->idintegrante . '">
+                <label class="form-check-label tiempolibre' . $value->idintegrante . '"  for="integrantes2' . $value->idintegrante . '">' . $value->nombre1 .' '. $value->nombre2 .' '. $value->apellido1 .' '. $value->apellido2 . '</label>
+                <input class="form-check-input" type="checkbox"  id="integrantes2' . $value->idintegrante . '" value="' . $value->idintegrante . '" respuesta="SI" >
+                </div>';
+          }
+
         $condicionespecial = '';
                 foreach ($preguntas as $value) {
                     if ($value->id >= 191 && $value->id <= 196) {
                         $condicionespecial .= '<div class="condicionespecial' . $value->id . '">
-                            <input class="form-check-input" type="checkbox" name="condicionespecial[]" id="condicionespecial' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                            <input class="form-check-input" type="checkbox" name="condicionespecial[]" id="condicionespecial' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
                             <label class="form-check-label" for="condicionespecial' . $value->id . '">' . $value->pregunta . '</label>
                             <div class="integrantes-container" id="integrantes-condicionespecial' . $value->id . '-container" style="display: none;">
-                                ' . $integrantes . '
+                                ' . $integrantes2 . '
                             </div>
                         </div>';
                     }
