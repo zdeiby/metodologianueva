@@ -194,7 +194,7 @@
                     </div>
                 </div>
                 <div class="col-md-12" id="psicosocial2div">
-                  <label for="validationServer04" class="form-label">¿Qué estrategias implementas para  reducir el estrés y  para favorecer el bienestar emocional y fisico?</label>
+                  <label for="validationServer04" class="form-label">¿Qué estrategias implementaa para  reducir el estrés y  para favorecer el bienestar emocional y fisico?</label>
                   <div class="form-check form-switch" id="container-psicosocial2">
                       {!!$psicosocial2!!} 
                     </div>
