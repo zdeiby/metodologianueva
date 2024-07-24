@@ -188,13 +188,13 @@
             <input type="number" class="form-control form-control-sm "  name="documento"  id="documento" value="" >
           </div>
           <div class="col-md">
-                <label for="validationServer04" class="form-label">¿Eres el/la representante del hogar?</label>
+                <label for="validationServer04" class="form-label">¿Eres el/la jefe del hogar?</label>
                 <select class="form-control form-control-sm" id="representante" name="representante" aria-describedby="validationServer04Feedback" required="">
                 {{!!$sino!!}}
               </select>
             </div>
             <div class="col-md">
-                <label for="validationServer04" class="form-label">¿Cuál es tu sexo?</label>
+                <label for="validationServer04" class="form-label">¿Cuál es tu sexo de nacimiento?</label>
                 <select class="form-control form-control-sm" id="sexo" name="sexo" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sexo!!}}
                 </select>
