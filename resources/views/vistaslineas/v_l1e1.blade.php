@@ -104,12 +104,43 @@
             {{!!$sino!!}}
           </select>
           </div></br>
-          <div class="col-md-12">
+          <div class="col-md-12 laboresdecuidadodiv">
+            <label for="validationServer04" class="form-label ">¿Quiénes en tu hogar realizan labores domésticas no remuneradas? (cuidado indirecto).</label>
+            <div class="form-check form-switch" id='laboresdecuidado-container'>
+                {!!$integrantes!!}
+               </div>
+          </div>
+        </br>
+          <!-- <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Tu hogar se encuentra en alguna de las siguientes condiciones?</label>
             <div class="form-check form-switch" id='condicionespecial-container'>
                 {!!$condicionespecial!!}
                </div>
-          </div>
+          </div> -->
+
+
+<style>
+.condicion-item {
+    margin-bottom: 20px;
+}
+
+.integrantes-container {
+    margin-left: 20px;
+}
+
+
+</style>
+
+
+<div class="col-md-12">
+    <label for="validationServer04" class="form-label">¿Tu hogar se encuentra en alguna de las siguientes condiciones?</label>
+    <div class="form-check form-switch" id="condicionespecial-container">
+        {!! $condicionespecial !!}
+    </div>
+</div>
+
+
+
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">Las labores de cuidado me afectan o limitan en:</label>
             <div class="form-check form-switch" id='familiacuidadora-container'>
@@ -164,13 +195,13 @@
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿En qué comuna o corregimiento está ubicada tu vivienda?</label>
             <select class="form-control form-control-sm" id="comuna" name="comuna" aria-describedby="validationServer04Feedback" required="">
-            {{!!$comunas!!}}
+              {{!!$comunas!!}}
                 </select>
           </div>
           <div class="col-md-6">
             <label for="validationServer04" class="form-label">¿En qué barrio o vereda está ubicada tu vivienda?</label>
             <select class="form-control form-control-sm" id="barrio" name="barrio" aria-describedby="validationServer04Feedback" required="">
-            {{!!$barrios!!}}
+                {{!!$barrios!!}}
              </select>
           </div>
           <div class="col-md-6">
@@ -179,7 +210,7 @@
             {{!!$ubicacion!!}}
             </select>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12"  id="campesinadiv">
             <label for="validationServer04" class="form-label">¿La vivienda o tierra donde está ubicado tu hogar tiene vocación campesina?</label>
             <select class="form-control form-control-sm" id="campesina" name="campesina" aria-describedby="validationServer04Feedback" required="">
             {{!!$sino!!}}
@@ -569,13 +600,15 @@
     } */
     $('.familiamultiespecie2').css('display','none');
 
-    $('#familiamultiespecie1').click(function(){
+    $('#familiamultiespecie1').change(function(){
       if($('#familiamultiespecie1').val() == '2' || $('#familiamultiespecie1').val() == ''){
         $('.familiamultiespecie2').css('display','none');
         $('#familiamultiespecie2').attr('required',false)
+        $('#familiamultiespecie2').val('0');
       }else{
         $('.familiamultiespecie2').css('display','');
         $('#familiamultiespecie2').attr('required',true)
+        $('#familiamultiespecie2').val('');
 
       }
     });
@@ -591,7 +624,7 @@
     if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
         edad--;
     }
-console.log(edad)
+ //console.log(edad)
     return edad;
 }
     
@@ -609,9 +642,11 @@ console.log(edad)
     //     let condicionespecial = JSON.parse(data.integrantes.condicionespecial); // ["49", "54"]
           
     // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
-                    let condicionespecial = JSON.parse(data.hogarconformacionfamiliar.condicionespecial); // ["49", "54"]
-                    let familiacuidadora = JSON.parse(data.hogarconformacionfamiliar.familiacuidadora); // ["49", "54"]
-                    
+                    let condicionespecial = JSON.parse((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.condicionespecial:'{}'); // ["49", "54"]
+                    let familiacuidadora = JSON.parse((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.familiacuidadora:'{}'); // ["49", "54"]
+                    let laboresdecuidado = JSON.parse((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.laboresdecuidado:'{}'); // ["49", "54"]
+
+
                     let serviciospublicos = JSON.parse((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.serviciospublicos:'{}'); // ["49", "54"]
                     let telecomunicaciones = JSON.parse((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.telecomunicaciones:'{}'); // ["49", "54"]
                     let documentodepropiedad = JSON.parse((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.documentodepropiedad:'{}'); // ["49", "54"]
@@ -623,38 +658,46 @@ console.log(edad)
                     let disciplinapositiva = JSON.parse((data.hogarentornofamiliar)?data.hogarentornofamiliar.disciplinapositiva:'{}'); // ["49", "54"]
                     let tiempolibre = JSON.parse((data.hogarentornofamiliar)?data.hogarentornofamiliar.tiempolibre:'{}'); // ["49", "54"]
 
+                    if (Array.isArray(laboresdecuidado) && laboresdecuidado.length > 0) {
+                        $('#laboresdecuidado-container input[type="checkbox"]').each(function() {
+                            if (laboresdecuidado.includes(this.value)) {
+                                $(this).prop('checked', true);
+                            } else {
+                                $(this).prop('checked', false);
+                            }
+                        });
+                    }
+
+
 
                 // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
-                $('#condicionespecial-container input[type="checkbox"]').each(function() {
-                  let found = condicionespecial.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
-                          if (found.valor == 'SI') { 
-                            $(this).prop('checked', true);
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
-                          } else {
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
-                          }
-                         
-
-                          //$(this).prop('checked', false);    
-                });
-
+                if(Array.isArray(condicionespecial) && condicionespecial.length > 0) {
+                  $('#condicionespecial-container input[type="checkbox"]').change(function() {
+        var conditionId = $(this).val();
+        if ($(this).is(':checked')) {
+            $('#integrantes-' + conditionId + '-container').show(); // Mostrar el contenedor de integrantes específico
+        } else {
+            $('#integrantes-' + conditionId + '-container').hide(); // Ocultar el contenedor de integrantes específico
+            $('#integrantes-' + conditionId + '-container input[type="checkbox"]').prop('checked', false); // Deseleccionar los integrantes
+        }
+    });}
+                if(Array.isArray(familiacuidadora) && familiacuidadora.length > 0) {
                 $('#familiacuidadora-container input[type="checkbox"]').each(function() {
                   let found = familiacuidadora.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
+                //  console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
                           } else {
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
                           }
-                });
+                });}
                
 
                 if(Array.isArray(serviciospublicos) && serviciospublicos.length > 0) {
                 $('#serviciospublicos-container input[type="checkbox"]').each(function() {
                   let found = serviciospublicos.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
+                //  console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
@@ -666,7 +709,7 @@ console.log(edad)
               if(Array.isArray(telecomunicaciones) && telecomunicaciones.length > 0){
                 $('#telecomunicaciones-container input[type="checkbox"]').each(function() {
                   let found = telecomunicaciones.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
+                //  console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
@@ -678,7 +721,7 @@ console.log(edad)
               if(Array.isArray(documentodepropiedad) && documentodepropiedad.length > 0){
                 $('#documentodepropiedad-container input[type="checkbox"]').each(function() {
                   let found = documentodepropiedad.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
+                 // console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
@@ -700,7 +743,7 @@ console.log(edad)
               if(Array.isArray(factoresderiesgovef) && factoresderiesgovef.length > 0){
                 $('#container-factoresderiesgovef input[type="checkbox"]').each(function() {
                   let found = factoresderiesgovef.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
+                //  console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
@@ -711,7 +754,7 @@ console.log(edad)
               }  if(Array.isArray(vefviolenciaenelentorno) && vefviolenciaenelentorno.length > 0){
                 $('#container-vefviolenciaenelentorno input[type="checkbox"]').each(function() {
                   let found = vefviolenciaenelentorno.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
+                 // console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
@@ -723,7 +766,7 @@ console.log(edad)
               if(Array.isArray(rutasvef3) && rutasvef3.length > 0){
                 $('#container-rutasvef3 input[type="checkbox"]').each(function() {
                   let found = rutasvef3.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
+                //  console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
@@ -735,7 +778,7 @@ console.log(edad)
               if(Array.isArray(planeacionfinanciera4) && planeacionfinanciera4.length > 0){
                 $('#container-planeacionfinanciera4 input[type="checkbox"]').each(function() {
                   let found = planeacionfinanciera4.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
+               //   console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
@@ -747,7 +790,7 @@ console.log(edad)
               if(Array.isArray(disciplinapositiva) && disciplinapositiva.length > 0){
                 $('#container-disciplinapositiva input[type="checkbox"]').each(function() {
                   let found = disciplinapositiva.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
+               //   console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
@@ -759,7 +802,7 @@ console.log(edad)
               if(Array.isArray(tiempolibre) && tiempolibre.length > 0){
                 $('#container-tiempolibre input[type="checkbox"]').each(function() {
                   let found = tiempolibre.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
+               //   console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
@@ -804,7 +847,7 @@ console.log(edad)
 
           $('#estrato').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.estrato:'');      
           $('#comuna').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.comuna:'');
-          $('#barrio').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.barrio:'');
+          //$('#barrio').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.barrio:'');
           $('#ubicacion').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.ubicacion:''); 
           $('#campesina').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.campesina:'');
           $('#dirCampo1').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo1:'');
@@ -817,6 +860,13 @@ console.log(edad)
           $('#dirCampo8').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo8:'');
           $('#dirCampo9').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.dirCampo9:'');
           $('#direccion').val((data.hogardatoseconomicos)?data.hogardatoseconomicos.direccion:'');
+
+
+          if($('#ubicacion').val() == '209'){
+              $('#campesinadiv').css('display','');
+            }else{
+              $('#campesinadiv').css('display','none');
+            }
 
         //   CONDICIONES DE HABILITABILIDAD 
 
@@ -843,54 +893,82 @@ console.log(edad)
            $('#rutasvef2').val((data.hogarentornofamiliar)?data.hogarentornofamiliar.rutasvef2:'');
            $('#redesdeapoyo').val((data.hogarentornofamiliar)?data.hogarentornofamiliar.redesdeapoyo:'');
           
-              // BIENESTAR accesoalimentos
+              // BIENESTAR CONFORMACION FAMILAIR LOGICA
+
+             
 
 
-
+            let barrio=(data.hogardatoseconomicos)?data.hogardatoseconomicos.barrio:'';
           
+              let comunaselect = parseInt($('#comuna').val());
+          //  console.log(comunaselect);
+            $.ajax({
+                          url:'../verbarrios',
+                          data:{comuna:comunaselect},
+                          method: "GET",
+                          dataType:'JSON',
+                          success:function(data){
+                            $('#barrio').html(data.options);
+                            $('#barrio').val(barrio);
+                          },
+                          error: function(xhr, status, error) {
+                                   // console.log(xhr.responseText);
+                                }
+                        })
+                      
+              if ($('input[name="laboresdecuidado[]"]:visible:checked').length > 0) {
+                $('input[name="laboresdecuidado[]"]').removeAttr('required');
+              }else{
+                $('input[name="laboresdecuidado[]"]:hidden').removeAttr('required');
+              }
 
+              if ($('input[name="condicionespecial[]"]:visible:checked').length > 0) {
+                $('input[name="condicionespecial[]"]').removeAttr('required');
+              }else{
+                $('input[name="condicionespecial[]"]:hidden').removeAttr('required');
+              }
          },
         error: function(xhr, status, error) {
-                  console.log(xhr.responseText);
+                  //console.log(xhr.responseText);
               }
       })
       })    
 
       $('#siguiente').click(function(){
-        console.log('click');
+        //console.log('click');
         $('#datosgeograficosmenu').tab('show');  
         
       }); 
       $('#siguiente2').click(function(){
-        console.log('click');
+        //console.log('click');
         $('#condicioneshabitabilidadmenu').tab('show');  
         
       });
       $('#siguiente3').click(function(){
-        console.log('click');
+      //  console.log('click');
         $('#accesoalimentosmenu').tab('show');  
         
       });
       $('#siguiente4').click(function(){
-        console.log('click');
+      //  console.log('click');
         $('#entornofamiliarmenu').tab('show');  
         
       });
     
       $('#atras').click(function(){
-        console.log('click');
+      //  console.log('click');
         $('#conformacionfamiliarmenu').tab('show');  
       }); 
       $('#atras2').click(function(){
-        console.log('click');
+       // console.log('click');
         $('#datosgeograficosmenu').tab('show');  
       });
       $('#atras3').click(function(){
-        console.log('click');
+      //  console.log('click');
         $('#condicioneshabitabilidadmenu').tab('show');  
       }); 
       $('#atras4').click(function(){
-        console.log('click');
+      //  console.log('click');
         $('#accesoalimentosmenu').tab('show');  
       });   
       
@@ -923,14 +1001,14 @@ console.log(edad)
 
         var formData = $(this).serializeArray();
         var data = {
-              'condicionespecial': [
-                  { id: '191', valor: 'NO' },
-                  { id: '192', valor: 'NO' },
-                  { id: '193', valor: 'NO' },
-                  { id: '194', valor: 'NO' },
-                  { id: '195', valor: 'NO' },
-                  { id: '196', valor: 'NO' },
-              ],
+          'condicionespecial': [
+                { id: '191', valor: 'NO', idintegrante: [] },
+                { id: '192', valor: 'NO', idintegrante: [] },
+                { id: '193', valor: 'NO', idintegrante: [] },
+                { id: '194', valor: 'NO', idintegrante: [] },
+                { id: '195', valor: 'NO', idintegrante: [] },
+                { id: '196', valor: 'NO', idintegrante: [] }
+            ],
               'familiacuidadora': [
                   { id: '197', valor: 'NO' },
                   { id: '198', valor: 'NO' },
@@ -939,37 +1017,47 @@ console.log(edad)
               ],
             
           };
-
           $(formData).each(function(index, obj) {
-    var name = obj.name.replace('[]', '');
-    var selector = '[name="' + obj.name + '"][value="' + obj.value + '"]';
-   // var respuesta = $(selector).attr('respuesta') || 'NO APLICA'; // Asegura obtener correctamente 'respuesta' o 'NO APLICA'
-   var element = $(selector);
-   var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
-    console.log(respuesta, 'respuesta');
+            var name = obj.name.replace('[]', '');
+            var selector = '[name="' + obj.name + '"][value="' + obj.value + '"]';
+            var element = $(selector);
+            var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
 
-    if (name === 'condicionespecial' || name === 'familiacuidadora'  ) {
-        // Buscar el objeto con el mismo id
-        var existingIndex = data[name].findIndex(item => item.id === obj.value);
-        if (existingIndex !== -1) {
-            // Reemplazar el valor del objeto existente
-            data[name][existingIndex].valor = respuesta;
-        } else {
-            // Agregar un nuevo objeto si no existe
-            data[name].push({ id: obj.value, valor: respuesta });
-        }
-    } else {
-        if (data[name]) {
-            if (Array.isArray(data[name])) {
-                data[name].push(obj.value);
+            if (name === 'condicionespecial') {
+                // Buscar el objeto con el mismo id
+                var existingIndex = data[name].findIndex(item => item.id === obj.value);
+                if (existingIndex !== -1) {
+                    // Reemplazar el valor del objeto existente
+                    data[name][existingIndex].valor = respuesta;
+
+                    // Agregar integrantes seleccionados
+                    var integrantes = [];
+                    $('#integrantes-condicionespecial' + obj.value + '-container input[type="checkbox"]:checked').each(function() {
+                        integrantes.push($(this).val());
+                    });
+                    data[name][existingIndex].idintegrante = integrantes;
+                } else {
+                    // Agregar un nuevo objeto si no existe
+                    data[name].push({
+                        id: obj.value,
+                        valor: respuesta,
+                        idintegrante: $('#integrantes-condicionespecial' + obj.value + '-container input[type="checkbox"]:checked').map(function() {
+                            return $(this).val();
+                        }).get()
+                    });
+                }
             } else {
-                data[name] = [data[name], obj.value];
+                if (data[name]) {
+                    if (Array.isArray(data[name])) {
+                        data[name].push(obj.value);
+                    } else {
+                        data[name] = [data[name], obj.value];
+                    }
+                } else {
+                    data[name] = obj.value;
+                }
             }
-        } else {
-            data[name] = obj.value;
-        }
-    }
-});
+        });
 
 // Asegurar que todos los elementos en `condicionespecial` tienen un valor de 'respuesta'
 data['condicionespecial'].forEach(item => {
@@ -1003,6 +1091,16 @@ data['condicionespecial'].forEach(item => {
           });
      });
 
+     $('#condicionespecial-container input[type="checkbox"]').change(function() {
+        var conditionId = $(this).val();
+        if ($(this).is(':checked')) {
+            $('#integrantes-condicionespecial' + conditionId + '-container').show(); // Mostrar el contenedor de integrantes específico
+        } else {
+            $('#integrantes-condicionespecial' + conditionId + '-container').hide(); // Ocultar el contenedor de integrantes específico
+            $('#integrantes-condicionespecial' + conditionId + '-container input[type="checkbox"]').prop('checked', false); // Deseleccionar los integrantes
+        }
+    });
+
     $('#formdatosgeograficos').on('submit', function(event) {
         event.preventDefault(); // Detiene el envío del formulario
         
@@ -1026,7 +1124,7 @@ data['condicionespecial'].forEach(item => {
             }
         });
 
-        console.log(data);
+      //  console.log(data);
 
          $.ajax({
              url: '../datoseconomicos',
@@ -1083,7 +1181,7 @@ data['condicionespecial'].forEach(item => {
    // var respuesta = $(selector).attr('respuesta') || 'NO APLICA'; // Asegura obtener correctamente 'respuesta' o 'NO APLICA'
    var element = $(selector);
    var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
-    console.log(respuesta, 'respuesta');
+   // console.log(respuesta, 'respuesta');
 
     if (name === 'serviciospublicos'  || name === 'telecomunicaciones' || name === 'documentodepropiedad') {
         // Buscar el objeto con el mismo id
@@ -1128,7 +1226,7 @@ data['condicionespecial'].forEach(item => {
       }
   });
 
-  console.log(data)
+  //console.log(data)
 
         // Enviar los datos usando AJAX
         $.ajax({
@@ -1140,7 +1238,7 @@ data['condicionespecial'].forEach(item => {
               $('#datosgeograficos').removeAttr('disabled');
             },
             error: function(xhr, status, error) {
-                console.error(error);
+             //   console.error(error);
             }
         });
     });
@@ -1168,7 +1266,7 @@ data['condicionespecial'].forEach(item => {
             }
 
             })
- console.log(data)
+ //console.log(data)
          $.ajax({
              url: '../accesoalimentos',
              method: $(this).attr('method'),
@@ -1257,7 +1355,7 @@ data['condicionespecial'].forEach(item => {
           // var respuesta = $(selector).attr('respuesta') || 'NO APLICA'; // Asegura obtener correctamente 'respuesta' o 'NO APLICA'
           var element = $(selector);
           var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
-            console.log(respuesta, 'respuesta');
+           // console.log(respuesta, 'respuesta');
 
             if (name === 'factoresderiesgovef'  || name === 'vefviolenciaenelentorno' 
             || name === 'rutasvef3' || name === 'planeacionfinanciera4' 
@@ -1325,7 +1423,7 @@ data['condicionespecial'].forEach(item => {
               }
           });
 
-          console.log(data)
+         
 
                 // Enviar los datos usando AJAX
                $.ajax({
@@ -1354,7 +1452,7 @@ data['condicionespecial'].forEach(item => {
                     success:function(data){
                       $('#siguiente').css('display','');
                       $('#datosgeograficos').removeAttr('disabled');
-                      console.log('okl')
+                    //  console.log('okl')
                     },
                     error: function(xhr, status, error) {
                               console.log(xhr.responseText);
@@ -1363,7 +1461,7 @@ data['condicionespecial'].forEach(item => {
     }
 
     function enviarDatos2(data) {
-        console.log('Datos del formulario:', data);
+       // console.log('Datos del formulario:', data);
         $.ajax({
                     url:'./guardarintegrante',
                     data:{data},
@@ -1371,7 +1469,7 @@ data['condicionespecial'].forEach(item => {
                     dataType:'JSON',
                     success:function(data){
                       $('#volver2').css('display','');
-                      console.log('okl')
+                   //   console.log('okl')
                     },
                     error: function(xhr, status, error) {
                               console.log(xhr.responseText);
@@ -1451,6 +1549,55 @@ function llenarotrocampo()
             $('#direccion').val(dir1 + " " + $('#dirCampo2').val() + " " + $('#dirCampo3').val() + " " + dir4 + " " + numeral + " " + $('#dirCampo5').val() + " " + $('#dirCampo6').val() + " " + dir7 + " " + $('#dirCampo8').val() + " || " + $('#dirCampo9').val());
         }
     }
+
+     $('#comuna').change(function(){
+       let comunaselect = $('#comuna').val();
+     //  console.log(comunaselect);
+       $.ajax({
+                     url:'../verbarrios',
+                     data:{comuna:comunaselect},
+                     method: "GET",
+                     dataType:'JSON',
+                     success:function(data){
+                 
+                       $('#barrio').html(data.options);
+
+                    //   console.log('okl', data.barriosselect);
+                     },
+                     error: function(xhr, status, error) {
+                               console.log(xhr.responseText);
+                           }
+                   })
+     })
+
+$('#ubicacion').change(function(){
+  if($('#ubicacion').val() == '209'){
+    $('#campesina').val('');
+    $('#campesinadiv').css('display','');
+    $('#campesina').attr('required','required');
+  }else{
+    $('#campesina').val('0');
+    $('#campesinadiv').css('display','none');
+    $('#campesina').attr('required','required');
+  }
+});
+
+
+$('input[name="laboresdecuidado[]"]').change(function() {
+      if ($('input[name="laboresdecuidado[]"]:visible:checked').length > 0) {
+          $('input[name="laboresdecuidado[]"]').removeAttr('required');
+        }else{
+          $('input[name="laboresdecuidado[]"]').attr('required', 'required');
+        }
+      });
+
+      $('input[name="condicionespecial[]"]').change(function() {
+      if ($('input[name="condicionespecial[]"]:visible:checked').length > 0) {
+          $('input[name="condicionespecial[]"]').removeAttr('required');
+        }else{
+          $('input[name="condicionespecial[]"]').attr('required', 'required');
+        }
+      });
 
     //SOLO LETRAS 
 

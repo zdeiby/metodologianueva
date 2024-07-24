@@ -43,6 +43,7 @@ Route::get('/condicioneshabitabilidad',[c_l1e1::class, 'fc_condicioneshabitabili
 Route::get('/accesoalimentos',[c_l1e1::class, 'fc_accesoalimentos'])->name('accesoalimentos');
 Route::get('/entornofamiliar',[c_l1e1::class, 'fc_entornofamiliar'])->name('entornofamiliar');
 Route::get('/leerpreguntashogar',[c_l1e1::class, 'fc_leerpreguntashogar'])->name('leerpreguntashogar');
+Route::get('/verbarrios',[c_l1e1::class, 'fc_verbarrios'])->name('verbarrios');
 
 
 

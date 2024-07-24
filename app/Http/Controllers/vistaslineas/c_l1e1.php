@@ -17,6 +17,7 @@ class c_l1e1 extends Controller
       $preguntas=$modelo->m_leerrespuestas();
       $leerbarrios= $modelo->m_leerbarrios();
       $leercomunas= $modelo->m_leercomunas();
+      $leerintegrantes= $modelo->m_leerintegrantes(decrypt($folio));
 
       $tipologia = '<option value="">Seleccione </option>';
       foreach ($preguntas as $value) {
@@ -24,28 +25,39 @@ class c_l1e1 extends Controller
             $tipologia .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
         }
     }
-        $sino = '<option value="">Seleccione </option>';
+        $sino = '<option value="">Seleccione </option><option style="display:none" value="0">NO APLICA</option>';
         foreach ($preguntas as $value) {
           if ($value->id >= '1' && $value->id <= '2') {
               $sino .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
           }
       }
 
-      $condicionespecial = '';
-      foreach ($preguntas as $value) {
-          if ($value->id >= '191' && $value->id <= '196') {
-              $condicionespecial .= '<div class="condicionespecial' . $value->id . '">
-              <label class="form-check-label condicionespecial' . $value->id . '"  for="condicionespecial' . $value->id . '">' . $value->pregunta . '</label>
-              <input class="form-check-input" type="checkbox" name="condicionespecial[]" id="condicionespecial' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+      $integrantes = '';
+      foreach ($leerintegrantes as $value) {
+          $integrantes .= '<div class="laboresdecuidado' . $value->idintegrante . '">
+              <label class="form-check-label tiempolibre' . $value->idintegrante . '"  for="laboresdecuidado' . $value->idintegrante . '">' . $value->nombre1 .' '. $value->nombre2 .' '. $value->apellido1 .' '. $value->apellido2 . '</label>
+              <input class="form-check-input" type="checkbox" name="laboresdecuidado[]" id="laboresdecuidado' . $value->idintegrante . '" value="' . $value->idintegrante . '" respuesta="SI" required>
               </div>';
-      }
-      }
+        }
+
+        $condicionespecial = '';
+                foreach ($preguntas as $value) {
+                    if ($value->id >= 191 && $value->id <= 196) {
+                        $condicionespecial .= '<div class="condicionespecial' . $value->id . '">
+                            <input class="form-check-input" type="checkbox" name="condicionespecial[]" id="condicionespecial' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                            <label class="form-check-label" for="condicionespecial' . $value->id . '">' . $value->pregunta . '</label>
+                            <div class="integrantes-container" id="integrantes-condicionespecial' . $value->id . '-container" style="display: none;">
+                                ' . $integrantes . '
+                            </div>
+                        </div>';
+                    }
+                }
       $familiacuidadora = '';
       foreach ($preguntas as $value) {
           if ($value->id >= '197' && $value->id <= '200') {
               $familiacuidadora .= '<div class="familiacuidadora' . $value->id . '">
               <label class="form-check-label familiacuidadora' . $value->id . '"  for="familiacuidadora' . $value->id . '">' . $value->pregunta . '</label>
-              <input class="form-check-input" type="checkbox" name="familiacuidadora[]" id="familiacuidadora' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="familiacuidadora[]" id="familiacuidadora' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
               </div>';
           }
       }
@@ -105,7 +117,7 @@ class c_l1e1 extends Controller
             if ($value->id >= '242' && $value->id <= '247') {
                 $serviciospublicos .= '<div class="serviciospublicos' . $value->id . '">
                 <label class="form-check-label serviciospublicos' . $value->id . '"  for="serviciospublicos' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="serviciospublicos[]" id="serviciospublicos' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                <input class="form-check-input" type="checkbox" name="serviciospublicos[]" id="serviciospublicos' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
                 </div>';
             }
         }
@@ -114,7 +126,7 @@ class c_l1e1 extends Controller
             if ($value->id >= '248' && $value->id <= '255') {
                 $telecomunicaciones .= '<div class="telecomunicaciones' . $value->id . '">
                 <label class="form-check-label telecomunicaciones' . $value->id . '"  for="telecomunicaciones' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="telecomunicaciones[]" id="telecomunicaciones' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                <input class="form-check-input" type="checkbox" name="telecomunicaciones[]" id="telecomunicaciones' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
                 </div>';
             }
         }
@@ -131,7 +143,7 @@ class c_l1e1 extends Controller
             if ($value->id >= '262' && $value->id <= '264') {
                 $documentodepropiedad .= '<div class="documentodepropiedad' . $value->id . '">
                 <label class="form-check-label documentodepropiedad' . $value->id . '"  for="documentodepropiedad' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="documentodepropiedad[]" id="documentodepropiedad' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                <input class="form-check-input" type="checkbox" name="documentodepropiedad[]" id="documentodepropiedad' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
                 </div>';
             }
         }
@@ -149,7 +161,7 @@ class c_l1e1 extends Controller
             if ($value->id >= '265' && $value->id <= '278') {
                 $factoresderiesgovef .= '<div class="factoresderiesgovef' . $value->id . '">
                 <label class="form-check-label factoresderiesgovef' . $value->id . '"  for="factoresderiesgovef' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="factoresderiesgovef[]" id="factoresderiesgovef' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                <input class="form-check-input" type="checkbox" name="factoresderiesgovef[]" id="factoresderiesgovef' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
                 </div>';
             }
         }
@@ -158,7 +170,7 @@ class c_l1e1 extends Controller
             if ($value->id >= '279' && $value->id <= '285') {
                 $vefviolenciaenelentorno .= '<div class="vefviolenciaenelentorno' . $value->id . '">
                 <label class="form-check-label vefviolenciaenelentorno' . $value->id . '"  for="vefviolenciaenelentorno' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="vefviolenciaenelentorno[]" id="vefviolenciaenelentorno' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                <input class="form-check-input" type="checkbox" name="vefviolenciaenelentorno[]" id="vefviolenciaenelentorno' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
                 </div>';
             }
         }
@@ -168,7 +180,7 @@ class c_l1e1 extends Controller
             if ($value->id >= '286' && $value->id <= '294') {
                 $rutasvef3 .= '<div class="rutasvef3' . $value->id . '">
                 <label class="form-check-label rutasvef3' . $value->id . '"  for="rutasvef3' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="rutasvef3[]" id="rutasvef3' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                <input class="form-check-input" type="checkbox" name="rutasvef3[]" id="rutasvef3' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
                 </div>';
             }
         } $planeacionfinanciera4 = '';
@@ -176,7 +188,7 @@ class c_l1e1 extends Controller
             if ($value->id >= '295' && $value->id <= '297') {
                 $planeacionfinanciera4 .= '<div class="planeacionfinanciera4' . $value->id . '">
                 <label class="form-check-label planeacionfinanciera4' . $value->id . '"  for="planeacionfinanciera4' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="planeacionfinanciera4[]" id="planeacionfinanciera4' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                <input class="form-check-input" type="checkbox" name="planeacionfinanciera4[]" id="planeacionfinanciera4' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
                 </div>';
             }
         } $disciplinapositiva = '';
@@ -184,7 +196,7 @@ class c_l1e1 extends Controller
             if ($value->id >= '298' && $value->id <= '304') {
                 $disciplinapositiva .= '<div class="disciplinapositiva' . $value->id . '">
                 <label class="form-check-label disciplinapositiva' . $value->id . '"  for="disciplinapositiva' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="disciplinapositiva[]" id="disciplinapositiva' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                <input class="form-check-input" type="checkbox" name="disciplinapositiva[]" id="disciplinapositiva' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
                 </div>';
             }
         } $tiempolibre = '';
@@ -192,10 +204,11 @@ class c_l1e1 extends Controller
             if ($value->id >= '305' && $value->id <= '309') {
                 $tiempolibre .= '<div class="tiempolibre' . $value->id . '">
                 <label class="form-check-label tiempolibre' . $value->id . '"  for="tiempolibre' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="tiempolibre[]" id="tiempolibre' . $value->id . '" value="' . $value->id . '" respuesta="SI">
+                <input class="form-check-input" type="checkbox" name="tiempolibre[]" id="tiempolibre' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
                 </div>';
             }
         }
+     
 
   
         return view('vistaslineas/v_l1e1',["variable"=>$folio, 'tipologia'=>$tipologia,
@@ -210,7 +223,7 @@ class c_l1e1 extends Controller
       'rutasvef3'=>$rutasvef3,
       'planeacionfinanciera4'=>$planeacionfinanciera4,
       'disciplinapositiva'=>$disciplinapositiva,
-      'tiempolibre'=>$tiempolibre,
+      'tiempolibre'=>$tiempolibre,'integrantes'=>$integrantes,
     ]);
       }
 
@@ -504,6 +517,23 @@ class c_l1e1 extends Controller
       
           return response()->json(["request" => 'ok']);
       }
+
+      public function fc_verbarrios(Request $request) {
+         $comuna = $request->input('comuna');
+        // $barriosselect = DB::table('dbmetodologia.t_barrios')
+        //     ->where('comuna', $comuna)
+        //     ->get();
+        $modelo= new m_l1e1();
+        $barriosselect=$modelo->m_verbarrios($comuna);
+    
+        $barrios = '<option value="">Seleccione</option>';
+        foreach ($barriosselect as $value) {
+            $barrios .= '<option value="' . $value->codigo . '">' . $value->barriovereda . '</option>';
+        }
+    
+        return response()->json(['options' => $barrios]);
+    }
+    
 
     
 }

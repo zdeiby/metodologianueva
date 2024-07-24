@@ -45,4 +45,20 @@ class m_l1e1 extends Model
 
         return $resultado;
     }
+
+    public function m_leerintegrantes($folio)
+    {
+        $resultado = DB::select('SELECT * FROM dbmetodologia.t1_integranteshogar where folio='.$folio.' order by(nombre1);           
+        ' );
+
+        return $resultado;
+    }
+
+    public function m_verbarrios($comuna)
+    {
+        $resultado = DB::select('SELECT * FROM dbmetodologia.t_barrios where comuna='.$comuna.' ;           
+        ' );
+
+        return $resultado;
+    }
 }
