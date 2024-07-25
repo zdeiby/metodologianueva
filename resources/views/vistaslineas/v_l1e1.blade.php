@@ -122,7 +122,7 @@
         </br>
  
 <div class="col-md-12" id="condicionespecialdiv">
-    <label for="validationServer04" class="form-label">¿Tu hogar se encuentra en alguna de las siguientes condiciones?</label>
+    <label for="validationServer04" class="form-label">¿En tu hogar se realizan labores de cuidado directo no remuneradas?</label>
     <div class="form-check form-switch" id="condicionespecial-container">
         {!! $condicionespecial !!}
     </div>
@@ -131,7 +131,7 @@
 
 
           <div class="col-md-12" id="familiacuidadoradiv">
-            <label for="validationServer04" class="form-label">Las labores de cuidado me afectan o limitan en:</label>
+            <label for="validationServer04" class="form-label">Las labores de cuidado afectan a los integrantes del hogar en:</label>
             <div class="form-check form-switch" id='familiacuidadora-container'>
                 {!!$familiacuidadora!!}
                </div>
@@ -141,7 +141,7 @@
             <input type="text" class="form-control form-control-sm" name="familiacuidadoracual" oninput="convertirAMayusculas(this)" id="familiacuidadoracual" value="">
           </div>
           <div class="col-md-12" id="familiacuidadora2div">
-            <label for="validationServer04" class="form-label">¿Los integrantes del hogar que realizan actividades de cuidado, han accedido a programas que favorecen la apropiación de estrategias para facilitar  y mejorar su labor?</label>
+            <label for="validationServer04" class="form-label">¿Los integrantes del hogar que realizan actividades de cuidado directo, han accedido a programas que favorecen la apropiación de estrategias para facilitar y mejorar su labor?</label>
             <select class="form-control form-control-sm" id="familiacuidadora2" aria-describedby="validationServer04Feedback" name="familiacuidadora2" required="">
             {{!!$sino!!}}
           </select>
@@ -209,6 +209,7 @@
           <div class="shadow p-3 mb-5 bg-white rounded">
           <div class="row">       
             <div class="form-group col-sm">
+            <label for="" class="form-label">¿Cuál es la dirección de tu vivienda?</label>
                 <label for="dirCampo1">Via principal:</label>
                 <select class="form-control form-control-sm" id="dirCampo1" name="dirCampo1" oninput="llenarotrocampo()" required="">
                     <option value=""> SELECCIONE </option><option value="1"> AUTOPISTA </option><option value="2"> AVENIDA </option><option value="3"> AVENIDA CALLE </option><option value="4"> AVENIDA CARRERA </option><option value="5"> BULEVAR </option><option value="6"> CALLE </option><option value="7"> CARRERA </option><option value="8"> CIRCULAR </option><option value="10"> CIRCUNVALAR </option><option value="11"> CTAS CORRIDAS </option><option value="12"> DIAGONAL </option><option value="9"> KILOMETRO </option><option value="20"> OTRA </option><option value="13"> PASAJE </option><option value="14"> PASEO </option><option value="15"> PEATONAL </option><option value="16"> TRANSVERSAL </option><option value="17"> TRONCAL </option><option value="18"> VARIANTE </option><option value="19"> VIA </option>                </select>
