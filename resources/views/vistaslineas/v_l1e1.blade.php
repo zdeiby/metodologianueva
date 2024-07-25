@@ -111,6 +111,8 @@
             <label for="validationServer04" class="form-label ">¿Quiénes en tu hogar realizan labores domésticas no remuneradas? (cuidado indirecto).</label>
             <div class="form-check form-switch" id='laboresdecuidado-container'>
                 {!!$integrantes!!}
+                <label class="form-check-label tiempolibre13988001" for="laboresdecuidado0">En mi hogar no realizan labores domésticas </label>
+                <input class="form-check-input" type="checkbox" name="laboresdecuidado[]" id="laboresdecuidado0" value="0" respuesta="SI" required>
                </div>
           </div>
         </br>
@@ -135,7 +137,7 @@
 </style>
 
 
-<div class="col-md-12">
+<div class="col-md-12" id="condicionespecialdiv">
     <label for="validationServer04" class="form-label">¿Tu hogar se encuentra en alguna de las siguientes condiciones?</label>
     <div class="form-check form-switch" id="condicionespecial-container">
         {!! $condicionespecial !!}
@@ -144,17 +146,17 @@
 
 
 
-          <div class="col-md-12">
+          <div class="col-md-12" id="familiacuidadoradiv">
             <label for="validationServer04" class="form-label">Las labores de cuidado me afectan o limitan en:</label>
             <div class="form-check form-switch" id='familiacuidadora-container'>
                 {!!$familiacuidadora!!}
                </div>
           </div>
-          <div class="col-md">
+          <div class="col-md" id="familiacuidadoracualdiv">
             <label for="validationServer04" class="form-label">¿Cúal?</label>
             <input type="text" class="form-control form-control-sm" name="familiacuidadoracual" oninput="convertirAMayusculas(this)" id="familiacuidadoracual" value="">
           </div>
-          <div class="col-md-12">
+          <div class="col-md-12" id="familiacuidadora2div">
             <label for="validationServer04" class="form-label">¿Los integrantes del hogar que realizan actividades de cuidado, han accedido a programas que favorecen la apropiación de estrategias para facilitar  y mejorar su labor?</label>
             <select class="form-control form-control-sm" id="familiacuidadora2" aria-describedby="validationServer04Feedback" name="familiacuidadora2" required="">
             {{!!$sino!!}}
@@ -646,7 +648,8 @@
           
     // Iterar sobre todos los checkboxes en el contenedor y marcar/desmarcar según los valores seleccionados
                     let condicionespecial = JSON.parse((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.condicionespecial:'{}'); // ["49", "54"]
-                    let familiacuidadora = JSON.parse((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.familiacuidadora:'{}'); // ["49", "54"]
+                   // let familiacuidadora = JSON.parse((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.familiacuidadora:'{}'); // ["49", "54"]
+                   let familiacuidadora = JSON.parse(data.hogarconformacionfamiliar?.familiacuidadora || '[]');
                     let laboresdecuidado = JSON.parse((data.hogarconformacionfamiliar)?data.hogarconformacionfamiliar.laboresdecuidado:'{}'); // ["49", "54"]
 
 
@@ -694,8 +697,10 @@
                         }
                     });}
 
+console.log(familiacuidadora,'familia cidadora')
 
-                if(Array.isArray(familiacuidadora) && familiacuidadora.length > 0) {
+
+if(Array.isArray(familiacuidadora) && familiacuidadora.length > 0) {
                 $('#familiacuidadora-container input[type="checkbox"]').each(function() {
                   let found = familiacuidadora.find(item => item.id === this.value );
                 //  console.log(found.valor, 'aca valor')
@@ -705,7 +710,8 @@
                           } else {
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
                           }
-                });}
+                });
+              }
                
 
                 if(Array.isArray(serviciospublicos) && serviciospublicos.length > 0) {
@@ -948,15 +954,128 @@
 
 
                       if ($('#condicionespecial196').is(':checked')) {
+                     
                                 // Desmarcar todos los otros checkboxes y ocultar sus contenedores de integrantes
                                 $('#condicionespecial-container input[type="checkbox"]').not('#condicionespecial196').prop('checked', false);
                                 $('.integrantes-container').hide();
                                 $('.integrantes-container input[type="checkbox"]').prop('checked', false);
+                               
                             }
-                            
-                     
 
-               
+                          
+                            
+                   
+
+                      if ($('input[name="familiacuidadora[]"]:visible:checked').length > 0) {
+                            $('input[name="familiacuidadora[]"]').removeAttr('required');
+                        } else {
+                            $('input[name="familiacuidadora[]"]').attr('required', 'required');
+                        }
+
+                        if ($('familiacuidadoracual').is(':checked')) {
+                        $('#familiacuidadoracualdiv').css('display', '');
+                        $('#familiacuidadoracual').attr('required', 'required');
+
+                      } else {
+                        $('#familiacuidadoracualdiv').css('display', 'none');
+                       
+                        $('#familiacuidadoracual').removeAttr('required');
+
+                      }
+
+                      if ($('#laboresdecuidado0').is(':checked')) {
+                          $('#condicionespecial191').css('display','none');
+                          $('.condicionespecial191').css('display','none');
+                          $('#condicionespecial192').css('display','none');
+                          $('.condicionespecial192').css('display','none');
+                          $('#condicionespecial193').css('display','none');
+                          $('.condicionespecial193').css('display','none');
+                          $('#condicionespecial194').css('display','none');
+                          $('.condicionespecial194').css('display','none');
+                          $('#condicionespecial195').css('display','none');
+                          $('.condicionespecial195').css('display','none');
+                          $('#condicionespecial196').css('display','none');
+                          $('.condicionespecial196').css('display','none');
+                          $('#condicionespecialdiv').css('display', 'none');
+                        $('input[name="condicionespecial[]"]').prop('checked', false);
+                        $('input[name="condicionespecial[]"]').removeAttr('required');
+
+                        $('#condicionespecial-container .integrantes-container').each(function() {
+                            $(this).find('input[type="checkbox"]').prop('checked', false);
+                            $(this).css('display', 'none'); // Oculta el contenedor de integrantes
+                        });
+
+                        $('#familiacuidadora197').css('display','none');
+                          $('.familiacuidadora197').css('display','none');
+                          $('#familiacuidadora198').css('display','none');
+                          $('.familiacuidadora198').css('display','none');
+                          $('#familiacuidadora199').css('display','none');
+                          $('.familiacuidadora199').css('display','none');
+                          $('#familiacuidadora200').css('display','none');
+                          $('.familiacuidadora200').css('display','none');
+                          $('#familiacuidadoradiv').css('display', 'none');
+                        //  $('input[name="familiacuidadora[]"]').prop('checked', false);
+                        $('input[name="familiacuidadora[]"]').removeAttr('required');
+                        $('#familiacuidadora2div').css('display','none');
+                        $('#familiacuidadora2').val('0');
+
+                      } else {
+                          $('#condicionespecial191').css('display','');
+                          $('.condicionespecial191').css('display','');
+                          $('#condicionespecial192').css('display','');
+                          $('.condicionespecial192').css('display','');
+                          $('#condicionespecial193').css('display','');
+                          $('.condicionespecial193').css('display','');
+                          $('#condicionespecial194').css('display','');
+                          $('.condicionespecial194').css('display','');
+                          $('#condicionespecial195').css('display','');
+                          $('.condicionespecial195').css('display','');
+                          $('#condicionespecial196').css('display','');
+                          $('.condicionespecial196').css('display','');
+                          $('#condicionespecialdiv').css('display', '');
+                       //   $('input[name="condicionespecial[]"]').attr('required', 'required');
+
+                          $('#familiacuidadora197').css('display','');
+                          $('.familiacuidadora197').css('display','');
+                          $('#familiacuidadora198').css('display','');
+                          $('.familiacuidadora198').css('display','');
+                          $('#familiacuidadora199').css('display','');
+                          $('.familiacuidadora199').css('display','');
+                          $('#familiacuidadora200').css('display','');
+                          $('.familiacuidadora200').css('display','');
+                          $('#familiacuidadoradiv').css('display', '');
+                        //  $('input[name="familiacuidadora[]"]').attr('required', 'required');
+                          $('#familiacuidadora2div').css('display','');
+                          //$('#familiacuidadora2').val('');
+                        }
+
+                        // if ($('#familiacuidadora200').is(':checked')) {
+                        //     $('#familiacuidadoracualdiv').css('display', '');
+
+                        //   } else {
+                        //     $('#familiacuidadoracualdiv').css('display', 'none');
+
+                        //   }
+
+                        if($('#familiamultiespecie1').val() == '2' || $('#familiamultiespecie1').val() == ''){
+                              $('.familiamultiespecie2').css('display','none');
+                              $('#familiamultiespecie2').attr('required',false)
+                            }else{
+                              $('.familiamultiespecie2').css('display','');
+                              $('#familiamultiespecie2').attr('required',true)
+
+                            }
+                      
+                            if($('#familiacuidadora2').val() == '0'){
+                              $('#familiacuidadora2div').css('display','none');
+                              $('#familiacuidadora2').removeAttr('required');
+                            }
+
+                            if ($('#familiacuidadora197').is(':checked')) {
+                        $('input[name="familiacuidadora[]"]').not('#familiacuidadora197').closest('div').hide();
+                      } else {
+                        $('input[name="familiacuidadora[]"]').closest('div').show();
+                      }
          },
         error: function(xhr, status, error) {
                   //console.log(xhr.responseText);
@@ -1038,7 +1157,12 @@
         var formData = $(this).serializeArray();
         var data = {
             'condicionespecial': [],
-            'familiacuidadora': [],
+            'familiacuidadora': [
+                  { id: '197', valor: 'NO' },
+                  { id: '198', valor: 'NO' },
+                  { id: '199', valor: 'NO' },
+                  { id: '200', valor: 'NO' },
+              ],
             'laboresdecuidado': []
         };
 
@@ -1096,12 +1220,16 @@
             }
         });
 
-        data['condicionespecial'].forEach(item => {
-            var selector = '[name="condicionespecial[]"][value="' + item.id + '"]';
-            if ($(selector).length === 0 || $(selector).is(':hidden')) {
-                item.valor = 'NO APLICA';
-            }
-        });
+         if (data['condicionespecial'].length === 0) {
+         data['condicionespecial'].push('0');
+         }
+
+        //  data['condicionespecial'].forEach(item => {
+        //      var selector = '[name="condicionespecial[]"][value="' + item.id + '"]';
+        //      if ($(selector).length === 0 || $(selector).is(':hidden')) {
+        //          item.valor = 'NO APLICA';
+        //      }
+        //  });
 
         data['familiacuidadora'].forEach(item => {
             var selector = '[name="familiacuidadora[]"][value="' + item.id + '"]';
@@ -1109,6 +1237,10 @@
                 item.valor = 'NO APLICA';
             }
         });
+
+      
+
+        console.log(data)
 
         $.ajax({
             url: '../conformacionfamiliar',
@@ -1123,32 +1255,88 @@
         });
     });
 
-    $('#condicionespecial196').change(function() {
+    $('#condicionespecial196').change(function() {  
+          
         if ($(this).is(':checked')) {
             // Desmarcar todos los otros checkboxes y ocultar sus contenedores de integrantes
             $('#condicionespecial-container input[type="checkbox"]').not(this).prop('checked', false).trigger('change');
             $('.integrantes-container').hide();
             $('.integrantes-container input[type="checkbox"]').prop('checked', false);
+            $('#familiacuidadora2div').css('display','none');
+            $('#familiacuidadora2').val('0');
+            $('#familiacuidadora2').removeAttr('required');
         }
     });
 
     $('#condicionespecial-container input[type="checkbox"]').not('#condicionespecial196').change(function() {
         if ($(this).is(':checked')) {
             // Desmarcar el checkbox de "Ninguna"
-            $('#condicionespecial196').prop('checked', false);
+            $('#condicionespecial196').prop('checked', false);  
+            $('#familiacuidadora2div').css('display','');
+            $('#familiacuidadora2').val('');
+            $('#familiacuidadora2').attr('required','required');
+        }
+      
+    });
+
+  
+
+
+    $('#laboresdecuidado0').change(function() {
+        if ($(this).is(':checked')) {
+            // Desmarcar todos los otros checkboxes y ocultar sus contenedores de integrantes
+            $('#laboresdecuidado-container input[type="checkbox"]').not(this).prop('checked', false).trigger('change');
+        }
+    });
+
+    $('#laboresdecuidado-container input[type="checkbox"]').not('#laboresdecuidado0').change(function() {
+        if ($(this).is(':checked')) {
+            // Desmarcar el checkbox de "Ninguna"
+            $('#laboresdecuidado0').prop('checked', false);
+            $('#condicionespecial191').css('display','');
+          $('.condicionespecial191').css('display','');
+          $('#condicionespecial192').css('display','');
+          $('.condicionespecial192').css('display','');
+          $('#condicionespecial193').css('display','');
+          $('.condicionespecial193').css('display','');
+          $('#condicionespecial194').css('display','');
+          $('.condicionespecial194').css('display','');
+          $('#condicionespecial195').css('display','');
+          $('.condicionespecial195').css('display','');
+          $('#condicionespecial196').css('display','');
+          $('.condicionespecial196').css('display','');
+          $('#condicionespecialdiv').css('display', '');
+          $('input[name="condicionespecial[]"]').attr('required', 'required');
+
+          $('#familiacuidadora197').css('display','');
+          $('.familiacuidadora197').css('display','');
+          $('#familiacuidadora198').css('display','');
+          $('.familiacuidadora198').css('display','');
+          $('#familiacuidadora199').css('display','');
+          $('.familiacuidadora199').css('display','');
+          $('#familiacuidadora200').css('display','');
+          $('.familiacuidadora200').css('display','');
+          $('#familiacuidadoradiv').css('display', '');
+          $('input[name="familiacuidadora[]"]').attr('required', 'required');
+          $('#familiacuidadora2div').css('display','');
+          $('#familiacuidadora2').val('');
         }
     });
 
 
+  
+  
 
 
-    $('input[name="laboresdecuidado[]"]').change(function () {
-        if ($('input[name="laboresdecuidado[]"]:visible:checked').length > 0) {
-            $('input[name="laboresdecuidado[]"]').removeAttr('required');
-        } else {
-            $('input[name="laboresdecuidado[]"]').attr('required', 'required');
-        }
-    });
+
+
+     $('input[name="laboresdecuidado[]"]').change(function () {
+         if ($('input[name="laboresdecuidado[]"]:visible:checked').length > 0) {
+             $('input[name="laboresdecuidado[]"]').removeAttr('required');
+         } else {
+             $('input[name="laboresdecuidado[]"]').attr('required', 'required');
+         }
+     });
 
     $('input[name="condicionespecial[]"]').change(function () {
         if ($('input[name="condicionespecial[]"]:visible:checked').length > 0) {
@@ -1666,13 +1854,13 @@ $('#ubicacion').change(function(){
     });
 
     // Validar los checkboxes de "laboresdecuidado"
-    $('input[name="laboresdecuidado[]"]').change(function() {
-        if ($('input[name="laboresdecuidado[]"]:visible:checked').length > 0) {
-            $('input[name="laboresdecuidado[]"]').removeAttr('required');
-        } else {
-            $('input[name="laboresdecuidado[]"]').attr('required', 'required');
-        }
-    });
+     $('input[name="laboresdecuidado[]"]').change(function() {
+         if ($('input[name="laboresdecuidado[]"]:visible:checked').length > 0) {
+             $('input[name="laboresdecuidado[]"]').removeAttr('required');
+         } else {
+             $('input[name="laboresdecuidado[]"]').attr('required', 'required');
+         }
+     });
 
     // Validar los checkboxes de "condicionespecial"
     $('input[name="condicionespecial[]"]').change(function() {
@@ -1683,9 +1871,125 @@ $('#ubicacion').change(function(){
         }
     });
 
+    $('input[name="familiacuidadora[]"]').change(function() {
+    if ($(this).attr('id') === 'familiacuidadora197' && $(this).is(':checked')) {
+        $('input[name="familiacuidadora[]"]').not('#familiacuidadora197').each(function() {
+            $(this).prop('checked', false); // Desmarcar
+            $(this).closest('div').hide();  // Ocultar
+            $('#familiacuidadoracualdiv').css('display','none');
+            $('#familiacuidadoracual').val('0');
+            $('#familiacuidadoracual').removeAttr('required');
 
- 
+        });
+    } else if ($(this).attr('id') === 'familiacuidadora197' && !$(this).is(':checked')) {
+        $('input[name="familiacuidadora[]"]').closest('div').show(); // Mostrar todos
 
+    }
+  
+});
+    
+      $('input[name="familiacuidadora[]"]').change(function() {
+          if ($('input[name="familiacuidadora[]"]:visible:checked').length > 0) {
+              $('input[name="familiacuidadora[]"]').removeAttr('required');
+          } else {
+              $('input[name="familiacuidadora[]"]').attr('required', 'required');
+          }
+      });
+
+      $('#familiacuidadora200').change(function() {
+        if ($(this).is(':checked')) {
+          $('#familiacuidadoracualdiv').css('display', '');
+          $('#familiacuidadoracual').val('');
+          $('#familiacuidadoracual').attr('required', 'required');
+
+        } else {
+          $('#familiacuidadoracualdiv').css('display', 'none');
+          $('#familiacuidadoracual').val('0');
+          $('#familiacuidadoracual').removeAttr('required');
+
+        }
+      });
+
+
+      $('#laboresdecuidado0').change(function() {
+        if ($(this).is(':checked')) {
+          $('#condicionespecial191').css('display','none');
+          $('.condicionespecial191').css('display','none');
+          $('#condicionespecial192').css('display','none');
+          $('.condicionespecial192').css('display','none');
+          $('#condicionespecial193').css('display','none');
+          $('.condicionespecial193').css('display','none');
+          $('#condicionespecial194').css('display','none');
+          $('.condicionespecial194').css('display','none');
+          $('#condicionespecial195').css('display','none');
+          $('.condicionespecial195').css('display','none');
+          $('#condicionespecial196').css('display','none');
+          $('.condicionespecial196').css('display','none');
+          $('#condicionespecialdiv').css('display', 'none');
+          $('input[name="condicionespecial[]"]').prop('checked', false);
+          $('input[name="condicionespecial[]"]').removeAttr('required');
+          
+
+        $('#condicionespecial-container .integrantes-container').each(function() {
+            $(this).find('input[type="checkbox"]').prop('checked', false);
+            $(this).css('display', 'none'); // Oculta el contenedor de integrantes
+        });
+
+        $('#familiacuidadora197').css('display','none');
+          $('.familiacuidadora197').css('display','none');
+          $('#familiacuidadora198').css('display','none');
+          $('.familiacuidadora198').css('display','none');
+          $('#familiacuidadora199').css('display','none');
+          $('.familiacuidadora199').css('display','none');
+          $('#familiacuidadora200').css('display','none');
+          $('.familiacuidadora200').css('display','none');
+          $('#familiacuidadoradiv').css('display', 'none');
+          $('input[name="familiacuidadora[]"]').prop('checked', false);
+        $('input[name="familiacuidadora[]"]').removeAttr('required');
+        $('#familiacuidadora2div').css('display','none');
+        $('#familiacuidadora2').val('0');
+        $('#familiacuidadoracual').val('0');
+
+      } else {
+          $('#condicionespecial191').css('display','');
+          $('.condicionespecial191').css('display','');
+          $('#condicionespecial192').css('display','');
+          $('.condicionespecial192').css('display','');
+          $('#condicionespecial193').css('display','');
+          $('.condicionespecial193').css('display','');
+          $('#condicionespecial194').css('display','');
+          $('.condicionespecial194').css('display','');
+          $('#condicionespecial195').css('display','');
+          $('.condicionespecial195').css('display','');
+          $('#condicionespecial196').css('display','');
+          $('.condicionespecial196').css('display','');
+          $('#condicionespecialdiv').css('display', '');
+          $('input[name="condicionespecial[]"]').attr('required', 'required');
+
+          $('#familiacuidadora197').css('display','');
+          $('.familiacuidadora197').css('display','');
+          $('#familiacuidadora198').css('display','');
+          $('.familiacuidadora198').css('display','');
+          $('#familiacuidadora199').css('display','');
+          $('.familiacuidadora199').css('display','');
+          $('#familiacuidadora200').css('display','');
+          $('.familiacuidadora200').css('display','');
+          $('#familiacuidadoradiv').css('display', '');
+          $('input[name="familiacuidadora[]"]').attr('required', 'required');
+          $('#familiacuidadora2div').css('display','');
+          $('#familiacuidadora2').val('');
+        }
+      });
+
+
+      //ocultar todo si no hay nadie seleccionado
+
+      // let anyChecked = $('#laboresdecuidado-container input[type="checkbox"]:checked').length > 0;
+      // if (anyChecked) {
+      //       $('#condicionespecial-container').show();
+      //   } else {
+      //       $('#condicionespecial-container').hide();
+      //   }
     //SOLO LETRAS 
 
     function soloLetras(e)
