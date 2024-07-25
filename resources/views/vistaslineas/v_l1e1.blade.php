@@ -207,9 +207,9 @@
                     </div>
 
           <div class="shadow p-3 mb-5 bg-white rounded">
+          <label for="" class="form-label">¿Cuál es la dirección de tu vivienda?</label>
           <div class="row">       
             <div class="form-group col-sm">
-            <label for="" class="form-label">¿Cuál es la dirección de tu vivienda?</label>
                 <label for="dirCampo1">Via principal:</label>
                 <select class="form-control form-control-sm" id="dirCampo1" name="dirCampo1" oninput="llenarotrocampo()" required="">
                     <option value=""> SELECCIONE </option><option value="1"> AUTOPISTA </option><option value="2"> AVENIDA </option><option value="3"> AVENIDA CALLE </option><option value="4"> AVENIDA CARRERA </option><option value="5"> BULEVAR </option><option value="6"> CALLE </option><option value="7"> CARRERA </option><option value="8"> CIRCULAR </option><option value="10"> CIRCUNVALAR </option><option value="11"> CTAS CORRIDAS </option><option value="12"> DIAGONAL </option><option value="9"> KILOMETRO </option><option value="20"> OTRA </option><option value="13"> PASAJE </option><option value="14"> PASEO </option><option value="15"> PEATONAL </option><option value="16"> TRANSVERSAL </option><option value="17"> TRONCAL </option><option value="18"> VARIANTE </option><option value="19"> VIA </option>                </select>
