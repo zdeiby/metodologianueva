@@ -295,8 +295,8 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-center" style="text-align: center; !important">
-        <img src="https://unidadfamiliamedellin.com.co/Inventario/resources/img/headers.png" alt="" width="100%">
-        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt=""  class="isticky-top"  >
+      <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
       </div>
       <div class="modal-body" >
         <div class="text-center">
@@ -317,8 +317,8 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-center" style="text-align: center; !important">
-        <img src="https://unidadfamiliamedellin.com.co/Inventario/resources/img/headers.png" alt="" width="100%">
-        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt=""  class="isticky-top"  >
+      <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
       </div>
       <div class="modal-body" >
         <div class="text-center">

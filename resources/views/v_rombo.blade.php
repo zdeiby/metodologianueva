@@ -1,17 +1,8 @@
 
-   <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="Vision4RIos"/>
-    <meta name="keywords" content="css3, transforms, shadow, shading, 3d, box shadow" />
-    <meta name="author" content="Codrops" />
-    <link rel="shortcut icon" href="../favicon.ico">
-
-
+<link rel="shortcut icon" href="../favicon.ico">
    
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/component.css') }}?=<?php echo time() ?>" />
-    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/component.css') }}?={{ time() }}"> -->
+
 
 @extends('componentes.navlateral')
 
@@ -60,7 +51,7 @@
     <ul>
         <li class="scene">
             <div class="movie">
-                <div class="poster">
+                <div class="poster" >
                     <div id="imgicon"></div>
                     <div style="text-align: center; padding-top:10px" >
                         <!-- <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">Visita</div> -->
@@ -299,7 +290,9 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-center" style="text-align: center; !important">
-        <img src="https://unidadfamiliamedellin.com.co/Inventario/resources/img/headers.png" alt="" width="100%">
+        <!-- <img src="https://unidadfamiliamedellin.com.co/Inventario/resources/img/headers.png" alt="" width="100%"> -->
+        <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt=""  class="isticky-top"  >
+
         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
       </div>
       <div class="modal-body" >
