@@ -17,9 +17,13 @@
     background: transparent;
     background-color: #e0e0e0;
   }
+  .condicion-item {
+    margin-bottom: 20px;
+}
+.integrantes-container {
+    margin-left: 20px;
+}
 </style>
-
-
 
 
 <div class="container">
@@ -116,27 +120,7 @@
                </div>
           </div>
         </br>
-          <!-- <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Tu hogar se encuentra en alguna de las siguientes condiciones?</label>
-            <div class="form-check form-switch" id='condicionespecial-container'>
-                {!!$condicionespecial!!}
-               </div>
-          </div> -->
-
-
-<style>
-.condicion-item {
-    margin-bottom: 20px;
-}
-
-.integrantes-container {
-    margin-left: 20px;
-}
-
-
-</style>
-
-
+ 
 <div class="col-md-12" id="condicionespecialdiv">
     <label for="validationServer04" class="form-label">¿Tu hogar se encuentra en alguna de las siguientes condiciones?</label>
     <div class="form-check form-switch" id="condicionespecial-container">
