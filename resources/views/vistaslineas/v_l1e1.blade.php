@@ -124,7 +124,7 @@
         </br>
  
 <div class="col-md-12" id="condicionespecialdiv">
-    <label for="validationServer04" class="form-label">¿Tu hogar se encuentra en alguna de las siguientes condiciones?</label>
+    <label for="validationServer04" class="form-label">¿En tu hogar se realizan labores de cuidado directo no remuneradas?</label>
     <div class="form-check form-switch" id="condicionespecial-container">
         {!! $condicionespecial !!}
     </div>
@@ -133,7 +133,7 @@
 
 
           <div class="col-md-12" id="familiacuidadoradiv">
-            <label for="validationServer04" class="form-label">Las labores de cuidado me afectan o limitan en:</label>
+            <label for="validationServer04" class="form-label">Las labores de cuidado afectan a los integrantes del hogar en:</label>
             <div class="form-check form-switch" id='familiacuidadora-container'>
                 {!!$familiacuidadora!!}
                </div>
@@ -143,7 +143,7 @@
             <input type="text" class="form-control form-control-sm" name="familiacuidadoracual" oninput="convertirAMayusculas(this)" id="familiacuidadoracual" value="">
           </div>
           <div class="col-md-12" id="familiacuidadora2div">
-            <label for="validationServer04" class="form-label">¿Los integrantes del hogar que realizan actividades de cuidado, han accedido a programas que favorecen la apropiación de estrategias para facilitar  y mejorar su labor?</label>
+            <label for="validationServer04" class="form-label">¿Los integrantes del hogar que realizan actividades de cuidado directo, han accedido a programas que favorecen la apropiación de estrategias para facilitar y mejorar su labor?</label>
             <select class="form-control form-control-sm" id="familiacuidadora2" aria-describedby="validationServer04Feedback" name="familiacuidadora2" required="">
             {{!!$sino!!}}
           </select>
@@ -209,6 +209,7 @@
                     </div>
 
           <div class="shadow p-3 mb-5 bg-white rounded">
+          <label for="" class="form-label">¿Cuál es la dirección de tu vivienda?</label>
           <div class="row">       
             <div class="form-group col-sm">
                 <label for="dirCampo1">Via principal:</label>
