@@ -1,3 +1,5 @@
+
+<link rel="shortcut icon" href="../favicon.ico">
 @extends('componentes.navlateral')
 
 @section('title', 'encuestaintegrantes')

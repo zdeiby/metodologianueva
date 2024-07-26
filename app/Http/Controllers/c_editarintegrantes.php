@@ -22,8 +22,8 @@ class c_editarintegrantes extends Controller
       
       $sino = '<option value="">Seleccione </option>';
       foreach ($preguntas as $value) {
-        if ($value->id == '1' || $value->id == '2') {
-            $sino .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+        if ($value->id == '0' || $value->id == '1' || $value->id == '2') {
+            $sino .= '<option value="' . $value->id . '" class="noaplica' . $value->id . '">' . $value->pregunta . '</option>';
         }
       }
         $paises = '<option value="">Seleccione </option>';
@@ -37,6 +37,20 @@ class c_editarintegrantes extends Controller
       foreach ($preguntas as $value) {
         if ($value->id >= '3' && $value->id <= '11') {
             $tipodocumento .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+        }
+      }
+
+      $parentesco='<option value="">Seleccione </option>';
+      foreach ($preguntas as $value) {
+        if ($value->id >= '310' && $value->id <= '330' ||  $value->id=='0') {
+            $parentesco .= '<option value="' . $value->id . '"  id="parentesco'. $value->id .'">' . $value->pregunta . '</option>';
+        }
+      }
+
+      $estadocivil='<option value="">Seleccione </option>';
+      foreach ($preguntas as $value) {
+        if ($value->id >= '331' && $value->id <= '336' ||  $value->id=='0') {
+            $estadocivil .= '<option value="' . $value->id . '"  id="estadocivil'. $value->id .'">' . $value->pregunta . '</option>';
         }
       }
 
@@ -68,13 +82,15 @@ class c_editarintegrantes extends Controller
 
       $migrantes2='<option value="">Seleccione </option>';
       foreach ($preguntas as $value) {
-        if ($value->id >= '38' && $value->id <= '42') {
-            $migrantes2 .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+        if ($value->id == '0'  || $value->id >= '38' && $value->id <= '42') {
+            $migrantes2 .= '<option value="' . $value->id . '" class="'.$value->id.'">' . $value->pregunta . '</option>';
         }
       }
 
               return view('v_editarintegrantes',['sino'=>$sino,
-              'paises'=>$paises,'tipodocumento'=>$tipodocumento,'sexo'=>$sexo,'orientacion'=>$orientacion, 'identidad'=>$identidad, 'etnia'=>$etnia, 'migrantes2'=>$migrantes2]);
+              'paises'=>$paises,'tipodocumento'=>$tipodocumento,'sexo'=>$sexo,
+              'orientacion'=>$orientacion, 'identidad'=>$identidad, 'etnia'=>$etnia,
+               'migrantes2'=>$migrantes2, 'parentesco'=>$parentesco, 'estadocivil'=>$estadocivil]);
             }
 
             public function fc_responderencuesta(Request $request)

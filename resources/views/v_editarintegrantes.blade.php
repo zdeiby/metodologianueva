@@ -187,16 +187,35 @@
             <label for="validationServer04" class="form-label">¿cuál es el número de tu documento?</label>
             <input type="number" class="form-control form-control-sm "  name="documento"  id="documento" value="" >
           </div>
-          <div class="col-md">
+          <div class="col-md-6">
                 <label for="validationServer04" class="form-label">¿Eres el/la jefe del hogar?</label>
                 <select class="form-control form-control-sm" id="representante" name="representante" aria-describedby="validationServer04Feedback" required="">
                 {{!!$sino!!}}
               </select>
             </div>
-            <div class="col-md">
+            <div class="col-md-6" id="parentescodiv">
+                <label for="validationServer04" class="form-label">¿Parentesco con el jefe del hogar?</label>
+                <select class="form-control form-control-sm" id="parentesco" name="parentesco" aria-describedby="validationServer04Feedback" required="">
+                  {{!!$parentesco!!}}
+                </select>
+            </div>
+            <div class="col-md-6">
                 <label for="validationServer04" class="form-label">¿Cuál es tu sexo de nacimiento?</label>
                 <select class="form-control form-control-sm" id="sexo" name="sexo" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sexo!!}}
+                </select>
+            </div>
+            <div class="col-md-6" id="estadocivildiv">
+                <label for="validationServer04" class="form-label">¿Cuál es tu estado civil?</label>
+                <select class="form-control form-control-sm" id="estadocivil" name="estadocivil" aria-describedby="validationServer04Feedback" required="">
+                  {{!!$estadocivil!!}}
+                </select>
+            </div>
+
+            <div class="col-md-6" id="privadodelalibertaddiv">
+                <label for="validationServer04" class="form-label">¿El integrante del se encuentra con medida privativa de la libertad en prisión domiciliaria?</label>
+                <select class="form-control form-control-sm" id="privadodelalibertad" name="privadodelalibertad" aria-describedby="validationServer04Feedback" required="">
+                  {{!!$sino!!}}
                 </select>
             </div>
         
@@ -460,7 +479,10 @@
           $('#representante').val((data.integrantes)?data.integrantes.representante:'');
           $('#sexo').val((data.integrantes)?data.integrantes.sexo:'');
           $('#edadinput').val((data.integrantes)?data.integrantes.edad:'');
+          $('#parentesco').val((data.integrantes)?data.integrantes.parentesco:'');
           $('#edad').html((data.integrantes)?data.integrantes.edad:'0');
+          $('#estadocivil').val((data.integrantes)?data.integrantes.estadocivil:'');
+          $('#privadodelalibertad').val((data.integrantes)?data.integrantes.privadodelalibertad:'');
           $('#hijos').val((data.integrantesidentitario)?data.integrantesidentitario.hijos:'');
           $('#gestante').val((data.integrantesidentitario)?data.integrantesidentitario.gestante:'');
           $('#lactante').val((data.integrantesidentitario)?data.integrantesidentitario.lactante:'');
@@ -511,6 +533,7 @@
               $('#cualidentidaddiv').css('display','');
               $('#hijosdiv').css('display','none');
               $('#hijos').removeAttr('required');
+              $('#estadocivil').removeAttr('required');
             }
 
         if($('#sexo').val()=='12' && parseInt($('#edad').html()) >= '18'){  
@@ -563,6 +586,9 @@
           $('#cualidentidaddiv').css('display','none');
           $('#hijosdiv').css('display','none');
           $('#situacionmilitar').removeAttr('required');
+          $('#estadocivil').removeAttr('required');
+          $('#privadodelalibertad').removeAttr('required');
+
         }
 
 
@@ -595,6 +621,7 @@
 
               $('#migrantes1div').css('display','none');
               $('#migrantes1').removeAttr('required');
+
               $('#migrantes2div').css('display','none');
               $('#migrantes2').removeAttr('required');
               $('#cualongdiv').css('display','none');
@@ -641,7 +668,6 @@
                 $('#victima3').attr('required', 'required');
               }else{
                 $('#victima2div').css('display','none');
-                $('#victima2').val('');
                 $('#victima2').removeAttr('required');
                 $('#victima3div').css('display','none');
                 $('#victima3').removeAttr('required');
@@ -690,7 +716,31 @@
                 $('#cualong').removeAttr('required');
               }
 
-           
+              if($('#representante').val()=='1' ){
+                  $('#parentescodiv').css('display','none');
+                  $('#parentesco').removeAttr('required')
+                }else{
+                  $('#parentescodiv').css('display','');
+                }
+
+                    if(parseInt($('#edad').html())  <= '13'){ 
+                      $('#estadocivildiv').css('display','none');
+                    };
+
+                    if(parseInt($('#edad').html())  >= '14'){ 
+                      $('#estadocivildiv').css('display','');
+                    }
+
+                    if(parseInt($('#edad').html())  <= '17'){ 
+                      $('#privadodelalibertaddiv').css('display','none');
+                    };
+
+                    if(parseInt($('#edad').html())  >= '18'){ 
+                      $('#privadodelalibertaddiv').css('display','');
+                    }
+
+
+
 
         },
         error: function(xhr, status, error) {
@@ -799,13 +849,31 @@ $('#nombreidentatario1').change(function(){
   if($('#nombreidentatario1').val()=='1'){
     $('#nombreidentatario2div').css('display','');
     $('#nombreidentatario2').attr('required', 'required');
+    $('#nombreidentatario2').val('');
 
   }else{
     $('#nombreidentatario2div').css('display','none');
     $('#nombreidentatario2').removeAttr('required');
-    $('#nombreidentatario2').val('');
+    $('#nombreidentatario2').val('0');
 
 
+  }
+})
+
+$('#parentesco0').css('display','none');
+$('#estadocivil0').css('display','none');
+$('.noaplica0').css('display','none');
+
+
+$('#representante').change(function(){
+  if($('#representante').val()=='1' || $('#parentesco').val()==''){
+    $('#parentescodiv').css('display','none');
+    $('#parentesco').removeAttr('required');
+    $('#parentesco').val('0');
+  } if($('#representante').val()=='2' ){
+    $('#parentescodiv').css('display','');
+    $('#parentesco').attr('required', 'required');
+    $('#parentesco').val('');
   }
 })
 
@@ -813,10 +881,12 @@ $('#tipodocumento').change(function(){
   if($('#tipodocumento').val()=='11'){
     $('#documentodiv').css('display','none');
     $('#documento').removeAttr('required');
-    $('#documento').val('');
+    $('#documento').val('0');
   }else{
     $('#documentodiv').css('display','');
     $('#documento').attr('required', 'required');
+    $('#documento').val('');
+
   }
 })
 
@@ -833,13 +903,13 @@ $('#sexo').change(function(){
     $('#lactantediv').css('display','none');
     $('#situacionmilitardiv').css('display','none');
     $('#gestante').removeAttr('required');
-    $('#gestante').val('');
-    $('#lactante').val(''); 
-    $('#situacionmilitar').val('');
+    $('#gestante').val('0');
+    $('#lactante').val('0'); 
+    $('#situacionmilitar').val('0');
     $('#orientacion').val('');
     $('#identidad').val('');
     $('#cualidentidad').val('');
-    $('#hijos').val('');
+    $('#hijos').val('0');
     $('#lactante').removeAttr('required');
     $('#situacionmilitar').removeAttr('required');
     $('#orientaciondiv').css('display','');
@@ -858,13 +928,13 @@ $('#sexo').change(function(){
     $('#lactantediv').css('display','none');
     $('#situacionmilitardiv').css('display','');
     $('#gestante').removeAttr('required');
-    $('#gestante').val('');
-    $('#lactante').val(''); 
+    $('#gestante').val('0');
+    $('#lactante').val('0'); 
     $('#situacionmilitar').val('');
     $('#orientacion').val('');
     $('#identidad').val('');
     $('#cualidentidad').val('');
-    $('#hijos').val('');
+    $('#hijos').val('0');
     $('#lactante').removeAttr('required');
     $('#situacionmilitar').attr('required','required');
     $('#orientaciondiv').css('display','');
@@ -883,7 +953,7 @@ $('#sexo').change(function(){
     $('#situacionmilitar').val('');
     $('#gestante').val('');
     $('#lactante').val(''); 
-    $('#situacionmilitar').val('');
+    $('#situacionmilitar').val('0');
     $('#orientacion').val('');
     $('#identidad').val('');
     $('#cualidentidad').val('');
@@ -902,13 +972,14 @@ $('#sexo').change(function(){
   } 
   if($('#sexo').val()=='13' && parseInt($('#edad').html())  <= '12'|| $('#sexo').val()=='12' && parseInt($('#edad').html()) <= '12' ){  
     console.log('hola, ermtre edad',$('#edad').html() )
-    $('#gestante').val('');
-    $('#lactante').val(''); 
-    $('#situacionmilitar').val('');
-    $('#orientacion').val('');
-    $('#identidad').val('');
-    $('#cualidentidad').val('');
-    $('#hijos').val('');
+    $('#gestante').val('0');
+    $('#lactante').val('0'); 
+    $('#situacionmilitar').val('0');
+    $('#orientacion').val('0');
+    $('#identidad').val('0');
+    $('#cualidentidad').val('0');
+    $('#cualorientacion').val('0');
+    $('#hijos').val('0');
     $('#gestantediv').css('display','none');
     $('#lactantediv').css('display','none');
     $('#gestante').removeAttr('required');
@@ -927,6 +998,8 @@ $('#sexo').change(function(){
     $('#hijosdiv').css('display','none');
     $('#situacionmilitar').removeAttr('required');
   }
+
+  
 
 })
 
@@ -942,22 +1015,22 @@ $('#fechanacimiento').change(function(){
     $('#lactantediv').css('display','none');
     $('#situacionmilitardiv').css('display','none');
     $('#gestante').removeAttr('required');
-    $('#gestante').val('');
-    $('#lactante').val(''); 
-    $('#situacionmilitar').val('');
+    $('#gestante').val('0');
+    $('#lactante').val('0'); 
+    $('#situacionmilitar').val('0');
     $('#orientacion').val('');
-    $('#identidad').val('');
-    $('#cualidentidad').val('');
-    $('#hijos').val('');
+    $('#identidad').val('0');
+    $('#hijos').val('0');
     $('#lactante').removeAttr('required');
     $('#situacionmilitar').removeAttr('required');
     $('#orientaciondiv').css('display','');
+    $('#cualorientacion').val('');
     $('#orientacion').attr('required','required');
     $('#identidad').attr('required','required');
-
     $('#cualorientaciondiv').css('display','');
     $('#identidaddiv').css('display','');
     $('#cualidentidaddiv').css('display','');
+    $('#cualidentidad').val('');
     $('#hijosdiv').css('display','none');
     $('#hijos').removeAttr('required');
   }
@@ -967,13 +1040,13 @@ $('#fechanacimiento').change(function(){
     $('#lactantediv').css('display','none');
     $('#situacionmilitardiv').css('display','');
     $('#gestante').removeAttr('required');
-    $('#gestante').val('');
-    $('#lactante').val(''); 
+    $('#gestante').val('0');
+    $('#lactante').val('0'); 
     $('#situacionmilitar').val('');
     $('#orientacion').val('');
     $('#identidad').val('');
     $('#cualidentidad').val('');
-    $('#hijos').val('');
+    $('#hijos').val('0');
     $('#lactante').removeAttr('required');
     $('#situacionmilitar').attr('required','required');
     $('#orientaciondiv').css('display','');
@@ -989,10 +1062,9 @@ $('#fechanacimiento').change(function(){
     $('#gestantediv').css('display','');
     $('#lactantediv').css('display','');
     $('#situacionmilitardiv').css('display','none');
-    $('#situacionmilitar').val('');
+    $('#situacionmilitar').val('0');
     $('#gestante').val('');
     $('#lactante').val(''); 
-    $('#situacionmilitar').val('');
     $('#orientacion').val('');
     $('#identidad').val('');
     $('#cualidentidad').val('');
@@ -1010,14 +1082,13 @@ $('#fechanacimiento').change(function(){
     $('#hijosdiv').css('display','');
   } 
   if($('#sexo').val()=='13' && parseInt($('#edad').html())  <= '12'|| $('#sexo').val()=='12' && parseInt($('#edad').html()) <= '12' ){  
-    console.log('hola, ermtre edad',$('#edad').html() )
-    $('#gestante').val('');
-    $('#lactante').val(''); 
-    $('#situacionmilitar').val('');
-    $('#orientacion').val('');
-    $('#identidad').val('');
-    $('#cualidentidad').val('');
-    $('#hijos').val('');
+    $('#gestante').val('0');
+    $('#lactante').val('0'); 
+    $('#situacionmilitar').val('0');
+    $('#orientacion').val('0');
+    $('#identidad').val('0');
+    $('#cualidentidad').val('0');
+    $('#hijos').val('0');
     $('#gestantediv').css('display','none');
     $('#lactantediv').css('display','none');
     $('#gestante').removeAttr('required');
@@ -1036,6 +1107,35 @@ $('#fechanacimiento').change(function(){
     $('#hijosdiv').css('display','none');
     $('#situacionmilitar').removeAttr('required');
   }
+
+  if(parseInt($('#edad').html())  <= '13'){ 
+    $('#estadocivildiv').css('display','none');
+    $('#estadocivil').val('0');
+    $('#estadocivil').removeAttr('required');
+  };
+
+  if(parseInt($('#edad').html())  >= '14'){ 
+    $('#estadocivildiv').css('display','');
+    $('#estadocivil').val('');
+    $('#estadocivil').attr('required','required');
+
+
+  }
+
+  if(parseInt($('#edad').html())  <= '17'){ 
+    $('#privadodelalibertaddiv').css('display','none');
+    $('#privadodelalibertad').val('0');
+    $('#privadodelalibertad').removeAttr('required');
+  };
+
+  if(parseInt($('#edad').html())  >= '18'){ 
+    $('#privadodelalibertaddiv').css('display','');
+    $('#privadodelalibertad').val('');
+    $('#privadodelalibertad').attr('required','required');
+
+  }
+
+
  else{
    
   }
@@ -1050,7 +1150,7 @@ $('#orientacion').change(function(){
     $('#cualorientacion').attr('required', 'required');
   }else{
     $('#cualorientaciondiv').css('display','none');
-    $('#cualorientacion').val('');
+    $('#cualorientacion').val('0');
     $('#cualorientacion').removeAttr('required');
   }
 });
@@ -1064,7 +1164,7 @@ $('#identidad').change(function(){
     $('#cualidentidad').attr('required', 'required');
   }else{
     $('#cualidentidaddiv').css('display','none');
-    $('#cualidentidad').val('');
+    $('#cualidentidad').val('0');
     $('#cualidentidad').removeAttr('required');
   }
 });
@@ -1072,7 +1172,7 @@ $('#identidad').change(function(){
 $('#etnia').change(function(){
   if($('#etnia').val() == '37'){
     $('#certificacionetnicadiv').css('display','none');
-    $('#certificacionetnica').val('');
+    $('#certificacionetnica').val('0');
     $('#certificacionetnica').removeAttr('required');
 
   }else{
@@ -1091,7 +1191,7 @@ $('#migrantes2').change(function(){
     $('#cualong').attr('required', 'required');
   }else{
     $('#cualongdiv').css('display','none');
-    $('#cualong').val('');
+    $('#cualong').val('0');
     $('#cualong').removeAttr('required');
   }
 })
@@ -1104,21 +1204,21 @@ $('#migrantes1').change(function(){
     $('#cualongdiv').css('display','');
     $('#cualong').val('');
     $('#cualong').attr('required', 'required');
-  }else{
+  }if($('#migrantes1').val() == '2' ){
     $('#migrantes2div').css('display','none');
-    $('#migrantes2').val('');
+    $('#migrantes2').val('0');
     $('#migrantes2').removeAttr('required');
     $('#cualongdiv').css('display','none');
-    $('#cualong').val('');
+    $('#cualong').val('0');
     $('#cualong').removeAttr('required');
   }
 })
 
 
 $('#victima1').change(function(){
-  $('#cualong').val('');
-   $('#migrantes2').val('');
-   $('#migrantes1').val('');
+  // $('#cualong').val('');
+  //  $('#migrantes2').val('');
+  //  $('#migrantes1').val('');
   if($('#victima1').val() == '1'){
     $('#victima2div').css('display','');
     $('#victima2').val('');
@@ -1128,10 +1228,10 @@ $('#victima1').change(function(){
     $('#victima3').attr('required', 'required');
   }else{
     $('#victima2div').css('display','none');
-    $('#victima2').val('');
+    $('#victima2').val('0');
     $('#victima2').removeAttr('required');
     $('#victima3div').css('display','none');
-    $('#victima3').val('');
+    $('#victima3').val('0');
     $('#victima3').removeAttr('required');
   }
 })
@@ -1144,33 +1244,13 @@ $('#victima2').change(function(){
 
   }else{
     $('#victima3div').css('display','none');
-    $('#victima3').val('');
+    $('#victima3').val('0');
     $('#victima3').removeAttr('required');
 ;
   }
 })
 
 
-
-
-// function calcularedad(fechaNacimiento) {
-//     // Obtener la fecha actual
-//     var fechaActual = new Date();
-    
-//     // Convertir la fecha de nacimiento a objeto Date
-//     var fechaNac = new Date(fechaNacimiento);
-    
-//     // Calcular la diferencia en milisegundos entre las fechas
-//     var edadMilisegundos = fechaActual - fechaNac;
-    
-//     // Convertir los milisegundos a años
-//     var edadAnios = Math.floor(edadMilisegundos / 1000 / 60 / 60 / 24 / 365.25);
-
-//     // Mostrar la edad en el elemento HTML con id="edad"
-//     document.getElementById("edad").textContent = edadAnios;
-//     $('#edadinput').val(edadAnios);
-
-// }
 const today = new Date();
         const yyyy = today.getFullYear();
         const mm = String(today.getMonth() + 1).padStart(2, '0'); // Los meses van de 0 a 11
@@ -1287,14 +1367,15 @@ document.addEventListener('DOMContentLoaded', function() {
               $('#victima2').attr('required', 'required');
               $('#victima3div').css('display','');
               $('#victima3').attr('required', 'required');
-
-                 $('#migrantes1div').css('display','none');
+              $('#migrantes1div').css('display','none');
               $('#migrantes1').removeAttr('required');
+              $('#migrantes1').val('0');
               $('#migrantes2div').css('display','none');
               $('#migrantes2').removeAttr('required');
+              $('#migrantes2').val('0');
               $('#cualongdiv').css('display','none');
               $('#cualong').removeAttr('required');
-
+              $('#cualong').val('0');
               $('#tipodocumento option[value="7"]').hide();
               $('#tipodocumento option[value="8"]').hide();
               $('#tipodocumento option[value="9"]').hide();
@@ -1308,17 +1389,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }else{
               $('#victima1div').css('display','none');
               $('#victima1').removeAttr('required');
+              $('#victima1').val('0');
               $('#victima2div').css('display','none');
               $('#victima2').removeAttr('required');
+              $('#victima2').val('0');
               $('#victima3div').css('display','none');
               $('#victima3').removeAttr('required');
-
+              $('#victima3').val('0');
               $('#migrantes1div').css('display','');
               $('#migrantes1').attr('required', 'required');
               $('#migrantes2div').css('display','');
               $('#migrantes2').attr('required', 'required');
+              $('#migrantes1').val('');
+              $('#migrantes2').val('');
             //  $('#cualongdiv').css('display','');
-              $('#cualong').attr('required', 'required');
+              $('#cualong').removeAttr('required');
+              $('#cualong').val('');
 
               $('#tipodocumento option[value="3"]').hide();
               $('#tipodocumento option[value="4"]').hide();
