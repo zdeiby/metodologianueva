@@ -67,11 +67,20 @@ class c_editarintegrantes extends Controller
         }
       }
       $identidad='<option value="">Seleccione </option>';
-      foreach ($preguntas as $value) {
-        if ($value->id >= '22' && $value->id <= '29') {
-            $identidad .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+
+      $allowed_ids = [22, 23, 24, 25, 26, 27, 337, 338, 339, 30, 28, 29];
+
+      foreach ($allowed_ids as $id) {
+        foreach ($preguntas as $value) {
+            if ($value->id == $id) {
+                $sorted_preguntas[] = $value;
+                break;
+            }
         }
-      }
+    }
+     foreach ($sorted_preguntas as $value) {
+    $identidad .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+}
 
       $etnia='<option value="">Seleccione </option>';
       foreach ($preguntas as $value) {
