@@ -61,14 +61,14 @@ class c_editarintegrantes extends Controller
         }
       }
       $orientacion='<option value="">Seleccione </option>';
-      foreach ($preguntas as $value) {
-        if ($value->id >= '14' && $value->id <= '21') {
-            $orientacion .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+      foreach ( $preguntas as $value) {
+        if ($value->id == '0' || $value->id >= '14' && $value->id <= '21') {
+            $orientacion .= '<option value="' . $value->id . '" class="noaplica' . $value->id . '">' . $value->pregunta . '</option>';
         }
       }
       $identidad='<option value="">Seleccione </option>';
 
-      $allowed_ids = [22, 23, 24, 25, 26, 27, 337, 338, 339, 30, 28, 29];
+      $allowed_ids = [0, 22, 23, 24, 25, 26, 27, 337, 338, 339, 30, 28, 29];
 
       foreach ($allowed_ids as $id) {
         foreach ($preguntas as $value) {
@@ -79,12 +79,12 @@ class c_editarintegrantes extends Controller
         }
     }
      foreach ($sorted_preguntas as $value) {
-    $identidad .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+    $identidad .= '<option value="' . $value->id . '" class="noaplica' . $value->id . '">' . $value->pregunta . '</option>';
 }
 
       $etnia='<option value="">Seleccione </option>';
       foreach ($preguntas as $value) {
-        if ($value->id >= '30' && $value->id <= '37') {
+        if ($value->id >= '31' && $value->id <= '37') {
             $etnia .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
         }
       }
@@ -92,7 +92,7 @@ class c_editarintegrantes extends Controller
       $migrantes2='<option value="">Seleccione </option>';
       foreach ($preguntas as $value) {
         if ($value->id == '0'  || $value->id >= '38' && $value->id <= '42') {
-            $migrantes2 .= '<option value="' . $value->id . '" class="'.$value->id.'">' . $value->pregunta . '</option>';
+            $migrantes2 .= '<option value="' . $value->id . '" class="noaplica' . $value->id . '">' . $value->pregunta . '</option>';
         }
       }
 

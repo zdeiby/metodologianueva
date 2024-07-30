@@ -1081,7 +1081,7 @@ $('#fechanacimiento').change(function(){
     $('#cualidentidaddiv').css('display','');
     $('#hijosdiv').css('display','');
   } 
-  if($('#sexo').val()=='13' && parseInt($('#edad').html())  <= '12'|| $('#sexo').val()=='12' && parseInt($('#edad').html()) <= '12' ){  
+  if($('#sexo').val()=='13' && parseInt($('#edad').html())  <= '11'|| $('#sexo').val()=='12' && parseInt($('#edad').html()) <= '11' ){  
     $('#gestante').val('0');
     $('#lactante').val('0'); 
     $('#situacionmilitar').val('0');
@@ -1363,10 +1363,13 @@ document.addEventListener('DOMContentLoaded', function() {
           if($(this).val()=='343'){
               $('#victima1div').css('display','');
               $('#victima1').attr('required', 'required');
+              $('#victima1').val('');
               $('#victima2div').css('display','');
               $('#victima2').attr('required', 'required');
+              $('#victima2').val('');
               $('#victima3div').css('display','');
               $('#victima3').attr('required', 'required');
+              $('#victima3').val('');
               $('#migrantes1div').css('display','none');
               $('#migrantes1').removeAttr('required');
               $('#migrantes1').val('0');

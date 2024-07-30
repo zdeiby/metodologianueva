@@ -100,7 +100,7 @@
         localStorage.setItem('idintegrante', idintegrante);
         localStorage.setItem('folioencriptado', folioencriptado);
         localStorage.setItem('nombre', nombre);
-        window.location.href = '../encuestaintegrantes';
+        window.location.href = '../encuestaintegrantesfisicoemocional';
       } 
       
       function eliminarintegrantes(folio, idintegrante){

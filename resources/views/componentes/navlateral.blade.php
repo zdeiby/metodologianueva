@@ -6,7 +6,7 @@
     <title>@yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
      <link href="{{ asset('assets/bootstrap/bootstrap.css') }}" rel="stylesheet" > 
-     
+     <link rel="shortcut icon" href="../../favicon.ico">
    <style>
     /* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap'); */
 :root{
