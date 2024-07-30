@@ -230,14 +230,14 @@ public function fc_encuestaintegrantesfinanciero(){
       
             $sino = '<option value="">Seleccione </option>';
             foreach ($preguntas as $value) {
-              if ( $value->id == '1' || $value->id == '2') {
-                  $sino .= '<option value="' . $value->id . '" >' . $value->pregunta . '</option>';
+              if ($value->id == '0' || $value->id == '1' || $value->id == '2') {
+                  $sino .= '<option value="' . $value->id . '" class="noaplica' . $value->id . '">' . $value->pregunta . '</option>';
               }
             }
       
             $mecanismosdeproteccionddhh3='';
             foreach ($preguntas as $value) {
-              if ($value->id >= '165' && $value->id <= '178') {
+              if ($value->id >= '165' && $value->id <= '178' || $value->id == '360') {
                 $mecanismosdeproteccionddhh3 .= '<div class="mecanismosdeproteccionddhh3' . $value->id . '">
                 <label class="form-check-label mecanismosdeproteccionddhh3' . $value->id . '"  for="mecanismosdeproteccionddhh3' . $value->id . '">' . $value->pregunta . '</label>
                 <input class="form-check-input" type="checkbox" name="mecanismosdeproteccionddhh3[]" id="mecanismosdeproteccionddhh3' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
