@@ -24,6 +24,7 @@ class c_integrantes extends Controller
         $foliosintegrante .='<tr class="table-primary">
                 <td class="align-middle">'.$value->nombre1.' '.$value->nombre2.' '.$value->apellido1.' '.$value->apellido2.'</td>
                 <td class="align-middle">'.$value->documento.'</td>
+                <td class="align-middle">'.$value->edad.'</td>
                 <td class="align-middle"><button class="btn  btn-sm" style="background:#2fa4e7; color:white" 
                 onclick="responderencuesta('.$folio.','.$value->idintegrante.',`'.$folioencriptado.'`,`'.$value->nombre1.' '.$value->nombre2.' '.$value->apellido1.' '.$value->apellido2.'`)">
                     Realizar Encuesta

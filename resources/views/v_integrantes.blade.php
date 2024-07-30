@@ -36,6 +36,7 @@
 
           <th scope="col">Nombres y apellidos</th>
           <th scope="col">Documento</th>
+          <th scope="col">Edad</th>
           <th scope="col">Encuesta</th>
           <th scope="col">Editar</th>
           <th scope="col">Avatar</th>
