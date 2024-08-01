@@ -46,17 +46,26 @@ Route::get('/conformacionfamiliar',[c_l1e1::class, 'fc_conformacionfamiliar'])->
 Route::get('/datoseconomicos',[c_l1e1::class, 'fc_datoseconomicos'])->name('datoseconomicos');
 Route::get('/condicioneshabitabilidad',[c_l1e1::class, 'fc_condicioneshabitabilidad'])->name('condicioneshabitabilidad');
 Route::get('/accesoalimentos',[c_l1e1::class, 'fc_accesoalimentos'])->name('accesoalimentos');
-Route::get('/entornofamiliar',[c_l1e1::class, 'fc_entornofamiliar'])->name('entornofamiliar');
+Route::post('/entornofamiliar',[c_l1e1::class, 'fc_entornofamiliar'])->name('entornofamiliar');
+
 Route::get('/leerpreguntashogar',[c_l1e1::class, 'fc_leerpreguntashogar'])->name('leerpreguntashogar');
+Route::get('/leerpreguntashogarfamiliar',[c_l1e1::class, 'fc_leerpreguntashogarfamiliar'])->name('leerpreguntashogarfamiliar');
+Route::get('/leerpreguntashogareconomicos',[c_l1e1::class, 'fc_leerpreguntashogareconomicos'])->name('leerpreguntashogareconomicos');
+Route::get('/leerpreguntashogarhabitabilidad',[c_l1e1::class, 'fc_leerpreguntashogarhabitabilidad'])->name('leerpreguntashogarhabitabilidad');
+Route::get('/leerpreguntashogaralimentos',[c_l1e1::class, 'fc_leerpreguntashogaralimentos'])->name('leerpreguntashogaralimentos');
+Route::get('/leerpreguntashogarentornofamiliar',[c_l1e1::class, 'fc_leerpreguntashogarentornofamiliar'])->name('leerpreguntashogarentornofamiliar');
+
+
 Route::get('/verbarrios',[c_l1e1::class, 'fc_verbarrios'])->name('verbarrios');
 
 
 
 Route::get('/register',[c_register::class,'fc_register'])->name('register');
-Route::get('/1/{lineaestacion}',[c_l1e1::class,'fc_l1e1'])->name('iral1e1');
-Route::get('/2/{lineaestacion}',[c_l1e1::class,'fc_l2e1'])->name('iral2e1');
-Route::get('/3/{lineaestacion}',[c_l1e1::class,'fc_l3e1'])->name('iral3e1');
-Route::get('/4/{lineaestacion}',[c_l1e1::class,'fc_l4e1'])->name('iral4e1');
+Route::get('/encuestahogarconformacionfamiliar/{lineaestacion}',[c_l1e1::class,'fc_encuestahogarconformacionfamiliar'])->name('encuestahogarconformacionfamiliar');
+Route::get('/hogarentornofamiliar/{lineaestacion}',[c_l1e1::class,'fc_hogarentornofamiliar'])->name('hogarentornofamiliar');
+Route::get('/encuestahogardatosgeograficos/{lineaestacion}',[c_l1e1::class,'fc_encuestahogardatosgeograficos'])->name('encuestahogardatosgeograficos');
+Route::get('/encuestahogarhabitabilidad/{lineaestacion}',[c_l1e1::class,'fc_encuestahogarhabitabilidad'])->name('encuestahogarhabitabilidad');     
+Route::get('/encuestahogaralimentos/{lineaestacion}',[c_l1e1::class,'fc_encuestahogaralimentos'])->name('encuestahogaralimentos');
 Route::get('/rombo/{folio}',[c_rombo::class,'fc_rombo'])->name('rombo');
 Route::get('/rombointegrantes/{folio}',[c_rombointegrantes::class,'fc_rombointegrantes'])->name('rombointegrantes');
 Route::get('/integrantes/{folio}',[c_integrantes::class,'fc_integrantes'])->name('integrantes');

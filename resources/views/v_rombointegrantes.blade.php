@@ -104,7 +104,7 @@
                     <img src="{{ asset('assets/img/iconos/6.jpg')}}" style="border-radius:10px" width="100%" alt="">
                     <br> 
                     <label for="" style="color:white;font-size:15px; padding-bottom:5px;padding-top:4px; text-decoration: underline;cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">Más información</label><br>
-                    <form method="GET" action="../1/{{$variable}}" ><button type="submit" class="btn btn-primary">Ir a encuesta de hogar</button></form>
+                    <form method="GET" action="../encuestahogarconformacionfamiliar/{{$variable}}" ><button type="submit" class="btn btn-primary">Ir a encuesta de hogar</button></form>
                     
                 </div>
             </div>

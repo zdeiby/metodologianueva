@@ -342,7 +342,7 @@
           </div>
           <div class="col-md">
             <label for="validationServer04" class="form-label">¿Cuántas habitaciones son exclusivamente para dormir?</label>
-            <input type="number" class="form-control form-control-sm" name="hacimiento" oninput="convertirAMayusculas(this)" id="hacimiento" value="">
+            <input type="number" class="form-control form-control-sm" name="hacimiento" oninput="convertirAMayusculas(this)" id="hacimiento" value="" required>
           </div>
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Cuál es la tenencia de tu vivienda?</label>
@@ -350,7 +350,7 @@
             {{!!$tipodetenenciau!!}}
           </select>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" id="documentodepropiedaddiv">
             <label for="validationServer04" class="form-label">¿Qué documento acredita la tenencia de tu vivienda?</label>
             <div class="form-check form-switch" id='documentodepropiedad-container'>
             {!!$documentodepropiedad!!}
@@ -387,12 +387,7 @@
                 </select>
                 </div>
         
-          <div class="col-md-12">
-            <label for="validationServer04" class="form-label">En los últimos 30 días, por falta de dinero u otros recursos, ¿alguna vez usted se preocupó porque los alimentos se acabaran en tu hogar?</label>
-            <select class="form-control form-control-sm" id="accesibilidadalimentos1" name="accesibilidadalimentos1" aria-describedby="validationServer04Feedback" required="">
-                  {{!!$sino!!}}
-                </select>
-          </div>
+  
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">En los últimos 30 días, por falta de dinero u otros recursos, ¿alguna vez en tu hogar se quedaron sin alimentos?</label>
             <select class="form-control form-control-sm" id="accesibilidadalimentos2" name="accesibilidadalimentos2" aria-describedby="validationServer04Feedback" required="">
@@ -519,36 +514,6 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-          Selecciona un avatar     
-        </div>
-      <div class="modal-body">
-      <img src="{{asset('avatares/1.png')}}" id="1" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('1')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/2.png')}}" id="2" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('2')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/3.png')}}" id="3" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('3')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/4.png')}}" id="4" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('4')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/5.png')}}" id="5" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('5')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/6.png')}}" id="6" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('6')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/7.png')}}" id="7" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('7')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/8.png')}}" id="8" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('8')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/9.png')}}" id="9" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('9')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/10.png')}}" id="10" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('10')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/11.png')}}" id="11" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('11')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/12.png')}}" id="12" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('12')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/13.png')}}" id="13" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('13')" alt="Avatar" style="width: 150px; height: 150px;">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" onclick="cargarImagen()">Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
  
     </div>
@@ -556,40 +521,7 @@
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
-    
-    /* function agregarImagen(id){
-      $(`#${id}`).addClass('imagenselect');
-      for (let index = 0; index < 14; index++) {
-        if(id == index){
-            localStorage.setItem('numimage',id)
-        }else{
-          $(`#${index}`).removeClass('imagenselect');
-        }
-
-        
-      }
-
-      console.log(id)
-    }
-    function cargarImagen(){
-      imagen=localStorage.getItem('numimage');
-      folio=localStorage.getItem('folio');
-      idintegrante=localStorage.getItem('idintegrante');
-      $.ajax({
-        url:'./guardaravatar',
-        data:{folio:folio, idintegrante:idintegrante, avatar:imagen},
-        method: "GET",
-        dataType:'JSON',
-        success:function(data){
-          $('#imagenDinamica').attr('src',`../public/avatares/${imagen}.png`);
-          localStorage.setItem('imagen',`../public/avatares/${imagen}.png`)
-          $('#exampleModal').modal('hide');
-        },
-        error: function(xhr, status, error) {
-                  console.log(xhr.responseText);
-              }
-      })
-    } */
+  
     $('.familiamultiespecie2').css('display','none');
 
     $('#familiamultiespecie1').change(function(){
@@ -1036,14 +968,6 @@ if(Array.isArray(familiacuidadora) && familiacuidadora.length > 0) {
                           //$('#familiacuidadora2').val('');
                         }
 
-                        // if ($('#familiacuidadora200').is(':checked')) {
-                        //     $('#familiacuidadoracualdiv').css('display', '');
-
-                        //   } else {
-                        //     $('#familiacuidadoracualdiv').css('display', 'none');
-
-                        //   }
-
                         if($('#familiamultiespecie1').val() == '2' || $('#familiamultiespecie1').val() == ''){
                               $('.familiamultiespecie2').css('display','none');
                               $('#familiamultiespecie2').attr('required',false)
@@ -1059,10 +983,68 @@ if(Array.isArray(familiacuidadora) && familiacuidadora.length > 0) {
                             }
 
                             if ($('#familiacuidadora197').is(':checked')) {
-                        $('input[name="familiacuidadora[]"]').not('#familiacuidadora197').closest('div').hide();
-                      } else {
-                        $('input[name="familiacuidadora[]"]').closest('div').show();
-                      }
+                              $('input[name="familiacuidadora[]"]').not('#familiacuidadora197').closest('div').hide();
+                            } else {
+                              $('input[name="familiacuidadora[]"]').closest('div').show();
+                            }
+
+                            if ($('#serviciospublicos247').is(':checked')) {
+                              $('input[name="serviciospublicos[]"]').not('#serviciospublicos247').closest('div').hide();
+                              $('input[name="serviciospublicos[]"]').removeAttr('required');
+                            } else {
+                              $('input[name="serviciospublicos[]"]').closest('div').show();
+                            }
+
+                            if ($('#telecomunicaciones255').is(':checked')) {
+                              $('input[name="telecomunicaciones[]"]').not('#telecomunicaciones255').closest('div').hide();
+                              $('input[name="telecomunicaciones[]"]').removeAttr('required');
+                            } else {
+                              $('input[name="telecomunicaciones[]"]').closest('div').show();
+                            }
+
+                            if ($('input[name="serviciospublicos[]"]:checked').length > 0) {
+                            $('input[name="serviciospublicos[]"]').removeAttr('required');
+                            } else {
+                               // $('input[name="serviciospublicos[]"]').attr('required', 'required');
+                            }
+
+                            if ($('input[name="telecomunicaciones[]"]:checked').length > 0) {
+                            $('input[name="telecomunicaciones[]"]').removeAttr('required');
+                            } else {
+                              //  $('input[name="telecomunicaciones[]"]').attr('required', 'required');
+                            }
+
+                            if ($('input[name="documentodepropiedad[]"]:checked').length > 0) {
+                                  $('input[name="documentodepropiedad[]"]').removeAttr('required');
+                              } else {
+                                  $('input[name="documentodepropiedad[]"]').attr('required', 'required');
+                              }
+
+                            if($('#tipodetenenciau').val() == '256' || $('#tipodetenenciau').val() == '257'){
+                              $('#documentodepropiedad262').css('display','');
+                              $('.documentodepropiedad262').css('display','');
+                              $('#documentodepropiedad263').css('display','');
+                              $('.documentodepropiedad263').css('display','');
+                              $('#documentodepropiedad264').css('display','');
+                              $('.documentodepropiedad264').css('display','');
+                              $('#documentodepropiedaddiv').css('display','');
+                           //   $('input[name="documentodepropiedad[]"]').prop('checked', false);
+                            //  $('input[name="documentodepropiedad[]"]').attr('required', 'required');
+                            }else{
+                              $('#documentodepropiedad262').css('display','none');
+                              $('.documentodepropiedad262').css('display','none');
+                              $('#documentodepropiedad263').css('display','none');
+                              $('.documentodepropiedad263').css('display','none');
+                              $('#documentodepropiedad264').css('display','none');
+                              $('.documentodepropiedad264').css('display','none');
+                              $('#documentodepropiedaddiv').css('display','none');
+                              $('input[name="documentodepropiedad[]"]').removeAttr('required');
+                            }
+   
+
+      
+
+
          },
         error: function(xhr, status, error) {
                   //console.log(xhr.responseText);
@@ -1293,7 +1275,7 @@ if(Array.isArray(familiacuidadora) && familiacuidadora.length > 0) {
           $('#condicionespecial196').css('display','');
           $('.condicionespecial196').css('display','');
           $('#condicionespecialdiv').css('display', '');
-          $('input[name="condicionespecial[]"]').attr('required', 'required');
+          //$('input[name="condicionespecial[]"]').attr('required', 'required');
 
           $('#familiacuidadora197').css('display','');
           $('.familiacuidadora197').css('display','');
@@ -1479,6 +1461,10 @@ if(Array.isArray(familiacuidadora) && familiacuidadora.length > 0) {
             }
         });
     });
+
+
+
+    
 
 
     $('#formaccesoalimentos').on('submit', function(event) {
@@ -1872,7 +1858,6 @@ $('#ubicacion').change(function(){
         $('input[name="familiacuidadora[]"]').closest('div').show(); // Mostrar todos
 
     }
-  
 });
     
       $('input[name="familiacuidadora[]"]').change(function() {
@@ -1968,6 +1953,78 @@ $('#ubicacion').change(function(){
         }
       });
 
+      $('input[name="serviciospublicos[]"]').change(function() {
+        if ($(this).attr('id') === 'serviciospublicos247' && $(this).is(':checked')) {
+            $('input[name="serviciospublicos[]"]').not('#serviciospublicos247').each(function() {
+                $(this).prop('checked', false); // Desmarcar
+                $(this).closest('div').hide();  // Ocultar
+            });
+        } else if ($(this).attr('id') === 'serviciospublicos247' && !$(this).is(':checked')) {
+            $('input[name="serviciospublicos[]"]').closest('div').show(); // Mostrar todos
+        }
+      });
+
+      $('input[name="serviciospublicos[]"]').change(function() {
+          if ($('input[name="serviciospublicos[]"]:visible:checked').length > 0) {
+              $('input[name="serviciospublicos[]"]').removeAttr('required');
+          } else {
+              $('input[name="serviciospublicos[]"]').attr('required', 'required');
+          }
+      });
+
+      $('input[name="telecomunicaciones[]"]').change(function() {
+        if ($(this).attr('id') === 'telecomunicaciones255' && $(this).is(':checked')) {
+            $('input[name="telecomunicaciones[]"]').not('#telecomunicaciones255').each(function() {
+                $(this).prop('checked', false); // Desmarcar
+                $(this).closest('div').hide();  // Ocultar
+            });
+        } else if ($(this).attr('id') === 'telecomunicaciones255' && !$(this).is(':checked')) {
+            $('input[name="telecomunicaciones[]"]').closest('div').show(); // Mostrar todos
+        }
+      });
+
+      $('input[name="telecomunicaciones[]"]').change(function() {
+          if ($('input[name="telecomunicaciones[]"]:visible:checked').length > 0) {
+              $('input[name="telecomunicaciones[]"]').removeAttr('required');
+          } else {
+              $('input[name="telecomunicaciones[]"]').attr('required', 'required');
+          }
+      });
+
+      $('input[name="documentodepropiedad[]"]').change(function() {
+          if ($('input[name="documentodepropiedad[]"]:visible:checked').length > 0) {
+              $('input[name="documentodepropiedad[]"]').removeAttr('required');
+          } else {
+              $('input[name="documentodepropiedad[]"]').attr('required', 'required');
+          }
+      });
+
+      $('#tipodetenenciau').change(function(){
+        if($('#tipodetenenciau').val() == '256' || $('#tipodetenenciau').val() == '257'){
+          $('#documentodepropiedad262').css('display','');
+          $('.documentodepropiedad262').css('display','');
+          $('#documentodepropiedad263').css('display','');
+          $('.documentodepropiedad263').css('display','');
+          $('#documentodepropiedad264').css('display','');
+          $('.documentodepropiedad264').css('display','');
+          $('#documentodepropiedaddiv').css('display','');
+          $('input[name="documentodepropiedad[]"]').prop('checked', false);
+          $('input[name="documentodepropiedad[]"]').attr('required', 'required');
+
+        }else{
+          $('#documentodepropiedad262').css('display','none');
+          $('.documentodepropiedad262').css('display','none');
+          $('#documentodepropiedad263').css('display','none');
+          $('.documentodepropiedad263').css('display','none');
+          $('#documentodepropiedad264').css('display','none');
+          $('.documentodepropiedad264').css('display','none');
+          $('#documentodepropiedaddiv').css('display','none');
+          $('input[name="documentodepropiedad[]"]').removeAttr('required');
+        }
+      });
+
+
+      
 
       //ocultar todo si no hay nadie seleccionado
 

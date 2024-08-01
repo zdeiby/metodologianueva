@@ -10,13 +10,108 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
+
+
 class c_l1e1 extends Controller
 {
-    public function fc_l1e1(Request $request,$folio){
+
+    public function fc_encuestahogarhabitabilidad(Request $request,$folio){
+        $modelo= new m_l1e1();
+        $preguntas=$modelo->m_leerrespuestas();
+        $leerbarrios= $modelo->m_leerbarrios();
+        $leercomunas= $modelo->m_leercomunas();
+        $leerintegrantes= $modelo->m_leerintegrantes(decrypt($folio));
+  
+      
+          $sino = '<option value="">Seleccione </option><option style="display:none" value="0">NO APLICA</option>';
+          foreach ($preguntas as $value) {
+            if ($value->id >= '1' && $value->id <= '2') {
+                $sino .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+            }
+        }
+  
+  
+          $tipovivienda='<option value="">Seleccione </option>';
+          foreach ($preguntas as $value) {
+            if ($value->id >= '210' && $value->id <= '214') {
+                $tipovivienda .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+            }
+          }
+  
+          $materialesdeparedes='<option value="">Seleccione </option>';
+          foreach ($preguntas as $value) {
+            if ($value->id >= '215' && $value->id <= '222') {
+                $materialesdeparedes .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+            }
+          }
+          $materialesdetecho='<option value="">Seleccione </option>';
+          foreach ($preguntas as $value) {
+            if ($value->id >= '223' && $value->id <= '233') {
+                $materialesdetecho .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+            }
+          }
+          $materialsuelo='<option value="">Seleccione </option>';
+          foreach ($preguntas as $value) {
+            if ($value->id >= '234' && $value->id <= '241') {
+                $materialsuelo .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+            }
+          }
+  
+          $serviciospublicos = '';
+          foreach ($preguntas as $value) {
+              if ($value->id >= '242' && $value->id <= '247') {
+                  $serviciospublicos .= '<div class="serviciospublicos' . $value->id . '">
+                  <label class="form-check-label serviciospublicos' . $value->id . '"  for="serviciospublicos' . $value->id . '">' . $value->pregunta . '</label>
+                  <input class="form-check-input" type="checkbox" name="serviciospublicos[]" id="serviciospublicos' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                  </div>';
+              }
+          }
+          $telecomunicaciones = '';
+          foreach ($preguntas as $value) {
+              if ($value->id >= '248' && $value->id <= '255') {
+                  $telecomunicaciones .= '<div class="telecomunicaciones' . $value->id . '">
+                  <label class="form-check-label telecomunicaciones' . $value->id . '"  for="telecomunicaciones' . $value->id . '">' . $value->pregunta . '</label>
+                  <input class="form-check-input" type="checkbox" name="telecomunicaciones[]" id="telecomunicaciones' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                  </div>';
+              }
+          }
+  
+          $tipodetenenciau = '<option value="">Seleccione </option>';
+          foreach ($preguntas as $value) {
+              if ($value->id >= '256' && $value->id <= '261') {
+                $tipodetenenciau .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+  
+              }
+          }
+          $documentodepropiedad = '';
+          foreach ($preguntas as $value) {
+              if ($value->id >= '262' && $value->id <= '264') {
+                  $documentodepropiedad .= '<div class="documentodepropiedad' . $value->id . '">
+                  <label class="form-check-label documentodepropiedad' . $value->id . '"  for="documentodepropiedad' . $value->id . '">' . $value->pregunta . '</label>
+                  <input class="form-check-input" type="checkbox" name="documentodepropiedad[]" id="documentodepropiedad' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                  </div>';
+              }
+          }
+  
+         
+       
+  
+    
+          return view('vistaslineas/v_encuestahogarhabitabilidad',["variable"=>$folio, 
+          'sino'=>$sino,
+           'tipovivienda'=>$tipovivienda,'materialesdeparedes'=>$materialesdeparedes,
+        'materialestecho'=>$materialesdetecho,'materialsuelo'=>$materialsuelo,
+        'serviciospublicos'=>$serviciospublicos,'telecomunicaciones'=>$telecomunicaciones,'tipodetenenciau'=>$tipodetenenciau,
+        'documentodepropiedad'=>$documentodepropiedad,
+      ]);
+        }
+  
+     
+
+    
+    public function fc_encuestahogarconformacionfamiliar(Request $request,$folio){
       $modelo= new m_l1e1();
       $preguntas=$modelo->m_leerrespuestas();
-      $leerbarrios= $modelo->m_leerbarrios();
-      $leercomunas= $modelo->m_leercomunas();
       $leerintegrantes= $modelo->m_leerintegrantes(decrypt($folio));
 
       $tipologia = '<option value="">Seleccione </option>';
@@ -48,18 +143,27 @@ class c_l1e1 extends Controller
                 </div>';
           }
 
-        $condicionespecial = '';
-                foreach ($preguntas as $value) {
-                    if ($value->id >= 191 && $value->id <= 196) {
-                        $condicionespecial .= '<div class="condicionespecial' . $value->id . '">
-                            <input class="form-check-input" type="checkbox" name="condicionespecial[]" id="condicionespecial' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                            <label class="form-check-label" for="condicionespecial' . $value->id . '">' . $value->pregunta . '</label>
-                            <div class="integrantes-container" id="integrantes-condicionespecial' . $value->id . '-container" style="display: none;">
-                                ' . $integrantes2 . '
-                            </div>
-                        </div>';
-                    }
-                }
+        $condicionespecial = '';  // 361
+        $identidad_ids = [191, 192, 193, 194, 195,361, 196, ];
+        foreach ($identidad_ids as $id) {
+          foreach ($preguntas as $value) {
+              if ($value->id == $id) {
+                  $sorted_preguntas[] = $value;
+                  break;
+              }
+          }
+      }
+       foreach ($sorted_preguntas as $value) {
+        $condicionespecial .= '<div class="condicionespecial' . $value->id . '">
+            <input class="form-check-input" type="checkbox" name="condicionespecial[]" id="condicionespecial' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+            <label class="form-check-label" for="condicionespecial' . $value->id . '">' . $value->pregunta . '</label>
+            <div class="integrantes-container" id="integrantes-condicionespecial' . $value->id . '-container" style="display: none;">
+            ' . $integrantes2 . '
+                </div>
+            </div>';
+        }
+
+
       $familiacuidadora = '';
       foreach ($preguntas as $value) {
           if ($value->id >= '197' && $value->id <= '200') {
@@ -70,213 +174,237 @@ class c_l1e1 extends Controller
           }
       }
 
-        $barrios = '<option value="">Seleccione </option>';
-        foreach ($leerbarrios as $value) {
-          $barrios .= '<option value="' . $value->codigo . '">' . $value->barriovereda . '</option>';
-        }
 
-        $comunas = '<option value="">Seleccione </option>';
-        foreach ($leercomunas as $value) {
-            $comunas.= '<option value="' . $value->codigo . '">' . $value->comuna . '</option>';
-        }
-
-        $estrato='<option value="">Seleccione </option>';
-        foreach ($preguntas as $value) {
-          if ($value->id >= '201' && $value->id <= '207') {
-              $estrato .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
-          }
-        }
-
-        $ubicacion='<option value="">Seleccione </option>';
-        foreach ($preguntas as $value) {
-          if ($value->id >= '208' && $value->id <= '209') {
-              $ubicacion .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
-          }
-        }
-
-        $tipovivienda='<option value="">Seleccione </option>';
-        foreach ($preguntas as $value) {
-          if ($value->id >= '210' && $value->id <= '214') {
-              $tipovivienda .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
-          }
-        }
-
-        $materialesdeparedes='<option value="">Seleccione </option>';
-        foreach ($preguntas as $value) {
-          if ($value->id >= '215' && $value->id <= '222') {
-              $materialesdeparedes .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
-          }
-        }
-        $materialesdetecho='<option value="">Seleccione </option>';
-        foreach ($preguntas as $value) {
-          if ($value->id >= '223' && $value->id <= '233') {
-              $materialesdetecho .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
-          }
-        }
-        $materialsuelo='<option value="">Seleccione </option>';
-        foreach ($preguntas as $value) {
-          if ($value->id >= '234' && $value->id <= '241') {
-              $materialsuelo .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
-          }
-        }
-
-        $serviciospublicos = '';
-        foreach ($preguntas as $value) {
-            if ($value->id >= '242' && $value->id <= '247') {
-                $serviciospublicos .= '<div class="serviciospublicos' . $value->id . '">
-                <label class="form-check-label serviciospublicos' . $value->id . '"  for="serviciospublicos' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="serviciospublicos[]" id="serviciospublicos' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                </div>';
-            }
-        }
-        $telecomunicaciones = '';
-        foreach ($preguntas as $value) {
-            if ($value->id >= '248' && $value->id <= '255') {
-                $telecomunicaciones .= '<div class="telecomunicaciones' . $value->id . '">
-                <label class="form-check-label telecomunicaciones' . $value->id . '"  for="telecomunicaciones' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="telecomunicaciones[]" id="telecomunicaciones' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                </div>';
-            }
-        }
-
-        $tipodetenenciau = '<option value="">Seleccione </option>';
-        foreach ($preguntas as $value) {
-            if ($value->id >= '256' && $value->id <= '261') {
-              $tipodetenenciau .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
-
-            }
-        }
-        $documentodepropiedad = '';
-        foreach ($preguntas as $value) {
-            if ($value->id >= '262' && $value->id <= '264') {
-                $documentodepropiedad .= '<div class="documentodepropiedad' . $value->id . '">
-                <label class="form-check-label documentodepropiedad' . $value->id . '"  for="documentodepropiedad' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="documentodepropiedad[]" id="documentodepropiedad' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                </div>';
-            }
-        }
-
-        $numerodecomidas='<option value="">Seleccione </option>';
-        foreach ($preguntas as $value) {
-          if ($value->id >= '123' && $value->id <= '130') {
-              $numerodecomidas .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
-          }
-        }
-
-
-        $factoresderiesgovef = '';
-        foreach ($preguntas as $value) {
-            if ($value->id >= '265' && $value->id <= '278') {
-                $factoresderiesgovef .= '<div class="factoresderiesgovef' . $value->id . '">
-                <label class="form-check-label factoresderiesgovef' . $value->id . '"  for="factoresderiesgovef' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="factoresderiesgovef[]" id="factoresderiesgovef' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                </div>';
-            }
-        }
-        $vefviolenciaenelentorno = '';
-        foreach ($preguntas as $value) {
-            if ($value->id >= '279' && $value->id <= '285') {
-                $vefviolenciaenelentorno .= '<div class="vefviolenciaenelentorno' . $value->id . '">
-                <label class="form-check-label vefviolenciaenelentorno' . $value->id . '"  for="vefviolenciaenelentorno' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="vefviolenciaenelentorno[]" id="vefviolenciaenelentorno' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                </div>';
-            }
-        }
-
-        $rutasvef3 = '';
-        foreach ($preguntas as $value) {
-            if ($value->id >= '286' && $value->id <= '294') {
-                $rutasvef3 .= '<div class="rutasvef3' . $value->id . '">
-                <label class="form-check-label rutasvef3' . $value->id . '"  for="rutasvef3' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="rutasvef3[]" id="rutasvef3' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                </div>';
-            }
-        } $planeacionfinanciera4 = '';
-        foreach ($preguntas as $value) {
-            if ($value->id >= '295' && $value->id <= '297') {
-                $planeacionfinanciera4 .= '<div class="planeacionfinanciera4' . $value->id . '">
-                <label class="form-check-label planeacionfinanciera4' . $value->id . '"  for="planeacionfinanciera4' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="planeacionfinanciera4[]" id="planeacionfinanciera4' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                </div>';
-            }
-        } $disciplinapositiva = '';
-        foreach ($preguntas as $value) {
-            if ($value->id >= '298' && $value->id <= '304') {
-                $disciplinapositiva .= '<div class="disciplinapositiva' . $value->id . '">
-                <label class="form-check-label disciplinapositiva' . $value->id . '"  for="disciplinapositiva' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="disciplinapositiva[]" id="disciplinapositiva' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                </div>';
-            }
-        } $tiempolibre = '';
-        foreach ($preguntas as $value) {
-            if ($value->id >= '305' && $value->id <= '309') {
-                $tiempolibre .= '<div class="tiempolibre' . $value->id . '">
-                <label class="form-check-label tiempolibre' . $value->id . '"  for="tiempolibre' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="tiempolibre[]" id="tiempolibre' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                </div>';
-            }
-        }
-     
-
-  
-        return view('vistaslineas/v_l1e1',["variable"=>$folio, 'tipologia'=>$tipologia,
-        'sino'=>$sino,'condicionespecial'=>$condicionespecial,'condicionespecial'=>$condicionespecial,
-        "comunas"=>$comunas,"barrios"=>$barrios,'estrato'=>$estrato,'ubicacion'=>$ubicacion, 
-        'familiacuidadora'=>$familiacuidadora, 'tipovivienda'=>$tipovivienda,'materialesdeparedes'=>$materialesdeparedes,
-      'materialestecho'=>$materialesdetecho,'materialsuelo'=>$materialsuelo,
-      'serviciospublicos'=>$serviciospublicos,'telecomunicaciones'=>$telecomunicaciones,'tipodetenenciau'=>$tipodetenenciau,
-      'documentodepropiedad'=>$documentodepropiedad,'numerodecomidas'=>$numerodecomidas,
-      'factoresderiesgovef'=>$factoresderiesgovef,
-      'vefviolenciaenelentorno'=>$vefviolenciaenelentorno,
-      'rutasvef3'=>$rutasvef3,
-      'planeacionfinanciera4'=>$planeacionfinanciera4,
-      'disciplinapositiva'=>$disciplinapositiva,
-      'tiempolibre'=>$tiempolibre,'integrantes'=>$integrantes,
+        return view('vistaslineas/v_encuestahogarconformacionfamiliar',["variable"=>$folio, 'tipologia'=>$tipologia,
+        'sino'=>$sino,'condicionespecial'=>$condicionespecial, 
+        'familiacuidadora'=>$familiacuidadora, 
+      'integrantes'=>$integrantes,
     ]);
       }
 
+      public function fc_encuestahogardatosgeograficos(Request $request,$folio){
+        $modelo= new m_l1e1();
+        $preguntas=$modelo->m_leerrespuestas();
+        $leerbarrios= $modelo->m_leerbarrios();
+        $leercomunas= $modelo->m_leercomunas();
+        $leerintegrantes= $modelo->m_leerintegrantes(decrypt($folio));
+  
+        $tipologia = '<option value="">Seleccione </option>';
+        foreach ($preguntas as $value) {
+          if ($value->id >= '179' && $value->id <= '190') {
+              $tipologia .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+          }
+      }
+          $sino = '<option value="">Seleccione </option><option style="display:none" value="0">NO APLICA</option>';
+          foreach ($preguntas as $value) {
+            if ($value->id >= '1' && $value->id <= '2') {
+                $sino .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+            }
+        }
+  
+          $barrios = '<option value="">Seleccione </option>';
+          foreach ($leerbarrios as $value) {
+            $barrios .= '<option value="' . $value->codigo . '">' . $value->barriovereda . '</option>';
+          }
+  
+          $comunas = '<option value="">Seleccione </option>';
+          foreach ($leercomunas as $value) {
+              $comunas.= '<option value="' . $value->codigo . '">' . $value->comuna . '</option>';
+          }
+  
+          $estrato='<option value="">Seleccione </option>';
+          foreach ($preguntas as $value) {
+            if ($value->id >= '201' && $value->id <= '207') {
+                $estrato .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+            }
+          }
+  
+          $ubicacion='<option value="">Seleccione </option>';
+          foreach ($preguntas as $value) {
+            if ($value->id >= '208' && $value->id <= '209') {
+                $ubicacion .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+            }
+          }
+  
+  
+    
+          return view('vistaslineas/v_encuestahogardatosgeograficos',["variable"=>$folio,
+          'sino'=>$sino,
+          "comunas"=>$comunas,"barrios"=>$barrios,'estrato'=>$estrato,'ubicacion'=>$ubicacion, 
+      ]);
+        }
+
+
+         
+    public function fc_encuestahogaralimentos(Request $request,$folio){
+        $modelo= new m_l1e1();
+        $preguntas=$modelo->m_leerrespuestas();
+  
+        $sino = '<option value="">Seleccione </option><option style="display:none" value="0">NO APLICA</option>';
+        foreach ($preguntas as $value) {
+          if ($value->id >= '1' && $value->id <= '2') {
+              $sino .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+          }
+      }
+          $numerodecomidas='<option value="">Seleccione </option>';
+          foreach ($preguntas as $value) {
+            if ($value->id >= '123' && $value->id <= '130') {
+                $numerodecomidas .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+            }
+          }
+
+          return view('vistaslineas/v_encuestahogaralimentos',["variable"=>$folio, 
+          'sino'=>$sino,'numerodecomidas'=>$numerodecomidas,
+      ]);
+        }
 
 
 
-      public function fc_leerpreguntashogar(Request $request){
+
+      public function fc_hogarentornofamiliar(Request $request,$folio){
+        $modelo= new m_l1e1();
+        $preguntas=$modelo->m_leerrespuestas();
+        $leerintegrantes= $modelo->m_leerintegrantes(decrypt($folio));
+      
+          $sino = '<option value="">Seleccione </option>';
+          foreach ($preguntas as $value) {
+            if ( $value->id == '0' || $value->id >= '1' && $value->id <= '2') {
+                $sino .= '<option value="' . $value->id . '" class="noaplica'. $value->id.'">' . $value->pregunta . '</option>';
+            }
+        }
+  
+       
+          $integrantes2 = '';
+          foreach ($leerintegrantes as $value) {
+              $integrantes2 .= '<div class="integrantes2' . $value->idintegrante . '">
+                  <label class="form-check-label tiempolibre' . $value->idintegrante . '"  for="integrantes2' . $value->idintegrante . '">' . $value->nombre1 .' '. $value->nombre2 .' '. $value->apellido1 .' '. $value->apellido2 . '</label>
+                  <input class="form-check-input" type="checkbox"  id="integrantes2' . $value->idintegrante . '" value="' . $value->idintegrante . '" respuesta="SI" >
+                  </div>';
+            }
+
+            $factoresderiesgovef_ids = [265, 266, 267, 268, 269,270, 271, 272,273,274,275,276,277,362,363,364,365,366,367,278];   
+            foreach ($factoresderiesgovef_ids as $id) { foreach ($preguntas as $value) { if ($value->id == $id) {              $sorted_preguntas[] = $value;              break;          }      }  }
+         
+            $factoresderiesgovef = '';
+          foreach ($sorted_preguntas as $value) {
+                  $factoresderiesgovef .= '<div class="factoresderiesgovef' . $value->id . '">
+                  <input class="form-check-input" type="checkbox" name="factoresderiesgovef[]" id="factoresderiesgovef' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>                
+                  <label class="form-check-label factoresderiesgovef' . $value->id . '"  for="factoresderiesgovef' . $value->id . '">' . $value->pregunta . '</label>
+                      <div class="integrantes-container" id="integrantes-factoresderiesgovef' . $value->id . '-container" style="display: none;">
+                          ' . $integrantes2 . '
+                      </div>
+                  </div>';
+          }
+  
+
+          $vefviolenciaenelentorno = '';
+          foreach ($preguntas as $value) {
+              if ($value->id >= '279' && $value->id <= '285') {
+                  $vefviolenciaenelentorno .= '<div class="vefviolenciaenelentorno' . $value->id . '">
+                  <label class="form-check-label vefviolenciaenelentorno' . $value->id . '"  for="vefviolenciaenelentorno' . $value->id . '">' . $value->pregunta . '</label>
+                  <input class="form-check-input" type="checkbox" name="vefviolenciaenelentorno[]" id="vefviolenciaenelentorno' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                  </div>';
+              }
+          }
+  
+          $rutasvef3 = '';
+          foreach ($preguntas as $value) {
+              if ($value->id >= '286' && $value->id <= '294') {
+                  $rutasvef3 .= '<div class="rutasvef3' . $value->id . '">
+                  <label class="form-check-label rutasvef3' . $value->id . '"  for="rutasvef3' . $value->id . '">' . $value->pregunta . '</label>
+                  <input class="form-check-input" type="checkbox" name="rutasvef3[]" id="rutasvef3' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                  </div>';
+              }
+          } $planeacionfinanciera4 = '';
+          foreach ($preguntas as $value) {
+              if ($value->id >= '295' && $value->id <= '297' || $value->id == '368') {
+                  $planeacionfinanciera4 .= '<div class="planeacionfinanciera4' . $value->id . '">
+                  <label class="form-check-label planeacionfinanciera4' . $value->id . '"  for="planeacionfinanciera4' . $value->id . '">' . $value->pregunta . '</label>
+                  <input class="form-check-input" type="checkbox" name="planeacionfinanciera4[]" id="planeacionfinanciera4' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                  </div>';
+              }
+          } $disciplinapositiva = '';
+          foreach ($preguntas as $value) {
+              if ($value->id >= '298' && $value->id <= '304') {
+                  $disciplinapositiva .= '<div class="disciplinapositiva' . $value->id . '">
+                  <label class="form-check-label disciplinapositiva' . $value->id . '"  for="disciplinapositiva' . $value->id . '">' . $value->pregunta . '</label>
+                  <input class="form-check-input" type="checkbox" name="disciplinapositiva[]" id="disciplinapositiva' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                  </div>';
+              }
+          } $tiempolibre = '';
+          foreach ($preguntas as $value) {
+              if ($value->id >= '305' && $value->id <= '309') {
+                  $tiempolibre .= '<div class="tiempolibre' . $value->id . '">
+                  <label class="form-check-label tiempolibre' . $value->id . '"  for="tiempolibre' . $value->id . '">' . $value->pregunta . '</label>
+                  <input class="form-check-input" type="checkbox" name="tiempolibre[]" id="tiempolibre' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                  </div>';
+              }
+          }
+       
+  
+    
+          return view('vistaslineas/v_encuestahogarentornofamiliar',["variable"=>$folio,'sino'=>$sino, 
+        'factoresderiesgovef'=>$factoresderiesgovef,
+        'vefviolenciaenelentorno'=>$vefviolenciaenelentorno,
+        'rutasvef3'=>$rutasvef3,
+        'planeacionfinanciera4'=>$planeacionfinanciera4,
+        'disciplinapositiva'=>$disciplinapositiva,
+        'tiempolibre'=>$tiempolibre,
+      ]);
+        }
+
+    public function fc_leerpreguntashogarfamiliar(Request $request){
         $folio=$request->input('folio');
         $t1_hogarconformacionfamiliar = DB::table('t1_hogarconformacionfamiliar')
                   ->where('folio', '=', $folio)
                   ->first();
 
+        return response()->json(["hogarconformacionfamiliar"=>$t1_hogarconformacionfamiliar,
+        ]);
+    }
+
+    public function fc_leerpreguntashogareconomicos(Request $request){
+        $folio=$request->input('folio');
+    
         $t1_hogardatoseconomicos = DB::table('t1_hogardatoseconomicos')
                 ->where('folio', '=', $folio)
                 ->first();
 
+        return response()->json([ "hogardatoseconomicos"=>$t1_hogardatoseconomicos, 
+        ]);
+    }
+
+    public function fc_leerpreguntashogarhabitabilidad(Request $request){
+        $folio=$request->input('folio');
+      
         $t1_hogarcondicioneshabitabilidad = DB::table('t1_hogarcondicioneshabitabilidad')
         ->where('folio', '=', $folio)
         ->first();
+  
+        return response()->json([
+         "hogarcondicioneshabitabilidad"=>$t1_hogarcondicioneshabitabilidad, 
+        ]);
+    }
 
+    public function fc_leerpreguntashogaralimentos(Request $request){
+        $folio=$request->input('folio');
         $t1_hogarcondicionesalimentarias = DB::table('t1_hogarcondicionesalimentarias')
         ->where('folio', '=', $folio)
         ->first();
+  
+        return response()->json(["hogarcondicionesalimentarias"=>$t1_hogarcondicionesalimentarias, 
+        ]);
+    }
 
+    public function fc_leerpreguntashogarentornofamiliar(Request $request){
+        $folio=$request->input('folio');
         $t1_hogarentornofamiliar = DB::table('t1_hogarentornofamiliar')
         ->where('folio', '=', $folio)
         ->first();
 
-       // $imagenes=$request->input('idintegrante');
-        $imagen = DB::table('t1_integranteshogar')
-                ->where('folio', '=', $folio)
-                ->first();
-        $identitario = DB::table('t1_integrantesidentitario')
-        ->where('folio', '=', $folio)
-        ->first();
   
-  
-        return response()->json(["hogarconformacionfamiliar"=>$t1_hogarconformacionfamiliar, "hogardatoseconomicos"=>$t1_hogardatoseconomicos, 
-         "hogarcondicioneshabitabilidad"=>$t1_hogarcondicioneshabitabilidad, "hogarcondicionesalimentarias"=>$t1_hogarcondicionesalimentarias, 
-         "imagen"=>$imagen, "hogarentornofamiliar"=>$t1_hogarentornofamiliar
-        ]);
+        return response()->json(["hogarentornofamiliar"=>$t1_hogarentornofamiliar ]);
     }
-
-
-
 
 
       public function fc_conformacionfamiliar(Request $request)
