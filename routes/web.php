@@ -13,6 +13,7 @@ use App\Http\Controllers\c_integrantes;
 use App\Http\Controllers\c_editarintegrantes;
 use App\Http\Controllers\c_encuestaintegrantes;
 use App\Http\Controllers\vistaslineas\c_l1e1;
+use App\Http\Controllers\c_cards;
 
 //RUTAS GET
 Route::get('/',[c_index::class, 'fc_index'])->name('index');
@@ -20,6 +21,10 @@ Route::get('/leerintegrantes',[c_integrantes::class,'fc_leerintegrantes'])->name
 Route::get('/eliminarintegrantes',[c_integrantes::class, 'fc_eliminarintegrantes'])->name('eliminarintegrantes');
 
 Route::get('/cobertura',[c_prueba::class, 'fc_index'])->name('prueba');
+
+Route::get('/cards',[c_cards::class, 'fc_cards'])->name('cards');
+
+
 Route::get('/login',[c_login::class, 'fc_login'])->name('login');
 
 
