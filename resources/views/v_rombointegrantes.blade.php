@@ -163,7 +163,7 @@ body {
                     <label>Gestión de integrantes</label>
                   </h3>               
                 </div>
-                <button type="button" class="btn btn-primary" onclick="window.location.href='../integrantes/{{$variable}}'">Ir a encuesta de hogar</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='../integrantes/{{$variable}}'">Ir a gestión de integrantes</button>
                 <div class="smCard">
                 </div>
               </div>
