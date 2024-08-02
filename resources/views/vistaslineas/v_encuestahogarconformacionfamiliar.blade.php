@@ -186,7 +186,7 @@
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
-  
+  paginacargando();
     $('.familiamultiespecie2').css('display','none');
 
     $('#familiamultiespecie1').change(function(){
@@ -439,7 +439,7 @@ if(Array.isArray(familiacuidadora) && familiacuidadora.length > 0) {
 
                           
 
-
+paginalista();
          },
         error: function(xhr, status, error) {
                   //console.log(xhr.responseText);
@@ -612,10 +612,12 @@ if(Array.isArray(familiacuidadora) && familiacuidadora.length > 0) {
             method: $(this).attr('method'),
             data: { data: data },
             success: function (response) {
+              alertagood()
                 $('#siguiente').css('display', '');
                 $('#datosgeograficos').removeAttr('disabled');
             },
             error: function (xhr, status, error) {
+              alertabad();
             }
         });
     });

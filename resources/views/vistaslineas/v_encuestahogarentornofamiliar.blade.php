@@ -184,7 +184,7 @@
     <script>
   
     
-
+paginacargando();
 
     function calcularEdad(fechaNacimiento) {
     var hoy = new Date();
@@ -435,6 +435,7 @@
                       $('#cualtiempolibrediv').hide();
                       $('#cualtiempolibre').removeAttr('required')
             }
+            paginalista();
          },
         error: function(xhr, status, error) {
                   //console.log(xhr.responseText);
@@ -653,10 +654,12 @@ console.log('hola')
                     method: 'POST',
                     data: {data: data},
                     success: function(response) {
+                      alertagood();
                       $('#volver').css('display','');
                       $('#datosgeograficos').removeAttr('disabled');
                     },
                     error: function(xhr, status, error) {
+                      alertabad();
                         console.error(error);
                     }
                 });

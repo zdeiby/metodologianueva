@@ -210,7 +210,7 @@
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
-    
+    paginacargando();
     function agregarImagen(id){
       $(`#${id}`).addClass('imagenselect');
       for (let index = 0; index < 14; index++) {
@@ -885,7 +885,7 @@ console.log(edad)
             $('#deseaaccedereducacion').val('0');
           }
          
-
+          paginalista();
          },
         error: function(xhr, status, error) {
                   console.log(xhr.responseText);
@@ -949,10 +949,12 @@ console.log(edad)
             method: $(this).attr('method'),
             data: {data: data},
             success: function(response) {
+              alertagood();
               $('#siguiente').css('display','');
               $('#identatario').removeAttr('disabled');
             },
             error: function(xhr, status, error) {
+              alertabad();
                 console.error(error);
             }
         });

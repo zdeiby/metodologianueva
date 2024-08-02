@@ -396,7 +396,7 @@
     <script>
 
 
-
+paginacargando();
     
     function agregarImagen(id){
       $(`#${id}`).addClass('imagenselect');
@@ -741,7 +741,7 @@
 
 
 
-
+                    paginalista();
         },
         error: function(xhr, status, error) {
                   console.log(xhr.responseText);
@@ -799,12 +799,14 @@
                     data:{data},
                     method: "GET",
                     dataType:'JSON',
-                    success:function(data){
+                    success:function(data){ 
+                      alertagood()
                       $('#siguiente').css('display','');
                       $('#identatario').removeAttr('disabled');
-                      console.log('okl')
+                     
                     },
                     error: function(xhr, status, error) {
+                      alertabad();
                               console.log(xhr.responseText);
                           }
                   })
@@ -818,10 +820,12 @@
                     method: "GET",
                     dataType:'JSON',
                     success:function(data){
+                      alertagood()
                       $('#volver2').css('display','');
-                      console.log('ok2')
+                      
                     },
                     error: function(xhr, status, error) {
+                      alertabad();
                               console.log(xhr.responseText);
                           }
                   })

@@ -147,7 +147,7 @@
 
     <script>
   
-
+paginacargando();
 
     function calcularEdad(fechaNacimiento) {
     var hoy = new Date();
@@ -188,7 +188,7 @@
            $('#accesibilidad').val((data.hogarcondicionesalimentarias)?data.hogarcondicionesalimentarias.accesibilidad:'');
 
           // BIENESTAR condicioneshabitabilidad
-
+paginalista();
          },
         error: function(xhr, status, error) {
                   //console.log(xhr.responseText);
@@ -263,10 +263,12 @@
              method: $(this).attr('method'),
              data: {data: data},
              success: function(response) {
+              alertagood()
                $('#siguiente4').css('display','');
                $('#datosgeograficos').removeAttr('disabled');
              },
              error: function(xhr, status, error) {
+              alertabad();
                  console.error(error);
              }
          });

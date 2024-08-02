@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
      <link href="{{ asset('assets/bootstrap/bootstrap.css') }}" rel="stylesheet" > 
      <link rel="shortcut icon" href="../../favicon.ico">
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <style>
     /* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap'); */
 :root{
@@ -352,11 +353,54 @@ main.min-main{
         border-bottom:1px solid white;
      
     }
+
+    .loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url("{{ asset('assets/img/loading.gif') }}") 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+}
    
     
    </style>
+<script>
+function alertagood(){
+    Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "Se ha guardado con éxito",
+    showConfirmButton: false,
+    timer: 1500
+    });
+}
+function alertabad(){
+Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "Something went wrong!",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
+}
+
+function paginacargando(){
+   $('#carga').attr('class','loader');
+}
+
+function paginalista(){
+    document.querySelector('.loader').style.display = 'none'; // Oculta el loader
+    document.querySelector('main').style.display = 'block'; // Muestra el contenido del main
+}
+
+
+    </script>
+
 </head>
-<body>
+<body onload="console.log('hola')">
+<div class="" id="carga"></div>
     <div class="menu">
         <ion-icon name="menu-outline"></ion-icon>
         <ion-icon name="close-outline"></ion-icon>
@@ -530,6 +574,9 @@ cloud.addEventListener("click",()=>{
         span.classList.toggle("oculto");
     });
 });
+
+
+
     </script>
 </body>
 </html>

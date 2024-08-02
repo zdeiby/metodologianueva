@@ -216,7 +216,7 @@
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
- 
+ paginacargando();
 
     function calcularEdad(fechaNacimiento) {
     var hoy = new Date();
@@ -296,8 +296,10 @@
                           success:function(data){
                             $('#barrio').html(data.options);
                             $('#barrio').val(barrio);
+                            paginalista();
                           },
                           error: function(xhr, status, error) {
+                            paginalista();
                                    // console.log(xhr.responseText);
                                 }
                         })
@@ -387,10 +389,12 @@
              method: $(this).attr('method'),
              data: {data: data},
              success: function(response) {
+              alertagood()
                $('#siguiente2').css('display','');
                $('#datosgeograficos').removeAttr('disabled');
              },
              error: function(xhr, status, error) {
+              alertabad();
                  console.error(error);
              }
          });  

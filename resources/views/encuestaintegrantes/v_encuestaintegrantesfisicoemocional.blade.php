@@ -270,6 +270,8 @@
 
     <script>
     
+paginacargando();
+
     function agregarImagen(id){
       $(`#${id}`).addClass('imagenselect');
       for (let index = 0; index < 14; index++) {
@@ -983,7 +985,7 @@
                   $('#cualconsumospa5').removeAttr('required');
 
                 }
-
+                paginalista();
          },
         error: function(xhr, status, error) {
                   console.log(xhr.responseText);
@@ -1222,10 +1224,12 @@ data['acceso3'].forEach(item => {
             method: $(this).attr('method'),
             data: {data: data},
             success: function(response) {
+              alertagood();
               $('#siguiente').css('display','');
               $('#identatario').removeAttr('disabled');
             },
             error: function(xhr, status, error) {
+              alertabad();
                 console.error(error);
             }
         });

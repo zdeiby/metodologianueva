@@ -142,7 +142,7 @@
 
     <script>
     
-          
+    paginacargando();
 
     function calcularEdad(fechaNacimiento) {
     var hoy = new Date();
@@ -323,7 +323,7 @@ console.log(edad)
             
               }
 
-
+paginalista();
          },
         error: function(xhr, status, error) {
                   console.log(xhr.responseText);
@@ -432,11 +432,13 @@ console.log(edad)
             method: $(this).attr('method'),
             data: {data: data},
             success: function(response) {
+              alertagood();
               $('#volver').css('display','');
               $('#identatario').removeAttr('disabled');
             },
             error: function(xhr, status, error) {
                 console.error(error);
+                alertabad();
             }
         });
         

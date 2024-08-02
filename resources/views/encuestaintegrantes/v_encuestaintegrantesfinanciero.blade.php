@@ -218,10 +218,8 @@
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
-    
-   
- 
-    
+    paginacargando();
+
   $('.noaplica0').css('display','none');
   
           $('#ingresos1').change(function(){
@@ -2485,7 +2483,7 @@ console.log(edad)
               }
 
 
-         
+         paginalista();
          },
         error: function(xhr, status, error) {
                   console.log(xhr.responseText);
@@ -2617,10 +2615,12 @@ console.log(edad)
             method: $(this).attr('method'),
             data: {data: data},
             success: function(response) {
+              alertagood();
               $('#siguiente').css('display','');
               $('#identatario').removeAttr('disabled');
             },
             error: function(xhr, status, error) {
+              alertabad();
                 console.error(error);
             }
         });
