@@ -381,8 +381,8 @@ function alertabad(){
 Swal.fire({
   icon: "error",
   title: "Oops...",
-  text: "Something went wrong!",
-  footer: '<a href="#">Why do I have this issue?</a>'
+  text: "Algo salió mal",
+  footer: ''
 });
 }
 
@@ -394,6 +394,58 @@ function paginalista(){
     document.querySelector('.loader').style.display = 'none'; // Oculta el loader
     document.querySelector('main').style.display = 'block'; // Muestra el contenido del main
 }
+
+function soloLetras(e)
+{
+    //    alert(e);
+/*    var key = window.Event ? e.which : e.keyCode
+
+    if ((key >= 65 && key <= 90) || (key == 8) || (key == 32) || (key == 44 || (key == 46))) {
+    }
+    else
+    {
+        //okletrasnum('Ingresa solo letras mayusculas!!!');
+    }
+
+    return ((key >= 65 && key <= 90) || (key == 8) || (key == 32) || (key == 44) || (key == 46))*/
+tecla = (document.all) ? e.keyCode : e.which;
+if (tecla==8) return true;
+
+patron =/[A-Za-zÃ±Ã‘\s]/;
+te = String.fromCharCode(tecla);
+return patron.test(te);
+}
+function soloNumeros(e) {
+    var key = window.Event ? e.which : e.keyCode;
+
+    // Permitir solo números (teclas 0-9) y la tecla de retroceso (Backspace)
+    if ((key >= 48 && key <= 57) || (key == 8)) {
+        var input = e.target;
+
+        // Evitar ceros iniciales repetidos
+        if (input.value.length === 0 && key == 48) {
+            return false; // Evitar que se ingrese un cero como primer carácter
+        }
+
+        setTimeout(function() {
+            // Si el valor es solo "0", eliminarlo
+            if (input.value === "0") {
+                input.value = "";
+            }
+
+            // Eliminar ceros iniciales
+            if (input.value.length > 1 && input.value.startsWith('0')) {
+                input.value = input.value.replace(/^0+/, '');
+            }
+        }, 0);
+
+        return true;
+    } else {
+        // Bloquear cualquier otra tecla
+        return false;
+    }
+}
+
 
 
     </script>

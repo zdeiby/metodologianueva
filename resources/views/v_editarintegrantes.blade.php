@@ -117,16 +117,16 @@
 
             <label for="validationServer04" class="form-label">¿Cuál es tu nombre completo?</label>
           <div class="col-md-3">
-            <input type="text" class="form-control form-control-sm " placeholder="Nombre 1" oninput="convertirAMayusculas(this)" id="nombre1"  name="nombre1" value="" required>
+          <input type="text" class="form-control form-control-sm" placeholder="Nombre 1" style="text-transform: uppercase;" onkeypress="return soloLetras(event)"  id="nombre1" name="nombre1" value="" required>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control form-control-sm " placeholder="Nombre 2" oninput="convertirAMayusculas(this)" id="nombre2"  name="nombre2" value="" >
+            <input type="text" class="form-control form-control-sm " placeholder="Nombre 2" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" id="nombre2"  name="nombre2" value="" >
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control form-control-sm " placeholder="Apellido 1" oninput="convertirAMayusculas(this)" id="apellido1" name="apellido1"  value="" required>
+            <input type="text" class="form-control form-control-sm " placeholder="Apellido 1" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" id="apellido1" name="apellido1"  value="" required>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control form-control-sm " placeholder="Apellido 2" oninput="convertirAMayusculas(this)" id="apellido2" name="apellido2"  value="" >
+            <input type="text" class="form-control form-control-sm " placeholder="Apellido 2" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" id="apellido2" name="apellido2"  value="" >
           </div>
           <div class="col-md-12">
                   <label for="validationServer04" class="form-label">¿Tienes un nombre identitario o cómo te gusta que te llamen?</label>
@@ -279,7 +279,7 @@
           </div>
           <div class="col-md" id="cualorientaciondiv" >
             <label for="validationServer04" class="form-label">¿Cúal?</label>
-            <input type="text" class="form-control form-control-sm" name="cualorientacion" oninput="convertirAMayusculas(this)" id="cualorientacion" value="">
+            <input type="text" class="form-control form-control-sm" name="cualorientacion" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" id="cualorientacion" value="">
           </div>
           <div class="col-md-6" id="identidaddiv">
             <label for="validationServer04" class="form-label">¿Cuál es tu identidad de género?</label>
@@ -335,7 +335,7 @@
           </div>
           <div class="col-md" id="cualongdiv">
             <label for="validationServer04" class="form-label">¿Cúal?</label>
-            <input type="text" class="form-control form-control-sm" oninput="convertirAMayusculas(this)" id="cualong" name="cualong" value="">
+            <input type="text" class="form-control form-control-sm" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" id="cualong" name="cualong" value="">
           </div>
           <hr>
     
@@ -767,9 +767,9 @@ paginacargando();
         redirectToIntegrantes()
       });
 
-      function convertirAMayusculas(element) {
-            element.value = element.value.toUpperCase();
-        }
+      // function soloLetras(element) {
+      //       element.value = element.value.toUpperCase();
+      //   }
 
       function redirectToIntegrantes() {
            var folio = window.localStorage.getItem('folioencriptado');

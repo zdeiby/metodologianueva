@@ -513,39 +513,9 @@ $('#ubicacion').change(function(){
 
 
 
-    function soloLetras(e)
-{
-    //    alert(e);
-/*    var key = window.Event ? e.which : e.keyCode
 
-    if ((key >= 65 && key <= 90) || (key == 8) || (key == 32) || (key == 44 || (key == 46))) {
-    }
-    else
-    {
-        //okletrasnum('Ingresa solo letras mayusculas!!!');
-    }
 
-    return ((key >= 65 && key <= 90) || (key == 8) || (key == 32) || (key == 44) || (key == 46))*/
-tecla = (document.all) ? e.keyCode : e.which;
-if (tecla==8) return true;
 
-patron =/[A-Za-zÃ±Ã‘\s]/;
-te = String.fromCharCode(tecla);
-return patron.test(te);
-}
-
-function soloNumeros(e)
-{
-    //    alert(e);
-    var key = window.Event ? e.which : e.keyCode
-    if ((key >= 48 && key <= 57) || (key == 8)) {
-    }
-    else
-    {
-        //okletrasnum('Ingresa solo numeros!!!');
-    }
-    return ((key >= 48 && key <= 57) || (key == 8))
-}
 
 
 

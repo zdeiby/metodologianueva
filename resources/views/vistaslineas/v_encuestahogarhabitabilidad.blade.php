@@ -134,7 +134,7 @@
                         </div>
                         <div class="col-md">
                           <label for="validationServer04" class="form-label">¿Cuántas habitaciones son exclusivamente para dormir?</label>
-                          <input type="number" class="form-control form-control-sm" name="hacimiento" oninput="convertirAMayusculas(this)" id="hacimiento" value="" required>
+                          <input type="number" class="form-control form-control-sm" name="hacimiento" style="text-transform: uppercase;" onkeypress="return soloNumeros(event)" id="hacimiento" value="" required>
                         </div>
                         <div class="col-md-12">
                           <label for="validationServer04" class="form-label">¿Cuál es la tenencia de tu vivienda?</label>

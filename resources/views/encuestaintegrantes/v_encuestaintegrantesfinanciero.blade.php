@@ -129,11 +129,11 @@
           </div>
           <div class="col-md-12" id="ingresos2div">
             <label for="validationServer04" class="form-label">¿A cuánto ascienden tus ingresos fijos al mes? (ingresos por alguna renta o pensión de jubilación, subsidios, etc)</label>
-            <input type="number"  class="form-control form-control-sm  " id="ingresos2" name="ingresos2" value="" required="">
+            <input type="number"  class="form-control form-control-sm  " onkeypress="return soloNumeros(event)" id="ingresos2" name="ingresos2" value="" required="">
           </div>
           <div class="col-md-12" id="ingresos3div">
             <label for="validationServer04" class="form-label">¿A cuánto ascienden tus ingresos variables al mes? (horas extras, comisiones, premios, ganancia por alguna inversión que haga, trabajos independientes)</label>
-            <input type="number"  class="form-control form-control-sm  " id="ingresos3" name="ingresos3" value="" required="">
+            <input type="number"  class="form-control form-control-sm  " onkeypress="return soloNumeros(event)" id="ingresos3" name="ingresos3" value="" required="">
           </div>
           <div class="col-md-6" id="desempleodelargaduraciondiv">
             <label for="validationServer04" class="form-label">¿Cuántos meses llevas desempleado?</label>

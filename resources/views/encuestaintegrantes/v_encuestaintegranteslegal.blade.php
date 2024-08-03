@@ -322,7 +322,7 @@ console.log(edad)
                  
             
               }
-
+              
 paginalista();
          },
         error: function(xhr, status, error) {
@@ -336,7 +336,7 @@ paginalista();
       $('#volver').click(function(){
         redirectToIntegrantes()
       });
-
+      $('.noaplica0').hide();
       function convertirAMayusculas(element) {
             element.value = element.value.toUpperCase();
         }
@@ -367,7 +367,7 @@ paginalista();
         }
       });
 
- 
+
     $('#formlegal').on('submit', function(event) {
       event.preventDefault(); // Detiene el envío del formulario
       var formData = $(this).serializeArray();
