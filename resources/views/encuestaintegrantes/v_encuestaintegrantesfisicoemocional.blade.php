@@ -118,7 +118,7 @@
                </div>
           </div>
           <div class="col-md-12">
-            <label for="validationServer04" class="form-label">¿Ha tenido o tiene alguna de las siguientes enfermedades considradas como de alto costo o catastróficas en el sistema de salud?</label>
+            <label for="validationServer04" class="form-label">¿Ha tenido o tiene alguna de las siguientes enfermedades consideradas como de alto costo o catastróficas en el sistema de salud?</label>
             <select class="form-control form-control-sm" id="enfermedad" aria-describedby="validationServer04Feedback" name="enfermedad" required="">
             {{!!$enfermedad!!}}
           </select>

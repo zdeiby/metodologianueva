@@ -37,7 +37,7 @@ public function fc_encuestaintegrantesfisicoemocional(){
 
     $acceso3 = '';
     foreach ($preguntas as $value) {
-        if ($value->id >= '47' && $value->id <= '61') {
+        if ($value->id >= '47' && $value->id <= '60') {
             $acceso3 .= '<div class="acceso3' . $value->id . '" >
             <label class="form-check-label acceso3' . $value->id . '"  for="acceso3' . $value->id . '">' . $value->pregunta . '</label>
             <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso3' . $value->id . '" value="' . $value->id . '" respuesta="SI"  >
@@ -237,7 +237,7 @@ public function fc_encuestaintegrantesfinanciero(){
       
             $mecanismosdeproteccionddhh3='';
             foreach ($preguntas as $value) {
-              if ($value->id >= '165' && $value->id <= '178' || $value->id == '360') {
+              if ($value->id >= '165' && $value->id <= '178' || $value->id == '360' || $value->id == '369') {
                 $mecanismosdeproteccionddhh3 .= '<div class="mecanismosdeproteccionddhh3' . $value->id . '">
                 <label class="form-check-label mecanismosdeproteccionddhh3' . $value->id . '"  for="mecanismosdeproteccionddhh3' . $value->id . '">' . $value->pregunta . '</label>
                 <input class="form-check-input" type="checkbox" name="mecanismosdeproteccionddhh3[]" id="mecanismosdeproteccionddhh3' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>

@@ -388,6 +388,7 @@ paginalista();
                             { id: '177', valor: 'NO' },
                             { id: '178', valor: 'NO' },
                             { id: '360', valor: 'NO' },
+                            { id: '369', valor: 'NO' },
                         ]
             };
   $(formData).each(function(index, obj) {
