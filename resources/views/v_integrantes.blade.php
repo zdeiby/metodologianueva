@@ -105,31 +105,55 @@
       } 
       
       function eliminarintegrantes(folio, idintegrante){
-        $.ajax({
-        url:'../index.php/eliminarintegrantes',
-        data:{folio:folio, idintegrante:idintegrante},
-        method: "GET",
-        dataType:'JSON',
-        success:function(data){
-                const folio1 = $('#folioContainer').attr('folio');
-              const folioencriptado1= $('#folioencriptado').val();
+            Swal.fire({
+          title: "¿Estás seguro, que deseas eliminar este integrante?",
+          text: "No podrás recuperar la información",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#0dcaf0",
+          cancelButtonText: "Cancelar",
+          confirmButtonText: "Sí, Deseo eliminarlo!"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            paginacargando();
             $.ajax({
-              url:'../index.php/leerintegrantes',
-              data:{folio:folio1, folioencriptado:folioencriptado1},
-              method: "GET",
-              dataType:'JSON',
-              success:function(data){
-                $('#integrantes').html(data.foliosintegrante);
-              },
-              error: function(xhr, status, error) {
-                        console.log(xhr.responseText);
-                    }
-            })
-        },
-        error: function(xhr, status, error) {
-                  console.log(xhr.responseText);
-              }
-      })
+                url:'../index.php/eliminarintegrantes',
+                data:{folio:folio, idintegrante:idintegrante},
+                method: "GET",
+                dataType:'JSON',
+                success:function(data){
+                        const folio1 = $('#folioContainer').attr('folio');
+                      const folioencriptado1= $('#folioencriptado').val();
+                      paginalista();
+                      if(data.message == 1){
+                        alertagoodeliminado()
+                      }else{
+                          alertabadeliminado();
+                      }
+                    $.ajax({
+                      url:'../index.php/leerintegrantes',
+                      data:{folio:folio1, folioencriptado:folioencriptado1},
+                      method: "GET",
+                      dataType:'JSON',
+                      success:function(data){
+                        $('#integrantes').html(data.foliosintegrante);
+                        
+                      },
+                      error: function(xhr, status, error) {
+                                console.log(xhr.responseText);
+                                alertabad();
+                            }
+                    })
+                },
+                error: function(xhr, status, error) {
+                          console.log(xhr.responseText);
+                          alertabad();
+                      }
+              })
+
+          }
+        });
       }
 
       function agregarintegrantes(){

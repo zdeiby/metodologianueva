@@ -19,6 +19,10 @@ use App\Http\Controllers\c_cards;
 Route::get('/',[c_index::class, 'fc_index'])->name('index');
 Route::get('/leerintegrantes',[c_integrantes::class,'fc_leerintegrantes'])->name('leerintegrantes');
 Route::get('/eliminarintegrantes',[c_integrantes::class, 'fc_eliminarintegrantes'])->name('eliminarintegrantes');
+Route::get('/leerprincipalhogar',[c_prueba::class, 'fc_leerprincipalhogar'])->name('leerprincipalhogar');
+Route::get('/guardarhabeasdata',[c_prueba::class, 'fc_guardarhabeasdata'])->name('guardarhabeasdata');
+
+
 
 Route::get('/cobertura',[c_prueba::class, 'fc_index'])->name('prueba');
 
@@ -32,8 +36,8 @@ Route::get('/editarintegrantes',[c_editarintegrantes::class, 'fc_editarintegrant
 Route::get('/responderencuesta',[c_editarintegrantes::class, 'fc_responderencuesta'])->name('responderencuesta'); 
 Route::get('/guardarintegrante',[c_editarintegrantes::class, 'fc_guardarintegrante'])->name('guardarintegrante');   
 Route::get('/guardaravatar',[c_editarintegrantes::class, 'fc_guardaravatar'])->name('guardaravatar');
-Route::get('/guardaridentitario',[c_editarintegrantes::class, 'fc_guardaridentitario'])->name('guardaridentitario');
-
+Route::get('/guardaridentitario',[c_editarintegrantes::class, 'fc_guardaridentitario'])->name('guardaridentitario');    
+Route::get('/consultarrepresentante',[c_editarintegrantes::class, 'fc_consultarrepresentante'])->name('consultarrepresentante');
 
 Route::get('/encuestaintegrantesfisicoemocional',[c_encuestaintegrantes::class, 'fc_encuestaintegrantesfisicoemocional'])->name('encuestaintegrantesfisicoemocional');
 Route::get('/encuestaintegrantesintelectual',[c_encuestaintegrantes::class, 'fc_encuestaintegrantesintelectual'])->name('encuestaintegrantesintelectual');   

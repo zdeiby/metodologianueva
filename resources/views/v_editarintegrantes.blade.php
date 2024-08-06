@@ -54,6 +54,12 @@
             border: none;
             border-bottom: 1px solid #ced4da;
         }
+
+        .blocked {
+              pointer-events: none; /* Desactiva la interacción con el campo */
+              background-color: #e9ecef; /* O un color para indicar que está bloqueado */
+              opacity: 0.7; /* Opcional: un poco de transparencia */
+          }
     </style>
 
 <div class="container">
@@ -188,15 +194,21 @@
             <input type="number" class="form-control form-control-sm "  name="documento"  id="documento" value="" >
           </div>
           <div class="col-md-6">
-                <label for="validationServer04" class="form-label">¿Eres el/la jefe del hogar?</label>
+                <label for="validationServer04" class="form-label">¿Eres el/la representante del hogar?</label>
                 <select class="form-control form-control-sm" id="representante" name="representante" aria-describedby="validationServer04Feedback" required="">
                 {{!!$sino!!}}
               </select>
             </div>
             <div class="col-md-6" id="parentescodiv">
-                <label for="validationServer04" class="form-label">¿Parentesco con el jefe del hogar?</label>
+                <label for="validationServer04" class="form-label">¿Parentesco con el representante del hogar?</label>
                 <select class="form-control form-control-sm" id="parentesco" name="parentesco" aria-describedby="validationServer04Feedback" required="">
                   {{!!$parentesco!!}}
+                </select>
+            </div>
+            <div class="col-md-6" id="jefedelhogardiv">
+                <label for="validationServer04" class="form-label">¿Eres el jefe del hogar?</label>
+                <select class="form-control form-control-sm" id="jefedelhogar" name="jefedelhogar" aria-describedby="validationServer04Feedback" required="">
+                  {{!!$sino!!}}
                 </select>
             </div>
             <div class="col-md-6">
@@ -480,6 +492,7 @@ paginacargando();
           $('#sexo').val((data.integrantes)?data.integrantes.sexo:'');
           $('#edadinput').val((data.integrantes)?data.integrantes.edad:'');
           $('#parentesco').val((data.integrantes)?data.integrantes.parentesco:'');
+          $('#jefedelhogar').val((data.integrantes)?data.integrantes.jefedelhogar:'');
           $('#edad').html((data.integrantes)?data.integrantes.edad:'0');
           $('#estadocivil').val((data.integrantes)?data.integrantes.estadocivil:'');
           $('#privadodelalibertad').val((data.integrantes)?data.integrantes.privadodelalibertad:'');
@@ -516,6 +529,44 @@ paginacargando();
           }else{
             $('#nombreidentatario2div').css('display','none')
           }
+          
+
+           if(data.existerepresentante =='1' && ((data.integrantes)?(data.integrantes.representante != '1'):false)){
+             $('#representante').val('2');
+             $('#representante').addClass('blocked');
+            //  $('#jefedelhogar').val('2');
+            //  $('#jefedelhogar').addClass('blocked');
+           } if(parseInt($('#edad').html()) <= '17'){
+             $('#representante').val('2');
+             $('#representante').addClass('blocked');
+              $('#jefedelhogar').val('2');
+              $('#jefedelhogar').addClass('blocked');
+           } if(data.existerepresentante =='1' && parseInt($('#edad').html()) >= '18' && ((data.integrantes)?(data.integrantes.representante != '1'):false)){
+             $('#representante').val('2');
+             $('#representante').addClass('blocked');
+            //  $('#jefedelhogar').val('2');
+            //  $('#jefedelhogar').addClass('blocked');
+           }
+           if(data.existerepresentante =='0' && parseInt($('#edad').html()) >= '18'){
+             $('#representante').removeClass('blocked');
+           //  $('#jefedelhogar').removeClass('blocked');
+           }
+
+           if(data.existejefedelhogar =='1' && ((data.integrantes)?(data.integrantes.jefedelhogar != '1'):false)){
+             $('#jefedelhogar').val('2');
+             $('#jefedelhogar').addClass('blocked');
+           } 
+            if(data.existejefedelhogar =='1' && parseInt($('#edad').html()) >= '18' && ((data.integrantes)?(data.integrantes.jefedelhogar != '1'):false)){
+             $('#jefedelhogar').addClass('blocked');
+            }
+            if(data.existejefedelhogar =='0' && parseInt($('#edad').html()) >= '18'  && ((data.integrantes)?(data.integrantes.jefedelhogar != '1'):false)){
+             $('#jefedelhogar').removeClass('blocked');
+            }
+            if(data.existejefedelhogar =='1' && parseInt($('#edad').html()) >= '18' && ((data.integrantes)?(data.integrantes.jefedelhogar == '1'):false)){
+             $('#jefedelhogar').removeClass('blocked');
+            }
+           console.log(data.existerepresentante, 'existe integrante')
+
        
 
           if($('#sexo').val()=='12' && parseInt($('#edad').html()) >= '12' && parseInt($('#edad').html()) <= '17'){  
@@ -1008,8 +1059,76 @@ $('#sexo').change(function(){
 })
 
 
+$('#fechanacimiento').blur(function(){
+let folio= $('#folioinput').val();
+console.log(folio, 'aca va folio')
+  $.ajax({
+        url:'./consultarrepresentante',
+        data:{folio:folio},
+        method: "GET",
+        dataType:'JSON',
+        success:function(data){
+          console.log($('#edad').html(), 'edad')
+          if(data.existerepresentante =='1' && data.idIntegranteRepresentante != $('#idintegrante1').val() && parseInt($('#edad').html()) >= 18 ){
+            $('#representante').val('2');
+            $('#representante').addClass('blocked');;
+           // $('#parentesco').val('');
+           } if(parseInt($('#edad').html()) <= 17 ){
+             $('#representante').val('2');
+             $('#representante').addClass('blocked');
+             $('#jefedelhogar').val('2');
+             $('#jefedelhogar').addClass('blocked');
+            // $('#parentesco').val('');
+           } if(data.existerepresentante =='1' && parseInt($('#edad').html()) >= '18' && data.idIntegranteRepresentante != $('#idintegrante1').val()){
+             $('#representante').val('2');
+             $('#representante').addClass('blocked');
+            // $('#parentesco').val('');
+            }
+            if(data.existerepresentante =='1' && parseInt($('#edad').html()) >= '18' && data.idIntegranteRepresentante == $('#idintegrante1').val()){
+             $('#representante').val('');
+             $('#representante').removeClass('blocked');
+            // $('#parentesco').val('');
+            }
+            if(data.existejefedelhogar =='1'){
+             $('#jefedelhogar').val('2');
+             $('#jefedelhogar').addClass('blocked');
+           } 
+            if(data.existejefedelhogar =='1' && parseInt($('#edad').html()) >= '18' && data.idIntegranteJefedelHogar != $('#idintegrante1').val()){
+             $('#jefedelhogar').val('2');
+             $('#jefedelhogar').addClass('blocked');
+            }
+            if(data.existejefedelhogar =='0' && parseInt($('#edad').html()) >= '18'  && data.idIntegranteJefedelHogar != $('#idintegrante1').val()){
+             $('#jefedelhogar').val('');
+             $('#jefedelhogar').removeClass('blocked');
+            }
+            if(data.existejefedelhogar =='1' && parseInt($('#edad').html()) >= '18' && data.idIntegranteJefedelHogar == $('#idintegrante1').val()){
+             $('#jefedelhogar').val('');
+             $('#jefedelhogar').removeClass('blocked');
+            }
+            if(data.existerepresentante =='0' && parseInt($('#edad').html()) >= '18'){
+             $('#representante').val('');
+             $('#representante').removeClass('blocked');
+             $('#parentesco').val('');
+            }
+           //else{
+          //   $('#representante').val('');
+          //   $('#representante').removeAttr('disabled');
+          //   $('#jefedelhogar').val('');
+          //   $('#jefedelhogar').removeAttr('disabled');
+          //   $('#parentesco').val('');
+          // }
+          console.log(data.existerepresentante, 'existe representante', data.idIntegranteRepresentante,'=',$('#idintegrante1').val())
+        },
+        error: function(xhr, status, error) {
+                  console.log(xhr.responseText);
+              }
+      })
+    });
+
+
 
 $('#fechanacimiento').change(function(){
+
   $('#siguiente').css('display','none');
   $('#volver2').css('display','none');
 
@@ -1421,74 +1540,11 @@ document.addEventListener('DOMContentLoaded', function() {
               $('#tipodocumento option[value="8"]').show();
               $('#tipodocumento option[value="9"]').show();
               $('#tipodocumento option[value="10"]').show();
-              $('#tipodocumento option[value="11"]').hide();
+              $('#tipodocumento option[value="11"]').show();
 
             }
         });
     });
-
-
-  
-// document.addEventListener('DOMContentLoaded', function() {
-//             const selectElement = document.getElementById('nacionalidad');
-//             const dropdownMenu = document.getElementById('dropdown-menu');
-//             const searchBox = document.getElementById('searchBox');
-//             const dropdownOptions = document.getElementById('dropdown-options');
-
-//             function populateDropdownOptions() {
-//                 dropdownOptions.innerHTML = '';
-//                 Array.from(selectElement.options).forEach(option => {
-//                     if (option.value) {
-//                         const div = document.createElement('div');
-//                         div.className = 'dropdown-item';
-//                         div.textContent = option.textContent;
-//                         div.dataset.value = option.value;
-//                         dropdownOptions.appendChild(div);
-//                     }
-//                 });
-//             }
-
-//             selectElement.addEventListener('mousedown', function(event) {
-//                 event.preventDefault(); // Previene el comportamiento por defecto del select
-//                 populateDropdownOptions();
-//                 dropdownMenu.classList.add('show');
-//                 searchBox.focus();
-//             });
-
-//             searchBox.addEventListener('input', function() {
-//                 const searchTerm = searchBox.value.toLowerCase();
-//                 Array.from(dropdownOptions.children).forEach(option => {
-//                     if (option.textContent.toLowerCase().includes(searchTerm)) {
-//                         option.style.display = '';
-//                     } else {
-//                         option.style.display = 'none';
-//                     }
-//                 });
-//             });
-
-//             dropdownOptions.addEventListener('click', function(event) {
-//                 const option = event.target;
-//                 if (option.classList.contains('dropdown-item')) {
-//                     selectElement.value = option.dataset.value;
-//                     dropdownMenu.classList.remove('show');
-//                 }
-//             });
-
-//             document.addEventListener('click', function(event) {
-//                 if (!event.target.closest('.select-wrapper')) {
-//                     dropdownMenu.classList.remove('show');
-//                 }
-//             });
-
-//             selectElement.addEventListener('blur', function() {
-//                 setTimeout(function() {
-//                     if (!document.activeElement.closest('.select-wrapper')) {
-//                         dropdownMenu.classList.remove('show');
-//                     }
-//                 }, 200);
-//             });
-            
-//         });
 
     </script>
  

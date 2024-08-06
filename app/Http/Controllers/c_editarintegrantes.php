@@ -113,7 +113,16 @@ class c_editarintegrantes extends Controller
                             ->where('idintegrante', '=', $idintegrante)
                             ->first();
 
-            
+                            $existerepresentante = DB::table('t1_integranteshogar')
+                            ->where('folio', '=', $folio)
+                            ->where('representante', 1)
+                            ->exists() ? 1 : 0;
+
+                            $existejefedelhogar = DB::table('t1_integranteshogar')
+                            ->where('folio', '=', $folio)
+                            ->where('jefedelhogar', 1)
+                            ->exists() ? 1 : 0;
+      //  echo $existerepresentante.'este es el folio';
                 // Obtener todos los idintegrante existentes para el folio dado
                 $existingIntegrantes = DB::table('t1_integranteshogar')
                     ->where('folio', $folio)
@@ -140,7 +149,8 @@ class c_editarintegrantes extends Controller
                 // Formatear el nuevo identificador
                 $nuevoId = $folio . str_pad($nextNumber, 2, '0', STR_PAD_LEFT);
             
-                return response()->json(["integrantes" => $integrante, 'leerintegrantes' => $nuevoId, 'integrantesidentitario'=>$integranteidentitario]);
+                return response()->json(["integrantes" => $integrante, 'leerintegrantes' => $nuevoId, 'integrantesidentitario'=>$integranteidentitario,
+                'existerepresentante'=>$existerepresentante,'existejefedelhogar'=>$existejefedelhogar]);
             }
             
             
@@ -217,7 +227,36 @@ class c_editarintegrantes extends Controller
       return response()->json(['message' => 'Avatar actualizado con éxito']);
     }
 
-
+    public function fc_consultarrepresentante(Request $request){
+      $folio = $request->input('folio');
+      
+      // Consulta para verificar si existe un representante
+      $representante = DB::table('t1_integranteshogar')
+                          ->where('folio', '=', $folio)
+                          ->where('representante', 1)
+                          ->first();  // Usamos first() en lugar de exists() para obtener el primer registro que coincida
+      
+      $existerepresentante = $representante ? 1 : 0;
+      $idIntegranteRepresentante = $representante ? $representante->idintegrante : null;
+  
+      // Consulta para verificar si existe un jefe de hogar
+      $jefedelhogar = DB::table('t1_integranteshogar')
+                          ->where('folio', '=', $folio)
+                          ->where('jefedelhogar', 1)
+                          ->first();
+      
+      $existejefedelhogar = $jefedelhogar ? 1 : 0;
+      $idIntegranteJefedelHogar = $jefedelhogar ? $jefedelhogar->idintegrante : null;
+  
+      // Devolver la respuesta JSON con los resultados
+      return response()->json([
+          'existerepresentante' => $existerepresentante,
+          'idIntegranteRepresentante' => $idIntegranteRepresentante,
+          'existejefedelhogar' => $existejefedelhogar,
+          'idIntegranteJefedelHogar' => $idIntegranteJefedelHogar
+      ]);
+  }
+  
 
 
 

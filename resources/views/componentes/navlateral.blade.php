@@ -364,6 +364,16 @@ main.min-main{
     background: url("{{ asset('assets/img/loading.gif') }}") 50% 50% no-repeat rgb(249,249,249);
     opacity: .8;
 }
+.loader2 {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url("{{ asset('assets/img/loading.gif') }}") 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+}
    
     
    </style>
@@ -386,12 +396,40 @@ Swal.fire({
 });
 }
 
+
+function alertagoodeliminado(){
+    Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "Integrante eliminado con éxito",
+    showConfirmButton: false,
+    timer: 1500
+    });
+}
+function alertabadeliminado(){
+Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "No puedes eliminar al representante del hogar",
+  footer: ''
+});
+}
+
 function paginacargando(){
    $('#carga').attr('class','loader');
 }
 
 function paginalista(){
     document.querySelector('.loader').style.display = 'none'; // Oculta el loader
+    document.querySelector('main').style.display = 'block'; // Muestra el contenido del main
+}
+
+function paginacargando2(){
+   $('#carga2').attr('class','loader2');
+}
+
+function paginalista2(){
+    document.querySelector('.loader2').style.display = 'none'; // Oculta el loader
     document.querySelector('main').style.display = 'block'; // Muestra el contenido del main
 }
 
@@ -453,6 +491,8 @@ function soloNumeros(e) {
 </head>
 <body onload="console.log('hola')">
 <div class="" id="carga"></div>
+<div class="" id="carga2"></div>
+
     <div class="menu">
         <ion-icon name="menu-outline"></ion-icon>
         <ion-icon name="close-outline"></ion-icon>

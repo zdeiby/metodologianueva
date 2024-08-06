@@ -171,7 +171,7 @@
           </div>
           <div class="col-md-12" id="endeudamiento3div">
           <label for="validationServer04" class="form-label">¿A cuánto equivalen las deudas que tienes actualmente?</label>
-            <input type="number"  class="form-control form-control-sm  " id="endeudamiento3" name="endeudamiento3" value="" required="">
+            <input type="number"  class="form-control form-control-sm  " onkeypress="return soloNumeros(event)" id="endeudamiento3" name="endeudamiento3" value="" required="">
           </div>
           <div class="col-md-12" id="endeudamiento2div">
             <label for="validationServer04" class="form-label">¿Estás interesado en refinanciar todas tus deudas y consolidarlas en un solo crédito?</label>

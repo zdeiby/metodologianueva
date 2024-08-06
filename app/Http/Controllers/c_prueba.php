@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\m_index;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\DB;
 
 class c_prueba extends Controller
 {
@@ -94,7 +95,20 @@ if(session('nombre') !== null){
         
     }
 
-    public function fc_leerfolios(){
-      
+    public function fc_leerprincipalhogar(Request $request){
+         $folio=$request->input('folio');
+         $principalhogar=  DB::table('t1_principalhogar')
+         ->where('folio', $request->input('folio'))
+         ->first();
+         return response()->json(["principalhogar" => $principalhogar]);
     }
+
+    public function fc_guardarhabeasdata(Request $request){
+      $affectedRows = DB::table('t1_principalhogar')
+                      ->where('folio', $request->input('folio'))
+                      ->update(['habeasdata' => 1]);
+      return response()->json(["ok" => 'ok']);
+ }
+
+
 }

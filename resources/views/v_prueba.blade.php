@@ -53,8 +53,8 @@
                 <td>{{$value->celular}}</td>
                 <td>Triage</td>
                 <td>
-                  <form method="GET" action="{{ route('rombo', ['folio' => encrypt($value->folio) ]) }}" >
-                    <button type="submit" class="btn btn-primary"  id="l1e1">Realizar Gestión</button></form></td>
+                  
+                    <button type="submit" class="btn btn-primary" onclick="habeasdata('{{ encrypt($value->folio) }}','{{$value->folio}}' )" id="l1e1">Realizar Gestión</button></td>
             </tr>
       @endforeach    
         </tbody>
@@ -128,4 +128,62 @@
     </div>
  </div>
 
+
+
+ <script>
+    function habeasdata(folio, folioencriptado){
+      paginacargando();
+      $.ajax({
+                url:'./leerprincipalhogar',
+                data:{folio:folioencriptado},
+                method: "GET",
+                dataType:'JSON',
+                success:function(data){
+                  paginalista();
+                  console.log(data.principalhogar)
+                  if(data.principalhogar.habeasdata == '1'){
+                    let url = `{{ url('rombo') }}/${folio}`;
+                    // Redirigir a la URL construida
+                    window.location.href = url;
+                  }else
+                    
+                    Swal.fire({
+                    title: "AUTORIZACIÓN PARA EL TRATAMIENTO DE DATOS PERSONALES",
+                    text: "El titular de los datos personales consignados en este documento, da su consentimiento de manera libre, espontánea, consciente, expresa, inequívoca, previa e informada, para que la Alcaldía de Medellín realice la recolección, almacenamiento, uso, circulación, indexación, analítica, supresión, procesamiento, compilación, intercambio, actualización y disposición de los datos que ha suministrado y, en general, realice el tratamiento de los datos personales conforme lo dispone la Ley 1581 del 17 de octubre de 2021, el Decreto 1377 del 27 de junio de 2013 y el Decreto 1096 del 28 de diciembre de 2018 (política para el tratamiento de datos personales en el Municipio de Medellín distrito especial). La Alcaldía de Medellín, como responsable del tratamiento de los datos personales aquí consignados, en cumplimiento de las normas mencionadas, informa al titular de los datos personales que le asisten los siguientes derechos: acceder a sus datos personales; conocer, actualizar y rectificar sus datos personales; solicitar prueba de la autorización otorgada; revocar la autorización y/o solicitar la supresión del dato; presentar quejas ante la Superintendencia de Industria y Comercio y; en general, todos los derechos consignados en el artículo 8 de la Ley 1581 de 2012.",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#0dcaf0",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sí, acepto!",
+                    cancelButtonText: "No acepto"
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      paginacargando2();
+                      $.ajax({
+                          url:'./guardarhabeasdata',
+                          data:{folio:folioencriptado},
+                          method: "GET",
+                          dataType:'JSON',
+                          success:function(data){
+                            paginalista2();
+                            let url = `{{ url('rombo') }}/${folio}`;
+                            window.location.href = url;
+                        },
+                        error: function(xhr, status, error) {
+                                console.log(xhr.responseText);
+                                alertabad();
+                            }
+                         })
+                    }
+                  });
+                  
+                    },
+                      error: function(xhr, status, error) {
+                                console.log(xhr.responseText);
+                                alertabad();
+                            }
+                    })
+
+    }
+ </script>
 @endsection

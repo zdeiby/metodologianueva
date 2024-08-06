@@ -47,20 +47,23 @@ class c_integrantes extends Controller
     }
 
     public function fc_eliminarintegrantes(Request $request){
-      DB::table('t1_integranteshogar')
+      $integrantehogar=  DB::table('t1_integranteshogar')
       ->where('folio', $request->input('folio'))
       ->where('idintegrante', $request->input('idintegrante'))
+      ->where('representante', '!=', 1)
       ->delete();
-
-      DB::table('t1_integrantesidentitario')
-      ->where('folio', $request->input('folio'))
-      ->where('idintegrante', $request->input('idintegrante'))
-      ->delete();
+      if($integrantehogar ==1){
+        DB::table('t1_integrantesidentitario')
+            ->where('folio', $request->input('folio'))
+            ->where('idintegrante', $request->input('idintegrante'))
+            ->delete();
+      }
+      
 
 
       
 
-  return response()->json(['message' => 'Integrante eliminado con éxito']);
+  return response()->json(['message' =>  $integrantehogar]);
   }
 
 }
