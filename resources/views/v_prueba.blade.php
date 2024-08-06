@@ -53,8 +53,12 @@
                 <td>{{$value->celular}}</td>
                 <td>Triage</td>
                 <td>
-                  
-                    <button type="submit" class="btn btn-primary" onclick="habeasdata('{{ encrypt($value->folio) }}','{{$value->folio}}' )" id="l1e1">Realizar Gestión</button></td>
+                <button style="display:none" class="btn btn-primary" type="button" disabled  id="{{$value->folio.'botoncargando'}}">
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                     <span role="status">Cargando...</span>
+                </button>
+                <button type="submit" class="btn btn-primary" onclick="habeasdata('{{ encrypt($value->folio) }}','{{$value->folio}}' )" id="{{$value->folio.'boton'}}">Realizar Gestión</button></td>
+              
             </tr>
       @endforeach    
         </tbody>
@@ -133,6 +137,12 @@
  <script>
     function habeasdata(folio, folioencriptado){
       paginacargando();
+    //  $(`#${folioencriptado}boton`).attr('disabled','disabled');
+      $(`#${folioencriptado}boton`).css('display','none');
+      $(`#${folioencriptado}botoncargando`).css('display','');
+
+
+      console.log(`${folioencriptado}boton`)
       $.ajax({
                 url:'./leerprincipalhogar',
                 data:{folio:folioencriptado},
@@ -140,7 +150,9 @@
                 dataType:'JSON',
                 success:function(data){
                   paginalista();
-                  console.log(data.principalhogar)
+                  $(`#${folioencriptado}boton`).css('display','');
+                  $(`#${folioencriptado}botoncargando`).css('display','none');
+
                   if(data.principalhogar.habeasdata == '1'){
                     let url = `{{ url('rombo') }}/${folio}`;
                     // Redirigir a la URL construida
@@ -159,6 +171,9 @@
                   }).then((result) => {
                     if (result.isConfirmed) {
                       paginacargando2();
+                      $(`#${folioencriptado}boton`).css('display','');
+                      $(`#${folioencriptado}botoncargando`).css('display','none');
+
                       $.ajax({
                           url:'./guardarhabeasdata',
                           data:{folio:folioencriptado},
@@ -166,6 +181,7 @@
                           dataType:'JSON',
                           success:function(data){
                             paginalista2();
+                            
                             let url = `{{ url('rombo') }}/${folio}`;
                             window.location.href = url;
                         },
