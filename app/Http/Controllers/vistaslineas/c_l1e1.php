@@ -83,18 +83,14 @@ class c_l1e1 extends Controller
   
               }
           }
-          $documentodepropiedad = '';
+          $documentodepropiedad = '<option value="">Seleccione </option>';
           foreach ($preguntas as $value) {
-              if ($value->id >= '262' && $value->id <= '264') {
-                  $documentodepropiedad .= '<div class="documentodepropiedad' . $value->id . '">
-                  <label class="form-check-label documentodepropiedad' . $value->id . '"  for="documentodepropiedad' . $value->id . '">' . $value->pregunta . '</label>
-                  <input class="form-check-input" type="checkbox" name="documentodepropiedad[]" id="documentodepropiedad' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                  </div>';
+              if ($value->id == '0' || $value->id >= '262' && $value->id <= '264') {
+                  $documentodepropiedad .= '<option value="' . $value->id . '" class="noaplica'. $value->id.'">' . $value->pregunta . '</option>';
               }
           }
   
-         
-       
+  
   
     
           return view('vistaslineas/v_encuestahogarhabitabilidad',["variable"=>$folio, 
@@ -144,7 +140,7 @@ class c_l1e1 extends Controller
           }
 
         $condicionespecial = '';  // 361
-        $identidad_ids = [191, 192, 193, 194, 195,361, 196, ];
+        $identidad_ids = [ 192, 193, 194, 195,361, 196, ];
         foreach ($identidad_ids as $id) {
           foreach ($preguntas as $value) {
               if ($value->id == $id) {
@@ -278,7 +274,7 @@ class c_l1e1 extends Controller
           foreach ($leerintegrantes as $value) {
               $integrantes2 .= '<div class="integrantes2' . $value->idintegrante . '">
                   <label class="form-check-label tiempolibre' . $value->idintegrante . '"  for="integrantes2' . $value->idintegrante . '">' . $value->nombre1 .' '. $value->nombre2 .' '. $value->apellido1 .' '. $value->apellido2 . '</label>
-                  <input class="form-check-input" type="checkbox"  id="integrantes2' . $value->idintegrante . '" value="' . $value->idintegrante . '" respuesta="SI" >
+                  <input class="form-check-input" type="checkbox" edad="'.$value->edad.'" id="integrantes2' . $value->idintegrante . '" value="' . $value->idintegrante . '" respuesta="SI" >
                   </div>';
             }
 

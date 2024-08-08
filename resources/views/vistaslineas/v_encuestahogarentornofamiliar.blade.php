@@ -896,6 +896,100 @@ function soloNumeros(e)
     return ((key >= 48 && key <= 57) || (key == 8))
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    // IDs de los contenedores de las secciones A, B y D
+    var seccionesABD = [
+        { id: 'factoresderiesgovef265', container: 'integrantes-factoresderiesgovef265-container' }, 
+        { id: 'factoresderiesgovef266', container: 'integrantes-factoresderiesgovef266-container' }, 
+        { id: 'factoresderiesgovef268', container: 'integrantes-factoresderiesgovef268-container' }
+    ];
+
+    seccionesABD.forEach(function(seccion) {
+        // Selecciona el contenedor de cada sección
+        var seccionContainer = document.getElementById(seccion.container);
+        var tieneMenores = false;
+
+        if (seccionContainer) {
+            // Busca todos los inputs con el atributo "edad" dentro de la sección
+            var checkboxes = seccionContainer.querySelectorAll('input[type="checkbox"][edad]');
+        
+            checkboxes.forEach(function(checkbox) {
+                // Obtiene el valor de la edad
+                var edad = parseInt(checkbox.getAttribute('edad'), 10);
+
+                // Si encuentra algún menor de 17 años, marca la variable
+                if (edad <= 17) {
+                    tieneMenores = true;
+                } else {
+                    var parentDiv = checkbox.closest('div'); // Encuentra el div contenedor más cercano
+                    if (parentDiv) {
+                        parentDiv.style.display = 'none'; // Oculta el div del integrante mayor
+                    }
+                }
+            });
+
+            // Si no hay menores de 17 años en la sección, oculta todo el checkbox principal
+            if (!tieneMenores) {
+                var seccionCheckbox = document.getElementById(seccion.id);
+                if (seccionCheckbox) {
+                    seccionCheckbox.closest('div').style.display = 'none';
+                }
+            }
+        }
+    });
+});
+
+//ocultar campos segun la edad checks
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     // IDs de los contenedores de las secciones A, B y D
+//     var seccionesABD = ['integrantes-factoresderiesgovef265-container', 'integrantes-factoresderiesgovef266-container', 'integrantes-factoresderiesgovef268-container'];
+
+//     seccionesABD.forEach(function(seccionID) {
+//         // Selecciona el contenedor de cada sección
+//         var seccionContainer = document.getElementById(seccionID);
+
+//         if (seccionContainer) {
+//             // Busca todos los inputs con el atributo "edad" dentro de la sección
+//             var checkboxes = seccionContainer.querySelectorAll('input[type="checkbox"][edad]');
+        
+//             checkboxes.forEach(function(checkbox) {
+//                 // Obtiene el valor de la edad
+//                 var edad = parseInt(checkbox.getAttribute('edad'), 10);
+
+//                 // Si la edad es menor o igual a 17, oculta el contenedor del checkbox
+//                 if (edad >= 17) {
+//                     var parentDiv = checkbox.closest('div'); // Encuentra el div contenedor más cercano
+//                     if (parentDiv) {
+//                         parentDiv.style.display = 'none'; // Oculta el div del integrante menor
+//                     }
+//                 }
+//             });
+//         }
+//     });
+// });
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     // Selecciona todos los checkbox que tienen el atributo "edad"
+//     var checkboxes = document.querySelectorAll('input[type="checkbox"][edad]');
+
+//     checkboxes.forEach(function(checkbox) {
+//         // Obtiene el valor de la edad
+//         var edad = parseInt(checkbox.getAttribute('edad'), 10);
+
+//         // Si la edad es menor o igual a 17, ocultar el contenedor padre más cercano
+//         if (edad <= 17) {
+//             var parentDiv = checkbox.closest('.integrantes-container > div');
+//             if (parentDiv) {
+//                 parentDiv.style.display = 'none';
+//             }
+//         }
+//     });
+// });
+
+
 
 
     </script>

@@ -25,6 +25,11 @@
 .integrantes-container {
     margin-left: 20px;
 }
+.blocked {
+              pointer-events: none; /* Desactiva la interacción con el campo */
+              background-color: #e9ecef; /* O un color para indicar que está bloqueado */
+              opacity: 0.7; /* Opcional: un poco de transparencia */
+          }
 </style>
 
 
@@ -144,9 +149,9 @@
                       </div>
                       <div class="col-md-12" id="documentodepropiedaddiv">
                           <label for="validationServer04" class="form-label">¿Qué documento acredita la tenencia de tu vivienda?</label>
-                          <div class="form-check form-switch" id='documentodepropiedad-container'>
-                          {!!$documentodepropiedad!!}
-                            </div>
+                          <select class="form-control form-control-sm" id="documentodepropiedad" name="documentodepropiedad" aria-describedby="validationServer04Feedback" required="">
+                          {{!!$documentodepropiedad!!}}
+                      </select>
                         </div>
 
                         <hr>
@@ -211,7 +216,6 @@ paginacargando();
     
                     let serviciospublicos = JSON.parse((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.serviciospublicos:'{}'); // ["49", "54"]
                     let telecomunicaciones = JSON.parse((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.telecomunicaciones:'{}'); // ["49", "54"]
-                    let documentodepropiedad = JSON.parse((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.documentodepropiedad:'{}'); // ["49", "54"]
 
                    
 
@@ -241,18 +245,7 @@ paginacargando();
                           }
                 });
               }
-              if(Array.isArray(documentodepropiedad) && documentodepropiedad.length > 0){
-                $('#documentodepropiedad-container input[type="checkbox"]').each(function() {
-                  let found = documentodepropiedad.find(item => item.id === this.value );
-                 // console.log(found.valor, 'aca valor')
-                          if (found.valor == 'SI') { 
-                            $(this).prop('checked', true);
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
-                          } else {
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
-                          }
-                });
-              }
+
 
 
 
@@ -271,7 +264,9 @@ paginacargando();
             $('#banococina').val((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.banococina:'');
             $('#hacimiento').val((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.hacimiento:'');
             $('#tipodetenenciau').val((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.tipodetenenciau:'');
+            $('#documentodepropiedad').val((data.hogarcondicioneshabitabilidad)?data.hogarcondicioneshabitabilidad.documentodepropiedad:'');
 
+            
             //ACCESO Y DISPONIBILIDAD DE ALIMENTOS
 
         
@@ -301,32 +296,25 @@ paginacargando();
                               //  $('input[name="telecomunicaciones[]"]').attr('required', 'required');
                             }
 
-                            if ($('input[name="documentodepropiedad[]"]:checked').length > 0) {
-                                  $('input[name="documentodepropiedad[]"]').removeAttr('required');
-                              } else {
-                                  $('input[name="documentodepropiedad[]"]').attr('required', 'required');
-                              }
 
                             if($('#tipodetenenciau').val() == '256' || $('#tipodetenenciau').val() == '257'){
-                              $('#documentodepropiedad262').css('display','');
-                              $('.documentodepropiedad262').css('display','');
-                              $('#documentodepropiedad263').css('display','');
-                              $('.documentodepropiedad263').css('display','');
-                              $('#documentodepropiedad264').css('display','');
-                              $('.documentodepropiedad264').css('display','');
-                              $('#documentodepropiedaddiv').css('display','');
-                           //   $('input[name="documentodepropiedad[]"]').prop('checked', false);
-                            //  $('input[name="documentodepropiedad[]"]').attr('required', 'required');
-                            }else{
-                              $('#documentodepropiedad262').css('display','none');
-                              $('.documentodepropiedad262').css('display','none');
-                              $('#documentodepropiedad263').css('display','none');
-                              $('.documentodepropiedad263').css('display','none');
-                              $('#documentodepropiedad264').css('display','none');
-                              $('.documentodepropiedad264').css('display','none');
-                              $('#documentodepropiedaddiv').css('display','none');
-                              $('input[name="documentodepropiedad[]"]').removeAttr('required');
-                            }
+                                $('#documentodepropiedaddiv').css('display','');
+                                $('#documentodepropiedad').attr('required','required');
+                                }else{
+                                  $('#documentodepropiedaddiv').css('display','none');
+                                  $('#documentodepropiedad').val('0');
+                                  $('#documentodepropiedad').removeAttr('required');
+                                }
+
+                            if($('#tipovivienda').val() == '212' ){
+                                $('#hacimiento').val('1');
+                                $('#hacimiento').addClass('blocked');
+                              }else{
+                                $('#hacimiento').removeClass('blocked');
+                              }
+
+
+                           
    
 
       
@@ -380,7 +368,7 @@ paginalista();
      
 
 
-
+$('.noaplica0').css('display','none');
  
     $('#formcondicioneshabitabilidad').on('submit', function(event) {
         event.preventDefault(); // Detiene el envío del formulario
@@ -406,11 +394,7 @@ paginalista();
                   { id: '254', valor: 'NO' },
                   { id: '255', valor: 'NO' },   
               ],
-              'documentodepropiedad': [
-                  { id: '262', valor: 'NO' },
-                  { id: '263', valor: 'NO' },
-                  { id: '264', valor: 'NO' },
-              ]
+              
             }
   
 
@@ -422,7 +406,7 @@ paginalista();
    var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
    // console.log(respuesta, 'respuesta');
 
-    if (name === 'serviciospublicos'  || name === 'telecomunicaciones' || name === 'documentodepropiedad') {
+    if (name === 'serviciospublicos'  || name === 'telecomunicaciones' ) {
         // Buscar el objeto con el mismo id
         var existingIndex = data[name].findIndex(item => item.id === obj.value);
         if (existingIndex !== -1) {
@@ -458,12 +442,7 @@ paginalista();
       }
   });
 
-  data['documentodepropiedad'].forEach(item => {
-      var selector = '[name="documentodepropiedad[]"][value="' + item.id + '"]';
-      if ($(selector).length === 0 || $(selector).is(':hidden')) {
-          item.valor = 'NO APLICA';
-      }
-  });
+;
 
   //console.log(data)
 
@@ -533,37 +512,33 @@ paginalista();
           }
       });
 
-      $('input[name="documentodepropiedad[]"]').change(function() {
-          if ($('input[name="documentodepropiedad[]"]:visible:checked').length > 0) {
-              $('input[name="documentodepropiedad[]"]').removeAttr('required');
-          } else {
-              $('input[name="documentodepropiedad[]"]').attr('required', 'required');
-          }
-      });
+     
 
       $('#tipodetenenciau').change(function(){
         if($('#tipodetenenciau').val() == '256' || $('#tipodetenenciau').val() == '257'){
-          $('#documentodepropiedad262').css('display','');
-          $('.documentodepropiedad262').css('display','');
-          $('#documentodepropiedad263').css('display','');
-          $('.documentodepropiedad263').css('display','');
-          $('#documentodepropiedad264').css('display','');
-          $('.documentodepropiedad264').css('display','');
-          $('#documentodepropiedaddiv').css('display','');
-          $('input[name="documentodepropiedad[]"]').prop('checked', false);
-          $('input[name="documentodepropiedad[]"]').attr('required', 'required');
-
+        $('#documentodepropiedaddiv').css('display','');
+        $('#documentodepropiedad').val('');
+        $('#documentodepropiedad').attr('required','required');
         }else{
-          $('#documentodepropiedad262').css('display','none');
-          $('.documentodepropiedad262').css('display','none');
-          $('#documentodepropiedad263').css('display','none');
-          $('.documentodepropiedad263').css('display','none');
-          $('#documentodepropiedad264').css('display','none');
-          $('.documentodepropiedad264').css('display','none');
           $('#documentodepropiedaddiv').css('display','none');
-          $('input[name="documentodepropiedad[]"]').removeAttr('required');
+          $('#documentodepropiedad').val('0');
+          $('#documentodepropiedad').removeAttr('required');
         }
       });
+
+
+      $('#tipovivienda').change(function(){
+        if($('#tipovivienda').val() == '212' ){
+          $('#hacimiento').val('1');
+          $('#hacimiento').addClass('blocked');
+        }else{
+          $('#hacimiento').val('');
+          $('#hacimiento').removeClass('blocked');
+        }
+      });
+
+
+      
 
 
       

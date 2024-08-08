@@ -225,7 +225,7 @@
             </div>
 
             <div class="col-md-6" id="privadodelalibertaddiv">
-                <label for="validationServer04" class="form-label">¿El integrante del se encuentra con medida privativa de la libertad en prisión domiciliaria?</label>
+                <label for="validationServer04" class="form-label">¿El integrante se encuentra con medida privativa de la libertad en prisión domiciliaria?</label>
                 <select class="form-control form-control-sm" id="privadodelalibertad" name="privadodelalibertad" aria-describedby="validationServer04Feedback" required="">
                   {{!!$sino!!}}
                 </select>
@@ -619,7 +619,7 @@ paginacargando();
           $('#cualidentidaddiv').css('display','');
           $('#hijosdiv').css('display','');
         } 
-        if($('#sexo').val()=='13' && parseInt($('#edad').html())  <= '12'|| $('#sexo').val()=='12' && parseInt($('#edad').html()) <= '12' ){  
+        if($('#sexo').val()=='13' && parseInt($('#edad').html())  <= '11'|| $('#sexo').val()=='12' && parseInt($('#edad').html()) <= '11' ){  
           $('#gestantediv').css('display','none');
           $('#lactantediv').css('display','none');
           $('#gestante').removeAttr('required');
@@ -743,6 +743,7 @@ paginacargando();
               $('#tipodocumento option[value="5"]').show();
               $('#tipodocumento option[value="6"]').hide();
               $('#tipodocumento option[value="11"]').show();
+
             }else{
               $('#tipodocumento option[value="3"]').hide();
               $('#tipodocumento option[value="4"]').hide();
@@ -753,8 +754,12 @@ paginacargando();
               $('#tipodocumento option[value="9"]').show();
               $('#tipodocumento option[value="10"]').show();
               $('#tipodocumento option[value="11"]').hide();
-
+              $('#situacionmilitardiv').css('display','none');
+              $('#situacionmilitar').removeAttr('required');
+              $('#situacionmilitar').val('0');
             }
+
+
 
 
 
@@ -788,6 +793,13 @@ paginacargando();
 
                     if(parseInt($('#edad').html())  >= '18'){ 
                       $('#privadodelalibertaddiv').css('display','');
+                    }
+
+                    if($('#hijos').val() == '2' && $('#gestante').val() == '2'){
+                      $('#lactante').val('2');
+                      $('#lactante').addClass('blocked');
+                    } else {
+                      $('#lactante').removeClass('blocked');
                     }
 
 
@@ -1000,6 +1012,8 @@ $('#sexo').change(function(){
     $('#hijos').removeAttr('required');
   }
 
+  
+
 
   if($('#sexo').val()=='13' && parseInt($('#edad').html()) >= '12'){  
     $('#gestantediv').css('display','');
@@ -1128,7 +1142,6 @@ console.log(folio, 'aca va folio')
 
 
 $('#fechanacimiento').change(function(){
-
   $('#siguiente').css('display','none');
   $('#volver2').css('display','none');
 
@@ -1257,11 +1270,14 @@ $('#fechanacimiento').change(function(){
     $('#privadodelalibertad').attr('required','required');
 
   }
+  if($('#nacionalidad').val()  != '343'){ 
+    $('#situacionmilitardiv').css('display','none');
+    $('#situacionmilitar').removeAttr('required');
+    $('#situacionmilitar').val('0');
 
-
- else{
-   
   }
+
+  
 
 })
 
@@ -1372,6 +1388,18 @@ $('#victima2').change(function(){
 ;
   }
 })
+
+$('#hijos, #gestante').change(function(){
+  if($('#hijos').val() == '2' && $('#gestante').val() == '2'){
+    $('#lactante').val('2');
+    $('#lactante').addClass('blocked');
+  } else {
+    $('#lactante').val('');
+    $('#lactante').removeClass('blocked');
+  }
+});
+
+
 
 
 const today = new Date();
@@ -1511,6 +1539,10 @@ document.addEventListener('DOMContentLoaded', function() {
               $('#tipodocumento option[value="5"]').show();
               $('#tipodocumento option[value="6"]').hide();
               $('#tipodocumento option[value="11"]').show();
+              $('#situacionmilitardiv').css('display','');
+              $('#situacionmilitar').attr('required', 'required');
+              $('#situacionmilitar').val('');
+              
 
             }else{
               $('#victima1div').css('display','none');
@@ -1541,6 +1573,9 @@ document.addEventListener('DOMContentLoaded', function() {
               $('#tipodocumento option[value="9"]').show();
               $('#tipodocumento option[value="10"]').show();
               $('#tipodocumento option[value="11"]').show();
+              $('#situacionmilitardiv').css('display','none');
+              $('#situacionmilitar').removeAttr('required');
+              $('#situacionmilitar').val('0');
 
             }
         });

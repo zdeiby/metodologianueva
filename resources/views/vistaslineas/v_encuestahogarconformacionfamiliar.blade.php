@@ -117,7 +117,7 @@
             <label for="validationServer04" class="form-label ">¿Quiénes en tu hogar realizan labores domésticas no remuneradas? (cuidado indirecto).</label>
             <div class="form-check form-switch" id='laboresdecuidado-container'>
                 {!!$integrantes!!}
-                <label class="form-check-label tiempolibre13988001" for="laboresdecuidado0">En mi hogar no realizan labores domésticas </label>
+                <label class="form-check-label tiempolibre13988001" for="laboresdecuidado0">Una persona no integrante del hogar </label>
                 <input class="form-check-input" type="checkbox" name="laboresdecuidado[]" id="laboresdecuidado0" value="0" respuesta="SI" required>
                </div>
           </div>
