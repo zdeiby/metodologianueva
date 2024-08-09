@@ -38,9 +38,9 @@ public function fc_encuestaintegrantesfisicoemocional(){
     $acceso3 = '';
     foreach ($preguntas as $value) {
         if ($value->id >= '47' && $value->id <= '60') {
-            $acceso3 .= '<div class="acceso3' . $value->id . '" >
+            $acceso3 .= '<div class="acceso3' . $value->id . '" style="display:none">
             <label class="form-check-label acceso3' . $value->id . '"  for="acceso3' . $value->id . '">' . $value->pregunta . '</label>
-            <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso3' . $value->id . '" value="' . $value->id . '" respuesta="SI"  >
+            <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso3' . $value->id . '" value="' . $value->id . '" respuesta="SI"  style="display:none">
             </div>';
         }
     }

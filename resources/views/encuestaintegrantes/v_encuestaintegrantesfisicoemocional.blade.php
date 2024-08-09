@@ -520,75 +520,100 @@ paginacargando();
           $('#edadintegrante').html(`Edad: ${edad} `);
           $('#edadintegrante').val(edad);
           $('#sexointegrante').html(`Sexo: ${(data.imagen.sexo == '12')?'Hombre':'Mujer'} `);
-          if(data.imagen.sexo =='13' && data.identitario.gestante=='1' && edad >= '12'){
-            $('.acceso347').css('display','');
-          }  else{
-            $('.acceso347').css('display','none');
-            $('#acceso347').css('display','none');
 
-          } if( edad <= '5'){
-            $('.acceso348').css('display','');
-            $('.acceso349').css('display','');
-          }else{
-            $('.acceso348').css('display','none');
-            $('.acceso349').css('display','none'); 
-            $('#acceso348').css('display','none');
-            $('#acceso349').css('display','none')
+          if(data.imagen.sexo =='13' && edad >= '12'){
+              $('.acceso347').css('display','');
+              $('.acceso352').css('display','');
+              $('#acceso347').css('display','');
+              $('#acceso352').css('display','');  
           }
-          if( edad >= '12'){
-            $('.acceso352').css('display','');
-          } else{
-            $('.acceso352').css('display','none');
-            $('#acceso352').css('display','none');
-          }
-
-          if( edad >= '40'){
-            $('.acceso353').css('display','');
-          }else{
-            $('.acceso353').css('display','none');
-            $('#acceso353').css('display','none');
-          }
-          if( edad >= '25'){
-            $('.acceso354').css('display','');
-          }else{
-            $('.acceso354').css('display','none');
-            $('#acceso354').css('display','none');
-          }
-          if( edad >= '12' && edad <= '26'){
+          if(data.imagen.sexo =='13' && edad >= '25' && edad <= '29' && data.identitario.identidad != '24'){
             $('.acceso355').css('display','');
-          } else{
-            $('.acceso355').css('display','none');
-            $('#acceso355').css('display','none');
+            $('#acceso355').css('display','');
           }
-          if (data.imagen.sexo == '13'  && edad >= '25' && data.identitario.identidad != '24'){
+          if(data.imagen.sexo =='13' && edad >= '30' && edad <= '65' && data.identitario.identidad != '24' ){
             $('.acceso356').css('display','');
-          } else{
-            $('.acceso356').css('display','none');
-            $('#acceso356').css('display','none');
-          } if (data.imagen.sexo == '13'  && edad >= '40' && data.identitario.identidad != '24'){
-                    $('.acceso357').css('display','');
-          }else{
-            $('.acceso357').css('display','none');
-            $('#acceso357').css('display','none');
-          } if (data.imagen.sexo == '13'  && edad >= '18' && data.identitario.identidad != '24'){
-                    $('.acceso358').css('display','');
-          } else{
-            $('.acceso358').css('display','none');
-            $('#acceso358').css('display','none');
-          } if (data.imagen.sexo == '13'  && edad >= '45' && data.identitario.identidad != '24'){
-                    $('.acceso359').css('display','');
-          } else{
-            $('.acceso359').css('display','none');
-            $('#acceso359').css('display','none');
-          }if (data.imagen.sexo == '12'  && edad >= '50' && data.identitario.identidad != '25'){
-                    $('.acceso360').css('display','');
-                    $('.acceso361').css('display','');  
-          }else{
-            $('.acceso360').css('display','none');
-            $('.acceso361').css('display','none');
-            $('#acceso360').css('display','none');
-            $('#acceso361').css('display','none');
+            $('#acceso356').css('display','');
           }
+          if(data.imagen.sexo =='13' && edad >= '18' && data.identitario.identidad != '24' ){
+            $('.acceso357').css('display','');
+            $('#acceso357').css('display','');
+          }
+          if(data.imagen.sexo =='13' && edad >= '50' && data.identitario.identidad != '24' ){
+            $('.acceso358').css('display','');
+            $('#acceso358').css('display','');
+          }
+          
+
+          // if(data.imagen.sexo =='13' && data.identitario.gestante=='1' && edad >= '12'){
+          //   $('.acceso347').css('display','');
+          // }  else{
+          //   $('.acceso347').css('display','none');
+          //   $('#acceso347').css('display','none');
+
+          // } if( edad <= '5'){
+          //   $('.acceso348').css('display','');
+          //   $('.acceso349').css('display','');
+          // }else{
+          //   $('.acceso348').css('display','none');
+          //   $('.acceso349').css('display','none'); 
+          //   $('#acceso348').css('display','none');
+          //   $('#acceso349').css('display','none')
+          // }
+          // if( edad >= '12'){
+          //   $('.acceso352').css('display','');
+          // } else{
+          //   $('.acceso352').css('display','none');
+          //   $('#acceso352').css('display','none');
+          // }
+
+          // if( edad >= '40'){
+          //   $('.acceso353').css('display','');
+          // }else{
+          //   $('.acceso353').css('display','none');
+          //   $('#acceso353').css('display','none');
+          // }
+          // if( edad >= '25'){
+          //   $('.acceso354').css('display','');
+          // }else{
+          //   $('.acceso354').css('display','none');
+          //   $('#acceso354').css('display','none');
+          // }
+          // if( edad >= '12' && edad <= '26'){
+          //   $('.acceso355').css('display','');
+          // } else{
+          //   $('.acceso355').css('display','none');
+          //   $('#acceso355').css('display','none');
+          // }
+          // if (data.imagen.sexo == '13'  && edad >= '25' && data.identitario.identidad != '24'){
+          //   $('.acceso356').css('display','');
+          // } else{
+          //   $('.acceso356').css('display','none');
+          //   $('#acceso356').css('display','none');
+          // } if (data.imagen.sexo == '13'  && edad >= '40' && data.identitario.identidad != '24'){
+          //           $('.acceso357').css('display','');
+          // }else{
+          //   $('.acceso357').css('display','none');
+          //   $('#acceso357').css('display','none');
+          // } if (data.imagen.sexo == '13'  && edad >= '18' && data.identitario.identidad != '24'){
+          //           $('.acceso358').css('display','');
+          // } else{
+          //   $('.acceso358').css('display','none');
+          //   $('#acceso358').css('display','none');
+          // } if (data.imagen.sexo == '13'  && edad >= '45' && data.identitario.identidad != '24'){
+          //           $('.acceso359').css('display','');
+          // } else{
+          //   $('.acceso359').css('display','none');
+          //   $('#acceso359').css('display','none');
+          // }if (data.imagen.sexo == '12'  && edad >= '50' && data.identitario.identidad != '25'){
+          //           $('.acceso360').css('display','');
+          //           $('.acceso361').css('display','');  
+          // }else{
+          //   $('.acceso360').css('display','none');
+          //   $('.acceso361').css('display','none');
+          //   $('#acceso360').css('display','none');
+          //   $('#acceso361').css('display','none');
+          // }
           
 
 
@@ -708,13 +733,13 @@ paginacargando();
           
 
 
-           if($('#acceso1').val() == '2' || $('#acceso1').val() == ''){
-              $('.acceso2').css('display','none');
-              $('#acceso2').attr('required',false)
-            }else{
-              $('.acceso2').css('display','');
-              $('#acceso2').attr('required',true)
-            }
+          //  if($('#acceso1').val() == '2' || $('#acceso1').val() == ''){
+          //     $('.acceso2').css('display','none');
+          //     $('#acceso2').attr('required',false)
+          //   }else{
+          //     $('.acceso2').css('display','');
+          //     $('#acceso2').attr('required',true)
+          //   }
 
             if($('#discapacidad').val() == '2' || $('#acceso1').val() == ''){
               $('#tipodediscapacidaddiv').css('display','none');

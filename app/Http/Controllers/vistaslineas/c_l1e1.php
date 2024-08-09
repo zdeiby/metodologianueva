@@ -21,6 +21,7 @@ class c_l1e1 extends Controller
         $leerbarrios= $modelo->m_leerbarrios();
         $leercomunas= $modelo->m_leercomunas();
         $leerintegrantes= $modelo->m_leerintegrantes(decrypt($folio));
+     
   
       
           $sino = '<option value="">Seleccione </option><option style="display:none" value="0">NO APLICA</option>';
@@ -108,11 +109,21 @@ class c_l1e1 extends Controller
     public function fc_encuestahogarconformacionfamiliar(Request $request,$folio){
       $modelo= new m_l1e1();
       $preguntas=$modelo->m_leerrespuestas();
+
+      $exists = DB::table('dbmetodologia.t1_hogardatoseconomicos')
+      ->where('folio', $folio)
+      ->exists();
       $leerintegrantes= $modelo->m_leerintegrantes(decrypt($folio));
+
+      $existeMenorDe59 = DB::table('dbmetodologia.t1_integranteshogar') 
+      -> where('folio', decrypt($folio))
+      ->where('edad', '<', 59)
+      ->exists();
+      $existeMenorDe59 ? 1 : 0;
 
       $tipologia = '<option value="">Seleccione </option>';
       foreach ($preguntas as $value) {
-        if ($value->id >= '179' && $value->id <= '190') {
+        if ($value->id >= '179' && $value->id <=  ($existeMenorDe59 == 1 ? '190' : '191')) {
             $tipologia .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
         }
     }
