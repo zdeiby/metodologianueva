@@ -119,9 +119,9 @@
           </div>
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Ha tenido o tiene alguna de las siguientes enfermedades consideradas como de alto costo o catastróficas en el sistema de salud?</label>
-            <select class="form-control form-control-sm" id="enfermedad" aria-describedby="validationServer04Feedback" name="enfermedad" required="">
-            {{!!$enfermedad!!}}
-          </select>
+            <div class="form-check form-switch" id='enfermedad-container'>
+                {!!$enfermedad!!}
+               </div>
           </div>
           <div class="col-md">
             <label for="validationServer04" class="form-label">¿Presentas algún tipo de discapacidad?</label>
@@ -190,9 +190,9 @@
                 </div>
                 <div class="col-md-12" id="psicosocial1div">
                   <label for="validationServer04" class="form-label">¿Accedes a servicios de salud mental, asesorias, terapias y/o atención psicosocial?</label>
-                  <div class="form-check form-switch" id="container-psicosocial1">
-                      {!!$psicosocial1!!} 
-                    </div>
+                    <select class="form-control form-control-sm" id="psicosocial1" name="psicosocial1" aria-describedby="validationServer04Feedback" required="">
+                      {{!!$psicosocial1!!}}
+                    </select>
                 </div>
                 <div class="col-md-12" id="psicosocial2div">
                   <label for="validationServer04" class="form-label">¿Qué estrategias implementas para  reducir el estrés y  para favorecer el bienestar emocional y fisico?</label>
@@ -315,6 +315,20 @@ paginacargando();
         $('#acceso2').val('');
       }
     });
+
+    $('input[name="enfermedad[]"]').change(function() {
+    if ($(this).attr('id') === 'enfermedad345' && $(this).is(':checked')) {
+        $('input[name="enfermedad[]"]').not('#enfermedad345').each(function() {
+            $(this).prop('checked', false); // Desmarcar
+            $(this).closest('div').hide();  // Ocultar
+
+
+        });
+    } else if ($(this).attr('id') === 'enfermedad345' && !$(this).is(':checked')) {
+        $('input[name="enfermedad[]"]').closest('div').show(); // Mostrar todos
+
+    }
+});
 
     $('#discapacidad').change(function(){
       if($('#discapacidad').val() == '2' || $('#acceso1').val() == ''){
@@ -543,83 +557,40 @@ paginacargando();
             $('.acceso358').css('display','');
             $('#acceso358').css('display','');
           }
-          
 
-          // if(data.imagen.sexo =='13' && data.identitario.gestante=='1' && edad >= '12'){
-          //   $('.acceso347').css('display','');
-          // }  else{
-          //   $('.acceso347').css('display','none');
-          //   $('#acceso347').css('display','none');
+          if(data.imagen.sexo =='12' && edad >= '50' && data.identitario.identidad != '25' ){
+            $('.acceso359').css('display','');
+            $('#acceso359').css('display','');
+            $('.acceso360').css('display','');
+            $('#acceso360').css('display','');
+          }
 
-          // } if( edad <= '5'){
-          //   $('.acceso348').css('display','');
-          //   $('.acceso349').css('display','');
-          // }else{
-          //   $('.acceso348').css('display','none');
-          //   $('.acceso349').css('display','none'); 
-          //   $('#acceso348').css('display','none');
-          //   $('#acceso349').css('display','none')
-          // }
-          // if( edad >= '12'){
-          //   $('.acceso352').css('display','');
-          // } else{
-          //   $('.acceso352').css('display','none');
-          //   $('#acceso352').css('display','none');
-          // }
+          if( edad <= '5'){
+             $('.acceso348').css('display','');
+             $('#acceso348').css('display','');
+             $('.acceso349').css('display','');
+             $('#acceso349').css('display','');
+          }
+          $('.acceso350').css('display','');
+          $('#acceso350').css('display','');
+          $('.acceso351').css('display','');
+          $('#acceso351').css('display','');
 
-          // if( edad >= '40'){
-          //   $('.acceso353').css('display','');
-          // }else{
-          //   $('.acceso353').css('display','none');
-          //   $('#acceso353').css('display','none');
-          // }
-          // if( edad >= '25'){
-          //   $('.acceso354').css('display','');
-          // }else{
-          //   $('.acceso354').css('display','none');
-          //   $('#acceso354').css('display','none');
-          // }
-          // if( edad >= '12' && edad <= '26'){
-          //   $('.acceso355').css('display','');
-          // } else{
-          //   $('.acceso355').css('display','none');
-          //   $('#acceso355').css('display','none');
-          // }
-          // if (data.imagen.sexo == '13'  && edad >= '25' && data.identitario.identidad != '24'){
-          //   $('.acceso356').css('display','');
-          // } else{
-          //   $('.acceso356').css('display','none');
-          //   $('#acceso356').css('display','none');
-          // } if (data.imagen.sexo == '13'  && edad >= '40' && data.identitario.identidad != '24'){
-          //           $('.acceso357').css('display','');
-          // }else{
-          //   $('.acceso357').css('display','none');
-          //   $('#acceso357').css('display','none');
-          // } if (data.imagen.sexo == '13'  && edad >= '18' && data.identitario.identidad != '24'){
-          //           $('.acceso358').css('display','');
-          // } else{
-          //   $('.acceso358').css('display','none');
-          //   $('#acceso358').css('display','none');
-          // } if (data.imagen.sexo == '13'  && edad >= '45' && data.identitario.identidad != '24'){
-          //           $('.acceso359').css('display','');
-          // } else{
-          //   $('.acceso359').css('display','none');
-          //   $('#acceso359').css('display','none');
-          // }if (data.imagen.sexo == '12'  && edad >= '50' && data.identitario.identidad != '25'){
-          //           $('.acceso360').css('display','');
-          //           $('.acceso361').css('display','');  
-          // }else{
-          //   $('.acceso360').css('display','none');
-          //   $('.acceso361').css('display','none');
-          //   $('#acceso360').css('display','none');
-          //   $('#acceso361').css('display','none');
-          // }
-          
+          if( edad >= '25'){
+             $('.acceso353').css('display','');
+             $('#acceso353').css('display','');
+
+           }
+
+           if( edad >= '12' && edad <= '26'){
+             $('.acceso354').css('display','');
+             $('#acceso354').css('display','');
+
+           }
 
 
 
-
-
+        
         // console.log(data.imagen.avatar , 'avatar')
  if(data.imagen.avatar != null){
    $('#imagenDinamica').attr('src',`../public/avatares/${data.imagen.avatar}.png`) 
@@ -634,14 +605,29 @@ paginacargando();
                     let acceso3 = JSON.parse((data.integrantes)?data.integrantes.acceso3:'{}'); // ["49", "54"]
                     let consumospa3 = JSON.parse((data.integrantes)?data.integrantes.consumospa3:'{}'); // ["49", "54"]
                     let consumospa6 = JSON.parse((data.integrantes)?data.integrantes.consumospa6:'{}'); // ["49", "54"]
-                    let psicosocial1 = JSON.parse((data.integrantes)?data.integrantes.psicosocial1:'{}'); // ["49", "54"]
                     let psicosocial2 = JSON.parse((data.integrantes)?data.integrantes.psicosocial2:'{}'); // ["49", "54"]
-                    
+                    let enfermedad = JSON.parse((data.integrantes)?data.integrantes.enfermedad:'{}'); // ["49", "54"]
+                 
 
                   
                   if(Array.isArray(acceso3) && acceso3.length > 0) {
                 $('#acceso3-container input[type="checkbox"]').each(function() {
                   let found = acceso3.find(item => item.id === this.value );
+                  console.log(found.valor, 'aca valor')
+                          if (found.valor == 'SI') { 
+                            $(this).prop('checked', true);
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
+                          } else {
+                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
+                          }
+                         
+
+                          //$(this).prop('checked', false);    
+                });}
+
+                if(Array.isArray(enfermedad) && enfermedad.length > 0) {
+                $('#enfermedad-container input[type="checkbox"]').each(function() {
+                  let found = enfermedad.find(item => item.id === this.value );
                   console.log(found.valor, 'aca valor')
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
@@ -678,17 +664,7 @@ paginacargando();
                           }
                 });}
 
-                if(Array.isArray(psicosocial1) && psicosocial1.length > 0) {
-                $('#container-psicosocial1 input[type="checkbox"]').each(function() {
-                  let found = psicosocial1.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor')
-                          if (found.valor == 'SI') { 
-                            $(this).prop('checked', true);
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
-                          } else {
-                            $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' con el valor correspondiente
-                          }
-                });}
+                
 
                 if(Array.isArray(psicosocial2) && psicosocial2.length > 0) {
                 $('#container-psicosocial2 input[type="checkbox"]').each(function() {
@@ -728,18 +704,17 @@ paginacargando();
            $('#psicosocial2').val((data.integrantes)?data.integrantes.psicosocial2:'');
            $('#cualpsicosocial2').val((data.integrantes)?data.integrantes.cualpsicosocial2:'');
            $('#planexequial').val((data.integrantes)?data.integrantes.planexequial:''); 
-           $('#enfermedad').val((data.integrantes)?data.integrantes.enfermedad:'');
            $('#cualconsumospa5').val((data.integrantes)?data.integrantes.cualconsumospa5:'');
           
 
 
-          //  if($('#acceso1').val() == '2' || $('#acceso1').val() == ''){
-          //     $('.acceso2').css('display','none');
-          //     $('#acceso2').attr('required',false)
-          //   }else{
-          //     $('.acceso2').css('display','');
-          //     $('#acceso2').attr('required',true)
-          //   }
+           if ($('#enfermedad345').is(':checked')) {
+                              $('input[name="enfermedad[]"]').not('#enfermedad345').closest('div').hide();
+                            } else {
+                              $('input[name="enfermedad[]"]').closest('div').show();
+                            }
+
+                            
 
             if($('#discapacidad').val() == '2' || $('#acceso1').val() == ''){
               $('#tipodediscapacidaddiv').css('display','none');
@@ -979,6 +954,11 @@ paginacargando();
         }else{
           $('input[name="acceso3[]"]:hidden').removeAttr('required');
         }
+        if ($('input[name="enfermedad[]"]:visible:checked').length > 0) {
+          $('input[name="enfermedad[]"]').removeAttr('required');
+        }else{
+          $('input[name="enfermedad[]"]:hidden').removeAttr('required');
+        }
 
         if ($('input[name="consumospa3[]"]:visible:checked').length > 0) {
           $('input[name="consumospa3[]"]').removeAttr('required');
@@ -990,11 +970,7 @@ paginacargando();
             }else{
              $('input[name="consumospa6[]"]:hidden').removeAttr('required');
             }
-        if ($('input[name="psicosocial1[]"]:visible:checked').length > 0) {
-            $('input[name="psicosocial1[]"]').removeAttr('required');
-          }else{
-            $('input[name="psicosocial1[]"]:hidden').removeAttr('required');
-          }
+    
         if ($('input[name="psicosocial2[]"]:visible:checked').length > 0) {
             $('input[name="psicosocial2[]"]').removeAttr('required');
           }else{
@@ -1063,6 +1039,15 @@ paginacargando();
         }
       });
 
+      $('input[name="enfermedad[]"]').change(function() {
+        if ($('input[name="enfermedad[]"]:visible:checked').length > 0) {
+          $('input[name="enfermedad[]"]').removeAttr('required');
+        }else{
+          $('input[name="enfermedad[]"]').attr('required', 'required');
+
+        }
+      });
+
       $('input[name="consumospa3[]"]').change(function() {
       if ($('input[name="consumospa3[]"]:visible:checked').length > 0) {
           $('input[name="consumospa3[]"]').removeAttr('required');
@@ -1078,13 +1063,7 @@ paginacargando();
           $('input[name="consumospa6[]"]').attr('required', 'required');
         }
       });
-      $('input[name="psicosocial1[]"]').change(function() {
-      if ($('input[name="psicosocial1[]"]:visible:checked').length > 0) {
-          $('input[name="psicosocial1[]"]').removeAttr('required');
-        }else{
-          $('input[name="psicosocial1[]"]').attr('required', 'required');
-        }
-      });
+    
       $('input[name="psicosocial2[]"]').change(function() {
       if ($('input[name="psicosocial2[]"]:visible:checked').length > 0) {
           $('input[name="psicosocial2[]"]').removeAttr('required');
@@ -1145,13 +1124,7 @@ paginacargando();
                   { id: '85', valor: 'NO' },
                   { id: '86', valor: 'NO' }, 
               ],
-              'psicosocial1': [
-                  { id: '87', valor: 'NO' },
-                  { id: '88', valor: 'NO' },
-                  { id: '89', valor: 'NO' },
-                  { id: '90', valor: 'NO' },
-                  { id: '91', valor: 'NO' },
-              ],
+             
               'psicosocial2': [
                   { id: '92', valor: 'NO' },
                   { id: '93', valor: 'NO' },
@@ -1170,6 +1143,15 @@ paginacargando();
                   { id: '106', valor: 'NO' },
                   { id: '347', valor: 'NO' }, 
               ],
+              'enfermedad': [
+                  { id: '340', valor: 'NO' },
+                  { id: '341', valor: 'NO' },
+                  { id: '342', valor: 'NO' },
+                  { id: '343', valor: 'NO' },
+                  { id: '344', valor: 'NO' },
+                  { id: '345', valor: 'NO' },
+                 
+              ],
              
           };
 
@@ -1182,7 +1164,7 @@ paginacargando();
     console.log(respuesta, 'respuesta');
 
     if (name === 'acceso3' || name === 'consumospa3' || name === 'consumospa6' 
-    || name === 'psicosocial1'|| name === 'psicosocial2' ) {
+    ||  name === 'psicosocial2' || name === 'enfermedad' ) {
         // Buscar el objeto con el mismo id
         var existingIndex = data[name].findIndex(item => item.id === obj.value);
         if (existingIndex !== -1) {
@@ -1227,15 +1209,17 @@ data['acceso3'].forEach(item => {
       }
   });
 
-  data['psicosocial1'].forEach(item => {
-      var selector = '[name="psicosocial1[]"][value="' + item.id + '"]';
+
+
+  data['psicosocial2'].forEach(item => {
+      var selector = '[name="psicosocial2[]"][value="' + item.id + '"]';
       if ($(selector).length === 0 || $(selector).is(':hidden')) {
           item.valor = 'NO APLICA';
       }
   });
 
-  data['psicosocial2'].forEach(item => {
-      var selector = '[name="psicosocial2[]"][value="' + item.id + '"]';
+  data['enfermedad'].forEach(item => {
+      var selector = '[name="enfermedad[]"][value="' + item.id + '"]';
       if ($(selector).length === 0 || $(selector).is(':hidden')) {
           item.valor = 'NO APLICA';
       }

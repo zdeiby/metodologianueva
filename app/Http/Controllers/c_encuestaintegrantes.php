@@ -44,10 +44,13 @@ public function fc_encuestaintegrantesfisicoemocional(){
             </div>';
         }
     }
-    $enfermedad='<option value="">Seleccione </option>';
+    $enfermedad='';
     foreach ($preguntas as $value) {
       if ($value->id >= '340' && $value->id <= '345') {
-          $enfermedad .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+          $enfermedad .= '<div class="enfermedad' . $value->id . '" >
+            <label class="form-check-label enfermedad' . $value->id . '"  for="enfermedad' . $value->id . '">' . $value->pregunta . '</label>
+            <input class="form-check-input" type="checkbox" name="enfermedad[]" id="enfermedad' . $value->id . '" value="' . $value->id . '" respuesta="SI"  >
+            </div>';
       }
     }
 
@@ -93,13 +96,10 @@ public function fc_encuestaintegrantesfisicoemocional(){
         </div>';
   }
     }
-    $psicosocial1='';
+    $psicosocial1='<option value="">Seleccione </option>';
     foreach ($preguntas as $value) {
       if ($value->id >= '87' && $value->id <= '91') {
-        $psicosocial1 .=  '<div class="psicosocial1' . $value->id . '">
-        <label class="form-check-label psicosocial1' . $value->id . '"  for="psicosocial1' . $value->id . '">' . $value->pregunta . '</label>
-        <input class="form-check-input" type="checkbox" name="psicosocial1[]" id="psicosocial1' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-        </div>';
+        $psicosocial1 .= '<option value="' . $value->id . '" id="psicosocial1' . $value->id . '" class="noaplica' . $value->id . '">' . $value->pregunta . '</option>';
       }
     }
     $psicosocial2='';

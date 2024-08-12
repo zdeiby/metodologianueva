@@ -433,26 +433,34 @@ function paginalista2(){
     document.querySelector('main').style.display = 'block'; // Muestra el contenido del main
 }
 
-function soloLetras(e)
-{
-    //    alert(e);
-/*    var key = window.Event ? e.which : e.keyCode
+function soloLetras(e) {
+    // Obtenemos el código de la tecla presionada
+    var tecla = (document.all) ? e.keyCode : e.which;
 
-    if ((key >= 65 && key <= 90) || (key == 8) || (key == 32) || (key == 44 || (key == 46))) {
+    // Permitimos la tecla de retroceso (Backspace)
+    if (tecla == 8) return true;
+
+    // Convertimos la tecla presionada en carácter
+    var te = String.fromCharCode(tecla);
+
+    // Convertimos el carácter a mayúsculas
+    te = te.toUpperCase();
+
+    // Definimos el patrón que incluye solo letras mayúsculas, espacios, y la ñ Ñ
+    var patron = /^[A-ZÑ\s]+$/;
+
+    // Comprobamos si el carácter ingresado cumple con el patrón
+    if (patron.test(te)) {
+        // Si es válido, se coloca en el campo de texto
+        e.target.value += te;
+        return false; // Evitamos que se añada el carácter en minúscula por defecto
+    } else {
+        // Bloquear cualquier otra tecla
+        return false;
     }
-    else
-    {
-        //okletrasnum('Ingresa solo letras mayusculas!!!');
-    }
-
-    return ((key >= 65 && key <= 90) || (key == 8) || (key == 32) || (key == 44) || (key == 46))*/
-tecla = (document.all) ? e.keyCode : e.which;
-if (tecla==8) return true;
-
-patron =/[A-Za-zÃ±Ã‘\s]/;
-te = String.fromCharCode(tecla);
-return patron.test(te);
 }
+
+
 function soloNumeros(e) {
     var key = window.Event ? e.which : e.keyCode;
 

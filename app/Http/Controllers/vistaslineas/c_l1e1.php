@@ -289,7 +289,7 @@ class c_l1e1 extends Controller
                   </div>';
             }
 
-            $factoresderiesgovef_ids = [265, 266, 267, 268, 269,270, 271, 272,273,274,275,276,277,362,363,364,365,366,367,278];   
+            $factoresderiesgovef_ids = [265, 266, 267, 268,270, 271, 272,273,274,275,276,277,362,363,364,365,366,367,278];   
             foreach ($factoresderiesgovef_ids as $id) { foreach ($preguntas as $value) { if ($value->id == $id) {              $sorted_preguntas[] = $value;              break;          }      }  }
          
             $factoresderiesgovef = '';

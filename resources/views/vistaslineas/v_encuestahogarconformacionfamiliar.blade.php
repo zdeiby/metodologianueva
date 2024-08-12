@@ -40,7 +40,7 @@
         <div class="accordion-item" id="l1e1">
             <div class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <span class="badge bg-primary" id="">ENCUESTA INTEGRANTES</span>
+            <span class="badge bg-primary" id="">ENCUESTA HOGAR</span>
             </button>
             <!-- <div class="progress">
                 <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
