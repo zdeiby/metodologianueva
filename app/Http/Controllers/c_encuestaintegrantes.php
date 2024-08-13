@@ -137,7 +137,7 @@ public function fc_encuestaintegrantesfisicoemocional(){
 
       $niveleducativo1='<option value="">Seleccione </option>';
       foreach ($preguntas as $value) {
-        if ($value->id >= '107' && $value->id <= '122' || $value->id == '348') {
+        if ($value->id >= '107' && $value->id <= '122' || $value->id == '348' || $value->id == '370') {
             $niveleducativo1 .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
         }
       }

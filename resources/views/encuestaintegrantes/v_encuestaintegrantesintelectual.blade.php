@@ -97,22 +97,30 @@
             <input type="text"  class="form-control form-control-sm  " id="idintegrante1" name="idintegrante" value="" >
           </div>
 
-          <div class="col-md-6" id="alfabetizaciondiv">
+          <div class="col-md-6" id="alfabetizaciondiv" style="display:none">
                   <label for="validationServer04" class="form-label">¿Sabes leer y escribir?</label>
-                  <select class="form-control form-control-sm" id="alfabetizacion" name="alfabetizacion" aria-describedby="validationServer04Feedback" required="">
+                  <select class="form-control form-control-sm" id="alfabetizacion" name="alfabetizacion" aria-describedby="validationServer04Feedback" >
                     {{!!$sino!!}}
                 </select>
                 </div>
+
+               
         
-          <div class="col-md-6">
+          <div class="col-md-6" style="display:none" id="educaciondiv">
             <label for="validationServer04" class="form-label">¿Estás estudiando actualmente?</label>
-            <select class="form-control form-control-sm" id="educacion" name="educacion" aria-describedby="validationServer04Feedback" required="">
+            <select class="form-control form-control-sm" id="educacion" name="educacion" aria-describedby="validationServer04Feedback" >
             {{!!$sino!!}}            
           </select>
-          </div>
-          <div class="col-md-6" id="niveleducativo1div">
+          </div> 
+          <div class="col-md-12" id="cuidadomenoresdiv" style="display:none">
+                  <label for="validationServer04" class="form-label">¿El integrante  entre 0 y 5 años de edad que no están estudiando, están al cuidado de un adulto responsable?</label>
+                  <select class="form-control form-control-sm" id="cuidadomenores" name="cuidadomenores" aria-describedby="validationServer04Feedback" >
+                    {{!!$sino!!}}
+                </select>
+                </div>
+          <div class="col-md-6" id="niveleducativo1div" style="display:none">
             <label for="validationServer04" class="form-label">¿Cuál es tu nivel educativo alcanzado?</label>
-            <select class="form-control form-control-sm" id="niveleducativo1" name="niveleducativo1" aria-describedby="validationServer04Feedback" required="">
+            <select class="form-control form-control-sm" id="niveleducativo1" name="niveleducativo1" aria-describedby="validationServer04Feedback" >
             {{!!$niveleducativo1!!}}     
                 </select>
           </div>
@@ -126,27 +134,27 @@
             <label for="validationServer04" class="form-label">¿Cuál es el titulo obtenido?</label>
             <input type="text"  class="form-control form-control-sm  " id="niveleducativo5" name="niveleducativo5" value="" >
           </div>
-          <div class="col-md-12" id="niveleducativo3div">
+          <div class="col-md-12" id="niveleducativo3div" style="display:none">
             <label for="validationServer04" class="form-label">¿Accedes a programas de alfabetización y/o educación para adultos?</label>
-            <select class="form-control form-control-sm" id="niveleducativo3" name="niveleducativo3" aria-describedby="validationServer04Feedback" required="">
+            <select class="form-control form-control-sm" id="niveleducativo3" name="niveleducativo3" aria-describedby="validationServer04Feedback" >
             {{!!$sino!!}}    
           </select>
           </div>
-          <div class="col-md-12" id="niveleducativo4div">
+          <div class="col-md-12" id="niveleducativo4div" style="display:none">
             <label for="validationServer04" class="form-label">¿Deseas continuar con tu formación post secundaria?</label>
-            <select class="form-control form-control-sm" id="niveleducativo4" name="niveleducativo4" aria-describedby="validationServer04Feedback" required="">
+            <select class="form-control form-control-sm" id="niveleducativo4" name="niveleducativo4" aria-describedby="validationServer04Feedback" >
             {{!!$sino!!}}    
           </select>
           </div>
-          <div class="col-md-12" id="deseaaccedereducaciondiv">
+          <div class="col-md-12" id="deseaaccedereducaciondiv" style="display:none">
             <label for="validationServer04" class="form-label">¿Deseas acceder a educación para el trabajo y el desarrollo humano?</label>
-            <select class="form-control form-control-sm" id="deseaaccedereducacion" name="deseaaccedereducacion" aria-describedby="validationServer04Feedback" required="">
+            <select class="form-control form-control-sm" id="deseaaccedereducacion" name="deseaaccedereducacion" aria-describedby="validationServer04Feedback" >
             {{!!$sino!!}}
                       </select>
           </div>
-          <div class="col-md-12" id="alfabetizaciondigitaldiv">
+          <div class="col-md-12" id="alfabetizaciondigitaldiv" style="display:none">
             <label for="validationServer04" class="form-label">¿Conoces el manejo de las TIC?</label>
-            <select class="form-control form-control-sm" id="alfabetizaciondigital" name="alfabetizaciondigital" aria-describedby="validationServer04Feedback" required="">
+            <select class="form-control form-control-sm" id="alfabetizaciondigital" name="alfabetizaciondigital" aria-describedby="validationServer04Feedback" >
             {{!!$sino!!}}
           </select>
           </div>
@@ -244,75 +252,147 @@
     
   $('.noaplica0').css('display','none');
 
-  $('#niveleducativo2').change(function() {
-   if(($('#niveleducativo2').val() == '133') && parseInt($('#edadintegrante').val()) >= '16'){
-    $('#niveleducativo3div').css('display','none');
-    $('#niveleducativo3').removeAttr('required');
-    $('#niveleducativo3').val('0');
-    $('#niveleducativo4div').css('display','');
-    $('#niveleducativo4').attr('required','required');
-    $('#niveleducativo4').val('');
-   }
-
-   if(($('#niveleducativo2').val() == '132') && parseInt($('#edadintegrante').val()) == '15'){
-    $('#niveleducativo3div').css('display','none');
-    $('#niveleducativo3').removeAttr('required');
-    $('#niveleducativo3').val('0');
-    $('#niveleducativo4div').css('display','none');
-    $('#niveleducativo4').removeAttr('required');
-    $('#niveleducativo4').val('0');
-   }
-
-   if(($('#niveleducativo2').val() == '133') && parseInt($('#edadintegrante').val()) == '15'){
-    $('#niveleducativo3div').css('display','none');
-    $('#niveleducativo3').removeAttr('required');
-    $('#niveleducativo3').val('0');
-    $('#niveleducativo4div').css('display','');
-    $('#niveleducativo4').attr('required','required');
-    $('#niveleducativo4').val('');
-   }
-
-
-   if(($('#niveleducativo2').val() == '132' ) && parseInt($('#edadintegrante').val()) <= '17'){
-    $('#niveleducativo3div').css('display','none');
-    $('#niveleducativo3').removeAttr('required');
-    $('#niveleducativo3').val('0');
-   }
-
-    if($('#niveleducativo2').val() == '132' && parseInt($('#edadintegrante').val()) >= '18'){
-       $('#niveleducativo3div').css('display','');
-       $('#niveleducativo3').attr('required','required');
-       $('#niveleducativo3').val('');
-    }
-
-    if($('#niveleducativo2').val() == '133' && parseInt($('#edadintegrante').val()) >= '18'){
-       $('#niveleducativo4div').css('display','');
-       $('#niveleducativo4').attr('required','required');
-       $('#niveleducativo4').val('');
-    }
-
-    if($('#niveleducativo2').val() == '133' && parseInt($('#edadintegrante').val()) <= '17'){
-       $('#niveleducativo3div').css('display','none');
-       $('#niveleducativo3').removeAttr('required');
-       $('#niveleducativo3').val('0');
-    }
-
-    if($('#niveleducativo2').val() == '132' && parseInt($('#edadintegrante').val()) >= '16'){
-       $('#niveleducativo4div').css('display','none');
-       $('#niveleducativo4').removeAttr('required');
-       $('#niveleducativo4').val('0');
-    }
   
-  
+
+  $('#educacion').change(function() {
+   if($('#educacion').val() != ''){
+    $('#niveleducativo1div').css('display','');
+    $('#niveleducativo1').attr('required','required');
+    $('#niveleducativo1').val('');
+   }
+   if($('#educacion').val() == '2' && parseInt($('#edadintegrante').val()) <= 5){
+    $('#cuidadomenoresdiv').css('display','');
+    $('#cuidadomenores').attr('required','required');
+    $('#cuidadomenores').val('');  
+    $('#niveleducativo1div').css('display','');
+    $('#niveleducativo1').attr('required','required');
+    $('#niveleducativo1').val('');
+    $('#niveleducativo1div').css('display','');
+    $('#niveleducativo1').attr('required','required');
+    $('#niveleducativo1').val('');
+   }
+   if($('#educacion').val() == '1' && parseInt($('#edadintegrante').val()) <= 5){
+    $('#cuidadomenoresdiv').css('display','none');
+    $('#cuidadomenores').removeAttr('required');
+    $('#cuidadomenores').val('0');  
+    $('#niveleducativo1div').css('display','');
+    $('#niveleducativo1').attr('required','required');
+    $('#niveleducativo1').val('');
+    $('#niveleducativo1div').css('display','');
+    $('#niveleducativo1').attr('required','required');
+    $('#niveleducativo1').val('');
+   }
+ 
   });
 
+  $('#niveleducativo1').change(function() {
+   if(($('#niveleducativo1').val() == '107' || $('#niveleducativo1').val() == '108' || $('#niveleducativo1').val() == '109') && parseInt($('#edadintegrante').val()) >= 15){
+    $('#niveleducativo3div').css('display','');
+    $('#niveleducativo').attr('required','required');
+    $('#niveleducativo3').val('');
+   }
+   if($('#niveleducativo1').val() == '110' ){
+          $('#niveleducativo2div').css('display', '');
+          $('#niveleducativo2').attr('required', 'required');
+          $('#niveleducativo2').val('');   
+          $('#niveleducativo5div').css('display', 'none');
+          $('#niveleducativo5').removeAttr('required');
+          $('#niveleducativo5').val('0'); 
+          $('#niveleducativo2 option[value="123"]').show();
+          $('#niveleducativo2 option[value="124"]').show();
+          $('#niveleducativo2 option[value="125"]').show();
+          $('#niveleducativo2 option[value="126"]').show();
+          $('#niveleducativo2 option[value="127"]').show();
+          $('#niveleducativo2 option[value="128"]').hide();
+          $('#niveleducativo2 option[value="129"]').hide();
+          $('#niveleducativo2 option[value="130"]').hide();
+          $('#niveleducativo2 option[value="131"]').hide();
+          $('#niveleducativo2 option[value="132"]').hide();
+          $('#niveleducativo2 option[value="133"]').hide();
+   } if($('#niveleducativo1').val() == '111' ){
+          $('#niveleducativo2div').css('display', '');
+          $('#niveleducativo2').attr('required', 'required');
+          $('#niveleducativo2').val('');
+          $('#niveleducativo2 option[value="123"]').hide();
+          $('#niveleducativo2 option[value="124"]').hide();
+          $('#niveleducativo2 option[value="125"]').hide();
+          $('#niveleducativo2 option[value="126"]').hide();
+          $('#niveleducativo2 option[value="127"]').hide();
+          $('#niveleducativo2 option[value="128"]').show(); 
+          $('#niveleducativo2 option[value="129"]').show();
+          $('#niveleducativo2 option[value="130"]').show();
+          $('#niveleducativo2 option[value="131"]').show();
+          $('#niveleducativo2 option[value="132"]').hide();
+          $('#niveleducativo2 option[value="133"]').hide();
+   }
+   if($('#niveleducativo1').val() == '112' ){
+          $('#niveleducativo2div').css('display', '');
+          $('#niveleducativo2').attr('required', 'required');
+          $('#niveleducativo2').val('');
+          $('#niveleducativo2 option[value="123"]').hide();
+          $('#niveleducativo2 option[value="124"]').hide();
+          $('#niveleducativo2 option[value="125"]').hide();
+          $('#niveleducativo2 option[value="126"]').hide();
+          $('#niveleducativo2 option[value="127"]').hide();
+          $('#niveleducativo2 option[value="128"]').hide(); 
+          $('#niveleducativo2 option[value="129"]').hide();
+          $('#niveleducativo2 option[value="130"]').hide();
+          $('#niveleducativo2 option[value="131"]').hide();
+          $('#niveleducativo2 option[value="132"]').show();
+          $('#niveleducativo2 option[value="133"]').show();
+   }  
 
-  
-  
 
-   
-      $('#niveleducativo1').change(function() {
-        if (($(this).val() == "107" || $(this).val() == "108" || $(this).val() == "109" ) && parseInt(parseInt($('#edadintegrante').val())) >= '18') {
+
+   if (($('#niveleducativo1').val() == "113" || $('#niveleducativo1').val() == "114" || $('#niveleducativo1').val() == "115" || $('#niveleducativo1').val() == "117" ||  $('#niveleducativo1').val() == "119" ||  $('#niveleducativo1').val() == "121" || $('#niveleducativo1').val() == "348") && parseInt($('#edadintegrante').val()) >= '15') {   //9.5
+          $('#niveleducativo4div').css('display', '');
+           $('#niveleducativo4').attr('required', 'required');
+           $('#niveleducativo4').val('');
+           $('#niveleducativo2div').css('display','none');
+           $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo2').val('0');
+           $('#niveleducativo3div').css('display','none');
+           $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo3').val('0');
+           $('#niveleducativo5div').css('display','none');
+           $('#niveleducativo5').removeAttr('required');
+           $('#niveleducativo5').val('0');
+         }
+         if (($('#niveleducativo1').val() == "113" || $('#niveleducativo1').val() == "114" || $('#niveleducativo1').val() == "115" || $('#niveleducativo1').val() == "117" ||  $('#niveleducativo1').val() == "119" ||  $('#niveleducativo1').val() == "121"|| $('#niveleducativo1').val() == "348") && parseInt($('#edadintegrante').val()) <= '14') {   //9.5
+           $('#niveleducativo4div').css('display', 'none');
+           $('#niveleducativo4').removeAttr('required');
+           $('#niveleducativo4').val('0');
+           $('#niveleducativo2div').css('display','none');
+           $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo2').val('0');
+           $('#niveleducativo3div').css('display','none');
+           $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo3').val('0');
+           $('#niveleducativo5div').css('display','none');
+           $('#niveleducativo5').removeAttr('required');
+           $('#niveleducativo5').val('0');
+         }
+
+
+         if ( $('#niveleducativo1').val() == "116" || $('#niveleducativo1').val() == "118" ||  $('#niveleducativo1').val() == "120" ||  $('#niveleducativo1').val() == "122" ||  $('#niveleducativo1').val() == "113" ||  $('#niveleducativo1').val() == "114" ||  $('#niveleducativo1').val() == "370") {     // 9.3.2
+           $('#niveleducativo4div').css('display', 'none');
+           $('#niveleducativo4').removeAttr('required');
+           $('#niveleducativo4').val('0');
+           $('#niveleducativo2div').css('display','none');
+           $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo2').val('0');
+           $('#niveleducativo3div').css('display','none');
+           $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo3').val('0');
+           $('#niveleducativo5div').css('display','');
+           $('#niveleducativo5').attr('required', 'required');
+           $('#niveleducativo5').val('');
+          
+         }
+
+
+
+         if (($('#niveleducativo1').val() == "107" || $('#niveleducativo1').val() == "108" || $('#niveleducativo1').val() == "109" ) && parseInt(parseInt($('#edadintegrante').val())) >= '15') {
           $('#niveleducativo2div').css('display', 'none');
           $('#niveleducativo4div').css('display', 'none'); 
           $('#niveleducativo5div').css('display', 'none');
@@ -326,7 +406,7 @@
           $('#niveleducativo5').removeAttr('required');
           $('#niveleducativo4').removeAttr('required');
          } 
-        if (($(this).val() == "107" || $(this).val() == "108" || $(this).val() == "109") && parseInt(parseInt($('#edadintegrante').val())) <= '17') {
+        if (($('#niveleducativo1').val() == "107" || $('#niveleducativo1').val() == "108" || $('#niveleducativo1').val() == "109") && parseInt($('#edadintegrante').val()) <= '14') {
           $('#niveleducativo2div').css('display', 'none');
           $('#niveleducativo4div').css('display', 'none'); 
           $('#niveleducativo5div').css('display', 'none');
@@ -344,225 +424,60 @@
         
          } 
 
-         
 
 
-        //  if ($(this).val() == "112" && parseInt(parseInt($('#edadintegrante').val())) >= '18') {
-        //     $('#niveleducativo3div').css('display', '');
-        //     $('#niveleducativo3').val('');
-        //     $('#niveleducativo3').attr('required', 'required');
-        //  }
+
+
+
+  });
+
+
+  $('#niveleducativo2').change(function() {
+   if($('#niveleducativo2').val() == '133' && parseInt($('#edadintegrante').val()) <= '14'){
+          $('#niveleducativo5div').css('display', '');
+          $('#niveleducativo5').attr('required', 'required');
+          $('#niveleducativo5').val('');
+          $('#niveleducativo3div').css('display', 'none');
+          $('#niveleducativo3').removeAttr('required');
+          $('#niveleducativo3').val('0');
+          
+    }
+    if($('#niveleducativo2').val() == '133' && parseInt($('#edadintegrante').val()) >= '15'){
+          $('#niveleducativo5div').css('display', '');
+          $('#niveleducativo5').attr('required','required');
+          $('#niveleducativo5').val('');
+          $('#niveleducativo4div').css('display', '');
+          $('#niveleducativo4').attr('required','required');
+          $('#niveleducativo4').val('');
+          $('#niveleducativo3div').css('display', 'none');
+          $('#niveleducativo3').removeAttr('required');
+          $('#niveleducativo3').val('0');
+    } if($('#niveleducativo2').val() != '133' && parseInt($('#edadintegrante').val()) >= '15'){
+      $('#niveleducativo3div').css('display', '');
+          $('#niveleducativo3').attr('required', 'required');
+          $('#niveleducativo3').val('');
+          $('#niveleducativo5div').css('display', 'none');
+          $('#niveleducativo5').removeAttr('required');
+          $('#niveleducativo5').val('0');
+          $('#niveleducativo4div').css('display', 'none');
+          $('#niveleducativo4').removeAttr('required');
+          $('#niveleducativo4').val('0');
+          
+          
+    }
+    if($('#niveleducativo2').val() != '133' && parseInt($('#edadintegrante').val()) <= '14'){
+          $('#niveleducativo5div').css('display', 'none');
+          $('#niveleducativo5').removeAttr('required');
+          $('#niveleducativo5').val('0');
+          
+    }
+  });
+
+
+
   
 
-        if ($(this).val() == "110" ) {
-          $('#niveleducativo2div').css('display', '');
-          $('#niveleducativo2').attr('required', 'required');
-          $('#niveleducativo2').val('');
-          $('#niveleducativo3div').css('display','none');
-            $('#niveleducativo3').val('0');
-            $('#niveleducativo3').removeAttr('required');
-            $('#niveleducativo4div').css('display','none');
-            $('#niveleducativo4').val('0');
-            $('#niveleducativo4').removeAttr('required');
-            $('#niveleducativo5div').css('display','none');
-          $('#niveleducativo5').val('0');
-          $('#niveleducativo5').removeAttr('required');
-          $('#niveleducativo2 option[value="123"]').show();
-          $('#niveleducativo2 option[value="124"]').show();
-          $('#niveleducativo2 option[value="125"]').show();
-          $('#niveleducativo2 option[value="126"]').show();
-          $('#niveleducativo2 option[value="127"]').show();
-          $('#niveleducativo2 option[value="128"]').hide();
-          $('#niveleducativo2 option[value="129"]').hide();
-          $('#niveleducativo2 option[value="130"]').hide();
-          $('#niveleducativo2 option[value="131"]').hide();
-          $('#niveleducativo2 option[value="132"]').hide();
-          $('#niveleducativo2 option[value="133"]').hide();
-          if(parseInt(parseInt($('#edadintegrante').val())) >= '18') {
-            $('#niveleducativo3div').css('display', '');
-            $('#niveleducativo3').val('');
-            $('#niveleducativo3').attr('required', 'required');
-         }if(parseInt(parseInt($('#edadintegrante').val())) <= '17') {
-            $('#niveleducativo3div').css('display', 'none');
-            $('#niveleducativo3').val('0');
-            $('#niveleducativo3').removeAttr('required');
-         }
-        }
-
-        if ($(this).val() == "111") {
-          $('#niveleducativo2div').css('display', '');
-          $('#niveleducativo2').attr('required', 'required');
-          $('#niveleducativo2').val('');
-          $('#niveleducativo3div').css('display','none');
-            $('#niveleducativo3').val('0');
-            $('#niveleducativo3').removeAttr('required');
-            $('#niveleducativo4div').css('display','none');
-            $('#niveleducativo4').val('0');
-            $('#niveleducativo4').removeAttr('required');
-            $('#niveleducativo5div').css('display','none');
-          $('#niveleducativo5').val('0');
-          $('#niveleducativo5').removeAttr('required');
-          $('#niveleducativo2 option[value="123"]').hide();
-          $('#niveleducativo2 option[value="124"]').hide();
-          $('#niveleducativo2 option[value="125"]').hide();
-          $('#niveleducativo2 option[value="126"]').hide();
-          $('#niveleducativo2 option[value="127"]').hide();
-          $('#niveleducativo2 option[value="128"]').show(); 
-          $('#niveleducativo2 option[value="129"]').show();
-          $('#niveleducativo2 option[value="130"]').show();
-          $('#niveleducativo2 option[value="131"]').show();
-          $('#niveleducativo2 option[value="132"]').hide();
-          $('#niveleducativo2 option[value="133"]').hide();
-          $('#niveleducativo3div').css('display', '');
-          $('#niveleducativo3').val('');
-          $('#niveleducativo3').attr('required', 'required');
-          if(parseInt(parseInt($('#edadintegrante').val())) >= '18') {
-            $('#niveleducativo3div').css('display', '');
-            $('#niveleducativo3').val('');
-            $('#niveleducativo3').attr('required', 'required');
-         }if(parseInt(parseInt($('#edadintegrante').val())) <= '17') {
-            $('#niveleducativo3div').css('display', 'none');
-            $('#niveleducativo3').val('0');
-            $('#niveleducativo3').removeAttr('required');
-         }
-        }
-        if ($(this).val() == "112" ) {
-          $('#niveleducativo2div').css('display', '');
-          $('#niveleducativo2').attr('required', 'required');
-          $('#niveleducativo2').val('');
-          $('#niveleducativo3div').css('display','none');
-            $('#niveleducativo3').val('0');
-            $('#niveleducativo3').removeAttr('required');
-            $('#niveleducativo4div').css('display','none');
-            $('#niveleducativo4').val('0');
-            $('#niveleducativo4').removeAttr('required');
-            $('#niveleducativo5div').css('display','none');
-          $('#niveleducativo5').val('0');
-          $('#niveleducativo5').removeAttr('required');
-          $('#niveleducativo2 option[value="123"]').hide();
-          $('#niveleducativo2 option[value="124"]').hide();
-          $('#niveleducativo2 option[value="125"]').hide();
-          $('#niveleducativo2 option[value="126"]').hide();
-          $('#niveleducativo2 option[value="127"]').hide();
-          $('#niveleducativo2 option[value="128"]').hide(); 
-          $('#niveleducativo2 option[value="129"]').hide();
-          $('#niveleducativo2 option[value="130"]').hide();
-          $('#niveleducativo2 option[value="131"]').hide();
-          $('#niveleducativo2 option[value="132"]').show();
-          $('#niveleducativo2 option[value="133"]').show();
-          $('#niveleducativo3div').css('display', '');
-          $('#niveleducativo3').val('');
-          $('#niveleducativo3').attr('required', 'required');
-          if(parseInt(parseInt($('#edadintegrante').val())) >= '18') {
-            $('#niveleducativo3div').css('display', '');
-            $('#niveleducativo3').val('');
-            $('#niveleducativo3').attr('required', 'required');
-         }if(parseInt(parseInt($('#edadintegrante').val())) <= '17') {
-            $('#niveleducativo3div').css('display', 'none');
-            $('#niveleducativo3').val('0');
-            $('#niveleducativo3').removeAttr('required');
-         }
-        }
-        if (($(this).val() == "113" || $(this).val() == "114" || $(this).val() == "115" || $(this).val() == "117" ||  $(this).val() == "119" ||  $(this).val() == "121" ||  $(this).val() == "348") && parseInt($('#edadintegrante').val()) >= '15') {   //9.5
-          $('#niveleducativo4div').css('display', '');
-          $('#niveleducativo4').val('');
-          $('#niveleducativo4').attr('required', 'required');
-          $('#niveleducativo2div').css('display','none');
-          $('#niveleducativo2').val('0');
-          $('#niveleducativo2').removeAttr('required');
-          $('#niveleducativo3div').css('display','none');
-          $('#niveleducativo3').val('0');
-          $('#niveleducativo3').removeAttr('required');
-          $('#niveleducativo5div').css('display','none');
-          $('#niveleducativo5').val('0');
-          $('#niveleducativo5').removeAttr('required');
-        }
-        if (($(this).val() == "113" || $(this).val() == "114" || $(this).val() == "115" || $(this).val() == "117" ||  $(this).val() == "119" ||  $(this).val() == "121" ||  $(this).val() == "348") && parseInt(parseInt($('#edadintegrante').val())) <= '14') {   //9.5
-          $('#niveleducativo4div').css('display', 'none');
-          $('#niveleducativo4').val('0');
-          $('#niveleducativo4').removeAttr('required');
-          $('#niveleducativo2div').css('display','none');
-          $('#niveleducativo2').val('0');
-          $('#niveleducativo2').removeAttr('required');
-          $('#niveleducativo3div').css('display','none');
-          $('#niveleducativo3').val('0');
-          $('#niveleducativo3').removeAttr('required');
-          $('#niveleducativo5div').css('display','none');
-          $('#niveleducativo5').val('0');
-          $('#niveleducativo5').removeAttr('required');
-          $('#alfabetizacion').removeAttr('required');
-          $('#alfabetizacion').val('0');
-      
-        }
-
-
-        if ( $(this).val() == "116" || $(this).val() == "118" ||  $(this).val() == "120" ||  $(this).val() == "122") {     // 9.3.2
-          $('#niveleducativo4div').css('display', 'none');
-          $('#niveleducativo4').val('0');
-          $('#niveleducativo4').removeAttr('required');
-          $('#niveleducativo2div').css('display','none');
-          $('#niveleducativo2').val('0');
-          $('#niveleducativo2').removeAttr('required');
-          $('#niveleducativo3div').css('display','none');
-          $('#niveleducativo3').val('0');
-          $('#niveleducativo3').removeAttr('required');
-          $('#niveleducativo5div').css('display','');
-          $('#niveleducativo5').val('');
-          $('#niveleducativo5').attr('required', 'required');
-          
-        }
-
-        
-      });
-
-      if(parseInt($('#edadintegrante').val()) >= '18'){
-            $('#niveleducativo3').attr('required', 'required');
-            $('#niveleducativo3div').css('display', '');
-            $('#niveleducativo3').val('');
-          }
-          if(parseInt($('#edadintegrante').val()) <= '17'){
-            $('#niveleducativo3').removeAttr('required');
-            $('#niveleducativo3div').css('display', 'none');
-            $('#niveleducativo3').val('0');
-          }
-
-          if(parseInt($('#edadintegrante').val()) >= '15'){
-            $('#niveleducativo4').attr('required', 'required');
-            $('#niveleducativo4div').css('display', '');
-            $('#niveleducativo4').val('');
-          } 
-          if(parseInt($('#edadintegrante').val()) <= '14'){
-            $('#niveleducativo4').removeAttr('required');
-            $('#niveleducativo4div').css('display', 'none');
-            $('#niveleducativo4').val('0');
-          }
-          if(parseInt($('#edadintegrante').val()) >= '11'){
-            $('#alfabetizaciondigital').attr('required', 'required');
-            $('#alfabetizaciondigitaldiv').css('display', '');
-            $('#alfabetizaciondigital').val('');
-          }
-      
-          if(parseInt($('#edadintegrante').val()) >= '16'){
-            $('#deseaaccedereducacion').attr('required', 'required');
-            $('#deseaaccedereducaciondiv').css('display', '');
-          } 
-          if($('#edadintegrante').val() <= '15'){
-            $('#deseaaccedereducacion').removeAttr('required');
-            $('#deseaaccedereducaciondiv').css('display', 'none');
-            $('#deseaaccedereducaciondiv').val('0');
-          }
-
-          if(parseInt($('#edadintegrante').val()) >= '15'){
-            $('#alfabetizacion').attr('required', 'required');
-            $('#alfabetizaciondiv').css('display', '');
-          } 
-          if(parseInt($('#edadintegrante').val()) <= '10' ){
-            $('#alfabetizaciondigital').removeAttr('required');
-            $('#alfabetizaciondigitaldiv').css('display', 'none');
-            $('#alfabetizaciondigital').val('0');
-          }
-
-       
+ 
 
 
 
@@ -646,245 +561,264 @@ console.log(edad)
            $('#niveleducativo4').val((data.integrantesintelectual)?data.integrantesintelectual.niveleducativo4:'');
            $('#deseaaccedereducacion').val((data.integrantesintelectual)?data.integrantesintelectual.deseaaccedereducacion:'');
            $('#alfabetizaciondigital').val((data.integrantesintelectual)?data.integrantesintelectual.alfabetizaciondigital:'');
+           $('#cuidadomenores').val((data.integrantesintelectual)?data.integrantesintelectual.cuidadomenores:'');
+
           
-      
-        
+           if(parseInt($('#edadintegrante').val()) >= 15){ // sabe leer escribir
+            $('#alfabetizaciondiv').css('display','');
+            $('#alfabetizacion').attr('required','required');
+            $('#deseaaccedereducaciondiv').css('display','');
+            $('#deseaaccedereducacion').attr('required','required');
+           }
 
-  if (($('#niveleducativo1').val() == "107" || $('#niveleducativo1').val() == "108" || $('#niveleducativo1').val() == "109" ) && parseInt($('#edadintegrante').val()) >= '18') {
-           $('#niveleducativo2div').css('display', 'none');
-           $('#niveleducativo4div').css('display', 'none'); 
-           $('#niveleducativo5div').css('display', 'none');
-           $('#niveleducativo3div').css('display', '');
-           $('#niveleducativo3').attr('required', 'required');
-           $('#niveleducativo2').removeAttr('required');
-           $('#niveleducativo5').removeAttr('required');
-           $('#niveleducativo4').removeAttr('required');
-           
-          } 
-          if (($('#niveleducativo1').val() == "110" || $('#niveleducativo1').val() == "111" || $('#niveleducativo1').val() == "112" ) && parseInt($('#edadintegrante').val()) >= '18') {
-            $('#niveleducativo2div').css('display', '');
-            $('#niveleducativo2').attr('required', 'required'); 
-          } 
-         
-         if (($('#niveleducativo1').val() == "107" || $('#niveleducativo1').val() == "108" || $('#niveleducativo1').val() == "109" ) && parseInt($('#edadintegrante').val()) <= '17') {
-           $('#niveleducativo2div').css('display', 'none');
-           $('#niveleducativo4div').css('display', 'none'); 
-           $('#niveleducativo5div').css('display', 'none');
-           $('#niveleducativo3div').css('display', 'none');
-           $('#niveleducativo3').removeAttr('required');
-           $('#niveleducativo2').removeAttr('required');
-           $('#niveleducativo5').removeAttr('required');
-           $('#niveleducativo4').removeAttr('required');
-           $('#alfabetizacion').removeAttr('required');
-           $('#alfabetizaciondigital').removeAttr('required');
-          } 
+           if(parseInt($('#edadintegrante').val()) <= 5  ){ // CUIDADO MENORES
+            $('#cuidadomenoresdiv').css('display','');
+            $('#cuidadomenores').attr('required','required');
+           }else{
+            $('#cuidadomenoresdiv').css('display','none');
+            $('#cuidadomenores').removeAttr('required');
+            $('#cuidadomenores').val('0');
+           }
 
-          if (($('#niveleducativo1').val() == "107" || $('#niveleducativo1').val() == "108" || $('#niveleducativo1').val() == "109" ) && parseInt($('#edadintegrante').val()) == '15'  ) {
-           $('#niveleducativo2div').css('display', 'none');
-           $('#niveleducativo4div').css('display', 'none'); 
-           $('#niveleducativo5div').css('display', 'none');
-           $('#niveleducativo3div').css('display', 'none');
-           $('#niveleducativo3').removeAttr('required');
-           $('#niveleducativo2').removeAttr('required');
-           $('#niveleducativo5').removeAttr('required');
-           //$('#niveleducativo4').removeAttr('required');
-           $('#alfabetizacion').removeAttr('required');
-           $('#alfabetizaciondigital').removeAttr('required');
-          } 
+           if(parseInt($('#edadintegrante').val()) >= 18  ){ //mayor o igual a 18 nivel educativo 
+            $('#niveleducativo3div').css('display','');
+            $('#niveleducativo3').attr('required','required');
+           }else{
+            $('#niveleducativo3div').css('display','none');
+            $('#niveleducativo3').removeAttr('required');
+           // $('#niveleducativo3').val('0');
+           }
+
+           if(parseInt($('#edadintegrante').val()) >= 15  ){ //mayor o igual a 15 formacion post secundaria
+            $('#niveleducativo4div').css('display','');
+            $('#niveleducativo4').attr('required','required');
+           }else{
+            $('#niveleducativo4div').css('display','none');
+            $('#niveleducativo4').removeAttr('required');
+            $('#niveleducativo4').val('0');
+           }
+
+           if(parseInt($('#edadintegrante').val()) >= 11  ){ //mayor o igual a 11 alfabetizacion digital 
+            $('#alfabetizaciondigitaldiv').css('display','');
+            $('#alfabetizaciondigital').attr('required','required');
+           }else{
+            $('#alfabetizaciondigitaldiv').css('display','none');
+            $('#alfabetizaciondigital').removeAttr('required');
+            $('#alfabetizaciondigital').val('0');
+           }
+           if(parseInt($('#edadintegrante').val()) >= 14  ){ //mayor o igual a 14 adesarrollo humano
+            $('#deseaaccedereducaciondiv').css('display','');
+            $('#deseaaccedereducacion').attr('required','required');
+           }else{
+            $('#deseaaccedereducaciondiv').css('display','none');
+            $('#deseaaccedereducacion').removeAttr('required');
+            $('#deseaaccedereducacion').val('0');
+           }
+
+           $('#educaciondiv').css('display','');
+            $('#educacion').attr('required','required');
+
+
+
+              // CARGA AUTO 
+
+
+              if($('#niveleducativo2').val() == '133' && parseInt($('#edadintegrante').val()) <= '14'){
+          $('#niveleducativo5div').css('display', '');
+          $('#niveleducativo5').attr('required', 'required');
+          $('#niveleducativo3div').css('display', 'none');
+          $('#niveleducativo3').removeAttr('required');
+          $('#niveleducativo3').val('0');
           
+    }
+    if($('#niveleducativo2').val() == '133' && parseInt($('#edadintegrante').val()) >= '15'){
+          $('#niveleducativo5div').css('display', '');
+          $('#niveleducativo5').attr('required','required');
+          $('#niveleducativo4div').css('display', '');
+          $('#niveleducativo4').attr('required','required');
+          $('#niveleducativo3div').css('display', 'none');
+          $('#niveleducativo3').removeAttr('required');
+          $('#niveleducativo3').val('0');
+    } if($('#niveleducativo2').val() != '133' && parseInt($('#edadintegrante').val()) >= '15'){
+      $('#niveleducativo3div').css('display', '');
+          $('#niveleducativo3').attr('required', 'required');
+          $('#niveleducativo5div').css('display', 'none');
+          $('#niveleducativo5').removeAttr('required');
+        //  $('#niveleducativo5').val('0');
+          $('#niveleducativo4div').css('display', 'none');
+          $('#niveleducativo4').removeAttr('required');
+          
+    }
+    if($('#niveleducativo2').val() != '133' && parseInt($('#edadintegrante').val()) <= '14'){
+          $('#niveleducativo5div').css('display', 'none');
+          $('#niveleducativo5').removeAttr('required');
+    //      $('#niveleducativo5').val('0');
+          
+    }
+
+  if(($('#niveleducativo1').val() == '107' || $('#niveleducativo1').val() == '108' || $('#niveleducativo1').val() == '109') && parseInt($('#edadintegrante').val()) >= 15){
+    $('#niveleducativo3div').css('display','');
+    $('#niveleducativo').attr('required','required');
+   }
+   if($('#niveleducativo1').val() == '110' ){
+          $('#niveleducativo2div').css('display', '');
+          $('#niveleducativo2').attr('required', 'required');
+          $('#niveleducativo5div').css('display', 'none');
+          $('#niveleducativo5').removeAttr('required');
+          $('#niveleducativo5').val('0'); 
+          $('#niveleducativo2 option[value="123"]').show();
+          $('#niveleducativo2 option[value="124"]').show();
+          $('#niveleducativo2 option[value="125"]').show();
+          $('#niveleducativo2 option[value="126"]').show();
+          $('#niveleducativo2 option[value="127"]').show();
+          $('#niveleducativo2 option[value="128"]').hide();
+          $('#niveleducativo2 option[value="129"]').hide();
+          $('#niveleducativo2 option[value="130"]').hide();
+          $('#niveleducativo2 option[value="131"]').hide();
+          $('#niveleducativo2 option[value="132"]').hide();
+          $('#niveleducativo2 option[value="133"]').hide();
+   } if($('#niveleducativo1').val() == '111' ){
+          $('#niveleducativo2div').css('display', '');
+          $('#niveleducativo2').attr('required', 'required');
+          $('#niveleducativo2 option[value="123"]').hide();
+          $('#niveleducativo2 option[value="124"]').hide();
+          $('#niveleducativo2 option[value="125"]').hide();
+          $('#niveleducativo2 option[value="126"]').hide();
+          $('#niveleducativo2 option[value="127"]').hide();
+          $('#niveleducativo2 option[value="128"]').show(); 
+          $('#niveleducativo2 option[value="129"]').show();
+          $('#niveleducativo2 option[value="130"]').show();
+          $('#niveleducativo2 option[value="131"]').show();
+          $('#niveleducativo2 option[value="132"]').hide();
+          $('#niveleducativo2 option[value="133"]').hide();
+   }
+   if($('#niveleducativo1').val() == '112' ){
+          $('#niveleducativo2div').css('display', '');
+          $('#niveleducativo2').attr('required', 'required');
+          $('#niveleducativo2 option[value="123"]').hide();
+          $('#niveleducativo2 option[value="124"]').hide();
+          $('#niveleducativo2 option[value="125"]').hide();
+          $('#niveleducativo2 option[value="126"]').hide();
+          $('#niveleducativo2 option[value="127"]').hide();
+          $('#niveleducativo2 option[value="128"]').hide(); 
+          $('#niveleducativo2 option[value="129"]').hide();
+          $('#niveleducativo2 option[value="130"]').hide();
+          $('#niveleducativo2 option[value="131"]').hide();
+          $('#niveleducativo2 option[value="132"]').show();
+          $('#niveleducativo2 option[value="133"]').show();
+   }  
 
 
-         if ($('#niveleducativo1').val() == "110") {
-           $('#niveleducativo2div').css('display', '');
-           $('#niveleducativo2').attr('required', 'required');
-           $('#niveleducativo3div').css('display','none');
-             $('#niveleducativo3').removeAttr('required');
-             $('#niveleducativo4div').css('display','none');
-             $('#niveleducativo4').removeAttr('required');
-             $('#niveleducativo5div').css('display','none');
-           $('#niveleducativo5').removeAttr('required');
-           $('#niveleducativo2 option[value="123"]').show();
-           $('#niveleducativo2 option[value="124"]').show();
-           $('#niveleducativo2 option[value="125"]').show();
-           $('#niveleducativo2 option[value="126"]').show();
-           $('#niveleducativo2 option[value="127"]').show();
-           $('#niveleducativo2 option[value="128"]').hide();
-           $('#niveleducativo2 option[value="129"]').hide();
-           $('#niveleducativo2 option[value="130"]').hide();
-           $('#niveleducativo2 option[value="131"]').hide();
-           $('#niveleducativo2 option[value="132"]').hide();
-           $('#niveleducativo2 option[value="133"]').hide();
-           if(parseInt(parseInt($('#edadintegrante').val())) >= '18') {
-            $('#niveleducativo3div').css('display', '');
-         }
 
-         }
-
-         if ($('#niveleducativo1').val() == "111") {
-           $('#niveleducativo2div').css('display', '');
-           $('#niveleducativo2').attr('required', 'required');
-           $('#niveleducativo3div').css('display','none');
-             $('#niveleducativo3').removeAttr('required');
-             $('#niveleducativo4div').css('display','none');
-             $('#niveleducativo4').removeAttr('required');
-             $('#niveleducativo5div').css('display','none');
-           $('#niveleducativo5').removeAttr('required');
-           $('#niveleducativo2 option[value="123"]').hide();
-           $('#niveleducativo2 option[value="124"]').hide();
-           $('#niveleducativo2 option[value="125"]').hide();
-           $('#niveleducativo2 option[value="126"]').hide();
-           $('#niveleducativo2 option[value="127"]').hide();
-           $('#niveleducativo2 option[value="128"]').show(); 
-           $('#niveleducativo2 option[value="129"]').show();
-           $('#niveleducativo2 option[value="130"]').show();
-           $('#niveleducativo2 option[value="131"]').show();
-           $('#niveleducativo2 option[value="132"]').hide();
-           $('#niveleducativo2 option[value="133"]').hide();
-         }
-         if ($('#niveleducativo1').val() == "112") {
-           $('#niveleducativo2div').css('display', '');
-           $('#niveleducativo2').attr('required', 'required');
-           $('#niveleducativo3div').css('display','none');
-             $('#niveleducativo3').removeAttr('required');
-             $('#niveleducativo4div').css('display','none');
-             $('#niveleducativo4').removeAttr('required');
-             $('#niveleducativo5div').css('display','none');
-           $('#niveleducativo5').removeAttr('required');
-           $('#niveleducativo2 option[value="123"]').hide();
-           $('#niveleducativo2 option[value="124"]').hide();
-           $('#niveleducativo2 option[value="125"]').hide();
-           $('#niveleducativo2 option[value="126"]').hide();
-           $('#niveleducativo2 option[value="127"]').hide();
-           $('#niveleducativo2 option[value="128"]').hide(); 
-           $('#niveleducativo2 option[value="129"]').hide();
-           $('#niveleducativo2 option[value="130"]').hide();
-           $('#niveleducativo2 option[value="131"]').hide();
-           $('#niveleducativo2 option[value="132"]').show();
-           $('#niveleducativo2 option[value="133"]').show();
-           if(parseInt(parseInt($('#edadintegrante').val())) >= '18') {
-            $('#niveleducativo3div').css('display', '');
-         }
-         }
-         if (($('#niveleducativo1').val() == "113" || $('#niveleducativo1').val() == "114" || $('#niveleducativo1').val() == "115" || $('#niveleducativo1').val() == "117" ||  $('#niveleducativo1').val() == "119" ||  $('#niveleducativo1').val() == "121" || $('#niveleducativo1').val() == "348") && parseInt($('#edadintegrante').val()) >= '15') {   //9.5
+   if (($('#niveleducativo1').val() == "113" || $('#niveleducativo1').val() == "114" || $('#niveleducativo1').val() == "115" || $('#niveleducativo1').val() == "117" ||  $('#niveleducativo1').val() == "119" ||  $('#niveleducativo1').val() == "121" || $('#niveleducativo1').val() == "348") && parseInt($('#edadintegrante').val()) >= '15') {   //9.5
           $('#niveleducativo4div').css('display', '');
            $('#niveleducativo4').attr('required', 'required');
            $('#niveleducativo2div').css('display','none');
            $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo2').val('0');
            $('#niveleducativo3div').css('display','none');
            $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo3').val('0');
            $('#niveleducativo5div').css('display','none');
            $('#niveleducativo5').removeAttr('required');
+           $('#niveleducativo5').val('0');
          }
          if (($('#niveleducativo1').val() == "113" || $('#niveleducativo1').val() == "114" || $('#niveleducativo1').val() == "115" || $('#niveleducativo1').val() == "117" ||  $('#niveleducativo1').val() == "119" ||  $('#niveleducativo1').val() == "121"|| $('#niveleducativo1').val() == "348") && parseInt($('#edadintegrante').val()) <= '14') {   //9.5
            $('#niveleducativo4div').css('display', 'none');
            $('#niveleducativo4').removeAttr('required');
+           $('#niveleducativo4').val('0');
            $('#niveleducativo2div').css('display','none');
            $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo2').val('0');
            $('#niveleducativo3div').css('display','none');
            $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo3').val('0');
            $('#niveleducativo5div').css('display','none');
            $('#niveleducativo5').removeAttr('required');
-           $('#alfabetizacion').removeAttr('required');
-           $('#alfabetizaciondigital').removeAttr('required');
+           $('#niveleducativo5').val('0');
          }
 
 
-         if ( $('#niveleducativo1').val() == "116" || $('#niveleducativo1').val() == "118" ||  $('#niveleducativo1').val() == "120" ||  $('#niveleducativo1').val() == "122") {     // 9.3.2
+         if ( $('#niveleducativo1').val() == "116" || $('#niveleducativo1').val() == "118" ||  $('#niveleducativo1').val() == "120" ||  $('#niveleducativo1').val() == "122" ||  $('#niveleducativo1').val() == "113" ||  $('#niveleducativo1').val() == "114" ||  $('#niveleducativo1').val() == "370") {     // 9.3.2
            $('#niveleducativo4div').css('display', 'none');
            $('#niveleducativo4').removeAttr('required');
+           $('#niveleducativo4').val('0');
            $('#niveleducativo2div').css('display','none');
            $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo2').val('0');
            $('#niveleducativo3div').css('display','none');
            $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo3').val('0');
            $('#niveleducativo5div').css('display','');
            $('#niveleducativo5').attr('required', 'required');
           
          }
 
-          if(parseInt($('#edadintegrante').val()) >= '11'){
-            $('#alfabetizaciondigital').attr('required', 'required');
-            $('#alfabetizaciondigitaldiv').css('display', '');
-          }
-          if(parseInt($('#edadintegrante').val()) <= '10'){
-            $('#alfabetizaciondigital').removeAttr('required');
-            $('#alfabetizaciondigitaldiv').css('display', 'none');
-           // $('#niveleducativo3').val('');
-          }
-          if(parseInt($('#edadintegrante').val()) >= '16'){
-            $('#deseaaccedereducacion').attr('required', 'required');
-            $('#deseaaccedereducaciondiv').css('display', '');
-          } 
-          if(parseInt($('#edadintegrante').val()) <= '15'){
-            $('#deseaaccedereducacion').removeAttr('required');
-            $('#deseaaccedereducaciondiv').css('display', 'none');
-           // $('#niveleducativo3').val('');
-          }
-
-          if(parseInt($('#edadintegrante').val()) >= '15'){
-            $('#alfabetizacion').attr('required', 'required');
-            $('#alfabetizaciondiv').css('display', '');
-           
-          } 
-          if(parseInt($('#edadintegrante').val()) <= '14'){
-            $('#alfabetizacion').removeAttr('required');
-            $('#alfabetizaciondiv').css('display', 'none');
-           // $('input[name="bancarizacion[]"]').removeAttr('required');
-            $('#alfabetizacion').val('0');   
-            $('#deseaaccedereducacion').removeAttr('required');
-            $('#deseaaccedereducaciondiv').css('display', 'none');
-            $('#deseaaccedereducacion').val('0');
-          }
-
-          
-          if(parseInt($('#edadintegrante').val()) <= '10'){
-            $('#alfabetizaciondigital').removeAttr('required');
-            $('#alfabetizaciondigitaldiv').css('display', 'none');
-            $('#alfabetizaciondigital').val('0');   
-           
-          }
-          if(parseInt($('#edadintegrante').val()) >= '11'){
-            $('#alfabetizaciondigital').attr('required','required');
-            $('#alfabetizaciondigitaldiv').css('display', '');
-          //  $('#alfabetizaciondigital').val('');   
-           
-          }
-
-          if($('#niveleducativo2').val() == '133'  && parseInt($('#edadintegrante').val()) != '15'){
-                $('#niveleducativo3div').css('display','none');
-                $('#niveleducativo3').removeAttr('required');
-            }
-
-            if($('#niveleducativo2').val() == '132' && parseInt($('#edadintegrante').val()) != '15'){
-                $('#niveleducativo4div').css('display','');
-                $('#niveleducativo4').attr('required');
-            }
-
-            if($('#niveleducativo2').val() == '133' && parseInt($('#edadintegrante').val()) >= '16'){
-                  $('#niveleducativo4div').css('display','');
-                  $('#niveleducativo4').attr('required','required');
-            }
-            if($('#niveleducativo2').val() == '132' && parseInt($('#edadintegrante').val()) <= '16'){
-                  $('#niveleducativo4div').css('display','none');
-                  $('#niveleducativo4').removeAttr('required');
-            }
 
 
-            if($('#niveleducativo2').val() == '133' && parseInt($('#edadintegrante').val()) == '15'){
-                $('#niveleducativo4div').css('display','');
-                $('#niveleducativo4').attr('required','required');
-            }
+         if (($('#niveleducativo1').val() == "107" || $('#niveleducativo1').val() == "108" || $('#niveleducativo1').val() == "109" ) && parseInt(parseInt($('#edadintegrante').val())) >= '15') {
+          $('#niveleducativo2div').css('display', 'none');
+          $('#niveleducativo4div').css('display', 'none'); 
+          $('#niveleducativo5div').css('display', 'none');
+          $('#niveleducativo3div').css('display', '');
+          $('#niveleducativo4').val('0');
+          $('#niveleducativo3').attr('required', 'required');
+          $('#niveleducativo2').val('0');
+          $('#niveleducativo5').val('0');
+          $('#niveleducativo2').removeAttr('required');
+          $('#niveleducativo5').removeAttr('required');
+          $('#niveleducativo4').removeAttr('required');
+         } 
+        if (($('#niveleducativo1').val() == "107" || $('#niveleducativo1').val() == "108" || $('#niveleducativo1').val() == "109") && parseInt($('#edadintegrante').val()) <= '14') {
+          $('#niveleducativo2div').css('display', 'none');
+          $('#niveleducativo4div').css('display', 'none'); 
+          $('#niveleducativo5div').css('display', 'none');
+          $('#niveleducativo3div').css('display', 'none');
+          $('#niveleducativo3').val('0');
+          $('#niveleducativo4').val('0');
+          $('#niveleducativo3').removeAttr('required');
+          $('#niveleducativo2').val('0');
+          $('#niveleducativo5').val('0');
+          $('#niveleducativo2').removeAttr('required');
+          $('#niveleducativo5').removeAttr('required');
+          $('#niveleducativo4').removeAttr('required');
 
-            if($('#niveleducativo2').val() == '132' && parseInt($('#edadintegrante').val()) == '15'){
-                $('#niveleducativo4div').css('display','none');
-                $('#niveleducativo4').removeAttr('required');
-            }
-
-            if(parseInt($('#edadintegrante').val()) == '15'){
-            $('#deseaaccedereducacion').removeAttr('required');
-            $('#deseaaccedereducaciondiv').css('display', 'none');
-            $('#deseaaccedereducacion').val('0');
-          }
          
+        
+         } 
+
+   if($('#educacion').val() != ''){
+    $('#niveleducativo1div').css('display','');
+    $('#niveleducativo1').attr('required','required');
+   }
+   if($('#educacion').val() == '2' && parseInt($('#edadintegrante').val()) <= 5){
+    $('#cuidadomenoresdiv').css('display','');
+    $('#cuidadomenores').attr('required','required');
+    $('#niveleducativo1div').css('display','');
+    $('#niveleducativo1').attr('required','required');
+    $('#niveleducativo1div').css('display','');
+    $('#niveleducativo1').attr('required','required');
+
+   }
+   if($('#educacion').val() == '1' && parseInt($('#edadintegrante').val()) <= 5){
+    $('#cuidadomenoresdiv').css('display','none');
+    $('#cuidadomenores').removeAttr('required');
+    $('#cuidadomenores').val('0');  
+    $('#niveleducativo1div').css('display','');
+    $('#niveleducativo1').attr('required','required');
+    $('#niveleducativo1div').css('display','');
+    $('#niveleducativo1').attr('required','required');
+   }
+ 
+
+
+
+              // FIN CARGA AUTO 
+
+
+
+
+
           paginalista();
          },
         error: function(xhr, status, error) {
