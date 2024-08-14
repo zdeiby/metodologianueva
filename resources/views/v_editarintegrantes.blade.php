@@ -1124,6 +1124,12 @@ console.log(folio, 'aca va folio')
              $('#representante').removeClass('blocked');
              $('#parentesco').val('');
             }
+
+            if(parseInt($('#edad').html()) <= '17'){
+             $('#parentesco').val('');
+             $('#parentescodiv').css('display','');
+             $('#parentesco').attr('required','reqired');
+            }
            //else{
           //   $('#representante').val('');
           //   $('#representante').removeAttr('disabled');
