@@ -17,19 +17,27 @@ class m_index extends Model
     public function m_leerprincipalhogar()
     {
         // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
-        $resultado = DB::select('SELECT *
-                    FROM t1_principalhogar
-                    JOIN (
-                        SELECT folio, MAX(idestacion) AS ultimo_idestacion
-                        FROM t_estacionestado
-                        GROUP BY folio
-                    ) AS max_idestacion
-                    ON t1_principalhogar.folio = max_idestacion.folio
-                    JOIN t_estacionestado 
-                        ON t1_principalhogar.folio = t_estacionestado.folio 
-                        AND t_estacionestado.idestacion = max_idestacion.ultimo_idestacion
-                    JOIN t1_integranteshogar ON t1_principalhogar.idintegrantetitular = t1_integranteshogar.idintegrante
-                    ORDER BY t_estacionestado.idestacion;;
+        $resultado = DB::select('
+                SELECT 
+                    ph.folio, 
+                    ph.idintegrantetitular, 
+                    inte.nombre1, 
+                    inte.nombre2, 
+                    inte.apellido1, 
+                    inte.apellido2, 
+                    inte.documento, 
+                    inte.celular, 
+                    hgeo.comuna, 
+                    hgeo.barrio,
+                    "triage" as ultimo_idestacion
+                FROM 
+                    t1_principalhogar ph
+                JOIN 
+                    t1_integranteshogar inte 
+                    ON ph.idintegrantetitular = inte.idintegrante
+                LEFT JOIN 
+                    t1_hogardatosgeograficos hgeo 
+                    ON ph.folio = hgeo.folio;
                     
         ' );
 

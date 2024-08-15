@@ -193,6 +193,13 @@
             <label for="validationServer04" class="form-label">¿cuál es el número de tu documento?</label>
             <input type="number" class="form-control form-control-sm "  name="documento"  id="documento" value="" >
           </div>
+          <div class="col-md-4" id="telefonodiv" >
+            <label for="validationServer04" class="form-label">Telefono</label>
+            <input type="number" class="form-control form-control-sm "  name="telefono"  id="telefono" value="" >
+          </div><div class="col-md" id="celulardiv" >
+            <label for="validationServer04" class="form-label">Celular</label>
+            <input type="number" class="form-control form-control-sm "  name="celular"  id="celular" value="" >
+          </div>
           <div class="col-md-6">
                 <label for="validationServer04" class="form-label">¿Eres el/la representante del hogar?</label>
                 <select class="form-control form-control-sm" id="representante" name="representante" aria-describedby="validationServer04Feedback" required="">
@@ -512,6 +519,8 @@ paginacargando();
           $('#cualidentidad').val((data.integrantesidentitario)?data.integrantesidentitario.cualidentidad:''); 
           $('#cualorientacion').val((data.integrantesidentitario)?data.integrantesidentitario.cualorientacion:'');
           $('#cualong').val((data.integrantesidentitario)?data.integrantesidentitario.cualong:'');
+          $('#telefono').val((data.integrantesidentitario)?data.integrantesidentitario.telefono:'');
+          $('#celular').val((data.integrantesidentitario)?data.integrantesidentitario.celular:'');
 
           if(localStorage.getItem('idintegrante') == ''){
             localStorage.setItem('idintegrante',data.leerintegrantes)
