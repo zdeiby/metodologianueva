@@ -88,6 +88,9 @@
           <div class="col-md-3" style="display:none">
             <input type="text"  class="form-control form-control-sm  " id="idintegrante4" name="idintegrante" value="" required="">
           </div>
+          <div class="col-md-3" style="display:none">
+            <input type="text" placeholder="usuario" class="form-control form-control-sm  " id="usuario" name="usuario" value="{{ Session::get('cedula') }}" >
+          </div>
         <div class="col-md-12" id="mecanismosdeproteccionddhhdiv">
                   <label for="validationServer04" class="form-label">¿Conoces las instituciones de administración de justicia y de garantía de derechos?</label>
                   <select class="form-control form-control-sm" id="mecanismosdeproteccionddhh" name="mecanismosdeproteccionddhh" aria-describedby="validationServer04Feedback" required="">

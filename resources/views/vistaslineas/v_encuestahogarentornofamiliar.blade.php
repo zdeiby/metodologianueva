@@ -91,9 +91,9 @@
   <div class="col-md-3" style="display:none">
             <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput" name="folio" value="{{ decrypt($variable) }}" required="">
           </div>
-          <!-- <div class="col-md-3" style="display:none">
-            <input type="text"  class="form-control form-control-sm  " id="idintegrante4" name="idintegrante" value="" required="">
-          </div> -->
+          <div class="col-md-3" style="display:none">
+            <input type="text" placeholder="usuario" class="form-control form-control-sm  " id="usuario" name="usuario" value="{{ Session::get('cedula') }}" >
+          </div>
         
           <div class="col-md-12">
             <label for="validationServer04" class="form-label ">En tu hogar, ¿se presenta actualmente alguna de las siguientes problemáticas?</label>

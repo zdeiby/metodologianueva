@@ -91,9 +91,9 @@
           <div class="col-md-3" style="display:none">
             <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput" name="folio" value="{{ decrypt($variable) }}" >
           </div>
-          <!-- <div class="col-md-3" style="display:none">
-            <input type="text"  class="form-control form-control-sm  " id="idintegrante1" name="idintegrante" value="" >
-          </div> -->
+          <div class="col-md-3" style="display:none">
+            <input type="text" placeholder="usuario" class="form-control form-control-sm  " id="usuario" name="usuario" value="{{ Session::get('cedula') }}" >
+          </div>
 
           <div class="col-md-12">
             <label for="validationServer04" class="form-label">¿Cuál de las siguientes tipologías describe mejor la estructura de tu familia?</label>

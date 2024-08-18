@@ -492,6 +492,10 @@ function soloNumeros(e) {
     }
 }
 
+// document.addEventListener('DOMContentLoaded', function() {
+//         localStorage.getItem('cedula');
+//         console.log(localStorage.getItem('cedula'))
+//     });
 
 
     </script>
@@ -535,13 +539,13 @@ function soloNumeros(e) {
                         <span>Cobertura</span>
                     </a>
                 </li>
-                <!-- <li>
-                    <a href="#">
-                        <ion-icon name="close-outline"></ion-icon>
-                        <span>Inactivar Folios</span>
+                <li>
+                    <a href="{{route('sincronizacion')}}">
+                        <ion-icon name="reload-outline"></ion-icon>
+                        <span>Sincronización</span>
                     </a>
                 </li>
-                <li>
+             <!--   <li>
                     <a href="#">
                         <ion-icon name="document-text-outline"></ion-icon>
                         <span>Solicitar Edición</span>

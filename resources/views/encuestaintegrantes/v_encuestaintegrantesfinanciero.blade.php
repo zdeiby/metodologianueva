@@ -88,6 +88,9 @@
           <div class="col-md-3" style="display:none">
             <input type="text"  class="form-control form-control-sm  " id="idintegrante3" name="idintegrante" value="" required="">
           </div>
+          <div class="col-md-3" style="display:none">
+            <input type="text" placeholder="usuario" class="form-control form-control-sm  " id="usuario" name="usuario" value="{{ Session::get('cedula') }}" >
+          </div>
         <div class="col-md-12">
                   <label for="validationServer04" class="form-label">¿Realizas actividades que te generen ingresos económicos?</label>
                   <select class="form-control form-control-sm" id="ingresos1" name="ingresos1" aria-describedby="validationServer04Feedback" required="">

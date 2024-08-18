@@ -13,7 +13,7 @@ use App\Http\Controllers\c_integrantes;
 use App\Http\Controllers\c_editarintegrantes;
 use App\Http\Controllers\c_encuestaintegrantes;
 use App\Http\Controllers\vistaslineas\c_l1e1;
-use App\Http\Controllers\c_cards;
+use App\Http\Controllers\c_sincronizacion;
 
 //RUTAS GET
 Route::get('/',[c_index::class, 'fc_index'])->name('index');
@@ -26,7 +26,7 @@ Route::get('/guardarhabeasdata',[c_prueba::class, 'fc_guardarhabeasdata'])->name
 
 Route::get('/cobertura',[c_prueba::class, 'fc_index'])->name('prueba');
 
-Route::get('/cards',[c_cards::class, 'fc_cards'])->name('cards');
+Route::get('/sincronizacion',[c_sincronizacion::class, 'fc_sincronizacion'])->name('sincronizacion');
 
 
 Route::get('/login',[c_login::class, 'fc_login'])->name('login');
@@ -92,3 +92,11 @@ Route::post('/auth',[c_login::class,'fc_auth'])->name('inicio');
 Route::post('/cargarfolios',[c_index::class, 'fc_leerfolios'])->name('cargarfolios');
 //Route::post('/l1e1',[c_l1e1::class,'fc_l1e1'])->name('iral1e1');
 Route::post('/logout', [c_session::class,'borrarcookies'])->name('logout');
+
+
+
+
+//rutas de la sincronización
+
+// Incluir las rutas principales
+require __DIR__.'/sincroabajo.php';

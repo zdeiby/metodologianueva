@@ -120,6 +120,9 @@
           <div class="col-md-3" style="display:none">
             <input type="text" placeholder="idintegrante" class="form-control form-control-sm  " id="idintegrante1" name="idintegrante" value="" >
           </div>
+          <div class="col-md-3" style="display:none">
+            <input type="text" placeholder="usuario" class="form-control form-control-sm  " id="usuario" name="usuario" value="{{ Session::get('cedula') }}" >
+          </div>
 
             <label for="validationServer04" class="form-label">¿Cuál es tu nombre completo?</label>
           <div class="col-md-3">
@@ -264,6 +267,9 @@
           </div>
           <div class="col-md-3" style="display:none">
             <input type="text" placeholder="idintegrante" class="form-control form-control-sm  " id="idintegrante2" name="idintegrante" value="" required="">
+          </div>
+          <div class="col-md-3" style="display:none">
+            <input type="text" placeholder="usuario" class="form-control form-control-sm  " id="usuario" name="usuario" value="{{ Session::get('cedula') }}" >
           </div>
         <div class="col-md-4" id="hijosdiv">
                   <label for="validationServer04" class="form-label">¿Has tenido hijos?</label>

@@ -110,7 +110,7 @@ class c_l1e1 extends Controller
       $modelo= new m_l1e1();
       $preguntas=$modelo->m_leerrespuestas();
 
-      $exists = DB::table('dbmetodologia.t1_hogardatoseconomicos')
+      $exists = DB::table('dbmetodologia.t1_hogardatosgeograficos')
       ->where('folio', $folio)
       ->exists();
       $leerintegrantes= $modelo->m_leerintegrantes(decrypt($folio));
@@ -373,11 +373,11 @@ class c_l1e1 extends Controller
     public function fc_leerpreguntashogareconomicos(Request $request){
         $folio=$request->input('folio');
     
-        $t1_hogardatoseconomicos = DB::table('t1_hogardatoseconomicos')
+        $t1_hogardatosgeograficos = DB::table('t1_hogardatosgeograficos')
                 ->where('folio', '=', $folio)
                 ->first();
 
-        return response()->json([ "hogardatoseconomicos"=>$t1_hogardatoseconomicos, 
+        return response()->json([ "hogardatoseconomicos"=>$t1_hogardatosgeograficos, 
         ]);
     }
 
@@ -482,7 +482,7 @@ class c_l1e1 extends Controller
            $dataWithoutId['updated_at'] = $now;
       
            // Verificar si el registro existe para decidir si añadir created_at
-           $exists = DB::table('dbmetodologia.t1_hogardatoseconomicos')
+           $exists = DB::table('dbmetodologia.t1_hogardatosgeograficos')
                ->where('folio', $folio)
                ->exists();
       
@@ -499,7 +499,7 @@ class c_l1e1 extends Controller
       
            // Insertar o actualizar el registro
            try {
-               DB::table('dbmetodologia.t1_hogardatoseconomicos')->updateOrInsert(
+               DB::table('dbmetodologia.t1_hogardatosgeograficos')->updateOrInsert(
                    [
                        'folio' => $folio,
                    ], // Condición para encontrar el registro existente
