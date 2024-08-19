@@ -13,7 +13,7 @@ class c_prueba extends Controller
       $pphogar=$modelo->m_leerprincipalhogar();
 
       $folios='';
-
+      $estacion='';
       foreach ($pphogar as $value) {
           $estacion='';
       
