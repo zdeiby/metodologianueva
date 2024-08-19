@@ -431,6 +431,7 @@ class c_l1e1 extends Controller
       
         //   // Añadir created_at y updated_at
            $dataWithoutId['updated_at'] = $now;
+            $dataWithoutId['sincro'] = 0;
       
            // Verificar si el registro existe para decidir si añadir created_at
            $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
@@ -480,6 +481,7 @@ class c_l1e1 extends Controller
       
         //   // Añadir created_at y updated_at
            $dataWithoutId['updated_at'] = $now;
+            $dataWithoutId['sincro'] = 0;
       
            // Verificar si el registro existe para decidir si añadir created_at
            $exists = DB::table('dbmetodologia.t1_hogardatosgeograficos')
@@ -530,6 +532,7 @@ class c_l1e1 extends Controller
       
         //   // Añadir created_at y updated_at
            $dataWithoutId['updated_at'] = $now;
+            $dataWithoutId['sincro'] = 0;
       
            // Verificar si el registro existe para decidir si añadir created_at
            $exists = DB::table('dbmetodologia.t1_hogarcondicioneshabitabilidad')
@@ -579,6 +582,7 @@ class c_l1e1 extends Controller
       
         //   // Añadir created_at y updated_at
            $dataWithoutId['updated_at'] = $now;
+            $dataWithoutId['sincro'] = 0;
       
            // Verificar si el registro existe para decidir si añadir created_at
            $exists = DB::table('dbmetodologia.t1_hogarcondicionesalimentarias')
@@ -629,6 +633,7 @@ class c_l1e1 extends Controller
       
         //   // Añadir created_at y updated_at
            $dataWithoutId['updated_at'] = $now;
+            $dataWithoutId['sincro'] = 0;
       
            // Verificar si el registro existe para decidir si añadir created_at
            $exists = DB::table('dbmetodologia.t1_hogarentornofamiliar')

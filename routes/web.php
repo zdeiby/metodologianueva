@@ -99,4 +99,5 @@ Route::post('/logout', [c_session::class,'borrarcookies'])->name('logout');
 //rutas de la sincronización
 
 // Incluir las rutas principales
-require __DIR__.'/sincroabajo.php';
+require __DIR__.'/sincroabajo.php'; // rutas para la sincronizacion abajo busca las rutas en routes/sincroarriba.php
+require __DIR__.'/sincroarriba.php'; // rutas para la sincronizacion arriba   busca las rutas en routes/sincroarriba.php

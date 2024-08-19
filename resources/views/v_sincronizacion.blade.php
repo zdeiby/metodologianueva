@@ -35,7 +35,7 @@
 <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="isticky-top"  >
   <hr>
   <div class="row align-items-center">
-    @if (!$existspph)
+    @if ($existspph)
       <div class="col-auto">
         <button type="button" class="btn btn-primary" id="sincroarriba">Iniciar sincronización subida</button> 
       </div>
@@ -57,7 +57,7 @@
 
 
   <div class="container ">
-    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+    <div class="table-responsive" style="max-height: 300px; overflow-y: auto; height:300px">
         <table class="table table-bordered table-hover table-striped">
             <thead class="table-primary">
                 <tr>
@@ -74,8 +74,11 @@
     </div>
 </div>
 
-  
-
+</div>
+<hr>
+<div class="container text-center">
+  <label for="">Tiempo sincronización</label>
+<h1 style="color:#0dcaf0;font-family: 'DS-Digital', sans-serif;"> <span id="horas">00</span>:<span id="minutos">00</span>:<span id="segundos">00</span></h1>
 </div>
 <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
@@ -88,6 +91,7 @@
     })
     $('#sincroarriba').click(function(){
       console.log('Hola sincro arriba')
+      t1_principalhogar();
     })
     
   })
@@ -169,9 +173,10 @@ function reintentarfuncion(funcion, tabla){
         });
       }
 
-
+// INICIA SINCRO ABAJO 
 
   function t1_principalhogard(){
+        iniciarContador();
         actualizarTabla('t1_principalhogar', 'Descarga base de datos en blanco', '1');
     $.ajax({
                     url:'./t1_principalhogard',
@@ -414,7 +419,8 @@ function reintentarfuncion(funcion, tabla){
                       $('#barracarga').html('100%');
                       $('#barracarga').css('width','100%');                      
                       actualizarTabla('t1_integranteslegal', 'Descarga base de datos en blanco', '2');
-                      todook();                     
+                      todook();
+                      detenerReloj();                     
                     },
                     error: function(xhr, status, error) {
                       actualizarTabla('t1_integranteslegal', 'Descarga base de datos en blanco', '3');
@@ -424,8 +430,310 @@ function reintentarfuncion(funcion, tabla){
                   })
   }
 
+  // FIN SINCRO ABAJO 
+
+
+
+  //INICIA SINCRO ARRIBA
+
+  function t1_principalhogar(){
+        iniciarContador();
+        actualizarTabla('t1_principalhogar', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_principalhogar',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('7%');
+                      $('#barracarga').css('width','7%');
+                     actualizarTabla('t1_principalhogar', 'Subida base de datos al servidor', '2');
+                     t1_hogarcondicionesalimentarias()
+                      
+                    },
+                    error: function(xhr, status, error) {
+                      actualizarTabla('t1_principalhogar', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_principalhogar, 't1_principalhogard');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+  function t1_hogarcondicionesalimentarias(){
+        actualizarTabla('t1_hogarcondicionesalimentarias', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_hogarcondicionesalimentarias',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('14%');
+                      $('#barracarga').css('width','14%');
+                      actualizarTabla('t1_hogarcondicionesalimentarias', 'Subida base de datos al servidor', '2');
+                     t1_hogarcondicioneshabitabilidad()
+                      
+                    },
+                    error: function(xhr, status, error) {
+                      actualizarTabla('t1_hogarcondicionesalimentarias', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_hogarcondicionesalimentarias, 't1_hogarcondicionesalimentarias');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+  function t1_hogarcondicioneshabitabilidad(){
+        actualizarTabla('t1_hogarcondicioneshabitabilidad', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_hogarcondicioneshabitabilidad',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('21%');
+                      $('#barracarga').css('width','21%');
+                      actualizarTabla('t1_hogarcondicioneshabitabilidad', 'Subida base de datos al servidor', '2');
+                     t1_hogarconformacionfamiliar()
+                      
+                    },
+                    error: function(xhr, status, error) {
+                      actualizarTabla('t1_hogarcondicioneshabitabilidad', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_hogarcondicioneshabitabilidad, 't1_hogarcondicioneshabitabilidad');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+  function t1_hogarconformacionfamiliar(){
+        actualizarTabla('t1_hogarconformacionfamiliar', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_hogarconformacionfamiliar',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('28%');
+                      $('#barracarga').css('width','28%');
+                      actualizarTabla('t1_hogarconformacionfamiliar', 'Subida base de datos al servidor', '2');
+                      t1_hogardatosgeograficos()
+                      
+                    },
+                    error: function(xhr, status, error) {
+                      actualizarTabla('t1_hogarconformacionfamiliar', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_hogarconformacionfamiliar, 't1_hogarconformacionfamiliar');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+
+
+  function t1_hogardatosgeograficos(){
+        actualizarTabla('t1_hogardatosgeograficos', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_hogardatosgeograficos',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('35%');
+                      $('#barracarga').css('width','35%');
+                      actualizarTabla('t1_hogardatosgeograficos', 'Subida base de datos al servidor', '2');
+                     t1_hogarentornofamiliar()
+                      
+                    },
+                    error: function(xhr, status, error) {
+                     actualizarTabla('t1_hogardatosgeograficos', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_hogardatosgeograficos, 't1_hogardatosgeograficos');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+  function t1_hogarentornofamiliar(){
+        actualizarTabla('t1_hogarentornofamiliar', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_hogarentornofamiliar',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('42%');
+                      $('#barracarga').css('width','42%');
+                      actualizarTabla('t1_hogarentornofamiliar', 'Subida base de datos al servidor', '2');
+                     t1_integrantesfinanciero()
+                      
+                    },
+                    error: function(xhr, status, error) {
+                    actualizarTabla('t1_hogarentornofamiliar', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_hogarentornofamiliar, 't1_hogarentornofamiliar');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+  function t1_integrantesfinanciero(){
+        actualizarTabla('t1_integrantesfinanciero', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_integrantesfinanciero',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('49%');
+                      $('#barracarga').css('width','49%');
+                      actualizarTabla('t1_integrantesfinanciero', 'Subida base de datos al servidor', '2');
+                     t1_integrantesfisicoyemocional()
+                      
+                    },
+                    error: function(xhr, status, error) {
+                      actualizarTabla('t1_integrantesfinanciero', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_integrantesfinanciero, 't1_integrantesfinanciero');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+  function t1_integrantesfisicoyemocional(){
+        actualizarTabla('t1_integrantesfisicoyemocional', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_integrantesfisicoyemocional',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('56%');
+                      $('#barracarga').css('width','56%');
+                      actualizarTabla('t1_integrantesfisicoyemocional', 'Subida base de datos al servidor', '2');
+                     t1_integranteshogar()
+                      
+                    },
+                    error: function(xhr, status, error) {
+                      actualizarTabla('t1_integrantesfisicoyemocional', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_integrantesfisicoyemocional, 't1_integrantesfisicoyemocional');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+  function t1_integranteshogar(){
+        actualizarTabla('t1_integranteshogar', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_integranteshogar',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('63%');
+                      $('#barracarga').css('width','63%');
+                      actualizarTabla('t1_integranteshogar', 'Subida base de datos al servidor', '2');
+                     t1_integrantesidentitario()
+                      
+                    },
+                    error: function(xhr, status, error) {
+                      actualizarTabla('t1_integranteshogar', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_integranteshogar, 't1_integranteshogar');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+  function t1_integrantesidentitario(){
+        actualizarTabla('t1_integrantesidentitario', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_integrantesidentitario',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('70%');
+                      $('#barracarga').css('width','70%');
+                      actualizarTabla('t1_integrantesidentitario', 'Subida base de datos al servidor', '2');
+                      t1_integrantesintelectual()
+                      
+                    },
+                    error: function(xhr, status, error) {
+                    actualizarTabla('t1_integrantesidentitario', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_integrantesidentitario, 't1_integrantesidentitario');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+  function t1_integrantesintelectual(){
+        actualizarTabla('t1_integrantesintelectual', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_integrantesintelectual',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('80%');
+                      $('#barracarga').css('width','80%');
+                      actualizarTabla('t1_integrantesintelectual', 'Subida base de datos al servidor', '2');
+                     t1_integranteslegal()
+                      
+                    },
+                    error: function(xhr, status, error) {
+                      actualizarTabla('t1_integrantesintelectual', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_integrantesintelectual, 't1_integrantesintelectual');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+  function t1_integranteslegal(){
+        actualizarTabla('t1_integranteslegal', 'Subida base de datos al servidor', '1');
+    $.ajax({
+                    url:'./t1_integranteslegal',
+                    method: "GET",
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('100%');
+                      $('#barracarga').css('width','100%');                      
+                      actualizarTabla('t1_integranteslegal', 'Subida base de datos al servidor', '2');
+                      todook();
+                      detenerReloj();                     
+                    },
+                    error: function(xhr, status, error) {
+                      actualizarTabla('t1_integranteslegal', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_integranteslegal, 't1_integranteslegal');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+//FINALIZA SINCRO ARRIBA
+
 
 </script>
+
+<script>
+    let intervalo;
+        // Función para iniciar el contador
+        function iniciarContador() {
+            let horas = 0, minutos = 0, segundos = 0;
+            const horasElemento = document.getElementById('horas');
+            const minutosElemento = document.getElementById('minutos');
+            const segundosElemento = document.getElementById('segundos');
+
+            // Actualiza el contador cada segundo
+             intervalo = setInterval(function() {
+                segundos++;
+                if (segundos === 60) {
+                    segundos = 0;
+                    minutos++;
+                }
+                if (minutos === 60) {
+                    minutos = 0;
+                    horas++;
+                }
+                // Formatea los valores de horas, minutos y segundos
+                horasElemento.textContent = String(horas).padStart(2, '0');
+                minutosElemento.textContent = String(minutos).padStart(2, '0');
+                segundosElemento.textContent = String(segundos).padStart(2, '0');
+            }, 1000);
+
+            // Evento para detener el contador al hacer clic en el botón
+           
+
+        }
+
+        function detenerReloj(){
+                clearInterval(intervalo); // Detiene el intervalo
+           }
+
+        // Iniciar el contador cuando se carga la página
+    
+    </script>
 @endsection
 
 
