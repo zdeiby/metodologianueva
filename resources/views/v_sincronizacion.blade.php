@@ -36,9 +36,9 @@
   <hr>
   <div class="row align-items-center">
     @if ($existspph)
-      <div class="col-auto">
+      <!-- <div class="col-auto">
         <button type="button" class="btn btn-primary" id="sincroarriba">Iniciar sincronización subida</button> 
-      </div>
+      </div> -->
     @else
       <div class="col-auto">
         <button type="button" class="btn btn-warning" id="sincroabajo">Iniciar sincronización blanco</button> 
