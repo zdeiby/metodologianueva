@@ -57,13 +57,13 @@
                         <!-- <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">Visita</div> -->
                         <img class="" src="{{ asset('assets/img/iconos/2.jpg')}}" width="100%" alt="">
                         <br> <br>
-                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">TRIAGE</div>
+                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">VISITA DE INGRESO</div>
 
                     </div>
                 </div>
                 <div class="info" style="text-align: center;">
                     <div >
-                      <label for="" style="color:white;font-size:18px">Triage</label>
+                      <label for="" style="color:white;font-size:18px">Visita de ingreso</label>
                     </div>
                     <img src="{{ asset('imagenes/banner1.jpg')}}" style="border-radius:10px" width="100%" alt="">
                     <br> 
@@ -297,7 +297,7 @@
       </div>
       <div class="modal-body" >
         <div class="text-center">
-             <label  for="" style="font-size:20px;color:#0dcaf0">¿Qué es el triage?</label><hr>
+             <label  for="" style="font-size:20px;color:#0dcaf0">¿Qué es la Visita de ingreso?</label><hr>
         </div>
      
         <label for="">Es donde se recolecta la información de los usuarios, se conoce un poco sobre ellos...</label>
