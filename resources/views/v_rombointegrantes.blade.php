@@ -45,7 +45,7 @@ body {
 .card .content {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 84%;
     transform-style: preserve-3d;
 }
 
@@ -150,6 +150,29 @@ body {
 
 <div class="swiper mySwiper container">
     <div class="swiper-wrapper">
+      <!-- primera tarjeta -->
+    <div class="swiper-slide">
+        <div class="card_wrapper">
+          <div class="card">
+            <div class="content">
+              <div class="front">
+                <img src="{{ asset('assets/img/iconos/card1.jpg')}}" alt="" />
+              </div>
+              <div class="back">
+                <div class="middle">
+                  <h3>
+                    <label>Saludo y encuadre</label>
+                  </h3>
+             </div>  
+             <button type="button" class="btn btn-primary" id="saludoencuadre">Ver saludo y encuadre</button>
+             <div class="smCard">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- segunda tarjeta -->
       <div class="swiper-slide">
         <div class="card_wrapper">
           <div class="card">
@@ -177,7 +200,7 @@ body {
           <div class="card">
             <div class="content">
               <div class="front">
-                <img src="{{ asset('assets/img/iconos/card1.jpg')}}" alt="" />
+                <img src="{{ asset('assets/img/iconos/card3.jpg')}}" alt="" />
               </div>
               <div class="back">
                 <div class="middle">
@@ -193,6 +216,34 @@ body {
           </div>
         </div>
       </div>
+
+      <!-- 4ta tarjeta -->
+      <div class="swiper-slide">
+        <div class="card_wrapper">
+          <div class="card">
+            <div class="content">
+              <div class="front">
+                <img src="{{ asset('assets/img/iconos/card4.jpg')}}" alt="" />
+              </div>
+              <div class="back">
+                <div class="middle">
+                  <h3>
+                    <label>Resultado encuesta</label>
+                  </h3>
+             </div>  
+             <button type="button" class="btn btn-primary" id="resultadoencuesta">Ver resultado encuesta</button>
+             <div class="smCard">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 5ta tarjeta -->
+
+
       <!-- Agregar más swiper-slide según sea necesario -->
        <!-- Segunda tarjeta -->
        <!-- <div class="swiper-slide">
@@ -281,12 +332,12 @@ body {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
-            slidesPerView: 2, // Número de tarjetas visibles por defecto
+            slidesPerView: 4, // Número de tarjetas visibles por defecto
             spaceBetween: 5, // Espacio entre las tarjetas
              breakpoints: {
                  // Cuando la pantalla es <= 1200px
                   1200: {
-                      slidesPerView: 3,
+                      slidesPerView: 4,
                       spaceBetween: 0,
                   },
                    // Cuando la pantalla es <= 992px
