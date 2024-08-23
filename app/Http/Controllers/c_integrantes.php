@@ -19,18 +19,21 @@ class c_integrantes extends Controller
         $folioencriptado=$request->input('folioencriptado');
         $modelo= new m_integrantes();
         $integrantes=$modelo-> m_leerintegrantes($folio);
+        //$integrantes=$modelo-> m_verestados($folio);
+
         $foliosintegrante='';
       foreach ($integrantes as $value) {
         $foliosintegrante .='<tr class="table-primary">
                 <td class="align-middle">'.$value->nombre1.' '.$value->nombre2.' '.$value->apellido1.' '.$value->apellido2.'</td>
                 <td class="align-middle">'.$value->documento.'</td>
                 <td class="align-middle">'.$value->edad.'</td>
-                <td class="align-middle"><button class="btn  btn-sm" style="background:#2fa4e7; color:white" 
+                <td class="align-middle">
+               <button class="btn  btn-sm" style="background:#2fa4e7; color:white"  '.(($value->estado == '1' && $value->estado2 == '1')?'':'disabled').' '.(($value->validacion == '0')?'':'disabled').'
                 onclick="responderencuesta('.$folio.','.$value->idintegrante.',`'.$folioencriptado.'`,`'.$value->nombre1.' '.$value->nombre2.' '.$value->apellido1.' '.$value->apellido2.'`)">
                     Realizar Encuesta
                   </button></td>
                    <td class="align-middle">
-                  <button class="btn btn-success btn-sm" onclick="editarintegrantes('.$folio.','.$value->idintegrante.',`'.$folioencriptado.'`)">
+                  <button class="habilitado btn btn-success btn-sm" '.(($value->validacion == '0')?'':'disabled').' onclick="editarintegrantes('.$folio.','.$value->idintegrante.',`'.$folioencriptado.'`)">
                   Editar
                   </button>
                   </td>

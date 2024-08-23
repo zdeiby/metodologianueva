@@ -67,6 +67,7 @@ Route::get('/leerpreguntashogarentornofamiliar',[c_l1e1::class, 'fc_leerpregunta
 
 Route::get('/verbarrios',[c_l1e1::class, 'fc_verbarrios'])->name('verbarrios');
 
+Route::get('/agregarpasoencuadre',[c_rombointegrantes::class,'fc_agregarpasoencuadre'])->name('agregarpasoencuadre');
 
 
 Route::get('/register',[c_register::class,'fc_register'])->name('register');

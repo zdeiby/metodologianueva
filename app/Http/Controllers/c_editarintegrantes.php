@@ -165,6 +165,7 @@ class c_editarintegrantes extends Controller
       // Añadir created_at y updated_at
       $dataWithoutId['updated_at'] = $now;
        $dataWithoutId['sincro'] = 0;
+       $dataWithoutId['estado'] = 1;
   
       // Verificar si el registro existe para decidir si añadir created_at
       $exists = DB::table('dbmetodologia.t1_integranteshogar')
@@ -184,6 +185,42 @@ class c_editarintegrantes extends Controller
           $dataWithoutId
       );
 
+// ESTAS FUNCIONES SON PARA AGREGAR ESTADO CERO A LAS TABLAS SI SE CAMBIA ALGO EN EDITAR
+      DB::table('t1_integrantesfisicoyemocional')
+    ->where('idintegrante', $idintegrante)
+    ->update(['estado' => 0]);
+
+      DB::table('t1_integrantesintelectual')
+          ->where('idintegrante', $idintegrante)
+          ->update(['estado' => 0]);
+
+      DB::table('t1_integrantesfinanciero')
+          ->where('idintegrante', $idintegrante)
+          ->update(['estado' => 0]);
+
+      DB::table('t1_integranteslegal')
+          ->where('idintegrante', $idintegrante)
+          ->update(['estado' => 0]);
+
+          // PARA ELIMIANR 
+
+          // ESTAS FUNCIONES SON PARA AGREGAR ESTADO CERO A LAS TABLAS SI SE CAMBIA ALGO EN EDITAR
+      // DB::table('t1_integrantesfisicoyemocional')
+      // ->where('idintegrante', $idintegrante)
+      // ->delete();
+  
+      //   DB::table('t1_integrantesintelectual')
+      //       ->where('idintegrante', $idintegrante)
+      //       ->delete();
+  
+      //   DB::table('t1_integrantesfinanciero')
+      //       ->where('idintegrante', $idintegrante)
+      //       ->delete();
+  
+      //   DB::table('t1_integranteslegal')
+      //       ->where('idintegrante', $idintegrante)
+      //       ->delete();
+
   
       return response()->json(["request" => $dataWithoutId]);
   }
@@ -198,7 +235,8 @@ class c_editarintegrantes extends Controller
 
     // Añadir created_at y updated_at
     $dataWithoutId['updated_at'] = $now;
-     $dataWithoutId['sincro'] = 0;
+    $dataWithoutId['sincro'] = 0;
+    $dataWithoutId['estado'] = 1;
     $exists2 = DB::table('dbmetodologia.t1_integrantesidentitario')
     ->where('idintegrante', $idintegrante)
     ->where('folio', $folio)

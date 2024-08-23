@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 
 class c_rombointegrantes extends Controller
 {
-    public function fc_rombointegrantes(Request $request, $cedula){
-        return view('v_rombointegrantes',["variable"=>$cedula]);
+    public function fc_rombointegrantes(Request $request, $folio){
+        return view('v_rombointegrantes',["variable"=>$folio]);
       }
+
+      public function fc_agregarpasoencuadre(Request $request){
+
+        return response()->json(['message' => 'paso registrado']);
+      }
+
+      
 
 }

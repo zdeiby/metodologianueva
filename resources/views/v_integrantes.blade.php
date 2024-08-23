@@ -58,6 +58,9 @@
           <div class=" col">
           <button type="button" class="btn btn-outline-primary" onclick="agregarintegrantes()">Agregar integrante</button>
           </div>
+          <div class=" col">
+          <button type="button" class="btn btn-outline-primary" id="finalizarboton" style="display:none">Finalizar</button>
+          </div>
           </div>
       
       </div>
@@ -175,6 +178,37 @@
       $('#volver').click(function(){
         redirectToIntegrantes()
       });
+      $('#finalizarboton').click(function(){
+        redirectToIntegrantes()
+      });
+
     </script>
+
+    
+<script>
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.addedNodes.length) {
+            const habilitadoButtons = document.querySelectorAll('.habilitado');
+            
+            // Verificar si todos los botones están deshabilitados
+            const allDisabled = Array.from(habilitadoButtons).every(button => button.disabled);
+            
+            if (allDisabled) {
+                $('#finalizarboton').css('display','')
+            } else {
+              $('#finalizarboton').css('display','none')
+            }
+        }
+    });
+});
+
+observer.observe(document.body, {
+    childList: true,
+    subtree: true
+});
+
+
+</script>
 
 @endsection

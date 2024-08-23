@@ -164,7 +164,7 @@ body {
                     <label>Saludo y encuadre</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" id="saludoencuadre">Ver saludo y encuadre</button>
+             <button type="button" class="btn btn-primary" id="saludoencuadrebtn"  data-bs-toggle="modal" data-bs-target="#exampleModal">Ver saludo y encuadre</button>
              <div class="smCard">
                 </div>
               </div>
@@ -231,7 +231,7 @@ body {
                     <label>Resultado encuesta</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" id="resultadoencuesta">Ver resultado encuesta</button>
+             <button type="button" class="btn btn-primary" id="resultadoencuesta" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver resultado encuesta</button>
              <div class="smCard">
                 </div>
               </div>
@@ -321,10 +321,76 @@ body {
   </div> 
 <hr>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="isticky-top">
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <label style="font-size:20px;color:#0dcaf0">Saludo y encuadre</label>
+          <hr>
+        </div>
+        <label>Es donde se saluda y se da una explicación sobre lo que es el acompañamiento familiar...</label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="saludoencuadre">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="isticky-top">
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <label style="font-size:20px;color:#0dcaf0">Resultado de acompañamiento</label>
+          <hr>
+        </div>
+        <label>En construcción...</label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="saludoencuadre">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
    <!-- Swiper JS -->
    <script src="{{ asset('/assets/js/swiper-bundle.min.js') }}"></script>
-
+   <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 <!-- Inicialización de Swiper -->
+
+<script>
+$(document).ready(function() {
+  $('#saludoencuadre').click(function() {
+    $.ajax({
+      url: '../agregarpasoencuadre',
+      data: { folio: '{{decrypt($variable)}}' },
+      method: "GET",
+      dataType: 'JSON',
+      success: function(data) {
+        $('#saludoencuadrebtn').attr('disabled', 'disabled');
+        console.log(data);
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr.responseText);
+      }
+    });
+  });
+});
+
+
+</script>
+
 <script>
    const swiper = new Swiper('.mySwiper', {
             loop: true,

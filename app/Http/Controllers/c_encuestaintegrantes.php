@@ -322,6 +322,7 @@ public function fc_encuestaintegrantesfinanciero(){
         // Añadir created_at y updated_at
         $dataWithoutId['updated_at'] = $now;
          $dataWithoutId['sincro'] = 0;
+          $dataWithoutId['estado'] = 1;
     
         // Verificar si el registro existe para decidir si añadir created_at
         $exists = DB::table('dbmetodologia.t1_integrantesfisicoyemocional')
@@ -375,6 +376,7 @@ public function fc_encuestaintegrantesfinanciero(){
         // Añadir created_at y updated_at
         $dataWithoutId['updated_at'] = $now;
          $dataWithoutId['sincro'] = 0;
+          $dataWithoutId['estado'] = 1;
     
         // Verificar si el registro existe para decidir si añadir created_at
         $exists = DB::table('dbmetodologia.t1_integrantesintelectual')
@@ -431,6 +433,7 @@ public function fc_encuestaintegrantesfinanciero(){
       // Añadir created_at y updated_at
       $dataWithoutId['updated_at'] = $now;
        $dataWithoutId['sincro'] = 0;
+        $dataWithoutId['estado'] = 1;
   
       // Verificar si el registro existe para decidir si añadir created_at
       $exists = DB::table('dbmetodologia.t1_integrantesfinanciero')
@@ -484,6 +487,7 @@ public function fc_encuestaintegrantesfinanciero(){
         // Añadir created_at y updated_at
         $dataWithoutId['updated_at'] = $now;
          $dataWithoutId['sincro'] = 0;
+          $dataWithoutId['estado'] = 1;
     
         // Verificar si el registro existe para decidir si añadir created_at
         $exists = DB::table('dbmetodologia.t1_integranteslegal')
