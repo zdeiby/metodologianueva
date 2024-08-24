@@ -49,7 +49,7 @@ public function fc_encuestaintegrantesfisicoemocional(){
       if ($value->id >= '340' && $value->id <= '345') {
           $enfermedad .= '<div class="enfermedad' . $value->id . '" >
             <label class="form-check-label enfermedad' . $value->id . '"  for="enfermedad' . $value->id . '">' . $value->pregunta . '</label>
-            <input class="form-check-input" type="checkbox" name="enfermedad[]" id="enfermedad' . $value->id . '" value="' . $value->id . '" respuesta="SI"  >
+            <input class="form-check-input" type="checkbox" name="enfermedad[]" id="enfermedad' . $value->id . '" value="' . $value->id . '" respuesta="SI"  required>
             </div>';
       }
     }

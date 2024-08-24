@@ -341,20 +341,67 @@ body {
     </div>
   </div>
 </div>
-
+<style>
+        .table-vulnerability td {
+            text-align: center;
+            vertical-align: middle;
+            color: white;
+            font-weight: bold;
+        }
+        .table-vulnerability .alta-vulnerabilidad {
+            background-color: #FF0000; /* Rojo */
+        }
+        .table-vulnerability .vulnerabilidad-ingresos {
+            background-color: #FFD700; /* Amarillo */
+            color: black;
+        }
+        .table-vulnerability .vulnerabilidad-ipm {
+            background-color: #FFFF99; /* Amarillo claro */
+            color: black;
+        }
+        .table-vulnerability .baja-vulnerabilidad {
+            background-color: #99CC66; /* Verde */
+            color: black;
+        }
+    </style>
+<!-- Modal -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="isticky-top">
+        <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="sticky-top">
       </div>
-      <div class="modal-body">
+      <div class="modal-body p-3">
         <div class="text-center">
           <label style="font-size:20px;color:#0dcaf0">Resultado de acompañamiento</label>
           <hr>
         </div>
-        <label>En construcción...</label>
+        <div class="container-fluid">
+          <table class="table table-bordered table-vulnerability">
+              <tr>
+                  <!-- <td class="alta-vulnerabilidad">
+                      Alta vulnerabilidad (Pobreza extrema en IPM y ingresos):<br>
+                      Esta categoría incluiría las casillas que representan la pobreza extrema en ambos indicadores (IPM y ingresos). Estas situaciones indican condiciones extremadamente precarias donde las personas enfrentan simultáneamente una falta significativa de ingresos y múltiples privaciones.
+                  </td>
+                  <td class="vulnerabilidad-ingresos">
+                      Vulnerabilidad moderada en ingresos:<br>
+                      Este grupo incluiría las casillas que presentan pobreza en términos de ingresos, pero no en términos de IPM.<br>
+                      Aquí, las personas pueden tener ingresos bajos pero acceso a servicios básicos y oportunidades que los sitúan fuera del umbral de la pobreza multidimensional.
+                  </td> -->
+                  <td class="vulnerabilidad-ipm">
+                      Vulnerabilidad moderada en IPM:<br>
+                      Este grupo incluiría las casillas que representan pobreza en términos de IPM, pero no en términos de ingresos.<br>
+                      Esto puede indicar que las personas tienen ingresos suficientes, pero enfrentan privaciones significativas a nivel multidimensional.
+                  </td>
+                  <!-- <td class="baja-vulnerabilidad">
+                      Baja vulnerabilidad o no vulnerable:<br>
+                      Esta categoría incluiría las casillas que representan la no pobreza en ambos indicadores.<br>
+                      Aquí, las personas tienen suficientes ingresos y acceso a servicios básicos y oportunidades, lo que las sitúa fuera del umbral de la pobreza tanto en términos de ingresos como de privaciones multidimensionales.
+                  </td> -->
+              </tr>
+          </table>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="saludoencuadre">Aceptar</button>
@@ -362,6 +409,7 @@ body {
     </div>
   </div>
 </div>
+
 
 
    <!-- Swiper JS -->

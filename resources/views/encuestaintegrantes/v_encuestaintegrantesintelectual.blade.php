@@ -135,7 +135,7 @@
           </div>
           <div class="col-md-6" id="niveleducativo5div" style="display:none">
             <label for="validationServer04" class="form-label">¿Cuál es el titulo obtenido?</label>
-            <input type="text"  class="form-control form-control-sm  " id="niveleducativo5" name="niveleducativo5" value="" >
+            <input type="text"  class="form-control form-control-sm  " id="niveleducativo5" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" name="niveleducativo5" value="" >
           </div>
           <div class="col-md-12" id="niveleducativo3div" style="display:none">
             <label for="validationServer04" class="form-label">¿Accedes a programas de alfabetización y/o educación para adultos?</label>
@@ -474,6 +474,7 @@
           $('#niveleducativo5').val('0');
           
     }
+
   });
 
 
@@ -814,7 +815,10 @@ console.log(edad)
    }
  
 
-
+   if(parseInt($('#edadintegrante').val()) <= '14' ){
+          $('#alfabetizacion').val('0');
+          
+    }
 
               // FIN CARGA AUTO 
 

@@ -132,11 +132,11 @@
           </div>
           <div class="col-md-12" id="ingresos2div">
             <label for="validationServer04" class="form-label">¿A cuánto ascienden tus ingresos fijos al mes? (ingresos por alguna renta o pensión de jubilación, subsidios, etc)</label>
-            <input type="number"  class="form-control form-control-sm  " onkeypress="return soloNumeros(event)" id="ingresos2" name="ingresos2" value="" required="">
+            <input type="text"  class="form-control form-control-sm  "  id="ingresos2" name="ingresos2" value="" required="">
           </div>
           <div class="col-md-12" id="ingresos3div">
             <label for="validationServer04" class="form-label">¿A cuánto ascienden tus ingresos variables al mes? (horas extras, comisiones, premios, ganancia por alguna inversión que haga, trabajos independientes)</label>
-            <input type="number"  class="form-control form-control-sm  " onkeypress="return soloNumeros(event)" id="ingresos3" name="ingresos3" value="" required="">
+            <input type="text"  class="form-control form-control-sm  " id="ingresos3" name="ingresos3" value="" required="">
           </div>
           <div class="col-md-6" id="desempleodelargaduraciondiv">
             <label for="validationServer04" class="form-label">¿Cuántos meses llevas desempleado?</label>
@@ -174,7 +174,7 @@
           </div>
           <div class="col-md-12" id="endeudamiento3div">
           <label for="validationServer04" class="form-label">¿A cuánto equivalen las deudas que tienes actualmente?</label>
-            <input type="number"  class="form-control form-control-sm  " onkeypress="return soloNumeros(event)" id="endeudamiento3" name="endeudamiento3" value="" required="">
+            <input type="text"  class="form-control form-control-sm  "  id="endeudamiento3" name="endeudamiento3" value="" required="">
           </div>
           <div class="col-md-12" id="endeudamiento2div">
             <label for="validationServer04" class="form-label">¿Estás interesado en refinanciar todas tus deudas y consolidarlas en un solo crédito?</label>
@@ -1593,15 +1593,15 @@ console.log(edad)
            $('#trabajo15a17anhos').val((data.integrantesfinanciero)?data.integrantesfinanciero.trabajo15a17anhos:'');
            $('#generaciondeingresos').val((data.integrantesfinanciero)?data.integrantesfinanciero.generaciondeingresos:'');
            $('#formalidaddelempleo').val((data.integrantesfinanciero)?data.integrantesfinanciero.formalidaddelempleo:'');
-           $('#ingresos2').val((data.integrantesfinanciero)?data.integrantesfinanciero.ingresos2:'');
-           $('#ingresos3').val((data.integrantesfinanciero)?data.integrantesfinanciero.ingresos3:'');
+           $('#ingresos2').val(data.integrantesfinanciero ? formatearConPuntos(data.integrantesfinanciero.ingresos2) : '');
+           $('#ingresos3').val(data.integrantesfinanciero ? formatearConPuntos(data.integrantesfinanciero.ingresos3) : '');
            $('#desempleodelargaduracion').val((data.integrantesfinanciero)?data.integrantesfinanciero.desempleodelargaduracion:'');
            $('#desempleo').val((data.integrantesfinanciero)?data.integrantesfinanciero.desempleo:'');
            $('#intermediacionlaboral').val((data.integrantesfinanciero)?data.integrantesfinanciero.intermediacionlaboral:'');
            $('#emprendimiento1').val((data.integrantesfinanciero)?data.integrantesfinanciero.emprendimiento1:'');
            $('#bancarizacion').val((data.integrantesfinanciero)?data.integrantesfinanciero.bancarizacion:''); 
            $('#endeudamiento1').val((data.integrantesfinanciero)?data.integrantesfinanciero.endeudamiento1:'');
-           $('#endeudamiento3').val((data.integrantesfinanciero)?data.integrantesfinanciero.endeudamiento3:'');
+           $('#endeudamiento3').val(data.integrantesfinanciero ? formatearConPuntos(data.integrantesfinanciero.endeudamiento3) : '');
            $('#endeudamiento2').val((data.integrantesfinanciero)?data.integrantesfinanciero.endeudamiento2:'');
            $('#trabajoinfantil2').val((data.integrantesfinanciero)?data.integrantesfinanciero.trabajoinfantil2:'');
            $('#cualtrabajoinfantil').val((data.integrantesfinanciero)?data.integrantesfinanciero.cualtrabajoinfantil:'');
@@ -1622,18 +1622,10 @@ console.log(edad)
            $('input[name="trabajoinfantil[]"]:hidden').removeAttr('required');
          }
 
-         if ($('input[name="bancarizacion[]"]:visible:checked').length > 0) {
-           $('input[name="bancarizacion[]"]').removeAttr('required');
-         }else{
-           $('input[name="bancarizacion[]"]:hidden').removeAttr('required');
-         }
+       
 
-         if ($('input[name="bancarizacion[]"]:visible').length > 0) {
-           $('input[name="bancarizacion[]"]').removeAttr('required');
-         }else{
-           $('input[name="bancarizacion[]"]:hidden').removeAttr('required');
-         }
 
+        
        
 
 
@@ -2793,8 +2785,18 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
                 $('#endeudamiento4').removeAttr('required');
               }
 
+              if ($('#bancarizacion164').is(':checked')) {
+              $('input[name="bancarizacion[]"]').not('#bancarizacion164').closest('div').hide();
+            } else {
+              $('input[name="bancarizacion[]"]').closest('div').show();
+            }
 
 
+              if ($('input[name="bancarizacion[]"]:visible:checked').length > 0) {
+           $('input[name="bancarizacion[]"]').removeAttr('required');
+         }else{
+            $('input[name="bancarizacion[]"]:hidden').removeAttr('required');
+         }
 
 
          paginalista();
@@ -2846,6 +2848,20 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
         }
       });
 
+      $('input[name="bancarizacion[]"]').change(function() {  console.log('hola1');
+          if ($(this).attr('id') === 'bancarizacion164' && $(this).is(':checked')) {
+              $('input[name="bancarizacion[]"]').not('#bancarizacion164').each(function() {
+                  $(this).prop('checked', false); // Desmarcar
+                  $(this).closest('div').hide();  // Ocultar
+                
+              });
+          } else if ($(this).attr('id') === 'bancarizacion164' && !$(this).is(':checked')) {
+              $('input[name="bancarizacion[]"]').closest('div').show(); // Mostrar todos
+
+            // console.log('hola2');
+          }
+      });
+
  
     $('#formfinanciero').on('submit', function(event) {
         event.preventDefault(); // Detiene el envío del formulario
@@ -2885,7 +2901,15 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
    // var respuesta = $(selector).attr('respuesta') || 'NO APLICA'; // Asegura obtener correctamente 'respuesta' o 'NO APLICA'
    var element = $(selector);
    var respuesta = element.is(':hidden') ? 'NO APLICA' : (element.attr('respuesta') || 'NO APLICA'); // Verifica si el elemento está oculto
-    console.log(respuesta, 'respuesta');
+    //console.log(respuesta, 'respuesta');
+    // Si el campo es de formato miles, quitar los puntos antes de almacenar el valor
+    // Asumiendo que `obj` tiene propiedades `name` y `value`
+      if (obj.name === 'ingresos2' || obj.name === 'ingresos3' || obj.name === 'endeudamiento3') {
+          obj.value = obj.value.replace(/\./g, '');
+      }
+
+      console.log(obj.name)
+
 
     if (name === 'trabajoinfantil'  || name === 'bancarizacion' ) {
         // Buscar el objeto con el mismo id
@@ -2940,6 +2964,32 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
         });
     });
 
+
+    function agregarFormatoMiles(idCampo) {
+    const campo = document.getElementById(idCampo);
+    if (!campo) return; // Si el campo no existe, no hacer nada
+
+    campo.addEventListener('input', function (e) {
+        let value = e.target.value;
+        // Eliminar todos los caracteres no numéricos
+        value = value.replace(/\D/g, '');
+        // Formatear con puntos de miles
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        e.target.value = value;
+    });
+}
+
+function formatearConPuntos(numero) {
+    if (!numero) return ''; // Retorna cadena vacía si el número no es válido
+
+    // Convertir a string y usar expresión regular para agregar puntos
+    return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+// Uso de la función
+agregarFormatoMiles('ingresos2');
+agregarFormatoMiles('ingresos3');
+agregarFormatoMiles('endeudamiento3');
 
 
     </script>

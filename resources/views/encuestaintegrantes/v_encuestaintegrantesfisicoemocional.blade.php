@@ -324,14 +324,27 @@ paginacargando();
         $('input[name="enfermedad[]"]').not('#enfermedad345').each(function() {
             $(this).prop('checked', false); // Desmarcar
             $(this).closest('div').hide();  // Ocultar
-
-
         });
     } else if ($(this).attr('id') === 'enfermedad345' && !$(this).is(':checked')) {
         $('input[name="enfermedad[]"]').closest('div').show(); // Mostrar todos
 
     }
 });
+
+
+$('input[name="psicosocial2[]"]').change(function() {
+    if ($(this).attr('id') === 'psicosocial2347' && $(this).is(':checked')) {
+        $('input[name="psicosocial2[]"]').not('#psicosocial2347').each(function() {
+            $(this).prop('checked', false); // Desmarcar
+            $(this).closest('div').hide();  // Ocultar
+        });
+    } else if ($(this).attr('id') === 'psicosocial2347' && !$(this).is(':checked')) {
+        $('input[name="psicosocial2[]"]').closest('div').show(); // Mostrar todos
+
+    }
+});
+
+
 
     $('#discapacidad').change(function(){
       if($('#discapacidad').val() == '2' || $('#acceso1').val() == ''){
@@ -717,6 +730,7 @@ paginacargando();
                               $('input[name="enfermedad[]"]').closest('div').show();
                             }
 
+      
                             
 
             if($('#discapacidad').val() == '2' || $('#acceso1').val() == ''){
@@ -979,6 +993,12 @@ paginacargando();
           }else{
            $('input[name="psicosocial2[]"]:hidden').removeAttr('required');
           }
+
+          if ($('#psicosocial2347').is(':checked')) {
+              $('input[name="psicosocial2[]"]').not('#psicosocial2347').closest('div').hide();
+            } else {
+              $('input[name="psicosocial2[]"]').closest('div').show();
+            }
 
               if ($('#consumospa5').val() == '80') {
                   $('#cualconsumospa5div').css('display', '');

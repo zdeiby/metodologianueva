@@ -192,17 +192,17 @@
                 {{!!$tipodocumento!!}}
               </select>
             </div>
-            <div class="col-md" id="documentodiv" >
+            <div class="col-md-12" id="documentodiv" >
             <label for="validationServer04" class="form-label">¿cuál es el número de tu documento?</label>
             <input type="number" class="form-control form-control-sm "  name="documento"  id="documento" value="" >
           </div>
-          <div class="col-md-4" id="telefonodiv" >
+          <div class="col-md-6" id="telefonodiv" >
             <label for="validationServer04" class="form-label">Telefono</label>
-            <input type="number" class="form-control form-control-sm "  name="telefono"  id="telefono" value="" >
-          </div><div class="col-md" id="celulardiv" >
+            <input type="text" class="form-control form-control-sm" name="telefono" id="telefono" value="" maxlength="10" oninput="limitarEntrada(this)">
+            </div><div class="col-md-6" id="celulardiv" >
             <label for="validationServer04" class="form-label">Celular</label>
-            <input type="number" class="form-control form-control-sm "  name="celular"  id="celular" value="" >
-          </div>
+            <input type="text" class="form-control form-control-sm" name="celular" id="celular" value="" maxlength="10" oninput="limitarEntrada(this)">
+            </div>
           <div class="col-md-6">
                 <label for="validationServer04" class="form-label">¿Eres el/la representante del hogar?</label>
                 <select class="form-control form-control-sm" id="representante" name="representante" aria-describedby="validationServer04Feedback" required="">
@@ -525,8 +525,8 @@ paginacargando();
           $('#cualidentidad').val((data.integrantesidentitario)?data.integrantesidentitario.cualidentidad:''); 
           $('#cualorientacion').val((data.integrantesidentitario)?data.integrantesidentitario.cualorientacion:'');
           $('#cualong').val((data.integrantesidentitario)?data.integrantesidentitario.cualong:'');
-          $('#telefono').val((data.integrantesidentitario)?data.integrantesidentitario.telefono:'');
-          $('#celular').val((data.integrantesidentitario)?data.integrantesidentitario.celular:'');
+          $('#telefono').val((data.integrantes)?data.integrantes.telefono:'');
+          $('#celular').val((data.integrantes)?data.integrantes.celular:'');
 
           if(localStorage.getItem('idintegrante') == ''){
             localStorage.setItem('idintegrante',data.leerintegrantes)
@@ -1601,6 +1601,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+
+    function limitarEntrada(input) {
+    // Permite solo números
+    input.value = input.value.replace(/[^0-9]/g, '');
+}
 
     </script>
  
