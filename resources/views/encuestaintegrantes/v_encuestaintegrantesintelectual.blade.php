@@ -377,13 +377,65 @@
          }
 
 
-         if ( $('#niveleducativo1').val() == "116" || $('#niveleducativo1').val() == "118" ||  $('#niveleducativo1').val() == "120" ||  $('#niveleducativo1').val() == "122" ||  $('#niveleducativo1').val() == "113" ||  $('#niveleducativo1').val() == "114" ||  $('#niveleducativo1').val() == "370") {     // 9.3.2
+         if (  $('#niveleducativo1').val() == "118" ||  $('#niveleducativo1').val() == "120" ||  $('#niveleducativo1').val() == "122" ||  $('#niveleducativo1').val() == "113" ||  $('#niveleducativo1').val() == "114" ||  $('#niveleducativo1').val() == "370") {     // 9.3.2
            $('#niveleducativo4div').css('display', 'none');
            $('#niveleducativo4').removeAttr('required');
            $('#niveleducativo4').val('0');
            $('#niveleducativo2div').css('display','none');
            $('#niveleducativo2').removeAttr('required');
            $('#niveleducativo2').val('133');
+           $('#niveleducativo3div').css('display','none');
+           $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo3').val('0');
+           $('#niveleducativo5div').css('display','');
+           $('#niveleducativo5').attr('required', 'required');
+           $('#niveleducativo5').val('');
+          
+         }
+
+
+
+
+         /// 115
+         if (( $('#niveleducativo1').val() == "115" ) && parseInt($('#edadintegrante').val()) >= '15') {   //9.5
+          $('#niveleducativo4div').css('display', '');
+           $('#niveleducativo4').attr('required', 'required');
+           $('#niveleducativo4').val('');
+           $('#niveleducativo2div').css('display','none');
+           $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo2').val('131');
+           $('#niveleducativo3div').css('display','none');
+           $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo3').val('0');
+           $('#niveleducativo5div').css('display','none');
+           $('#niveleducativo5').removeAttr('required');
+           $('#niveleducativo5').val('0');
+         }
+         if (( $('#niveleducativo1').val() == "115" ) && parseInt($('#edadintegrante').val()) <= '14') {   //9.5
+           $('#niveleducativo4div').css('display', 'none');
+           $('#niveleducativo4').removeAttr('required');
+           $('#niveleducativo4').val('0');
+           $('#niveleducativo2div').css('display','none');
+           $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo2').val('131');
+           $('#niveleducativo3div').css('display','none');
+           $('#niveleducativo3').removeAttr('required');
+           $('#niveleducativo3').val('0');
+           $('#niveleducativo5div').css('display','none');
+           $('#niveleducativo5').removeAttr('required');
+           $('#niveleducativo5').val('0');
+         }
+
+         // 
+
+
+         if ( $('#niveleducativo1').val() == "116" ) {     // 9.3.2
+           $('#niveleducativo4div').css('display', 'none');
+           $('#niveleducativo4').removeAttr('required');
+           $('#niveleducativo4').val('0');
+           $('#niveleducativo2div').css('display','none');
+           $('#niveleducativo2').removeAttr('required');
+           $('#niveleducativo2').val('131');
            $('#niveleducativo3div').css('display','none');
            $('#niveleducativo3').removeAttr('required');
            $('#niveleducativo3').val('0');
