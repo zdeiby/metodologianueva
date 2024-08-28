@@ -353,7 +353,7 @@
            $('#niveleducativo4').val('');
            $('#niveleducativo2div').css('display','none');
            $('#niveleducativo2').removeAttr('required');
-           $('#niveleducativo2').val('0');
+           $('#niveleducativo2').val('133');
            $('#niveleducativo3div').css('display','none');
            $('#niveleducativo3').removeAttr('required');
            $('#niveleducativo3').val('0');
@@ -367,7 +367,7 @@
            $('#niveleducativo4').val('0');
            $('#niveleducativo2div').css('display','none');
            $('#niveleducativo2').removeAttr('required');
-           $('#niveleducativo2').val('0');
+           $('#niveleducativo2').val('133');
            $('#niveleducativo3div').css('display','none');
            $('#niveleducativo3').removeAttr('required');
            $('#niveleducativo3').val('0');
@@ -383,7 +383,7 @@
            $('#niveleducativo4').val('0');
            $('#niveleducativo2div').css('display','none');
            $('#niveleducativo2').removeAttr('required');
-           $('#niveleducativo2').val('0');
+           $('#niveleducativo2').val('133');
            $('#niveleducativo3div').css('display','none');
            $('#niveleducativo3').removeAttr('required');
            $('#niveleducativo3').val('0');
