@@ -164,7 +164,7 @@ body {
                     <label>Saludo y encuadre</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" id="saludoencuadrebtn"  data-bs-toggle="modal" data-bs-target="#exampleModal">Ver saludo y encuadre</button>
+             <button type="button" class="btn btn-primary" id="saludoencuadrebtn" <?=($existel100p1000 == '1')?'disabled':''?> data-bs-toggle="modal" data-bs-target="#exampleModal">Ver saludo y encuadre</button>
              <div class="smCard">
                 </div>
               </div>
@@ -186,7 +186,7 @@ body {
                     <label>Gestión de integrantes</label>
                   </h3>               
                 </div>
-                <button type="button" class="btn btn-primary" onclick="window.location.href='../integrantes/{{$variable}}'">Ir a gestión de integrantes</button>
+                <button type="button" id="gestionintegrantes" <?=($existel100p1000 == '1' && $existel100p10000 == '0'  )?'':'disabled'?> class="btn btn-primary" onclick="window.location.href='../integrantes/{{$variable}}'">Ir a gestión de integrantes</button>
                 <div class="smCard">
                 </div>
               </div>
@@ -208,7 +208,7 @@ body {
                     <label>Encuesta hogar</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" onclick="window.location.href='../encuestahogarconformacionfamiliar/{{$variable}}'">Ir a encuesta de hogar</button>
+             <button type="button" class="btn btn-primary" <?=($existel100p1000 == '1' && $existel100p10000 == '1'  && $existel100p100000 == '0'  )?'':'disabled'?> onclick="window.location.href='../encuestahogarconformacionfamiliar/{{$variable}}'">Ir a encuesta de hogar</button>
              <div class="smCard">
                 </div>
               </div>
@@ -231,7 +231,7 @@ body {
                     <label>Resultado encuesta</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" id="resultadoencuesta" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver resultado encuesta</button>
+             <button type="button" class="btn btn-primary" id="resultadoencuesta" <?=($existel100p1000 == '1' && $existel100p10000 == '1'  && $existel100p100000 == '1' && $existel100p1000000 == '0'  )?'':'disabled'?> data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver resultado encuesta</button>
              <div class="smCard">
                 </div>
               </div>
@@ -422,11 +422,29 @@ $(document).ready(function() {
   $('#saludoencuadre').click(function() {
     $.ajax({
       url: '../agregarpasoencuadre',
-      data: { folio: '{{decrypt($variable)}}' },
+      data: { folio: '{{decrypt($variable)}}', usuario:'{{ Session::get('cedula') }}' },
       method: "GET",
       dataType: 'JSON',
       success: function(data) {
         $('#saludoencuadrebtn').attr('disabled', 'disabled');
+        $('#gestionintegrantes').removeAttr('disabled');
+        console.log(data);
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr.responseText);
+      }
+    });
+  });
+
+
+  $('#resultadoencuesta').click(function() {
+    $.ajax({
+      url: '../agregarpasoresultado',
+      data: { folio: '{{decrypt($variable)}}', usuario:'{{ Session::get('cedula') }}' },
+      method: "GET",
+      dataType: 'JSON',
+      success: function(data) {
+        window.location.href="../rombo/<?= $variable ?>" 
         console.log(data);
       },
       error: function(xhr, status, error) {

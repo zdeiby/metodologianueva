@@ -7,62 +7,35 @@ use App\Models\m_login;
 use App\Models\m_register;
 use Illuminate\Support\Facades\DB;
 
+
 class c_register extends Controller
 {
     public function fc_register(Request $request){
         $modelo = new m_register();
         $datosBD = $modelo->m_leerUsuario();
         $cif = DB::table('t_cif')->get();
-        if(empty($datosBD[0]->documento)){
-            return view('v_register',["cif"=>$cif]);
+        $datosgestor = DB::table('t_usuario')->get();
+        if(empty($datosBD[0]->contrasena)){
+            return view('v_register',["cif"=>$cif, 'datos'=>$datosgestor]);
         }else{
             return redirect()->route('login');
         }
       }
 
       public function fc_authregister(Request $request){
-        $nombres=$request->input('nombres');
-        $apellidos=$request->input('apellidos');
-        $nomdinamizador=$request->input('nomdinamizador');
-        $docdinamizador=$request->input('docdinamizador');
-        $cif=$request->input('cif');
+
         $documento=$request->input('documento');
-        $contrasena=$request->input('pass2');
+        $contrasena=$request->input('pass1');
 
 
-            $modelo = new m_register();
-            $datosBD = $modelo->m_leerUsuario();
+            DB::table('dbmetodologia.t_usuario')
+                 ->where('documento', $documento)  // Condición para encontrar el registro existente
+                 ->update([
+                     'contrasena' => bcrypt($contrasena)  // Actualizar la contraseña con la versión cifrada
+                 ]);
     
-     if (empty($datosBD[0]->documento)) {
-        m_register::create([
-            'documento' => $documento,
-            'nombre1' =>  strtoupper((explode(' ',$nombres))[0]),
-            'nombre2' =>  strtoupper((isset((explode(' ',$nombres))[1]))?(explode(' ',$nombres))[1]:''),
-            'apellido1' =>  strtoupper((explode(' ',$apellidos))[0]),
-            'apellido2' =>  strtoupper((isset((explode(' ',$apellidos))[1]))?(explode(' ',$apellidos))[1]:''),
-            'contrasena' => bcrypt($contrasena), // Recuerda cifrar la contraseña antes de guardarla
-            'nom_dinamizador' =>  strtoupper($nomdinamizador),
-            'doc_dinamizador' =>  $docdinamizador,
-            'cif' =>  strtoupper($cif),
-        ]);
-
-         session(['user_id' => $contrasena,
-                       'nombre'=>$nombres." ".$apellidos,
-                       'cedula'=> $documento]);
-                         return redirect()->route('login');
-    }else{
-        return redirect()->route('register')->withInput()->with('mensaje', '¡Ya tienes una cuenta registrada!');
-
-    }
+             return redirect()->route('login');
 
 
-        //     session(['user_id' => $contrasena,
-        //               'nombre'=>$datosBD[0]->nombre1." ".$datosBD[0]->nombre2." ".$datosBD[0]->apellido1." ".$datosBD[0]->apellido2,
-        //               'cedula'=> $documento]);
-        //                 return redirect()->route('index');
-        // }else{
-        //     return redirect()->route('register')->withInput()->with('mensaje', '¡Datos erroneos!');
-        // }
-        // session(['user_id' => $user->id]);
       }
 }

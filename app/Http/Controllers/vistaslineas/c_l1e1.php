@@ -621,6 +621,8 @@ class c_l1e1 extends Controller
           $dataWithoutId = Arr::except($data, ['folio']);
           $folio = $data['folio'];
           $now = Carbon::now();
+
+
       
            // Convertir campos específicos a JSON si son arrays y limpiar los nombres de los campos
            $fieldsToConvertToJson = ['factoresderiesgovef', 'vefviolenciaenelentorno', 'rutasvef3'
@@ -681,7 +683,83 @@ class c_l1e1 extends Controller
     
         return response()->json(['options' => $barrios]);
     }
+
+    public function fc_agregarpasohogar(Request $request){
+        $now = Carbon::now();
+        $folio = $request->input('folio');
+        $linea = 100;  // poner linea 
+        $paso = 100000;  // poner paso
+        $usuario = $request->input('usuario'); // Este campo no es clave primaria
+    
+        // Datos a insertar o actualizar
+        $data = [
+            'folio' => $folio,
+            'linea' => $linea,
+            'paso' => $paso,
+            'usuario' => $usuario,
+            'estado' => 1,
+            'sincro' => 0,
+            'updated_at' => $now
+        ];
+    
+        // Verificar si el registro existe
+        $exists = DB::table('dbmetodologia.t1_pasosvisita')
+            ->where('folio', $folio)
+            ->where('linea', $linea)
+            ->where('paso', $paso)
+            ->exists();
+    
+        if (!$exists) {
+            // Si no existe, agregar created_at
+            $data['created_at'] = $now;
+        }
+    
+        // Usar updateOrInsert para guardar o actualizar el registro, sin incluir 'usuario' en las condiciones
+        DB::table('dbmetodologia.t1_pasosvisita')->updateOrInsert(
+            [
+                'folio' => $folio,
+                'linea' => $linea,
+                'paso' => $paso,
+            ],
+            $data
+        );
+    
+        return response()->json(['message' => $folio]);
+      }
+
+      public function fc_verficarestadosdehogar(Request $request){
+        $folio = $request->input('folio');
+        $resultados = DB::table('t1_hogarcondicionesalimentarias as t1')
+        ->join('t1_hogarcondicioneshabitabilidad as t2', 't1.folio', '=', 't2.folio')
+        ->join('t1_hogarconformacionfamiliar as t3', 't1.folio', '=', 't3.folio')
+        ->join('t1_hogardatosgeograficos as t4', 't1.folio', '=', 't4.folio')
+        ->join('t1_hogarentornofamiliar as t5', 't1.folio', '=', 't5.folio')
+        ->where('t1.folio', $folio)
+        ->select(
+            't1.estado as estado1',
+            't2.estado as estado2',
+            't3.estado as estado3',
+            't4.estado as estado4',
+            't5.estado as estado5'
+        )
+        ->first();
+
+        if (
+            $resultados && 
+            $resultados->estado1 == 1 && 
+            $resultados->estado2 == 1 && 
+            $resultados->estado3 == 1 && 
+            $resultados->estado4 == 1 && 
+            $resultados->estado5 == 1
+        ) {
+            return response()->json(['resultado' => 1]);
+        } else {
+            return response()->json(['resultado' => 0]);
+        }
+      }
+
     
 
     
 }
+

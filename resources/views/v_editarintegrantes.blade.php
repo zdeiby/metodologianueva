@@ -152,6 +152,10 @@
             <label for="validationServer04" class="form-label">¿Cuál es tu fecha de nacimiento?</label>
             <input type="date"  min="1900-01-01"  oninput="calcularedad(this.value)" class="form-control form-control-sm "  name="fechanacimiento"  id="fechanacimiento" value="" required>
           </div>
+          <div class="col-md-6">
+            <label for="validationServer04" class="form-label">¿Escribe de nuevo tu fecha de nacimiento?</label>
+            <input type="date"  min="1900-01-01" id="fechanacimiento2" value="" class="form-control form-control-sm "  required>
+          </div>
           <div class="form-group col-sm">
                 <blockquote class="blockquote text-center">
                     <p class="mb-0"></p><h6>Edad:</h6><p></p>
@@ -173,7 +177,7 @@
                     {!!$paises!!}
                     </select>
                     <div class="dropdown-menu" id="dropdown-menu">
-                        <input type="text" class="form-control search-box" id="searchBox" placeholder="Busca tu país...">
+                        <input type="text" class="form-control search-box" id="searchBox" placeholder="Busca tu país..." autocomplete="off">
                         <div id="dropdown-options">
                             <!-- Las opciones del select se replicarán aquí -->
                         </div>
@@ -224,6 +228,12 @@
             <div class="col-md-6">
                 <label for="validationServer04" class="form-label">¿Cuál es tu sexo de nacimiento?</label>
                 <select class="form-control form-control-sm" id="sexo" name="sexo" aria-describedby="validationServer04Feedback" required="">
+                  {{!!$sexo!!}}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="validationServer04" class="form-label">¿Cuál es tu sexo de nacimiento?</label>
+                <select class="form-control form-control-sm" id="sexo2"  aria-describedby="validationServer04Feedback" required="">
                   {{!!$sexo!!}}
                 </select>
             </div>
@@ -878,10 +888,29 @@ paginacargando();
                     method: "GET",
                     dataType:'JSON',
                     success:function(data){ 
-                      alertagood()
-                      $('#siguiente').css('display','');
-                      $('#identatario').removeAttr('disabled');
-                     
+
+                      if($('#fechanacimiento').val() == $('#fechanacimiento2').val() && $('#sexo').val() == $('#sexo2').val()){
+                        alertagood()
+                        $('#siguiente').css('display','');
+                        $('#identatario').removeAttr('disabled');
+                      }
+                      if($('#fechanacimiento').val() != $('#fechanacimiento2').val()){
+                            Swal.fire({
+                                  icon: "error",
+                                  title: "Las fechas de nacimiento no coinciden",
+                                  text: "Revisa por favor",
+                                  footer: ''
+                                });
+                          }
+                      if($('#sexo').val() != $('#sexo2').val()){
+                        Swal.fire({
+                              icon: "error",
+                              title: "El sexo no coincide",
+                              text: "Revisa por favor",
+                              footer: ''
+                            });
+                      }
+   
                     },
                     error: function(xhr, status, error) {
                       alertabad();
@@ -967,7 +996,7 @@ $('#tipodocumento').change(function(){
   }else{
     $('#documentodiv').css('display','');
     $('#documento').attr('required', 'required');
-    $('#documento').val('');
+   // $('#documento').val('');
 
   }
 })
@@ -1081,6 +1110,14 @@ $('#sexo').change(function(){
     $('#cualidentidaddiv').css('display','none');
     $('#hijosdiv').css('display','none');
     $('#situacionmilitar').removeAttr('required');
+  }
+
+
+  if($('#nacionalidad').val() !='343' ){
+     $('#situacionmilitardiv').css('display','none');
+     $('#situacionmilitar').val('0');
+     $('#situacionmilitar').removeAttr('required');
+    //console.log('venezolano')
   }
 
   
@@ -1417,6 +1454,25 @@ $('#hijos, #gestante').change(function(){
   } else {
     $('#lactante').val('');
     $('#lactante').removeClass('blocked');
+  }
+});
+
+
+$('#fechanacimiento, #fechanacimiento2').change(function(){
+  if($('#fechanacimiento').val() == $('#fechanacimiento2').val()){
+    $('#fechanacimiento2').css('border','1px solid green');
+  }else{
+    $('#fechanacimiento2').css('border','1px solid red');
+
+  }
+});
+
+$('#sexo, #sexo2').change(function(){
+  if($('#sexo').val() == $('#sexo2').val()){
+    $('#sexo2').css('border','1px solid green');
+  }else{
+    $('#sexo2').css('border','1px solid red');
+
   }
 });
 

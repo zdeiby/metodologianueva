@@ -37,6 +37,8 @@
           <th scope="col">Nombres y apellidos</th>
           <th scope="col">Documento</th>
           <th scope="col">Edad</th>
+          <th scope="col">Jefe</th>
+          <th scope="col">Representante</th>
           <th scope="col">Encuesta</th>
           <th scope="col">Editar</th>
           <th scope="col">Avatar</th>
@@ -69,6 +71,8 @@
 </div>
 
     </div>
+
+
 
     <input style="display:none" type="text" value="{{$variable}}" id="folioencriptado">
 
@@ -178,9 +182,7 @@
       $('#volver').click(function(){
         redirectToIntegrantes()
       });
-      $('#finalizarboton').click(function(){
-        redirectToIntegrantes()
-      });
+    
 
     </script>
 
@@ -194,9 +196,10 @@ const observer = new MutationObserver((mutations) => {
             // Verificar si todos los botones están deshabilitados
             const allDisabled = Array.from(habilitadoButtons).every(button => button.disabled);
             
-            if (allDisabled) {
+            if (allDisabled && <?= ($jefes[0]->edad_mayor_igual_18 == 1 && $jefes[0]->es_jefe_hogar == 1 && $jefes[0]->es_representante == 1) ? 'true' : 'false' ?>) {
                 $('#finalizarboton').css('display','')
-            } else {
+            } 
+            else {
               $('#finalizarboton').css('display','none')
             }
         }
@@ -209,6 +212,46 @@ observer.observe(document.body, {
 });
 
 
+</script>
+
+<script>
+$(document).ready(function() {
+  $('#saludoencuadre').click(function() {
+    $.ajax({
+      url: '../agregarpasoencuadre',
+      data: { folio: '{{decrypt($variable)}}', usuario:'{{ Session::get('cedula') }}' },
+      method: "GET",
+      dataType: 'JSON',
+      success: function(data) {
+        
+        console.log(data);
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr.responseText);
+      }
+    });
+  });
+});
+
+
+$(document).ready(function() {
+
+$('#finalizarboton').click(function(){
+      $.ajax({
+          url: '../finalizarintegrantes',
+          data: { folio: '{{decrypt($variable)}}', usuario:'{{ Session::get('cedula') }}' },
+          method: "GET",
+          dataType: 'JSON',
+          success: function(data) {
+            redirectToIntegrantes()
+            console.log(data);
+          },
+          error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+          }
+        }); 
+      });
+    });
 </script>
 
 @endsection

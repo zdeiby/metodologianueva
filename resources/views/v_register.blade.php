@@ -79,7 +79,7 @@ body {
     <title>Login</title>
 </head>
 <body>
-
+@if (!empty($datos) && isset($datos[0]->nombre1))
 <div class="container log pb-3 pt-3">
     <div class="row">
         <div class="col-md-6 upload-button position-relative">
@@ -105,11 +105,11 @@ body {
                     <div class="row">
                         <div class="col">
                             <label class="pb-2 pt-2" for=""><b></b></label>
-                            <input id="nombres" value="{{ old('nombres') }}" required name="nombres" type="text" class="form-control " placeholder="Nombres Gestor" />                    
+                            <input id="nombres" value="{{ $datos[0]->nombre1 }} {{ $datos[0]->nombre2 }}" required name="nombres" type="text" class="form-control " placeholder="Nombres Gestor" readOnly/>                    
                         </div>
                         <div class="col">
                             <label class="pb-2 pt-2" for=""><b></b></label>
-                            <input id="apellidos" value="{{ old('apellidos') }}" required name="apellidos" type="text" class="form-control" placeholder="Apellidos Gestor" />                    
+                            <input id="apellidos" value="{{ $datos[0]->apellido1 }} {{ $datos[0]->apellido2 }}" required name="apellidos" type="text" class="form-control" placeholder="Apellidos Gestor" readOnly/>                    
                         </div>
                         </div>
                     </div>
@@ -117,11 +117,11 @@ body {
                 <div class="row ">
                     <div class="col">
                     <label class="pb-2 pt-2" for=""><b></b></label>
-                    <input id="nomdinamizador" value="{{ old('nomdinamizador') }}"  required name="nomdinamizador" type="text" class="form-control" placeholder="Nombre Dinamizador" />                    
+                    <input id="nomdinamizador" value="{{ $datos[0]->nom_dinamizador }}"  required name="nomdinamizador" type="text" class="form-control" placeholder="Nombre Dinamizador" readOnly/>                    
                     </div>
                     <div class="col">
                     <label class=" pb-2 pt-2" for=""><b></b></label>
-                    <input id="docdinamizador"value="{{ old('docdinamizador') }}"  required name="docdinamizador" type="text" class="form-control" placeholder="Cedula Dinamizador" />                    
+                    <input id="docdinamizador"value="{{ $datos[0]->doc_dinamizador }}"  required name="docdinamizador" type="text" class="form-control" placeholder="Cedula Dinamizador" readOnly/>                    
                     </div>
                 </div>
 
@@ -131,7 +131,7 @@ body {
                     <label class=" pb-2 pt-2" for="" style=""><b></b></label>
                     <!-- <input id="cif" required value="{{ old('cif') }}" name="cif" type="text" class="form-control" placeholder="CIF" /> -->
                    
-                    <select style="/*color: #565e65;*/" class="form-control" required value="{{ old('cif') }}" name="cif" id="cif" >
+                    <select style="/*color: #565e65;*/" class="form-control" required value="{{ old('cif') }}" name="cif" id="cif" disabled>
                     <option value="" >Seleccione un CIF</option>
                     @foreach ($cif as $cifselect)
                     <option value="{{$cifselect->id}}"> {{$cifselect->nombrecif}}</option>
@@ -144,7 +144,7 @@ body {
                     </div>
                     <div class="col">
                     <label class=" pb-2 pt-2" for=""><b></b></label>
-                    <input id="documento" required value="{{ old('documento') }}" name="documento" type="text" class="form-control" placeholder="Cedula Gestor" />                    
+                    <input id="documento" required value="{{$datos[0]->documento}}" name="documento" type="text" class="form-control" readOnly/>                    
                     </div>
                 </div>
                     <div class="row">
@@ -162,7 +162,7 @@ body {
             
                 <div class="text-center">
                     <br />
-                    <button type="submit" name="enviar" disabled id="enviar" class="btn w-100 btn-success" style="color: white;">Registrarse</button>
+                    <button type="submit" name="enviar" readOnly id="enviar" class="btn w-100 btn-success" style="color: white;">Registrarse</button>
                    <!-- <label class="pt-2" for="">¿Ha olvidado la contraseña?</label> -->
         </form>  @if(session('mensaje'))
             <div style=" margin-left:15%;position: fixed;">
@@ -184,7 +184,57 @@ body {
     </div>
 </div>
 
+@else
+<div class="container log pb-3 pt-3">
+    <div class="row">
+        <div class="col-md-6 upload-button position-relative">
+            <img  class="img-fluid img-fill" src="{{asset('imagenes/paisaje.jpg')}}" alt="">
+      <!--  <input type="file" id="fileInput2"> -->
+    </div>
+        <div class="col-md-6 text-center">
+            <div class="container well form-group pt-4 pb-4" style="background: white; border-radius: 2%; border: 1px solid #e3e3e3;">
+                <div class="text-center pb-3" style="border-radius: 2%;">
+                    <div class="panel-heading">
+                    </div>
 
+                    
+                    <div class="panel-body">
+                        <img width="25%" src="{{ asset('imagenes/logoalcaldia.jpg') }}" alt="">
+                    </div>
+                </div>
+        
+
+           <label for="" style="font-weight:bold; color: #00B0F6">INSERTA EL QUERY PARA CONTINUAR CON EL REGISTRO</label>
+                <div class="form-group">
+                   
+
+             
+                </div>
+                
+            
+                <div class="text-center">
+                    <br />
+                   <!-- <label class="pt-2" for="">¿Ha olvidado la contraseña?</label> -->
+        </form>  @if(session('mensaje'))
+            <div style=" margin-left:15%;position: fixed;">
+                        <div id="mensaje" class="alert alert-danger mt-2"  style="">
+                            {{ session('mensaje') }}
+                        </div>
+                    </div>
+                    @endif
+                       <br>
+                       <br>
+                       <br>
+                       <br>      
+                  
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 
 
 <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
@@ -212,7 +262,7 @@ $('#pass1, #pass2').on('input',function(){
    if(pass1 == pass2){
         $('#pass2').addClass('green');
         $('#pass1').addClass('green');
-        $('#enviar').prop('disabled', false);
+        $('#enviar').prop('readOnly', false);
     }
 });
 
@@ -223,6 +273,10 @@ $('#nomdinamizador').on('input',function(){$('#nomdinamizador').addClass('is-val
 $('#docdinamizador').on('input',function(){$('#docdinamizador').addClass('is-valid');if($('#docdinamizador').val()==''){$('#docdinamizador').removeClass('is-valid');}});if($('#docdinamizador').val() !==''){$('#docdinamizador').addClass('is-valid');}
 $('#cif').on('input',function(){$('#cif').addClass('is-valid');if($('#cif').val()==''){$('#cif').removeClass('is-valid');}});if($('#cif').val() !==''){$('#cif').addClass('is-valid');}
 $('#documento').on('input',function(){$('#documento').addClass('is-valid');if($('#documento').val()==''){$('#documento').removeClass('is-valid');}});if($('#documento').val() !==''){$('#documento').addClass('is-valid');}
+
+
+$('#cif').val('{{ isset($datos[0]->cif) ? $datos[0]->cif : '' }}');
+
 
 </script>
 

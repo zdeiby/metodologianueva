@@ -104,9 +104,11 @@ body {
                 <div class="text-center">
                     <br />
                     <div class="row">
+                    @if($variable==1) 
                         <div class="col">
                             <button type="submit" name="enviar" id="enviar" class="btn w-100" style="color: white; background-color: #00B0F6;">Ingresar</button>
                         </div>
+                        @endif
                        @if($variable==0) <div class="col">
                         <a href="./register" class="btn btn-success w-100" style="color: white;">Registrarse</a>
 

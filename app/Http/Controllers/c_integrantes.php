@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\m_integrantes;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class c_integrantes extends Controller
 {
     public function fc_integrantes(Request $request, $cedula){
-      
-        return view('v_integrantes',["variable"=>$cedula]);
+      $modelo= new m_integrantes();
+      $jefes=$modelo-> m_veredadrepjefe(decrypt($cedula));
+        return view('v_integrantes',["variable"=>$cedula, 'jefes' => $jefes]);
       }
 
     public function fc_leerintegrantes(Request $request){
@@ -19,7 +21,7 @@ class c_integrantes extends Controller
         $folioencriptado=$request->input('folioencriptado');
         $modelo= new m_integrantes();
         $integrantes=$modelo-> m_leerintegrantes($folio);
-        //$integrantes=$modelo-> m_verestados($folio);
+        
 
         $foliosintegrante='';
       foreach ($integrantes as $value) {
@@ -27,6 +29,8 @@ class c_integrantes extends Controller
                 <td class="align-middle">'.$value->nombre1.' '.$value->nombre2.' '.$value->apellido1.' '.$value->apellido2.'</td>
                 <td class="align-middle">'.$value->documento.'</td>
                 <td class="align-middle">'.$value->edad.'</td>
+                <td class="align-middle text-center">'.(($value->jefedelhogar == '1')?'SI':'NO').'</td>
+                <td class="align-middle text-center">'.(($value->representante == '1')?'SI':'NO').'</td>
                 <td class="align-middle">
                <button class="btn  btn-sm" style="background:#2fa4e7; color:white"  '.(($value->estado == '1' && $value->estado2 == '1')?'':'disabled').' '.(($value->validacion == '0')?'':'disabled').'
                 onclick="responderencuesta('.$folio.','.$value->idintegrante.',`'.$folioencriptado.'`,`'.$value->nombre1.' '.$value->nombre2.' '.$value->apellido1.' '.$value->apellido2.'`)">
@@ -46,7 +50,7 @@ class c_integrantes extends Controller
             
             ';
             }
-            return response()->json(["foliosintegrante"=>$foliosintegrante ]);
+            return response()->json(["foliosintegrante"=>$foliosintegrante]);
     }
 
     public function fc_eliminarintegrantes(Request $request){
@@ -60,13 +64,68 @@ class c_integrantes extends Controller
             ->where('folio', $request->input('folio'))
             ->where('idintegrante', $request->input('idintegrante'))
             ->delete();
+            DB::table('t1_integrantesfinanciero')
+            ->where('folio', $request->input('folio'))
+            ->where('idintegrante', $request->input('idintegrante'))
+            ->delete();
+            DB::table('t1_integrantesfisicoyemocional')
+            ->where('folio', $request->input('folio'))
+            ->where('idintegrante', $request->input('idintegrante'))
+            ->delete();
+            DB::table('t1_integrantesintelectual')
+            ->where('folio', $request->input('folio'))
+            ->where('idintegrante', $request->input('idintegrante'))
+            ->delete();
+            DB::table('t1_integranteslegal')
+            ->where('folio', $request->input('folio'))
+            ->where('idintegrante', $request->input('idintegrante'))
+            ->delete();
       }
-      
-
-
-      
 
   return response()->json(['message' =>  $integrantehogar]);
   }
+
+  public function fc_finalizarintegrantes(Request $request){
+      $now = Carbon::now();
+      $folio = $request->input('folio');
+      $linea = 100;  // poner linea 
+      $paso = 10000;  // poner paso
+      $usuario = $request->input('usuario'); // Este campo no es clave primaria
+
+      // Datos a insertar o actualizar
+      $data = [
+          'folio' => $folio,
+          'linea' => $linea,
+          'paso' => $paso,
+          'usuario' => $usuario,
+          'estado' => 1,
+          'sincro' => 0,
+          'updated_at' => $now
+      ];
+
+      // Verificar si el registro existe
+      $exists = DB::table('dbmetodologia.t1_pasosvisita')
+          ->where('folio', $folio)
+          ->where('linea', $linea)
+          ->where('paso', $paso)
+          ->exists();
+
+      if (!$exists) {
+          // Si no existe, agregar created_at
+          $data['created_at'] = $now;
+      }
+
+      // Usar updateOrInsert para guardar o actualizar el registro, sin incluir 'usuario' en las condiciones
+      DB::table('dbmetodologia.t1_pasosvisita')->updateOrInsert(
+          [
+              'folio' => $folio,
+              'linea' => $linea,
+              'paso' => $paso,
+          ],
+          $data
+      );
+      return response()->json(['message' =>  'ok']);
+  }
+  
 
 }

@@ -159,7 +159,7 @@
             </div>
               <div class="text-end col">
                 <button class="btn btn-outline-success" type="submit">Guardar</button>
-                <div class="btn btn-outline-primary" id="volver" style="display:none">Siguiente</div>
+                <div class="btn btn-outline-primary" id="volver" style="display:none">Finalizar</div>
               </div>
           </div>
         </form> 
@@ -448,8 +448,43 @@ paginacargando();
       }); 
  
       $('#volver').click(function(){
-        window.location.href="../rombointegrantes/<?= $variable ?>" 
+
+        $.ajax({
+            url: '../verficarestadosdehogar',
+            data: { folio: '{{decrypt($variable)}}' },
+            method: "GET",
+            dataType: 'JSON',
+            success: function(data) {
+              if(data.resultado = '1'){
+                  $.ajax({
+                    url: '../agregarpasohogar',
+                    data: { folio: '{{decrypt($variable)}}', usuario:'{{ Session::get('cedula') }}' },
+                    method: "GET",
+                    dataType: 'JSON',
+                    success: function(data) {
+                      window.location.href="../rombointegrantes/<?= $variable ?>" 
+                      console.log(data);
+                    },
+                    error: function(xhr, status, error) {
+                      console.log(xhr.responseText);
+                    }
+                  });
+              }else{
+                Swal.fire({
+                                  icon: "error",
+                                  title: "Verifica que los modulos esten completos y guardados antes de continuar",
+                                  text: "Revisa por favor",
+                                  footer: ''
+                                });
+              }
+           
+            },
+            error: function(xhr, status, error) {
+              console.log(xhr.responseText);
+            }
+          });
       }); 
+
        $('#conformacionfamiliarmenu').click(function(){
           window.location.href="../encuestahogarconformacionfamiliar/<?= $variable ?>"
        });

@@ -38,6 +38,20 @@ class m_integrantes extends Model
         return $resultado;
     }
 
+
+
+    public function m_veredadrepjefe($folio)
+    {
+        // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
+        $resultado = DB::select('SELECT 
+     CASE WHEN EXISTS (SELECT 1 FROM t1_integranteshogar WHERE edad >= 18 AND folio  ="'.$folio.'") THEN 1 ELSE 0 END AS edad_mayor_igual_18,
+    CASE WHEN EXISTS (SELECT 1 FROM t1_integranteshogar WHERE jefedelhogar = 1 AND folio ="'.$folio.'") THEN 1 ELSE 0 END AS es_jefe_hogar,
+    CASE WHEN EXISTS (SELECT 1 FROM t1_integranteshogar WHERE representante = 1 AND folio ="'.$folio.'") THEN 1 ELSE 0 END AS es_representante
+;');
+
+        return $resultado;
+    }
+
     public function m_verestados($folio)
     {
         // Utilizando el Query Builder de Laravel para ejecutar el stored procedure

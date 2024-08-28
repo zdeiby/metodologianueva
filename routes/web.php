@@ -68,6 +68,11 @@ Route::get('/leerpreguntashogarentornofamiliar',[c_l1e1::class, 'fc_leerpregunta
 Route::get('/verbarrios',[c_l1e1::class, 'fc_verbarrios'])->name('verbarrios');
 
 Route::get('/agregarpasoencuadre',[c_rombointegrantes::class,'fc_agregarpasoencuadre'])->name('agregarpasoencuadre');
+Route::get('/finalizarintegrantes',[c_integrantes::class,'fc_finalizarintegrantes'])->name('finalizarintegrantes');
+Route::get('/agregarpasohogar',[c_l1e1::class,'fc_agregarpasohogar'])->name('agregarpasohogar');
+Route::get('/verficarestadosdehogar',[c_l1e1::class,'fc_verficarestadosdehogar'])->name('verficarestadosdehogar');
+Route::get('/agregarpasoresultado',[c_rombointegrantes::class,'fc_agregarpasoresultado'])->name('agregarpasoresultado');
+
 
 
 Route::get('/register',[c_register::class,'fc_register'])->name('register');
