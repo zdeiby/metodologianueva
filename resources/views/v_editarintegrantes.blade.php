@@ -198,7 +198,7 @@
             </div>
             <div class="col-md-12" id="documentodiv" >
             <label for="validationServer04" class="form-label">¿cuál es el número de tu documento?</label>
-            <input type="number" class="form-control form-control-sm "  name="documento"  id="documento" value="" >
+            <input type="text" class="form-control form-control-sm "  name="documento"  id="documento" value="" >
           </div>
           <div class="col-md-6" id="telefonodiv" >
             <label for="validationServer04" class="form-label">Telefono</label>
