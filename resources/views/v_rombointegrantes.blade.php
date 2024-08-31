@@ -242,7 +242,28 @@ body {
 
 
       <!-- 5ta tarjeta -->
-
+   <!-- 4ta tarjeta -->
+   <div class="swiper-slide">
+        <div class="card_wrapper">
+          <div class="card">
+            <div class="content">
+              <div class="front">
+                <img src="{{ asset('assets/img/iconos/card5.jpg')}}" alt="" />
+              </div>
+              <div class="back">
+                <div class="middle">
+                  <h3>
+                    <label>Encuesta QT</label>
+                  </h3>
+             </div>  
+             <button type="button" class="btn btn-primary" id="resultadoencuesta" onclick="window.location.href='../cardsqt/{{$foliocodificado}}'" <?=($existel100p1000 == '1' && $existel100p10000 == '1'  && $existel100p100000 == '1' && $existel100p1000000 == '1'  )?'':'disabled'?> >Ir a QT</button>
+             <div class="smCard">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Agregar más swiper-slide según sea necesario -->
        <!-- Segunda tarjeta -->
@@ -265,8 +286,8 @@ body {
               </div>
             </div>
           </div>
-        </div> -->
-      </div>
+        </div>
+      </div> -->
       <!-- Agregar más swiper-slide según sea necesario -->
        <!-- Segunda tarjeta -->
        <!-- <div class="swiper-slide">

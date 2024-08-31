@@ -13,9 +13,14 @@ use App\Http\Controllers\c_integrantes;
 use App\Http\Controllers\c_editarintegrantes;
 use App\Http\Controllers\c_encuestaintegrantes;
 use App\Http\Controllers\vistaslineas\c_l1e1;
-use App\Http\Controllers\c_sincronizacion;
+use App\Http\Controllers\c_sincronizacion; 
+use App\Http\Controllers\c_cardsqt;
+use App\Http\Controllers\formularioqt\c_encuestaintegrantesqt;
 
 //RUTAS GET
+
+
+
 Route::get('/',[c_index::class, 'fc_index'])->name('index');
 Route::get('/leerintegrantes',[c_integrantes::class,'fc_leerintegrantes'])->name('leerintegrantes');
 Route::get('/eliminarintegrantes',[c_integrantes::class, 'fc_eliminarintegrantes'])->name('eliminarintegrantes');
@@ -84,7 +89,7 @@ Route::get('/encuestahogaralimentos/{lineaestacion}',[c_l1e1::class,'fc_encuesta
 Route::get('/rombo/{folio}',[c_rombo::class,'fc_rombo'])->name('rombo');
 Route::get('/rombointegrantes/{folio}',[c_rombointegrantes::class,'fc_rombointegrantes'])->name('rombointegrantes');
 Route::get('/integrantes/{folio}',[c_integrantes::class,'fc_integrantes'])->name('integrantes');
-
+Route::get('/cardsqt/{folio}',[c_cardsqt::class,'fc_cardsqt'])->name('cardsqt');
 
 
 
@@ -103,7 +108,14 @@ Route::post('/logout', [c_session::class,'borrarcookies'])->name('logout');
 
 
 //rutas de la sincronización
-
 // Incluir las rutas principales
 require __DIR__.'/sincroabajo.php'; // rutas para la sincronizacion abajo busca las rutas en routes/sincroarriba.php
 require __DIR__.'/sincroarriba.php'; // rutas para la sincronizacion arriba   busca las rutas en routes/sincroarriba.php
+
+
+
+// RUTAS PARA LA QT
+
+Route::get('/bienestarsaludemocionalqt/{folio}/{idintegrante}',[c_encuestaintegrantesqt::class, 'fc_bienestarsaludemocionalqt'])->name('bienestarsaludemocionalqt');
+Route::get('/guardarsaludemocionalqt',[c_encuestaintegrantesqt::class, 'fc_guardarsaludemocionalqt'])->name('guardarsaludemocionalqt');
+Route::get('/leerintegrantesqt',[c_cardsqt::class,'fc_leerintegrantesqt'])->name('leerintegrantesqt');

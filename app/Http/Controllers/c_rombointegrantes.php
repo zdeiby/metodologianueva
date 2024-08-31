@@ -6,10 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Hashids\Hashids;
+
 
 class c_rombointegrantes extends Controller
 {
     public function fc_rombointegrantes(Request $request, $folio){
+        $folioDesencriptado = decrypt($folio);
+        $hashids = new Hashids('', 10); 
+        $foliocodificado = $hashids->encode($folioDesencriptado);
+        
       $folioDesencriptado = decrypt($folio);
       $linea='100';
       $paso1000='1000';
@@ -37,7 +43,7 @@ class c_rombointegrantes extends Controller
       ->where('paso', $paso1000000)
       ->exists();
 
-        return view('v_rombointegrantes',["variable"=>$folio,  'existel100p1000' => $existel100p1000 ? 1 : 0 , 'existel100p10000' => $existel100p10000 ? 1 : 0, 
+        return view('v_rombointegrantes',["variable"=>$folio, 'foliocodificado'=>$foliocodificado,  'existel100p1000' => $existel100p1000 ? 1 : 0 , 'existel100p10000' => $existel100p10000 ? 1 : 0, 
       'existel100p100000' => $existel100p100000 ? 1 : 0, 'existel100p1000000' => $existel100p1000000 ? 1 : 0]);
       }
 
