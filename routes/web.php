@@ -117,5 +117,11 @@ require __DIR__.'/sincroarriba.php'; // rutas para la sincronizacion arriba   bu
 // RUTAS PARA LA QT
 
 Route::get('/bienestarsaludemocionalqt/{folio}/{idintegrante}',[c_encuestaintegrantesqt::class, 'fc_bienestarsaludemocionalqt'])->name('bienestarsaludemocionalqt');
-Route::get('/guardarsaludemocionalqt',[c_encuestaintegrantesqt::class, 'fc_guardarsaludemocionalqt'])->name('guardarsaludemocionalqt');
+Route::get('/legalqt/{folio}/{idintegrante}',[c_encuestaintegrantesqt::class, 'fc_legalqt'])->name('legalqt');
+Route::get('/enfamiliaqt/{folio}/{idintegrante}',[c_encuestaintegrantesqt::class, 'fc_enfamiliaqt'])->name('enfamiliaqt');
+Route::get('/intelectualqt/{folio}/{idintegrante}',[c_encuestaintegrantesqt::class, 'fc_intelectualqt'])->name('intelectualqt');
+Route::get('/financieroqt/{folio}/{idintegrante}',[c_encuestaintegrantesqt::class, 'fc_financieroqt'])->name('financieroqt');
+
+
+Route::get('/guardarformularioqt',[c_encuestaintegrantesqt::class, 'fc_guardarformularioqt'])->name('guardarformularioqt');
 Route::get('/leerintegrantesqt',[c_cardsqt::class,'fc_leerintegrantesqt'])->name('leerintegrantesqt');

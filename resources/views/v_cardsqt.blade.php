@@ -16,7 +16,11 @@
   <div class="accordion-item" id="l1e1">
     <div class="accordion-header" id="headingOne">
       <div class="accordion-button d-flex justify-content-between align-items-center" >
-        <span class="badge bg-primary" id="">CATEGORIAS DE BIENESTAR HERRAMIENTA QT</span>  <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $variable }}"    >folio: {{ $variable }}</span>
+        <div>
+        <span class="badge bg-primary" id="">CATEGORIAS DE BIENESTAR HERRAMIENTA QT</span> 
+        <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $variable }}">folio: {{ $variable }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="badge bg-success ms-auto" style="background:#a80a85 !important; cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver QT del hogar</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
       </div>
       <!-- <div class="progress">
         <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -51,9 +55,7 @@
             <div class="text-start col-5">
                 <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
                 </div>
-          <div class=" col">
-          <button type="button" class="btn btn-outline-primary" onclick="agregarintegrantes()">Agregar integrante</button>
-          </div>
+          
           <div class=" col">
           <button type="button" class="btn btn-outline-primary" id="finalizarboton" style="display:none">Finalizar</button>
           </div>
@@ -66,7 +68,110 @@
 
     </div>
 
-
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="isticky-top">
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <label style="font-size:20px;color:#0dcaf0">Categorías priorizadas por el hogar con mayor vulnerabilidad</label>
+          <hr>
+        </div>
+              <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
+                                  <!-- Primera columna -->
+                                  <div style="flex: 1;">
+                                      <table style="width: 100%;border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
+                                          <tr >
+                                              <td style="width: 30%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR EN FAMILIA</td>
+                                              <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
+                                              <td style="width: 50%;background-color: #1E293A; color: white;" >
+                                                <div class="progress" style="height: 20px;">
+                                                  <div class="progress-bar" role="progressbar" style="width: 10%; background-color: #FEC108;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">10%</div>
+                                                </div> 
+                                              </td>
+                                              <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
+                                          </tr>
+                                      </table>
+                                  </div>
+                                  </div>
+                                  <!-- Segunda columna -->
+                                  <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
+ 
+                                      <div style="flex: 1;">
+                                      <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
+                                          <tr >
+                                              <td style="width: 30%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR FINANCIERO</td>
+                                              <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
+                                              <td style="width: 50%;background-color: #1E293A; color: white;" >
+                                              <div class="progress" style="height: 20px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #FEC108;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">60%</div>
+                                              </div>
+                                              </td>
+                                              <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
+                                          </tr>
+                                      </table>
+                                  </div>
+                              </div>
+                          <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
+                              <!-- Primera columna -->
+                              <div style="flex: 1;">
+                                  <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
+                                      <tr >
+                                          <td style="width: 30%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR INTELECTUAL</td>
+                                          <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
+                                          <td style="width: 50%;background-color: #1E293A; color: white;" >
+                                          <div class="progress" style="height: 20px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 10%; background-color: #FEC108;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">10%</div>
+                                              </div>
+                                          </td>
+                                          <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
+                                      </tr>
+                                  </table>
+                              </div>
+                              </div>
+                                  <!-- Segunda columna -->
+                                <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
+                                  <div style="flex: 1;">
+                                      <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
+                                          <tr >
+                                              <td style="width: 30%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR PARA LA SALUD FISICA Y EMOCIONAL</td>
+                                              <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
+                                              <td style="width: 50%;background-color: #1E293A; color: white;" >
+                                              <div class="progress" style="height: 20px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 50%; background-color: #FEC108;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">50%</div>
+                                              </div>
+                                              </td>
+                                              <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
+                                          </tr>
+                                      </table>
+                                  </div>
+                              </div>
+                              <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
+                                  <!-- Primera columna -->
+                                  <div style="flex: 1;">
+                                      <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;" class="container">
+                                          <tr >
+                                              <td style="width: 30%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR LEGAL</td>
+                                              <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
+                                              <td style="width: 50%;background-color: #1E293A; color: white;" >
+                                              <div class="progress" style="height: 20px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #FEC108;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                                              </div>
+                                              </td>
+                                              <td style="width: 15%;   text-align: center;font-size:12px"> 100%</td>
+                                          </tr>
+                                      </table>
+                                  </div>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saludoencuadre">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <input style="display:none" type="text" value="{{$folioencriptado}}" id="folioencriptado">
 

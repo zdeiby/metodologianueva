@@ -1,6 +1,6 @@
 @extends('componentes.navlateral')
 
-@section('title', 'encuestaintegrantes')
+@section('title', 'Legal qt')
 
 @section('content')
 <!-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" >  -->
@@ -31,12 +31,11 @@
         <div class="accordion-item" id="l1e1">
             <div class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              <div>
-                <span class="badge bg-primary" id=""  style="font-size:15px">ENCUESTA INTEGRANTES</span>
-                <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
-                <span class="badge bg-warning ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">Idintegrante: {{ $integrante }}</span>
-              </div>
-            
+            <div>
+              <span class="badge bg-primary" id=""  style="font-size:15px">ENCUESTA INTEGRANTES</span>
+             <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
+             <span class="badge bg-warning ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">Idintegrante: {{ $integrante }}</span>
+            </div>
             </button>
     <br>
         </div>
@@ -54,17 +53,17 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">BIENESTAR SALUD-EMOCIONAL
+        <a id="bienestarsaludemocionalqt" class="nav-link ">BIENESTAR SALUD-EMOCIONAL
         </a>
       </li>
   <li class="nav-item" role="presentation" style="cursor:pointer">
-    <a id="legalqt"  class="nav-link " >BIENESTAR LEGAL</a>
+    <a id="legalqt"  class="nav-link" >BIENESTAR LEGAL</a>
   </li>
   <li class="nav-item" role="presentation"  style="cursor:pointer">
     <a id="enfamiliaqt"  class="nav-link " >BIENESTAR EN FAMILIA</a>
   </li>
   <li class="nav-item" role="presentation"  style="cursor:pointer">
-    <a id="intelectualqt"  class="nav-link ">BIENESTAR INTELECTUAL</a>
+    <a id="intelectualqt"  class="nav-link active">BIENESTAR INTELECTUAL</a>
   </li>
   <li class="nav-item" role="presentation"  style="cursor:pointer">
     <a id="financieroqt"  class="nav-link ">BIENESTAR FINANCIERO</a>
@@ -100,12 +99,12 @@
           <div class="col-md-3" style="display:none">
             <input type="text" placeholder="usuario" class="form-control form-control-sm  " id="usuario" name="usuario" value="{{ Session::get('cedula') }}" >
           </div>
-
           <div class="col-md-3" style="display:none">
             <input type="text" placeholder="tabla" class="form-control form-control-sm  " id="tabla" name="tabla" value="{{$tabla}}" >
           </div>
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Salud y Bienestar </span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Educación</span>
+          
           <div class="container mt-4">
   <div class="border">
     <!-- Fila de títulos -->
@@ -127,138 +126,7 @@
       </div>
     </div>
 
-    <!-- Fila de contenido -->
-    <div class="row g-0">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom">
-        <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="row g-0">
-          <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
-          </div>
-          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
-            </div>
-          </div>
-        </div>
-        <div class="row g-0">
-          <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
-          </div>
-          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
-            </div>
-          </div>
-        </div>
-        <div class="row g-0">
-          <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
-          </div>
-          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch ">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-
-
- <!-- Fila de contenido -->
- <div class="row g-0">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
-        <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="row g-0">
-          <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
-          </div>
-          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
-            </div>
-          </div>
-        </div>
-        <div class="row g-0">
-          <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
-          </div>
-          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
-            </div>
-          </div>
-        </div>
-        <div class="row g-0">
-          <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
-          </div>
-          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
- <!-- Fila de contenido -->
- <div class="row g-0">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
-        <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="row g-0">
-          <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
-          </div>
-          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
-            </div>
-          </div>
-        </div>
-        <div class="row g-0">
-          <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
-          </div>
-          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
-            </div>
-          </div>
-        </div>
-        <div class="row g-0">
-          <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
-          </div>
-          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+   
      <!-- Fila de contenido -->
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
@@ -385,8 +253,78 @@
 </div>
 
 
+
+
 <!-- LOGRO -->
-<span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">Nutrición</span>
+<span class="badge bg-success" id="" style="font-size:15px; ">Alfabetización digital</span>
+
+<div class="container mt-4">
+  <div class="border">
+    <!-- Fila de títulos -->
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+        <div class="p-2 text-center">
+          INDICADOR
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2 text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+            QUIERO Y NO TENGO
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+            <label for="">SI / NO</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+        <div class="p-2">
+          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- LOGRO -->
+<span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">Educación Postsecundaria</span>
 
 
 <div class="container mt-4">
@@ -450,7 +388,48 @@
         </div>
       </div>
       </div>
-     
+      <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+        <div class="p-2">
+          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
 
 
   </div>
@@ -458,10 +437,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
           <hr>
           <div class="row">  
             <div class="text-start col">
-            <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
+            <div class="btn btn-outline-success" onclick="volversaludemocional()">Volver</div>
             </div>
             <div class="text-end col">
             <button class="btn btn-outline-success" type="submit">Guardar</button>
@@ -478,6 +466,36 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          Selecciona un avatar     
+        </div>
+      <div class="modal-body">
+      <img src="{{asset('avatares/1.png')}}" id="1" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('1')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/2.png')}}" id="2" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('2')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/3.png')}}" id="3" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('3')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/4.png')}}" id="4" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('4')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/5.png')}}" id="5" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('5')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/6.png')}}" id="6" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('6')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/7.png')}}" id="7" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('7')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/8.png')}}" id="8" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('8')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/9.png')}}" id="9" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('9')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/10.png')}}" id="10" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('10')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/11.png')}}" id="11" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('11')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/12.png')}}" id="12" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('12')" alt="Avatar" style="width: 150px; height: 150px;">
+      <img src="{{asset('avatares/13.png')}}" id="13" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('13')" alt="Avatar" style="width: 150px; height: 150px;">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" onclick="cargarImagen()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
  
     </div>
@@ -488,22 +506,44 @@
     
 
 
+    function agregarImagen(id){
+      $(`#${id}`).addClass('imagenselect');
+      for (let index = 0; index < 14; index++) {
+        if(id == index){
+            localStorage.setItem('numimage',id)
+        }else{
+          $(`#${index}`).removeClass('imagenselect');
+        }
+      }
+    }
 
-      $('#siguiente').click(function(){
-        var url = "../../legalqt/<?= $variable ?>/<?= $integrantecodificado ?>"; window.location.href = url;
-      }); 
-      function redirectToIntegrantes() {
-           var folio = `<?=$variable ?>`;
-           var url = "../../cardsqt/:folio";
-           url = url.replace(':folio', folio);
-           window.location.href = url;
-       }
+    function cargarImagen(){
+      imagen=localStorage.getItem('numimage');
+      folio=localStorage.getItem('folio');
+      idintegrante=localStorage.getItem('idintegrante');
+      $.ajax({
+        url:'./guardaravatar',
+        data:{folio:folio, idintegrante:idintegrante, avatar:imagen},
+        method: "GET",
+        dataType:'JSON',
+        success:function(data){
+          $('#imagenDinamica').attr('src',`../public/avatares/${imagen}.png`);
+          localStorage.setItem('imagen',`../public/avatares/${imagen}.png`)
+          $('#exampleModal').modal('hide');
+        },
+        error: function(xhr, status, error) {
+                  console.log(xhr.responseText);
+              }
+      })
+    }
     
-
-
-      $('#volver').click(function(){
-        redirectToIntegrantes()
+    $('#siguiente').click(function(){
+        var url = "../../financieroqt/<?= $variable ?>/<?= $integrantecodificado ?>"; window.location.href = url;
       });
+
+      function volversaludemocional() {
+          var url = "../../enfamiliaqt/<?= $variable ?>/<?= $integrantecodificado ?>"; window.location.href = url;
+       }
 
 
       $('#bienestarsaludemocionalqt').click(function(){var url = "../../bienestarsaludemocionalqt/<?= $variable ?>/<?= $integrantecodificado ?>"; window.location.href = url;})
@@ -512,36 +552,38 @@
     $('#intelectualqt').click(function(){var url = "../../intelectualqt/<?= $variable ?>/<?= $integrantecodificado ?>"; window.location.href = url;})
     $('#financieroqt').click(function(){var url = "../../financieroqt/<?= $variable ?>/<?= $integrantecodificado ?>"; window.location.href = url;})
 
+
       
 
-       $(document).ready(function() {
+    $(document).ready(function() {
      
-        $('#formulario').on('submit', function(event) {
-            event.preventDefault(); // Detiene el envío del formulario
-            
-            var formData = $(this).serializeArray();
-            var data = {};
-            $(formData).each(function(index, obj) {
-                data[obj.name] = obj.value;
-            });
+     $('#formulario').on('submit', function(event) {
+         event.preventDefault(); // Detiene el envío del formulario
+         
+         var formData = $(this).serializeArray();
+         var data = {};
+         $(formData).each(function(index, obj) {
+             data[obj.name] = obj.value;
+         });
 
-            console.log(data);
+         console.log(data);
 
-            $.ajax({
-                url: '../../guardarformularioqt',
-                method: 'GET', // Cambiar a GET si estás usando GET
-                data: data, // Envía los datos de manera plana
-                success: function(response) {
-                  $('#siguiente').css('display','');
-                    alertagood();
-                },
-                error: function(xhr, status, error) {
-                    alertabad();
-                    console.error(error);
-                }
-            });
-        });
+         $.ajax({
+             url: '../../guardarformularioqt',
+             method: 'GET', // Cambiar a GET si estás usando GET
+             data: data, // Envía los datos de manera plana
+             success: function(response) {
+              $('#siguiente').css('display','');
+                 alertagood();
+             },
+             error: function(xhr, status, error) {
+                 alertabad();
+                 console.error(error);
+             }
+         });
+     });
 });
+
 
 
     </script>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\m_integrantes;
+use App\Models\m_cards;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Hashids\Hashids;
@@ -12,7 +12,7 @@ use Hashids\Hashids;
 class c_cardsqt extends Controller
 {
     public function fc_cardsqt(Request $request, $folio){
-      $modelo= new m_integrantes();
+      $modelo= new m_cards();
       $hashids = new Hashids('', 10); 
       $decodeFolio = $hashids->decode($folio);
       $jefes=$modelo-> m_veredadrepjefe($decodeFolio[0]);
@@ -22,7 +22,7 @@ class c_cardsqt extends Controller
     public function fc_leerintegrantesqt(Request $request){
         $folio=$request->input('folio');
         $folioencriptado=$request->input('folioencriptado');
-        $modelo= new m_integrantes();
+        $modelo= new m_cards();
         $integrantes=$modelo-> m_leerintegrantes($folio);
         
         $hashids = new Hashids('', 10); 
@@ -55,18 +55,18 @@ class c_cardsqt extends Controller
             <tr id="' . $collapseId . '" class="collapse" aria-labelledby="' . $headingId . '" data-bs-parent="#accordionExample" class="bg-light" style="border:1px solid #343a40">
                 <td colspan="5" class="align-middle" >
                     <!-- Contenido desplegable aquí -->
-                        <div style="display: flex; justify-content: space-between; gap: 20px;" >
+                        <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
                             <!-- Primera columna -->
                              <div style="flex: 1;">
                                 <table style="width: 100%;border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
                                     <tr >
-                                        <td style="width: 40%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR EN FAMILIA</td>
+                                        <td style="width: 32%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR EN FAMILIA</td>
                                         <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
                                         <td style="width: 50%;background-color: #1E293A; color: white;" >
-                                            <div style="display: flex; height: 20px; ">
-                                                <div style="width: 10%; background-color: #F69331;"></div>
-                                                <div style="flex: 1; background-color: #FFFFFF;"></div> &nbsp; 
-                                            </div>
+                                           <div class="progress" style="height: 20px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 10%; background-color: #F69331;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+                                                <div class="progress-bar bg-white" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div> 
                                         </td>
                                         <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
                                     </tr>
@@ -78,32 +78,32 @@ class c_cardsqt extends Controller
                                 <div style="flex: 1;">
                                 <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
                                     <tr >
-                                        <td style="width: 40%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR FINANCIERO</td>
+                                        <td style="width: 32%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR FINANCIERO</td>
                                         <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
                                         <td style="width: 50%;background-color: #1E293A; color: white;" >
-                                            <div style="display: flex; height: 20px; ">
-                                                <div style="width: 10%; background-color: #F69331;"></div>
-                                                <div style="flex: 1; background-color: #FFFFFF;"></div> &nbsp; 
-                                            </div>
+                                              <div class="progress" style="height: 20px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 10%; background-color: #F69331;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+                                                <div class="progress-bar bg-white" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div> 
                                         </td>
                                         <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
                                     </tr>
                                 </table>
                             </div>
-                        </div><br>
-                    <div style="display: flex; justify-content: space-between; gap: 20px;">
+                        </div>
+                    <div style="display: flex; justify-content: space-between; gap: 20px;"class="mb-2">
                         <!-- Primera columna -->
                         <div style="flex: 1;">
                             <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
                                 <tr >
-                                    <td style="width: 40%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR INTELECTUAL   
+                                    <td style="width: 32%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR INTELECTUAL   
                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
                                     <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
                                     <td style="width: 50%;background-color: #1E293A; color: white;" >
-                                        <div style="display: flex; height: 20px; ">
-                                            <div style="width: 10%; background-color: #F69331;"></div>
-                                            <div style="flex: 1; background-color: #FFFFFF;"></div> &nbsp; 
-                                        </div>
+                                          <div class="progress" style="height: 20px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 10%; background-color: #F69331;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+                                                <div class="progress-bar bg-white" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div> 
                                     </td>
                                     <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
                                 </tr>
@@ -114,31 +114,30 @@ class c_cardsqt extends Controller
                             <div style="flex: 1;">
                                 <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
                                     <tr >
-                                        <td style="width: 40%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR PARA LA SALUD FISICA Y EMOCIONAL</td>
+                                        <td style="width: 32%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR PARA LA SALUD FISICA Y EMOCIONAL</td>
                                         <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
                                         <td style="width: 50%;background-color: #1E293A; color: white;" >
-                                            <div style="display: flex; height: 20px; ">
-                                                <div style="width: 10%; background-color: #F69331;"></div>
-                                                <div style="flex: 1; background-color: #FFFFFF;"></div> &nbsp; 
-                                            </div>
+                                              <div class="progress" style="height: 20px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 10%; background-color: #F69331;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+                                                <div class="progress-bar bg-white" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div> 
                                         </td>
                                         <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
                                     </tr>
                                 </table>
                             </div>
-                        </div><br>
-                        <div style="display: flex; justify-content: space-between; gap: 20px;">
+                        </div>
+                        <div style="display: flex; justify-content: space-between; gap: 20px;"class="mb-2">
                             <!-- Primera columna -->
                             <div style="flex: 1;">
                                 <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;" class="container">
                                     <tr >
-                                        <td style="width: 40%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR LEGAL</td>
+                                        <td style="width: 32%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR LEGAL</td>
                                         <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
                                         <td style="width: 50%;background-color: #1E293A; color: white;" >
-                                            <div style="display: flex; height: 20px; ">
-                                                <div style="width: 10%; background-color: #F69331;"></div>
-                                                <div style="flex: 1; background-color: #FFFFFF;"></div>&nbsp; 
-                                            </div>
+                                            <div class="progress" style="height: 20px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #F69331;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                                              </div> 
                                         </td>
                                         <td style="width: 15%;   text-align: center;font-size:12px"> 100%</td>
                                     </tr>
@@ -146,7 +145,7 @@ class c_cardsqt extends Controller
                             </div>
     
                                
-                            </div><br>
+                            </div>
                     <div style="display: flex; justify-content: space-between; gap: 20px;">
 
     
