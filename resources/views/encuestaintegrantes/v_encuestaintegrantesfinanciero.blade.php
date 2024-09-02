@@ -228,7 +228,7 @@
     $('#ingresos1').change(function(){
              //menor de 14 y opcion sí
 
-              if($('#ingresos1').val() == '134' && parseInt($('#edadintegrante').val()) <= '14'){
+              if($('#ingresos1').val() == '134' && parseInt($('#edadintegrante').val()) <= '17'){
               $('.trabajoinfantil137').css('display','');
               $('#trabajoinfantil137').css('display','');
               $('.trabajoinfantil138').css('display','');
@@ -1637,7 +1637,7 @@ console.log(edad)
 
 
                 
-              if($('#ingresos1').val() == '134' && parseInt($('#edadintegrante').val()) <= '14'){
+              if($('#ingresos1').val() == '134' && parseInt($('#edadintegrante').val()) <= '17'){
               $('.trabajoinfantil137').css('display','');
               $('#trabajoinfantil137').css('display','');
               $('.trabajoinfantil138').css('display','');

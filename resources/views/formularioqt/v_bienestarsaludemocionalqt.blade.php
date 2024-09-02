@@ -141,7 +141,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse1_1" id="indicadorbse1_1" value="NO" >
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse1_2" id="indicadorbse1_2" value="NO" >
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch ">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse1_3" id="indicadorbse1_3" value="NO" >
             </div>
           </div>
         </div>
@@ -187,7 +187,7 @@
              Reconocer la importancia del acceso a  programas de promoción y prevención en salud a través de la  eps 
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse2_1" id="indicadorbse2_1" value="NO" >
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse2_2" id="indicadorbse2_2" value="NO" >
             </div>
           </div>
         </div>
@@ -207,7 +207,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse2_3" id="indicadorbse2_3" value="NO" >
             </div>
           </div>
         </div>
@@ -231,7 +231,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse3_1" id="indicadorbse3_1" value="NO" >
             </div>
           </div>
         </div>
@@ -241,7 +241,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse3_2" id="indicadorbse3_2" value="NO" >
             </div>
           </div>
         </div>
@@ -251,7 +251,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse3_3" id="indicadorbse3_3" value="NO" >
             </div>
           </div>
         </div>
@@ -272,7 +272,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse4_1" id="indicadorbse4_1" value="NO" >
             </div>
           </div>
         </div>
@@ -282,7 +282,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse4_2" id="indicadorbse4_2" value="NO" >
             </div>
           </div>
         </div>
@@ -292,7 +292,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse4_3" id="indicadorbse4_3" value="NO" >
             </div>
           </div>
         </div>
@@ -313,7 +313,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse5_1" id="indicadorbse5_1" value="NO" >
             </div>
           </div>
         </div>
@@ -323,7 +323,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse5_2" id="indicadorbse5_2" value="NO" >
             </div>
           </div>
         </div>
@@ -333,7 +333,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse5_3" id="indicadorbse5_3" value="NO" >
             </div>
           </div>
         </div>
@@ -354,7 +354,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse6_1" id="indicadorbse6_1" value="NO" >
             </div>
           </div>
         </div>
@@ -364,7 +364,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse6_2" id="indicadorbse6_2" value="NO" >
             </div>
           </div>
         </div>
@@ -374,7 +374,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse6_3" id="indicadorbse6_3" value="NO" >
             </div>
           </div>
         </div>
@@ -423,7 +423,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse7_1" id="indicadorbse7_1" value="NO" >
             </div>
           </div>
         </div>
@@ -433,7 +433,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicadorbse7_2" id="indicadorbse7_2" value="NO" >
             </div>
           </div>
         </div>
