@@ -680,12 +680,36 @@ function reintentarfuncion(funcion, tabla){
                       $('#barracarga').html('100%');
                       $('#barracarga').css('width','100%');                      
                       actualizarTabla('t1_integranteslegal', 'Subida base de datos al servidor', '2');
-                      todook();
-                      detenerReloj();                     
+                      t1_privacion1();                   
                     },
                     error: function(xhr, status, error) {
                       actualizarTabla('t1_integranteslegal', 'Subida base de datos al servidor', '3');
                           reintentarfuncion(t1_integranteslegal, 't1_integranteslegal');
+                              console.log(xhr.responseText);
+                          }
+                  })
+  }
+
+
+
+  function t1_privacion1(){
+        actualizarTabla('t1_privacion1', 'Subida base de datos al servidor', '1');
+        let tabla= 't1_privacion1';
+    $.ajax({
+                    url:'./sincroprivaciones',
+                    method: "GET",
+                    data: { tabla: tabla},  
+                    dataType:'JSON',
+                    success:function(data){
+                      $('#barracarga').html('100%');
+                      $('#barracarga').css('width','100%');                      
+                      actualizarTabla('t1_privacion1', 'Subida base de datos al servidor', '2');
+                      todook();
+                      detenerReloj();                     
+                    },
+                    error: function(xhr, status, error) {
+                      actualizarTabla('t1_privacion1', 'Subida base de datos al servidor', '3');
+                          reintentarfuncion(t1_integranteslegal, 't1_privacion1');
                               console.log(xhr.responseText);
                           }
                   })

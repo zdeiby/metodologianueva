@@ -18,11 +18,70 @@ class c_encuestaintegrantesqt extends Controller
 // IR A LA VISTA BIENESTAR FISICO Y EMOCIONAL
 
     public function fc_bienestarsaludemocionalqt(Request $request,$folio, $integrante){
-        $tabla = 't1_saludemocionalqt';
+            $tabla = 't1_saludemocionalqt';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
             $decodeIntegrante = $hashids->decode($integrante);
-            return view('formularioqt/v_bienestarsaludemocionalqt',['variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla]);
+            $informacion = DB::table($tabla)
+            ->where('idintegrante', $decodeIntegrante)
+            ->where('folio', $encodedFolio)
+            ->get();
+
+            $datos = [
+                'indicadorbse1_1' => '',
+                'indicadorbse1_2' => '',
+                'indicadorbse1_3' => '',
+                'indicadorbse2_1' => '',
+                'indicadorbse2_2' => '',
+                'indicadorbse2_3' => '',
+                'indicadorbse3_1' => '',
+                'indicadorbse3_2' => '',
+                'indicadorbse3_3' => '',
+                'indicadorbse4_1' => '',
+                'indicadorbse4_2' => '',
+                'indicadorbse4_3' => '',
+                'indicadorbse5_1' => '',
+                'indicadorbse5_2' => '',
+                'indicadorbse5_3' => '',
+                'indicadorbse6_1' => '',
+                'indicadorbse6_2' => '',
+                'indicadorbse6_3' => '',
+                'indicadorbse7_1' => '',
+                'indicadorbse7_2' => '',
+                'siguiente' => 'style="display:none"'
+            ];
+            
+            foreach ($informacion as $registro) {
+                // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
+                $datos['indicadorbse1_1'] = $registro->indicadorbse1_1;
+                $datos['indicadorbse1_2'] = $registro->indicadorbse1_2;
+                $datos['indicadorbse1_3'] = $registro->indicadorbse1_3;
+                $datos['indicadorbse2_1'] = $registro->indicadorbse2_1;
+                $datos['indicadorbse2_2'] = $registro->indicadorbse2_2;
+                $datos['indicadorbse2_3'] = $registro->indicadorbse2_3;
+                $datos['indicadorbse3_1'] = $registro->indicadorbse3_1;
+                $datos['indicadorbse3_2'] = $registro->indicadorbse3_2;
+                $datos['indicadorbse3_3'] = $registro->indicadorbse3_3;
+                $datos['indicadorbse4_1'] = $registro->indicadorbse4_1;
+                $datos['indicadorbse4_2'] = $registro->indicadorbse4_2;
+                $datos['indicadorbse4_3'] = $registro->indicadorbse4_3;
+                $datos['indicadorbse5_1'] = $registro->indicadorbse5_1;
+                $datos['indicadorbse5_2'] = $registro->indicadorbse5_2;
+                $datos['indicadorbse5_3'] = $registro->indicadorbse5_3;
+                $datos['indicadorbse6_1'] = $registro->indicadorbse6_1;
+                $datos['indicadorbse6_2'] = $registro->indicadorbse6_2;
+                $datos['indicadorbse6_3'] = $registro->indicadorbse6_3;
+                $datos['indicadorbse7_1'] = $registro->indicadorbse7_1;
+                $datos['indicadorbse7_2'] = $registro->indicadorbse7_2;
+
+                $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
+
+
+            }
+            
+            
+
+            return view('formularioqt/v_bienestarsaludemocionalqt',  $datos,['variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla]);
     }
 
 

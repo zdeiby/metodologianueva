@@ -90,6 +90,40 @@ public function fc_t1_principalhogar()
 }
 
 
+
+
+
+public function fc_sincroprivaciones(Request $request)
+{
+    $tabla = $request->input('tabla');
+     // Obtener los datos desde la tabla t1_principalhogar donde sincro = 0
+     $datos = DB::table($tabla)
+     ->where('sincro', 0) // Filtra los registros donde sincro es 0
+     ->get()
+     ->toArray(); // Convertir la colección a un array
+
+ // URL de la API que va a recibir los datos
+ $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_sincroprivaciones';
+
+ // Enviar la solicitud POST a la API con los datos obtenidos
+ $datos_con_tabla = [
+    'tabla' => $tabla, // Incluye el nombre de la tabla
+    'datos' => $datos  // Los datos obtenidos de la base de datos
+];
+ $response = Http::post($url, $datos_con_tabla);
+
+ // Manejar la respuesta de la API
+ if ($response->successful()) {
+    DB::table($tabla)
+    ->where('sincro', 0)
+    ->update(['sincro' => 1]);
+     return response()->json(['message' => 'Datos enviados con éxito', 'data' => $response->json()]);
+ } else {
+     return response()->json(['error' => 'Error al enviar datos a la API'], $response->status());
+ }
+}
+
+
 public function fc_t1_hogarcondicionesalimentarias(){ $datos = DB::table('t1_hogarcondicionesalimentarias')->where('sincro', 0) ->get()->toArray();  $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_t1_hogarcondicionesalimentarias'; $response = Http::post($url, $datos); if ($response->successful()) {  DB::table('t1_hogarcondicionesalimentarias') ->where('sincro', 0) ->update(['sincro' => 1]); return response()->json(['message' => 'Datos enviados con éxito', 'data' => $response->json()]); } else {  return response()->json(['error' => 'Error al enviar datos a la API'], $response->status()); } }
 public function fc_t1_hogarcondicioneshabitabilidad(){ $datos = DB::table('t1_hogarcondicioneshabitabilidad')->where('sincro', 0) ->get()->toArray();  $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_t1_hogarcondicioneshabitabilidad'; $response = Http::post($url, $datos); if ($response->successful()) {  DB::table('t1_hogarcondicioneshabitabilidad') ->where('sincro', 0) ->update(['sincro' => 1]); return response()->json(['message' => 'Datos enviados con éxito', 'data' => $response->json()]); } else {  return response()->json(['error' => 'Error al enviar datos a la API'], $response->status()); } }
 public function fc_t1_hogarconformacionfamiliar(){ $datos = DB::table('t1_hogarconformacionfamiliar')->where('sincro', 0) ->get()->toArray();  $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_t1_hogarconformacionfamiliar'; $response = Http::post($url, $datos); if ($response->successful()) {  DB::table('t1_hogarconformacionfamiliar') ->where('sincro', 0) ->update(['sincro' => 1]); return response()->json(['message' => 'Datos enviados con éxito', 'data' => $response->json()]); } else {  return response()->json(['error' => 'Error al enviar datos a la API'], $response->status()); } }
