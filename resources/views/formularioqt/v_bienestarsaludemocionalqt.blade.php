@@ -178,14 +178,13 @@
  <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar tienen acceso a intervenciones de promoción y prevención en salud dentro del marco del SGSSS, adaptadas a su edad
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
-          </div>
+             Reconocer la importancia del acceso a  programas de promoción y prevención en salud a través de la  eps 
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
@@ -194,7 +193,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+            Conocer los servicios,  lugares y rutas  en los que puede recibir la atención en promoción y prevención en salud
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -204,7 +203,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder oportunamente a los programas de promocion y prevención  según la necesidad 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -222,13 +221,13 @@
  <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar implementan estrategias para  reducir el estrés y  para favorecer el bienestar emocional y fisico
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Conocer  estrategias que puedan ser aplicadas para favorecer el bienestar emocional y fisico
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -238,7 +237,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Implementar estrategias de bienestar como salidas, actividades familiares, otras que contribuyen al bienestar emocional y fisico
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -248,7 +247,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Establecer habitos  para el desarrollo de actividades que favorezan el bienestar emocional y fisico
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -263,13 +262,13 @@
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Las personas con discapacidad acceden a programas y/o servicios relacionados con su tipo de discapacidad
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Conocer los servicios, programas y rutas  para personas con  discapacidad 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -279,7 +278,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Gestionar recursos y apoyo para asistir a programas para personas con discapacidad 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -289,7 +288,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a oferta cercana dirigida a personas con  discapacidad
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -304,13 +303,13 @@
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar que lo requieren acceden  a programas y/o servicios de intervención frente al consumo de sustancias psicoactivas
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Reconocer la importancia del acceso a  programas y/o servicios de intervención frente al consumo de sustancias psicoactivas
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -320,7 +319,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer programas y/o servicios de intervención frente al consumo de sustancias psicoactivas
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -330,7 +329,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a servicios de intervención por consumo SPA
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -345,13 +344,13 @@
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar que lo requieren acceden a servicios de salud mental  y/o atención psicosocial.
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Reconocer los comportamientos y situaciones que   afectan la   salud mental 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -361,7 +360,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer las  instituciones que ofrecen programas para la  atención en  salud mental  y/o rutas para atencion psicosocial 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -371,7 +370,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder de forma oportuna   a la oferta  relacionada con salud mental y/o atencion psicosocial 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -383,7 +382,7 @@
     </div>
   </div>
 </div>
-
+</div>
 
 <!-- LOGRO -->
 <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">Nutrición</span>
@@ -414,13 +413,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Todos los integrantes del hogar cuentan el  acceso y consumo oportuno de alimentos 
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Contar con los recursos economicos para el acceso y consumo oportuno de alimentos
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -430,21 +429,11 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Implementar  estrategias para contar con disponibilidad de alimentos en el hogar (intercambios, huertas..)
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
-            </div>
-          </div>
-        </div>
-        <div class="row g-0">
-          <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
-          </div>
-          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
             </div>
           </div>
         </div>

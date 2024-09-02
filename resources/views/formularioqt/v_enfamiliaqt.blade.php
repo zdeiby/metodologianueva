@@ -130,13 +130,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar implementan estrategias de disciplina positiva, fomentando el respeto mutuo y la resolución pacífica de conflictos en el entorno familiar.
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Tener espacios  de dialogo para expresar lo que sentimos
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -146,7 +146,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Utilizar estrategias para resolver las diferencias sin acudir a la violencia verbal o física
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -156,7 +156,17 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+            Implementar practicas  de crianza respetuosa
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Promoveer el reconocimiento y motivación entre los intregrantes del hogar 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -198,13 +208,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar establecen  vínculos solidarios y de comunicación para resolver necesidades especificas con sus  redes de apoyo familiares y comunitarias 
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Establecer  redes de apoyo en las que haya   confianza,  escucha y afecto.
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -214,7 +224,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Establecer  redes de apoyo para el cuidado y acompañamiento de los integrantes del hogar que lo requieran 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -224,7 +234,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Identificar redes de apoyo para el aporte de dinero, alojamiento, alimentación, indumentaria, donaciones u otros que aporten con  necesidades materiales
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -232,6 +242,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
@@ -265,13 +276,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar conocen las rutas para la prevención e intervención de la violencia intrafamiliar y las violencias basadas en género.
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Conocer las rutas de atención frente a la violencia intrafamiliar y las violencias basadas en género  
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -281,7 +292,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Reconocer los signos de alerta de la violencia intrafamiliar y las violencias basadas en género para desnaturalizarla en las relaciones familiares
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -291,7 +302,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a las rutas para la prevención e intervención de la violencia intrafamiliar y las violencias basadas en género de manera segura 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -332,13 +343,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los  integrantes del hogar participan de actividades sociales, culturales, recreativas y deportivas.
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Organizar el tiempo para participar en actividades culturales, recreativas y deportivas
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -348,7 +359,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer los espacios de ciudad que permiten aprovechar el tiempo libre
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -358,7 +369,17 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Interes por la participación en actividades culturales, recreativas y deportivas
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Acceder a servicios relacionados  de   actividades culturales, recreativas y deportivas.
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -399,13 +420,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar que realizan actividades de cuidado, acceden a programas que favorecen la apropiación de estrategias para facilitar su labor y que promuevan su bienestar emocional.  
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Motivación para participar en programas de capacitación y bienestar para cuidadores 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -415,7 +436,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer  los programas, grupos de apoyo y actividades direccionadas a cuidadores.
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -425,7 +446,17 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer  los programas, grupos de apoyo y actividades direccionadas a cuidadores.
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Contar con tiempo para participar de programas de capacitación y bienestar para cuidadores 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">

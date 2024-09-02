@@ -131,13 +131,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar con nacionalidad colombiana  tienen los documentos de identificación según su edad 
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Reconocer la  importancia de contar con el documento de identidad según la edad de cada integrante 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -147,7 +147,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer  las rutas en relación a la gestión de documentos por primera vez o duplicados 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -157,7 +157,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a las citas de forma oportuna para tramitar el documento de identidad requerido
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch ">
@@ -178,13 +178,13 @@
  <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los hombres de 18 a 49 años tienen resuelta su situación militar
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Conocer lo que dice la ley en Colombia respecto  la situación militar de las personas entre   los 18 y 49  años de edad
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -194,7 +194,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Tramitar  la libreta   con el objetivo de tener resuelta la situacion militar 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -202,16 +202,7 @@
             </div>
           </div>
         </div>
-        <div class="row g-0">
-          <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
-          </div>
-          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
-            </div>
-          </div>
-        </div>
+      
       </div>
     </div>
 
@@ -222,13 +213,13 @@
  <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        La población con enfoque diferencial etnico (afro e indígena) cuenta con  el certificado de pertenencia etnica, para su reconocimiento como comunidad y acceso  programas específicos para su desarrollo.
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Conocer la importancia y tramitar el registro en el Listado Censal para el reconocimiento como población con enfoque diferencial étnico.
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -238,7 +229,39 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer y acceder según mi necesidad a los beneficios otorgados a través de programas de inclusión en diferentes ámbitos derivados del registro como población con enfoque diferencial.
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+     <!-- Fila de contenido -->
+     <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+        <div class="p-2">
+        Las personas refugiadas, migrantes y  reciben asistencia para su regularización e identificación en el territorio nacional, facilitando su integración local y social.
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Acceso al documento que reconoce el status legal en el territorio colombiano como persona refugiada, migrante y/o retornada.
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Conocer y acceder a las redes de apoyo e instituciones que ayudan a la regularización de las personas refugiadas, migrantes y/o retornadas.
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -248,7 +271,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder de forma segura a las instituciones o autoridades que regulan la situación de las personas las personas refugiadas, migrantes y/o retornadas.
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -263,13 +286,13 @@
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Las personas con discapacidad poseen el certificado emitido por la entidad de salud competente, facilitando su reconocimiento y acceso a servicios y programas de apoyo
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Reconocer la  importancia de contar con el certificado para personas con discapacidad
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -279,7 +302,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer  como se realiza el tramite para obtener el  certificado para personas con discapacidad
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -289,7 +312,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Obtener el certificado para personas con discapacidad 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -304,13 +327,13 @@
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        La población victima del conflicto armado cuenta con RUV
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Reconocer la  importancia y beneficios de   contar el RUV
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -320,7 +343,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer  como se realiza el tramite para obtener el  RUV
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -330,48 +353,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
-          </div>
-          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-     <!-- Fila de contenido -->
-     <div class="row g-0">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
-        <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="row g-0">
-          <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
-          </div>
-          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
-            </div>
-          </div>
-        </div>
-        <div class="row g-0">
-          <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
-          </div>
-          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
-            </div>
-          </div>
-        </div>
-        <div class="row g-0">
-          <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Obtener el RUV para acceder a los beneficios o programas para población victima 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -414,13 +396,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar de 18 años o más reciben orientación para el reconocimiento de las instituciones de administración de justicia y de garantía de derechos existentes en el territorio.
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Conocer las instituciones de administración de justicia presentes en el territorio y las rutas para acceder a ellas.
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -430,7 +412,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Identificar cuáles situaciones requieren  los servicios de una institución administradora de justicia y garantia de derechos.
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -438,28 +420,19 @@
             </div>
           </div>
         </div>
-        <div class="row g-0">
-          <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
-          </div>
-          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
-            </div>
-          </div>
-        </div>
+
       </div>
       </div>
       <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        El integrante victima del  conflicto armado,  recibe acompañamiento para  el goce efectivo de sus derechos
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Reconocer las situaciones que se deben  denunciar y son motivo  de acompañamiento para población victima de conflicto armado
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -469,7 +442,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer las rutas de atención para población victima de conflicto armado
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -479,7 +452,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder de forma segura y oportuna a los mecanismos de denuncia para población victima de conflicto armado 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -491,6 +464,75 @@
     </div>
 
 
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+        <div class="p-2">
+        El hogar en situación de victimización (violencia intrafamiliar, violencia de género, abuso sexual ) recibe acompañamiento para el goce efectivo de derechos
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Reconocer las situaciones que se deben  denunciar y son motivo  de acompañamiento en hogares en situación de victimización (violencia intrafamiliar, violencia de género, abuso sexual )
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Conocer las rutas de atención para hogares en situación de victimización (violencia intrafamiliar, violencia de género, abuso sexual )
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Acceder de forma segura y oportuna a los mecanismos de denuncia para los hogares en situación de victimización (violencia intrafamiliar, violencia de género, abuso sexual )
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+        <div class="p-2">
+        Los  integrante del hogar  que lo requieren acceden a servicios de justicia según su necesidad 
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Conocer los servicios de justicia a los que se pueden acceder según la  necesidad
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Acceder a los servicios de justicia según la  necesidad
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
 
 
 

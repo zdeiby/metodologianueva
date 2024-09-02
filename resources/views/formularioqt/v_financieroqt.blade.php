@@ -131,13 +131,13 @@
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Las personas de 18 años y más que lo requieran acceden a  programas de formación, apoyo al emprendimiento e innovación, con el fin de  adquirir habilidades prácticas para iniciar y gestionar sus propios negocios.
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Motivación para  emprender por primera vez, emprender nuevamente o fortalecer el emprendimiento
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -147,7 +147,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocimiento de la oferta que favorece el emprendimiento y la innovación 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -157,7 +157,17 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a formación para el emprendimiento y la  innovación 
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Gestionar recursos para emprender 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -172,13 +182,13 @@
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar  de 18 años y más que  lo requieren  acceden a servicios de intermediación laboral 
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Identificar las empresas temporales para acceder  a  servicios de intermediación laboral
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -188,7 +198,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Capacitación en la realización de hojas de vida para acceder a servicios de intermediación laboral 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -198,7 +208,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Identificar los empleos a los cuales puedo acceder de acuerdo a mi perfil productivo
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -213,13 +223,13 @@
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Las personas de 18 años y más que lo requieren se vinculan a un empleo formal (cruce institucional, validación de gestor)
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Acceder a un  empleo de tiempo completo 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -229,7 +239,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a un  empleo de medio tiempo 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -239,7 +249,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a un empleo  remoto o de modalidad hibrida 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -352,13 +362,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        El hogar implementa un sistema de presupuesto familiar participativo, enfocado en el ahorro y la inversión responsable
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Motivación para implementar un sistema de presupuesto familiar participativo
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -368,7 +378,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Objetivos de ahorro familiar  o de inversión
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -378,7 +388,27 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Identificar  gastos fijos  en el hogar que puedan ser reducidos 
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Indentificar gastos variables en el hogar que puedan ser priorizados  
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Recibir información y/o formación frente al manejo inteligente de los recursos económicos
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -391,13 +421,13 @@
       <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar  acceden  a servicios financieros adaptados a sus necesidades,  que contribuyen a mejorar su flujo de dinero y su bienestar económico. 
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Conocer la oferta de servicios financieros de facil acceso y diferenciados para la población de escasos recursos 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -407,7 +437,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a servicios financieros del sector formal (bancos,  cooperativas, fondos privados y publicos, cajas de compensación)
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -417,7 +447,17 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Recibir capacitación del uso responsable de los servicios financieros.
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Historial crediticio y financiero 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">

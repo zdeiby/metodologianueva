@@ -104,10 +104,10 @@
                       {!!$trabajoinfantil!!} 
                     </div>
           </div>
-          <div class="col-md-12" id="cualtrabajoinfantildiv">
+          <!-- <div class="col-md-12" id="cualtrabajoinfantildiv">
           <label for="validationServer04" class="form-label">¿Cúal?</label>
             <input type="text"  class="form-control form-control-sm  " id="cualtrabajoinfantil" name="cualtrabajoinfantil" value="" required="">
-          </div>
+          </div> -->
           <div class="col-md-12" id="trabajoinfantil2div">
           <label for="validationServer04" class="form-label">¿Cuántas horas a la semana en promedio dedica a esta labor?</label>
             <input type="text"  class="form-control form-control-sm  " id="trabajoinfantil2" name="trabajoinfantil2" value="" required="">
@@ -257,11 +257,11 @@
               $('#trabajoinfantildiv').css('display','');
               $('#trabajoinfantil2div').css('display','');
               $('#trabajoinfantil2').attr('required', 'required');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
               $('#trabajoinfantil2').val('');
               $('input[name="trabajoinfantil[]"]').prop('checked', false);
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('input[name="trabajoinfantil[]"]').attr('required', 'required');
               $('#trabajo15a17anhosdiv').css('display', 'none');
               $('#trabajo15a17anhos').val('0'); 
@@ -351,9 +351,9 @@
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+            //  $('#cualtrabajoinfantildiv').css('display', 'none');
+            //  $('#cualtrabajoinfantil').val('0');
+            //  $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -443,9 +443,9 @@
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').removeAttr('required');
               $('input[name="trabajoinfantil[]"]').removeAttr('required');
@@ -536,9 +536,9 @@
               $('#trabajoinfantildiv').css('display','none');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').removeAttr('required');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0'); 
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0'); 
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2').val('0');
               $('input[name="trabajoinfantil[]"]').prop('checked', false);
               
@@ -626,9 +626,9 @@
               $('.trabajoinfantil349').css('display','none');
               $('#trabajoinfantil349').css('display','none');
               
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -720,9 +720,9 @@
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -823,9 +823,9 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
               $('#trabajoinfantildiv').css('display','none');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').removeAttr('required');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0'); 
-              $('#cualtrabajoinfantil').removeAttr('required');
+            //  $('#cualtrabajoinfantildiv').css('display', 'none');
+            //  $('#cualtrabajoinfantil').val('0'); 
+            //  $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2').val('0');
               $('input[name="trabajoinfantil[]"]').prop('checked', false);
               $('#trabajo15a17anhosdiv').css('display', 'none');
@@ -915,9 +915,9 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -1010,9 +1010,9 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -1107,9 +1107,9 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -1202,9 +1202,9 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -1298,9 +1298,9 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+            //  $('#cualtrabajoinfantildiv').css('display', 'none');
+            //  $('#cualtrabajoinfantil').val('0');
+            //  $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -1434,19 +1434,19 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
 
              
 
-            $('#trabajoinfantil146').change(function() {
-                if ($(this).is(':checked')) {
-                  $('#cualtrabajoinfantildiv').css('display', '');
-                  $('#cualtrabajoinfantil').val('');
-                  $('#cualtrabajoinfantil').attr('required', 'required');
+            // $('#trabajoinfantil146').change(function() {
+            //     if ($(this).is(':checked')) {
+            //       $('#cualtrabajoinfantildiv').css('display', '');
+            //       $('#cualtrabajoinfantil').val('');
+            //       $('#cualtrabajoinfantil').attr('required', 'required');
 
-                } else {
-                  $('#cualtrabajoinfantildiv').css('display', 'none');
-                  $('#cualtrabajoinfantil').val('0');
-                  $('#cualtrabajoinfantil').removeAttr('required');
+            //     } else {
+            //       $('#cualtrabajoinfantildiv').css('display', 'none');
+            //       $('#cualtrabajoinfantil').val('0');
+            //       $('#cualtrabajoinfantil').removeAttr('required');
 
-                }
-              });
+            //     }
+            //   });
 
               $('#trabajoinfantil139, #trabajoinfantil140, #trabajoinfantil141, #trabajoinfantil142, #trabajoinfantil143, #trabajoinfantil144, #trabajoinfantil145').change(function() {
                 if ($('#trabajoinfantil139').is(':checked') || 
@@ -1604,7 +1604,7 @@ console.log(edad)
            $('#endeudamiento3').val(data.integrantesfinanciero ? formatearConPuntos(data.integrantesfinanciero.endeudamiento3) : '');
            $('#endeudamiento2').val((data.integrantesfinanciero)?data.integrantesfinanciero.endeudamiento2:'');
            $('#trabajoinfantil2').val((data.integrantesfinanciero)?data.integrantesfinanciero.trabajoinfantil2:'');
-           $('#cualtrabajoinfantil').val((data.integrantesfinanciero)?data.integrantesfinanciero.cualtrabajoinfantil:'');
+          // $('#cualtrabajoinfantil').val((data.integrantesfinanciero)?data.integrantesfinanciero.cualtrabajoinfantil:'');
            $('#endeudamiento4').val((data.integrantesfinanciero)?data.integrantesfinanciero.endeudamiento4:'');
 
               // BIENESTAR LEGAL
@@ -1666,9 +1666,9 @@ console.log(edad)
               $('#trabajoinfantildiv').css('display','');
               $('#trabajoinfantil2div').css('display','');
               $('#trabajoinfantil2').attr('required', 'required');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
+          //    $('#cualtrabajoinfantildiv').css('display', 'none');
              // $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+            //  $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajo15a17anhosdiv').css('display', 'none');
               $('#trabajo15a17anhos').val('0'); 
               $('#trabajo15a17anhos').removeAttr('required');
@@ -1754,9 +1754,9 @@ console.log(edad)
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -1845,9 +1845,9 @@ console.log(edad)
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+            //  $('#cualtrabajoinfantildiv').css('display', 'none');
+            //  $('#cualtrabajoinfantil').val('0');
+            //  $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').removeAttr('required');
               $('input[name="trabajoinfantil[]"]').removeAttr('required');
@@ -1935,9 +1935,9 @@ console.log(edad)
               $('#trabajoinfantildiv').css('display','none');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').removeAttr('required');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0'); 
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0'); 
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2').val('0');
              
               $('#trabajo15a17anhosdiv').css('display', '');
@@ -2013,9 +2013,9 @@ console.log(edad)
               $('.trabajoinfantil349').css('display','none');
               $('#trabajoinfantil349').css('display','none');
               
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+            //  $('#cualtrabajoinfantildiv').css('display', 'none');
+            //  $('#cualtrabajoinfantil').val('0');
+            //  $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -2106,9 +2106,9 @@ console.log(edad)
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+            //  $('#cualtrabajoinfantildiv').css('display', 'none');
+            //  $('#cualtrabajoinfantil').val('0');
+            //  $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -2199,9 +2199,9 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
               $('#trabajoinfantildiv').css('display','none');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').removeAttr('required');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0'); 
-              $('#cualtrabajoinfantil').removeAttr('required');
+            //  $('#cualtrabajoinfantildiv').css('display', 'none');
+            //  $('#cualtrabajoinfantil').val('0'); 
+            //  $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2').val('0');
              
               $('#trabajo15a17anhosdiv').css('display', 'none');
@@ -2278,9 +2278,9 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
               $('#trabajoinfantil349').css('display','none');
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -2363,9 +2363,9 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -2451,9 +2451,9 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -2542,9 +2542,9 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+             // $('#cualtrabajoinfantildiv').css('display', 'none');
+             // $('#cualtrabajoinfantil').val('0');
+             // $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -2633,9 +2633,9 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
 
 
               $('#trabajoinfantildiv').css('display','none');
-              $('#cualtrabajoinfantildiv').css('display', 'none');
-              $('#cualtrabajoinfantil').val('0');
-              $('#cualtrabajoinfantil').removeAttr('required');
+            //  $('#cualtrabajoinfantildiv').css('display', 'none');
+            //  $('#cualtrabajoinfantil').val('0');
+            //  $('#cualtrabajoinfantil').removeAttr('required');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').val('0');
               $('#trabajoinfantil2').removeAttr('required');
@@ -2719,15 +2719,15 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
                       $('#emprendimiento1').removeAttr('required');
                 } 
                 
-            if ($('#trabajoinfantil146').is(':checked')) {
-                  $('#cualtrabajoinfantildiv').css('display', '');
-                  $('#cualtrabajoinfantil').attr('required', 'required');
+            // if ($('#trabajoinfantil146').is(':checked')) {
+            //       $('#cualtrabajoinfantildiv').css('display', '');
+            //       $('#cualtrabajoinfantil').attr('required', 'required');
 
-                } else {
-                  $('#cualtrabajoinfantildiv').css('display', 'none');
-                  $('#cualtrabajoinfantil').removeAttr('required');
+            //     } else {
+            //       $('#cualtrabajoinfantildiv').css('display', 'none');
+            //       $('#cualtrabajoinfantil').removeAttr('required');
 
-                }
+            //     }
 
 
 

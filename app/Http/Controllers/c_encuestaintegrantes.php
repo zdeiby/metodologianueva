@@ -175,7 +175,7 @@ public function fc_encuestaintegrantesfinanciero(){
       }
     }
     // Para listar alfabeticamente
-    $allowed_idstrabajoinfantil = [137, 138, 139, 140, 141,349 ,142, 143, 144, 145, 146];
+    $allowed_idstrabajoinfantil = [137, 138, 139, 140, 141,349 ,142, 143, 144, 145];
     foreach ($allowed_idstrabajoinfantil as $id) { foreach ($preguntas as $value) { if ($value->id == $id) {   $sorted_preguntas[] = $value;  break;  } } }
   // 
     $trabajoinfantil='';

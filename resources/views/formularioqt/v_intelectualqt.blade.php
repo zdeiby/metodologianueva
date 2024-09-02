@@ -131,13 +131,13 @@
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los niños y niñas entre 0 y 5 años están vinculados a programas de atención integral en cuidado a la primera infancia, con acceso a salud, nutrición y educación inicial (IPM)
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Reconocer lo que ofrecen los  programas de  atención integral para la  primera infancia y su importancia en el desarrollo de los niños y niñas  
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -147,7 +147,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer los    servicios de atención y cuidado de la primera infancia en el territorio 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -157,7 +157,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a los programas para la  atención integral  a la primera infancia
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -172,13 +172,13 @@
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los niños,niñas y adolescentes en edad escolar (de 6 a 17 años) estan vinculados  al sistema educativo formal (IPM)
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Motivación para acceder al sistema educativo formal 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -188,7 +188,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a la oferta relacionada para personas con necesidades educativas especiales
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -198,7 +198,17 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Asistencia a las instiuciones de educación formal sin miedo a situaciones de bullying
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Acceder al sistema educativo formal sin barreras de acceso 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -213,13 +223,13 @@
      <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar mayores de 18 años que no hayan completado su educación básica acceden a programas  educación formal para adultos.
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Conocer la oferta institucional para acceder a programas de educación formal para adultos
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -229,7 +239,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder  a instituciones que ofrezcan educación en modalidad CLEI en el territorio con horarios accequibles
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -239,7 +249,17 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Tener tiempo u apoyo para acceder a programas de  educación formal para adultos.
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Contar con los recursos para acceder a programas de educación formal para adultos.
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -282,13 +302,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar mayores de 10 años acceden a formación en alfabetización digital a traves de los recursos tecnológicos disponibles
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Motivación para aprender a usar las herramientas de las TIC
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -298,7 +318,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer espacios y/o instituciones que permítan el acceso a programas de  alfabetizacipon digital
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -308,7 +328,17 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Aprender sobre el uso de   herramientas de las TIC
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Acceder a  recursos tecnologicos  (smart phone, tablet ó PC) y/o conexión a la Internet) que faciliten la alfabetización digital
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
@@ -352,13 +382,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar mayores de 14 años  que lo desean acceden a  educación superior (tecnica profesional, tecnologias, universitario y postgrado)
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Motivación para acceder a educación superior 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -368,7 +398,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer IES que tengan convenios, becas, entre otros,  que faciliten el acceso a la educación superior 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -378,7 +408,35 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a la oferta relacionada con educación superior  en modalidad virtual 
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Disponer de tiempo y apoyo para dedicar a la educación superior 
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div><div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Acceder a procesos de orientación vocacional y de conocimiento de programas para el acceso a la educación superior
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div><div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Contar con las herramientas tecnologicas para favorecer los procesos de aprendizaje en la oferta de educación superior 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -391,13 +449,13 @@
       <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+        Los integrantes del hogar de 14 años en adelante que lo desean acceden a  educación para el trabajo y desarrollo humano 
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Reconocer la importancia de estar afiliado al Sistema General de Seguridad Social en Salud – SGSS
+          Los integrantes del hogar de 14 años en adelante que lo desean acceden a  educación para el trabajo y desarrollo humano 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -407,7 +465,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-            Afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Conocer instituciones  que tengan convenios, becas, entre otros,  que faciliten el acceso a educación para el trabajo y desarrollo humano 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
@@ -417,7 +475,37 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-            Conocer la ruta para afiliación al Sistema General de Seguridad Social en Salud – SGSS-
+          Acceder a la oferta relacionada con  educación para el trabajo y desarrollo humano 
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Disponer de tiempo y apoyo para dedicar a la educación para el trabajo y desarrollo humano 
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Acceder a procesos de orientación vocacional y de conocimiento de programas para el acceso a la educación para el trabajo y desarrollo humano 
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-start p-2 border-bottom">
+          Contar con las herramientas tecnologicas para favorecer los procesos de aprendizaje en la oferta de educación para el trabajo y desarrollo humano 
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
