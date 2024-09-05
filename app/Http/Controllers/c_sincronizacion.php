@@ -45,6 +45,48 @@ public function fc_t1_principalhogard(){
 }
 
 
+
+public function fc_sincroprivacionesd(Request $request) {
+    $tabla = $request->input('tabla');
+    $pdoccogestor = session('cedula');
+    $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarribad/fc_sincroprivacionesd?pdoccogestor='.$pdoccogestor.'&tabla='.urlencode($tabla); 
+     
+    // Realizar la solicitud GET usando file_get_contents
+    $response = file_get_contents($url);
+
+    // Decodificar el JSON
+    $data = json_decode($response, true);
+
+    foreach ($data as $item) {
+        // Extraer el folio del objeto
+        $folio = $item['folio']; // Asegúrate de que 'folio' sea el nombre correcto del campo en tu JSON
+
+        // Extraer el idintegrante si existe
+        $idIntegrante = isset($item['idintegrante']) ? $item['idintegrante'] : null;
+
+        // Remover el folio y idintegrante del array para evitar duplicados en el updateOrInsert
+        $dataToUpdate = $item;
+        unset($dataToUpdate['folio']);
+        if ($idIntegrante !== null) {
+            unset($dataToUpdate['idintegrante']);
+        }
+
+        // Usar updateOrInsert para insertar o actualizar según el caso
+        $condition = ['folio' => $folio];
+        if ($idIntegrante !== null) {
+            $condition['idintegrante'] = $idIntegrante;
+        }
+
+        DB::table($tabla)->updateOrInsert(
+            $condition,
+            $dataToUpdate
+        );
+    }
+
+    return response()->json($data);
+}
+
+
 public function fc_t1_hogarcondicionesalimentariasd(){  $pdoccogestor = session('cedula');  $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarribad/fc_t1_hogarcondicionesalimentariasd?pdoccogestor=' . $pdoccogestor;       $response = file_get_contents($url);   $data = json_decode($response, true); foreach ($data as $item) { $folio = $item['folio'];$dataToUpdate = $item; unset($dataToUpdate['folio']); DB::table('t1_hogarcondicionesalimentarias')->updateOrInsert(['folio' => $folio], $dataToUpdate);  } return response()->json($data); }
 public function fc_t1_hogarcondicioneshabitabilidadd(){  $pdoccogestor = session('cedula');  $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarribad/fc_t1_hogarcondicioneshabitabilidadd?pdoccogestor=' . $pdoccogestor;       $response = file_get_contents($url);   $data = json_decode($response, true); foreach ($data as $item) { $folio = $item['folio'];$dataToUpdate = $item; unset($dataToUpdate['folio']); DB::table('t1_hogarcondicioneshabitabilidad')->updateOrInsert(['folio' => $folio], $dataToUpdate);  } return response()->json($data);}
 public function fc_t1_hogarconformacionfamiliard(){  $pdoccogestor = session('cedula');  $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarribad/fc_t1_hogarconformacionfamiliard?pdoccogestor=' . $pdoccogestor;       $response = file_get_contents($url);   $data = json_decode($response, true); foreach ($data as $item) { $folio = $item['folio'];$dataToUpdate = $item; unset($dataToUpdate['folio']); DB::table('t1_hogarconformacionfamiliar')->updateOrInsert(['folio' => $folio], $dataToUpdate);  } return response()->json($data);}

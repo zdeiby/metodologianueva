@@ -17,3 +17,6 @@ Route::get('/t1_integranteshogard', [c_sincronizacion::class, 'fc_t1_integrantes
 Route::get('/t1_integrantesidentitariod', [c_sincronizacion::class, 'fc_t1_integrantesidentitariod'])->name('t1_integrantesidentitariod');
 Route::get('/t1_integrantesintelectuald', [c_sincronizacion::class, 'fc_t1_integrantesintelectuald'])->name('t1_integrantesintelectuald');
 Route::get('/t1_integranteslegald', [c_sincronizacion::class, 'fc_t1_integranteslegald'])->name('t1_integranteslegald');
+
+
+Route::get('/sincroprivacionesd', [c_sincronizacion::class, 'fc_sincroprivacionesd'])->name('sincroprivacionesd');
