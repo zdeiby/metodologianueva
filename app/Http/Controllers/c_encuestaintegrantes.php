@@ -210,7 +210,7 @@ public function fc_encuestaintegrantesfinanciero(){
 
     $bancarizacion='';
     foreach ($preguntas as $value) {
-      if ($value->id >= '157' && $value->id <= '164') {
+      if ($value->id >= '157' && $value->id <= '164' || $value->id== '371') {
         $bancarizacion .= '<div class="bancarizacion' . $value->id . '">
         <label class="form-check-label bancarizacion' . $value->id . '"  for="bancarizacion' . $value->id . '">' . $value->pregunta . '</label>
         <input class="form-check-input" type="checkbox" name="bancarizacion[]" id="bancarizacion' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>

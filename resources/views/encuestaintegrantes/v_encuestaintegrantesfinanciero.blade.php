@@ -303,6 +303,8 @@
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
               $('#endeudamiento1div').css('display', 'none');
@@ -393,6 +395,8 @@
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
               $('#endeudamiento1div').css('display', 'none');
@@ -484,6 +488,8 @@
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
               $('#endeudamiento1div').css('display', 'none');
@@ -573,6 +579,8 @@
               $('#bancarizacion163').css('display','');
               $('.bancarizacion164').css('display','');
               $('#bancarizacion164').css('display','');
+              $('.bancarizacion371').css('display','');
+              $('#bancarizacion371').css('display','');
               $('#bancarizaciondiv').css('display','');
               $('input[name="bancarizacion[]"]').prop('checked', false);
               $('input[name="bancarizacion[]"]').attr('required', 'required');
@@ -668,6 +676,8 @@
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').prop('checked', false);
               $('#endeudamiento1div').css('display', 'none');
@@ -762,6 +772,8 @@
               $('#bancarizacion163').css('display','');
               $('.bancarizacion164').css('display','');
               $('#bancarizacion164').css('display','');
+              $('.bancarizacion371').css('display','');
+              $('#bancarizacion371').css('display','');
               $('#bancarizaciondiv').css('display','');
 
 
@@ -859,6 +871,8 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
               $('#bancarizacion163').css('display','');
               $('.bancarizacion164').css('display','');
               $('#bancarizacion164').css('display','');
+              $('.bancarizacion371').css('display','');
+              $('#bancarizacion371').css('display','');
               $('#bancarizaciondiv').css('display','');
               $('input[name="bancarizacion[]"]').prop('checked', false);
               $('input[name="bancarizacion[]"]').attr('required', 'required');
@@ -957,6 +971,8 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
               $('#bancarizacion163').css('display','');
               $('.bancarizacion164').css('display','');
               $('#bancarizacion164').css('display','');
+              $('.bancarizacion371').css('display','');
+              $('#bancarizacion371').css('display','');
               $('#bancarizaciondiv').css('display','');
 
               $('input[name="bancarizacion[]"]').prop('checked', false);
@@ -1052,6 +1068,8 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
               $('#bancarizacion163').css('display','');
               $('.bancarizacion164').css('display','');
               $('#bancarizacion164').css('display','');
+              $('.bancarizacion371').css('display','');
+              $('#bancarizacion371').css('display','');
               $('#bancarizaciondiv').css('display','');
 
 
@@ -1149,6 +1167,8 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
 
@@ -1244,6 +1264,8 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
 
@@ -1340,6 +1362,8 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
 
@@ -1707,6 +1731,8 @@ console.log(edad)
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
               $('#endeudamiento1div').css('display', 'none');
@@ -1795,6 +1821,8 @@ console.log(edad)
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
               $('#endeudamiento1div').css('display', 'none');
@@ -1884,6 +1912,8 @@ console.log(edad)
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
               $('#endeudamiento1div').css('display', 'none');
@@ -1966,6 +1996,8 @@ console.log(edad)
               $('#bancarizacion163').css('display','');
               $('.bancarizacion164').css('display','');
               $('#bancarizacion164').css('display','');
+              $('.bancarizacion371').css('display','');
+              $('#bancarizacion371').css('display','');
               $('#bancarizaciondiv').css('display','');
               $('#endeudamiento1div').css('display', '');
               $('#endeudamiento1').attr('required','required');
@@ -2055,6 +2087,8 @@ console.log(edad)
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('#endeudamiento1div').css('display', 'none');
               $('#endeudamiento1').val('0'); 
@@ -2146,6 +2180,8 @@ console.log(edad)
               $('#bancarizacion163').css('display','');
               $('.bancarizacion164').css('display','');
               $('#bancarizacion164').css('display','');
+              $('.bancarizacion371').css('display','');
+              $('#bancarizacion371').css('display','');
               $('#bancarizaciondiv').css('display','');
 
 
@@ -2231,6 +2267,8 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
               $('#bancarizacion163').css('display','');
               $('.bancarizacion164').css('display','');
               $('#bancarizacion164').css('display','');
+              $('.bancarizacion371').css('display','');
+              $('#bancarizacion371').css('display','');
               $('#bancarizaciondiv').css('display','');
               $('#endeudamiento1div').css('display', '');
               $('#endeudamiento1').attr('required','required');
@@ -2318,6 +2356,8 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
               $('#bancarizacion163').css('display','');
               $('.bancarizacion164').css('display','');
               $('#bancarizacion164').css('display','');
+              $('.bancarizacion371').css('display','');
+              $('#bancarizacion371').css('display','');
               $('#bancarizaciondiv').css('display','');
 
               $('#endeudamiento1div').css('display', '');
@@ -2403,6 +2443,8 @@ if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '1
               $('#bancarizacion163').css('display','');
               $('.bancarizacion164').css('display','');
               $('#bancarizacion164').css('display','');
+              $('.bancarizacion371').css('display','');
+              $('#bancarizacion371').css('display','');
               $('#bancarizaciondiv').css('display','');
 
 
@@ -2491,6 +2533,8 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
 
@@ -2582,6 +2626,8 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
 
@@ -2674,6 +2720,8 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
               $('#bancarizacion163').css('display','none');
               $('.bancarizacion164').css('display','none');
               $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
               $('#bancarizaciondiv').css('display','none');
               $('input[name="bancarizacion[]"]').removeAttr('required');
 
@@ -2791,6 +2839,12 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
               $('input[name="bancarizacion[]"]').closest('div').show();
             }
 
+            if ($('#bancarizacion371').is(':checked')) {
+              $('input[name="bancarizacion[]"]').not('#bancarizacion371').closest('div').hide();
+            } else {
+              $('input[name="bancarizacion[]"]').closest('div').show();
+            }
+
 
               if ($('input[name="bancarizacion[]"]:visible:checked').length > 0) {
            $('input[name="bancarizacion[]"]').removeAttr('required');
@@ -2862,6 +2916,20 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
           }
       });
 
+      $('input[name="bancarizacion[]"]').change(function() {  console.log('hola1');
+          if ($(this).attr('id') === 'bancarizacion371' && $(this).is(':checked')) {
+              $('input[name="bancarizacion[]"]').not('#bancarizacion371').each(function() {
+                  $(this).prop('checked', false); // Desmarcar
+                  $(this).closest('div').hide();  // Ocultar
+                
+              });
+          } else if ($(this).attr('id') === 'bancarizacion371' && !$(this).is(':checked')) {
+              $('input[name="bancarizacion[]"]').closest('div').show(); // Mostrar todos
+
+            // console.log('hola2');
+          }
+      });
+
  
     $('#formfinanciero').on('submit', function(event) {
         event.preventDefault(); // Detiene el envío del formulario
@@ -2890,7 +2958,8 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
                   { id: '161', valor: 'NO' },
                   { id: '162', valor: 'NO' },
                   { id: '163', valor: 'NO' },
-                  { id: '164', valor: 'NO' },   
+                  { id: '164', valor: 'NO' },
+                  { id: '371', valor: 'NO' },    
               ]
             }
   
