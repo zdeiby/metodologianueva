@@ -1593,7 +1593,7 @@ console.log(edad)
                 $('#container-bancarizacion input[type="checkbox"]').each(function() {
                   let found = bancarizacion.find(item => item.id === this.value );
                  
-                          if (found && found.valor == 'SI') { 
+                          if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
                           } else {
