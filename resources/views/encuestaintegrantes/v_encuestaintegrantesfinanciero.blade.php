@@ -1579,7 +1579,7 @@ console.log(edad)
                 if(Array.isArray(trabajoinfantil) && trabajoinfantil.length > 0){
                 $('#container-trabajoinfantil input[type="checkbox"]').each(function() {
                   let found = trabajoinfantil.find(item => item.id === this.value );
-                  console.log(found.valor, 'aca valor , por que no entro???')
+               
                           if (found.valor == 'SI') { 
                             $(this).prop('checked', true);
                             $(this).attr('respuesta', 'SI');  // Establecer 'respuesta' a 'NO APLICA' solo si el valor es 'si'
