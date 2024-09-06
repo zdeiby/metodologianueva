@@ -150,7 +150,7 @@
             </div>
             <div class="col-md-6">
             <label for="validationServer04" class="form-label">¿Cuál es tu fecha de nacimiento?</label>
-            <input type="date"  min="1900-01-01"  oninput="calcularedad(this.value)" class="form-control form-control-sm "  name="fechanacimiento"  id="fechanacimiento" value="" required>
+            <input type="date"  min="1900-01-01"  oninput="calcularedad(this.value)" class="form-control form-control-sm " onchange="pais_edad_alcargar();"  name="fechanacimiento"  id="fechanacimiento" value="" required>
           </div>
           <div class="col-md-6">
             <label for="validationServer04" class="form-label">¿Escribe de nuevo tu fecha de nacimiento?</label>
@@ -160,7 +160,7 @@
                 <blockquote class="blockquote text-center">
                     <p class="mb-0"></p><h6>Edad:</h6><p></p>
                     <p class="mb-0"></p><h5 id="edad" name="edad">0</h5><p></p>
-                    <input style="display:none" type="text" id="edadinput" name="edad">
+                    <input style="display:none" type="text" id="edadinput"  name="edad">
                 </blockquote>
             </div>
           <!-- <div class="col-md-6">
@@ -173,7 +173,7 @@
             <div class="col-md-6">
                 <label for="nacionalidad" class="form-label">¿Cuál es tu país de nacimiento?</label>
                 <div class="select-wrapper">
-                    <select class="form-control form-control-sm" id="nacionalidad"  name="nacionalidad" aria-describedby="validationServer04Feedback" required="">
+                    <select class="form-control form-control-sm" id="nacionalidad" onchange="pais_edad_alcargar();"  name="nacionalidad" aria-describedby="validationServer04Feedback" required="">
                     {!!$paises!!}
                     </select>
                     <div class="dropdown-menu" id="dropdown-menu">
@@ -468,6 +468,11 @@ paginacargando();
     }
     
     $(document).ready(function(){
+
+      
+      // pais_edad_alcargar();
+      // alert($('#nacionalidad').val());
+
       $('#volveratras').css('display','none');
     
         //  var imagenUrl = localStorage.getItem('imagen');
@@ -592,6 +597,11 @@ paginacargando();
             }
            console.log(data.existerepresentante, 'existe integrante')
 
+       //alert($('#nacionalidad').val());
+       
+
+      
+       
        
 
           if($('#sexo').val()=='12' && parseInt($('#edad').html()) >= '12' && parseInt($('#edad').html()) <= '17'){  
@@ -758,17 +768,46 @@ paginacargando();
               }
 
 
-              if($('#nacionalidad').val() == '343'){
-              $('#tipodocumento option[value="7"]').hide();
-              $('#tipodocumento option[value="8"]').hide();
-              $('#tipodocumento option[value="9"]').hide();
-              $('#tipodocumento option[value="10"]').hide();
-              $('#tipodocumento option[value="3"]').show();
-              $('#tipodocumento option[value="4"]').show();
-              $('#tipodocumento option[value="5"]').show();
-              $('#tipodocumento option[value="6"]').hide();
-              $('#tipodocumento option[value="11"]').show();
+              var edad = parseInt($('#edadinput').val());
+              var nacionality = $('#nacionalidad').val();
+             
+      
+            if (nacionality == 343 && (edad >= 0 && edad <= 6)) {
+                // Mostrar opciones para edad de 0 a 6
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+                $('#tipodocumento option[value="4"]').hide(); // Ocultar Tarjeta de Identidad
+                $('#tipodocumento option[value="5"]').hide(); // Ocultar Cédula de Ciudadanía
 
+                $('#tipodocumento option[value="6"]').hide();
+                $('#tipodocumento option[value="7"]').hide();
+                $('#tipodocumento option[value="8"]').hide();
+                $('#tipodocumento option[value="9"]').hide();
+                $('#tipodocumento option[value="10"]').hide();
+            } else if (nacionality == 343 && ( edad >= 7 && edad <= 17)) {
+                // Mostrar opciones para edad de 7 a 17
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+                $('#tipodocumento option[value="4"]').show(); // Tarjeta de Identidad
+                $('#tipodocumento option[value="5"]').hide(); // Ocultar Cédula de Ciudadanía
+
+                $('#tipodocumento option[value="6"]').hide();
+                $('#tipodocumento option[value="7"]').hide();
+                $('#tipodocumento option[value="8"]').hide();
+                $('#tipodocumento option[value="9"]').hide();
+                $('#tipodocumento option[value="10"]').hide();
+            } else if ( nacionality == 343 && edad >= 18) {
+                // Mostrar opciones para mayores de 18
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+                $('#tipodocumento option[value="4"]').show(); // Tarjeta de Identidad
+                $('#tipodocumento option[value="5"]').show(); // Cédula de Ciudadanía
+
+                $('#tipodocumento option[value="6"]').hide();
+                $('#tipodocumento option[value="7"]').hide();
+                $('#tipodocumento option[value="8"]').hide();
+                $('#tipodocumento option[value="9"]').hide();
+                $('#tipodocumento option[value="10"]').hide();
             }else{
               $('#tipodocumento option[value="3"]').hide();
               $('#tipodocumento option[value="4"]').hide();
@@ -778,11 +817,37 @@ paginacargando();
               $('#tipodocumento option[value="8"]').show();
               $('#tipodocumento option[value="9"]').show();
               $('#tipodocumento option[value="10"]').show();
-              $('#tipodocumento option[value="11"]').hide();
+              $('#tipodocumento option[value="11"]').show();
               $('#situacionmilitardiv').css('display','none');
               $('#situacionmilitar').removeAttr('required');
               $('#situacionmilitar').val('0');
             }
+          
+            //   if($('#nacionalidad').val() == '343'){
+            //   $('#tipodocumento option[value="7"]').hide();
+            //   $('#tipodocumento option[value="8"]').hide();
+            //   $('#tipodocumento option[value="9"]').hide();
+            //   $('#tipodocumento option[value="10"]').hide();
+            //   $('#tipodocumento option[value="3"]').show();
+            //   $('#tipodocumento option[value="4"]').show();
+            //   $('#tipodocumento option[value="5"]').show();
+            //   $('#tipodocumento option[value="6"]').hide();
+            //   $('#tipodocumento option[value="11"]').show();
+
+            // }else{
+            //   $('#tipodocumento option[value="3"]').hide();
+            //   $('#tipodocumento option[value="4"]').hide();
+            //   $('#tipodocumento option[value="5"]').hide();
+            //   $('#tipodocumento option[value="6"]').show();
+            //   $('#tipodocumento option[value="7"]').show();
+            //   $('#tipodocumento option[value="8"]').show();
+            //   $('#tipodocumento option[value="9"]').show();
+            //   $('#tipodocumento option[value="10"]').show();
+            //   $('#tipodocumento option[value="11"]').hide();
+            //   $('#situacionmilitardiv').css('display','none');
+            //   $('#situacionmilitar').removeAttr('required');
+            //   $('#situacionmilitar').val('0');
+            // }
 
 
 
@@ -837,6 +902,8 @@ paginacargando();
       })
       })
 
+      
+
       $('#siguiente').click(function(){
         console.log('click');
         $('#identatario').tab('show');  
@@ -878,6 +945,16 @@ paginacargando();
                  data[obj.name] = obj.value;
              });
              enviarDatos(data);
+
+
+
+
+
+
+
+            
+
+
          });
 
     function enviarDatos(data) {
@@ -1585,7 +1662,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Listener para el evento change
-        $(selectElement).on('change', function() {
+        $('#nacionalidad,#edad').on('change', function() {
             console.log('El país ha cambiado a: ' + $(this).val());
                 $('#tipodocumento').val('');
           if($(this).val()=='343'){
@@ -1616,6 +1693,31 @@ document.addEventListener('DOMContentLoaded', function() {
               $('#tipodocumento option[value="5"]').show();
               $('#tipodocumento option[value="6"]').hide();
               $('#tipodocumento option[value="11"]').show();
+              var edad = parseInt($('#edadinput').val());
+            if (edad >= 0 && edad <= 6) {
+                // Mostrar opciones para edad de 0 a 6
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+                $('#tipodocumento option[value="4"]').hide(); // Ocultar Tarjeta de Identidad
+                $('#tipodocumento option[value="5"]').hide(); // Ocultar Cédula de Ciudadanía
+            } else if (edad >= 7 && edad <= 17) {
+                // Mostrar opciones para edad de 7 a 17
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+                $('#tipodocumento option[value="4"]').show(); // Tarjeta de Identidad
+                $('#tipodocumento option[value="5"]').hide(); // Ocultar Cédula de Ciudadanía
+            } else if (edad >= 18) {
+                // Mostrar opciones para mayores de 18
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+                $('#tipodocumento option[value="4"]').show(); // Tarjeta de Identidad
+                $('#tipodocumento option[value="5"]').show(); // Cédula de Ciudadanía
+            }
+            
+            // Mostrar y requerir campo situación militar
+            $('#situacionmilitardiv').css('display', '');
+            $('#situacionmilitar').attr('required', 'required');
+            $('#situacionmilitar').val('');
               $('#situacionmilitardiv').css('display','');
               $('#situacionmilitar').attr('required', 'required');
               $('#situacionmilitar').val('');
@@ -1657,6 +1759,132 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+
+    function validacion_edades_pais() {
+        var nacionalidad = $('#nacionalidad').val(); // Valor del campo de nacionalidad
+        var edad = parseInt($('#edadinput').val()); // Valor del campo de edad
+        
+        // Limpiamos las opciones antes de agregar las válidas
+        $('#tipodocumento option').hide(); // Oculta todas las opciones por defecto
+        $('#tipodocumento option[value=""]').show(); // Siempre mostrar la opción "Seleccione"
+        
+        if (nacionalidad == "343") { // Si la nacionalidad es 343
+            if (edad >= 0 && edad <= 6) {
+                // Mostrar opciones para edad de 0 a 6
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+            } else if (edad >= 7 && edad <= 17) {
+                // Mostrar opciones para edad de 7 a 17
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+                $('#tipodocumento option[value="4"]').show(); // Tarjeta Identidad
+            } else if (edad >= 18) {
+                // Mostrar opciones para mayores de 18
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+                $('#tipodocumento option[value="4"]').show(); // Tarjeta Identidad
+                $('#tipodocumento option[value="5"]').show(); // Cédula de Ciudadanía
+            }
+        }
+    }
+
+
+
+    function pais_edad_alcargar(){
+      if($('#nacionalidad').val()=='343'){
+              $('#victima1div').css('display','');
+              $('#victima1').attr('required', 'required');
+              $('#victima1').val('');
+              $('#victima2div').css('display','');
+              $('#victima2').attr('required', 'required');
+              $('#victima2').val('');
+              $('#victima3div').css('display','');
+              $('#victima3').attr('required', 'required');
+              $('#victima3').val('');
+              $('#migrantes1div').css('display','none');
+              $('#migrantes1').removeAttr('required');
+              $('#migrantes1').val('0');
+              $('#migrantes2div').css('display','none');
+              $('#migrantes2').removeAttr('required');
+              $('#migrantes2').val('0');
+              $('#cualongdiv').css('display','none');
+              $('#cualong').removeAttr('required');
+              $('#cualong').val('0');
+              $('#tipodocumento option[value="7"]').hide();
+              $('#tipodocumento option[value="8"]').hide();
+              $('#tipodocumento option[value="9"]').hide();
+              $('#tipodocumento option[value="10"]').hide();
+              $('#tipodocumento option[value="3"]').show();
+              $('#tipodocumento option[value="4"]').show();
+              $('#tipodocumento option[value="5"]').show();
+              $('#tipodocumento option[value="6"]').hide();
+              $('#tipodocumento option[value="11"]').show();
+              var edad = parseInt($('#edadinput').val());
+            if (edad >= 0 && edad <= 6) {
+                // Mostrar opciones para edad de 0 a 6
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+                $('#tipodocumento option[value="4"]').hide(); // Ocultar Tarjeta de Identidad
+                $('#tipodocumento option[value="5"]').hide(); // Ocultar Cédula de Ciudadanía
+            } else if (edad >= 7 && edad <= 17) {
+                // Mostrar opciones para edad de 7 a 17
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+                $('#tipodocumento option[value="4"]').show(); // Tarjeta de Identidad
+                $('#tipodocumento option[value="5"]').hide(); // Ocultar Cédula de Ciudadanía
+            } else if (edad >= 18) {
+                // Mostrar opciones para mayores de 18
+                $('#tipodocumento option[value="3"]').show(); // Registro Civil
+                $('#tipodocumento option[value="11"]').show(); // No tiene documento
+                $('#tipodocumento option[value="4"]').show(); // Tarjeta de Identidad
+                $('#tipodocumento option[value="5"]').show(); // Cédula de Ciudadanía
+            }
+            
+            // Mostrar y requerir campo situación militar
+            $('#situacionmilitardiv').css('display', '');
+            $('#situacionmilitar').attr('required', 'required');
+            $('#situacionmilitar').val('');
+              $('#situacionmilitardiv').css('display','');
+              $('#situacionmilitar').attr('required', 'required');
+              $('#situacionmilitar').val('');
+              
+
+            }else{
+              $('#victima1div').css('display','none');
+              $('#victima1').removeAttr('required');
+              $('#victima1').val('0');
+              $('#victima2div').css('display','none');
+              $('#victima2').removeAttr('required');
+              $('#victima2').val('0');
+              $('#victima3div').css('display','none');
+              $('#victima3').removeAttr('required');
+              $('#victima3').val('0');
+              $('#migrantes1div').css('display','');
+              $('#migrantes1').attr('required', 'required');
+              $('#migrantes2div').css('display','');
+              $('#migrantes2').attr('required', 'required');
+              $('#migrantes1').val('');
+              $('#migrantes2').val('');
+            //  $('#cualongdiv').css('display','');
+              $('#cualong').removeAttr('required');
+              $('#cualong').val('');
+
+              $('#tipodocumento option[value="3"]').hide();
+              $('#tipodocumento option[value="4"]').hide();
+              $('#tipodocumento option[value="5"]').hide();
+              $('#tipodocumento option[value="6"]').show();
+              $('#tipodocumento option[value="7"]').show();
+              $('#tipodocumento option[value="8"]').show();
+              $('#tipodocumento option[value="9"]').show();
+              $('#tipodocumento option[value="10"]').show();
+              $('#tipodocumento option[value="11"]').show();
+              $('#situacionmilitardiv').css('display','none');
+              $('#situacionmilitar').removeAttr('required');
+              $('#situacionmilitar').val('0');
+
+            }
+    }
 
 
     function limitarEntrada(input) {
