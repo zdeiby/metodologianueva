@@ -128,7 +128,7 @@
     </div>
 
     <!-- Fila de contenido -->
-    <div class="row g-0" id="indicadorbse1" >
+    <div class="row g-0" id="indicadorbse1" style="display:{{(($indicador_bse_1 == '0' || $indicador_bse_1 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom">
         <div class="p-2">
           Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-

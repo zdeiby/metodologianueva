@@ -27,6 +27,18 @@ class c_encuestaintegrantesqt extends Controller
             ->where('folio', $encodedFolio)
             ->get();
 
+            $t1_indicador_bse_1 = DB::table('t1_indicador_bse_1')
+            ->where('idintegrante', $decodeIntegrante)
+            ->where('folio', $encodedFolio)
+            ->get();
+
+            $indicador_bse_1='';
+            foreach ($t1_indicador_bse_1 as $indicador) {
+                $indicador_bse_1=$indicador->codigoindicadorDA;
+            }
+
+
+            
             $datos = [
                 'indicadorbse1_1' => '',
                 'indicadorbse1_2' => '',
@@ -81,7 +93,11 @@ class c_encuestaintegrantesqt extends Controller
             
             
 
-            return view('formularioqt/v_bienestarsaludemocionalqt',  $datos,['variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla]);
+            return view('formularioqt/v_bienestarsaludemocionalqt',  $datos,['variable'=>$folio,
+                                                                    'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] ,
+                                                                    'integrantecodificado'=>$integrante , 
+                                                                     'tabla'=>$tabla, 'indicador_bse_1'=>$indicador_bse_1
+                                                                    ]);
     }
 
 
