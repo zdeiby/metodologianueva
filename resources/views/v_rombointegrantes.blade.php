@@ -231,7 +231,7 @@ body {
                     <label>Resultado encuesta</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" id="resultadoencuesta" <?=($existel100p1000 == '1' && $existel100p10000 == '1'  && $existel100p100000 == '1' && $existel100p1000000 == '0'  )?'':'disabled'?> data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver resultado encuesta</button>
+             <button type="button" class="btn btn-primary" id="resultadoencuesta" <?=($existel100p1000 == '1' && $existel100p10000 == '1'  && $existel100p100000 == '1'   )?'':'disabled'?> data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver resultado encuesta</button>
              <div class="smCard">
                 </div>
               </div>
@@ -401,25 +401,36 @@ body {
         <div class="container-fluid">
           <table class="table table-bordered table-vulnerability">
               <tr>
-                  <!-- <td class="alta-vulnerabilidad">
+                        @foreach ($casillamatriz as $data)
+              @if ($data->casillamatriz == 1  || $data->casillamatriz == 2 || $data->casillamatriz == 4 || $data->casillamatriz == 5)
+                  <td class="alta-vulnerabilidad">
                       Alta vulnerabilidad (Pobreza extrema en IPM y ingresos):<br>
                       Esta categoría incluiría las casillas que representan la pobreza extrema en ambos indicadores (IPM y ingresos). Estas situaciones indican condiciones extremadamente precarias donde las personas enfrentan simultáneamente una falta significativa de ingresos y múltiples privaciones.
                   </td>
+              @endif
+              @if ($data->casillamatriz == 3  || $data->casillamatriz == 6 )
                   <td class="vulnerabilidad-ingresos">
                       Vulnerabilidad moderada en ingresos:<br>
                       Este grupo incluiría las casillas que presentan pobreza en términos de ingresos, pero no en términos de IPM.<br>
                       Aquí, las personas pueden tener ingresos bajos pero acceso a servicios básicos y oportunidades que los sitúan fuera del umbral de la pobreza multidimensional.
-                  </td> -->
+                  </td> 
+              @endif
+              @if ($data->casillamatriz == 7  || $data->casillamatriz == 8 )
                   <td class="vulnerabilidad-ipm">
                       Vulnerabilidad moderada en IPM:<br>
                       Este grupo incluiría las casillas que representan pobreza en términos de IPM, pero no en términos de ingresos.<br>
                       Esto puede indicar que las personas tienen ingresos suficientes, pero enfrentan privaciones significativas a nivel multidimensional.
                   </td>
-                  <!-- <td class="baja-vulnerabilidad">
+              @endif
+              @if ($data->casillamatriz == 9)
+                  <td class="baja-vulnerabilidad">
                       Baja vulnerabilidad o no vulnerable:<br>
                       Esta categoría incluiría las casillas que representan la no pobreza en ambos indicadores.<br>
                       Aquí, las personas tienen suficientes ingresos y acceso a servicios básicos y oportunidades, lo que las sitúa fuera del umbral de la pobreza tanto en términos de ingresos como de privaciones multidimensionales.
-                  </td> -->
+                  </td> 
+              @endif
+          @endforeach
+
               </tr>
           </table>
         </div>
@@ -458,6 +469,10 @@ $(document).ready(function() {
   });
 
 
+ 
+
+
+
   $('#resultadoencuesta').click(function() {
     $.ajax({
       url: '../agregarpasoresultado',
@@ -465,7 +480,7 @@ $(document).ready(function() {
       method: "GET",
       dataType: 'JSON',
       success: function(data) {
-        window.location.href="../rombo/<?= $variable ?>" 
+       
         console.log(data);
       },
       error: function(xhr, status, error) {

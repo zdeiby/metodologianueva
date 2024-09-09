@@ -24,6 +24,7 @@ class c_rombointegrantes extends Controller
       ->where('linea', $linea)
       ->where('paso', $paso1000)
       ->exists();
+      
       $paso10000='10000';
       $existel100p10000 = DB::table('dbmetodologia.t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
@@ -43,8 +44,12 @@ class c_rombointegrantes extends Controller
       ->where('paso', $paso1000000)
       ->exists();
 
+      $casilla = DB::table('t1_casillamatriz')
+      ->where('folio', $folioDesencriptado)
+      ->get();
+
         return view('v_rombointegrantes',["variable"=>$folio, 'foliocodificado'=>$foliocodificado,  'existel100p1000' => $existel100p1000 ? 1 : 0 , 'existel100p10000' => $existel100p10000 ? 1 : 0, 
-      'existel100p100000' => $existel100p100000 ? 1 : 0, 'existel100p1000000' => $existel100p1000000 ? 1 : 0]);
+      'existel100p100000' => $existel100p100000 ? 1 : 0, 'existel100p1000000' => $existel100p1000000 ? 1 : 0, 'casillamatriz'=>$casilla]);
       }
 
       public function fc_agregarpasoencuadre(Request $request){
@@ -76,6 +81,36 @@ class c_rombointegrantes extends Controller
             // Si no existe, agregar created_at
             $data['created_at'] = $now;
         }
+
+
+        //para agregar fecha de inicio de visita 
+
+        $existsvisitas = DB::table('dbmetodologia.t1_visitasrealizadas')
+        ->where('folio', $folio)
+        ->where('linea', $linea)
+        ->exists();
+
+            if (!$existsvisitas) {
+                // Si no existe, agregar created_at
+                $datavisitageneral['created_at'] = $now;
+            }
+
+            $datavisitageneral = [
+                'folio' => $folio,
+                'linea' => $linea,
+                'iniciovisita' => $now,
+                'usuario' => $usuario,
+                'estado' => 0,
+                'sincro' => 0,
+                'updated_at' => $now
+            ];
+            DB::table('dbmetodologia.t1_visitasrealizadas')->updateOrInsert(
+                [
+                    'folio' => $folio,
+                    'linea' => $linea,
+                ],
+                $datavisitageneral
+            );
     
         // Usar updateOrInsert para guardar o actualizar el registro, sin incluir 'usuario' en las condiciones
         DB::table('dbmetodologia.t1_pasosvisita')->updateOrInsert(
