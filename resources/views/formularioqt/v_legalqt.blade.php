@@ -128,7 +128,7 @@
     </div>
 
     <!-- Fila de contenido -->
-    <div class="row g-0">
+    <div class="row g-0" id="indicadorbl1" style="display:{{(($indicador_bl_1 == '0' || $indicador_bl_1 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom">
         <div class="p-2">
         Los integrantes del hogar con nacionalidad colombiana  tienen los documentos de identificación según su edad 
@@ -175,7 +175,7 @@
 
 
  <!-- Fila de contenido -->
- <div class="row g-0">
+ <div class="row g-0" id="indicadorbl2" style="display:{{(($indicador_bl_2 == '0' || $indicador_bl_2 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los hombres de 18 a 49 años tienen resuelta su situación militar
@@ -210,7 +210,7 @@
 
 
  <!-- Fila de contenido -->
- <div class="row g-0">
+ <div class="row g-0" id="indicadorbl3" style="display:{{(($indicador_bl_3 == '0' || $indicador_bl_3 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         La población con enfoque diferencial etnico (afro e indígena) cuenta con  el certificado de pertenencia etnica, para su reconocimiento como comunidad y acceso  programas específicos para su desarrollo.
@@ -242,7 +242,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0">
+     <div class="row g-0" id="indicadorbl4" style="display:{{(($indicador_bl_4 == '0' || $indicador_bl_4 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Las personas refugiadas, migrantes y  reciben asistencia para su regularización e identificación en el territorio nacional, facilitando su integración local y social.
@@ -283,7 +283,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0">
+     <div class="row g-0" id="indicadorbl5" style="display:{{(($indicador_bl_5 == '0' || $indicador_bl_5 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Las personas con discapacidad poseen el certificado emitido por la entidad de salud competente, facilitando su reconocimiento y acceso a servicios y programas de apoyo
@@ -324,7 +324,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0">
+     <div class="row g-0" id="indicadorbl6" style="display:{{(($indicador_bl_6 == '0' || $indicador_bl_6 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         La población victima del conflicto armado cuenta con RUV
@@ -393,7 +393,7 @@
     </div>
   
 
-    <div class="row g-0">
+    <div class="row g-0" id="indicadorbl7" style="display:{{(($indicador_bl_7 == '0' || $indicador_bl_7 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar de 18 años o más reciben orientación para el reconocimiento de las instituciones de administración de justicia y de garantía de derechos existentes en el territorio.
@@ -423,7 +423,7 @@
 
       </div>
       </div>
-      <div class="row g-0">
+      <div class="row g-0" id="indicadorbl8" style="display:{{(($indicador_bl_8 == '0' || $indicador_bl_8 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         El integrante victima del  conflicto armado,  recibe acompañamiento para  el goce efectivo de sus derechos
@@ -503,7 +503,7 @@
         </div>
       </div>
     </div>
-    <div class="row g-0">
+    <div class="row g-0" id="indicadorbl10" style="display:{{(($indicador_bl_10 == '0' || $indicador_bl_10 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los  integrante del hogar  que lo requieren acceden a servicios de justicia según su necesidad 
