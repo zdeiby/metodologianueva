@@ -219,7 +219,7 @@
 
 
  <!-- Fila de contenido -->
- <div class="row g-0" >
+ <div class="row g-0" id="indicadorbse3" style="display:{{(($indicador_bse_3 == '0' || $indicador_bse_3 == '2')?'none':'')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar implementan estrategias para  reducir el estrés y  para favorecer el bienestar emocional y fisico
@@ -260,7 +260,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0" >
+     <div class="row g-0" id="indicadorbse4" style="display:{{(($indicador_bse_4 == '0' || $indicador_bse_4 == '2')?'none':'')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Las personas con discapacidad acceden a programas y/o servicios relacionados con su tipo de discapacidad
@@ -301,7 +301,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0" >
+     <div class="row g-0" id="indicadorbse5" style="display:{{(($indicador_bse_5 == '0' || $indicador_bse_5 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar que lo requieren acceden  a programas y/o servicios de intervención frente al consumo de sustancias psicoactivas
@@ -342,7 +342,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0" >
+     <div class="row g-0" id="indicadorbse6" style="display:{{(($indicador_bse_6 == '0' || $indicador_bse_6 == '2')?'none':'')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar que lo requieren acceden a servicios de salud mental  y/o atención psicosocial.
@@ -412,7 +412,7 @@
     </div>
   
 
-    <div class="row g-0" >
+    <div class="row g-0" id="indicadorbse7" style="display:{{(($indicador_bse_7 == '0' || $indicador_bse_7 == '2')?'none':'')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Todos los integrantes del hogar cuentan el  acceso y consumo oportuno de alimentos 
