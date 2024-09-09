@@ -106,10 +106,10 @@
 <!-- LOGRO -->
 <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">Disciplina positiva</span>
 
-<div class="container mt-4">
+<div class="container mt-4" >
   <div class="border">
     <!-- Fila de títulos -->
-    <div class="row g-0">
+    <div class="row g-0" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
         <div class="p-2 text-center">
           INDICADOR
@@ -127,13 +127,13 @@
       </div>
     </div>
   
-    <div class="row g-0">
+    <div class="row g-0" id="indicadorbef1" style="display:{{(($indicador_bef_1 == '0' || $indicador_bef_1 == '2')?'none':'')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar implementan estrategias de disciplina positiva, fomentando el respeto mutuo y la resolución pacífica de conflictos en el entorno familiar.
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8" >
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
           Tener espacios  de dialogo para expresar lo que sentimos
@@ -205,7 +205,7 @@
       </div>
     </div>
   
-    <div class="row g-0">
+    <div class="row g-0" id="indicadorbef2" style="display:{{(($indicador_bef_2 == '0' || $indicador_bef_2 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar establecen  vínculos solidarios y de comunicación para resolver necesidades especificas con sus  redes de apoyo familiares y comunitarias 
@@ -273,7 +273,7 @@
       </div>
     </div>
   
-    <div class="row g-0">
+    <div class="row g-0" id="indicadorbef3" style="display:{{(($indicador_bef_3 == '0' || $indicador_bef_3 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar conocen las rutas para la prevención e intervención de la violencia intrafamiliar y las violencias basadas en género.
@@ -340,7 +340,7 @@
       </div>
     </div>
   
-    <div class="row g-0">
+    <div class="row g-0" id="indicadorbef4" style="display:{{(($indicador_bef_4 == '0' || $indicador_bef_4 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los  integrantes del hogar participan de actividades sociales, culturales, recreativas y deportivas.
