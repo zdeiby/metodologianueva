@@ -1159,11 +1159,11 @@ $.ajax({
                   actualizarTabla('t1_pasosvisita', 'Subida base de datos al servidor', '2');
                   $('#barracarga').html('100%');
                   $('#barracarga').css('width','100%');                      
-                  t1_saludemocionalqtd();               
+                  t1_visitasrealizadasd();               
                 },
                 error: function(xhr, status, error) {
                   actualizarTabla('t1_pasosvisita', 'Subida base de datos al servidor', '3');
-                      reintentarfuncion(t1_legalqtd, 't1_legalqt');
+                      reintentarfuncion(t1_legalqtd, 't1_pasosvisitad');
                           console.log(xhr.responseText);
                       }
               })
