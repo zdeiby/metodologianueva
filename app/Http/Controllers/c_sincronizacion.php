@@ -63,6 +63,8 @@ public function fc_sincroprivacionesd(Request $request) {
 
         // Extraer el idintegrante si existe
         $idIntegrante = isset($item['idintegrante']) ? $item['idintegrante'] : null;
+        $paso =         isset($item['paso'])         ? $item['paso'] : null;
+        $linea =        isset($item['linea'])        ? $item['linea'] : null;
 
         // Remover el folio y idintegrante del array para evitar duplicados en el updateOrInsert
         $dataToUpdate = $item;
@@ -71,11 +73,29 @@ public function fc_sincroprivacionesd(Request $request) {
             unset($dataToUpdate['idintegrante']);
         }
 
+        if ($paso !== null) {
+            unset($dataToUpdate['paso']);
+        }
+
+        if ($linea !== null) {
+            unset($dataToUpdate['linea']);
+        }
+
+
         // Usar updateOrInsert para insertar o actualizar según el caso
         $condition = ['folio' => $folio];
         if ($idIntegrante !== null) {
             $condition['idintegrante'] = $idIntegrante;
         }
+
+        if ($paso !== null) {
+            $condition['paso'] = $paso;
+        }
+
+        if ($linea !== null) {
+            $condition['linea'] = $linea;
+        }
+
 
         DB::table($tabla)->updateOrInsert(
             $condition,

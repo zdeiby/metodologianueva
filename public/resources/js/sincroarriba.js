@@ -1154,11 +1154,35 @@ $.ajax({
                   actualizarTabla('t1_pasosvisita', 'Subida base de datos al servidor', '2');
                   $('#barracarga').html('100%');
                   $('#barracarga').css('width','100%');                      
-                  t1_saludemocionalqt();               
+                  t1_visitasrealizadas();               
                 },
                 error: function(xhr, status, error) {
                   actualizarTabla('t1_pasosvisita', 'Subida base de datos al servidor', '3');
                       reintentarfuncion(t1_legalqt, 't1_legalqt');
+                          console.log(xhr.responseText);
+                      }
+              })
+}
+
+
+
+function t1_visitasrealizadas (){
+    actualizarTabla('t1_visitasrealizadas', 'Subida base de datos al servidor', '1');
+    let tabla= 't1_visitasrealizadas';
+$.ajax({
+                url:'./sincroprivaciones',
+                method: "GET",
+                data: { tabla: tabla},  
+                dataType:'JSON',
+                success:function(data){ 
+                  actualizarTabla('t1_visitasrealizadas', 'Subida base de datos al servidor', '2');
+                  $('#barracarga').html('100%');
+                  $('#barracarga').css('width','100%');                      
+                  t1_saludemocionalqt();               
+                },
+                error: function(xhr, status, error) {
+                  actualizarTabla('t1_visitasrealizadas', 'Subida base de datos al servidor', '3');
+                      reintentarfuncion(t1_pasosvisita, 't1_pasosvisita');
                           console.log(xhr.responseText);
                       }
               })
@@ -1182,8 +1206,10 @@ $.ajax({
                 },
                 error: function(xhr, status, error) {
                   actualizarTabla('t1_saludemocionalqt', 'Subida base de datos al servidor', '3');
-                      reintentarfuncion(t1_pasosvisita, 't1_pasosvisita');
+                      reintentarfuncion(t1_visitasrealizadas, 't1_pasosvisita');
                           console.log(xhr.responseText);
                       }
               })
 }
+
+

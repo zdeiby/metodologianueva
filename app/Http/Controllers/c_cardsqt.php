@@ -16,7 +16,9 @@ class c_cardsqt extends Controller
       $hashids = new Hashids('', 10); 
       $decodeFolio = $hashids->decode($folio);
       $jefes=$modelo-> m_veredadrepjefe($decodeFolio[0]);
-        return view('v_cardsqt',["variable"=>$decodeFolio[0], "folioencriptado"=>$folio,'jefes' => $jefes]);
+      $foliobr=strval($decodeFolio[0]);
+      $foliobycript= encrypt($foliobr);
+        return view('v_cardsqt',["variable"=>$decodeFolio[0], "folioencriptado"=>$folio,'jefes' => $jefes, 'foliobycript'=>$foliobycript]);
       }
 
     public function fc_leerintegrantesqt(Request $request){
@@ -41,7 +43,7 @@ class c_cardsqt extends Controller
                     '.$value->nombre1.' '.$value->nombre2.' '.$value->apellido1.' '.$value->apellido2.'
                 </td>
                 <td class="align-middle" >
-                    <button class="habilitado btn btn-light btn-sm" '.(($value->validacion == '0')?'':'disabled').' onclick="iraqt(`'.$hashids->encode($value->idintegrante).'`,`'.$folioencriptado.'`)">
+                    <button class="habilitado btn btn-'.(($value->validacion == '0')?'light':'warning').' btn-sm" '.(($value->validacion == '0')?'':'disabled').' onclick="iraqt(`'.$hashids->encode($value->idintegrante).'`,`'.$folioencriptado.'`)">
                         Ir a QT
                     </button>
                 </td>
@@ -191,11 +193,11 @@ class c_cardsqt extends Controller
   return response()->json(['message' =>  $integrantehogar]);
   }
 
-  public function fc_finalizarintegrantes(Request $request){
+  public function fc_finalizarintegrantesqt(Request $request){
       $now = Carbon::now();
       $folio = $request->input('folio');
       $linea = 100;  // poner linea 
-      $paso = 10000;  // poner paso
+      $paso = 10000000;  // poner paso
       $usuario = $request->input('usuario'); // Este campo no es clave primaria
 
       // Datos a insertar o actualizar
@@ -230,7 +232,37 @@ class c_cardsqt extends Controller
           ],
           $data
       );
-      return response()->json(['message' =>  'ok']);
+
+      
+
+      $existsvisitas = DB::table('dbmetodologia.t1_visitasrealizadas')
+      ->where('folio', $folio)
+      ->where('linea', $linea)
+      ->exists();
+
+          if (!$existsvisitas) {
+              // Si no existe, agregar created_at
+              $datavisitageneral['created_at'] = $now;
+          }
+
+          $datavisitageneral = [
+              'folio' => $folio,
+              'linea' => $linea,
+              'finvisita' => $now,
+              'usuario' => $usuario,
+              'estado' => 1,
+              'sincro' => 0,
+              'updated_at' => $now
+          ];
+          DB::table('dbmetodologia.t1_visitasrealizadas')->updateOrInsert(
+              [
+                  'folio' => $folio,
+                  'linea' => $linea,
+              ],
+              $datavisitageneral
+          );
+
+      return response()->json(['message' => $existsvisitas]);
   }
   
 

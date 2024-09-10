@@ -169,6 +169,10 @@ class c_encuestaintegrantesqt extends Controller
     $encodedFolio = $hashids->decode($folio);
     $decodeIntegrante = $hashids->decode($integrante);
 
+    $informacion = DB::table($tabla)
+               ->where('idintegrante', $decodeIntegrante)
+               ->where('folio', $encodedFolio)
+               ->get();
 
      //indicador_bl_1
      $t1_indicador_bl_1 = DB::table('t1_indicador_bl_1')
@@ -195,29 +199,29 @@ class c_encuestaintegrantesqt extends Controller
 
 
              //indicador_bl_3
- $t1_indicador_bl_3 = DB::table('t1_indicador_bl_3')
- ->where('idintegrante', $decodeIntegrante)
- ->where('folio', $encodedFolio)
- ->get();
+                $t1_indicador_bl_3 = DB::table('t1_indicador_bl_3')
+                ->where('idintegrante', $decodeIntegrante)
+                ->where('folio', $encodedFolio)
+                ->get();
 
- $indicador_bl_3='';
- foreach ($t1_indicador_bl_3 as $indicador) {
-     $indicador_bl_3=$indicador->codigoindicadorDA;
- }
+                $indicador_bl_3='';
+                foreach ($t1_indicador_bl_3 as $indicador) {
+                    $indicador_bl_3=$indicador->codigoindicadorDA;
+                }
 
-  //indicador_bl_4
-  $t1_indicador_bl_4 = DB::table('t1_indicador_bl_4')
-  ->where('idintegrante', $decodeIntegrante)
-  ->where('folio', $encodedFolio)
-  ->get();
+                //indicador_bl_4
+                $t1_indicador_bl_4 = DB::table('t1_indicador_bl_4')
+                ->where('idintegrante', $decodeIntegrante)
+                ->where('folio', $encodedFolio)
+                ->get();
 
-  $indicador_bl_4='';
-  foreach ($t1_indicador_bl_4 as $indicador) {
-      $indicador_bl_4=$indicador->codigoindicadorDA;
-  }
+                $indicador_bl_4='';
+                foreach ($t1_indicador_bl_4 as $indicador) {
+                    $indicador_bl_4=$indicador->codigoindicadorDA;
+                }
 
- //indicador_bl_5
- $t1_indicador_bl_5 = DB::table('t1_indicador_bl_5')
+            //indicador_bl_5
+            $t1_indicador_bl_5 = DB::table('t1_indicador_bl_5')
             ->where('idintegrante', $decodeIntegrante)
             ->where('folio', $encodedFolio)
             ->get();
@@ -228,30 +232,30 @@ class c_encuestaintegrantesqt extends Controller
             }
 
              //indicador_bl_6
- $t1_indicador_bl_6 = DB::table('t1_indicador_bl_6')
- ->where('idintegrante', $decodeIntegrante)
- ->where('folio', $encodedFolio)
- ->get();
+                $t1_indicador_bl_6 = DB::table('t1_indicador_bl_6')
+                ->where('idintegrante', $decodeIntegrante)
+                ->where('folio', $encodedFolio)
+                ->get();
 
- $indicador_bl_6='';
- foreach ($t1_indicador_bl_6 as $indicador) {
-     $indicador_bl_6=$indicador->codigoindicadorDA;
- }
+                $indicador_bl_6='';
+                foreach ($t1_indicador_bl_6 as $indicador) {
+                    $indicador_bl_6=$indicador->codigoindicadorDA;
+                }
         
 
-  //indicador_bl_7
-  $t1_indicador_bl_7 = DB::table('t1_indicador_bl_7')
-  ->where('idintegrante', $decodeIntegrante)
-  ->where('folio', $encodedFolio)
-  ->get();
+                //indicador_bl_7
+                $t1_indicador_bl_7 = DB::table('t1_indicador_bl_7')
+                ->where('idintegrante', $decodeIntegrante)
+                ->where('folio', $encodedFolio)
+                ->get();
 
-  $indicador_bl_7='';
-  foreach ($t1_indicador_bl_7 as $indicador) {
-      $indicador_bl_7=$indicador->codigoindicadorDA;
-  }
+                $indicador_bl_7='';
+                foreach ($t1_indicador_bl_7 as $indicador) {
+                    $indicador_bl_7=$indicador->codigoindicadorDA;
+                }
 
- //indicador_bl_8
- $t1_indicador_bl_8 = DB::table('t1_indicador_bl_8')
+                //indicador_bl_8
+                $t1_indicador_bl_8 = DB::table('t1_indicador_bl_8')
             ->where('idintegrante', $decodeIntegrante)
             ->where('folio', $encodedFolio)
             ->get();
@@ -262,8 +266,8 @@ class c_encuestaintegrantesqt extends Controller
             }
 
 
- //indicador_bl_10
- $t1_indicador_bl_10 = DB::table('t1_indicador_bl_10')
+            //indicador_bl_10
+            $t1_indicador_bl_10 = DB::table('t1_indicador_bl_10')
             ->where('idintegrante', $decodeIntegrante)
             ->where('folio', $encodedFolio)
             ->get();
@@ -275,13 +279,75 @@ class c_encuestaintegrantesqt extends Controller
 
 
 
+            $datos = [
+                'indicadorbl1_1' => '',
+                'indicadorbl1_2' => '',
+                'indicadorbl1_3' => '',
+                'indicadorbl2_1' => '',
+                'indicadorbl2_2' => '',
+                'indicadorbl3_1' => '',
+                'indicadorbl3_2' => '',
+                'indicadorbl4_1' => '',
+                'indicadorbl4_2' => '',
+                'indicadorbl4_3' => '',
+                'indicadorbl5_1' => '',
+                'indicadorbl5_2' => '',
+                'indicadorbl5_3' => '',
+                'indicadorbl6_1' => '',
+                'indicadorbl6_2' => '',
+                'indicadorbl6_3' => '',
+                'indicadorbl7_1' => '',
+                'indicadorbl7_2' => '',
+                'indicadorbl8_1' => '',
+                'indicadorbl8_2' => '',
+                'indicadorbl8_3' => '',
+                'indicadorbl9_1' => '',
+                'indicadorbl9_2' => '',
+                'indicadorbl9_3' => '',
+                'indicadorbl10_1' => '',
+                'indicadorbl10_2' => '',
+                'siguiente' => 'style="display:none"'
+            ];
+
+            foreach ($informacion as $registro) {
+                // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
+                $datos['indicadorbl1_1'] = $registro->indicadorbl1_1;
+                $datos['indicadorbl1_2'] = $registro->indicadorbl1_2;
+                $datos['indicadorbl1_3'] = $registro->indicadorbl1_3;
+                $datos['indicadorbl2_1'] = $registro->indicadorbl2_1;
+                $datos['indicadorbl2_2'] = $registro->indicadorbl2_2;
+                $datos['indicadorbl3_1'] = $registro->indicadorbl3_1;
+                $datos['indicadorbl3_2'] = $registro->indicadorbl3_2;
+                $datos['indicadorbl4_1'] = $registro->indicadorbl4_1;
+                $datos['indicadorbl4_2'] = $registro->indicadorbl4_2;
+                $datos['indicadorbl4_3'] = $registro->indicadorbl4_3;
+                $datos['indicadorbl5_1'] = $registro->indicadorbl5_1;
+                $datos['indicadorbl5_2'] = $registro->indicadorbl5_2;
+                $datos['indicadorbl5_3'] = $registro->indicadorbl5_3;
+                $datos['indicadorbl6_1'] = $registro->indicadorbl6_1;
+                $datos['indicadorbl6_2'] = $registro->indicadorbl6_2;
+                $datos['indicadorbl6_3'] = $registro->indicadorbl6_3;
+                $datos['indicadorbl7_1'] = $registro->indicadorbl7_1;
+                $datos['indicadorbl7_2'] = $registro->indicadorbl7_2;
+                $datos['indicadorbl8_1'] = $registro->indicadorbl8_1;
+                $datos['indicadorbl8_2'] = $registro->indicadorbl8_2;
+                $datos['indicadorbl8_3'] = $registro->indicadorbl8_3;
+                $datos['indicadorbl9_1'] = $registro->indicadorbl9_1;
+                $datos['indicadorbl9_2'] = $registro->indicadorbl9_2;
+                $datos['indicadorbl9_3'] = $registro->indicadorbl9_3;
+                $datos['indicadorbl10_1'] = $registro->indicadorbl10_1;
+                $datos['indicadorbl10_2'] = $registro->indicadorbl10_2;
+            
+                $datos['siguiente'] = (($registro->estado == '1') ? 'style="display:"' : 'style="display:none"');
+            }
+            
+            
 
 
 
 
 
-
-     return view('formularioqt/v_legalqt',['variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,'indicador_bl_1'=>$indicador_bl_1,'indicador_bl_2'=>$indicador_bl_2,
+     return view('formularioqt/v_legalqt', $datos,['variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,'indicador_bl_1'=>$indicador_bl_1,'indicador_bl_2'=>$indicador_bl_2,
     'indicador_bl_3'=>$indicador_bl_3, 'indicador_bl_4'=>$indicador_bl_4, 'indicador_bl_5'=>$indicador_bl_5,'indicador_bl_6'=>$indicador_bl_6,'indicador_bl_7'=>$indicador_bl_7,
 'indicador_bl_8'=>$indicador_bl_8, 'indicador_bl_10'=>$indicador_bl_10
     ]);
@@ -293,7 +359,10 @@ class c_encuestaintegrantesqt extends Controller
         $encodedFolio = $hashids->decode($folio);
         $decodeIntegrante = $hashids->decode($integrante);
 
-
+        $informacion = DB::table($tabla)
+        ->where('idintegrante', $decodeIntegrante)
+        ->where('folio', $encodedFolio)
+        ->get();
 
                 //indicador_bef_1
             $t1_indicador_bef_1 = DB::table('t1_indicador_bef_1')
@@ -340,22 +409,56 @@ class c_encuestaintegrantesqt extends Controller
 
 
 
+                        $datos = [
+                            'indicador_bef1_1' => '',
+                            'indicador_bef1_2' => '',
+                            'indicador_bef1_3' => '',
+                            'indicador_bef1_4' => '',
+                            'indicador_bef2_1' => '',
+                            'indicador_bef2_2' => '',
+                            'indicador_bef2_3' => '',
+                            'indicador_bef3_1' => '',
+                            'indicador_bef3_2' => '',
+                            'indicador_bef3_3' => '',
+                            'indicador_bef4_1' => '',
+                            'indicador_bef4_2' => '',
+                            'indicador_bef4_3' => '',
+                            'indicador_bef4_4' => '',
+                            'indicador_bef5_1' => '',
+                            'indicador_bef5_2' => '',
+                            'indicador_bef5_3' => '',
+                            'indicador_bef5_4' => '',
+                            'siguiente' => 'style="display:none"'
+                        ];
+                        
+                        foreach ($informacion as $registro) {
+                            // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
+                            $datos['indicador_bef1_1'] = $registro->indicador_bef1_1;
+                            $datos['indicador_bef1_2'] = $registro->indicador_bef1_2;
+                            $datos['indicador_bef1_3'] = $registro->indicador_bef1_3;
+                            $datos['indicador_bef1_4'] = $registro->indicador_bef1_4;
+                            $datos['indicador_bef2_1'] = $registro->indicador_bef2_1;
+                            $datos['indicador_bef2_2'] = $registro->indicador_bef2_2;
+                            $datos['indicador_bef2_3'] = $registro->indicador_bef2_3;
+                            $datos['indicador_bef3_1'] = $registro->indicador_bef3_1;
+                            $datos['indicador_bef3_2'] = $registro->indicador_bef3_2;
+                            $datos['indicador_bef3_3'] = $registro->indicador_bef3_3;
+                            $datos['indicador_bef4_1'] = $registro->indicador_bef4_1;
+                            $datos['indicador_bef4_2'] = $registro->indicador_bef4_2;
+                            $datos['indicador_bef4_3'] = $registro->indicador_bef4_3;
+                            $datos['indicador_bef4_4'] = $registro->indicador_bef4_4;
+                            $datos['indicador_bef5_1'] = $registro->indicador_bef5_1;
+                            $datos['indicador_bef5_2'] = $registro->indicador_bef5_2;
+                            $datos['indicador_bef5_3'] = $registro->indicador_bef5_3;
+                            $datos['indicador_bef5_4'] = $registro->indicador_bef5_4;
+                        
+                            $datos['siguiente'] = (($registro->estado == '1') ? 'style="display:"' : 'style="display:none"');
+                        }
 
-
-
-
-
-
-
-
-
-
-
-
-        return view('formularioqt/v_enfamiliaqt',['variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
-    'indicador_bef_1'=>$indicador_bef_1,'indicador_bef_2'=>$indicador_bef_2,'indicador_bef_3'=>$indicador_bef_3,'indicador_bef_4'=>$indicador_bef_4,
-    ]);
-    } 
+                        return view('formularioqt/v_enfamiliaqt',$datos,['variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
+                    'indicador_bef_1'=>$indicador_bef_1,'indicador_bef_2'=>$indicador_bef_2,'indicador_bef_3'=>$indicador_bef_3,'indicador_bef_4'=>$indicador_bef_4,
+                    ]);
+                    } 
 
     public function fc_intelectualqt(Request $request,$folio, $integrante){
         $tabla = 't1_intelectualqt';
@@ -363,8 +466,13 @@ class c_encuestaintegrantesqt extends Controller
         $encodedFolio = $hashids->decode($folio);
         $decodeIntegrante = $hashids->decode($integrante);
 
- //indicador_bi_2
- $t1_indicador_bi_2 = DB::table('t1_indicador_bi_2')
+        $informacion = DB::table($tabla)
+        ->where('idintegrante', $decodeIntegrante)
+        ->where('folio', $encodedFolio)
+        ->get();
+
+            //indicador_bi_2
+            $t1_indicador_bi_2 = DB::table('t1_indicador_bi_2')
             ->where('idintegrante', $decodeIntegrante)
             ->where('folio', $encodedFolio)
             ->get();
@@ -388,31 +496,94 @@ class c_encuestaintegrantesqt extends Controller
 
 
              //indicador_bi_5
- $t1_indicador_bi_5 = DB::table('t1_indicador_bi_5')
- ->where('idintegrante', $decodeIntegrante)
- ->where('folio', $encodedFolio)
- ->get();
+            $t1_indicador_bi_5 = DB::table('t1_indicador_bi_5')
+            ->where('idintegrante', $decodeIntegrante)
+            ->where('folio', $encodedFolio)
+            ->get();
 
- $indicador_bi_5='';
- foreach ($t1_indicador_bi_5 as $indicador) {
-     $indicador_bi_5=$indicador->codigoindicadorDA;
- }
-
-
-  //indicador_bi_6
-  $t1_indicador_bi_6 = DB::table('t1_indicador_bi_6')
-  ->where('idintegrante', $decodeIntegrante)
-  ->where('folio', $encodedFolio)
-  ->get();
-
-  $indicador_bi_6='';
-  foreach ($t1_indicador_bi_6 as $indicador) {
-      $indicador_bi_6=$indicador->codigoindicadorDA;
-  }
+            $indicador_bi_5='';
+            foreach ($t1_indicador_bi_5 as $indicador) {
+                $indicador_bi_5=$indicador->codigoindicadorDA;
+            }
 
 
+            //indicador_bi_6
+            $t1_indicador_bi_6 = DB::table('t1_indicador_bi_6')
+            ->where('idintegrante', $decodeIntegrante)
+            ->where('folio', $encodedFolio)
+            ->get();
+
+            $indicador_bi_6='';
+            foreach ($t1_indicador_bi_6 as $indicador) {
+                $indicador_bi_6=$indicador->codigoindicadorDA;
+            }
 
 
+
+            $datos = [
+                'indicador_bi1_1' => '',
+                'indicador_bi1_2' => '',
+                'indicador_bi1_3' => '',
+                'indicador_bi2_1' => '',
+                'indicador_bi2_2' => '',
+                'indicador_bi2_3' => '',
+                'indicador_bi2_4' => '',
+                'indicador_bi3_1' => '',
+                'indicador_bi3_2' => '',
+                'indicador_bi3_3' => '',
+                'indicador_bi3_4' => '',
+                'indicador_bi4_1' => '',
+                'indicador_bi4_2' => '',
+                'indicador_bi4_3' => '',
+                'indicador_bi4_4' => '',
+                'indicador_bi5_1' => '',
+                'indicador_bi5_2' => '',
+                'indicador_bi5_3' => '',
+                'indicador_bi5_4' => '',
+                'indicador_bi5_5' => '',
+                'indicador_bi5_6' => '',
+                'indicador_bi6_1' => '',
+                'indicador_bi6_2' => '',
+                'indicador_bi6_3' => '',
+                'indicador_bi6_4' => '',
+                'indicador_bi6_5' => '',
+                'indicador_bi6_6' => '',
+                'siguiente' => 'style="display:none"'
+            ];
+            
+            foreach ($informacion as $registro) {
+                // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
+                $datos['indicador_bi1_1'] = $registro->indicador_bi1_1;
+                $datos['indicador_bi1_2'] = $registro->indicador_bi1_2;
+                $datos['indicador_bi1_3'] = $registro->indicador_bi1_3;
+                $datos['indicador_bi2_1'] = $registro->indicador_bi2_1;
+                $datos['indicador_bi2_2'] = $registro->indicador_bi2_2;
+                $datos['indicador_bi2_3'] = $registro->indicador_bi2_3;
+                $datos['indicador_bi2_4'] = $registro->indicador_bi2_4;
+                $datos['indicador_bi3_1'] = $registro->indicador_bi3_1;
+                $datos['indicador_bi3_2'] = $registro->indicador_bi3_2;
+                $datos['indicador_bi3_3'] = $registro->indicador_bi3_3;
+                $datos['indicador_bi3_4'] = $registro->indicador_bi3_4;
+                $datos['indicador_bi4_1'] = $registro->indicador_bi4_1;
+                $datos['indicador_bi4_2'] = $registro->indicador_bi4_2;
+                $datos['indicador_bi4_3'] = $registro->indicador_bi4_3;
+                $datos['indicador_bi4_4'] = $registro->indicador_bi4_4;
+                $datos['indicador_bi5_1'] = $registro->indicador_bi5_1;
+                $datos['indicador_bi5_2'] = $registro->indicador_bi5_2;
+                $datos['indicador_bi5_3'] = $registro->indicador_bi5_3;
+                $datos['indicador_bi5_4'] = $registro->indicador_bi5_4;
+                $datos['indicador_bi5_5'] = $registro->indicador_bi5_5;
+                $datos['indicador_bi5_6'] = $registro->indicador_bi5_6;
+                $datos['indicador_bi6_1'] = $registro->indicador_bi6_1;
+                $datos['indicador_bi6_2'] = $registro->indicador_bi6_2;
+                $datos['indicador_bi6_3'] = $registro->indicador_bi6_3;
+                $datos['indicador_bi6_4'] = $registro->indicador_bi6_4;
+                $datos['indicador_bi6_5'] = $registro->indicador_bi6_5;
+                $datos['indicador_bi6_6'] = $registro->indicador_bi6_6;
+            
+                $datos['siguiente'] = (($registro->estado == '1') ? 'style="display:"' : 'style="display:none"');
+            }
+            
 
 
 
@@ -422,7 +593,7 @@ class c_encuestaintegrantesqt extends Controller
 
 
 
-        return view('formularioqt/v_intelectualqt',['variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
+        return view('formularioqt/v_intelectualqt',$datos,['variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
         'indicador_bi_2'=>$indicador_bi_2,'indicador_bi_4'=>$indicador_bi_4,'indicador_bi_5'=>$indicador_bi_5,'indicador_bi_6'=>$indicador_bi_6
     ]);
     } 
@@ -432,7 +603,66 @@ class c_encuestaintegrantesqt extends Controller
         $hashids = new Hashids('', 10); 
         $encodedFolio = $hashids->decode($folio);
         $decodeIntegrante = $hashids->decode($integrante);
-        return view('formularioqt/v_financieroqt',['variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante, 'tabla'=>$tabla ]);
+        $informacion = DB::table($tabla)
+        ->where('idintegrante', $decodeIntegrante)
+        ->where('folio', $encodedFolio)
+        ->get();
+
+
+        $datos = [
+            'indicador_bf1_1' => '',
+            'indicador_bf1_2' => '',
+            'indicador_bf1_3' => '',
+            'indicador_bf1_4' => '',
+            'indicador_bf2_1' => '',
+            'indicador_bf2_2' => '',
+            'indicador_bf2_3' => '',
+            'indicador_bf3_1' => '',
+            'indicador_bf3_2' => '',
+            'indicador_bf3_3' => '',
+            'indicador_bf4_1' => '',
+            'indicador_bf4_2' => '',
+            'indicador_bf4_3' => '',
+            'indicador_bf4_4' => '',
+            'indicador_bf4_5' => '',
+            'indicador_bf5_1' => '',
+            'indicador_bf5_2' => '',
+            'indicador_bf5_3' => '',
+            'indicador_bf5_4' => '',
+        
+            'siguiente' => 'style="display:none"'
+        ];
+        
+        foreach ($informacion as $registro) {
+            // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
+            $datos['indicador_bf1_1'] = $registro->indicador_bf1_1;
+            $datos['indicador_bf1_2'] = $registro->indicador_bf1_2;
+            $datos['indicador_bf1_3'] = $registro->indicador_bf1_3;
+            $datos['indicador_bf1_4'] = $registro->indicador_bf1_4;
+            $datos['indicador_bf2_1'] = $registro->indicador_bf2_1;
+            $datos['indicador_bf2_2'] = $registro->indicador_bf2_2;
+            $datos['indicador_bf2_3'] = $registro->indicador_bf2_3;
+            $datos['indicador_bf3_1'] = $registro->indicador_bf3_1;
+            $datos['indicador_bf3_2'] = $registro->indicador_bf3_2;
+            $datos['indicador_bf3_3'] = $registro->indicador_bf3_3;
+            $datos['indicador_bf4_1'] = $registro->indicador_bf4_1;
+            $datos['indicador_bf4_2'] = $registro->indicador_bf4_2;
+            $datos['indicador_bf4_3'] = $registro->indicador_bf4_3;
+            $datos['indicador_bf4_4'] = $registro->indicador_bf4_4;
+            $datos['indicador_bf4_5'] = $registro->indicador_bf4_5;
+            $datos['indicador_bf5_1'] = $registro->indicador_bf5_1;
+            $datos['indicador_bf5_2'] = $registro->indicador_bf5_2;
+            $datos['indicador_bf5_3'] = $registro->indicador_bf5_3;
+            $datos['indicador_bf5_4'] = $registro->indicador_bf5_4;
+  
+        
+            // Controla la visualización del siguiente elemento
+            $datos['siguiente'] = (($registro->estado == '1') ? 'style="display:"' : 'style="display:none"');
+        }
+        
+
+
+        return view('formularioqt/v_financieroqt', $datos,['variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante, 'tabla'=>$tabla ]);
     } 
 
 

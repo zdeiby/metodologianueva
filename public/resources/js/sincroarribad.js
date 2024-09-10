@@ -1159,11 +1159,34 @@ $.ajax({
                   actualizarTabla('t1_pasosvisita', 'Subida base de datos al servidor', '2');
                   $('#barracarga').html('100%');
                   $('#barracarga').css('width','100%');                      
-                  t1_saludemocionalqtd();               
+                  t1_visitasrealizadasd();               
                 },
                 error: function(xhr, status, error) {
                   actualizarTabla('t1_pasosvisita', 'Subida base de datos al servidor', '3');
-                      reintentarfuncion(t1_legalqtd, 't1_legalqt');
+                      reintentarfuncion(t1_legalqtd, 't1_pasosvisitad');
+                          console.log(xhr.responseText);
+                      }
+              })
+}
+
+
+function t1_visitasrealizadasd (){
+    actualizarTabla('t1_visitasrealizadas', 'Subida base de datos al servidor', '1');
+    let tabla= 't1_visitasrealizadas';
+$.ajax({
+                url:'./sincroprivacionesd',
+                method: "GET",
+                data: { tabla: tabla},  
+                dataType:'JSON',
+                success:function(data){ 
+                  actualizarTabla('t1_visitasrealizadas', 'Subida base de datos al servidor', '2');
+                  $('#barracarga').html('100%');
+                  $('#barracarga').css('width','100%');                      
+                  t1_saludemocionalqtd();               
+                },
+                error: function(xhr, status, error) {
+                  actualizarTabla('t1_visitasrealizadas', 'Subida base de datos al servidor', '3');
+                      reintentarfuncion(t1_pasosvisitad, 't1_legalqt');
                           console.log(xhr.responseText);
                       }
               })
@@ -1192,3 +1215,6 @@ $.ajax({
                       }
               })
 }
+
+
+

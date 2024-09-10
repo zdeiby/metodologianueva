@@ -141,7 +141,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi1_1" id="indicador_bi1_1" <?= ($indicador_bi1_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi1_1) ?>">
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi1_2" id="indicador_bi1_2" <?= ($indicador_bi1_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi1_2) ?>">
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi1_3" id="indicador_bi1_3" <?= ($indicador_bi1_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi1_3) ?>">
             </div>
           </div>
         </div>
@@ -182,7 +182,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi2_1" id="indicador_bi2_1" <?= ($indicador_bi2_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi2_1) ?>">
             </div>
           </div>
         </div>
@@ -192,7 +192,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi2_2" id="indicador_bi2_2" <?= ($indicador_bi2_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi2_2) ?>">
             </div>
           </div>
         </div>
@@ -202,7 +202,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi2_3" id="indicador_bi2_3" <?= ($indicador_bi2_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi2_3) ?>">
             </div>
           </div>
         </div>
@@ -212,7 +212,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi2_4" id="indicador_bi2_4" <?= ($indicador_bi2_4 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi2_4) ?>">
             </div>
           </div>
         </div>
@@ -233,7 +233,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi3_1" id="indicador_bi3_1" <?= ($indicador_bi3_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi3_1) ?>">
             </div>
           </div>
         </div>
@@ -243,7 +243,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi3_2" id="indicador_bi3_2" <?= ($indicador_bi3_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi3_2) ?>">
             </div>
           </div>
         </div>
@@ -253,7 +253,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi3_3" id="indicador_bi3_3" <?= ($indicador_bi3_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi3_3) ?>">
             </div>
           </div>
         </div>
@@ -263,7 +263,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi3_4" id="indicador_bi3_4" <?= ($indicador_bi3_4 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi3_4) ?>">
             </div>
           </div>
         </div>
@@ -312,7 +312,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi4_1" id="indicador_bi4_1" <?= ($indicador_bi4_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi4_1) ?>">
             </div>
           </div>
         </div>
@@ -322,7 +322,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi4_2" id="indicador_bi4_2" <?= ($indicador_bi4_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi4_2) ?>">
             </div>
           </div>
         </div>
@@ -332,17 +332,17 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi4_3" id="indicador_bi4_3" <?= ($indicador_bi4_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi4_3) ?>">
             </div>
           </div>
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-          Acceder a  recursos tecnologicos  (smart phone, tablet ó PC) y/o conexión a la Internet) que faciliten la alfabetización digital
+          Acceder a  recursos tecnologicos  (smart phone, tablet ó PC) y/o conexión a la Internet ) que faciliten la alfabetización digital
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi4_4" id="indicador_bi4_4" <?= ($indicador_bi4_4 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi4_4) ?>">
             </div>
           </div>
         </div>
@@ -392,7 +392,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi5_1" id="indicador_bi5_1" <?= ($indicador_bi5_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi5_1) ?>">
             </div>
           </div>
         </div>
@@ -402,7 +402,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi5_2" id="indicador_bi5_2" <?= ($indicador_bi5_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi5_2) ?>">
             </div>
           </div>
         </div>
@@ -412,7 +412,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi5_3" id="indicador_bi5_3" <?= ($indicador_bi5_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi5_3) ?>">
             </div>
           </div>
         </div>
@@ -422,7 +422,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi5_4" id="indicador_bi5_4" <?= ($indicador_bi5_4 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi5_4) ?>">
             </div>
           </div>
         </div><div class="row g-0">
@@ -431,7 +431,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi5_5" id="indicador_bi5_5" <?= ($indicador_bi5_5 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi5_5) ?>">
             </div>
           </div>
         </div><div class="row g-0">
@@ -440,7 +440,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi5_6" id="indicador_bi5_6" <?= ($indicador_bi5_6 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi5_6) ?>">
             </div>
           </div>
         </div>
@@ -459,7 +459,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso350" value="50" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi6_1" id="indicador_bi6_1" <?= ($indicador_bi6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi6_1) ?>">
             </div>
           </div>
         </div>
@@ -469,7 +469,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso351" value="51" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi6_2" id="indicador_bi6_2" <?= ($indicador_bi6_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi6_2) ?>">
             </div>
           </div>
         </div>
@@ -479,7 +479,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi6_3" id="indicador_bi6_3" <?= ($indicador_bi6_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi6_3) ?>">
             </div>
           </div>
         </div>
@@ -489,7 +489,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi6_4" id="indicador_bi6_4" <?= ($indicador_bi6_4 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi6_4) ?>">
             </div>
           </div>
         </div>
@@ -499,7 +499,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi6_5" id="indicador_bi6_5" <?= ($indicador_bi6_5 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi6_5) ?>">
             </div>
           </div>
         </div>
@@ -509,7 +509,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="acceso3[]" id="acceso352" value="52" respuesta="SI">
+              <input class="form-check-input" type="checkbox" name="indicador_bi6_6" id="indicador_bi6_6" <?= ($indicador_bi6_6 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bi6_6) ?>">
             </div>
           </div>
         </div>
@@ -522,14 +522,6 @@
 
   </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -654,6 +646,21 @@
              data[obj.name] = obj.value;
          });
 
+
+         $('#formulario [name]').each(function() {
+               var name = $(this).attr('name');
+
+              // Si el elemento es un checkbox
+               if ($(this).is(':checkbox')) {
+                   // Solo sobrescribe el valor si no es "NO APLICA"
+                   if ($(this).val() !== 'NO APLICA') {
+                       data[name] = $(this).is(':checked') ? $(this).val() : 'NO';
+                   } else {
+                       data[name] = 'NO APLICA';
+                   }
+               }
+           });
+
          console.log(data);
 
          $.ajax({
@@ -661,7 +668,7 @@
              method: 'GET', // Cambiar a GET si estás usando GET
              data: data, // Envía los datos de manera plana
              success: function(response) {
-              $('#siguiente').css('display','');
+               $('#siguiente').css('display','');
                  alertagood();
              },
              error: function(xhr, status, error) {
@@ -673,8 +680,118 @@
 });
 
 
+ </script>
+<script>
 
-    </script>
+     document.addEventListener('DOMContentLoaded', function () {
+ // Array de switches con un flag para identificar el switch 'Ninguna'
+ var healthSwitches = {
+    'indicador_bi1_1': { isNone: false },
+    'indicador_bi1_2': { isNone: false },
+    'indicador_bi1_3': { isNone: false },
+    'indicador_bi2_1': { isNone: false },
+    'indicador_bi2_2': { isNone: false },
+    'indicador_bi2_3': { isNone: false },
+    'indicador_bi2_4': { isNone: false },
+    'indicador_bi3_1': { isNone: false },
+    'indicador_bi3_2': { isNone: false },
+    'indicador_bi3_3': { isNone: false },
+    'indicador_bi3_4': { isNone: false },
+    'indicador_bi4_1': { isNone: false },
+    'indicador_bi4_2': { isNone: false },
+    'indicador_bi4_3': { isNone: false },
+    'indicador_bi4_4': { isNone: false },
+    'indicador_bi5_1': { isNone: false },
+    'indicador_bi5_2': { isNone: false },
+    'indicador_bi5_3': { isNone: false },
+    'indicador_bi5_4': { isNone: false },
+    'indicador_bi5_5': { isNone: false },
+    'indicador_bi5_6': { isNone: false },
+    'indicador_bi6_1': { isNone: false },
+    'indicador_bi6_2': { isNone: false },
+    'indicador_bi6_3': { isNone: false },
+    'indicador_bi6_4': { isNone: false },
+    'indicador_bi6_5': { isNone: false },
+    'indicador_bi6_6': { isNone: false },
+    'ninguna_switch': { isNone: true }  // Este es el switch exclusivo
+};
+
+
+ Object.keys(healthSwitches).forEach(function(switchId) {
+     var switchElement = document.getElementById(switchId);
+     if (switchElement) {
+         // Configurar el valor inicial correctamente
+         switchElement.value = switchElement.checked ? 'SI' : 'NO';
+         switchElement.addEventListener('change', function() {
+             handleCheckboxLogic(this, healthSwitches);
+         });
+     } else {
+         console.log("Switch no encontrado: " + switchId);
+     }
+ });
+
+ function handleCheckboxLogic(changedElement, allSwitches) {
+     var isNone = allSwitches[changedElement.id].isNone;
+     // Si se selecciona 'Ninguna', desmarcar todos los demás
+     if (isNone && changedElement.checked) {
+         Object.keys(allSwitches).forEach(function(id) {
+             if (id !== changedElement.id) {
+                 var otherElement = document.getElementById(id);
+                 otherElement.checked = false;
+                 otherElement.value = 'NO';
+             }
+         });
+     } else if (!isNone && changedElement.checked) {
+         // Si se selecciona cualquier otro y 'Ninguna' está marcado, desmarcar 'Ninguna'
+         var noneSwitch = document.getElementById('ninguna_switch');
+         if (noneSwitch && noneSwitch.checked) {
+             noneSwitch.checked = false;
+             noneSwitch.value = 'NO';
+         }
+     }
+
+     // Actualizar el valor del switch actual
+     changedElement.value = changedElement.checked ? 'SI' : 'NO';
+ }
+});
+
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+ checkAndSetSwitchValues();
+
+ // Observador para cambios en la visibilidad del div
+ var observer = new MutationObserver(function(mutations) {
+     mutations.forEach(function(mutation) {
+         if (mutation.attributeName === "style") {
+             checkAndSetSwitchValues();
+         }
+     });
+ });
+
+ var config = { attributes: true, childList: false, characterData: false };
+ observer.observe(document.getElementById('indicadorbi1'), config);
+});
+
+function checkAndSetSwitchValues() {
+ var planificacionDiv = document.getElementById('indicadorbi1');
+ var isHidden = window.getComputedStyle(planificacionDiv).display === 'none';
+ var switches = planificacionDiv.querySelectorAll('.form-check-input');
+
+ if (isHidden) {
+     switches.forEach(function(switchEl) {
+         switchEl.value = 'NO APLICA';
+         console.log(switchEl.id + ' value set to: NO APLICA (div is hidden)');
+     });
+ } else {
+     console.log('El div no está oculto, no se cambia el valor de los switches.');
+ }
+}
+
+</script>
+
  
 
 @endsection
