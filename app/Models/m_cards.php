@@ -18,21 +18,20 @@ class m_cards extends Model
     {
         // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
         $resultado = DB::select('SELECT ih.*, ii.estado as estado2 ,
-             --   CASE 
-              --      WHEN fe.estado = 1 AND inte.estado = 1 AND fn.estado = 1 AND lg.estado = 1 THEN 1
-              --      ELSE 0
-              --  END as validacion 
-              0 as validacion
+                CASE 
+                    WHEN fe.estado = 1 AND inte.estado = 1 AND fn.estado = 1 AND lg.estado = 1 THEN 1
+                    ELSE 0
+                END as validacion
                  FROM dbmetodologia.t1_integranteshogar ih
-           left join t1_integrantesidentitario ii on ih.idintegrante = ii.idintegrante
+           left join t1_saludemocionalqt ii on ih.idintegrante = ii.idintegrante
             LEFT JOIN 
-                t1_integrantesfisicoyemocional fe ON ih.idintegrante = fe.idintegrante
+                t1_legalqt fe ON ih.idintegrante = fe.idintegrante
             LEFT JOIN 
-                t1_integrantesintelectual inte ON ih.idintegrante = inte.idintegrante
+                t1_intelectualqt inte ON ih.idintegrante = inte.idintegrante
             LEFT JOIN 
-                t1_integrantesfinanciero fn ON ih.idintegrante = fn.idintegrante
+                t1_financieroqt fn ON ih.idintegrante = fn.idintegrante
             LEFT JOIN 
-                t1_integranteslegal lg ON ih.idintegrante = lg.idintegrante
+                t1_enfamiliaqt lg ON ih.idintegrante = lg.idintegrante
             where ih.folio  ="'.$folio.'";       
                     ' );
 

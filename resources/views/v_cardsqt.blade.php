@@ -20,6 +20,7 @@
         <span class="badge bg-primary" id="">CATEGORIAS DE BIENESTAR HERRAMIENTA QT</span> 
         <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $variable }}">folio: {{ $variable }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span class="badge bg-success ms-auto" style="background:#a80a85 !important; cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver QT del hogar</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" id="foliobycript" value="{{$foliobycript}}" style="display:none">
         </div>
       </div>
       <!-- <div class="progress">
@@ -57,7 +58,7 @@
                 </div>
           
           <div class=" col">
-          <button type="button" class="btn btn-outline-primary" id="finalizarboton" style="display:none">Finalizar</button>
+          <button type="button" class="btn btn-outline-primary" id="finalizarboton" >Finalizar</button>
           </div>
           </div>
       
@@ -214,9 +215,9 @@
 
 
       function redirectToIntegrantes() {
-           var folio = window.localStorage.getItem('folioencriptado');
-           var url = "../rombointegrantes/:folio";
-           url = url.replace(':folio', folio);
+           var folio = $('#foliobycript').val();
+           var url = "../cobertura/";
+         //  url = url.replace(':folio', folio);
            window.location.href = url;
        }
 
@@ -279,7 +280,7 @@ $(document).ready(function() {
 
 $('#finalizarboton').click(function(){
       $.ajax({
-          url: '../finalizarintegrantes',
+          url: '../finalizarintegrantesqt',
           data: { folio: '{{$variable}}', usuario:'{{ Session::get('cedula') }}' },
           method: "GET",
           dataType: 'JSON',

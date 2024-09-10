@@ -432,6 +432,7 @@ class c_l1e1 extends Controller
         //   // Añadir created_at y updated_at
            $dataWithoutId['updated_at'] = $now;
             $dataWithoutId['sincro'] = 0;
+            $dataWithoutId['estado'] = 1;
       
            // Verificar si el registro existe para decidir si añadir created_at
            $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
@@ -482,6 +483,7 @@ class c_l1e1 extends Controller
         //   // Añadir created_at y updated_at
            $dataWithoutId['updated_at'] = $now;
             $dataWithoutId['sincro'] = 0;
+            $dataWithoutId['estado'] = 1;
       
            // Verificar si el registro existe para decidir si añadir created_at
            $exists = DB::table('dbmetodologia.t1_hogardatosgeograficos')
@@ -533,6 +535,7 @@ class c_l1e1 extends Controller
         //   // Añadir created_at y updated_at
            $dataWithoutId['updated_at'] = $now;
             $dataWithoutId['sincro'] = 0;
+            $dataWithoutId['estado'] = 1;
       
            // Verificar si el registro existe para decidir si añadir created_at
            $exists = DB::table('dbmetodologia.t1_hogarcondicioneshabitabilidad')
@@ -583,6 +586,7 @@ class c_l1e1 extends Controller
         //   // Añadir created_at y updated_at
            $dataWithoutId['updated_at'] = $now;
             $dataWithoutId['sincro'] = 0;
+            $dataWithoutId['estado'] = 1;
       
            // Verificar si el registro existe para decidir si añadir created_at
            $exists = DB::table('dbmetodologia.t1_hogarcondicionesalimentarias')
@@ -636,6 +640,8 @@ class c_l1e1 extends Controller
         //   // Añadir created_at y updated_at
            $dataWithoutId['updated_at'] = $now;
             $dataWithoutId['sincro'] = 0;
+            $dataWithoutId['estado'] = 1;
+            
       
            // Verificar si el registro existe para decidir si añadir created_at
            $exists = DB::table('dbmetodologia.t1_hogarentornofamiliar')
@@ -723,6 +729,11 @@ class c_l1e1 extends Controller
             ],
             $data
         );
+
+
+         DB::select('CALL sp_calcular_privaciones(?)', [$folio]);
+         DB::select('CALL sp_casillamatriz(?)', [$folio]);
+
     
         return response()->json(['message' => $folio]);
       }

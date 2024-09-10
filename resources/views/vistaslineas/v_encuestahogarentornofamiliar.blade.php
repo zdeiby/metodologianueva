@@ -448,28 +448,30 @@ paginacargando();
       }); 
  
       $('#volver').click(function(){
-
+        paginacargando2();
         $.ajax({
             url: '../verficarestadosdehogar',
             data: { folio: '{{decrypt($variable)}}' },
             method: "GET",
             dataType: 'JSON',
             success: function(data) {
-              if(data.resultado = '1'){
+              if(data.resultado == '1'){
                   $.ajax({
                     url: '../agregarpasohogar',
                     data: { folio: '{{decrypt($variable)}}', usuario:'{{ Session::get('cedula') }}' },
                     method: "GET",
                     dataType: 'JSON',
                     success: function(data) {
-                      window.location.href="../rombointegrantes/<?= $variable ?>" 
+                     window.location.href="../rombointegrantes/<?= $variable ?>" 
                       console.log(data);
+                      paginalista2();
                     },
                     error: function(xhr, status, error) {
                       console.log(xhr.responseText);
                     }
                   });
               }else{
+                paginalista2();
                 Swal.fire({
                                   icon: "error",
                                   title: "Verifica que los modulos esten completos y guardados antes de continuar",

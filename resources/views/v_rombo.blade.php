@@ -68,8 +68,11 @@
                     <img src="{{ asset('imagenes/banner1.jpg')}}" style="border-radius:10px" width="100%" alt="">
                     <br> 
                     <label for="" style="color:white;font-size:15px; padding-bottom:5px;padding-top:4px; text-decoration: underline;cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">Más información</label><br>
+                    @if($realizado == '0')
                     <form method="GET" action="../rombointegrantes/{{$variable}}" ><button type="submit" class="btn btn-primary">Realizar visita</button></form>
-                    
+                    @elseif($realizado == '1')
+                    <form method="GET" ><button type="submit" class="btn btn-primary" disabled>Realizar visita</button></form>
+                    @endif
                 </div>
             </div>
         </li>
