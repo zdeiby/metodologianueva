@@ -169,7 +169,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0">
+     <div class="row g-0" id="indicadorbi2" style="display:{{(($indicador_bi_2 == '0' || $indicador_bi_2 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los niños,niñas y adolescentes en edad escolar (de 6 a 17 años) estan vinculados  al sistema educativo formal (IPM)
@@ -299,7 +299,7 @@
       </div>
     </div>
   
-    <div class="row g-0">
+    <div class="row g-0" id="indicadorbi4" style="display:{{(($indicador_bi_4 == '0' || $indicador_bi_4 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar mayores de 10 años acceden a formación en alfabetización digital a traves de los recursos tecnológicos disponibles
@@ -379,7 +379,7 @@
     </div>
   
 
-    <div class="row g-0">
+    <div class="row g-0" id="indicadorbi5" style="display:{{(($indicador_bi_5 == '0' || $indicador_bi_5 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar mayores de 14 años  que lo desean acceden a  educación superior (tecnica profesional, tecnologias, universitario y postgrado)
@@ -446,7 +446,7 @@
         </div>
       </div>
       </div>
-      <div class="row g-0">
+      <div class="row g-0" id="indicadorbi6" style="display:{{(($indicador_bi_6 == '0' || $indicador_bi_6 == '2')?'none':'')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar de 14 años en adelante que lo desean acceden a  educación para el trabajo y desarrollo humano 
@@ -455,7 +455,7 @@
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-          Los integrantes del hogar de 14 años en adelante que lo desean acceden a  educación para el trabajo y desarrollo humano 
+            Motivación para acceder a educación para el trabajo y desarrollo humano 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
