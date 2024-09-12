@@ -35,6 +35,7 @@
             <span class="badge bg-primary" id=""  style="font-size:15px">FINANCIERO QT</span>
              <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
              <span class="badge bg-warning ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">Idintegrante: {{ $integrante }}</span>
+             <span class="badge bg-warning ms-auto" id="representante" representante="{{ $representante }}" style="font-size:15px">Representante: {{ $representante }}</span>
            </div> 
             </button>
     <br>
@@ -128,10 +129,10 @@
 
    
      <!-- Fila de contenido -->
-     <div class="row g-0">
+     <div class="row g-0" id="indicadorbf1" style="display:{{(($indicador_bf_1 == '0')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-        Las personas de 18 años y más que lo requieran acceden a  programas de formación, apoyo al emprendimiento e innovación, con el fin de  adquirir habilidades prácticas para iniciar y gestionar sus propios negocios.
+        Las personas de 18 años y más que lo requieran acceden a programas de formación, apoyo al emprendimiento e innovación, con el fin de  adquirir habilidades prácticas para iniciar y gestionar sus propios negocios.
         </div>
       </div>
       <div class="col-md-8">
@@ -179,7 +180,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0">
+     <div class="row g-0" id="indicadorbf2" style="display:{{(($indicador_bf_2 == '0')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar  de 18 años y más que  lo requieren  acceden a servicios de intermediación laboral 
@@ -220,7 +221,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0">
+     <div class="row g-0" id="indicadorbf3" style="display:{{(($indicador_bf_3 == '0')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Las personas de 18 años y más que lo requieren se vinculan a un empleo formal (cruce institucional, validación de gestor)
@@ -359,7 +360,7 @@
     </div>
   
 
-    <div class="row g-0">
+    <div class="row g-0" id="indicadorbf4" style="display:{{((($indicador_bf_4 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         El hogar implementa un sistema de presupuesto familiar participativo, enfocado en el ahorro y la inversión responsable
@@ -418,10 +419,10 @@
         </div>
       </div>
       </div>
-      <div class="row g-0">
+      <div class="row g-0" id="indicadorbf5" style="display:{{(($indicador_bf_5 == '0')?'':'none')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-        Los integrantes del hogar  acceden  a servicios financieros adaptados a sus necesidades,  que contribuyen a mejorar su flujo de dinero y su bienestar económico. 
+        Los integrantes del hogar acceden  a servicios financieros adaptados a sus necesidades,  que contribuyen a mejorar su flujo de dinero y su bienestar económico. 
         </div>
       </div>
       <div class="col-md-8">

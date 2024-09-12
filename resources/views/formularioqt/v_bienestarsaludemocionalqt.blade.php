@@ -35,6 +35,7 @@
                 <span class="badge bg-primary" id=""  style="font-size:15px">ENCUESTA INTEGRANTES</span>
                 <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
                 <span class="badge bg-warning ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">Idintegrante: {{ $integrante }}</span>
+                <span class="badge bg-warning ms-auto" id="representante" representante="{{ $representante }}" style="font-size:15px">Representante: {{ $representante }}</span>
               </div>
             
             </button>
@@ -128,7 +129,7 @@
     </div>
 
     <!-- Fila de contenido -->
-    <div class="row g-0" id="indicadorbse1" style="display:{{(($indicador_bse_1 == '0' || $indicador_bse_1 == '2')?'none':'')}}">
+    <div class="row g-0" id="indicadorbse1" style="display:{{(($indicador_bse_1 == '0')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom">
         <div class="p-2">
           Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
@@ -175,7 +176,7 @@
 
 
  <!-- Fila de contenido -->
- <div class="row g-0" >
+ <div class="row g-0" id="indicadorbse2" style="display:{{(($indicador_bse_2 == '0')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar tienen acceso a intervenciones de promoción y prevención en salud dentro del marco del SGSSS, adaptadas a su edad
@@ -219,7 +220,7 @@
 
 
  <!-- Fila de contenido -->
- <div class="row g-0" id="indicadorbse3" style="display:{{(($indicador_bse_3 == '0' || $indicador_bse_3 == '2')?'none':'')}}" >
+ <div class="row g-0" id="indicadorbse3" style="display:{{(($indicador_bse_3 == '0')?'':'none')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar implementan estrategias para  reducir el estrés y  para favorecer el bienestar emocional y fisico
@@ -260,7 +261,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0" id="indicadorbse4" style="display:{{(($indicador_bse_4 == '0' || $indicador_bse_4 == '2')?'none':'')}}" >
+     <div class="row g-0" id="indicadorbse4" style="display:{{(($indicador_bse_4 == '0')?'':'none')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Las personas con discapacidad acceden a programas y/o servicios relacionados con su tipo de discapacidad
@@ -301,7 +302,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0" id="indicadorbse5" style="display:{{(($indicador_bse_5 == '0' || $indicador_bse_5 == '2')?'none':'')}}">
+     <div class="row g-0" id="indicadorbse5" style="display:{{(($indicador_bse_5 == '0')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar que lo requieren acceden  a programas y/o servicios de intervención frente al consumo de sustancias psicoactivas
@@ -342,7 +343,7 @@
     </div>
 
      <!-- Fila de contenido -->
-     <div class="row g-0" id="indicadorbse6" style="display:{{(($indicador_bse_6 == '0' || $indicador_bse_6 == '2')?'none':'')}}" >
+     <div class="row g-0" id="indicadorbse6" style="display:{{(($indicador_bse_6 == '0')?'':'none')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar que lo requieren acceden a servicios de salud mental  y/o atención psicosocial.
@@ -412,7 +413,7 @@
     </div>
   
 
-    <div class="row g-0" id="indicadorbse7" style="display:{{(($indicador_bse_7 == '0' || $indicador_bse_7 == '2')?'none':'')}}" >
+    <div class="row g-0" id="indicadorbse7" style="display:{{((($indicador_bse_7 == '0') && $representante == 'SI')?'':'none')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Todos los integrantes del hogar cuentan el  acceso y consumo oportuno de alimentos 

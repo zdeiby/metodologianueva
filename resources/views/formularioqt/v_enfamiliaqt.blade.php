@@ -35,6 +35,7 @@
             <span class="badge bg-primary" id=""  style="font-size:15px">ENCUESTA INTEGRANTES</span>
              <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
              <span class="badge bg-warning ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">Idintegrante: {{ $integrante }}</span>
+             <span class="badge bg-warning ms-auto" id="representante" representante="{{ $representante }}" style="font-size:15px">Representante: {{ $representante }}</span>
              </div>
             </button>
     <br>
@@ -127,7 +128,7 @@
       </div>
     </div>
   
-    <div class="row g-0" id="indicadorbef1" style="display:{{(($indicador_bef_1 == '0' || $indicador_bef_1 == '2')?'none':'')}}" >
+    <div class="row g-0" id="indicadorbef1" style="display:{{((($indicador_bef_1 == '0') && $representante == 'SI')?'':'none')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar implementan estrategias de disciplina positiva, fomentando el respeto mutuo y la resolución pacífica de conflictos en el entorno familiar.
@@ -205,7 +206,7 @@
       </div>
     </div>
   
-    <div class="row g-0" id="indicadorbef2" style="display:{{(($indicador_bef_2 == '0' || $indicador_bef_2 == '2')?'none':'')}}">
+    <div class="row g-0" id="indicadorbef2" style="display:{{((($indicador_bef_2 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar establecen  vínculos solidarios y de comunicación para resolver necesidades especificas con sus  redes de apoyo familiares y comunitarias 
@@ -273,7 +274,7 @@
       </div>
     </div>
   
-    <div class="row g-0" id="indicadorbef3" style="display:{{(($indicador_bef_3 == '0' || $indicador_bef_3 == '2')?'none':'')}}">
+    <div class="row g-0" id="indicadorbef3" style="display:{{((($indicador_bef_3 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar conocen las rutas para la prevención e intervención de la violencia intrafamiliar y las violencias basadas en género.
@@ -340,7 +341,7 @@
       </div>
     </div>
   
-    <div class="row g-0" id="indicadorbef4" style="display:{{(($indicador_bef_4 == '0' || $indicador_bef_4 == '2')?'none':'')}}">
+    <div class="row g-0" id="indicadorbef4" style="display:{{((($indicador_bef_4 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los  integrantes del hogar participan de actividades sociales, culturales, recreativas y deportivas.
@@ -417,7 +418,7 @@
       </div>
     </div>
   
-    <div class="row g-0">
+    <div class="row g-0" id="indicadorbef5" style="display:{{((($indicador_bef_5 == '0') && $representante == 'SI')?'':'none')}}">>
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar que realizan actividades de cuidado, acceden a programas que favorecen la apropiación de estrategias para facilitar su labor y que promuevan su bienestar emocional.  
