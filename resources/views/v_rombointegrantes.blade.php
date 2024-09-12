@@ -231,7 +231,7 @@ body {
                     <label>Resultado encuesta</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" id="resultadoencuesta" <?=($existel100p1000 == '1' && $existel100p10000 == '1'  && $existel100p100000 == '1'   )?'':'disabled'?> data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver resultado encuesta</button>
+             <button type="button" class="btn btn-primary" id="resultadoencuestabntmodal" <?=($existel100p1000 == '1' && $existel100p10000 == '1'  && $existel100p100000 == '1'   )?'':'disabled'?> data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver resultado encuesta</button>
              <div class="smCard">
                 </div>
               </div>
@@ -256,7 +256,7 @@ body {
                     <label>Encuesta QT</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" id="resultadoencuesta" onclick="window.location.href='../cardsqt/{{$foliocodificado}}'" <?=($existel100p1000 == '1' && $existel100p10000 == '1'  && $existel100p100000 == '1' && $existel100p1000000 == '1'  )?'':'disabled'?> >Ir a QT</button>
+             <button type="button" class="btn btn-primary" id="encuestaqt" onclick="window.location.href='../cardsqt/{{$foliocodificado}}'" <?=($existel100p1000 == '1' && $existel100p10000 == '1'  && $existel100p100000 == '1' && $existel100p1000000 == '1'  )?'':'disabled'?> >Ir a QT</button>
              <div class="smCard">
                 </div>
               </div>
@@ -436,7 +436,7 @@ body {
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="saludoencuadre">Aceptar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="resultadoencuesta">Aceptar</button>
       </div>
     </div>
   </div>
