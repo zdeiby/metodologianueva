@@ -165,6 +165,9 @@ class c_rombointegrantes extends Controller
             ],
             $data
         );
+
+        DB::select('CALL sp_calcular_indicadores(?)', [$folio]);
+      //  DB::select('CALL sp_calcular_indicadores(?)', [$folio]);
     
         return response()->json(['message' => $folio]);
       }
