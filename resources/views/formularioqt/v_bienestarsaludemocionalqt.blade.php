@@ -622,35 +622,57 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    checkAndSetSwitchValues();
+    // Ejecutar la función para ambos divs al cargar la página
+    checkAndSetSwitchValues('indicadorbse1');
+    checkAndSetSwitchValues('indicadorbse2');
+    checkAndSetSwitchValues('indicadorbse3');
+    checkAndSetSwitchValues('indicadorbse4');
+    checkAndSetSwitchValues('indicadorbse5');
+    checkAndSetSwitchValues('indicadorbse6');
+    checkAndSetSwitchValues('indicadorbse7');
 
-    // Observador para cambios en la visibilidad del div
+    // Configuración del observador para ambos divs
+    var observer1 = createObserver('indicadorbse1');
+    var observer2 = createObserver('indicadorbse2');
+    var observer2 = createObserver('indicadorbse3');
+    var observer2 = createObserver('indicadorbse4');
+    var observer2 = createObserver('indicadorbse5');
+    var observer2 = createObserver('indicadorbse6');
+    var observer2 = createObserver('indicadorbse7');
+
+});
+
+// Función para crear un observador para un div específico
+function createObserver(divId) {
+    var targetDiv = document.getElementById(divId);
+
     var observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.attributeName === "style") {
-                checkAndSetSwitchValues();
+                checkAndSetSwitchValues(divId);
             }
         });
     });
 
     var config = { attributes: true, childList: false, characterData: false };
-    observer.observe(document.getElementById('indicadorbse1'), config);
-});
+    observer.observe(targetDiv, config);
+}
 
-function checkAndSetSwitchValues() {
-    var planificacionDiv = document.getElementById('indicadorbse1');
-    var isHidden = window.getComputedStyle(planificacionDiv).display === 'none';
-    var switches = planificacionDiv.querySelectorAll('.form-check-input');
+// Función que verifica si el div está oculto y ajusta los switches
+function checkAndSetSwitchValues(divId) {
+    var targetDiv = document.getElementById(divId);
+    var isHidden = window.getComputedStyle(targetDiv).display === 'none';
+    var switches = targetDiv.querySelectorAll('.form-check-input');
 
     if (isHidden) {
         switches.forEach(function(switchEl) {
             switchEl.value = 'NO APLICA';
-            console.log(switchEl.id + ' value set to: NO APLICA (div is hidden)');
+            console.log(switchEl.id + ' value set to: NO APLICA (div ' + divId + ' is hidden)');
         });
     } else {
-        console.log('El div no está oculto, no se cambia el valor de los switches.');
+        console.log('El div ' + divId + ' no está oculto, no se cambia el valor de los switches.');
     }
 }
-
 </script>
+
 @endsection
