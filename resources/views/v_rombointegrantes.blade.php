@@ -480,7 +480,7 @@ $(document).ready(function() {
       method: "GET",
       dataType: 'JSON',
       success: function(data) {
-       
+       $('#encuestaqt').prop('disabled',false);
         console.log(data);
       },
       error: function(xhr, status, error) {
