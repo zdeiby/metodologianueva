@@ -89,7 +89,7 @@ class c_integrantes extends Controller
       $now = Carbon::now();
       $folio = $request->input('folio');
       $linea = 100;  // poner linea 
-      $paso = 10000;  // poner paso
+      $paso = 10020;  // poner paso
       $usuario = $request->input('usuario'); // Este campo no es clave primaria
 
       // Datos a insertar o actualizar
@@ -104,7 +104,7 @@ class c_integrantes extends Controller
       ];
 
       // Verificar si el registro existe
-      $exists = DB::table('dbmetodologia.t1_pasosvisita')
+      $exists = DB::table('t1_pasosvisita')
           ->where('folio', $folio)
           ->where('linea', $linea)
           ->where('paso', $paso)
@@ -116,7 +116,7 @@ class c_integrantes extends Controller
       }
 
       // Usar updateOrInsert para guardar o actualizar el registro, sin incluir 'usuario' en las condiciones
-      DB::table('dbmetodologia.t1_pasosvisita')->updateOrInsert(
+      DB::table('t1_pasosvisita')->updateOrInsert(
           [
               'folio' => $folio,
               'linea' => $linea,

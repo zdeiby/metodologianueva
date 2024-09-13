@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Http;
 class c_sincronizacion extends Controller
 {
     public function fc_sincronizacion(Request $request){
-        $existspph = DB::table('dbmetodologia.t1_principalhogar')->exists();
+        $existspph = DB::table('t1_principalhogar')->exists();
         return view('v_sincronizacion',["existspph"=>$existspph]);
         
     }

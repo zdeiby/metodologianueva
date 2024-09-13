@@ -197,7 +197,7 @@ class c_cardsqt extends Controller
       $now = Carbon::now();
       $folio = $request->input('folio');
       $linea = 100;  // poner linea 
-      $paso = 10000000;  // poner paso
+      $paso = 10050;  // poner paso
       $usuario = $request->input('usuario'); // Este campo no es clave primaria
 
       // Datos a insertar o actualizar
@@ -212,7 +212,7 @@ class c_cardsqt extends Controller
       ];
 
       // Verificar si el registro existe
-      $exists = DB::table('dbmetodologia.t1_pasosvisita')
+      $exists = DB::table('t1_pasosvisita')
           ->where('folio', $folio)
           ->where('linea', $linea)
           ->where('paso', $paso)
@@ -224,7 +224,7 @@ class c_cardsqt extends Controller
       }
 
       // Usar updateOrInsert para guardar o actualizar el registro, sin incluir 'usuario' en las condiciones
-      DB::table('dbmetodologia.t1_pasosvisita')->updateOrInsert(
+      DB::table('t1_pasosvisita')->updateOrInsert(
           [
               'folio' => $folio,
               'linea' => $linea,
@@ -235,7 +235,7 @@ class c_cardsqt extends Controller
 
       
 
-      $existsvisitas = DB::table('dbmetodologia.t1_visitasrealizadas')
+      $existsvisitas = DB::table('t1_visitasrealizadas')
       ->where('folio', $folio)
       ->where('linea', $linea)
       ->exists();
@@ -254,7 +254,7 @@ class c_cardsqt extends Controller
               'sincro' => 0,
               'updated_at' => $now
           ];
-          DB::table('dbmetodologia.t1_visitasrealizadas')->updateOrInsert(
+          DB::table('t1_visitasrealizadas')->updateOrInsert(
               [
                   'folio' => $folio,
                   'linea' => $linea,

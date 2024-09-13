@@ -110,12 +110,12 @@ class c_l1e1 extends Controller
       $modelo= new m_l1e1();
       $preguntas=$modelo->m_leerrespuestas();
 
-      $exists = DB::table('dbmetodologia.t1_hogardatosgeograficos')
+      $exists = DB::table('t1_hogardatosgeograficos')
       ->where('folio', $folio)
       ->exists();
       $leerintegrantes= $modelo->m_leerintegrantes(decrypt($folio));
 
-      $existeMenorDe59 = DB::table('dbmetodologia.t1_integranteshogar') 
+      $existeMenorDe59 = DB::table('t1_integranteshogar') 
       -> where('folio', decrypt($folio))
       ->where('edad', '<', 59)
       ->exists();
@@ -435,7 +435,7 @@ class c_l1e1 extends Controller
             $dataWithoutId['estado'] = 1;
       
            // Verificar si el registro existe para decidir si añadir created_at
-           $exists = DB::table('dbmetodologia.t1_hogarconformacionfamiliar')
+           $exists = DB::table('t1_hogarconformacionfamiliar')
                ->where('folio', $folio)
                ->exists();
       
@@ -452,7 +452,7 @@ class c_l1e1 extends Controller
       
            // Insertar o actualizar el registro
            try {
-               DB::table('dbmetodologia.t1_hogarconformacionfamiliar')->updateOrInsert(
+               DB::table('t1_hogarconformacionfamiliar')->updateOrInsert(
                    [
                        'folio' => $folio,
                    ], // Condición para encontrar el registro existente
@@ -486,7 +486,7 @@ class c_l1e1 extends Controller
             $dataWithoutId['estado'] = 1;
       
            // Verificar si el registro existe para decidir si añadir created_at
-           $exists = DB::table('dbmetodologia.t1_hogardatosgeograficos')
+           $exists = DB::table('t1_hogardatosgeograficos')
                ->where('folio', $folio)
                ->exists();
       
@@ -503,7 +503,7 @@ class c_l1e1 extends Controller
       
            // Insertar o actualizar el registro
            try {
-               DB::table('dbmetodologia.t1_hogardatosgeograficos')->updateOrInsert(
+               DB::table('t1_hogardatosgeograficos')->updateOrInsert(
                    [
                        'folio' => $folio,
                    ], // Condición para encontrar el registro existente
@@ -538,7 +538,7 @@ class c_l1e1 extends Controller
             $dataWithoutId['estado'] = 1;
       
            // Verificar si el registro existe para decidir si añadir created_at
-           $exists = DB::table('dbmetodologia.t1_hogarcondicioneshabitabilidad')
+           $exists = DB::table('t1_hogarcondicioneshabitabilidad')
                ->where('folio', $folio)
                ->exists();
       
@@ -555,7 +555,7 @@ class c_l1e1 extends Controller
       
            // Insertar o actualizar el registro
            try {
-               DB::table('dbmetodologia.t1_hogarcondicioneshabitabilidad')->updateOrInsert(
+               DB::table('t1_hogarcondicioneshabitabilidad')->updateOrInsert(
                    [
                        'folio' => $folio,
                    ], // Condición para encontrar el registro existente
@@ -589,7 +589,7 @@ class c_l1e1 extends Controller
             $dataWithoutId['estado'] = 1;
       
            // Verificar si el registro existe para decidir si añadir created_at
-           $exists = DB::table('dbmetodologia.t1_hogarcondicionesalimentarias')
+           $exists = DB::table('t1_hogarcondicionesalimentarias')
                ->where('folio', $folio)
                ->exists();
       
@@ -606,7 +606,7 @@ class c_l1e1 extends Controller
       
            // Insertar o actualizar el registro
            try {
-               DB::table('dbmetodologia.t1_hogarcondicionesalimentarias')->updateOrInsert(
+               DB::table('t1_hogarcondicionesalimentarias')->updateOrInsert(
                    [
                        'folio' => $folio,
                    ], // Condición para encontrar el registro existente
@@ -644,7 +644,7 @@ class c_l1e1 extends Controller
             
       
            // Verificar si el registro existe para decidir si añadir created_at
-           $exists = DB::table('dbmetodologia.t1_hogarentornofamiliar')
+           $exists = DB::table('t1_hogarentornofamiliar')
                ->where('folio', $folio)
                ->exists();
       
@@ -661,7 +661,7 @@ class c_l1e1 extends Controller
       
            // Insertar o actualizar el registro
            try {
-               DB::table('dbmetodologia.t1_hogarentornofamiliar')->updateOrInsert(
+               DB::table('t1_hogarentornofamiliar')->updateOrInsert(
                    [
                        'folio' => $folio,
                    ], // Condición para encontrar el registro existente
@@ -676,7 +676,7 @@ class c_l1e1 extends Controller
 
       public function fc_verbarrios(Request $request) {
          $comuna = $request->input('comuna');
-        // $barriosselect = DB::table('dbmetodologia.t_barrios')
+        // $barriosselect = DB::table('t_barrios')
         //     ->where('comuna', $comuna)
         //     ->get();
         $modelo= new m_l1e1();
@@ -694,7 +694,7 @@ class c_l1e1 extends Controller
         $now = Carbon::now();
         $folio = $request->input('folio');
         $linea = 100;  // poner linea 
-        $paso = 100000;  // poner paso
+        $paso = 10030;  // poner paso
         $usuario = $request->input('usuario'); // Este campo no es clave primaria
     
         // Datos a insertar o actualizar
@@ -709,7 +709,7 @@ class c_l1e1 extends Controller
         ];
     
         // Verificar si el registro existe
-        $exists = DB::table('dbmetodologia.t1_pasosvisita')
+        $exists = DB::table('t1_pasosvisita')
             ->where('folio', $folio)
             ->where('linea', $linea)
             ->where('paso', $paso)
@@ -721,7 +721,7 @@ class c_l1e1 extends Controller
         }
     
         // Usar updateOrInsert para guardar o actualizar el registro, sin incluir 'usuario' en las condiciones
-        DB::table('dbmetodologia.t1_pasosvisita')->updateOrInsert(
+        DB::table('t1_pasosvisita')->updateOrInsert(
             [
                 'folio' => $folio,
                 'linea' => $linea,

@@ -18,45 +18,46 @@ class c_rombointegrantes extends Controller
         
       $folioDesencriptado = decrypt($folio);
       $linea='100';
-      $paso1000='1000';
-      $existel100p1000 = DB::table('dbmetodologia.t1_pasosvisita')
+   
+      $paso10010='10010';
+      $existel100p10010 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso1000)
+      ->where('paso', $paso10010)
       ->exists();
-      
-      $paso10000='10000';
-      $existel100p10000 = DB::table('dbmetodologia.t1_pasosvisita')
+      $paso10020='10020';
+      $existel100p10020 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso10000)
+      ->where('paso', $paso10020)
       ->exists();
-      $paso100000='100000';
-      $existel100p100000 = DB::table('dbmetodologia.t1_pasosvisita')
+      $paso10030='10030';
+      $existel100p10030 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso100000)
+      ->where('paso', $paso10030)
       ->exists();
-      $paso1000000='1000000';
-      $existel100p1000000 = DB::table('dbmetodologia.t1_pasosvisita')
+
+      $paso10040='10040';
+      $existel100p10040 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso1000000)
+      ->where('paso', $paso10040)
       ->exists();
 
       $casilla = DB::table('t1_casillamatriz')
       ->where('folio', $folioDesencriptado)
       ->get();
 
-        return view('v_rombointegrantes',["variable"=>$folio, 'foliocodificado'=>$foliocodificado,  'existel100p1000' => $existel100p1000 ? 1 : 0 , 'existel100p10000' => $existel100p10000 ? 1 : 0, 
-      'existel100p100000' => $existel100p100000 ? 1 : 0, 'existel100p1000000' => $existel100p1000000 ? 1 : 0, 'casillamatriz'=>$casilla]);
+        return view('v_rombointegrantes',["variable"=>$folio, 'foliocodificado'=>$foliocodificado,  'existel100p10010' => $existel100p10010 ? 1 : 0, 
+      'existel100p10020' => $existel100p10020 ? 1 : 0, 'existel100p10030' => $existel100p10030 ? 1 : 0,  'existel100p10040' => $existel100p10040 ? 1 : 0, 'casillamatriz'=>$casilla]);
       }
 
       public function fc_agregarpasoencuadre(Request $request){
         $now = Carbon::now();
         $folio = $request->input('folio');
         $linea = 100;  // poner linea 
-        $paso = 1000;  // poner paso
+        $paso = 10010;  // poner paso
         $usuario = $request->input('usuario'); // Este campo no es clave primaria
     
         // Datos a insertar o actualizar
@@ -71,7 +72,7 @@ class c_rombointegrantes extends Controller
         ];
     
         // Verificar si el registro existe
-        $exists = DB::table('dbmetodologia.t1_pasosvisita')
+        $exists = DB::table('t1_pasosvisita')
             ->where('folio', $folio)
             ->where('linea', $linea)
             ->where('paso', $paso)
@@ -85,7 +86,7 @@ class c_rombointegrantes extends Controller
 
         //para agregar fecha de inicio de visita 
 
-        $existsvisitas = DB::table('dbmetodologia.t1_visitasrealizadas')
+        $existsvisitas = DB::table('t1_visitasrealizadas')
         ->where('folio', $folio)
         ->where('linea', $linea)
         ->exists();
@@ -104,7 +105,7 @@ class c_rombointegrantes extends Controller
                 'sincro' => 0,
                 'updated_at' => $now
             ];
-            DB::table('dbmetodologia.t1_visitasrealizadas')->updateOrInsert(
+            DB::table('t1_visitasrealizadas')->updateOrInsert(
                 [
                     'folio' => $folio,
                     'linea' => $linea,
@@ -113,7 +114,7 @@ class c_rombointegrantes extends Controller
             );
     
         // Usar updateOrInsert para guardar o actualizar el registro, sin incluir 'usuario' en las condiciones
-        DB::table('dbmetodologia.t1_pasosvisita')->updateOrInsert(
+        DB::table('t1_pasosvisita')->updateOrInsert(
             [
                 'folio' => $folio,
                 'linea' => $linea,
@@ -130,7 +131,7 @@ class c_rombointegrantes extends Controller
         $now = Carbon::now();
         $folio = $request->input('folio');
         $linea = 100;  // poner linea 
-        $paso = 1000000;  // poner paso
+        $paso = 10040;  // poner paso
         $usuario = $request->input('usuario'); // Este campo no es clave primaria
     
         // Datos a insertar o actualizar
@@ -145,7 +146,7 @@ class c_rombointegrantes extends Controller
         ];
     
         // Verificar si el registro existe
-        $exists = DB::table('dbmetodologia.t1_pasosvisita')
+        $exists = DB::table('t1_pasosvisita')
             ->where('folio', $folio)
             ->where('linea', $linea)
             ->where('paso', $paso)
@@ -157,7 +158,7 @@ class c_rombointegrantes extends Controller
         }
     
         // Usar updateOrInsert para guardar o actualizar el registro, sin incluir 'usuario' en las condiciones
-        DB::table('dbmetodologia.t1_pasosvisita')->updateOrInsert(
+        DB::table('t1_pasosvisita')->updateOrInsert(
             [
                 'folio' => $folio,
                 'linea' => $linea,

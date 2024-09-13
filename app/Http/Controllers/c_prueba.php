@@ -22,7 +22,10 @@ class c_prueba extends Controller
           <td>'.$value->documento.'</td>
           <td>'.$value->nombre1.' '.$value->nombre2.' '.$value->apellido1.' '.$value->apellido2.'</td>
           <td>'.$value->celular.'</td>
+         <td>'.$value->telefono.'</td>
           <td>'.$value->comuna.'</td>
+          <td>'.$value->barrio.'</td>
+
           <td>'.$estacion.'</td>
 
           ';
