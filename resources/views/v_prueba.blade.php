@@ -39,7 +39,10 @@
             <th>Folio</th>
               <th>Documento</th>
               <th>Nombre del Representante</th>
-              <th>Celular</th>     
+              <th>Celular</th> 
+              <th>Telefono</th>  
+              <th>Comuna</th> 
+              <th>Barrio</th>                
               <th>Visita</th>        
               <th>Gestión del hogar</th>
             </tr>
@@ -51,6 +54,9 @@
                 <td>{{$value->documento}}</td>
                 <td>{{$value->nombre1}} {{$value->nombre2}} {{$value->apellido1}} {{$value->apellido2}}</td>
                 <td>{{$value->celular}}</td>
+                <td>{{$value->telefono}}</td>
+                <td>{{$value->comunas}}</td>
+                <td>{{$value->barriovereda}}</td>                
                 <td>Triage</td>
                 <td>
                 <button style="display:none" class="btn btn-primary" type="button" disabled  id="{{$value->folio.'botoncargando'}}">
@@ -67,7 +73,10 @@
             <th>Folio</th>
               <th>Documento</th>
               <th>Nombre del Representante</th>
-              <th>Celular</th>     
+              <th>Celular</th> 
+              <th>Telefono</th>  
+              <th>Comuna</th> 
+              <th>Barrio</th>    
               <th>Visita</th>        
               <th>Gestión del hogar</th>
             </tr>

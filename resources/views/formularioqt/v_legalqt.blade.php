@@ -787,21 +787,27 @@
   document.addEventListener('DOMContentLoaded', function() {
     // Ejecutar la función para ambos divs al cargar la página
     checkAndSetSwitchValues('indicadorbl1');
-    checkAndSetSwitchValues('indicadorbse2');
-    checkAndSetSwitchValues('indicadorbse3');
-    checkAndSetSwitchValues('indicadorbse4');
-    checkAndSetSwitchValues('indicadorbse5');
-    checkAndSetSwitchValues('indicadorbse6');
-    checkAndSetSwitchValues('indicadorbse7');
+    checkAndSetSwitchValues('indicadorbl2');
+    checkAndSetSwitchValues('indicadorbl3');
+    checkAndSetSwitchValues('indicadorbl4');
+    checkAndSetSwitchValues('indicadorbl5');
+    checkAndSetSwitchValues('indicadorbl6');
+    checkAndSetSwitchValues('indicadorbl7');
+    checkAndSetSwitchValues('indicadorbl8');
+    checkAndSetSwitchValues('indicadorbl9');
+    checkAndSetSwitchValues('indicadorbl10');
 
     // Configuración del observador para ambos divs
-    var observer1 = createObserver('indicadorbse1');
-    var observer2 = createObserver('indicadorbse2');
-    var observer2 = createObserver('indicadorbse3');
-    var observer2 = createObserver('indicadorbse4');
-    var observer2 = createObserver('indicadorbse5');
-    var observer2 = createObserver('indicadorbse6');
-    var observer2 = createObserver('indicadorbse7');
+    var observer1 = createObserver('indicadorbl1');
+    var observer2 = createObserver('indicadorbl2');
+    var observer2 = createObserver('indicadorbl3');
+    var observer2 = createObserver('indicadorbl4');
+    var observer2 = createObserver('indicadorbl5');
+    var observer2 = createObserver('indicadorbl6');
+    var observer2 = createObserver('indicadorbl7');
+    var observer2 = createObserver('indicadorbl8');
+    var observer2 = createObserver('indicadorbl9');
+    var observer2 = createObserver('indicadorbl10');
 
 });
 
