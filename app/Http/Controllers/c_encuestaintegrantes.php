@@ -325,7 +325,7 @@ public function fc_encuestaintegrantesfinanciero(){
           $dataWithoutId['estado'] = 1;
     
         // Verificar si el registro existe para decidir si añadir created_at
-        $exists = DB::table('dbmetodologia.t1_integrantesfisicoyemocional')
+        $exists = DB::table('t1_integrantesfisicoyemocional')
             ->where('idintegrante', $idintegrante)
             ->where('folio', $folio)
             ->exists();
@@ -343,7 +343,7 @@ public function fc_encuestaintegrantesfinanciero(){
     
         // Insertar o actualizar el registro
         try {
-            DB::table('dbmetodologia.t1_integrantesfisicoyemocional')->updateOrInsert(
+            DB::table('t1_integrantesfisicoyemocional')->updateOrInsert(
                 [
                     'idintegrante' => $idintegrante,
                     'folio' => $folio,
@@ -379,7 +379,7 @@ public function fc_encuestaintegrantesfinanciero(){
           $dataWithoutId['estado'] = 1;
     
         // Verificar si el registro existe para decidir si añadir created_at
-        $exists = DB::table('dbmetodologia.t1_integrantesintelectual')
+        $exists = DB::table('t1_integrantesintelectual')
             ->where('idintegrante', $idintegrante)
             ->where('folio', $folio)
             ->exists();
@@ -397,7 +397,7 @@ public function fc_encuestaintegrantesfinanciero(){
     
         // Insertar o actualizar el registro
         try {
-            DB::table('dbmetodologia.t1_integrantesintelectual')->updateOrInsert(
+            DB::table('t1_integrantesintelectual')->updateOrInsert(
                 [
                     'idintegrante' => $idintegrante,
                     'folio' => $folio,
@@ -436,7 +436,7 @@ public function fc_encuestaintegrantesfinanciero(){
         $dataWithoutId['estado'] = 1;
   
       // Verificar si el registro existe para decidir si añadir created_at
-      $exists = DB::table('dbmetodologia.t1_integrantesfinanciero')
+      $exists = DB::table('t1_integrantesfinanciero')
           ->where('idintegrante', $idintegrante)
           ->where('folio', $folio)
           ->exists();
@@ -454,7 +454,7 @@ public function fc_encuestaintegrantesfinanciero(){
   
       // Insertar o actualizar el registro
       try {
-          DB::table('dbmetodologia.t1_integrantesfinanciero')->updateOrInsert(
+          DB::table('t1_integrantesfinanciero')->updateOrInsert(
               [
                   'idintegrante' => $idintegrante,
                   'folio' => $folio,
@@ -490,7 +490,7 @@ public function fc_encuestaintegrantesfinanciero(){
           $dataWithoutId['estado'] = 1;
     
         // Verificar si el registro existe para decidir si añadir created_at
-        $exists = DB::table('dbmetodologia.t1_integranteslegal')
+        $exists = DB::table('t1_integranteslegal')
             ->where('idintegrante', $idintegrante)
             ->where('folio', $folio)
             ->exists();
@@ -501,7 +501,7 @@ public function fc_encuestaintegrantesfinanciero(){
     
         // Insertar o actualizar el registro
         try {
-            DB::table('dbmetodologia.t1_integranteslegal')->updateOrInsert(
+            DB::table('t1_integranteslegal')->updateOrInsert(
                 [
                     'idintegrante' => $idintegrante,
                     'folio' => $folio,

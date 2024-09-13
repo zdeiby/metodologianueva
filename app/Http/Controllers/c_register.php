@@ -28,7 +28,7 @@ class c_register extends Controller
         $contrasena=$request->input('pass1');
 
 
-            DB::table('dbmetodologia.t_usuario')
+            DB::table('t_usuario')
                  ->where('documento', $documento)  // Condición para encontrar el registro existente
                  ->update([
                      'contrasena' => bcrypt($contrasena)  // Actualizar la contraseña con la versión cifrada

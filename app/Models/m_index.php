@@ -28,10 +28,8 @@ class m_index extends Model
                     inte.documento, 
                     inte.celular,
                     inte.telefono, 
-                    hgeo.comuna, 
-                    hgeo.barrio,
-                    com.comuna as comunas,
-                    barr.barriovereda,
+                    barr.barriovereda as barrio, 
+                    com.comuna as comuna,
                     "triage" as ultimo_idestacion
                 FROM 
                     t1_principalhogar ph
@@ -39,15 +37,15 @@ class m_index extends Model
                     t1_integranteshogar inte 
                     ON ph.idintegrantetitular = inte.idintegrante
                 LEFT JOIN 
-                    t1_hogardatosgeograficos hgeo                 
-                    ON ph.folio = hgeo.folio  
+                    t1_hogardatosgeograficos hgeo 
+                    ON ph.folio = hgeo.folio
                 LEFT JOIN 
-                    t_comunas com                 
-                    ON hgeo.comuna = com.codigo
-                LEFT JOIN 
-                    t_barrios barr                 
-                    ON hgeo.barrio = barr.codigo
-                    ;
+                t_barrios barr 
+                ON hgeo.barrio = barr.codigo
+                 LEFT JOIN 
+                t_comunas com 
+                ON hgeo.comuna = com.codigo
+                ;
                     
         ' );
 

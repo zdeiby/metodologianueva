@@ -168,7 +168,7 @@ class c_editarintegrantes extends Controller
        $dataWithoutId['estado'] = 1;
   
       // Verificar si el registro existe para decidir si añadir created_at
-      $exists = DB::table('dbmetodologia.t1_integranteshogar')
+      $exists = DB::table('t1_integranteshogar')
           ->where('idintegrante', $idintegrante)
           ->where('folio', $folio)
           ->exists();
@@ -177,7 +177,7 @@ class c_editarintegrantes extends Controller
           $dataWithoutId['created_at'] = $now;
       }
   
-      DB::table('dbmetodologia.t1_integranteshogar')->updateOrInsert(
+      DB::table('t1_integranteshogar')->updateOrInsert(
           [
               'idintegrante' => $idintegrante,
               'folio' => $folio,
@@ -237,7 +237,7 @@ class c_editarintegrantes extends Controller
     $dataWithoutId['updated_at'] = $now;
     $dataWithoutId['sincro'] = 0;
     $dataWithoutId['estado'] = 1;
-    $exists2 = DB::table('dbmetodologia.t1_integrantesidentitario')
+    $exists2 = DB::table('t1_integrantesidentitario')
     ->where('idintegrante', $idintegrante)
     ->where('folio', $folio)
     ->exists();
@@ -246,7 +246,7 @@ class c_editarintegrantes extends Controller
         $dataWithoutId['created_at'] = $now;
     }
 
-        DB::table('dbmetodologia.t1_integrantesidentitario')->updateOrInsert(
+        DB::table('t1_integrantesidentitario')->updateOrInsert(
           [
               'idintegrante' => $idintegrante,
               'folio' => $folio,

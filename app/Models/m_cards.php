@@ -22,7 +22,7 @@ class m_cards extends Model
                     WHEN fe.estado = 1 AND inte.estado = 1 AND fn.estado = 1 AND lg.estado = 1 THEN 1
                     ELSE 0
                 END as validacion
-                 FROM dbmetodologia.t1_integranteshogar ih
+                 FROM t1_integranteshogar ih
            left join t1_saludemocionalqt ii on ih.idintegrante = ii.idintegrante
             LEFT JOIN 
                 t1_legalqt fe ON ih.idintegrante = fe.idintegrante

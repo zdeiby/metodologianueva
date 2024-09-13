@@ -39,10 +39,10 @@
             <th>Folio</th>
               <th>Documento</th>
               <th>Nombre del Representante</th>
-              <th>Celular</th> 
-              <th>Telefono</th>  
-              <th>Comuna</th> 
-              <th>Barrio</th>                
+              <th>Celular</th>
+              <th>Telefono</th>
+              <th>Barrio</th>
+              <th>Comuna</th>        
               <th>Visita</th>        
               <th>Gestión del hogar</th>
             </tr>
@@ -55,8 +55,9 @@
                 <td>{{$value->nombre1}} {{$value->nombre2}} {{$value->apellido1}} {{$value->apellido2}}</td>
                 <td>{{$value->celular}}</td>
                 <td>{{$value->telefono}}</td>
-                <td>{{$value->comunas}}</td>
-                <td>{{$value->barriovereda}}</td>                
+                <td>{{$value->barrio}}</td>
+                <td>{{$value->comuna}}</td>
+
                 <td>Triage</td>
                 <td>
                 <button style="display:none" class="btn btn-primary" type="button" disabled  id="{{$value->folio.'botoncargando'}}">
@@ -74,9 +75,8 @@
               <th>Documento</th>
               <th>Nombre del Representante</th>
               <th>Celular</th> 
-              <th>Telefono</th>  
-              <th>Comuna</th> 
-              <th>Barrio</th>    
+              <th>barrio</th>
+              <th>comuna</th>      
               <th>Visita</th>        
               <th>Gestión del hogar</th>
             </tr>
@@ -116,6 +116,10 @@
         <strong>Documento: </strong>{{$value->documento}}<br>
         <strong>Nombre: </strong>{{$value->nombre1}} {{$value->nombre2}} {{$value->apellido1}} {{$value->apellido2}}<br>
         <strong>Celular: </strong>{{$value->celular}}<br>
+        <strong>Telefono: </strong>{{$value->telefono}}<br>
+        <strong>Barrio: </strong>{{$value->barrio}}<br>
+        <strong>Comuna: </strong>{{$value->comuna}}<br>
+
         <strong>Linea: </strong>Triage<br>
         <hr>
 <div class="text-center">

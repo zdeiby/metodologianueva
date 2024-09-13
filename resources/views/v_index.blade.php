@@ -28,7 +28,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
                                             <div class="text-uppercase text-primary fw-bold text-xs mb-1" style="font-size:10px"><span>Total Folios</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span id="totalgrupos">En construcción</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span id="totalgrupos">{{$numerodefolios}}</span></div>
                                         </div>
                                         <div class="col-auto"><ion-icon  name="home-outline" style="font-size:30px; color:gray"></ion-icon></div>
                                     </div>
@@ -41,7 +41,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
                                             <div class="text-uppercase text-success fw-bold text-xs mb-1" style="font-size:10px"><span>Total Visitas Realizadas</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span  id="totalgruposabiertos">En construcción</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span  id="totalgruposabiertos">{{$numerodevisitasrealiadas}}</span></div>
                                         </div>
                                         <div class="col-auto"><ion-icon  name="home-outline" style="font-size:30px; color:gray"></div>
                                     </div>
@@ -56,7 +56,7 @@
                                             <div class="text-uppercase text-info fw-bold text-xs mb-1" style="font-size:10px"><span>Total Visitas Abiertas</span></div>
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="text-dark fw-bold h5 mb-0 me-3"><span  id="totalgruposcerrados">En construcción</span></div>
+                                                    <div class="text-dark fw-bold h5 mb-0 me-3"><span  id="totalgruposcerrados">{{$numerodevisitasabiertas}}</span></div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm">
@@ -76,7 +76,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
                                             <div class="text-uppercase text-warning fw-bold text-xs mb-1" style="font-size:10px"><span>Total visitas sin realizar</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span  id="totalsesiones">En construcción</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span  id="totalsesiones">{{$numerodevisitassinrealizar}}</span></div>
                                         </div>
                                         <div class="col-auto"><ion-icon  name="home-outline" style="font-size:30px; color:gray"></div>
                                     </div>
@@ -151,6 +151,12 @@
 <script src="{{ asset('resources/js/chart.js') }}" ></script>
 
 <script>
+    var visitasData = [];
+    var etiquetasMeses = [];
+     <?php foreach ($numerodevisitaspormes as $visita): ?>
+        visitasData.push(<?= $visita['total_visitas'] ?>);
+        etiquetasMeses.push('<?= $visita['mes'] ?>'); // Asumiendo que 'mes' contiene el nombre del mes
+    <?php endforeach; ?>
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line', // Tipo de gráfico
@@ -158,7 +164,7 @@
             labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             datasets: [{
                 label: 'Total Visitas Por Mes',
-                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                data: visitasData,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: false,
@@ -192,13 +198,17 @@
     });
 </script>
 <script>
+  let numerodefolios=  <?= $numerodefolios ?>;
+  let numerodevisitasrealiadas=  <?= $numerodevisitasrealiadas ?>;
+  let numerodevisitasabiertas=  <?= $numerodevisitasabiertas ?>;
+  let numerodevisitassinrealizar=  <?= $numerodevisitassinrealizar ?>;
     var ctx = document.getElementById('doughnutChart').getContext('2d');
     var doughnutChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Activos (En construcción)', 'Cerrados (En construcción)', 'Interrumpidos (En construcción)', 'Pendientes (En construcción)', 'Eliminados (En construcción)'],
+            labels: [`Total Folios: ${numerodefolios}`, `Total Visitas Realizadas: ${numerodevisitasrealiadas}`, `Total Visitas Abiertas: ${numerodevisitasabiertas}`, `Total visitas sin realizar: ${numerodevisitassinrealizar}`],
             datasets: [{
-                data: [97, 67, 0, 0, 1],
+                data: [numerodefolios, numerodevisitasrealiadas,numerodevisitasabiertas , numerodevisitassinrealizar],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.5)', // Activos
                     'rgba(54, 162, 235, 0.5)', // Cerrados
