@@ -681,8 +681,8 @@ cloud.addEventListener("click",()=>{
 
 
     </script>
-
-    <!-- <script>
+    
+    <script>
         
 window.onload = function () {
     document.addEventListener("contextmenu", function (e) {
@@ -720,6 +720,6 @@ window.onload = function () {
 
 }
 
-    </script> -->
+    </script>
 </body>
 </html>
