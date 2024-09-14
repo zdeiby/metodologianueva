@@ -514,11 +514,13 @@ function soloNumeros(e) {
         <div>
             <div class="nombre-pagina">
                 <label style=" " id="cloud" >Unidad Familia Medellín</label>
+                
             </div>
             <label class="boton" >
                 
             </label>
         </div>
+        
 <style>
     a.active {
     background-color: var(--color-menu-active);
@@ -576,8 +578,10 @@ function soloNumeros(e) {
             </ul>
             
         </nav>
-        
-
+        <div class="text-center text-light">
+            <label for="" style="font-size:12px"><b>GESTOR: {{session('nombre')}}</b></label>
+        </div>
+       
         <div>
             <div class="linea"></div>
     
@@ -593,6 +597,7 @@ function soloNumeros(e) {
                         </div>
                     </div>
                 </div>
+                
             </div>
                 <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.0</label>
             <div class="usuario" style="display:none">
@@ -684,41 +689,41 @@ cloud.addEventListener("click",()=>{
     
     <script>
         
-window.onload = function () {
-    document.addEventListener("contextmenu", function (e) {
-        e.preventDefault();
-    }, false);
-    document.addEventListener("keydown", function (e) {
-        //document.onkeydown = function(e) {
-        // "I" key
-        if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
-            disabledEvent(e);
-        }
-        // "S" key + macOS
-        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-            disabledEvent(e);
-        }
-        // "U" key
-        if (e.ctrlKey && e.keyCode == 85) {
-            disabledEvent(e);
-        }
-        // "F12" key
-        if (event.keyCode == 123) {
-            disabledEvent(e);
-        }
-    }, false);
-    function disabledEvent(e) {
-        if (e.stopPropagation) {
-            e.stopPropagation();
-        } else if (window.event) {
-            window.event.cancelBubble = true;
-        }
-        e.preventDefault();
-        return false;
-    }
+// window.onload = function () {
+//     document.addEventListener("contextmenu", function (e) {
+//         e.preventDefault();
+//     }, false);
+//     document.addEventListener("keydown", function (e) {
+//         //document.onkeydown = function(e) {
+//         // "I" key
+//         if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+//             disabledEvent(e);
+//         }
+//         // "S" key + macOS
+//         if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+//             disabledEvent(e);
+//         }
+//         // "U" key
+//         if (e.ctrlKey && e.keyCode == 85) {
+//             disabledEvent(e);
+//         }
+//         // "F12" key
+//         if (event.keyCode == 123) {
+//             disabledEvent(e);
+//         }
+//     }, false);
+//     function disabledEvent(e) {
+//         if (e.stopPropagation) {
+//             e.stopPropagation();
+//         } else if (window.event) {
+//             window.event.cancelBubble = true;
+//         }
+//         e.preventDefault();
+//         return false;
+//     }
 
 
-}
+// }
 
     </script>
 </body>

@@ -354,7 +354,24 @@ body {
           <label style="font-size:20px;color:#0dcaf0">Saludo y encuadre</label>
           <hr>
         </div>
-        <label>Es donde se saluda y se da una explicación sobre lo que es el acompañamiento familiar...</label>
+        <label>Buenos días señor (xxxxxxxx) o señora (xxxxxxxx) , 
+          Hoy la Unidad Familia Medellín de la Secretaría de Inclusión 
+          Social de la Alcaldía,  le da la bienvenida al programa de Medellín
+            Solidaria, yo seré a  partir de este momento su gestor de 
+            familia que les acompañará de manera PERSONALIZADA durante
+             este proceso.  Me presento.    (XXXXXX)  Nuestro propósito 
+             como programa de acompañamiento familiar es contribuir en el 
+             mejoramiento del BIENESTAR del hogar con el compromiso de 
+             todos los integrantes del hogar  y traerles las oportunidades 
+             de una manera preferencial y de acuerdo a sus necesidades, 
+             en esta primer visita que le estoy realizando, obtendremos 
+             información que permitirá conocer las necesidades del hogar
+              y de cada integrante en varias categorías del bienestar, 
+              lo cual nos va a permitir iniciar a partir de este momento
+               un trabajo de acompañamiento en el que vamos a fortalecer 
+               las capacidades del hogar, para ello entonces procederemos 
+               a realizar unas preguntas a cada uno de los  
+               que viven en el hogar.</label>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="saludoencuadre">Aceptar</button>
@@ -474,6 +491,7 @@ $(document).ready(function() {
 
 
   $('#resultadoencuesta').click(function() {
+    paginacargando();
     $.ajax({
       url: '../agregarpasoresultado',
       data: { folio: '{{decrypt($variable)}}', usuario:'{{ Session::get('cedula') }}' },
@@ -481,9 +499,12 @@ $(document).ready(function() {
       dataType: 'JSON',
       success: function(data) {
        $('#encuestaqt').prop('disabled',false);
+       paginalista();
         console.log(data);
       },
       error: function(xhr, status, error) {
+        paginalista();
+        alertabad();
         console.log(xhr.responseText);
       }
     });

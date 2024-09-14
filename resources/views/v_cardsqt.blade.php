@@ -19,7 +19,7 @@
         <div>
         <span class="badge bg-primary" id="">CATEGORIAS DE BIENESTAR HERRAMIENTA QT</span> 
         <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $variable }}">folio: {{ $variable }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span class="badge bg-success ms-auto" style="background:#a80a85 !important; cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver QT del hogar</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="badge bg-success ms-auto" style="background:#a80a85 !important; cursor:pointer;font-size:18px" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver QT del hogar</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="text" id="foliobycript" value="{{$foliobycript}}" style="display:none">
         </div>
       </div>
@@ -54,7 +54,7 @@
       </div>
           <div class="row">
             <div class="text-start col-5">
-                <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
+                <div class="btn btn-outline-success" id="volver">Volver</div>
                 </div>
           
           <div class=" col">
@@ -80,92 +80,123 @@
           <label style="font-size:20px;color:#0dcaf0">Categorías priorizadas por el hogar con mayor vulnerabilidad</label>
           <hr>
         </div>
-              <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
-                                  <!-- Primera columna -->
-                                  <div style="flex: 1;">
-                                      <table style="width: 100%;border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
-                                          <tr >
-                                              <td style="width: 30%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR EN FAMILIA</td>
-                                              <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
-                                              <td style="width: 50%;background-color: #1E293A; color: white;" >
-                                                <div class="progress" style="height: 20px;">
-                                                  <div class="progress-bar" role="progressbar" style="width: 10%; background-color: #FEC108;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">10%</div>
-                                                </div> 
-                                              </td>
-                                              <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
-                                          </tr>
-                                      </table>
-                                  </div>
-                                  </div>
+                                <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
+                                    <div style="flex: 1;">
+                                        <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate; background-color: #1E293A; color: white;" class="container">
+                                            <tr>
+                                                <td style="width: 30%; background-color: #1E293A; color: white; padding: 10px; font-size: 12px">BIENESTAR EN FAMILIA</td>
+                                                <td style="width: 10%; text-align: center; font-size: 12px">0%</td>
+                                                <td style="width: 50%; background-color: #1E293A; color: white;">
+                                                    <div class="progress" style="height: 20px; display: flex;">
+                                                        <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bef}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bef}}%</div>
+                                                        
+                                                        <!-- Barra verde -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bef}}%; background-color: #00FF00;" aria-valuenow="{{$porcentaje_verde_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bef}}%</div>
+                                                        
+                                                        <!-- Barra gris -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_gris_bef}}%; background-color: #808080;" aria-valuenow="{{$porcentaje_gris_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_gris_bef}}%</div>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 10%; text-align: center; font-size: 12px">100%</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                                   <!-- Segunda columna -->
                                   <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
- 
-                                      <div style="flex: 1;">
-                                      <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
-                                          <tr >
-                                              <td style="width: 30%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR FINANCIERO</td>
-                                              <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
-                                              <td style="width: 50%;background-color: #1E293A; color: white;" >
-                                              <div class="progress" style="height: 20px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #FEC108;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">60%</div>
-                                              </div>
-                                              </td>
-                                              <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
-                                          </tr>
-                                      </table>
-                                  </div>
-                              </div>
-                          <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
-                              <!-- Primera columna -->
-                              <div style="flex: 1;">
-                                  <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
-                                      <tr >
-                                          <td style="width: 30%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR INTELECTUAL</td>
-                                          <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
-                                          <td style="width: 50%;background-color: #1E293A; color: white;" >
-                                          <div class="progress" style="height: 20px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 10%; background-color: #FEC108;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">10%</div>
-                                              </div>
-                                          </td>
-                                          <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
-                                      </tr>
-                                  </table>
-                              </div>
-                              </div>
-                                  <!-- Segunda columna -->
+                                    <div style="flex: 1;">
+                                        <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate; background-color: #1E293A; color: white;" class="container">
+                                            <tr>
+                                                <td style="width: 30%; background-color: #1E293A; color: white; padding: 10px; font-size: 12px">BIENESTAR FINANCIERO</td>
+                                                <td style="width: 10%; text-align: center; font-size: 12px">0%</td>
+                                                <td style="width: 50%; background-color: #1E293A; color: white;">
+                                                    <div class="progress" style="height: 20px; display: flex;">
+                                                        <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bf}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bf}}%</div>
+                                                        
+                                                        <!-- Barra verde -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bf}}%; background-color: #00FF00;" aria-valuenow="{{$porcentaje_verde_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bf}}%</div>
+                                                        
+                                                        <!-- Barra gris -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_gris_bf}}%; background-color: #808080;" aria-valuenow="{{$porcentaje_gris_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_gris_bf}}%</div>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 10%; text-align: center; font-size: 12px">100%</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                                 <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
-                                  <div style="flex: 1;">
-                                      <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;"  class="container">
-                                          <tr >
-                                              <td style="width: 30%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR PARA LA SALUD FISICA Y EMOCIONAL</td>
-                                              <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
-                                              <td style="width: 50%;background-color: #1E293A; color: white;" >
-                                              <div class="progress" style="height: 20px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 50%; background-color: #FEC108;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">50%</div>
-                                              </div>
-                                              </td>
-                                              <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
-                                          </tr>
-                                      </table>
-                                  </div>
-                              </div>
-                              <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
-                                  <!-- Primera columna -->
-                                  <div style="flex: 1;">
-                                      <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate;background-color: #1E293A; color: white;" class="container">
-                                          <tr >
-                                              <td style="width: 30%;  background-color: #1E293A; color: white; padding: 10px;font-size:12px">BIENESTAR LEGAL</td>
-                                              <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
-                                              <td style="width: 50%;background-color: #1E293A; color: white;" >
-                                              <div class="progress" style="height: 20px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #FEC108;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
-                                              </div>
-                                              </td>
-                                              <td style="width: 15%;   text-align: center;font-size:12px"> 100%</td>
-                                          </tr>
-                                      </table>
-                                  </div>
-                            </div>
+                                    <div style="flex: 1;">
+                                        <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate; background-color: #1E293A; color: white;" class="container">
+                                            <tr>
+                                                <td style="width: 30%; background-color: #1E293A; color: white; padding: 10px; font-size: 12px">BIENESTAR INTELECTUAL</td>
+                                                <td style="width: 10%; text-align: center; font-size: 12px">0%</td>
+                                                <td style="width: 50%; background-color: #1E293A; color: white;">
+                                                    <div class="progress" style="height: 20px; display: flex;">
+                                                        <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bi}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bi}}%</div>
+                                                        
+                                                        <!-- Barra verde -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bi}}%; background-color: #00FF00;" aria-valuenow="{{$porcentaje_verde_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bi}}%</div>
+                                                        
+                                                        <!-- Barra gris -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_gris_bi}}%; background-color: #808080;" aria-valuenow="{{$porcentaje_gris_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_gris_bi}}%</div>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 10%; text-align: center; font-size: 12px">100%</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                  <!-- Segunda columna -->
+                                  <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
+                                    <div style="flex: 1;">
+                                        <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate; background-color: #1E293A; color: white;" class="container">
+                                            <tr>
+                                                <td style="width: 30%; background-color: #1E293A; color: white; padding: 10px; font-size: 12px">BIENESTAR PARA LA SALUD FISICA Y EMOCIONAL</td>
+                                                <td style="width: 10%; text-align: center; font-size: 12px">0%</td>
+                                                <td style="width: 50%; background-color: #1E293A; color: white;">
+                                                    <div class="progress" style="height: 20px; display: flex;">
+                                                        <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bse}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bse}}%</div>
+                                                        
+                                                        <!-- Barra verde -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bse}}%; background-color: #00FF00;" aria-valuenow="{{$porcentaje_verde_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bse}}%</div>
+                                                        
+                                                        <!-- Barra gris -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_gris_bse}}%; background-color: #808080;" aria-valuenow="{{$porcentaje_gris_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_gris_bse}}%</div>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 10%; text-align: center; font-size: 12px">100%</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
+                                    <div style="flex: 1;">
+                                        <table style="width: 100%; border-radius:10px; border-spacing: 0 10px; border-collapse: separate; background-color: #1E293A; color: white;" class="container">
+                                            <tr>
+                                                <td style="width: 30%; background-color: #1E293A; color: white; padding: 10px; font-size: 12px">BIENESTAR LEGAL</td>
+                                                <td style="width: 10%; text-align: center; font-size: 12px">0%</td>
+                                                <td style="width: 50%; background-color: #1E293A; color: white;">
+                                                    <div class="progress" style="height: 20px; display: flex;">
+                                                        <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bl}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bl}}%</div>
+                                                        
+                                                        <!-- Barra verde -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bl}}%; background-color: #00FF00;" aria-valuenow="{{$porcentaje_verde_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bl}}%</div>
+                                                        
+                                                        <!-- Barra gris -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_gris_bl}}%; background-color: #808080;" aria-valuenow="{{$porcentaje_gris_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_gris_bl}}%</div>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 10%; text-align: center; font-size: 12px">100%</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saludoencuadre">Aceptar</button>
@@ -221,8 +252,13 @@
            window.location.href = url;
        }
 
+ 
+
       $('#volver').click(function(){
-        redirectToIntegrantes()
+        var folio = $('#foliobycript').val();
+           var url = "../rombointegrantes/:folio";
+           url = url.replace(':folio', folio);
+           window.location.href = url;
       });
     
 

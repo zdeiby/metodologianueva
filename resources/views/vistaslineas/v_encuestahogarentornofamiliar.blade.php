@@ -467,9 +467,17 @@ paginacargando();
                       paginalista2();
                     },
                     error: function(xhr, status, error) {
+                      paginalista2();
+                      Swal.fire({
+                                  icon: "error",
+                                  title: "Algo falló",
+                                  text: "Revisa por favor",
+                                  footer: ''
+                                });
                       console.log(xhr.responseText);
                     }
                   });
+                  
               }else{
                 paginalista2();
                 Swal.fire({
