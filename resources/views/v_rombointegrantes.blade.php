@@ -354,12 +354,12 @@ body {
           <label style="font-size:20px;color:#0dcaf0">Saludo y encuadre</label>
           <hr>
         </div>
-        <label>Buenos días señor (xxxxxxxx) o señora (xxxxxxxx) , 
+        <label>Buenos días señor<?=(($integrantehogar->sexo == '13')?'a':'') ?> {{$integrantehogar->nombre1}} , 
           Hoy la Unidad Familia Medellín de la Secretaría de Inclusión 
           Social de la Alcaldía,  le da la bienvenida al programa de Medellín
             Solidaria, yo seré a  partir de este momento su gestor de 
             familia que les acompañará de manera PERSONALIZADA durante
-             este proceso.  Me presento.    (XXXXXX)  Nuestro propósito 
+             este proceso.  Me presento.    {{session('nombre')}}  Nuestro propósito 
              como programa de acompañamiento familiar es contribuir en el 
              mejoramiento del BIENESTAR del hogar con el compromiso de 
              todos los integrantes del hogar  y traerles las oportunidades 

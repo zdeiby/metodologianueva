@@ -49,8 +49,15 @@ class c_rombointegrantes extends Controller
       ->where('folio', $folioDesencriptado)
       ->get();
 
+      $integrantehogar = DB::table('t1_principalhogar')
+      ->join('t1_integranteshogar', 't1_principalhogar.idintegrantetitular', '=', 't1_integranteshogar.idintegrante')
+      ->where('t1_principalhogar.folio', $folioDesencriptado)
+      ->select('t1_principalhogar.*', 't1_integranteshogar.*') // Selecciona los campos que desees
+      ->first();
+  
+
         return view('v_rombointegrantes',["variable"=>$folio, 'foliocodificado'=>$foliocodificado,  'existel100p10010' => $existel100p10010 ? 1 : 0, 
-      'existel100p10020' => $existel100p10020 ? 1 : 0, 'existel100p10030' => $existel100p10030 ? 1 : 0,  'existel100p10040' => $existel100p10040 ? 1 : 0, 'casillamatriz'=>$casilla]);
+      'existel100p10020' => $existel100p10020 ? 1 : 0, 'existel100p10030' => $existel100p10030 ? 1 : 0,  'existel100p10040' => $existel100p10040 ? 1 : 0, 'casillamatriz'=>$casilla,'integrantehogar' => $integrantehogar]);
       }
 
       public function fc_agregarpasoencuadre(Request $request){
