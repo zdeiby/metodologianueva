@@ -185,6 +185,15 @@ class c_editarintegrantes extends Controller
           $dataWithoutId
       );
 
+      if($dataWithoutId['representante'] == '1'){
+        DB::table('t1_principalhogar')->updateOrInsert(
+          [
+              'folio' => $folio,
+          ], // Condición para encontrar el registro existente
+         ['idintegrantetitular' =>$idintegrante, 'sincro'=>'0' ]
+      );
+      }
+
 // ESTAS FUNCIONES SON PARA AGREGAR ESTADO CERO A LAS TABLAS SI SE CAMBIA ALGO EN EDITAR
       DB::table('t1_integrantesfisicoyemocional')
     ->where('idintegrante', $idintegrante)

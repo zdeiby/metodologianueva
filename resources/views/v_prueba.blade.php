@@ -58,7 +58,7 @@
                 <td>{{$value->barrio}}</td>
                 <td>{{$value->comuna}}</td>
 
-                <td>Triage</td>
+                <td>{{$value->ultimo_idestacion}}</td>
                 <td>
                 <button style="display:none" class="btn btn-primary" type="button" disabled  id="{{$value->folio.'botoncargando'}}">
                     <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>

@@ -176,9 +176,16 @@ class c_rombointegrantes extends Controller
 
         DB::select('CALL sp_calcular_indicadores(?)', [$folio]);
         DB::select('CALL sp_indicadores_hogar(?)', [$folio]);
-    
-        return response()->json(['message' => $folio]);
-      }
-      
 
+        $integranteshogar=  DB::table('t1_integranteshogar')
+        ->where('folio',$folio)
+        ->get();
+
+    foreach ($integranteshogar as $integrante) {
+        $idintegrante = $integrante->idintegrante;
+        DB::select('CALL sp_indicadores_integrantes(?,?)', [$folio,$idintegrante]);  
+      }
+       return response()->json(['message' => $folio]);
+
+    }
 }

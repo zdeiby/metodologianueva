@@ -209,6 +209,7 @@
 
 <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
     <script>
+      paginacargando();
       $(document).ready(function(){
         const folio = $('#folioContainer').attr('folio');
         const folioencriptado= $('#folioencriptado').val();
@@ -220,7 +221,7 @@
         dataType:'JSON',
         success:function(data){
           $('#integrantes').html(data.foliosintegrante);
-          
+          paginalista();
         },
         error: function(xhr, status, error) {
                   console.log(xhr.responseText);
