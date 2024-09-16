@@ -354,7 +354,7 @@ body {
           <label style="font-size:20px;color:#0dcaf0">Saludo y encuadre</label>
           <hr>
         </div>
-        <label>Buenos días señor<?=(($integrantehogar->sexo == '13')?'a':'') ?> {{$integrantehogar->nombre1}} , 
+        <label>Buenos días <?=(($integrantehogar->sexo == '13')?'a':'') ?> {{$integrantehogar->nombre1}} , 
           Hoy la Unidad Familia Medellín de la Secretaría de Inclusión 
           Social de la Alcaldía,  le da la bienvenida al programa de Medellín
             Solidaria, yo seré a  partir de este momento su gestor de 

@@ -122,7 +122,7 @@
             QUIERO Y NO TENGO
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center text-center" style="background:#2fa4e7; color:white; font-weight:bold">
-            <label for="">SI / NO</label>
+            <label for="">SI</label>
           </div>
         </div>
       </div>
@@ -200,7 +200,7 @@
             QUIERO Y NO TENGO
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center text-center" style="background:#2fa4e7; color:white; font-weight:bold">
-            <label for="">SI / NO</label>
+            <label for="">SI</label>
           </div>
         </div>
       </div>
@@ -268,7 +268,7 @@
             QUIERO Y NO TENGO
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center text-center" style="background:#2fa4e7; color:white; font-weight:bold">
-            <label for="">SI / NO</label>
+            <label for="">SI</label>
           </div>
         </div>
       </div>
@@ -335,7 +335,7 @@
             QUIERO Y NO TENGO
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center text-center" style="background:#2fa4e7; color:white; font-weight:bold">
-            <label for="">SI / NO</label>
+            <label for="">SI</label>
           </div>
         </div>
       </div>
@@ -412,7 +412,7 @@
             QUIERO Y NO TENGO
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center text-center" style="background:#2fa4e7; color:white; font-weight:bold">
-            <label for="">SI / NO</label>
+            <label for="">SI</label>
           </div>
         </div>
       </div>

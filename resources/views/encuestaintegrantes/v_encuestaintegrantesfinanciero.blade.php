@@ -515,31 +515,31 @@
 //entre 15 y 17 y opcion sí
 
              if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '15' && parseInt($('#edadintegrante').val()) <= '17')){
-              $('.trabajoinfantil137').css('display','none');
-              $('#trabajoinfantil137').css('display','none');
-              $('.trabajoinfantil138').css('display','none');
-              $('#trabajoinfantil138').css('display','none');
-              $('.trabajoinfantil139').css('display','none');
-              $('#trabajoinfantil139').css('display','none');
-              $('.trabajoinfantil140').css('display','none');
-              $('#trabajoinfantil140').css('display','none');
-              $('.trabajoinfantil141').css('display','none');
-              $('#trabajoinfantil141').css('display','none');
-              $('.trabajoinfantil142').css('display','none');
-              $('#trabajoinfantil142').css('display','none');
-              $('.trabajoinfantil143').css('display','none');
-              $('#trabajoinfantil143').css('display','none');
-              $('.trabajoinfantil144').css('display','none');
-              $('#trabajoinfantil144').css('display','none');
-              $('.trabajoinfantil145').css('display','none');
-              $('#trabajoinfantil145').css('display','none');
-              $('.trabajoinfantil146').css('display','none');
-              $('#trabajoinfantil146').css('display','none');
-              $('.trabajoinfantil349').css('display','none');
-              $('#trabajoinfantil349').css('display','none');
+              $('.trabajoinfantil137').css('display','');
+              $('#trabajoinfantil137').css('display','');
+              $('.trabajoinfantil138').css('display','');
+              $('#trabajoinfantil138').css('display','');
+              $('.trabajoinfantil139').css('display','');
+              $('#trabajoinfantil139').css('display','');
+              $('.trabajoinfantil140').css('display','');
+              $('#trabajoinfantil140').css('display','');
+              $('.trabajoinfantil141').css('display','');
+              $('#trabajoinfantil141').css('display','');
+              $('.trabajoinfantil142').css('display','');
+              $('#trabajoinfantil142').css('display','');
+              $('.trabajoinfantil143').css('display','');
+              $('#trabajoinfantil143').css('display','');
+              $('.trabajoinfantil144').css('display','');
+              $('#trabajoinfantil144').css('display','');
+              $('.trabajoinfantil145').css('display','');
+              $('#trabajoinfantil145').css('display','');
+              $('.trabajoinfantil146').css('display','');
+              $('#trabajoinfantil146').css('display','');
+              $('.trabajoinfantil349').css('display','');
+              $('#trabajoinfantil349').css('display','');
 
 
-              $('#trabajoinfantildiv').css('display','none');
+             // $('#trabajoinfantildiv').css('display','none');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').removeAttr('required');
              // $('#cualtrabajoinfantildiv').css('display', 'none');
@@ -1938,31 +1938,31 @@ console.log(edad)
 //entre 15 y 17 y opcion sí
 
              if($('#ingresos1').val() == '134' && (parseInt($('#edadintegrante').val()) >= '15' && parseInt($('#edadintegrante').val()) <= '17')){
-              $('.trabajoinfantil137').css('display','none');
-              $('#trabajoinfantil137').css('display','none');
-              $('.trabajoinfantil138').css('display','none');
-              $('#trabajoinfantil138').css('display','none');
-              $('.trabajoinfantil139').css('display','none');
-              $('#trabajoinfantil139').css('display','none');
-              $('.trabajoinfantil140').css('display','none');
-              $('#trabajoinfantil140').css('display','none');
-              $('.trabajoinfantil141').css('display','none');
-              $('#trabajoinfantil141').css('display','none');
-              $('.trabajoinfantil142').css('display','none');
-              $('#trabajoinfantil142').css('display','none');
-              $('.trabajoinfantil143').css('display','none');
-              $('#trabajoinfantil143').css('display','none');
-              $('.trabajoinfantil144').css('display','none');
-              $('#trabajoinfantil144').css('display','none');
-              $('.trabajoinfantil145').css('display','none');
-              $('#trabajoinfantil145').css('display','none');
-              $('.trabajoinfantil146').css('display','none');
-              $('#trabajoinfantil146').css('display','none');
-              $('.trabajoinfantil349').css('display','none');
-              $('#trabajoinfantil349').css('display','none');
+              $('.trabajoinfantil137').css('display','');
+              $('#trabajoinfantil137').css('display','');
+              $('.trabajoinfantil138').css('display','');
+              $('#trabajoinfantil138').css('display','');
+              $('.trabajoinfantil139').css('display','');
+              $('#trabajoinfantil139').css('display','');
+              $('.trabajoinfantil140').css('display','');
+              $('#trabajoinfantil140').css('display','');
+              $('.trabajoinfantil141').css('display','');
+              $('#trabajoinfantil141').css('display','');
+              $('.trabajoinfantil142').css('display','');
+              $('#trabajoinfantil142').css('display','');
+              $('.trabajoinfantil143').css('display','');
+              $('#trabajoinfantil143').css('display','');
+              $('.trabajoinfantil144').css('display','');
+              $('#trabajoinfantil144').css('display','');
+              $('.trabajoinfantil145').css('display','');
+              $('#trabajoinfantil145').css('display','');
+              $('.trabajoinfantil146').css('display','');
+              $('#trabajoinfantil146').css('display','');
+              $('.trabajoinfantil349').css('display','');
+              $('#trabajoinfantil349').css('display','');
 
 
-              $('#trabajoinfantildiv').css('display','none');
+            //  $('#trabajoinfantildiv').css('display','none');
               $('#trabajoinfantil2div').css('display','none');
               $('#trabajoinfantil2').removeAttr('required');
              // $('#cualtrabajoinfantildiv').css('display', 'none');
