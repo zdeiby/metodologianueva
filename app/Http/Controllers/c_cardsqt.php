@@ -12,6 +12,10 @@ use Hashids\Hashids;
 class c_cardsqt extends Controller
 {
     public function fc_cardsqt(Request $request, $folio){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
       $modelo= new m_cards();
       $hashids = new Hashids('', 10);
 

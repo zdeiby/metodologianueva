@@ -13,6 +13,10 @@ use Carbon\Carbon;
 class c_editarintegrantes extends Controller
 {
     public function fc_editarintegrantes(){
+      if (!session('nombre')) {
+        // Si no existe la sesión 'usuario', redirigir al login
+        return redirect()->route('login');
+    }
       $modelo= new m_l1e1();
       $preguntas=$modelo->m_leerrespuestas();
       $barrios= $modelo->m_leerbarrios();
@@ -67,8 +71,8 @@ class c_editarintegrantes extends Controller
         }
       }
       $identidad='<option value="">Seleccione </option>';
-
-      $allowed_ids = [0, 22, 23, 24, 25, 26, 27, 337, 338, 339, 30, 28, 29];
+// SE ocultó la 30 que es transformista 
+      $allowed_ids = [0, 22, 23, 24, 25, 26, 27, 337, 338, 339,  28, 29];
 
       foreach ($allowed_ids as $id) {
         foreach ($preguntas as $value) {

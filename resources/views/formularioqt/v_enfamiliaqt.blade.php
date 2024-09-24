@@ -447,7 +447,7 @@
         </div>
         <div class="row g-0">
           <div class="col-10 border-start p-2 border-bottom">
-          Conocer  los programas, grupos de apoyo y actividades direccionadas a cuidadores.
+          Acceder a programas de capacitación  en  el cuidado de  personas con condiciones especificas como edad, enfermedades fisicas, enfermades cronicas o mentales, discapacidad, entre otras.
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">

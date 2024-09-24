@@ -200,7 +200,8 @@ const observer = new MutationObserver((mutations) => {
                 $('#finalizarboton').css('display','')
             } 
             else {
-              $('#finalizarboton').css('display','none')
+              $('#finalizarboton').css('display','none');
+
             }
         }
     });
@@ -211,7 +212,32 @@ observer.observe(document.body, {
     subtree: true
 });
 
-
+if(<?= ($jefes[0]->edad_mayor_igual_18 == 1 && $jefes[0]->es_jefe_hogar == 1 && $jefes[0]->es_representante == 1) ? 'true' : 'false' ?>){
+ 
+}else{
+        let timerInterval;
+      Swal.fire({
+        title: "<label>Para poder finalizar recuerda agregar un <b>Representante</b> y un <b>Jefe de hogar</b></label>",
+        // html: "I will close in <b></b> milliseconds.",
+        timer: 4000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          const timer = Swal.getPopup().querySelector("b");
+          timerInterval = setInterval(() => {
+           // timer.textContent = `${Swal.getTimerLeft()}`;
+          }, 100);
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log("I was closed by the timer");
+        }
+      });
+}
 </script>
 
 <script>

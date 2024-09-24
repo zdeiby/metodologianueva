@@ -10,6 +10,10 @@ use Carbon\Carbon;
 class c_index extends Controller
 {
     public function fc_index(Request $request){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
       $modelo= new m_index();
      // $pphogar=$modelo->m_leerprincipalhogar();
 if(session('nombre') !== null){

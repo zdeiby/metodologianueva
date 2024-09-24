@@ -16,6 +16,10 @@ class c_encuestaintegrantes extends Controller
 // IR A LA VISTA BIENESTAR FISICO Y EMOCIONAL
 
 public function fc_encuestaintegrantesfisicoemocional(){
+  if (!session('nombre')) {
+    // Si no existe la sesión 'usuario', redirigir al login
+    return redirect()->route('login');
+}
     $modelo= new m_l1e1();
     $preguntas=$modelo->m_leerrespuestas();
     $barrios= $modelo->m_leerbarrios();
@@ -170,8 +174,8 @@ public function fc_encuestaintegrantesfinanciero(){
     }
     $ingresos1='<option value="">Seleccione </option>';
     foreach ($preguntas as $value) {
-      if ($value->id >= '134' && $value->id <= '136') {
-          $ingresos1 .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+      if ($value->id == '0' || $value->id >= '134' && $value->id <= '136') {
+          $ingresos1 .= '<option value="' . $value->id . '" class="noaplica' . $value->id . '">' . $value->pregunta . '</option>';
       }
     }
     // Para listar alfabeticamente

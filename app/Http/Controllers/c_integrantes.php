@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 class c_integrantes extends Controller
 {
     public function fc_integrantes(Request $request, $cedula){
+      if (!session('nombre')) {
+        // Si no existe la sesión 'usuario', redirigir al login
+        return redirect()->route('login');
+    }
       $modelo= new m_integrantes();
       $jefes=$modelo-> m_veredadrepjefe(decrypt($cedula));
         return view('v_integrantes',["variable"=>$cedula, 'jefes' => $jefes]);

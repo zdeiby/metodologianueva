@@ -42,7 +42,8 @@
               <th>Celular</th>
               <th>Telefono</th>
               <th>Barrio</th>
-              <th>Comuna</th>        
+              <th>Comuna</th>
+              <th>Dirección</th>                
               <th>Visita</th>        
               <th>Gestión del hogar</th>
             </tr>
@@ -57,6 +58,7 @@
                 <td>{{$value->telefono}}</td>
                 <td>{{$value->barrio}}</td>
                 <td>{{$value->comuna}}</td>
+                <td>{{$value->direccion}}</td>
 
                 <td>{{$value->ultimo_idestacion}}</td>
                 <td>
@@ -76,7 +78,8 @@
               <th>Nombre del Representante</th>
               <th>Celular</th> 
               <th>barrio</th>
-              <th>comuna</th>      
+              <th>comuna</th>
+              <th>direccion</th>            
               <th>Visita</th>        
               <th>Gestión del hogar</th>
             </tr>
@@ -119,6 +122,7 @@
         <strong>Telefono: </strong>{{$value->telefono}}<br>
         <strong>Barrio: </strong>{{$value->barrio}}<br>
         <strong>Comuna: </strong>{{$value->comuna}}<br>
+        <strong>Dirección: </strong>{{$value->direccion}}<br>
 
         <strong>Linea: </strong>Triage<br>
         <hr>

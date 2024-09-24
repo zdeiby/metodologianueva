@@ -12,6 +12,10 @@ use Hashids\Hashids;
 class c_rombointegrantes extends Controller
 {
     public function fc_rombointegrantes(Request $request, $folio){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
         $folioDesencriptado = decrypt($folio);
         $hashids = new Hashids('', 10); 
         $foliocodificado = $hashids->encode($folioDesencriptado);

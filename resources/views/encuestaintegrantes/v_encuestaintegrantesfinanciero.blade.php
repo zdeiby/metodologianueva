@@ -91,11 +91,15 @@
           <div class="col-md-3" style="display:none">
             <input type="text" placeholder="usuario" class="form-control form-control-sm  " id="usuario" name="usuario" value="{{ Session::get('cedula') }}" >
           </div>
-        <div class="col-md-12">
+        <div class="col-md-12" id="ingresos1div">
                   <label for="validationServer04" class="form-label">¿Realizas actividades que te generen ingresos económicos?</label>
                   <select class="form-control form-control-sm" id="ingresos1" name="ingresos1" aria-describedby="validationServer04Feedback" required="">
                     {{!!$ingresos1!!}}
                 </select>
+                </div>
+
+                <div class="col-md-12" >
+                    <label for="" id="menoracinco"></label>
                 </div>
         
           <div class="col-md-12" id="trabajoinfantildiv">
@@ -2851,6 +2855,127 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
          }else{
             $('input[name="bancarizacion[]"]:hidden').removeAttr('required');
          }
+
+
+         if(parseInt($('#edadintegrante').val()) <= '4'){
+              $('.trabajoinfantil137').css('display','none');
+              $('#trabajoinfantil137').css('display','none');
+              $('.trabajoinfantil138').css('display','none');
+              $('#trabajoinfantil138').css('display','none');
+              $('.trabajoinfantil139').css('display','none');
+              $('#trabajoinfantil139').css('display','none');
+              $('.trabajoinfantil140').css('display','none');
+              $('#trabajoinfantil140').css('display','none');
+              $('.trabajoinfantil141').css('display','none');
+              $('#trabajoinfantil141').css('display','none');
+              $('.trabajoinfantil142').css('display','none');
+              $('#trabajoinfantil142').css('display','none');
+              $('.trabajoinfantil143').css('display','none');
+              $('#trabajoinfantil143').css('display','none');
+              $('.trabajoinfantil144').css('display','none');
+              $('#trabajoinfantil144').css('display','none');
+              $('.trabajoinfantil145').css('display','none');
+              $('#trabajoinfantil145').css('display','none');
+              $('.trabajoinfantil146').css('display','none');
+              $('#trabajoinfantil146').css('display','none');
+              $('.trabajoinfantil349').css('display','none');
+              $('#trabajoinfantil349').css('display','none');
+
+
+
+              $('#trabajoinfantildiv').css('display','none');
+            
+              $('#ingresos1div').css('display', 'none');
+              $('#ingresos1').val('0');
+              $('#ingresos1').removeAttr('required');
+
+
+
+              $('#trabajoinfantil2div').css('display','none');
+              $('#trabajoinfantil2').val('0');
+              $('#trabajoinfantil2').removeAttr('required');
+              $('input[name="trabajoinfantil[]"]').removeAttr('required');
+              $('#trabajo15a17anhosdiv').css('display', 'none');
+              $('#trabajo15a17anhos').val('0'); 
+              $('#trabajo15a17anhos').removeAttr('required');  
+              $('#ingresos2div').css('display', 'none');
+              $('#ingresos2').val('0'); 
+              $('#ingresos2').removeAttr('required');         
+              $('#ingresos3div').css('display', 'none');
+              $('#ingresos3').val('0'); 
+              $('#ingresos3').removeAttr('required');
+              $('#desempleodelargaduraciondiv').css('display', 'none');
+              $('#desempleodelargaduracion').val('0'); 
+              $('#desempleodelargaduracion').removeAttr('required');
+              $('#desempleodiv').css('display', 'none');
+              $('#desempleo').val('0'); 
+              $('#desempleo').removeAttr('required');
+              $('#intermediacionlaboraldiv').css('display', 'none');
+              $('#intermediacionlaboral').val('0'); 
+              $('#intermediacionlaboral').removeAttr('required');
+              $('.bancarizacion157').css('display','none');
+              $('#bancarizacion157').css('display','none');
+              $('.bancarizacion158').css('display','none');
+              $('#bancarizacion158').css('display','none');
+              $('.bancarizacion159').css('display','none');
+              $('#bancarizacion159').css('display','none');
+              $('.bancarizacion160').css('display','none');
+              $('#bancarizacion160').css('display','none');
+              $('.bancarizacion161').css('display','none');
+              $('#bancarizacion161').css('display','none');
+              $('.bancarizacion162').css('display','none');
+              $('#bancarizacion162').css('display','none');
+              $('.bancarizacion163').css('display','none');
+              $('#bancarizacion163').css('display','none');
+              $('.bancarizacion164').css('display','none');
+              $('#bancarizacion164').css('display','none');
+              $('.bancarizacion371').css('display','none');
+              $('#bancarizacion371').css('display','none');
+              $('#bancarizaciondiv').css('display','none');
+              $('input[name="bancarizacion[]"]').removeAttr('required');
+              $('#endeudamiento1div').css('display', 'none');
+              $('#endeudamiento1').val('0'); 
+              $('#endeudamiento1').removeAttr('required');
+              $('#endeudamiento2div').css('display', 'none');
+              $('#endeudamiento2').val('0'); 
+              $('#endeudamiento2').removeAttr('required');
+              $('#endeudamiento3div').css('display', 'none');
+              $('#endeudamiento3').val('0'); 
+              $('#endeudamiento3').removeAttr('required');
+              $('#generaciondeingresosdiv').css('display', 'none');
+              $('#generaciondeingresos').val('0'); 
+              $('#generaciondeingresos').removeAttr('required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').val('0');
+              $('#emprendimiento1').removeAttr('required');
+              $('#formalidaddelempleodiv').css('display', 'none');
+              $('#formalidaddelempleo').val('0'); 
+              $('#formalidaddelempleo').removeAttr('required');
+
+
+              $('#menoracinco').html('No hay preguntas de bienestar financiero para menores de 5 años, para continuar, click en guardar y luego en siguiente');
+             }
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
 
 
          paginalista();

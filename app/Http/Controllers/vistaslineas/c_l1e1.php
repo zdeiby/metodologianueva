@@ -16,6 +16,10 @@ class c_l1e1 extends Controller
 {
 
     public function fc_encuestahogarhabitabilidad(Request $request,$folio){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
         $modelo= new m_l1e1();
         $preguntas=$modelo->m_leerrespuestas();
         $leerbarrios= $modelo->m_leerbarrios();
@@ -142,13 +146,7 @@ class c_l1e1 extends Controller
               </div>';
         }
 
-        $integrantes2 = '';
-        foreach ($leerintegrantes as $value) {
-            $integrantes2 .= '<div class="integrantes2' . $value->idintegrante . '">
-                <label class="form-check-label tiempolibre' . $value->idintegrante . '"  for="integrantes2' . $value->idintegrante . '">' . $value->nombre1 .' '. $value->nombre2 .' '. $value->apellido1 .' '. $value->apellido2 . '</label>
-                <input class="form-check-input" type="checkbox"  id="integrantes2' . $value->idintegrante . '" value="' . $value->idintegrante . '" respuesta="SI" >
-                </div>';
-          }
+       
 
         $condicionespecial = '';  // 361
         $identidad_ids = [ 192, 193, 194, 195,361, 196, ];
@@ -161,8 +159,17 @@ class c_l1e1 extends Controller
           }
       }
        foreach ($sorted_preguntas as $value) {
+        $integrantes2 = '';
+        if ($value->id != 196) {
+            foreach ($leerintegrantes as $value2) {
+                $integrantes2 .= '<div class="integrantes2' . $value2->idintegrante . '">
+                    <label class="form-check-label tiempolibre' . $value2->idintegrante . '" for="integrantes2' . $value2->idintegrante . '">' . $value2->nombre1 .' '. $value2->nombre2 .' '. $value2->apellido1 .' '. $value2->apellido2 . '</label>
+                    <input class="integrante form-check-input integrante'.$value->id.'" type="checkbox" id="integrantes2' . $value2->idintegrante . '" value="' . $value2->idintegrante . '" respuesta="SI" onchange="verificarSeleccionIntegrantes(' . $value->id . ')">
+                </div>';
+            }
+            }
         $condicionespecial .= '<div class="condicionespecial' . $value->id . '">
-            <input class="form-check-input" type="checkbox" name="condicionespecial[]" id="condicionespecial' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+            <input class="form-check-input" type="checkbox" name="condicionespecial[]" id="condicionespecial' . $value->id . '" value="' . $value->id . '" respuesta="SI" required '.(($value->id != 196)?'onchange="verificarIntegrantes(this, ' . $value->id . ')"':'').'>
             <label class="form-check-label" for="condicionespecial' . $value->id . '">' . $value->pregunta . '</label>
             <div class="integrantes-container" id="integrantes-condicionespecial' . $value->id . '-container" style="display: none;">
             ' . $integrantes2 . '

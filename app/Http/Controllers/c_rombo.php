@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 class c_rombo extends Controller
 {
     public function fc_rombo(Request $request, $cedula){
+      if (!session('nombre')) {
+        // Si no existe la sesión 'usuario', redirigir al login
+        return redirect()->route('login');
+    }
       $linea = 100;
       // Obtener el registro en lugar de solo verificar si existe
         $registro = DB::table('t1_visitasrealizadas')

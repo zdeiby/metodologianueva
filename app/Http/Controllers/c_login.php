@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class c_login extends Controller
 {
     public function fc_login(Request $request){
+    
       $modelo = new m_login();
       $datosBD = $modelo->m_leerUsuario();
 

@@ -85,95 +85,95 @@
 <script src="{{ asset('resources/js/sincroarribad.js') }}"></script>
 
 <script>
-  // $(document).ready(function(){
-  //   $('#sincroabajo').click(function(){
-  //     t1_principalhogard();
-  //     console.log('Hola sincro abajo')
+  $(document).ready(function(){
+    $('#sincroabajo').click(function(){
+      t1_principalhogard();
+      console.log('Hola sincro abajo')
   
-  //   })
-  //   $('#sincroarriba').click(function(){
-  //     console.log('Hola sincro arriba')
-  //     t1_principalhogar();
-  //   })
+    })
+    $('#sincroarriba').click(function(){
+      console.log('Hola sincro arriba')
+      t1_principalhogar();
+    })
     
-  // })
+  })
 
 </script>
 
 <script>
 
-// function actualizarTabla(nombreTabla, accion, estado) {
-//     let filaId = 'fila_' + nombreTabla;  // Crear un ID único para la fila
-//     let estadoIcono = '';
+function actualizarTabla(nombreTabla, accion, estado) {
+    let filaId = 'fila_' + nombreTabla;  // Crear un ID único para la fila
+    let estadoIcono = '';
 
-//     // Determinar el icono basado en el estado
-//     if (estado === '1') { // caargando
-//         estadoIcono = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>';
-//     } else if (estado === '2') { // exitoso
-//         estadoIcono = '<ion-icon name="cloud-done-outline" style="font-size:50px; color:green"></ion-icon>';
-//     } else if (estado === '3') { // error
-//         estadoIcono = '<ion-icon name="close-circle-outline" style="font-size:50px; color:red"></ion-icon>';
-//     }
+    // Determinar el icono basado en el estado
+    if (estado === '1') { // caargando
+        estadoIcono = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>';
+    } else if (estado === '2') { // exitoso
+        estadoIcono = '<ion-icon name="cloud-done-outline" style="font-size:50px; color:green"></ion-icon>';
+    } else if (estado === '3') { // error
+        estadoIcono = '<ion-icon name="close-circle-outline" style="font-size:50px; color:red"></ion-icon>';
+    }
 
-//     // Crear la fila o actualizarla si ya existe
-//     let nuevaFila = '<tr id="' + filaId + '">' +
-//                         '<td>' + nombreTabla + '</td>' +
-//                         '<td>' + accion + '</td>' +
-//                         '<td>' + estadoIcono + '</td>' +
-//                     '</tr>';
+    // Crear la fila o actualizarla si ya existe
+    let nuevaFila = '<tr id="' + filaId + '">' +
+                        '<td>' + nombreTabla + '</td>' +
+                        '<td>' + accion + '</td>' +
+                        '<td>' + estadoIcono + '</td>' +
+                    '</tr>';
 
-//     // Comprobar si la fila ya existe
-//     if ($('#' + filaId).length === 0) {
-//         // Si la fila no existe, agregarla
-//         $('#tabla-datos').append(nuevaFila);
-//     } else {
-//         // Si la fila ya existe, actualizarla
-//         $('#' + filaId + ' td:last').html(estadoIcono);
-//     }
+    // Comprobar si la fila ya existe
+    if ($('#' + filaId).length === 0) {
+        // Si la fila no existe, agregarla
+        $('#tabla-datos').append(nuevaFila);
+    } else {
+        // Si la fila ya existe, actualizarla
+        $('#' + filaId + ' td:last').html(estadoIcono);
+    }
 
-//        // Hacer scroll al final del contenedor
-//        let container = $('.table-responsive');
-//     container.scrollTop(container[0].scrollHeight);
-// }
+       // Hacer scroll al final del contenedor
+       let container = $('.table-responsive');
+    container.scrollTop(container[0].scrollHeight);
+}
 
 
-// function reintentarfuncion(funcion, tabla){
-//             Swal.fire({
-//           title: `Error en la tabla ${tabla}`,
-//           text: "Puedes elegír si volver a intentarlo o cancelar (Recuerda que cancelar sin terminar el proceso puede provocar perdida de datos)",
-//           icon: "error",
-//           showCancelButton: true,
-//           confirmButtonColor: "#0dcaf0",
-//           cancelButtonColor: "#d33",
-//           cancelButtonText: "Cancelar",
-//           confirmButtonText: "Reintentar",
-//           allowOutsideClick: false,  // Evitar cerrar al hacer clic fuera
-//           allowEscapeKey: false      // Evitar cerrar al presionar "Escape"
-//         }).then((result) => {
-//           if (result.isConfirmed) {
-//             funcion();
-//           }else{
-//             window.location.href = '<?= route('index') ?>'; 
-//           }
-//         });
-//       }
+function reintentarfuncion(funcion, tabla){
+            Swal.fire({
+          title: `Error en la tabla ${tabla}`,
+          text: "Puedes elegír si volver a intentarlo o cancelar (Recuerda que cancelar sin terminar el proceso puede provocar perdida de datos)",
+          icon: "error",
+          showCancelButton: true,
+          confirmButtonColor: "#0dcaf0",
+          cancelButtonColor: "#d33",
+          cancelButtonText: "Cancelar",
+          confirmButtonText: "Reintentar",
+          allowOutsideClick: false,  // Evitar cerrar al hacer clic fuera
+          allowEscapeKey: false      // Evitar cerrar al presionar "Escape"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            funcion();
+          }else{
+            window.location.href = '<?= route('index') ?>'; 
+          }
+        });
+      }
 
-//       function todook(){
-//             Swal.fire({
-//           title: `Sincronización efectiva`,
-//           text: "",
-//           icon: "success",
-//           showCancelButton: false,
-//           confirmButtonColor: "#0dcaf0",
-//           confirmButtonText: "Continuar",
-//           allowOutsideClick: false,  // Evitar cerrar al hacer clic fuera
-//           allowEscapeKey: false      // Evitar cerrar al presionar "Escape"
-//         }).then((result) => {
-//           if (result.isConfirmed) {
-//             window.location.href = '<?= route('index') ?>'; 
-//           }
-//         });
-//       }
+      function todook(){
+            Swal.fire({
+          title: `Sincronización efectiva`,
+          text: "",
+          icon: "success",
+          showCancelButton: false,
+          confirmButtonColor: "#0dcaf0",
+          confirmButtonText: "Continuar",
+          allowOutsideClick: false,  // Evitar cerrar al hacer clic fuera
+          allowEscapeKey: false      // Evitar cerrar al presionar "Escape"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '<?= route('index') ?>'; 
+          }
+        });
+      }
 
 </script>
 

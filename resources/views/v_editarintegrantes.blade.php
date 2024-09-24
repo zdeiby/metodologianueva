@@ -289,13 +289,13 @@
                 </div>
         
           <div class="col-md-4" id="gestantediv">
-            <label for="validationServer04" class="form-label">¿Eres una mujer gestante?</label>
+            <label for="validationServer04" class="form-label">¿Eres una persona gestante?</label>
             <select class="form-control form-control-sm" id="gestante" name="gestante" aria-describedby="validationServer04Feedback" required>
             {{!!$sino!!}}            
           </select>
           </div>
           <div class="col-md-4" id="lactantediv">
-            <label for="validationServer04" class="form-label">¿Eres una mujer lactante?</label>
+            <label for="validationServer04" class="form-label">¿Eres una persona lactante?</label>
             <select class="form-control form-control-sm" id="lactante" name="lactante" aria-describedby="validationServer04Feedback" required>
             {{!!$sino!!}}     
                 </select>

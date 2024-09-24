@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 class c_prueba extends Controller
 {
     public function fc_index(Request $request){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
       $modelo= new m_index();
       $pphogar=$modelo->m_leerprincipalhogar();
 
@@ -25,6 +29,7 @@ class c_prueba extends Controller
          <td>'.$value->telefono.'</td>
           <td>'.$value->comuna.'</td>
           <td>'.$value->barrio.'</td>
+          <td>'.$value->direccion.'</td>
 
           <td>'.$estacion.'</td>
 

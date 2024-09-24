@@ -30,6 +30,7 @@ class m_index extends Model
         inte.telefono, 
         barr.barriovereda as barrio, 
         com.comuna as comuna,
+        hgeo.direccion as direccion,
         COALESCE(
         CASE 
             WHEN hvrdas.estado = 1 THEN CONCAT(tvrn.descripcion, " finalizada")

@@ -9,7 +9,15 @@ use Illuminate\Support\Facades\Http;
 
 class c_sincronizacion extends Controller
 {
+
+
+
+
     public function fc_sincronizacion(Request $request){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
         $existspph = DB::table('t1_principalhogar')->exists();
         return view('v_sincronizacion',["existspph"=>$existspph]);
         
@@ -201,6 +209,36 @@ public function fc_t1_integranteslegal(){ $datos = DB::table('t1_integranteslega
 
 // FIN SINCRO ARRIBA
 
+
+
+public function fc_verificarsihayfoliosnuevos() {
+    $pdoccogestor = session('cedula');
+    $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_verificarsihayfoliosnuevos?pdoccogestor=' . $pdoccogestor;    
+    $response = file_get_contents($url);
+    $data = json_decode($response, true);
+
+    // Verificar si la respuesta es válida y contiene el conteo
+    if (isset($data[0]['conteo'])) {
+        // Total enviado desde el servidor (el conteo)
+        $totalRemoto = (int) $data[0]['conteo']; // Aseguramos que es un número
+        
+        // Consultar el total de registros en la tabla local 't1_principalhogar'
+        $totalLocal = DB::table('t1_principalhogar')
+                        ->where('folioactivo', 1)
+                        ->count();
+        
+        // Comparar los totales
+        if ($totalRemoto = $totalLocal) {
+            // Si hay más registros en el servidor remoto
+            return 1;
+        } if(($totalRemoto != $totalLocal)) {
+            // Si no hay nuevos registros o son iguales
+            return 0;
+        }
+ 
+    }
+
+    }
 
 }
 

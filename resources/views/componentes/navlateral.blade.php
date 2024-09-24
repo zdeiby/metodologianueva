@@ -8,6 +8,8 @@
      <link href="{{ asset('assets/bootstrap/bootstrap.css') }}" rel="stylesheet" > 
      <link rel="shortcut icon" href="../../favicon.ico">
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <link href="{{ asset('resources/sweetalert/sweetalert2@11.js') }}" rel="stylesheet" > 
+
    <style>
     /* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap'); */
 :root{
@@ -541,12 +543,12 @@ function soloNumeros(e) {
                         <span>Cobertura</span>
                     </a>
                 </li>
-                <!-- <li>
+                <li>
                     <a href="{{route('sincronizacion')}}">
                         <ion-icon name="reload-outline"></ion-icon>
                         <span>Sincronización</span>
                     </a>
-                </li> -->
+                </li>
              <!--   <li>
                     <a href="#">
                         <ion-icon name="document-text-outline"></ion-icon>
@@ -599,7 +601,7 @@ function soloNumeros(e) {
                 </div>
                 
             </div>
-                <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.0</label>
+                <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.1.2</label>
             <div class="usuario" style="display:none">
                 <img src="" alt="">
                 <div class="info-usuario">
@@ -689,41 +691,41 @@ cloud.addEventListener("click",()=>{
     
     <script>
         
-// window.onload = function () {
-//     document.addEventListener("contextmenu", function (e) {
-//         e.preventDefault();
-//     }, false);
-//     document.addEventListener("keydown", function (e) {
-//         //document.onkeydown = function(e) {
-//         // "I" key
-//         if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
-//             disabledEvent(e);
-//         }
-//         // "S" key + macOS
-//         if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-//             disabledEvent(e);
-//         }
-//         // "U" key
-//         if (e.ctrlKey && e.keyCode == 85) {
-//             disabledEvent(e);
-//         }
-//         // "F12" key
-//         if (event.keyCode == 123) {
-//             disabledEvent(e);
-//         }
-//     }, false);
-//     function disabledEvent(e) {
-//         if (e.stopPropagation) {
-//             e.stopPropagation();
-//         } else if (window.event) {
-//             window.event.cancelBubble = true;
-//         }
-//         e.preventDefault();
-//         return false;
-//     }
+ window.onload = function () {
+     document.addEventListener("contextmenu", function (e) {
+         e.preventDefault();
+     }, false);
+     document.addEventListener("keydown", function (e) {
+         //document.onkeydown = function(e) {
+         // "I" key
+         if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+             disabledEvent(e);
+         }
+         // "S" key + macOS
+         if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+             disabledEvent(e);
+         }
+         // "U" key
+         if (e.ctrlKey && e.keyCode == 85) {
+             disabledEvent(e);
+         }
+         // "F12" key
+         if (event.keyCode == 123) {
+             disabledEvent(e);
+         }
+     }, false);
+     function disabledEvent(e) {
+         if (e.stopPropagation) {
+             e.stopPropagation();
+         } else if (window.event) {
+             window.event.cancelBubble = true;
+         }
+         e.preventDefault();
+         return false;
+     }
 
 
-// }
+ }
 
     </script>
 </body>

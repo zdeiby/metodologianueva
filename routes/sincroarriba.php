@@ -19,3 +19,4 @@ Route::get('/t1_integrantesintelectual', [c_sincronizacion::class, 'fc_t1_integr
 Route::get('/t1_integranteslegal', [c_sincronizacion::class, 'fc_t1_integranteslegal'])->name('t1_integranteslegal');
 Route::get('/sincroprivaciones', [c_sincronizacion::class, 'fc_sincroprivaciones'])->name('sincroprivaciones');
 
+Route::get('/verificarsihayfoliosnuevos', [c_sincronizacion::class, 'fc_verificarsihayfoliosnuevos'])->name('verificarsihayfoliosnuevos');

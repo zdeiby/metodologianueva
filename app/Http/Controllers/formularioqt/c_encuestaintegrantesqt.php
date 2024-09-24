@@ -15,9 +15,16 @@ use Hashids\Hashids;
 class c_encuestaintegrantesqt extends Controller
 {
 
+
+
 // IR A LA VISTA BIENESTAR FISICO Y EMOCIONAL
 
     public function fc_bienestarsaludemocionalqt(Request $request,$folio, $integrante){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
+
             $tabla = 't1_saludemocionalqt';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);

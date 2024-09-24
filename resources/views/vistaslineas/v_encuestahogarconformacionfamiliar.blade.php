@@ -118,7 +118,7 @@
             <div class="form-check form-switch" id='laboresdecuidado-container'>
                 {!!$integrantes!!}
                 <label class="form-check-label tiempolibre13988001" for="laboresdecuidado0">Una persona no integrante del hogar </label>
-                <input class="form-check-input" type="checkbox" name="laboresdecuidado[]" id="laboresdecuidado0" value="0" respuesta="SI" required>
+                <input class="form-check-input" type="checkbox" name="laboresdecuidado[]" id="laboresdecuidado0" onclick="quitartodosloschecks()" value="0" respuesta="SI"  required>
                </div>
           </div>
         </br>
@@ -909,6 +909,57 @@ function soloNumeros(e)
 
 
     </script>
+
+
+<script>
+function verificarIntegrantes(checkbox, id) {
+    // Obtenemos todos los checkboxes de integrantes en el formulario.
+    var todosLosIntegrantes = document.querySelectorAll(`.integrante${id}`)
+
+
+        todosLosIntegrantes.forEach(function(integrante) {
+            var container = integrante.closest('.integrantes-container');
+            if (container) {
+                var relatedCheckbox = document.querySelector(`#condicionespecial${container.id.match(/\d+/)[0]}`);
+                integrante.required = relatedCheckbox && relatedCheckbox.checked;
+            }
+        });
+    
+}
+
+
+function verificarSeleccionIntegrantes(idPregunta) {
+  if (!$('#condicionespecial196').is(':checked')){
+    // Obtén solo el contenedor de la pregunta específica.
+    var container = document.getElementById('integrantes-condicionespecial' + idPregunta + '-container');
+
+    // Encuentra todos los checkboxes de integrantes dentro de este contenedor.
+    var integrantesCheckboxes = container.querySelectorAll(`.integrante${idPregunta}`);
+    console.log(integrantesCheckboxes, 'gola');
+    // Comprueba si alguno de los integrantes dentro de este contenedor está seleccionado.
+    var algunoSeleccionado = Array.from(integrantesCheckboxes).some(cb => cb.checked);
+
+    // Cambia la propiedad 'required' solo de los checkboxes dentro de este contenedor.
+    integrantesCheckboxes.forEach(cb => {
+        // Solo modifica 'required' si ninguno está seleccionado.
+        cb.required = !algunoSeleccionado;
+    });}
+}
+
+
+
+ function quitartodosloschecks() {
+     var todosLosIntegrantes = document.querySelectorAll('.integrante');
+     todosLosIntegrantes.forEach(function(integrante) {
+         // Usar setAttribute para manipular el atributo 'required'
+         integrante.removeAttribute('required');
+     });
+ }
+
+
+
+
+</script>
  
 
 @endsection
