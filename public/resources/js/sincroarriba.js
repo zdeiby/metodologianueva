@@ -367,7 +367,7 @@ $.ajax({
 
 
 function t1_indicador_bl_6(){
-  actualizarTabla('t1_indicador_bl_6', 'Descarga de tablas desde el servdor', '1');
+  actualizarTabla('t1_indicador_bl_6', 'Subida base de datos al servidor', '1');
   let tabla= 't1_indicador_bl_6';
 $.ajax({
               url:'./sincroprivaciones',
@@ -377,11 +377,11 @@ $.ajax({
               success:function(data){
                 $('#barracarga').html('100%');
                 $('#barracarga').css('width','100%');                      
-                actualizarTabla('t1_indicador_bl_6', 'Descarga de tablas desde el servdor', '2');
-                    t1_indicador_bse_1d();                 
+                actualizarTabla('t1_indicador_bl_6', 'Subida base de datos al servidor', '2');
+                    t1_indicador_bse_1();                 
               },
               error: function(xhr, status, error) {
-                actualizarTabla('t1_indicador_bl_6', 'Descarga de tablas desde el servdor', '3');
+                actualizarTabla('t1_indicador_bl_6', 'Subida base de datos al servidor', '3');
                     reintentarfuncion(t1_indicador_bl_5, 't1_indicador_bl_6');
                         console.log(xhr.responseText);
                     }
@@ -1559,11 +1559,13 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                 if(data == 1){
+                 // alert('fin');
                   t1_principalhogard();
                 }
                 if(data == 0 ){
-                  todook();
-                  detenerReloj();  
+                  //alert('error');
+                   todook();
+                   detenerReloj();  
                 }                
                 },
                 error: function(xhr, status, error) {

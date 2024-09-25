@@ -543,12 +543,12 @@ function soloNumeros(e) {
                         <span>Cobertura</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="{{route('sincronizacion')}}">
                         <ion-icon name="reload-outline"></ion-icon>
                         <span>Sincronización</span>
                     </a>
-                </li>
+                </li> -->
              <!--   <li>
                     <a href="#">
                         <ion-icon name="document-text-outline"></ion-icon>
@@ -601,7 +601,7 @@ function soloNumeros(e) {
                 </div>
                 
             </div>
-                <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.1.2</label>
+                <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.1.4</label>
             <div class="usuario" style="display:none">
                 <img src="" alt="">
                 <div class="info-usuario">
