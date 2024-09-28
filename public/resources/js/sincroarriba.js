@@ -7,8 +7,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('7%');
-                  $('#barracarga').css('width','7%');
+                  $('#barracarga').html('1%');
+                  $('#barracarga').css('width','1%');
                  actualizarTabla('t1_principalhogar', 'Subida base de datos al servidor', '2');
                  t1_hogarcondicionesalimentarias()
                   
@@ -28,8 +28,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('14%');
-                  $('#barracarga').css('width','14%');
+                  $('#barracarga').html('2%');
+                  $('#barracarga').css('width','2%');
                   actualizarTabla('t1_hogarcondicionesalimentarias', 'Subida base de datos al servidor', '2');
                  t1_hogarcondicioneshabitabilidad()
                   
@@ -49,8 +49,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('21%');
-                  $('#barracarga').css('width','21%');
+                  $('#barracarga').html('3%');
+                  $('#barracarga').css('width','3%');
                   actualizarTabla('t1_hogarcondicioneshabitabilidad', 'Subida base de datos al servidor', '2');
                  t1_hogarconformacionfamiliar()
                   
@@ -70,8 +70,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('28%');
-                  $('#barracarga').css('width','28%');
+                  $('#barracarga').html('4%');
+                  $('#barracarga').css('width','4%');
                   actualizarTabla('t1_hogarconformacionfamiliar', 'Subida base de datos al servidor', '2');
                   t1_hogardatosgeograficos()
                   
@@ -93,8 +93,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('35%');
-                  $('#barracarga').css('width','35%');
+                  $('#barracarga').html('5%');
+                  $('#barracarga').css('width','5%');
                   actualizarTabla('t1_hogardatosgeograficos', 'Subida base de datos al servidor', '2');
                  t1_hogarentornofamiliar()
                   
@@ -114,8 +114,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('42%');
-                  $('#barracarga').css('width','42%');
+                  $('#barracarga').html('6%');
+                  $('#barracarga').css('width','6%');
                   actualizarTabla('t1_hogarentornofamiliar', 'Subida base de datos al servidor', '2');
                  t1_integrantesfinanciero()
                   
@@ -135,8 +135,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('49%');
-                  $('#barracarga').css('width','49%');
+                  $('#barracarga').html('7%');
+                  $('#barracarga').css('width','7%');
                   actualizarTabla('t1_integrantesfinanciero', 'Subida base de datos al servidor', '2');
                  t1_integrantesfisicoyemocional()
                   
@@ -156,8 +156,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('56%');
-                  $('#barracarga').css('width','56%');
+                  $('#barracarga').html('8%');
+                  $('#barracarga').css('width','8%');
                   actualizarTabla('t1_integrantesfisicoyemocional', 'Subida base de datos al servidor', '2');
                  t1_integranteshogar()
                   
@@ -177,8 +177,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('63%');
-                  $('#barracarga').css('width','63%');
+                  $('#barracarga').html('9%');
+                  $('#barracarga').css('width','9%');
                   actualizarTabla('t1_integranteshogar', 'Subida base de datos al servidor', '2');
                  t1_integrantesidentitario()
                   
@@ -198,8 +198,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('70%');
-                  $('#barracarga').css('width','70%');
+                  $('#barracarga').html('10%');
+                  $('#barracarga').css('width','10%');
                   actualizarTabla('t1_integrantesidentitario', 'Subida base de datos al servidor', '2');
                   t1_integrantesintelectual()
                   
@@ -219,8 +219,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('80%');
-                  $('#barracarga').css('width','80%');
+                  $('#barracarga').html('11%');
+                  $('#barracarga').css('width','11%');
                   actualizarTabla('t1_integrantesintelectual', 'Subida base de datos al servidor', '2');
                  t1_integranteslegal()
                   
@@ -240,8 +240,8 @@ $.ajax({
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('12%');
+                  $('#barracarga').css('width','12%');                      
                   actualizarTabla('t1_integranteslegal', 'Subida base de datos al servidor', '2');
                   t1_privacion1();                   
                 },
@@ -264,8 +264,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('13%');
+                  $('#barracarga').css('width','13%');                      
                   actualizarTabla('t1_privacion1', 'Subida base de datos al servidor', '2');
                   t1_casillamatriz()                   
                 },
@@ -287,8 +287,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('14%');
+                  $('#barracarga').css('width','14%');                      
                   actualizarTabla('t1_casillamatriz', 'Subida base de datos al servidor', '2');
                          t1_indicador_bl_2()              
                 },
@@ -310,8 +310,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('15%');
+                  $('#barracarga').css('width','15%');                      
                   actualizarTabla('t1_indicador_bl_2', 'Subida base de datos al servidor', '2');
                          t1_indicador_bl_3()              
                 },
@@ -331,8 +331,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('16%');
+                  $('#barracarga').css('width','16%');                      
                   actualizarTabla('t1_indicador_bl_3', 'Subida base de datos al servidor', '2');
                      t1_indicador_bl_5()                  
                 },
@@ -352,8 +352,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('17%');
+                  $('#barracarga').css('width','17%');                      
                   actualizarTabla('t1_indicador_bl_5', 'Subida base de datos al servidor', '2');
                   t1_indicador_bl_6();                 
                 },
@@ -375,8 +375,8 @@ $.ajax({
               data: { tabla: tabla},  
               dataType:'JSON',
               success:function(data){
-                $('#barracarga').html('100%');
-                $('#barracarga').css('width','100%');                      
+                $('#barracarga').html('18%');
+                $('#barracarga').css('width','18%');                      
                 actualizarTabla('t1_indicador_bl_6', 'Subida base de datos al servidor', '2');
                     t1_indicador_bse_1();                 
               },
@@ -398,8 +398,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('19%');
+                  $('#barracarga').css('width','19%');                      
                   actualizarTabla('t1_indicador_bse_1', 'Subida base de datos al servidor', '2');
                         t1_indicador_bse_4();               
                 },
@@ -419,8 +419,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('20%');
+                  $('#barracarga').css('width','20%');                      
                   actualizarTabla('t1_indicador_bse_4', 'Subida base de datos al servidor', '2');
                       t1_indicador_bse_5();                 
                 },
@@ -440,8 +440,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('21%');
+                  $('#barracarga').css('width','21%');                      
                   actualizarTabla('t1_indicador_bse_5', 'Subida base de datos al servidor', '2');
                           t1_indicador_bse_6();             
                 },
@@ -461,8 +461,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('22%');
+                  $('#barracarga').css('width','22%');                      
                   actualizarTabla('t1_indicador_bse_6', 'Subida base de datos al servidor', '2');
                       t1_indicador_bse_7();                 
                 },
@@ -482,8 +482,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('23%');
+                  $('#barracarga').css('width','23%');                      
                   actualizarTabla('t1_indicador_bse_7', 'Subida base de datos al servidor', '2');
                       t1_privacion10();                 
                 },
@@ -503,8 +503,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('24%');
+                  $('#barracarga').css('width','24%');                      
                   actualizarTabla('t1_privacion10', 'Subida base de datos al servidor', '2');
                        t1_privacion11();                
                 },
@@ -524,8 +524,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('25%');
+                  $('#barracarga').css('width','25%');                      
                   actualizarTabla('t1_privacion11', 'Subida base de datos al servidor', '2');
                          t1_privacion12();              
                 },
@@ -545,8 +545,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('26%');
+                  $('#barracarga').css('width','26%');                      
                   actualizarTabla('t1_privacion12', 'Subida base de datos al servidor', '2');
                        t1_privacion13();                
                 },
@@ -566,8 +566,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('27%');
+                  $('#barracarga').css('width','27%');                      
                   actualizarTabla('t1_privacion13', 'Subida base de datos al servidor', '2');
                       t1_privacion14();                 
                 },
@@ -587,8 +587,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('28%');
+                  $('#barracarga').css('width','28%');                      
                   actualizarTabla('t1_privacion14', 'Subida base de datos al servidor', '2');
                        t1_privacion15();                
                 },
@@ -608,8 +608,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('29%');
+                  $('#barracarga').css('width','29%');                      
                   actualizarTabla('t1_privacion15', 'Subida base de datos al servidor', '2');
                     t1_privacion16();                   
                 },
@@ -629,8 +629,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('30%');
+                  $('#barracarga').css('width','30%');                      
                   actualizarTabla('t1_privacion16', 'Subida base de datos al servidor', '2');
                          t1_privacion2();              
                 },
@@ -650,8 +650,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('31%');
+                  $('#barracarga').css('width','31%');                      
                   actualizarTabla('t1_privacion2', 'Subida base de datos al servidor', '2');
                           t1_privacion3();             
                 },
@@ -671,8 +671,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('32%');
+                  $('#barracarga').css('width','32%');                      
                   actualizarTabla('t1_privacion3', 'Subida base de datos al servidor', '2');
                          t1_privacion4();              
                 },
@@ -692,8 +692,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('33%');
+                  $('#barracarga').css('width','33%');                      
                   actualizarTabla('t1_privacion4', 'Subida base de datos al servidor', '2');
                          t1_privacion5();              
                 },
@@ -713,8 +713,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('34%');
+                  $('#barracarga').css('width','34%');                      
                   actualizarTabla('t1_privacion5', 'Subida base de datos al servidor', '2');
                         t1_privacion6();               
                 },
@@ -734,8 +734,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('35%');
+                  $('#barracarga').css('width','35%');                      
                   actualizarTabla('t1_privacion6', 'Subida base de datos al servidor', '2');
                         t1_privacion7();               
                 },
@@ -755,8 +755,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('36%');
+                  $('#barracarga').css('width','36%');                      
                   actualizarTabla('t1_privacion7', 'Subida base de datos al servidor', '2');
                           t1_privacion8();             
                 },
@@ -776,8 +776,8 @@ $.ajax({
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('37%');
+                  $('#barracarga').css('width','37%');                      
                   actualizarTabla('t1_privacion8', 'Subida base de datos al servidor', '2');
                      t1_privacion9();                  
                 },
@@ -798,8 +798,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_privacion9', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');  
+                  $('#barracarga').html('38%');
+                  $('#barracarga').css('width','38%');  
                   t1_enfamiliaqt();                    
                                   
                 },
@@ -824,8 +824,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_enfamiliaqt', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('39%');
+                  $('#barracarga').css('width','39%');                      
                  
                   t1_financieroqt();               
                 },
@@ -847,8 +847,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_financieroqt', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('40%');
+                  $('#barracarga').css('width','40%');                      
                   t1_indicador_bef_2();      
                 },
                 error: function(xhr, status, error) {
@@ -869,8 +869,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bef_2', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('41%');
+                  $('#barracarga').css('width','41%');                      
                   t1_indicador_bef_3();                
                 },
                 error: function(xhr, status, error) {
@@ -891,8 +891,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bef_3', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('42%');
+                  $('#barracarga').css('width','42%');                      
                   t1_indicador_bf_1();                 
                 },
                 error: function(xhr, status, error) {
@@ -913,8 +913,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bf_1', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('43%');
+                  $('#barracarga').css('width','43%');                      
                   t1_indicador_bf_2();                  
                 },
                 error: function(xhr, status, error) {
@@ -935,8 +935,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bf_2', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('44%');
+                  $('#barracarga').css('width','44%');                      
                   t1_indicador_bf_3();                
                 },
                 error: function(xhr, status, error) {
@@ -957,8 +957,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bf_3', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('45%');
+                  $('#barracarga').css('width','45%');                      
                   t1_indicador_bi_2();                  
                 },
                 error: function(xhr, status, error) {
@@ -979,8 +979,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bi_2', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('46%');
+                  $('#barracarga').css('width','46%');                      
                   t1_indicador_bi_3();                
                 },
                 error: function(xhr, status, error) {
@@ -1001,8 +1001,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bi_3', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('47%');
+                  $('#barracarga').css('width','47%');                      
                   t1_indicador_bi_4();                
                 },
                 error: function(xhr, status, error) {
@@ -1023,8 +1023,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bi_4', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('48%');
+                  $('#barracarga').css('width','48%');                      
                   t1_indicador_bi_5();                  
                 },
                 error: function(xhr, status, error) {
@@ -1045,8 +1045,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bi_5', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('49%');
+                  $('#barracarga').css('width','49%');                      
                   t1_indicador_bi_6();                  
                 },
                 error: function(xhr, status, error) {
@@ -1067,8 +1067,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bi_6', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('50%');
+                  $('#barracarga').css('width','50%');                      
                   t1_indicador_bl_7();                   
                 },
                 error: function(xhr, status, error) {
@@ -1089,8 +1089,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bl_7', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('51%');
+                  $('#barracarga').css('width','51%');                      
                   t1_indicador_bl_8();                
                 },
                 error: function(xhr, status, error) {
@@ -1111,8 +1111,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bl_8', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('52%');
+                  $('#barracarga').css('width','52%');                      
                   t1_indicador_bse_3();               
                 },
                 error: function(xhr, status, error) {
@@ -1133,8 +1133,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bse_3', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('53%');
+                  $('#barracarga').css('width','53%');                      
                   t1_intelectualqt();                  
                 },
                 error: function(xhr, status, error) {
@@ -1155,8 +1155,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_intelectualqt', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('54%');
+                  $('#barracarga').css('width','54%');                      
                   t1_legalqt();                 
                 },
                 error: function(xhr, status, error) {
@@ -1177,8 +1177,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_legalqt', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('55%');
+                  $('#barracarga').css('width','55%');                      
                   t1_pasosvisita();                
                 },
                 error: function(xhr, status, error) {
@@ -1199,8 +1199,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_pasosvisita', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('56%');
+                  $('#barracarga').css('width','56%');                      
                   t1_visitasrealizadas();               
                 },
                 error: function(xhr, status, error) {
@@ -1223,8 +1223,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_visitasrealizadas', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('57%');
+                  $('#barracarga').css('width','57%');                      
                   t1_indicador_bef_1();               
                 },
                 error: function(xhr, status, error) {
@@ -1247,8 +1247,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bef_1', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('58%');
+                  $('#barracarga').css('width','58%');                      
                   t1_indicador_bef_4();               
                 },
                 error: function(xhr, status, error) {
@@ -1269,8 +1269,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bef_4', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('59%');
+                  $('#barracarga').css('width','59%');                      
                   t1_indicador_bef_5();               
                 },
                 error: function(xhr, status, error) {
@@ -1292,8 +1292,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bef_5', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('60%');
+                  $('#barracarga').css('width','60%');                      
                   t1_indicador_bf_4();               
                 },
                 error: function(xhr, status, error) {
@@ -1314,8 +1314,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bf_4', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('61%');
+                  $('#barracarga').css('width','61%');                      
                   t1_indicador_bf_5();               
                 },
                 error: function(xhr, status, error) {
@@ -1336,8 +1336,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bf_5', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('62%');
+                  $('#barracarga').css('width','62%');                      
                   t1_indicador_bi_1();               
                 },
                 error: function(xhr, status, error) {
@@ -1358,8 +1358,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bi_1', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('63%');
+                  $('#barracarga').css('width','63%');                      
                   t1_indicador_bl_4();               
                 },
                 error: function(xhr, status, error) {
@@ -1379,8 +1379,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bl_4', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('64%');
+                  $('#barracarga').css('width','64%');                      
                   t1_indicador_bl_9();               
                 },
                 error: function(xhr, status, error) {
@@ -1401,8 +1401,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bl_9', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('65%');
+                  $('#barracarga').css('width','65%');                      
                   t1_indicador_bl_10();               
                 },
                 error: function(xhr, status, error) {
@@ -1423,8 +1423,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bl_10', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('66%');
+                  $('#barracarga').css('width','66%');                      
                   t1_indicador_bse_2();               
                 },
                 error: function(xhr, status, error) {
@@ -1445,8 +1445,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bse_2', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('67%');
+                  $('#barracarga').css('width','67%');                      
                   t1_indicadores_hogar();               
                 },
                 error: function(xhr, status, error) {
@@ -1468,8 +1468,8 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicadores_hogar', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('68%');
+                  $('#barracarga').css('width','68%');                      
                   t1_indicadores_integrantes();               
                 },
                 error: function(xhr, status, error) {
@@ -1490,8 +1490,8 @@ function t1_indicadores_integrantes (){
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicadores_integrantes', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('69%');
+                  $('#barracarga').css('width','69%');                      
                   t1_indicador_bl_1();               
                 },
                 error: function(xhr, status, error) {
@@ -1512,8 +1512,8 @@ function t1_indicador_bl_1 (){
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_indicador_bl_1', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('70%');
+                  $('#barracarga').css('width','70%');                      
                   t1_saludemocionalqt();               
                 },
                 error: function(xhr, status, error) {
@@ -1536,10 +1536,10 @@ $.ajax({
                 dataType:'JSON',
                 success:function(data){ 
                   actualizarTabla('t1_saludemocionalqt', 'Subida base de datos al servidor', '2');
-                  $('#barracarga').html('100%');
-                  $('#barracarga').css('width','100%');                      
+                  $('#barracarga').html('71%');
+                  $('#barracarga').css('width','71%');                      
                  
-                  verificarsihayfoliosnuevos();                   
+                  reasignacionarriba();                   
                 },
                 error: function(xhr, status, error) {
                   actualizarTabla('t1_saludemocionalqt', 'Subida base de datos al servidor', '3');
@@ -1549,31 +1549,86 @@ $.ajax({
               })
 }
 
-function verificarsihayfoliosnuevos(){
-    //actualizarTabla('t1_saludemocionalqt', 'Subida base de datos al servidor', '1');
-    let tabla= 't1_principalhogar';
+function reasignacionarriba (){
+  actualizarTabla('reasignacionarriba', 'Revisando si hay reasignación', '1');
 $.ajax({
+              url:'./reasignacionarriba',
+              method: "GET",
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('reasignacionarriba', 'Revisando si hay reasignación', '2');
+                $('#barracarga').html('72%');
+                $('#barracarga').css('width','72%');                      
+               
+                reasignacionabajo();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('reasignacionarriba', 'Revisando si hay reasignación', '3');
+                    reintentarfuncion(t1_visitasrealizadas, 'reasignacionarriba');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function reasignacionabajo (){
+  actualizarTabla('reasignacionabajo', 'Revisando si hay reasignación', '1');
+$.ajax({
+              url:'./reasignacionabajo',
+              method: "GET",
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('reasignacionabajo', 'Revisando si hay reasignación', '2');
+                $('#barracarga').html('73%');
+                $('#barracarga').css('width','73%');                      
+               
+                verificarsihayfoliosnuevos();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('reasignacionabajo', 'Revisando si hay reasignación', '3');
+                    reintentarfuncion(t1_visitasrealizadas, 't1_pasosvisita');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+
+function verificarsihayfoliosnuevos(){
+   // actualizarTabla('verificando folios nuevos', 'verificando folios nuevos', '1');
+    let tabla= 't1_principalhogar';
+        $.ajax({
                 url:'./verificarsihayfoliosnuevos',
                 method: "GET",
                 data: { tabla: tabla},  
                 dataType:'JSON',
                 success:function(data){ 
-                if(data == 1){
+                if(data == 0){
+                  actualizarTabla('verificando folios nuevos', 'verificando folios nuevos', '2');
                  // alert('fin');
+                  $('#barracarga').html('100%');
+                  $('#barracarga').addClass('bg-warning');  
                   t1_principalhogard();
+                  detenerReloj();  
                 }
-                if(data == 0 ){
+                if(data == 1 ){
+                  actualizarTabla('verificando folios nuevos', 'verificando folios nuevos', '2');
                   //alert('error');
                    todook();
                    detenerReloj();  
                 }                
                 },
                 error: function(xhr, status, error) {
-                  actualizarTabla('t1_saludemocionalqt', 'Subida base de datos al servidor', '3');
+                  actualizarTabla('verificando folios nuevos', 'verificando folios nuevos', '3');
                       reintentarfuncion(t1_saludemocionalqt, 'verificarsihayfoliosnuevos');
                           console.log(xhr.responseText);
                       }
               })
 }
+
+
+
+
+/// SINCRO Abajo
+
 
 

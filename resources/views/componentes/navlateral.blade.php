@@ -7,9 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
      <link href="{{ asset('assets/bootstrap/bootstrap.css') }}" rel="stylesheet" > 
      <link rel="shortcut icon" href="../../favicon.ico">
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     <link href="{{ asset('resources/sweetalert/sweetalert2@11.js') }}" rel="stylesheet" > 
-
+     <link href="{{ asset('resources/sweetalert/sweetalert2.min.css') }}" rel="stylesheet" > 
+    <script src="{{ asset('resources/sweetalert/sweetalert2.all.min.js') }}"></script>
    <style>
     /* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap'); */
 :root{
