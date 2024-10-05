@@ -19,7 +19,7 @@ class c_encuestaintegrantesqt extends Controller
 
 // IR A LA VISTA BIENESTAR FISICO Y EMOCIONAL
 
-    public function fc_bienestarsaludemocionalqt(Request $request,$folio, $integrante){
+    public function fc_bienestarsaludemocionalqt(Request $request,$folio, $integrante, $vista){
         if (!session('nombre')) {
             // Si no existe la sesión 'usuario', redirigir al login
             return redirect()->route('login');
@@ -144,7 +144,8 @@ class c_encuestaintegrantesqt extends Controller
                 'indicadorbse6_3' => '',
                 'indicadorbse7_1' => '',
                 'indicadorbse7_2' => '',
-                'siguiente' => 'style="display:none"'
+                'siguiente' => 'style="display:none"',
+                'vista' => $vista
             ];
             
             foreach ($informacion as $registro) {
@@ -186,7 +187,7 @@ class c_encuestaintegrantesqt extends Controller
     }
 
 
-    public function fc_legalqt(Request $request,$folio, $integrante){
+    public function fc_legalqt(Request $request,$folio, $integrante, $vista){
         $tabla = 't1_legalqt';
     $hashids = new Hashids('', 10); 
     $encodedFolio = $hashids->decode($folio);
@@ -349,7 +350,8 @@ class c_encuestaintegrantesqt extends Controller
                 'indicadorbl9_3' => '',
                 'indicadorbl10_1' => '',
                 'indicadorbl10_2' => '',
-                'siguiente' => 'style="display:none"'
+                'siguiente' => 'style="display:none"',
+                'vista' => $vista
             ];
 
             foreach ($informacion as $registro) {
@@ -396,7 +398,7 @@ class c_encuestaintegrantesqt extends Controller
     ]);
     } 
 
-    public function fc_enfamiliaqt(Request $request,$folio, $integrante){
+    public function fc_enfamiliaqt(Request $request,$folio, $integrante, $vista){
         $tabla = 't1_enfamiliaqt';
         $hashids = new Hashids('', 10); 
         $encodedFolio = $hashids->decode($folio);
@@ -488,7 +490,8 @@ class c_encuestaintegrantesqt extends Controller
                             'indicador_bef5_2' => '',
                             'indicador_bef5_3' => '',
                             'indicador_bef5_4' => '',
-                            'siguiente' => 'style="display:none"'
+                            'siguiente' => 'style="display:none"',
+                            'vista' => $vista
                         ];
                         
                         foreach ($informacion as $registro) {
@@ -520,7 +523,7 @@ class c_encuestaintegrantesqt extends Controller
                     ]);
                     } 
 
-    public function fc_intelectualqt(Request $request,$folio, $integrante){
+    public function fc_intelectualqt(Request $request,$folio, $integrante, $vista){
         $tabla = 't1_intelectualqt';
         $hashids = new Hashids('', 10); 
         $encodedFolio = $hashids->decode($folio);
@@ -635,7 +638,8 @@ class c_encuestaintegrantesqt extends Controller
                 'indicador_bi6_4' => '',
                 'indicador_bi6_5' => '',
                 'indicador_bi6_6' => '',
-                'siguiente' => 'style="display:none"'
+                'siguiente' => 'style="display:none"',
+                'vista' => $vista
             ];
             
             foreach ($informacion as $registro) {
@@ -685,7 +689,7 @@ class c_encuestaintegrantesqt extends Controller
     ]);
     } 
 
-    public function fc_financieroqt(Request $request,$folio, $integrante){
+    public function fc_financieroqt(Request $request,$folio, $integrante, $vista){
         $tabla = 't1_financieroqt';
         $hashids = new Hashids('', 10); 
         $encodedFolio = $hashids->decode($folio);
@@ -788,7 +792,8 @@ class c_encuestaintegrantesqt extends Controller
             'indicador_bf5_3' => '',
             'indicador_bf5_4' => '',
         
-            'siguiente' => 'style="display:none"'
+            'siguiente' => 'style="display:none"',
+            'vista' => $vista
         ];
         
         foreach ($informacion as $registro) {

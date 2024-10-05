@@ -1038,6 +1038,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     </script>
+
+
+
+<script>
+function verificarIntegrantes(checkbox, id) {
+    // Obtenemos todos los checkboxes de integrantes en el formulario.
+    var todosLosIntegrantes = document.querySelectorAll(`.integrante${id}`)
+
+
+        todosLosIntegrantes.forEach(function(integrante) {
+            var container = integrante.closest('.integrantes-container');
+            if (container) {
+                var relatedCheckbox = document.querySelector(`#factoresderiesgovef${container.id.match(/\d+/)[0]}`);
+                integrante.required = relatedCheckbox && relatedCheckbox.checked;
+            }
+        });
+    
+}
+
+
+function verificarSeleccionIntegrantes(idPregunta) {
+  if (!$('#factoresderiesgovef278').is(':checked')){
+    // Obtén solo el contenedor de la pregunta específica.
+    var container = document.getElementById('integrantes-factoresderiesgovef' + idPregunta + '-container');
+
+    // Encuentra todos los checkboxes de integrantes dentro de este contenedor.
+    var integrantesCheckboxes = container.querySelectorAll(`.integrante${idPregunta}`);
+    console.log(integrantesCheckboxes, 'gola');
+    // Comprueba si alguno de los integrantes dentro de este contenedor está seleccionado.
+    var algunoSeleccionado = Array.from(integrantesCheckboxes).some(cb => cb.checked);
+
+    // Cambia la propiedad 'required' solo de los checkboxes dentro de este contenedor.
+    integrantesCheckboxes.forEach(cb => {
+        // Solo modifica 'required' si ninguno está seleccionado.
+        cb.required = !algunoSeleccionado;
+    });}
+}
+
+
+
+ function quitartodosloschecks() {
+     var todosLosIntegrantes = document.querySelectorAll('.integrante');
+     todosLosIntegrantes.forEach(function(integrante) {
+         // Usar setAttribute para manipular el atributo 'required'
+         integrante.removeAttribute('required');
+     });
+ }
+
+
+
+
+</script>
  
 
 @endsection

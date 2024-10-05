@@ -286,29 +286,68 @@ class c_l1e1 extends Controller
                 $sino .= '<option value="' . $value->id . '" class="noaplica'. $value->id.'">' . $value->pregunta . '</option>';
             }
         }
+
+        
   
        
-          $integrantes2 = '';
-          foreach ($leerintegrantes as $value) {
-              $integrantes2 .= '<div class="integrantes2' . $value->idintegrante . '">
-                  <label class="form-check-label tiempolibre' . $value->idintegrante . '"  for="integrantes2' . $value->idintegrante . '">' . $value->nombre1 .' '. $value->nombre2 .' '. $value->apellido1 .' '. $value->apellido2 . '</label>
-                  <input class="form-check-input" type="checkbox" edad="'.$value->edad.'" id="integrantes2' . $value->idintegrante . '" value="' . $value->idintegrante . '" respuesta="SI" >
-                  </div>';
-            }
+        //   $integrantes2 = '';
+        //   foreach ($leerintegrantes as $value) {
+        //       $integrantes2 .= '<div class="integrantes2' . $value->idintegrante . '">
+        //           <label class="form-check-label tiempolibre' . $value->idintegrante . '"  for="integrantes2' . $value->idintegrante . '">' . $value->nombre1 .' '. $value->nombre2 .' '. $value->apellido1 .' '. $value->apellido2 . '</label>
+        //           <input class="form-check-input" type="checkbox" edad="'.$value->edad.'" id="integrantes2' . $value->idintegrante . '" value="' . $value->idintegrante . '" respuesta="SI" >
+        //           </div>';
+        //     }
 
-            $factoresderiesgovef_ids = [265, 266, 267, 268,270, 271, 272,273,274,275,276,277,362,363,364,365,366,367,278];   
-            foreach ($factoresderiesgovef_ids as $id) { foreach ($preguntas as $value) { if ($value->id == $id) {              $sorted_preguntas[] = $value;              break;          }      }  }
+        //     $factoresderiesgovef_ids = [265, 266, 267, 268,270, 271, 272,273,274,275,276,277,362,363,364,365,366,367,278];   
+        //     foreach ($factoresderiesgovef_ids as $id) { foreach ($preguntas as $value) { if ($value->id == $id) {              $sorted_preguntas[] = $value;              break;          }      }  }
          
-            $factoresderiesgovef = '';
-          foreach ($sorted_preguntas as $value) {
-                  $factoresderiesgovef .= '<div class="factoresderiesgovef' . $value->id . '">
-                  <input class="form-check-input" type="checkbox" name="factoresderiesgovef[]" id="factoresderiesgovef' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>                
-                  <label class="form-check-label factoresderiesgovef' . $value->id . '"  for="factoresderiesgovef' . $value->id . '">' . $value->pregunta . '</label>
-                      <div class="integrantes-container" id="integrantes-factoresderiesgovef' . $value->id . '-container" style="display: none;">
-                          ' . $integrantes2 . '
-                      </div>
-                  </div>';
-          }
+        //     $factoresderiesgovef = '';
+        //   foreach ($sorted_preguntas as $value) {
+        //           $factoresderiesgovef .= '<div class="factoresderiesgovef' . $value->id . '">
+        //           <input class="form-check-input" type="checkbox" name="factoresderiesgovef[]" id="factoresderiesgovef' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>                
+        //           <label class="form-check-label factoresderiesgovef' . $value->id . '"  for="factoresderiesgovef' . $value->id . '">' . $value->pregunta . '</label>
+        //               <div class="integrantes-container" id="integrantes-factoresderiesgovef' . $value->id . '-container" style="display: none;">
+        //                   ' . $integrantes2 . '
+        //               </div>
+        //           </div>';
+        //   }
+
+          $factoresderiesgovef = '';  // Inicialización de la variable
+$factoresderiesgovef_ids =  [265, 266, 267, 268,270, 271, 272,273,274,275,276,277,362,363,364,365,366,367,278];   
+
+// Filtrar las preguntas basadas en los ids proporcionados
+foreach ($factoresderiesgovef_ids as $id) {    foreach ($preguntas as $value) {        if ($value->id == $id) {            $sorted_preguntas[] = $value;            break;        }    } }
+
+// Recorremos las preguntas ordenadas
+foreach ($sorted_preguntas as $value) {
+    $integrantes2 = '';  // Inicializamos la variable para los integrantes
+
+    // Si el id no es 196, generamos la lista de integrantes
+    if ($value->id != 278) {
+        foreach ($leerintegrantes as $value2) {
+            $integrantes2 .= '<div class="integrantes2' . $value2->idintegrante . '">
+                <label class="form-check-label tiempolibre' . $value2->idintegrante . '" for="integrantes2' . $value2->idintegrante . '">' . $value2->nombre1 .' '. $value2->nombre2 .' '. $value2->apellido1 .' '. $value2->apellido2 . '</label>
+                <input class="integrante form-check-input integrante' . $value->id . '" type="checkbox" id="integrantes2' . $value2->idintegrante . '" value="' . $value2->idintegrante . '" edad="'.$value2->edad.'" respuesta="SI" onchange="verificarSeleccionIntegrantes(' . $value->id . ')">
+            </div>';
+        }
+    }
+
+    // Construimos el HTML de las preguntas con los integrantes (si los hay)
+    $factoresderiesgovef .= '<div class="factoresderiesgovef' . $value->id . '">
+        <input class="form-check-input" type="checkbox" name="factoresderiesgovef[]" id="factoresderiesgovef' . $value->id . '" value="' . $value->id . '" respuesta="SI" required '.(($value->id != 196)?'onchange="verificarIntegrantes(this, ' . $value->id . ')"':'').'>
+        <label class="form-check-label factoresderiesgovef' . $value->id . '" for="factoresderiesgovef' . $value->id . '">' . $value->pregunta . '</label>
+        <div class="integrantes-container" id="integrantes-factoresderiesgovef' . $value->id . '-container" style="display: none;">
+            ' . $integrantes2 . '
+        </div>
+    </div>';
+}
+
+
+
+
+
+
+
   
 
           $vefviolenciaenelentorno = '';

@@ -230,7 +230,7 @@
       })
 
       function iraqt(idintegranteencriptado, folioencriptado){
-        var url = "../bienestarsaludemocionalqt/:folio/:idintegrante";
+        var url = "../bienestarsaludemocionalqt/:folio/:idintegrante/1";
         url = url.replace(':folio', folioencriptado); 
         url = url.replace(':idintegrante', idintegranteencriptado);
         window.location.href = url;

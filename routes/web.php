@@ -16,6 +16,7 @@ use App\Http\Controllers\vistaslineas\c_l1e1;
 use App\Http\Controllers\c_sincronizacion; 
 use App\Http\Controllers\c_cardsqt;
 use App\Http\Controllers\formularioqt\c_encuestaintegrantesqt;
+use App\Http\Controllers\c_visitatipo1pasos;
 
 //RUTAS GET
 
@@ -93,7 +94,7 @@ Route::get('/cardsqt/{folio}',[c_cardsqt::class,'fc_cardsqt'])->name('cardsqt');
 
 
 
-
+Route::get('/rombovisitatipo1/{folio}',[c_visitatipo1pasos::class,'fc_visitatipo1pasos'])->name('rombovisitatipo1');
 
 
 
@@ -116,13 +117,17 @@ require __DIR__.'/sincroarriba.php'; // rutas para la sincronizacion arriba   bu
 
 // RUTAS PARA LA QT
 
-Route::get('/bienestarsaludemocionalqt/{folio}/{idintegrante}',[c_encuestaintegrantesqt::class, 'fc_bienestarsaludemocionalqt'])->name('bienestarsaludemocionalqt');
-Route::get('/legalqt/{folio}/{idintegrante}',[c_encuestaintegrantesqt::class, 'fc_legalqt'])->name('legalqt');
-Route::get('/enfamiliaqt/{folio}/{idintegrante}',[c_encuestaintegrantesqt::class, 'fc_enfamiliaqt'])->name('enfamiliaqt');
-Route::get('/intelectualqt/{folio}/{idintegrante}',[c_encuestaintegrantesqt::class, 'fc_intelectualqt'])->name('intelectualqt');
-Route::get('/financieroqt/{folio}/{idintegrante}',[c_encuestaintegrantesqt::class, 'fc_financieroqt'])->name('financieroqt');
+Route::get('/bienestarsaludemocionalqt/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqt::class, 'fc_bienestarsaludemocionalqt'])->name('bienestarsaludemocionalqt');
+Route::get('/legalqt/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqt::class, 'fc_legalqt'])->name('legalqt');
+Route::get('/enfamiliaqt/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqt::class, 'fc_enfamiliaqt'])->name('enfamiliaqt');
+Route::get('/intelectualqt/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqt::class, 'fc_intelectualqt'])->name('intelectualqt');
+Route::get('/financieroqt/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqt::class, 'fc_financieroqt'])->name('financieroqt');
 Route::get('/finalizarintegrantesqt',[c_cardsqt::class,'fc_finalizarintegrantesqt'])->name('finalizarintegrantesqt');
 
 
 Route::get('/guardarformularioqt',[c_encuestaintegrantesqt::class, 'fc_guardarformularioqt'])->name('guardarformularioqt');
-Route::get('/leerintegrantesqt',[c_cardsqt::class,'fc_leerintegrantesqt'])->name('leerintegrantesqt');
+Route::get('/leerintegrantesqt',[c_cardsqt::class,'fc_leerintegrantesqt'])->name('leerintegrantesqt'); 
+
+Route::get('/leerintegrantesqtrombo',[c_rombo::class,'fc_leerintegrantesqt_rombo'])->name('leerintegrantesqtrombo'); 
+
+
