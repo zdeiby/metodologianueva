@@ -16,7 +16,7 @@ use App\Http\Controllers\vistaslineas\c_l1e1;
 use App\Http\Controllers\c_sincronizacion; 
 use App\Http\Controllers\c_cardsqt;
 use App\Http\Controllers\formularioqt\c_encuestaintegrantesqt;
-use App\Http\Controllers\c_visitatipo1pasos;
+use App\Http\Controllers\c_visitatipo1pasos;    
 
 //RUTAS GET
 
@@ -95,6 +95,7 @@ Route::get('/cardsqt/{folio}',[c_cardsqt::class,'fc_cardsqt'])->name('cardsqt');
 
 
 Route::get('/rombovisitatipo1/{folio}',[c_visitatipo1pasos::class,'fc_visitatipo1pasos'])->name('rombovisitatipo1');
+Route::get('/guardarprioridad',[c_visitatipo1pasos::class,'fc_guardarprioridad'])->name('guardarprioridad');
 
 
 

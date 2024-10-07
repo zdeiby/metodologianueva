@@ -57,18 +57,43 @@ class c_visitatipo1pasos extends Controller
       ->where('t1_principalhogar.folio', $folioDesencriptado)
       ->select('t1_principalhogar.*', 't1_integranteshogar.*') // Selecciona los campos que desees
       ->first();
-  
 
-        return view('v_visitatipo1pasos',["folioDesencriptado"=>$folioDesencriptado,"variable"=>$folio, 'foliocodificado'=>$foliocodificado,  'existel100p10010' => $existel100p10010 ? 1 : 0,
-      'existel100p10020' => $existel100p10020 ? 1 : 0, 'existel100p10030' => $existel100p10030 ? 1 : 0,  'existel100p10040' => $existel100p10040 ? 1 : 0, 'casillamatriz'=>$casilla,'integrantehogar' => $integrantehogar]);
+
+      $hashids = new Hashids('', 10);
+
+      $decodeFolio = $hashids->decode($folio);
+      $foliobr=strval($decodeFolio[0]);
+      $foliobycript= encrypt($foliobr);
+      $indicadoreshogar = DB::table('t1_indicadores_hogar')
+      ->where('folio',$decodeFolio[0])
+      ->first();
+
+    // calculo de indicadores para BSE
+    include(app_path('Http/Complementoscontrollers/calculodeindicadoresporhogar.php'));
+    //
+
+        return view('v_visitatipo1pasos',["variable"=>$decodeFolio[0], "folioencriptado"=>$folio, 'foliobycript'=>$foliobycript, 'indicadoreshogar'=>$indicadoreshogar,
+        'porcentaje_rojo_bse'=>$porcentaje_rojo_bse, 'porcentaje_verde_bse'=>$porcentaje_verde_bse, 'porcentaje_gris_bse'=>$porcentaje_gris_bse,
+        'porcentaje_rojo_bl'=>$porcentaje_rojo_bl, 'porcentaje_verde_bl'=>$porcentaje_verde_bl, 'porcentaje_gris_bl'=>$porcentaje_gris_bl,
+        'porcentaje_rojo_bef'=>$porcentaje_rojo_bef, 'porcentaje_verde_bef'=>$porcentaje_verde_bef, 'porcentaje_gris_bef'=>$porcentaje_gris_bef,
+        'porcentaje_rojo_bi'=>$porcentaje_rojo_bi, 'porcentaje_verde_bi'=>$porcentaje_verde_bi, 'porcentaje_gris_bi'=>$porcentaje_gris_bi,
+        'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf, 'porcentaje_gris_bf'=>$porcentaje_gris_bf, 'v_visitatipo1pasos',
+        "folioDesencriptado"=>$folioDesencriptado, 'foliocodificado'=>$foliocodificado,  'existel100p10010' => $existel100p10010 ? 1 : 0,
+      'existel100p10020' => $existel100p10020 ? 1 : 0, 'existel100p10030' => $existel100p10030 ? 1 : 0,  'existel100p10040' => $existel100p10040 ? 1 : 0,
+       'casillamatriz'=>$casilla,'integrantehogar' => $integrantehogar]);
+
       }
 
-      public function fc_agregarpasoencuadre(Request $request){
+      public function fc_guardarprioridad(Request $request){
         $now = Carbon::now();
-        $folio = $request->input('folio');
-        $linea = 100;  // poner linea 
-        $paso = 10010;  // poner paso
-        $usuario = $request->input('usuario'); // Este campo no es clave primaria
+
+        $orden = $request->input('order');
+
+//dd($orden);
+        $folio = $orden[0]['folio'];
+        $linea = 200;  // poner linea 
+        $paso = 20010;  // poner paso
+        $usuario =  $orden[0]['usuario']; // Este campo no es clave primaria
     
         // Datos a insertar o actualizar
         $data = [
@@ -123,7 +148,6 @@ class c_visitatipo1pasos extends Controller
                 $datavisitageneral
             );
     
-        // Usar updateOrInsert para guardar o actualizar el registro, sin incluir 'usuario' en las condiciones
         DB::table('t1_pasosvisita')->updateOrInsert(
             [
                 'folio' => $folio,
@@ -132,6 +156,41 @@ class c_visitatipo1pasos extends Controller
             ],
             $data
         );
+
+      
+        foreach ($orden as $item) {
+
+            $exists = DB::table('t1_ordenprioridadesqt')
+            ->where('folio',  $item['folio'])
+            ->where('categoria', $item['categoria'])
+            ->exists();
+    
+         $datosparatabla= [
+            'prioridad' => $item['prioridad'],
+            'usuario' => $item['usuario'],
+            'estado' => $data['estado'],
+            'sincro' => $data['sincro'],
+            'updated_at' => $now,
+
+        ];
+
+        if (!$existsvisitas) {
+            // Si no existe, agregar created_at
+            $datavisitageneral['created_at'] = $now;
+        }
+
+        DB::table('t1_ordenprioridadesqt')->updateOrInsert(
+            [
+                'folio' =>  $item['folio'],
+                'categoria' =>  $item['categoria'],
+                
+            ],
+            
+                $datosparatabla
+            
+        );
+    }
+    
     
         return response()->json(['message' => $folio]);
       }

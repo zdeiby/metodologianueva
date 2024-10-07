@@ -148,9 +148,13 @@ body {
     transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
     box-sizing: content-box;
 }
+#sortable tr {
+            cursor: pointer; /* Cambia el cursor al pasar sobre las filas */
+            transition: background-color 0.3s ease; /* Suaviza el cambio de color en hover */
+        }
 </style>
 
-<style>
+<!-- <style>
     /* Estilo para las filas con hover y cursor */
 
         th, td {
@@ -163,10 +167,7 @@ body {
         }
 
         /* Estilo para las filas con hover y cursor */
-        #sortable tr {
-            cursor: pointer; /* Cambia el cursor al pasar sobre las filas */
-            transition: background-color 0.3s ease; /* Suaviza el cambio de color en hover */
-        }
+        
 
         /* Efecto hover - color gris */
         #sortable tr:hover {
@@ -185,7 +186,7 @@ body {
         }
 
  
-</style>
+</style> -->
 
 <div class="swiper mySwiper container">
     <div class="swiper-wrapper">
@@ -394,61 +395,62 @@ body {
           <hr>
         </div>
         <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>CAT BIENESTAR</th>
-                    <th>VR QT</th>
-                    <th>PESO</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>B LEGAL</td>
-                    <td>8</td>
-                    <td>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 40%;" aria-valuenow="8" aria-valuemin="0" aria-valuemax="20"></div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>B FINANCIERO</td>
-                    <td>5</td>
-                    <td>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="20"></div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>B SALUD FYM</td>
-                    <td>15</td>
-                    <td>
-                        <div class="progress">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="20"></div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>B INTELECTUAL</td>
-                    <td>20</td>
-                    <td>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>B EN FAMILIA</strong></td>
-                    <td><strong>20</strong></td>
-                    <td>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <thead>
+        <tr>
+            <th>CAT BIENESTAR</th>
+            <th>VR QT</th>
+            <th>PESO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="row-legal">
+            <td>B LEGAL</td>
+            <td>8</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bl}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bl}}%</div>
+                </div>
+            </td>
+        </tr>
+        <tr id="row-financiero">
+            <td>B FINANCIERO</td>
+            <td>5</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bf}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bf}}%</div>
+                </div>
+            </td>
+        </tr>
+        <tr id="row-salud">
+            <td>B SALUD FYM</td>
+            <td>30</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bse}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bse}}%</div>
+                </div>
+            </td>
+        </tr>
+        <tr id="row-intelectual">
+            <td>B INTELECTUAL</td>
+            <td>20</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bi}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bi}}%</div>
+                </div>
+            </td>
+        </tr>
+        <tr id="row-familia"> <!-- ID especial para esta fila -->
+            <td><strong>B EN FAMILIA</strong></td>
+            <td><strong>20</strong></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bef}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bef}}%</div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 
         <hr>
         
@@ -464,19 +466,19 @@ body {
                 </tr>
             </thead>
             <tbody id="sortable">
-                <tr>
+                <tr id="row-1">
                     <td>B LEGAL</td>
                     <td>PRIMERA</td>
                 </tr>
-                <tr>
+                <tr id="row-2">
                     <td>B FINANCIERO</td>
                     <td>SEGUNDA</td>
                 </tr>
-                <tr>
+                <tr id="row-3">
                     <td>B SALUD FYM</td>
                     <td>TERCERA</td>
                 </tr>
-                <tr>
+                <tr id="row-4">
                     <td>B INTELECTUAL</td>
                     <td>CUARTA</td>
                 </tr>
@@ -487,7 +489,7 @@ body {
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="saludoencuadre">Aceptar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="saveOrder()">Aceptar</button>
       </div>
     </div>
   </div>
@@ -662,7 +664,7 @@ $(document).ready(function() {
 </script>
 
 
-<script>
+<!-- <script>
         // Función para actualizar las prioridades
         function actualizarPrioridades() {
             const filas = document.querySelectorAll('#sortable tr');
@@ -688,6 +690,117 @@ $(document).ready(function() {
 
         // Inicializar las prioridades al cargar la página
         actualizarPrioridades();
-    </script>
+    </script> -->
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para actualizar las prioridades
+    function actualizarPrioridades() {
+        const filas = document.querySelectorAll('#sortable tr');
+        const prioridades = ['PRIMERO', 'SEGUNDO', 'TERCERO', 'CUARTO']; // Asegúrate de tener suficientes prioridades
+
+        filas.forEach((fila, index) => {
+            fila.cells[1].innerText = prioridades[index];
+        });
+    }
+
+    // Obtener el elemento y configurar Sortable
+    var el = document.getElementById('sortable');
+    var sortable = new Sortable(el, {
+        animation: 150, // Animación de arrastre
+        ghostClass: 'sortable-ghost', // Clase para el elemento fantasma durante el arrastre
+        chosenClass: 'sortable-chosen', // Clase para el elemento seleccionado
+        onEnd: function () {
+            actualizarPrioridades(); // Actualizar prioridades cuando el usuario termina de arrastrar
+        }
+    });
+
+    // Inicializar las prioridades al cargar la página
+    actualizarPrioridades();
+});
+
+window.saveOrder = function() {
+  paginacargando();
+                const order = Array.from(document.querySelectorAll('#sortable tr')).map((tr, index) => ({
+                    folio:'<?= $variable ?>',
+                    categoria: tr.id,
+                    prioridad: index + 1,
+                    usuario: "{{ Session::get('cedula')}}"
+                }));
+                console.log('Orden guardado:', order);
+              
+
+                      $.ajax({
+                        url: '../guardarprioridad',
+                        data: { order: order },
+                        method: "GET",
+                        dataType: 'JSON',
+                        success: function(data) {
+                          $('#saludoencuadrebtn').attr('disabled', 'disabled');
+                          $('#gestionintegrantes').removeAttr('disabled');
+                          console.log(data);
+                          paginalista();
+                        },
+                        error: function(xhr, status, error) {
+                          console.log(xhr.responseText);
+                        }
+                      });
+
+            };
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function ordenarFilas() {
+        const tbody = document.querySelector('table tbody');
+        let filas = Array.from(tbody.querySelectorAll('tr:not(#row-familia)')); // Ignora la fila de "B EN FAMILIA"
+
+        // Ordenar filas basado en el porcentaje de cada barra de progreso
+        filas.sort((a, b) => {
+            const valA = parseInt(a.querySelector('.progress-bar').getAttribute('aria-valuenow'));
+            const valB = parseInt(b.querySelector('.progress-bar').getAttribute('aria-valuenow'));
+            return valB - valA; // Ordena de mayor a menor
+        });
+
+        // Reinserta las filas ordenadas
+        filas.forEach(fila => tbody.appendChild(fila));
+        // Asegura agregar la fila "B EN FAMILIA" al final
+        tbody.appendChild(document.getElementById('row-familia'));
+    }
+
+    ordenarFilas(); // Llamar a la función al cargar la página
+});
+</script>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Función para sincronizar el orden de la segunda tabla con la primera
+    function sincronizarOrden() {
+        const ordenPrimeraTabla = Array.from(document.querySelectorAll('.table-bordered tbody tr')).map(row => row.cells[0].textContent.trim());
+        const tbodySegundaTabla = document.querySelector('#sortable');
+        let filasSegundaTabla = Array.from(tbodySegundaTabla.querySelectorAll('tr'));
+
+        // Ordenar las filas de la segunda tabla basándose en el orden de la primera tabla
+        filasSegundaTabla.sort((a, b) => {
+            const indexA = ordenPrimeraTabla.indexOf(a.cells[0].textContent.trim());
+            const indexB = ordenPrimeraTabla.indexOf(b.cells[0].textContent.trim());
+            return indexA - indexB;
+        });
+
+        // Reinserta las filas ordenadas en la segunda tabla
+        filasSegundaTabla.forEach(fila => tbodySegundaTabla.appendChild(fila));
+    }
+
+    // Llamar a la función para sincronizar el orden después de que ambas tablas estén completamente cargadas
+    sincronizarOrden();
+});
+</script>
+
+
+
+
 
 @endsection
