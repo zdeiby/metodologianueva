@@ -8,7 +8,7 @@
 
 @extends('componentes.navlateral')
 
-@section('title', 'Rombointegrantes')
+@section('title', 'Visita tipo 1')
 
 @section('content')
   
@@ -196,15 +196,15 @@ body {
           <div class="card">
             <div class="content">
               <div class="front">
-                <img src="{{ asset('assets/img/iconos/card1.jpg')}}" alt="" />
+                <img src="{{ asset('assets/img/iconos/card6.jpg')}}" alt="" />
               </div>
               <div class="back">
                 <div class="middle">
                   <h3>
-                    <label>Saludo y encuadre</label>
+                    <label>Encuadre</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" id="saludoencuadrebtn" <?=($existel100p10010 == '1')?'':''?> data-bs-toggle="modal" data-bs-target="#exampleModal">Ver saludo y encuadre</button>
+             <button type="button" class="btn btn-primary" id="saludoencuadrebtn" <?=($existel100p10010 == '1')?'':''?> data-bs-toggle="modal" data-bs-target="#exampleModal">Ver encuadre</button>
              <div class="smCard">
                 </div>
               </div>
@@ -218,15 +218,15 @@ body {
           <div class="card">
             <div class="content">
               <div class="front">
-                <img src="{{ asset('assets/img/iconos/card2.jpg')}}" alt="" />
+                <img src="{{ asset('assets/img/iconos/card7.jpg')}}" alt="" />
               </div>
               <div class="back">
                 <div class="middle">
                   <h3>
-                    <label>Gestión de integrantes</label>
+                    <label>Momento Consciente</label>
                   </h3>               
                 </div>
-                <button type="button" id="gestionintegrantes"  class="btn btn-primary" onclick="window.location.href='../momentoconciente/{{$folioencriptado}}/'">Ir a gestión de integrantes</button>
+                <button type="button" id="gestionintegrantes"  class="btn btn-primary" onclick="window.location.href='../momentoconciente/{{$folioencriptado}}/'">Ir a momento consciente.</button>
                 <div class="smCard">
                 </div>
               </div>
@@ -235,7 +235,7 @@ body {
         </div>
       </div>
       <!-- Segunda tarjeta -->
-      <div class="swiper-slide">
+      <div class="swiper-slide" style="display:none">
         <div class="card_wrapper">
           <div class="card">
             <div class="content">
@@ -258,7 +258,7 @@ body {
       </div>
 
       <!-- 4ta tarjeta -->
-      <div class="swiper-slide">
+      <div class="swiper-slide" style="display:none">
         <div class="card_wrapper">
           <div class="card">
             <div class="content">
@@ -283,7 +283,7 @@ body {
 
       <!-- 5ta tarjeta -->
    <!-- 4ta tarjeta -->
-   <div class="swiper-slide">
+   <div class="swiper-slide" style="display:none">
         <div class="card_wrapper">
           <div class="card">
             <div class="content">
