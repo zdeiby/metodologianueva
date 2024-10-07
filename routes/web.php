@@ -16,7 +16,9 @@ use App\Http\Controllers\vistaslineas\c_l1e1;
 use App\Http\Controllers\c_sincronizacion; 
 use App\Http\Controllers\c_cardsqt;
 use App\Http\Controllers\formularioqt\c_encuestaintegrantesqt;
-use App\Http\Controllers\c_visitatipo1pasos;    
+use App\Http\Controllers\c_visitatipo1pasos;   
+use App\Http\Controllers\accionesmovilizadoras\c_momentoconciente;
+
 
 //RUTAS GET
 
@@ -130,5 +132,14 @@ Route::get('/guardarformularioqt',[c_encuestaintegrantesqt::class, 'fc_guardarfo
 Route::get('/leerintegrantesqt',[c_cardsqt::class,'fc_leerintegrantesqt'])->name('leerintegrantesqt'); 
 
 Route::get('/leerintegrantesqtrombo',[c_rombo::class,'fc_leerintegrantesqt_rombo'])->name('leerintegrantesqtrombo'); 
+
+
+//rutas para las acciones movilizadoras
+
+Route::get('/momentoconciente/{folio}',[c_momentoconciente::class, 'fc_momentoconciente'])->name('momentoconciente');
+Route::get('/guardaraccionesmovilizadoras',[c_momentoconciente::class, 'fc_guardaraccionesmovilizadoras'])->name('guardaraccionesmovilizadoras');
+Route::get('/bienestarenfamilia/{folio}',[c_momentoconciente::class, 'fc_bienestarenfamilia'])->name('bienestarenfamilia');
+Route::get('/accionmovilizadoraqt/{folio}',[c_momentoconciente::class, 'fc_accionmovilizadoraqt'])->name('accionmovilizadoraqt');
+
 
 

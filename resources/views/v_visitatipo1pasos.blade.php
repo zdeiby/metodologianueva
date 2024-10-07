@@ -226,7 +226,7 @@ body {
                     <label>Gestión de integrantes</label>
                   </h3>               
                 </div>
-                <button type="button" id="gestionintegrantes" <?=($existel100p10010 == '1' && $existel100p10020 == '0'  )?'':'disabled'?> class="btn btn-primary" onclick="window.location.href='../integrantes/{{$variable}}'">Ir a gestión de integrantes</button>
+                <button type="button" id="gestionintegrantes"  class="btn btn-primary" onclick="window.location.href='../momentoconciente/{{$folioencriptado}}/'">Ir a gestión de integrantes</button>
                 <div class="smCard">
                 </div>
               </div>
@@ -405,7 +405,7 @@ body {
     <tbody>
         <tr id="row-legal">
             <td>B LEGAL</td>
-            <td>8</td>
+            <td>{{$porcentaje_rojo_bl}}</td>
             <td>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bl}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bl}}%</div>
@@ -414,7 +414,7 @@ body {
         </tr>
         <tr id="row-financiero">
             <td>B FINANCIERO</td>
-            <td>5</td>
+            <td>{{$porcentaje_rojo_bf}}</td>
             <td>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bf}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bf}}%</div>
@@ -422,8 +422,8 @@ body {
             </td>
         </tr>
         <tr id="row-salud">
-            <td>B SALUD FYM</td>
-            <td>30</td>
+            <td>B SALUD EMOCIONAL</td>
+            <td>{{$porcentaje_rojo_bse}}</td>
             <td>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bse}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bse}}%</div>
@@ -432,7 +432,7 @@ body {
         </tr>
         <tr id="row-intelectual">
             <td>B INTELECTUAL</td>
-            <td>20</td>
+            <td>{{$porcentaje_rojo_bi}}</td>
             <td>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bi}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bi}}%</div>
@@ -441,7 +441,7 @@ body {
         </tr>
         <tr id="row-familia"> <!-- ID especial para esta fila -->
             <td><strong>B EN FAMILIA</strong></td>
-            <td><strong>20</strong></td>
+            <td><strong>{{$porcentaje_rojo_bef}}</strong></td>
             <td>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bef}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bef}}%</div>
@@ -466,19 +466,19 @@ body {
                 </tr>
             </thead>
             <tbody id="sortable">
-                <tr id="row-1">
+                <tr id="2">
                     <td>B LEGAL</td>
                     <td>PRIMERA</td>
                 </tr>
-                <tr id="row-2">
+                <tr id="5">
                     <td>B FINANCIERO</td>
                     <td>SEGUNDA</td>
                 </tr>
-                <tr id="row-3">
-                    <td>B SALUD FYM</td>
+                <tr id="1">
+                    <td>B SALUD EMOCIONAL</td>
                     <td>TERCERA</td>
                 </tr>
-                <tr id="row-4">
+                <tr id="4">
                     <td>B INTELECTUAL</td>
                     <td>CUARTA</td>
                 </tr>
@@ -590,7 +590,7 @@ $(document).ready(function() {
       method: "GET",
       dataType: 'JSON',
       success: function(data) {
-        $('#saludoencuadrebtn').attr('disabled', 'disabled');
+      //  $('#saludoencuadrebtn').attr('disabled', 'disabled');
         $('#gestionintegrantes').removeAttr('disabled');
         console.log(data);
       },
