@@ -237,32 +237,108 @@ public function fc_t1_integranteslegal(){ $datos = DB::table('t1_integranteslega
      ->get()->toArray();  $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_t1_integranteslegal'; $response = Http::post($url, $datos); if ($response->successful()) {  DB::table('t1_integranteslegal') //->where('sincro', 0)
      ->update(['sincro' => 1]); return response()->json(['message' => 'Datos enviados con éxito', 'data' => $response->json()]); } else {  return response()->json(['error' => 'Error al enviar datos a la API'], $response->status()); } }
 
-public function fc_reasignacionarriba(){ $datos = DB::table('t1_principalhogar')->select('folio', 'usuario')->where('folioactivo', 1)->get()->toArray();  $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_reasignacionarriba'; $response = Http::post($url, $datos); if ($response->successful()) {  return response()->json(['message' => 'Datos enviados con éxito', 'data' => $datos]); } else {  return response()->json(['error' => 'Error al enviar datos a la API']); } }
-// public function fc_reasignacionabajo(){ $datos = session('cedula'); $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_reasignacionabajo'; $response = Http::post($url, $datos); if ($response->successful()) {   return response()->json(['message' => 'Datos enviados con éxito', 'data' => $response->json()]); } else {  return response()->json(['error' => 'Error al enviar datos a la API'] , $response->json()); } }
+// public function fc_reasignacionarriba(){
+//     $datos = DB::table('t1_principalhogar')->select('folio', 'usuario')->where('folioactivo', 1)->get()->toArray(); 
+//     // $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_reasignacionarriba'; 
+//     $url = 'https://unidadfamiliamedellin.com.co/metodologia2servidor/index.php/sincronizacion/c_sincroarriba/fc_reasignacionarribanew';
+//     $response = Http::post($url, $datos);
+//      if ($response->successful()) {  
+//         return response()->json(['message' => 'Datos enviados con éxito', 'data' =>$response]);
+//      } else {  
+//         return response()->json(['error' => 'Error al enviar datos a la API']); 
+//     } }
 
-public function fc_reasignacionabajo() {
-    // Obtener el primer usuario de la tabla
-    $datos = DB::table('t1_principalhogar')->select('usuario')->first();
 
-    // Verifica si se obtuvo un usuario
-    if (!$datos) {
-        return response()->json(['error' => 'No se encontró usuario'], 404);
+
+    public function fc_reasignacionarriba() {
+        $datos = DB::table('t1_principalhogar')->select('folio', 'usuario')
+                   ->where('folioactivo', 1)
+                   ->get()
+                   ->toArray(); // Asegúrate de que esto realmente está devolviendo datos
+
+                   //dd($datos);
+    
+                   $url = 'https://unidadfamiliamedellin.com.co/metodologia2servidor/index.php/sincronizacion/c_sincroarriba/fc_reasignacionarribanew';
+
+    
+        // Usar Http para enviar los datos como JSON
+        $response = Http::post($url, [
+            'json' => $datos
+        ]);
+    
+        // Verificar si la respuesta fue exitosa
+        if ($response->successful()) {
+            return response()->json([
+                'message' => 'Datos enviados con éxito', 
+                'data' => $response->json()
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'Error al enviar datos a la API',
+                'status' => $response->status(),
+                'body' => $response->body()
+            ]);
+        }
+    }
+    
+
+
+    public function fc_reasignacionabajo() {
+        $datos = DB::table('t_usuario')->select('documento')
+                   ->get()
+                   ->toArray(); // Asegúrate de que esto realmente está devolviendo datos
+
+                   //dd($datos);
+    
+                   $url = 'https://unidadfamiliamedellin.com.co/metodologia2servidor/index.php/sincronizacion/c_sincroarriba/fc_reasignacionabajonew';
+
+    
+        // Usar Http para enviar los datos como JSON
+        $response = Http::post($url, [
+            'json' => $datos
+        ]);
+    
+        // Verificar si la respuesta fue exitosa
+        if ($response->successful()) {
+            return response()->json([
+                'message' => 'Datos enviados con éxito', 
+                'data' => $response->json()
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'Error al enviar datos a la API',
+                'status' => $response->status(),
+                'body' => $response->body()
+            ]);
+        }
     }
 
-    $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_reasignacionabajo';
 
-    // Convertir el objeto a un array
-    $payload = (array) $datos; // Conversión de stdClass a array
+// public function fc_reasignacionabajo(){ $datos = session('cedula'); $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_reasignacionabajo'; $response = Http::post($url, $datos); if ($response->successful()) {   return response()->json(['message' => 'Datos enviados con éxito', 'data' => $response->json()]); } else {  return response()->json(['error' => 'Error al enviar datos a la API'] , $response->json()); } }
 
-    // Realizar la solicitud POST
-    $response = Http::post($url, $payload);
+// public function fc_reasignacionabajo() {
+//     // Obtener el primer usuario de la tabla
+//     $datos = DB::table('t1_principalhogar')->select('usuario')->first();
 
-    if ($response->successful()) { 
-         return response()->json(['message' => 'Datos enviados con éxito', 'data' => $datos]);
-         } else {  
-            return response()->json(['error' => 'Error al enviar datos a la API']); 
-        }
-}
+//     // Verifica si se obtuvo un usuario
+//     if (!$datos) {
+//         return response()->json(['error' => 'No se encontró usuario'], 404);
+//     }
+
+//     $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_reasignacionabajo';
+
+//     // Convertir el objeto a un array
+//     $payload = (array) $datos; // Conversión de stdClass a array
+
+//     // Realizar la solicitud POST
+//     $response = Http::post($url, $payload);
+
+//     if ($response->successful()) { 
+//          return response()->json(['message' => 'Datos enviados con éxito', 'data' => $datos]);
+//          } else {  
+//             return response()->json(['error' => 'Error al enviar datos a la API']); 
+//         }
+// }
 
 
 public function fc_verificarsihayfoliosnuevos() {

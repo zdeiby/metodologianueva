@@ -235,7 +235,7 @@ body {
         </div>
       </div>
       <!-- Segunda tarjeta -->
-      <div class="swiper-slide" style="display:none">
+      <div class="swiper-slide" style="display:">
         <div class="card_wrapper">
           <div class="card">
             <div class="content">
@@ -245,10 +245,10 @@ body {
               <div class="back">
                 <div class="middle">
                   <h3>
-                    <label>Encuesta hogar</label>
+                    <label>Compromisos</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" <?=($existel100p10010 == '1' && $existel100p10020 == '1'  && $existel100p10030 == '0'  )?'':'disabled'?> onclick="window.location.href='../encuestahogarconformacionfamiliar/{{$variable}}'">Ir a encuesta de hogar</button>
+             <button type="button" class="btn btn-primary" onclick="window.location.href='../compromiso1/{{$folioencriptado}}/'">Ir a compromisos</button>
              <div class="smCard">
                 </div>
               </div>

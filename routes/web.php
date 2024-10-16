@@ -18,6 +18,8 @@ use App\Http\Controllers\c_cardsqt;
 use App\Http\Controllers\formularioqt\c_encuestaintegrantesqt;
 use App\Http\Controllers\c_visitatipo1pasos;   
 use App\Http\Controllers\accionesmovilizadoras\c_momentoconciente;
+use App\Http\Controllers\c_compromisostipo1;
+
 
 
 //RUTAS GET
@@ -140,6 +142,10 @@ Route::get('/momentoconciente/{folio}',[c_momentoconciente::class, 'fc_momentoco
 Route::get('/guardaraccionesmovilizadoras',[c_momentoconciente::class, 'fc_guardaraccionesmovilizadoras'])->name('guardaraccionesmovilizadoras');
 Route::get('/bienestarenfamilia/{folio}',[c_momentoconciente::class, 'fc_bienestarenfamilia'])->name('bienestarenfamilia');
 Route::get('/accionmovilizadoraqt/{folio}',[c_momentoconciente::class, 'fc_accionmovilizadoraqt'])->name('accionmovilizadoraqt');
+
+Route::get('/compromiso1/{folio}',[c_compromisostipo1::class, 'fc_compromiso1'])->name('compromiso1');
+Route::get('/guardarcompromisos',[c_compromisostipo1::class, 'fc_guardarcompromisos'])->name('guardarcompromisos');
+
 
 
 
