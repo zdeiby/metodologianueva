@@ -94,6 +94,8 @@
 
           <div class="col-md-3" style="display:none">
             <input type="text" placeholder="tabla" class="form-control form-control-sm  " id="tabla" name="tabla" value="{{$tabla}}" >
+            <input type="text" placeholder="linea" class="form-control form-control-sm  " id="linea" name="linea" value="{{$linea}}" >
+            <input type="text" placeholder="paso" class="form-control form-control-sm  " id="paso" name="paso" value="{{$paso}}" >
           </div>
 
           <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO CONSCIENTE.</span>
@@ -130,7 +132,7 @@
         <div class="col-12 border-bottom p-2 d-flex align-items-center " style="    text-align: center !important;  display: flex;  flex-direction: column;">
         <div class="col-md-6" >
             <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
-            <select class="form-control form-control-sm" id="accionmovilizadora_bse" name="accionmovilizadora_bse" aria-describedby="validationServer04Feedback" required="">
+            <select class="form-control form-control-sm" id="momentoconciente" name="momentoconciente" aria-describedby="validationServer04Feedback" required="">
             {!! $t_accionesmovilizadoras1 !!}
             </select>
           </div>
@@ -138,74 +140,6 @@
       </div>
     </div>
 
-    <div class="row g-0" id="indicadorbse1">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
-        <div class="p-2">
-        BIENESTAR INTELECTUAL 
-        </div>
-      </div>
-      <div class="col-md-8 d-flex align-items-stretch  ">
-        <div class="col-12 border-bottom p-2 d-flex align-items-center " style="    text-align: center !important;  display: flex;  flex-direction: column;">
-        <div class="col-md-6" >
-            <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
-            <select class="form-control form-control-sm" id="accionmovilizadora_bi" name="accionmovilizadora_bi" aria-describedby="validationServer04Feedback" required="">
-            {!! $t_accionesmovilizadoras4 !!}
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row g-0" id="indicadorbse1">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
-        <div class="p-2">
-        BIENESTAR EN FAMILIA 
-        </div>
-      </div>
-      <div class="col-md-8 d-flex align-items-stretch  ">
-        <div class="col-12 border-bottom p-2 d-flex align-items-center " style="    text-align: center !important;  display: flex;  flex-direction: column;">
-        <div class="col-md-6" >
-            <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
-            <select class="form-control form-control-sm" id="accionmovilizadora_bef" name="accionmovilizadora_bef" aria-describedby="validationServer04Feedback" required="">
-            {!! $t_accionesmovilizadoras3 !!}
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row g-0" id="indicadorbse1">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
-        <div class="p-2">
-        BIENESTAR LEGALY ACCESO A LA JUSTICIA 
-        </div>
-      </div>
-      <div class="col-md-8 d-flex align-items-stretch  ">
-        <div class="col-12 border-bottom p-2 d-flex align-items-center " style="    text-align: center !important;  display: flex;  flex-direction: column;">
-        <div class="col-md-6" >
-            <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
-            <select class="form-control form-control-sm" id="accionmovilizadora_bl" name="accionmovilizadora_bl" aria-describedby="validationServer04Feedback" required="">
-            {!! $t_accionesmovilizadoras2 !!}
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row g-0" id="indicadorbse1">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
-        <div class="p-2">
-        BIENESTAR FINANCIERO 
-        </div>
-      </div>
-      <div class="col-md-8 d-flex align-items-stretch  ">
-        <div class="col-12 border-bottom p-2 d-flex align-items-center " style="    text-align: center !important;  display: flex;  flex-direction: column;">
-        <div class="col-md-6" >
-            <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
-            <select class="form-control form-control-sm" id="accionmovilizadora_bf" name="accionmovilizadora_bf" aria-describedby="validationServer04Feedback" required="">
-            {!! $t_accionesmovilizadoras5 !!}
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </div>
 </div>
@@ -288,11 +222,8 @@
        $(document).ready(function() {
 
 
-        $('#accionmovilizadora_bf').val('<?= $accionmovilizadora_bf ?>')
-        $('#accionmovilizadora_bl').val('<?= $accionmovilizadora_bl ?>')
-        $('#accionmovilizadora_bef').val('<?= $accionmovilizadora_bef ?>')
-        $('#accionmovilizadora_bi').val('<?= $accionmovilizadora_bi ?>')
-        $('#accionmovilizadora_bse').val('<?= $accionmovilizadora_bse ?>')
+        $('#momentoconciente').val('<?= $momentoconciente ?>')
+
      
         $('#formulario').on('submit', function(event) {
             event.preventDefault(); // Detiene el envío del formulario

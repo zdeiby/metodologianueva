@@ -169,6 +169,7 @@ class c_visitatipo1pasos extends Controller
          $datosparatabla= [
             'prioridad' => $item['prioridad'],
             'usuario' => $item['usuario'],
+            'linea' => $linea,
             'estado' => $data['estado'],
             'sincro' => $data['sincro'],
             'updated_at' => $now,

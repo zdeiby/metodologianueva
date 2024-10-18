@@ -690,7 +690,7 @@
          console.log(data);
 
          $.ajax({
-             url: '../../guardarformularioqt',
+             url: '../../../guardarformularioqt',
              method: 'GET', // Cambiar a GET si estás usando GET
              data: data, // Envía los datos de manera plana
              success: function(response) {

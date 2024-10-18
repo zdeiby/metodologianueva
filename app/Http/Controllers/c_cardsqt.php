@@ -272,11 +272,18 @@ class c_cardsqt extends Controller
               $datavisitageneral['created_at'] = $now;
           }
 
+          $cif = DB::table('t_usuario')
+            ->select('cif')
+            ->where('documento', $usuario)
+            ->first();
+
+
           $datavisitageneral = [
               'folio' => $folio,
               'linea' => $linea,
               'finvisita' => $now,
               'usuario' => $usuario,
+              'cif' =>$cif->cif,
               'estado' => 1,
               'sincro' => 0,
               'updated_at' => $now

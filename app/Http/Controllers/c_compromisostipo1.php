@@ -28,9 +28,12 @@ class c_compromisostipo1 extends Controller
 
          $herramientas = new m_herramientas();
 
-            $tabla = 't1_visitatipo1compromisos';
+            $tabla = 't1_visitascompromisos';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
+            $linea= 200;
+            $paso= 20050;
+            $numerocompromiso=1;
            
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
@@ -44,7 +47,7 @@ class c_compromisostipo1 extends Controller
             
              foreach ($informacion as $registro) {
                  // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
-                 $datos['compromiso1'] = $registro->compromiso1;
+                 $datos['compromiso'] = $registro->compromiso;
                  $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
 
 
@@ -55,7 +58,8 @@ class c_compromisostipo1 extends Controller
 
             return view('v_compromisostipo1',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
-                                                                     'tabla'=>$tabla
+                                                                     'tabla'=>$tabla,'linea'=>$linea,
+                                                                     'paso'=>$paso,'numerocompromiso'=>$numerocompromiso,
                                                                     ]);
     }
 
@@ -68,28 +72,32 @@ class c_compromisostipo1 extends Controller
 
          $herramientas = new m_herramientas();
 
-            $tabla = 't1_visitatipo1compromisos';
+            $tabla = 't1_visitascompromisos';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-           
+            $linea= 200;
+            $paso= 20050;
+            $numerocompromiso=2;
+
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
                             ->get();
 
              $datos = [
-                 'compromiso1' => '',
+                 'compromiso' => '',
                  'siguiente' => 'style="display:none"', 
             ];
             
              foreach ($informacion as $registro) {
                  // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
-                 $datos['compromiso1'] = $registro->compromiso1;
+                 $datos['compromiso'] = $registro->compromiso;
                  $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
              }
 
             return view('v_compromisostipo2',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
-                                                                     'tabla'=>$tabla
+                                                                     'tabla'=>$tabla,'linea'=>$linea,
+                                                                     'paso'=>$paso,'numerocompromiso'=>$numerocompromiso,
                                                                     ]);
     }
 
@@ -103,8 +111,12 @@ class c_compromisostipo1 extends Controller
      {
          $folio = $request->input('folio');
          $tabla = $request->input('tabla');
+         $linea = $request->input('linea');
+         $paso = $request->input('paso');
+         $numerocompromiso = $request->input('numerocompromiso');
+
          $now = Carbon::now();
-         $data = $request->except(['folio', 'tabla']);
+         $data = $request->except(['folio', 'tabla','linea','paso','numerocompromiso']);
        
           // Añadir created_at y updated_at
          $data['updated_at'] = $now;
@@ -120,7 +132,7 @@ class c_compromisostipo1 extends Controller
          }
 
          DB::table($tabla)->updateOrInsert(
-             ['folio' => $folio], // Condición de búsqueda
+             ['folio' => $folio, 'linea' => $linea,'paso' => $paso,'numerocompromiso' => $numerocompromiso], // Condición de búsqueda
              $data // Datos a insertar o actualizar
          );
     
