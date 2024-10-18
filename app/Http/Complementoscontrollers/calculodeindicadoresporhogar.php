@@ -10,17 +10,18 @@ $indicadores_bse = [
         'indicadorbse_7' => $indicadoreshogar->indicadorbse_7,
     ];
 
+      
             // Total de indicadores
-        $total_indicadores = 7;
+        // $total_indicadores = 7;
         // Contamos cuántos indicadores tienen el valor 0 (rojo), 1 (verde), o 2 (gris)
         $rojo = count(array_filter($indicadores_bse, fn($indicador) => $indicador == 0));
         $verde = count(array_filter($indicadores_bse, fn($indicador) => $indicador == 1));
         $gris = count(array_filter($indicadores_bse, fn($indicador) => $indicador == 2));
-
+        $total_indicadores = $rojo+$verde+0.0001;
         // Calculamos el porcentaje de cada color
         $porcentaje_rojo_bse = round(($rojo / $total_indicadores) * 100);
         $porcentaje_verde_bse = round(($verde / $total_indicadores) * 100);
-        $porcentaje_gris_bse = round(($gris / $total_indicadores) * 100);
+      //  $porcentaje_gris_bse = round(($gris / $total_indicadores) * 100);
 
         //CALCULOS DE INDICADORES PARA BL
 
@@ -38,17 +39,17 @@ $indicadores_bse = [
         ];
         
         // Total de indicadores
-        $total_indicadores_bl = 10;
+        // $total_indicadores_bl = 10;
         
         // Contamos cuántos indicadores tienen el valor 0 (rojo), 1 (verde), o 2 (gris)
         $rojo_bl = count(array_filter($indicadores_bl, fn($indicador) => $indicador == 0));
         $verde_bl = count(array_filter($indicadores_bl, fn($indicador) => $indicador == 1));
-        $gris_bl = count(array_filter($indicadores_bl, fn($indicador) => $indicador == 2));
-        
+       // $gris_bl = count(array_filter($indicadores_bl, fn($indicador) => $indicador == 2));
+       $total_indicadores_bl = $rojo_bl+$verde_bl+0.0001;
         // Calculamos el porcentaje de cada color
         $porcentaje_rojo_bl = round(($rojo_bl / $total_indicadores_bl) * 100);
         $porcentaje_verde_bl = round(($verde_bl / $total_indicadores_bl) * 100);
-        $porcentaje_gris_bl = round(($gris_bl / $total_indicadores_bl) * 100);
+       // $porcentaje_gris_bl = round(($gris_bl / $total_indicadores_bl) * 100);
         
         // CALCULOS INDICADORES PARA BEF
 
@@ -61,17 +62,17 @@ $indicadores_bse = [
         ];
         
         // Total de indicadores
-        $total_indicadores_bef = 5;
+        // $total_indicadores_bef = 5;
         
         // Contamos cuántos indicadores tienen el valor 0 (rojo), 1 (verde), o 2 (gris)
         $rojo_bef = count(array_filter($indicadores_bef, fn($indicador) => $indicador == 0));
         $verde_bef = count(array_filter($indicadores_bef, fn($indicador) => $indicador == 1));
-        $gris_bef = count(array_filter($indicadores_bef, fn($indicador) => $indicador == 2));
-        
+       // $gris_bef = count(array_filter($indicadores_bef, fn($indicador) => $indicador == 2));
+       $total_indicadores_bef=$rojo_bef+$verde_bef+0.0001;
         // Calculamos el porcentaje de cada color
         $porcentaje_rojo_bef = round(($rojo_bef / $total_indicadores_bef) * 100);
         $porcentaje_verde_bef = round(($verde_bef / $total_indicadores_bef) * 100);
-        $porcentaje_gris_bef = round(($gris_bef / $total_indicadores_bef) * 100);
+      //  $porcentaje_gris_bef = round(($gris_bef / $total_indicadores_bef) * 100);
 
         //CALCULO INDICADORES BI
 
@@ -86,17 +87,17 @@ $indicadores_bse = [
         ];
         
         // Total de indicadores
-        $total_indicadores_bi = 6;
+        // $total_indicadores_bi = 6;
         
         // Contamos cuántos indicadores tienen el valor 0 (rojo), 1 (verde), o 2 (gris)
         $rojo_bi = count(array_filter($indicadores_bi, fn($indicador) => $indicador == 0));
         $verde_bi = count(array_filter($indicadores_bi, fn($indicador) => $indicador == 1));
-        $gris_bi = count(array_filter($indicadores_bi, fn($indicador) => $indicador == 2));
-        
+      //  $gris_bi = count(array_filter($indicadores_bi, fn($indicador) => $indicador == 2));
+      $total_indicadores_bi =$rojo_bi+$verde_bi+0.0001;
         // Calculamos el porcentaje de cada color
         $porcentaje_rojo_bi = round(($rojo_bi / $total_indicadores_bi) * 100);
         $porcentaje_verde_bi = round(($verde_bi / $total_indicadores_bi) * 100);
-        $porcentaje_gris_bi = round(($gris_bi / $total_indicadores_bi) * 100);
+      //  $porcentaje_gris_bi = round(($gris_bi / $total_indicadores_bi) * 100);
         
         //INDICADORES PARA BF
 
@@ -109,15 +110,15 @@ $indicadores_bse = [
         ];
         
         // Total de indicadores
-        $total_indicadores_bf = 5;
+        // $total_indicadores_bf = 5;
         
         // Contamos cuántos indicadores tienen el valor 0 (rojo), 1 (verde), o 2 (gris)
         $rojo_bf = count(array_filter($indicadores_bf, fn($indicador) => $indicador == 0));
         $verde_bf = count(array_filter($indicadores_bf, fn($indicador) => $indicador == 1));
-        $gris_bf = count(array_filter($indicadores_bf, fn($indicador) => $indicador == 2));
-        
+       // $gris_bf = count(array_filter($indicadores_bf, fn($indicador) => $indicador == 2));
+       $total_indicadores_bf= $rojo_bf+ $verde_bf+0.0001;
         // Calculamos el porcentaje de cada color
         $porcentaje_rojo_bf = round(($rojo_bf / $total_indicadores_bf) * 100);
         $porcentaje_verde_bf = round(($verde_bf / $total_indicadores_bf) * 100);
-        $porcentaje_gris_bf = round(($gris_bf / $total_indicadores_bf) * 100);
+      //  $porcentaje_gris_bf = round(($gris_bf / $total_indicadores_bf) * 100);
     ?>

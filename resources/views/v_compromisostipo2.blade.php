@@ -58,7 +58,7 @@
         </a>
       </li>
    <li class="nav-item" role="presentation" style="cursor:pointer">
-    <a id="legalqt"  class="nav-link " >COMPROMISO 2</a>
+    <a id="legalqt"  class="nav-link active" >COMPROMISO 2</a>
   </li>
  <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
     <a id="financieroqt"  class="nav-link ">ACCION MOVILIZADOR QT</a>
@@ -206,11 +206,11 @@ ClassicEditor
 
 
       $('#siguiente').click(function(){
-        var url = "../compromiso2/<?= $variable ?>"; window.location.href = url;
+        var url = "../rombovisitatipo1/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../rombovisitatipo1/:folio";
+           var url = "../compromiso1/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -218,9 +218,9 @@ ClassicEditor
     
 
 
-
-       $('#bienestarsaludemocionalqt').click(function(){var url = "../compromiso1/<?= $variable ?>"; window.location.href = url;})
-      $('#legalqt').click(function(){var url = "../compromiso2/<?= $variable ?>"; window.location.href = url;})
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../compromiso1/<?= $variable ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../compromiso2/<?= $variable ?>"; window.location.href = url;})
+    // $('#financieroqt').click(function(){var url = "../accionmovilizadoraqt/<?= $variable ?>"; window.location.href = url;})
       
 
       

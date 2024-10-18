@@ -144,6 +144,7 @@ Route::get('/bienestarenfamilia/{folio}',[c_momentoconciente::class, 'fc_bienest
 Route::get('/accionmovilizadoraqt/{folio}',[c_momentoconciente::class, 'fc_accionmovilizadoraqt'])->name('accionmovilizadoraqt');
 
 Route::get('/compromiso1/{folio}',[c_compromisostipo1::class, 'fc_compromiso1'])->name('compromiso1');
+Route::get('/compromiso2/{folio}',[c_compromisostipo1::class, 'fc_compromiso2'])->name('compromiso2');
 Route::get('/guardarcompromisos',[c_compromisostipo1::class, 'fc_guardarcompromisos'])->name('guardarcompromisos');
 
 

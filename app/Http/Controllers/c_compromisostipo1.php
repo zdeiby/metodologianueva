@@ -60,6 +60,42 @@ class c_compromisostipo1 extends Controller
     }
 
 
+    public function fc_compromiso2(Request $request,$folio){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
+
+         $herramientas = new m_herramientas();
+
+            $tabla = 't1_visitatipo1compromisos';
+            $hashids = new Hashids('', 10); 
+            $encodedFolio = $hashids->decode($folio);
+           
+            $informacion = DB::table($tabla)
+                            ->where('folio', $encodedFolio)
+                            ->get();
+
+             $datos = [
+                 'compromiso1' => '',
+                 'siguiente' => 'style="display:none"', 
+            ];
+            
+             foreach ($informacion as $registro) {
+                 // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
+                 $datos['compromiso1'] = $registro->compromiso1;
+                 $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
+             }
+
+            return view('v_compromisostipo2',  $datos,['variable'=>$folio,
+                                                                    'folio'=>$encodedFolio[0],
+                                                                     'tabla'=>$tabla
+                                                                    ]);
+    }
+
+
+
+
 
 
     

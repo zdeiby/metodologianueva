@@ -10,14 +10,15 @@ $indicadores_bse_integrante = [
     'indicadorbse_6' => $indicadoresintegrantes->indicadorintegrantebse_6,
 ];
 
-$total_indicadores_bse_integrante = 6;
+
 $rojo_bse_integrante = count(array_filter($indicadores_bse_integrante, fn($indicador) => $indicador == 0));
 $verde_bse_integrante = count(array_filter($indicadores_bse_integrante, fn($indicador) => $indicador == 1));
-$gris_bse_integrante = count(array_filter($indicadores_bse_integrante, fn($indicador) => $indicador == 2));
+//$gris_bse_integrante = count(array_filter($indicadores_bse_integrante, fn($indicador) => $indicador == 2));
+$total_indicadores_bse_integrante = $rojo_bse_integrante+$verde_bse_integrante+0.0001;
 
 $porcentaje_rojo_bse_integrante = round(($rojo_bse_integrante / $total_indicadores_bse_integrante) * 100);
 $porcentaje_verde_bse_integrante = round(($verde_bse_integrante / $total_indicadores_bse_integrante) * 100);
-$porcentaje_gris_bse_integrante = round(($gris_bse_integrante / $total_indicadores_bse_integrante) * 100);
+//$porcentaje_gris_bse_integrante = round(($gris_bse_integrante / $total_indicadores_bse_integrante) * 100);
 
 // Cálculos de indicadores para BL
 $indicadores_bl_integrante = [
@@ -32,14 +33,16 @@ $indicadores_bl_integrante = [
     'indicadorbl_10' => $indicadoresintegrantes->indicadorintegrantebl_10,
 ];
 
-$total_indicadores_bl_integrante = 9;
+
 $rojo_bl_integrante = count(array_filter($indicadores_bl_integrante, fn($indicador) => $indicador == 0));
 $verde_bl_integrante = count(array_filter($indicadores_bl_integrante, fn($indicador) => $indicador == 1));
-$gris_bl_integrante = count(array_filter($indicadores_bl_integrante, fn($indicador) => $indicador == 2));
+//$gris_bl_integrante = count(array_filter($indicadores_bl_integrante, fn($indicador) => $indicador == 2));
+
+$total_indicadores_bl_integrante = $rojo_bl_integrante+$verde_bl_integrante+0.0001;
 
 $porcentaje_rojo_bl_integrante = round(($rojo_bl_integrante / $total_indicadores_bl_integrante) * 100);
 $porcentaje_verde_bl_integrante = round(($verde_bl_integrante / $total_indicadores_bl_integrante) * 100);
-$porcentaje_gris_bl_integrante = round(($gris_bl_integrante / $total_indicadores_bl_integrante) * 100);
+//$porcentaje_gris_bl_integrante = round(($gris_bl_integrante / $total_indicadores_bl_integrante) * 100);
 
 // Repite el mismo proceso para BI y BF como sigue:
 $indicadores_bi_integrante = [
@@ -51,14 +54,16 @@ $indicadores_bi_integrante = [
     'indicadorbi_6' => $indicadoresintegrantes->indicadorintegrantebi_6,
 ];
 
-$total_indicadores_bi_integrante = 6;
+
 $rojo_bi_integrante = count(array_filter($indicadores_bi_integrante, fn($indicador) => $indicador == 0));
 $verde_bi_integrante = count(array_filter($indicadores_bi_integrante, fn($indicador) => $indicador == 1));
-$gris_bi_integrante = count(array_filter($indicadores_bi_integrante, fn($indicador) => $indicador == 2));
+//$gris_bi_integrante = count(array_filter($indicadores_bi_integrante, fn($indicador) => $indicador == 2));
+
+$total_indicadores_bi_integrante = $rojo_bi_integrante+$verde_bi_integrante+0.0001;
 
 $porcentaje_rojo_bi_integrante = round(($rojo_bi_integrante / $total_indicadores_bi_integrante) * 100);
 $porcentaje_verde_bi_integrante = round(($verde_bi_integrante / $total_indicadores_bi_integrante) * 100);
-$porcentaje_gris_bi_integrante = round(($gris_bi_integrante / $total_indicadores_bi_integrante) * 100);
+//$porcentaje_gris_bi_integrante = round(($gris_bi_integrante / $total_indicadores_bi_integrante) * 100);
 
 $indicadores_bf_integrante = [
     'indicadorbf_1' => $indicadoresintegrantes->indicadorintegrantebf_1,
@@ -67,13 +72,15 @@ $indicadores_bf_integrante = [
     'indicadorbf_5' => $indicadoresintegrantes->indicadorintegrantebf_5,
 ];
 
-$total_indicadores_bf_integrante = 4;
+
 $rojo_bf_integrante = count(array_filter($indicadores_bf_integrante, fn($indicador) => $indicador == 0));
 $verde_bf_integrante = count(array_filter($indicadores_bf_integrante, fn($indicador) => $indicador == 1));
-$gris_bf_integrante = count(array_filter($indicadores_bf_integrante, fn($indicador) => $indicador == 2));
+//$gris_bf_integrante = count(array_filter($indicadores_bf_integrante, fn($indicador) => $indicador == 2));
+
+$total_indicadores_bf_integrante = $rojo_bf_integrante+$verde_bf_integrante+0.0001;
 
 $porcentaje_rojo_bf_integrante = round(($rojo_bf_integrante / $total_indicadores_bf_integrante) * 100);
 $porcentaje_verde_bf_integrante = round(($verde_bf_integrante / $total_indicadores_bf_integrante) * 100);
-$porcentaje_gris_bf_integrante = round(($gris_bf_integrante / $total_indicadores_bf_integrante) * 100);
+//$porcentaje_gris_bf_integrante = round(($gris_bf_integrante / $total_indicadores_bf_integrante) * 100);
 
 ?>

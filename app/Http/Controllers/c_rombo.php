@@ -29,19 +29,19 @@ class c_rombo extends Controller
 
           $porcentaje_rojo_bse='';
           $porcentaje_verde_bse='';
-          $porcentaje_gris_bse='';
+         // $porcentaje_gris_bse='';
           $porcentaje_rojo_bl='';
           $porcentaje_verde_bl='';
-          $porcentaje_gris_bl='';
+        //  $porcentaje_gris_bl='';
           $porcentaje_rojo_bef='';
           $porcentaje_verde_bef='';
-          $porcentaje_gris_bef='';
+        //  $porcentaje_gris_bef='';
           $porcentaje_rojo_bi='';
           $porcentaje_verde_bi='';
-          $porcentaje_gris_bi='';
+         // $porcentaje_gris_bi='';
           $porcentaje_rojo_bf='';
           $porcentaje_verde_bf='';
-          $porcentaje_gris_bf='';
+        //  $porcentaje_gris_bf='';
 
 
 
@@ -60,11 +60,12 @@ class c_rombo extends Controller
           }
 
         return view('v_rombo',["variable"=>decrypt($cedula), 'encodeFolio'=>$encodeFolio,"variablebtn"=>$cedula, 'realizado'=>$realizado, 'foliobycript'=>decrypt($cedula),  
-        'porcentaje_rojo_bse'=>$porcentaje_rojo_bse, 'porcentaje_verde_bse'=>$porcentaje_verde_bse, 'porcentaje_gris_bse'=>$porcentaje_gris_bse,
-        'porcentaje_rojo_bl'=>$porcentaje_rojo_bl, 'porcentaje_verde_bl'=>$porcentaje_verde_bl, 'porcentaje_gris_bl'=>$porcentaje_gris_bl,
-        'porcentaje_rojo_bef'=>$porcentaje_rojo_bef, 'porcentaje_verde_bef'=>$porcentaje_verde_bef, 'porcentaje_gris_bef'=>$porcentaje_gris_bef,
-        'porcentaje_rojo_bi'=>$porcentaje_rojo_bi, 'porcentaje_verde_bi'=>$porcentaje_verde_bi, 'porcentaje_gris_bi'=>$porcentaje_gris_bi,
-        'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf, 'porcentaje_gris_bf'=>$porcentaje_gris_bf, 'folioencriptado'=>decrypt($cedula)]);
+        'porcentaje_rojo_bse'=>$porcentaje_rojo_bse, 'porcentaje_verde_bse'=>$porcentaje_verde_bse, //'porcentaje_gris_bse'=>$porcentaje_gris_bse,
+        'porcentaje_rojo_bl'=>$porcentaje_rojo_bl, 'porcentaje_verde_bl'=>$porcentaje_verde_bl, //'porcentaje_gris_bl'=>$porcentaje_gris_bl,
+        'porcentaje_rojo_bef'=>$porcentaje_rojo_bef, 'porcentaje_verde_bef'=>$porcentaje_verde_bef,// 'porcentaje_gris_bef'=>$porcentaje_gris_bef,
+        'porcentaje_rojo_bi'=>$porcentaje_rojo_bi, 'porcentaje_verde_bi'=>$porcentaje_verde_bi, //'porcentaje_gris_bi'=>$porcentaje_gris_bi,
+        'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf,// 'porcentaje_gris_bf'=>$porcentaje_gris_bf, 
+        'folioencriptado'=>decrypt($cedula)]);
       }
 
 
@@ -122,14 +123,12 @@ class c_rombo extends Controller
                                         <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
                                         <td style="width: 50%;background-color: #1E293A; color: white;" >
                                            <div class="progress" style="height: 20px; display: flex;">
-                                                        <!-- Barra roja -->
-                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_rojo_bl_integrante.'%; background-color: #FF0000;" aria-valuenow="'.$porcentaje_rojo_bl_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_rojo_bl_integrante.'%</div>
                                                         
                                                         <!-- Barra verde -->
                                                         <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_verde_bl_integrante.'%; background-color: #00FF00;" aria-valuenow="'.$porcentaje_verde_bl_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_verde_bl_integrante.'%</div>
-                                                        
-                                                        <!-- Barra gris -->
-                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_gris_bl_integrante.'%; background-color: #808080;" aria-valuenow="'.$porcentaje_gris_bl_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_gris_bl_integrante.'%</div>
+                                                                                                                <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_rojo_bl_integrante.'%; background-color: #FF0000;" aria-valuenow="'.$porcentaje_rojo_bl_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_rojo_bl_integrante.'%</div>
+
                                                     </div>
                                         </td>
                                         <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
@@ -146,14 +145,12 @@ class c_rombo extends Controller
                                         <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
                                         <td style="width: 50%;background-color: #1E293A; color: white;" >
                                               <div class="progress" style="height: 20px; display: flex;">
-                                                        <!-- Barra roja -->
-                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_rojo_bi_integrante.'%; background-color: #FF0000;" aria-valuenow="'.$porcentaje_rojo_bi_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_rojo_bi_integrante.'%</div>
                                                         
                                                         <!-- Barra verde -->
                                                         <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_verde_bi_integrante.'%; background-color: #00FF00;" aria-valuenow="'.$porcentaje_verde_bi_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_verde_bi_integrante.'%</div>
-                                                        
-                                                        <!-- Barra gris -->
-                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_gris_bi_integrante.'%; background-color: #808080;" aria-valuenow="'.$porcentaje_gris_bi_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_gris_bi_integrante.'%</div>
+                                                                                                                <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_rojo_bi_integrante.'%; background-color: #FF0000;" aria-valuenow="'.$porcentaje_rojo_bi_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_rojo_bi_integrante.'%</div>
+
                                                     </div>
                                         </td>
                                         <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
@@ -171,14 +168,12 @@ class c_rombo extends Controller
                                     <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
                                     <td style="width: 50%;background-color: #1E293A; color: white;" >
                                          <div class="progress" style="height: 20px; display: flex;">
-                                                        <!-- Barra roja -->
-                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_rojo_bse_integrante.'%; background-color: #FF0000;" aria-valuenow="'.$porcentaje_rojo_bse_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_rojo_bse_integrante.'%</div>
                                                         
                                                         <!-- Barra verde -->
                                                         <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_verde_bse_integrante.'%; background-color: #00FF00;" aria-valuenow="'.$porcentaje_verde_bse_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_verde_bse_integrante.'%</div>
-                                                        
-                                                        <!-- Barra gris -->
-                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_gris_bse_integrante.'%; background-color: #808080;" aria-valuenow="'.$porcentaje_gris_bse_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_gris_bse_integrante.'%</div>
+                                                                                                                <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_rojo_bse_integrante.'%; background-color: #FF0000;" aria-valuenow="'.$porcentaje_rojo_bse_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_rojo_bse_integrante.'%</div>
+
                                                     </div>
                                     </td>
                                     <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
@@ -194,14 +189,12 @@ class c_rombo extends Controller
                                         <td style="width: 10%;   text-align: center;font-size:12px">0%</td>
                                         <td style="width: 50%;background-color: #1E293A; color: white;" >
                                              <div class="progress" style="height: 20px; display: flex;">
-                                                        <!-- Barra roja -->
-                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_rojo_bf_integrante.'%; background-color: #FF0000;" aria-valuenow="'.$porcentaje_rojo_bf_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_rojo_bf_integrante.'%</div>
                                                         
                                                         <!-- Barra verde -->
                                                         <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_verde_bf_integrante.'%; background-color: #00FF00;" aria-valuenow="'.$porcentaje_verde_bf_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_verde_bf_integrante.'%</div>
-                                                        
-                                                        <!-- Barra gris -->
-                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_gris_bf_integrante.'%; background-color: #808080;" aria-valuenow="'.$porcentaje_gris_bf_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_gris_bf_integrante.'%</div>
+                                                                                                                <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: '.$porcentaje_rojo_bf_integrante.'%; background-color: #FF0000;" aria-valuenow="'.$porcentaje_rojo_bf_integrante.'" aria-valuemin="0" aria-valuemax="100">'.$porcentaje_rojo_bf_integrante.'%</div>
+
                                                     </div>
                                         </td>
                                         <td style="width: 10%;   text-align: center;font-size:12px">100%</td>
