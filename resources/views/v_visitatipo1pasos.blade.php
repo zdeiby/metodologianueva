@@ -258,20 +258,20 @@ body {
       </div>
 
       <!-- 4ta tarjeta -->
-      <div class="swiper-slide" style="display:none">
+      <div class="swiper-slide" style="display:">
         <div class="card_wrapper">
           <div class="card">
             <div class="content">
               <div class="front">
-                <img src="{{ asset('assets/img/iconos/card4.jpg')}}" alt="" />
+                <img src="{{ asset('assets/img/iconos/card3.jpg')}}" alt="" />
               </div>
               <div class="back">
                 <div class="middle">
                   <h3>
-                    <label>Resultado encuesta</label>
+                    <label>Espacio de finalización</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" id="resultadoencuestabntmodal" <?=($existel100p10010 == '1' && $existel100p10020 == '1'  && $existel100p10030 == '1'   )?'':'disabled'?> data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver resultado encuesta</button>
+             <button type="button" class="btn btn-primary" onclick="window.location.href='../compromiso1/{{$folioencriptado}}/'">Ir a finalización</button>
              <div class="smCard">
                 </div>
               </div>

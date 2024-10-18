@@ -114,8 +114,8 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
 </div>
 <div class="row">
             <div class="form-group col-sm" id="divobs">
-                <label for="compromiso1"></label>
-                <textarea class="form-control form-control-sm" name="compromiso1" id="compromiso1" rows="50" cols="20" class="">{{$compromiso}}</textarea>
+                <label for="compromiso"></label>
+                <textarea class="form-control form-control-sm" name="compromiso" id="compromiso" rows="50" cols="20" class="">{{$compromiso}}</textarea>
             </div>
         </div>
 
@@ -168,7 +168,7 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
     let observacionInstance, situacionInstance;
 
 ClassicEditor
-    .create(document.querySelector('#compromiso1'), {
+    .create(document.querySelector('#compromiso'), {
         toolbar: {
             items: [
                 'heading',
@@ -244,7 +244,7 @@ ClassicEditor
                 });
                 // Agregar el contenido del editor CKEditor al objeto data
                 if (observacionInstance) {
-                    data['compromiso1'] = observacionInstance.getData();
+                    data['compromiso'] = observacionInstance.getData();
                 }
 
                 console.log(data);

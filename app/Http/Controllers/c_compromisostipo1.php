@@ -37,6 +37,9 @@ class c_compromisostipo1 extends Controller
            
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
+                            ->where('linea', $linea)
+                            ->where('paso', $paso)
+                            ->where('numerocompromiso', $numerocompromiso)
                             ->get();
 
              $datos = [
@@ -81,6 +84,9 @@ class c_compromisostipo1 extends Controller
 
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
+                            ->where('linea', $linea)
+                            ->where('paso', $paso)
+                            ->where('numerocompromiso', $numerocompromiso)
                             ->get();
 
              $datos = [
