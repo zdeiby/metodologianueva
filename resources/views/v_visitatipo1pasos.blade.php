@@ -408,7 +408,8 @@ body {
             <td>{{$porcentaje_rojo_bl}}</td>
             <td>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bl}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bl}}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bl}}%; background-color:  #00FF00;" aria-valuenow="{{$porcentaje_verde_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bl}}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bl}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bl}}%</div>
                 </div>
             </td>
         </tr>
@@ -417,6 +418,7 @@ body {
             <td>{{$porcentaje_rojo_bf}}</td>
             <td>
                 <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bf}}%; background-color:  #00FF00;" aria-valuenow="{{$porcentaje_verde_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bf}}%</div>
                     <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bf}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bf}}%</div>
                 </div>
             </td>
@@ -426,6 +428,7 @@ body {
             <td>{{$porcentaje_rojo_bse}}</td>
             <td>
                 <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bse}}%; background-color:  #00FF00;" aria-valuenow="{{$porcentaje_verde_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bse}}%</div>
                     <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bse}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bse}}%</div>
                 </div>
             </td>
@@ -435,6 +438,7 @@ body {
             <td>{{$porcentaje_rojo_bi}}</td>
             <td>
                 <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bi}}%; background-color:  #00FF00;" aria-valuenow="{{$porcentaje_verde_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bi}}%</div>
                     <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bi}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bi}}%</div>
                 </div>
             </td>
@@ -444,6 +448,7 @@ body {
             <td><strong>{{$porcentaje_rojo_bef}}</strong></td>
             <td>
                 <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bef}}%; background-color:  #00FF00;" aria-valuenow="{{$porcentaje_verde_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bef}}%</div>
                     <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bef}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bef}}%</div>
                 </div>
             </td>
@@ -758,8 +763,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Ordenar filas basado en el porcentaje de cada barra de progreso
         filas.sort((a, b) => {
-            const valA = parseInt(a.querySelector('.progress-bar').getAttribute('aria-valuenow'));
-            const valB = parseInt(b.querySelector('.progress-bar').getAttribute('aria-valuenow'));
+            // const valA = parseInt(a.querySelector('.progress-bar').getAttribute('aria-valuenow'));
+            // const valB = parseInt(b.querySelector('.progress-bar').getAttribute('aria-valuenow'));
+            const valA = parseInt(a.querySelector('.progress-bar[style*="background-color: #FF0000"]').getAttribute('aria-valuenow'));
+            const valB = parseInt(b.querySelector('.progress-bar[style*="background-color: #FF0000"]').getAttribute('aria-valuenow'));
             return valB - valA; // Ordena de mayor a menor
         });
 

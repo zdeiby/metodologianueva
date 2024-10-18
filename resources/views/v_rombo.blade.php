@@ -439,15 +439,13 @@
                                                 <td style="width: 30%; background-color: #1E293A; color: white; padding: 10px; font-size: 12px">BIENESTAR EN FAMILIA</td>
                                                 <td style="width: 10%; text-align: center; font-size: 12px">0%</td>
                                                 <td style="width: 50%; background-color: #1E293A; color: white;">
-                                                    <div class="progress" style="height: 20px; display: flex;">
-                                                        <!-- Barra roja -->
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bef}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bef}}%</div>
-                                                        
+                                                    <div class="progress" style="height: 20px; display: flex;">                                                        
                                                         <!-- Barra verde -->
                                                         <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bef}}%; background-color: #00FF00;" aria-valuenow="{{$porcentaje_verde_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bef}}%</div>
                                                         
-                                                        <!-- Barra gris -->
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_gris_bef}}%; background-color: #808080;" aria-valuenow="{{$porcentaje_gris_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_gris_bef}}%</div>
+                                                        <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bef}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bef}}%</div>
+
                                                     </div>
                                                 </td>
                                                 <td style="width: 10%; text-align: center; font-size: 12px">100%</td>
@@ -464,14 +462,13 @@
                                                 <td style="width: 10%; text-align: center; font-size: 12px">0%</td>
                                                 <td style="width: 50%; background-color: #1E293A; color: white;">
                                                     <div class="progress" style="height: 20px; display: flex;">
-                                                        <!-- Barra roja -->
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bf}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bf}}%</div>
                                                         
                                                         <!-- Barra verde -->
                                                         <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bf}}%; background-color: #00FF00;" aria-valuenow="{{$porcentaje_verde_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bf}}%</div>
                                                         
-                                                        <!-- Barra gris -->
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_gris_bf}}%; background-color: #808080;" aria-valuenow="{{$porcentaje_gris_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_gris_bf}}%</div>
+                                                        <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bf}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bf}}%</div>
+
                                                     </div>
                                                 </td>
                                                 <td style="width: 10%; text-align: center; font-size: 12px">100%</td>
@@ -487,14 +484,13 @@
                                                 <td style="width: 10%; text-align: center; font-size: 12px">0%</td>
                                                 <td style="width: 50%; background-color: #1E293A; color: white;">
                                                     <div class="progress" style="height: 20px; display: flex;">
-                                                        <!-- Barra roja -->
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bi}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bi}}%</div>
                                                         
                                                         <!-- Barra verde -->
                                                         <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bi}}%; background-color: #00FF00;" aria-valuenow="{{$porcentaje_verde_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bi}}%</div>
-                                                        
+                                                        <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bi}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bi}}%</div>
+
                                                         <!-- Barra gris -->
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_gris_bi}}%; background-color: #808080;" aria-valuenow="{{$porcentaje_gris_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_gris_bi}}%</div>
                                                     </div>
                                                 </td>
                                                 <td style="width: 10%; text-align: center; font-size: 12px">100%</td>
@@ -511,14 +507,13 @@
                                                 <td style="width: 10%; text-align: center; font-size: 12px">0%</td>
                                                 <td style="width: 50%; background-color: #1E293A; color: white;">
                                                     <div class="progress" style="height: 20px; display: flex;">
-                                                        <!-- Barra roja -->
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bse}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bse}}%</div>
                                                         
                                                         <!-- Barra verde -->
                                                         <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bse}}%; background-color: #00FF00;" aria-valuenow="{{$porcentaje_verde_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bse}}%</div>
-                                                        
+                                                        <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bse}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bse}}%</div>
+
                                                         <!-- Barra gris -->
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_gris_bse}}%; background-color: #808080;" aria-valuenow="{{$porcentaje_gris_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_gris_bse}}%</div>
                                                     </div>
                                                 </td>
                                                 <td style="width: 10%; text-align: center; font-size: 12px">100%</td>
@@ -534,14 +529,13 @@
                                                 <td style="width: 10%; text-align: center; font-size: 12px">0%</td>
                                                 <td style="width: 50%; background-color: #1E293A; color: white;">
                                                     <div class="progress" style="height: 20px; display: flex;">
-                                                        <!-- Barra roja -->
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bl}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bl}}%</div>
                                                         
                                                         <!-- Barra verde -->
                                                         <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bl}}%; background-color: #00FF00;" aria-valuenow="{{$porcentaje_verde_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bl}}%</div>
-                                                        
+                                                        <!-- Barra roja -->
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bl}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bl}}%</div>
+
                                                         <!-- Barra gris -->
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_gris_bl}}%; background-color: #808080;" aria-valuenow="{{$porcentaje_gris_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_gris_bl}}%</div>
                                                     </div>
                                                 </td>
                                                 <td style="width: 10%; text-align: center; font-size: 12px">100%</td>
@@ -551,7 +545,7 @@
                                 </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saludoencuadre">Aceptar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saludoencuadre1">Aceptar</button>
       </div>
     </div>
   </div>
