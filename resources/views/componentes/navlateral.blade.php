@@ -619,6 +619,11 @@ function soloNumeros(e) {
     <button id="cerrar" type="submit" class="btn btn-danger">Cerrar Sesión</button>
 </form>
 
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9423200751583677"
+     crossorigin="anonymous"></script>
+
     <main>
 
     @yield('content')
