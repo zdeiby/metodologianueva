@@ -32,7 +32,7 @@
             <div class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <div>
-                <span class="badge bg-primary" id=""  style="font-size:15px">MOMENTO CONSCIENTE</span>
+                <span class="badge bg-primary" id=""  style="font-size:15px">Fichero de oportunidades</span>
                 <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
                
               </div>
@@ -53,15 +53,15 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">MOMENTO CONSCIENTE
+        <a id="bienestarsaludemocionalqt" class="nav-link">ACTUALIZACIÓN Y/O NOVEDADES
         </a>
       </li>
-  <li class="nav-item" role="presentation" style="cursor:pointer">
-    <a id="legalqt"  class="nav-link " >ACCIÓN MOVILIZADORA BIENESTAR EN LA FAMILIA</a>
-  </li>
-  <li class="nav-item" role="presentation"  style="cursor:pointer">
-    <a id="financieroqt"  class="nav-link ">ACCION MOVILIZADOR QT</a>
-  </li>
+      <li class="nav-item" role="presentation" style="cursor:pointer">
+        <a id="legalqt"  class="nav-link active" >FICHERO DE OPORTUNIDADES</a>
+      </li>
+      <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
+      </li>
   
 </ul>
 
@@ -96,13 +96,14 @@
             <input type="text" placeholder="tabla" class="form-control form-control-sm  " id="tabla" name="tabla" value="{{$tabla}}" >
             <input type="text" placeholder="linea" class="form-control form-control-sm  " id="linea" name="linea" value="{{$linea}}" >
             <input type="text" placeholder="paso" class="form-control form-control-sm  " id="paso" name="paso" value="{{$paso}}" >
+            <input type="text" placeholder="bienestar" class="form-control form-control-sm  " id="bienestar" name="bienestar" value="{{$bienestar}}" >
           </div>
 
           <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO CONSCIENTE.</span>
 
 
 
-
+@if(false)
 <div class="container mt-4">
   <div class="border">
     <!-- Fila de títulos -->
@@ -125,26 +126,25 @@
     <div class="row g-0" id="indicadorbse1">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          BIENESTAR PARA LA SALUD FÍSICA Y EMOCIONAL
+         {{$descripcion}}
         </div>
       </div>
       <div class="col-md-8 d-flex align-items-stretch  ">
         <div class="col-12 border-bottom p-2 d-flex align-items-center " style="    text-align: center !important;  display: flex;  flex-direction: column;">
         <div class="col-md-6" >
             <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
-            <select class="form-control form-control-sm" id="momentoconciente" name="momentoconciente" aria-describedby="validationServer04Feedback" required="">
-            {!! $t_accionesmovilizadoras1 !!}
+            <select class="form-control form-control-sm" id="accionmovilizadora" name="accionmovilizadora" aria-describedby="validationServer04Feedback" required="">
+            {!! $t_accionesmovilizadora !!}
             </select>
           </div>
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
-
-
+@else 
+<label>En construcción</label>
+@endif
 
 
 
@@ -171,7 +171,7 @@
             </div>
             <div class="text-end col">
             <button class="btn btn-outline-success" type="submit"  >Guardar</button>
-            <div class="btn btn-outline-primary" id="siguiente" <?=$siguiente?> >Siguiente</div>
+            <div class="btn btn-outline-primary" id="siguiente"  <?=$siguiente?> >Siguiente</div>
             </div> 
           </div>
 
@@ -196,35 +196,30 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../bienestarenfamilia/<?= $variable ?>"; window.location.href = url;
+        var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../rombovisitatipo1/:folio";
+           var url = "../actualizacionnovedades/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
 
-
     
-    
-      $('#volver').click(function(){
-        redirectToIntegrantes()
-      });
 
 
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconciente/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../bienestarenfamilia/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../accionmovilizadoraqt/<?= $variable ?>"; window.location.href = url;})
+       $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedades/<?= $variable ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
+    $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
+      
 
       
 
        $(document).ready(function() {
 
 
-        $('#momentoconciente').val('<?= $momentoconciente ?>')
-
-     
+        $('#accionmovilizadora').val('<?= $accionmovilizadora ?>')
+        
         $('#formulario').on('submit', function(event) {
             event.preventDefault(); // Detiene el envío del formulario
             
@@ -256,7 +251,6 @@
                 method: 'GET', // Cambiar a GET si estás usando GET
                 data: data, // Envía los datos de manera plana
                 success: function(response) {
-                  $('#siguiente').css('display','');
                   agregarpaso(data);
                 },
                 error: function(xhr, status, error) {

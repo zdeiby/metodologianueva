@@ -271,7 +271,7 @@ body {
                     <label>Espacio de finalización</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" onclick="window.location.href='../compromiso1/{{$folioencriptado}}/'">Ir a finalización</button>
+             <button type="button" class="btn btn-primary" onclick="window.location.href='../actualizacionnovedades/{{$folioencriptado}}/'">Ir a finalización</button>
              <div class="smCard">
                 </div>
               </div>

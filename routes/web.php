@@ -19,7 +19,7 @@ use App\Http\Controllers\formularioqt\c_encuestaintegrantesqt;
 use App\Http\Controllers\c_visitatipo1pasos;   
 use App\Http\Controllers\accionesmovilizadoras\c_momentoconciente;
 use App\Http\Controllers\c_compromisostipo1;
-
+use App\Http\Controllers\espaciodefinalizacion\c_finalizacion;
 
 
 //RUTAS GET
@@ -146,7 +146,18 @@ Route::get('/accionmovilizadoraqt/{folio}',[c_momentoconciente::class, 'fc_accio
 Route::get('/compromiso1/{folio}',[c_compromisostipo1::class, 'fc_compromiso1'])->name('compromiso1');
 Route::get('/compromiso2/{folio}',[c_compromisostipo1::class, 'fc_compromiso2'])->name('compromiso2');
 Route::get('/guardarcompromisos',[c_compromisostipo1::class, 'fc_guardarcompromisos'])->name('guardarcompromisos');
+Route::get('/agregarpasohogargeneral',[c_momentoconciente::class,'fc_agregarpasohogargeneral'])->name('agregarpasohogargeneral');
 
 
+
+
+//rutas para las acciones espacio de finalizacion visita tipo 1
+
+Route::get('/finalizacion/{folio}',[c_finalizacion::class, 'fc_finalizacion'])->name('finalizacion');
+Route::get('/guardarfinalizaciones',[c_finalizacion::class, 'fc_guardarfinalizaciones'])->name('guardarfinalizaciones');
+Route::get('/actualizacionnovedades/{folio}',[c_finalizacion::class, 'fc_actualizacionnovedades'])->name('actualizacionnovedades');
+Route::get('/ficherodeoportunidades/{folio}',[c_finalizacion::class, 'fc_ficherodeoportunidades'])->name('ficherodeoportunidades');
+Route::get('/guardaractualizacionynovedadeshogar',[c_finalizacion::class, 'fc_guardaractualizacionynovedadeshogar'])->name('guardaractualizacionynovedadeshogar');
+Route::post('/guardarfirma',[c_finalizacion::class, 'fc_guardarfirma'])->name('guardarfirma');
 
 

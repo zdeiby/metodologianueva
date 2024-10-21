@@ -18,7 +18,7 @@
     background-color: #e0e0e0;
   }
 </style>
-<script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>
+
 
 <div class="container">
     <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class=""  >

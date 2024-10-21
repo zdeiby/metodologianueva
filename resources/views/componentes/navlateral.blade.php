@@ -9,6 +9,9 @@
      <link rel="shortcut icon" href="../../favicon.ico">
      <link href="{{ asset('resources/sweetalert/sweetalert2.min.css') }}" rel="stylesheet" > 
     <script src="{{ asset('resources/sweetalert/sweetalert2.all.min.js') }}"></script>
+
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>
    <style>
     /* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap'); */
 :root{

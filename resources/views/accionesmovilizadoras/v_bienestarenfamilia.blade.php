@@ -256,8 +256,7 @@
                 method: 'GET', // Cambiar a GET si estás usando GET
                 data: data, // Envía los datos de manera plana
                 success: function(response) {
-                  $('#siguiente').css('display','');
-                    alertagood();
+                  agregarpaso(data);
                 },
                 error: function(xhr, status, error) {
                     alertabad();
@@ -267,6 +266,22 @@
         });
 });
 
+
+function agregarpaso(data){
+    $.ajax({
+      url: '../agregarpasohogargeneral',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: data, // Envía los datos de manera plana
+      success: function(response) {
+        $('#siguiente').css('display','');
+          alertagood();
+      },
+      error: function(xhr, status, error) {
+          alertabad();
+          console.error(error);
+      }
+    });
+}
 
     </script>
 

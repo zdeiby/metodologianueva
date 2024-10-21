@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\accionesmovilizadoras;
+namespace App\Http\Controllers\espaciodefinalizacion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,14 +13,15 @@ use Hashids\Hashids;
 
 
 
-class c_momentoconciente extends Controller
+class c_finalizacion extends Controller
 {
 
 
 
 // IR A LA VISTA BIENESTAR FISICO Y EMOCIONAL
 
-    public function fc_momentoconciente(Request $request,$folio){
+
+    public function fc_actualizacionnovedades(Request $request,$folio){
         if (!session('nombre')) {
             // Si no existe la sesión 'usuario', redirigir al login
             return redirect()->route('login');
@@ -28,72 +29,20 @@ class c_momentoconciente extends Controller
 
          $herramientas = new m_herramientas();
 
-            $tabla = 't1_momentoconciente';
+            $tabla = 't1_v1actualizacionnovedades';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
             $linea= 200;
-            $paso= 20020;
-           
-           
-            $informacion = DB::table($tabla)
-                            ->where('folio', $encodedFolio)
-                            ->get();
-
-             $datos = [
-                 'momentoconciente' => '',
-                 'siguiente' => 'style="display:none"', 
-            ];
-
-            
-             foreach ($informacion as $registro) {
-                 // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
-
-                 $datos['momentoconciente'] = $registro->momentoconciente;
-
-                 $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
-
-
-             }
-
-            $datos['t_accionesmovilizadoras1'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','1');
-            $datos['t_accionesmovilizadoras2'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','2');
-            $datos['t_accionesmovilizadoras3'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','3');
-            $datos['t_accionesmovilizadoras4'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','4');
-            $datos['t_accionesmovilizadoras5'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','5');
-        
-
-            return view('accionesmovilizadoras/v_momentoconciente',  $datos,['variable'=>$folio,
-                                                                    'folio'=>$encodedFolio[0],
-                                                                     'tabla'=>$tabla,'linea'=>$linea,
-                                                                     'paso'=>$paso
-                                                                    ]);
-    }
-
-
-    public function fc_bienestarenfamilia(Request $request,$folio){
-        if (!session('nombre')) {
-            // Si no existe la sesión 'usuario', redirigir al login
-            return redirect()->route('login');
-        }
-
-         $herramientas = new m_herramientas();
-
-            $tabla = 't1_accionmovilizadoraqt';
-            $hashids = new Hashids('', 10); 
-            $encodedFolio = $hashids->decode($folio);
-            $linea= 200;
-            $paso= 20030;
-            $bienestar= 3;
+            $paso= 20060;
            
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
                             ->where('linea', $linea)
                             ->where('paso', $paso)
-                            ->where('bienestar', $bienestar)
                             ->get();
 
              $datos = [
-                 'accionmovilizadora' => '',
+                 'actualizacion' => '',
                  'siguiente' => 'style="display:none"', 
             ];
 
@@ -101,30 +50,24 @@ class c_momentoconciente extends Controller
              foreach ($informacion as $registro) {
                  // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
                  
-                 $datos['accionmovilizadora'] = $registro->accionmovilizadora;
+                 $datos['actualizacion'] = $registro->actualizacion;
 
                  $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
 
 
              }
 
-            $datos['t_accionesmovilizadoras1'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','1');
-            $datos['t_accionesmovilizadoras2'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','2');
-            $datos['t_accionesmovilizadoras3'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','3');
-            $datos['t_accionesmovilizadoras4'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','4');
-            $datos['t_accionesmovilizadoras5'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','5');
-        
 
-            return view('accionesmovilizadoras/v_bienestarenfamilia',  $datos,['variable'=>$folio,
+            return view('espaciodefinalizacion/v_actualizacionnovedades',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla, 'linea'=>$linea,
                                                                      'paso'=>$paso,
-                                                                     'bienestar'=>$bienestar,
+                                                                    
                                                                     ]);
     }
 
 
-    public function fc_accionmovilizadoraqt(Request $request,$folio){
+    public function fc_ficherodeoportunidades(Request $request,$folio){
         if (!session('nombre')) {
             // Si no existe la sesión 'usuario', redirigir al login
             return redirect()->route('login');
@@ -181,7 +124,7 @@ class c_momentoconciente extends Controller
             }
 
 
-            return view('accionesmovilizadoras/v_accionmovilizadoraqt',  $datos,['variable'=>$folio,
+            return view('espaciodefinalizacion/v_ficherodeoportunidades',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,
                                                                       'descripcion'=>$categorias[0]->descripcion,
@@ -192,9 +135,57 @@ class c_momentoconciente extends Controller
     }
 
 
+    public function fc_finalizacion(Request $request,$folio){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
+
+         $herramientas = new m_herramientas();
+
+            $tabla = 't1_v1finalizacion';
+            $hashids = new Hashids('', 10); 
+            $encodedFolio = $hashids->decode($folio);
+            $linea= 200;
+            $paso= 20060;
+           
+           
+            $informacion = DB::table($tabla)
+                            ->where('folio', $encodedFolio)
+                            ->get();
+
+             $datos = [
+                 'informe' => '',
+                 'url_firma'=>'',
+                 'siguiente' => 'style="display:none"', 
+            ];
+
+            
+             foreach ($informacion as $registro) {
+                 // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
+
+                 $datos['informe'] = $registro->informe;
+                 $datos['url_firma'] = $registro->url_firma;
+
+
+                 $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
+
+
+             }
+
+        
+
+            return view('espaciodefinalizacion/v_finalizacion',  $datos,['variable'=>$folio,
+                                                                    'folio'=>$encodedFolio[0],
+                                                                     'tabla'=>$tabla,'linea'=>$linea,
+                                                                     'paso'=>$paso
+                                                                    ]);
+    }
+
+
 
     
-     public function fc_guardaraccionesmovilizadoras(Request $request)
+     public function fc_guardarfinalizaciones(Request $request)
      {
          $folio = $request->input('folio');
          $tabla = $request->input('tabla');
@@ -271,6 +262,39 @@ class c_momentoconciente extends Controller
         );
     
         return response()->json(['message' => $folio]);
+      }
+
+
+      
+      public function fc_guardarfirma(Request $request)
+      {
+          $folio = $request->input('folio');
+          $tabla = $request->input('tabla');
+          $linea = $request->input('linea');
+          $paso = $request->input('paso');
+ 
+          $now = Carbon::now();
+          $data = $request->except(['folio', 'tabla','linea','paso','_token']);
+        
+           // Añadir created_at y updated_at
+          $data['updated_at'] = $now;
+          $data['sincro'] = 0;
+          $data['estado'] = 1;
+ 
+          $exists = DB::table($tabla)
+          ->where('folio', $folio)
+          ->exists();
+ 
+          if (!$exists) {
+              $data['created_at'] = $now;
+          }
+ 
+          DB::table($tabla)->updateOrInsert(
+              ['folio' => $folio, 'linea' => $linea,'paso' => $paso], // Condición de búsqueda
+              $data // Datos a insertar o actualizar
+          );
+     
+          return response()->json(["request" => $data]); // Responder con los datos procesados
       }
 
 }

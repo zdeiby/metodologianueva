@@ -1,6 +1,6 @@
 @extends('componentes.navlateral')
 
-@section('title', 'encuestaintegrantes')
+@section('title', 'Actualización novedades')
 
 @section('content')
 <!-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" >  -->
@@ -18,7 +18,6 @@
     background-color: #e0e0e0;
   }
 </style>
-
 
 <div class="container">
     <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class=""  >
@@ -54,15 +53,15 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">COMPROMISO BIENESTAR EN LA FAMILIA
+        <a id="bienestarsaludemocionalqt" class="nav-link active">ACTUALIZACIÓN Y/O NOVEDADES
         </a>
       </li>
-   <li class="nav-item" role="presentation" style="cursor:pointer">
-    <a id="legalqt"  class="nav-link active" >COMPROMISO BIENESTAR QT</a>
-  </li>
- <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
-    <a id="financieroqt"  class="nav-link ">ACCION MOVILIZADOR QT</a>
-  </li> -->
+      <li class="nav-item" role="presentation" style="cursor:pointer">
+        <a id="legalqt"  class="nav-link" >FICHERO DE OPORTUNIDADES</a>
+      </li>
+      <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
+      </li>
   
 </ul>
 
@@ -97,30 +96,32 @@
             <input type="text" placeholder="tabla" class="form-control form-control-sm  " id="tabla" name="tabla" value="{{$tabla}}" >
             <input type="text" placeholder="linea" class="form-control form-control-sm  " id="linea" name="linea" value="{{$linea}}" >
             <input type="text" placeholder="paso" class="form-control form-control-sm  " id="paso" name="paso" value="{{$paso}}" >
-            <input type="text" placeholder="numerocompromiso" class="form-control form-control-sm  " id="numerocompromiso" name="numerocompromiso" value="{{$numerocompromiso}}" >
+
           </div>
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">COMPROMISOS.</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Actualización y/o Novedades del hogar.</span>
 
 
 
 
-<div class="container mt-4">
-  
+          <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
+          <b>PROCEDENCIA E HISTORIA FAMILIAR.</b> ¿De dónde son originarios, hace cuánto viven en el sector y por qué vinieron a vivir allí? <br>
+          <b>  RELACIONES Y DINÁMICA FAMILIAR.</b> ¿cómo describen su hogar, cómo definen sus relaciones, cómo se sienten en relación a la vida que llevan juntos?
+            PROYECCIÓN. ¿Cuáles son sus metas el corto, mediano y largo plazo?, ¿qué esperan o sueñan en el hogar?<br>
+            <b> CRITERIOS DEL HOGAR PARA LA PRIOZACION QT.</b> ¿Cuáles son las razones del hogar para sugerir cambios en el orden de abordaje de las categorías del bienestar?.
+          </div>
 
-</div>
-<div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
-El gestor consigna información cualitativa. A qué se comprometen el hogar en relación a lo trabajado en las acciones movilizadoras en Bienestar en la familia y el bienestar trabajado según lo priorizado en la QT.
-</div>
-<div class="row">
+          <div class="row">
             <div class="form-group col-sm" id="divobs">
-                <label for="compromiso"></label>
-                <textarea class="form-control form-control-sm" name="compromiso" id="compromiso" rows="50" cols="20" class="">{{$compromiso}}</textarea>
+                <label for="actualizacion"></label>
+                <textarea class="form-control form-control-sm" name="actualizacion" id="actualizacion" rows="50" cols="20" class="">{{$actualizacion}}</textarea>
             </div>
         </div>
 
+   
 
-
+  </div>
+</div>
 
 <br>
 <br>
@@ -165,10 +166,88 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
 
     <script>
     
-    let observacionInstance, situacionInstance;
+
+
+
+      $('#siguiente').click(function(){
+        var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;
+      }); 
+      function redirectToIntegrantes() {
+           var folio = `<?=$variable ?>`;
+           var url = "../rombovisitatipo1/:folio";
+           url = url.replace(':folio', folio);
+           window.location.href = url;
+       }
+
+    
+
+
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedades/<?= $variable ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
+    $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
+
+      
+    $(document).ready(function() {
+        $('#formulario').on('submit', function(event) {
+                event.preventDefault(); // Detiene el envío del formulario
+
+                var formData = $(this).serializeArray();
+
+                var data = {};
+                $(formData).each(function(index, obj) {
+                data[obj.name] = obj.value;
+                });
+                // Agregar el contenido del editor CKEditor al objeto data
+                if (observacionInstance) {
+                    data['actualizacion'] = observacionInstance.getData();
+                }
+
+                console.log(data);
+
+                $.ajax({
+                    url: '../guardaractualizacionynovedadeshogar',
+                    method: 'GET', // Cambiar a POST si es necesario
+                    data: data, // Envía los datos de manera plana
+                    success: function(response) {
+                        $('#siguiente').css('display','');
+                        alertagood();
+                    },
+                    error: function(xhr, status, error) {
+                        alertabad();
+                        console.error(error);
+                    }
+                });
+            });
+});
+
+
+
+
+// function agregarpaso(data){
+//     $.ajax({
+//       url: '../agregarpasohogargeneral',
+//       method: 'GET', // Cambiar a GET si estás usando GET
+//       data: data, // Envía los datos de manera plana
+//       success: function(response) {
+//         $('#siguiente').css('display','');
+//           alertagood();
+//       },
+//       error: function(xhr, status, error) {
+//           alertabad();
+//           console.error(error);
+//       }
+//     });
+// }
+
+    </script>
+
+
+<script>
+      
+      let observacionInstance, situacionInstance;
 
 ClassicEditor
-    .create(document.querySelector('#compromiso'), {
+    .create(document.querySelector('#actualizacion'), {
         toolbar: {
             items: [
                 'heading',
@@ -209,86 +288,6 @@ ClassicEditor
         console.error(error);
     });
 
-
-      $('#siguiente').click(function(){
-        var url = "../rombovisitatipo1/<?= $variable ?>"; window.location.href = url;
-      }); 
-      function redirectToIntegrantes() {
-           var folio = `<?=$variable ?>`;
-           var url = "../compromiso1/:folio";
-           url = url.replace(':folio', folio);
-           window.location.href = url;
-       }
-
-    
-
-
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../compromiso1/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../compromiso2/<?= $variable ?>"; window.location.href = url;})
-    // $('#financieroqt').click(function(){var url = "../accionmovilizadoraqt/<?= $variable ?>"; window.location.href = url;})
-      
-
-      
-
-       $(document).ready(function() {
-
-     
-        $('#formulario').on('submit', function(event) {
-                event.preventDefault(); // Detiene el envío del formulario
-
-                var formData = $(this).serializeArray();
-
-                var data = {};
-                $(formData).each(function(index, obj) {
-                data[obj.name] = obj.value;
-                });
-                // Agregar el contenido del editor CKEditor al objeto data
-                if (observacionInstance) {
-                    data['compromiso'] = observacionInstance.getData();
-                }
-
-                console.log(data);
-
-                $.ajax({
-                    url: '../guardarcompromisos',
-                    method: 'GET', // Cambiar a POST si es necesario
-                    data: data, // Envía los datos de manera plana
-                    success: function(response) {
-                      agregarpaso(data);
-                    },
-                    error: function(xhr, status, error) {
-                        alertabad();
-                        console.error(error);
-                    }
-                });
-            });
-
-
-
-function agregarpaso(data){
-    $.ajax({
-      url: '../agregarpasohogargeneral',
-      method: 'GET', // Cambiar a GET si estás usando GET
-      data: data, // Envía los datos de manera plana
-      success: function(response) {
-        $('#siguiente').css('display','');
-          alertagood();
-      },
-      error: function(xhr, status, error) {
-          alertabad();
-          console.error(error);
-      }
-    });
-}
-
-
-
-
-
-});
-
-
-    </script>
-
+</script>
 
 @endsection
