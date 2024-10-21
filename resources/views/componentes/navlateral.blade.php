@@ -621,8 +621,6 @@ function soloNumeros(e) {
 
 
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9423200751583677"
-     crossorigin="anonymous"></script>
 
     <main>
 
@@ -632,6 +630,8 @@ function soloNumeros(e) {
 </main>
 
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9423200751583677"
+     crossorigin="anonymous"></script>
     <script src="{{ asset('assets/bootstrap/bootstrap.js') }}" ></script>
    <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
    <script type="module" src="{{asset('iconos/ionicons.esm.js') }}" ></script>
