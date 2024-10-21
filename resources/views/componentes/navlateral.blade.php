@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="google-adsense-account" content="ca-pub-9423200751583677">
      <link href="{{ asset('assets/bootstrap/bootstrap.css') }}" rel="stylesheet" > 
      <link rel="shortcut icon" href="../../favicon.ico">
      <link href="{{ asset('resources/sweetalert/sweetalert2.min.css') }}" rel="stylesheet" > 
@@ -620,9 +619,6 @@ function soloNumeros(e) {
     <button id="cerrar" type="submit" class="btn btn-danger">Cerrar Sesión</button>
 </form>
 
-
-
-
     <main>
 
     @yield('content')
@@ -631,8 +627,6 @@ function soloNumeros(e) {
 </main>
 
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9423200751583677"
-     crossorigin="anonymous"></script>
     <script src="{{ asset('assets/bootstrap/bootstrap.js') }}" ></script>
    <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
    <script type="module" src="{{asset('iconos/ionicons.esm.js') }}" ></script>
