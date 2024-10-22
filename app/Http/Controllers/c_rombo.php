@@ -43,7 +43,10 @@ class c_rombo extends Controller
           $porcentaje_verde_bf='';
         //  $porcentaje_gris_bf='';
 
-
+        $registrovt1 = DB::table('t1_visitasrealizadas')
+        ->where('folio', decrypt($cedula))  // Comparamos el folio desencriptado
+        ->where('linea', 200)            // Comparamos la línea
+        ->first(); 
 
           if ($registro && $registro->estado == 1) {
               $realizado = 1;
@@ -59,7 +62,9 @@ class c_rombo extends Controller
               $realizado = 0;
           }
 
-        return view('v_rombo',["variable"=>decrypt($cedula), 'encodeFolio'=>$encodeFolio,"variablebtn"=>$cedula, 'realizado'=>$realizado, 'foliobycript'=>decrypt($cedula),  
+          $realizadosvt1 = (($registrovt1 && $registrovt1->estado == 1)?1:0);
+         // dd($realizadovt1);
+        return view('v_rombo',['realizadosvt1'=>$realizadosvt1 ,"variable"=>decrypt($cedula), 'encodeFolio'=>$encodeFolio,"variablebtn"=>$cedula, 'realizado'=>$realizado, 'foliobycript'=>decrypt($cedula),  
         'porcentaje_rojo_bse'=>$porcentaje_rojo_bse, 'porcentaje_verde_bse'=>$porcentaje_verde_bse, //'porcentaje_gris_bse'=>$porcentaje_gris_bse,
         'porcentaje_rojo_bl'=>$porcentaje_rojo_bl, 'porcentaje_verde_bl'=>$porcentaje_verde_bl, //'porcentaje_gris_bl'=>$porcentaje_gris_bl,
         'porcentaje_rojo_bef'=>$porcentaje_rojo_bef, 'porcentaje_verde_bef'=>$porcentaje_verde_bef,// 'porcentaje_gris_bef'=>$porcentaje_gris_bef,

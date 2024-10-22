@@ -214,7 +214,7 @@
             </div>
             <div class="text-end col">
             <button class="btn btn-outline-success" type="submit"  >Guardar</button>
-            <div class="btn btn-outline-primary" id="finalizarbtn" <?=$siguiente?> onclick="redirectToIntegrantes()">Finalizar</div>
+            <div class="btn btn-outline-primary" id="finalizarboton" <?=$siguiente?> >Finalizar</div>
             </div> 
           </div>
 
@@ -243,17 +243,37 @@
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../rombovisitatipo1/:folio";
+           var url = "../cobertura";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
 
 
+       $(document).ready(function() {
+
+        $('#finalizarboton').click(function(){
+              $.ajax({
+                  url: '../finalizarvisita',
+                  data: { folio: $('#folioinput').val(), usuario:'{{ Session::get('cedula') }}' },
+                  method: "GET",
+                  dataType: 'JSON',
+                  success: function(data) {
+                    redirectToIntegrantes()
+                    console.log(data);
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                  }
+                }); 
+              });
+            });
+
+
     
     
-      $('#volver').click(function(){
-        redirectToIntegrantes()
-      });
+      // $('#volver').click(function(){
+      //   redirectToIntegrantes()
+      // });
 
 
       $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedades/<?= $variable ?>"; window.location.href = url;})

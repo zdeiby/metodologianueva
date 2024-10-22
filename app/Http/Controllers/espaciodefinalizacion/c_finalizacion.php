@@ -297,4 +297,50 @@ class c_finalizacion extends Controller
           return response()->json(["request" => $data]); // Responder con los datos procesados
       }
 
+
+      public function fc_finalizarvisita(Request $request){
+        $now = Carbon::now();
+        $folio = $request->input('folio');
+        $linea = 200;  // poner linea 
+        //$paso = 20060;  // poner paso
+        $usuario = $request->input('usuario'); // Este campo no es clave primaria
+  
+        $existsvisitas = DB::table('t1_visitasrealizadas')
+        ->where('folio', $folio)
+        ->where('linea', $linea)
+        ->exists();
+  
+            if (!$existsvisitas) {
+                // Si no existe, agregar created_at
+                $datavisitageneral['created_at'] = $now;
+            }
+  
+            $cif = DB::table('t_usuario')
+              ->select('cif')
+              ->where('documento', $usuario)
+              ->first();
+  
+  
+            $datavisitageneral = [
+                'folio' => $folio,
+                'linea' => $linea,
+                'finvisita' => $now,
+                'usuario' => $usuario,
+                'cif' =>$cif->cif,
+                'estado' => 1,
+                'sincro' => 0,
+                'updated_at' => $now
+            ];
+            DB::table('t1_visitasrealizadas')->updateOrInsert(
+                [
+                    'folio' => $folio,
+                    'linea' => $linea,
+                ],
+                $datavisitageneral
+            );
+  
+        return response()->json(['message' => $existsvisitas]);
+    }
+    
+
 }

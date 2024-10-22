@@ -78,7 +78,7 @@
             </div>
         </li>
 
-
+    @if ($realizado == '1')
         <li class="scene">
             <div class="movie">
                 <div class="poster" >
@@ -98,17 +98,16 @@
                     <img src="{{ asset('imagenes/banner2.jpg')}}" style="border-radius:10px" width="100%" alt="">
                     <br>
                     <br> 
-                    <!-- <label for="" style="color:white;font-size:15px; padding-bottom:5px;padding-top:4px; text-decoration: underline;cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">Más información</label><br> -->
-                   <form method="GET" action="../rombovisitatipo1/{{$encodeFolio}}" ><button type="submit" class="btn btn-primary">Realizar visita</button></form> 
-                     <!-- @if($realizado == '0') -->
                    
-                    <!-- @elseif($realizado == '1') -->
-                    <!-- <form method="GET" ><button type="submit" class="btn btn-primary" disabled>Realizar visita</button></form> -->
-                    <!-- @endif -->
+                    @if($realizadosvt1 == '0')
+                    <form method="GET" action="../rombovisitatipo1/{{$encodeFolio}}" ><button type="submit" class="btn btn-primary">Realizar visita</button></form>
+                    @elseif($realizadosvt1 == '1')
+                    <form method="GET" ><button type="submit" class="btn btn-primary" disabled>Realizar visita</button></form>
+                    @endif
                 </div>
             </div>
         </li>
-    
+    @endif
         <!-- <li class="scene">
             <div class="movie">
                 <div class="poster">
