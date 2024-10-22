@@ -341,6 +341,40 @@ class c_finalizacion extends Controller
   
         return response()->json(['message' => $existsvisitas]);
     }
+
+
+    public function fc_guardaractualizacionynovedadeshogar(Request $request)
+    {
+        $folio = $request->input('folio');
+        $tabla = $request->input('tabla');
+        $linea = $request->input('linea');
+        $paso = $request->input('paso');
+       
+
+        $now = Carbon::now();
+        $data = $request->except(['folio', 'tabla','linea','paso']);
+      
+         // Añadir created_at y updated_at
+        $data['updated_at'] = $now;
+        $data['sincro'] = 0;
+        $data['estado'] = 1;
+
+        $exists = DB::table($tabla)
+        ->where('folio', $folio)
+        ->exists();
+
+        if (!$exists) {
+            $data['created_at'] = $now;
+        }
+
+        DB::table($tabla)->updateOrInsert(
+            ['folio' => $folio, 'linea' => $linea,'paso' => $paso], // Condición de búsqueda
+            $data // Datos a insertar o actualizar
+        );
+   
+        return response()->json(["request" => $data]); // Responder con los datos procesados
+    }
+
     
 
 }

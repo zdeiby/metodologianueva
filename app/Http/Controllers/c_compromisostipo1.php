@@ -43,7 +43,7 @@ class c_compromisostipo1 extends Controller
                             ->get();
 
              $datos = [
-                 'compromiso1' => '',
+                 'compromiso' => '',
                  'siguiente' => 'style="display:none"', 
             ];
 

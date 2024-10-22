@@ -54,7 +54,7 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">COMPROMISO BIENESTAR EN LA FAMILIA
+        <a id="bienestarsaludemocionalqt" class="nav-link ">COMPROMISO BIENESTAR EN LA FAMILIA
         </a>
       </li>
    <li class="nav-item" role="presentation" style="cursor:pointer">

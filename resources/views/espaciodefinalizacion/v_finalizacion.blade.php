@@ -322,7 +322,7 @@ function agregarpaso(data){
       method: 'GET', // Cambiar a GET si estás usando GET
       data: data, // Envía los datos de manera plana
       success: function(response) {
-        $('#siguiente').css('display','');
+        $('#finalizarboton').css('display','');
           alertagood();
       },
       error: function(xhr, status, error) {
@@ -481,7 +481,7 @@ $('#formulario').on('submit', function(event) {
         processData: false,  // No procesar los datos, FormData se encarga de eso
         contentType: false,  // No establecer el tipo de contenido automáticamente
         success: function(response) {
-            $('#finalizarbtn').css('display', '');  // Mostrar el botón de siguiente (suponiendo que es parte del flujo)
+            $('#finalizarboton').css('display', '');  // Mostrar el botón de siguiente (suponiendo que es parte del flujo)
             alertagood();  // Suponiendo que es tu función de éxito
         },
         error: function(xhr, status, error) {
