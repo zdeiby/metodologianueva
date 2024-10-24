@@ -55,7 +55,26 @@ class c_momentoconciente extends Controller
 
              }
 
-            $datos['t_accionesmovilizadoras1'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','1');
+             $selectedIds = DB::table('t1_momentoconciente')
+                ->where('folio',$encodedFolio)
+                ->where('linea',$linea)
+                ->where('paso',$paso)
+                ->pluck('momentoconciente') // Cambia 'momento_id' por la columna que contiene el ID del momento seleccionado
+                ->toArray(); // Convertir a array para facilitar la verificación
+
+             $lista = DB::table('t_momentosconcientes')->get();
+
+             $momento_conciente = '';
+            foreach ($lista as $item) {
+                $isChecked = in_array($item->id, $selectedIds) ? 'checked' : '';
+            $momento_conciente .= '
+                <div class="form-check form-switch d-flex flex-wrap">
+                    <input type="checkbox" class="form-check-input" id="momento" name="momentos[]" value="' . $item->id . '" required ' . $isChecked . '>
+                    <label class="form-check-label" for="item_' . $item->id . '">&nbsp;' . $item->descripcion . '</label>
+                </div>
+            ';
+        }
+
             $datos['t_accionesmovilizadoras2'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','2');
             $datos['t_accionesmovilizadoras3'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','3');
             $datos['t_accionesmovilizadoras4'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','4');
@@ -65,7 +84,7 @@ class c_momentoconciente extends Controller
             return view('accionesmovilizadoras/v_momentoconciente',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,'linea'=>$linea,
-                                                                     'paso'=>$paso
+                                                                     'paso'=>$paso, 'momento_conciente'=>$momento_conciente,
                                                                     ]);
     }
 
@@ -141,6 +160,7 @@ class c_momentoconciente extends Controller
             $categorias = DB::table('t1_ordenprioridadesqt')
             ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
             ->where('t1_ordenprioridadesqt.folio', $encodedFolio)
+            ->where('t1_ordenprioridadesqt.linea', $linea)
             ->where('t1_ordenprioridadesqt.prioridad', 1)
             ->select('t_bienestares.descripcion','t1_ordenprioridadesqt.categoria')
             ->get();
@@ -150,6 +170,8 @@ class c_momentoconciente extends Controller
            
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
+                            ->where('linea', $linea)
+                            ->where('paso', $paso)
                             ->get();
 
              $datos = [
@@ -272,5 +294,92 @@ class c_momentoconciente extends Controller
     
         return response()->json(['message' => $folio]);
       }
+
+
+
+
+      public function fc_guardarmomentoconciente(Request $request)
+      {
+          $now = Carbon::now();
+           // Obtener el array de datos enviados desde la petición
+           $momentos = $request->json()->all(); 
+
+          if (count($momentos) > 0) {
+            // Utilizar la información del primer elemento para identificar el grupo a eliminar
+            $folio = $momentos[0]['folio'];
+            $tabla = $momentos[0]['tabla'];
+            $linea = $momentos[0]['linea'];
+            $paso = $momentos[0]['paso'];
+            
+            // Eliminar todos los registros que coincidan con folio, linea y paso
+            DB::table($tabla)
+                ->where('folio', $folio)
+                ->where('linea', $linea)
+                ->where('paso', $paso)
+                ->delete();
+        }
+
+
+          
+         
+         
+          // Recorrer cada objeto en el array
+          foreach ($momentos as $momento) {
+              $folio = $momento['folio'];
+              $tabla = $momento['tabla'];
+              $linea = $momento['linea'];
+              $paso = $momento['paso'];
+              $momentoconciente= $momento['momentoconciente'];
+              
+              // Extraer solo los datos relevantes, excluyendo folio, tabla, linea y paso
+              $data = [
+                  'usuario'=> $momento['usuario'],
+                  'updated_at' => $now,
+                  'sincro' => 0,
+                  'estado' => 1
+              ];
+      
+              // Comprobar si ya existe el registro
+              $exists = DB::table($tabla)
+                  ->where('folio', $folio)
+                  ->where('linea', $linea)
+                  ->where('paso', $paso)
+                  ->exists();
+      
+              if (!$exists) {
+                  $data['created_at'] = $now;
+              }
+      
+              // Insertar o actualizar el registro
+              DB::table($tabla)->updateOrInsert(
+                  ['folio' => $folio, 'linea' => $linea, 'paso' => $paso, 'momentoconciente'=>$momentoconciente], // Condición de búsqueda
+                  $data // Datos a insertar o actualizar
+              );
+          }
+      
+          return response()->json(["message" => "Datos guardados correctamente"]); // Responder con éxito
+      }
+
+
+
+      public function fc_verificarpasos(Request $request)
+      {
+          $folio = $request->input('folio');
+          $linea = $request->input('linea');
+          $pasos = ['20020', '20030', '20040']; // Pasos a verificar
+      
+          // Realiza la consulta utilizando el Query Builder
+          $resultado = DB::table('t1_pasosvisita')
+              ->where('folio', $folio)
+              ->where('linea', $linea)
+              ->whereIn('paso', $pasos)
+              ->selectRaw('CASE WHEN COUNT(*) = 3 AND SUM(estado) = 3 THEN 1 ELSE 0 END AS resultado')
+              ->value('resultado');
+      
+          // Responder con el resultado de la validación
+          return response()->json(["resultado" => $resultado]);
+      }
+      
+ 
 
 }

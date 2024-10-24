@@ -147,6 +147,8 @@ Route::get('/compromiso1/{folio}',[c_compromisostipo1::class, 'fc_compromiso1'])
 Route::get('/compromiso2/{folio}',[c_compromisostipo1::class, 'fc_compromiso2'])->name('compromiso2');
 Route::get('/guardarcompromisos',[c_compromisostipo1::class, 'fc_guardarcompromisos'])->name('guardarcompromisos');
 Route::get('/agregarpasohogargeneral',[c_momentoconciente::class,'fc_agregarpasohogargeneral'])->name('agregarpasohogargeneral');
+Route::post('/guardarmomentoconciente',[c_momentoconciente::class, 'fc_guardarmomentoconciente'])->name('guardarmomentoconciente');
+Route::get('/verificarpasos',[c_momentoconciente::class, 'fc_verificarpasos'])->name('verificarpasos');
 
 
 

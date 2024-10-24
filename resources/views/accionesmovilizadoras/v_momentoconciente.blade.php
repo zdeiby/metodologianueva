@@ -3,6 +3,8 @@
 @section('title', 'encuestaintegrantes')
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <!-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" >  -->
 <style>
   #imagenDinamica:hover{
@@ -109,13 +111,13 @@
     <div class="row g-0">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
         <div class="p-2">
-          CATEGORIA DEL BIENESTAR
+          
         </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-12 border-bottom p-2 text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
-            NOMBRE DE LAS ACCIONES MOVILIZADORAS
+            NOMBRE DE LA HERRAMIENTA
           </div>
         </div>
       </div>
@@ -125,16 +127,13 @@
     <div class="row g-0" id="indicadorbse1">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-          BIENESTAR PARA LA SALUD FÍSICA Y EMOCIONAL
+            MOMENTOS CONCIENTES
         </div>
       </div>
       <div class="col-md-8 d-flex align-items-stretch  ">
-        <div class="col-12 border-bottom p-2 d-flex align-items-center " style="    text-align: center !important;  display: flex;  flex-direction: column;">
+        <div class="col-12 border-bottom p-2 d-flex align-items-center" style="    text-align: center !important;  display: flex;  flex-direction: column;">
         <div class="col-md-6" >
-            <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
-            <select class="form-control form-control-sm" id="momentoconciente" name="momentoconciente" aria-describedby="validationServer04Feedback" required="">
-            {!! $t_accionesmovilizadoras1 !!}
-            </select>
+                  {!! $momento_conciente !!}
           </div>
         </div>
       </div>
@@ -221,54 +220,74 @@
 
        $(document).ready(function() {
 
-
         $('#momentoconciente').val('<?= $momentoconciente ?>')
 
-     
+
         $('#formulario').on('submit', function(event) {
-            event.preventDefault(); // Detiene el envío del formulario
+    event.preventDefault(); // Detiene el envío del formulario
+
+    // Serializa el formulario incluyendo checkboxes múltiples correctamente
+    var formData = $(this).serializeArray();
+    var data = []; // Array para almacenar los objetos de cada momento
+
+    // Información general que será la misma para cada objeto
+    var folio = '{{ $folio }}';
+    var usuario = '<?= Session::get('cedula') ?>';
+    var tabla = "{{$tabla}}";
+    var linea = "{{$linea}}";
+    var paso = "{{$paso}}";
+
+    // Ajuste para manejar arrays correctamente
+    $(formData).each(function(index, obj) {
+        if (obj.name.startsWith('momentos')) {
+            // Crear un objeto para cada momento seleccionado
+            var momentoObj = {
+                folio: folio,
+                usuario: usuario,
+                tabla: tabla,
+                linea: linea,
+                paso: paso,
+                momentoconciente: obj.value
+            };
             
-            var formData = $(this).serializeArray();
-            var data = {};
-            $(formData).each(function(index, obj) {
-                data[obj.name] = obj.value;
-            });
+            // Agregar el objeto al array de data
+            data.push(momentoObj);
+        }
+    });
 
+    console.log(data); // Verifica en la consola la estructura de los datos
 
-            $('#formulario [name]').each(function() {
-                  var name = $(this).attr('name');
-
-                 // Si el elemento es un checkbox
-                  // if ($(this).is(':checkbox')) {
-                  //     // Solo sobrescribe el valor si no es "NO APLICA"
-                  //     if ($(this).val() !== 'NO APLICA') {
-                  //         data[name] = $(this).is(':checked') ? $(this).val() : 'NO';
-                  //     } else {
-                  //         data[name] = 'NO APLICA';
-                  //     }
-                  // }
-              });
-
-            console.log(data);
-
-            $.ajax({
-                url: '../guardaraccionesmovilizadoras',
-                method: 'GET', // Cambiar a GET si estás usando GET
-                data: data, // Envía los datos de manera plana
-                success: function(response) {
-                  $('#siguiente').css('display','');
-                  agregarpaso(data);
-                },
-                error: function(xhr, status, error) {
-                    alertabad();
-                    console.error(error);
-                }
-            });
-        });
+    $.ajax({
+    url: '../guardarmomentoconciente',
+    method: 'POST', // Cambiar a POST si lo necesitas
+    contentType: 'application/json',
+    data: JSON.stringify(data), // Asegúrate de que 'data' es un array de objetos JSON
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Agrega el token aquí
+    },
+    success: function(response) {
+        $('#siguiente').css('display', '');
+        agregarpaso(data);
+    },
+    error: function(xhr, status, error) {
+        alertabad();
+        console.error(error);
+    }
 });
 
+});
 
-function agregarpaso(data){
+});
+function agregarpaso(datas){
+
+  var data = {
+        folio: '{{ $folio }}', // Reemplaza 'valor_defecto_folio' con un valor por defecto si es necesario
+        linea: "{{$linea}}", // Reemplaza 'valor_defecto_linea' con un valor por defecto si es necesario
+        paso:"{{$paso}}",    // Reemplaza 'valor_defecto_paso' con un valor por defecto si es necesario
+        usuario: '<?= Session::get('cedula') ?>', // Reemplaza 'valor_defecto_usuario' con un valor por defecto si es necesario
+
+    };
+           
     $.ajax({
       url: '../agregarpasohogargeneral',
       method: 'GET', // Cambiar a GET si estás usando GET
@@ -286,5 +305,84 @@ function agregarpaso(data){
 
     </script>
 
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const form = document.getElementById('myForm');
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', validateCheckboxes);
+        });
+
+        function validateCheckboxes() {
+            // Contar los checkboxes seleccionados
+            const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+
+            // Validar selección mínima y máxima
+            if (selectedCount >= 1 && selectedCount <= 2) {
+                // Remover el atributo 'required' si al menos uno está seleccionado
+                checkboxes.forEach(cb => cb.removeAttribute('required'));
+            } else {
+                // Si no hay seleccionados, aplicar 'required' a todos los checkboxes
+                checkboxes.forEach(cb => cb.setAttribute('required', 'required'));
+            }
+
+            // Deshabilitar otros checkboxes si ya hay 2 seleccionados
+            if (selectedCount === 2) {
+                checkboxes.forEach(cb => {
+                    if (!cb.checked) cb.disabled = true;
+                });
+            } else {
+                checkboxes.forEach(cb => cb.disabled = false);
+            }
+        }
+    });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('input[name="momentos[]"]');
+    const minSelection = 1;
+    const maxSelection = 2;
+
+    // Función para actualizar el estado de los checkboxes
+    function updateCheckboxes() {
+        const selectedCount = document.querySelectorAll('input[name="momentos[]"]:checked').length;
+
+        if (selectedCount >= maxSelection) {
+            // Deshabilitar los no seleccionados cuando se alcanza el límite
+            checkboxes.forEach((cb) => {
+                if (!cb.checked) {
+                    cb.disabled = true;
+                    cb.required = false;
+                }
+            });
+        } else if (selectedCount >= minSelection) {
+            // Habilitar todos y hacer que solo los seleccionados sean requeridos si hay al menos 1 seleccionado
+            checkboxes.forEach((cb) => {
+                cb.disabled = false;
+                cb.required = cb.checked; // Solo los seleccionados son requeridos
+            });
+        } else {
+            // Si no hay ningún seleccionado, hacer todos requeridos
+            checkboxes.forEach((cb) => {
+                cb.disabled = false;
+                cb.required = true;
+            });
+        }
+    }
+
+    // Agregar el evento de cambio a cada checkbox
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', updateCheckboxes);
+    });
+
+    // Inicializar el estado de los checkboxes al cargar la página
+    updateCheckboxes();
+});
+
+
+</script>
 
 @endsection

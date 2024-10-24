@@ -195,7 +195,34 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../rombovisitatipo1/<?= $variable ?>"; window.location.href = url;
+
+            $.ajax({
+                url: '../verificarpasos',
+                method: 'GET', // Cambiar a GET si estás usando GET
+                data: { folio: '{{ $folio }}',
+                        linea: '{{ $linea }}',
+                        
+                }, // Envía los datos de manera plana
+                success: function(response) {
+                  console.log(response.resultado)
+                  if(response.resultado == 1){
+                  var url = "../rombovisitatipo1/<?= $variable ?>"; window.location.href = url;
+                  }else{
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: "Debes completar los pasos anteriores",
+                      footer: ''
+                    });
+                  }
+                },
+                error: function(xhr, status, error) {
+                    alertabad();
+                    console.error(error);
+                }
+            });
+
+     //   var url = "../rombovisitatipo1/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
@@ -228,20 +255,6 @@
                 data[obj.name] = obj.value;
             });
 
-
-            $('#formulario [name]').each(function() {
-                  var name = $(this).attr('name');
-
-                 // Si el elemento es un checkbox
-                  // if ($(this).is(':checkbox')) {
-                  //     // Solo sobrescribe el valor si no es "NO APLICA"
-                  //     if ($(this).val() !== 'NO APLICA') {
-                  //         data[name] = $(this).is(':checked') ? $(this).val() : 'NO';
-                  //     } else {
-                  //         data[name] = 'NO APLICA';
-                  //     }
-                  // }
-              });
 
             console.log(data);
 

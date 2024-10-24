@@ -22,7 +22,7 @@
   
 </style>
 
-<div class="container" style="display:none">
+<div class="container" style="">
     <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class=""  >
 <!-- <form class="d-flex pb-4" role="search">
       <input class="form-control me-2" type="search" placeholder="Buscar folio o representante" aria-label="Search">
