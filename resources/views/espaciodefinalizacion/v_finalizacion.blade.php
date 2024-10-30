@@ -35,7 +35,7 @@
             <div class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <div>
-                <span class="badge bg-primary" id=""  style="font-size:15px">MOMENTO CONSCIENTE</span>
+                <span class="badge bg-primary" id=""  style="font-size:15px">TOMA DE EVIDENCIAS Y CIERRE</span>
                 <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
                
               </div>
@@ -116,7 +116,7 @@
           <div class="row">
             <div class="form-group col-sm" id="divobs">
                 <label for="informe"></label>
-                <textarea class="form-control form-control-sm" name="informe" id="informe" rows="150" cols="20" class="">{{$informe}}</textarea>
+                <textarea class="form-control form-control-sm" name="informe" oninput="validateInput(this)" id="informe" rows="10" cols="20" class="">{{$informe}}</textarea>
             </div>
         </div>
 
@@ -334,53 +334,6 @@ function agregarpaso(data){
 
     </script>
 
-<script>
-      
-      let observacionInstance, situacionInstance;
-
-ClassicEditor
-    .create(document.querySelector('#informe'), {
-        toolbar: {
-            items: [
-                'heading',
-                '|',
-                'bold',
-                'italic',
-                'link',
-                'bulletedList',
-                'numberedList',
-                '|',
-                'undo',
-                'redo'
-            ]
-        },
-        language: 'es' // Opcional: configurar el idioma
-        ,
-        link: {
-            decorators: {
-                addTargetToLinks: {
-                    mode: 'automatic',
-                    callback: url => {
-                        // Si el enlace no tiene http:// o https://, agregarlo automáticamente
-                        if (!/^https?:\/\//i.test(url)) {
-                            return 'http://' + url;
-                        }
-                        return url;
-                    }
-                }
-            } }
-    })
-    .then(observaciongeneraleditor => {
-        console.log('Editor cargado correctamente', observaciongeneraleditor);
-        // Asignar la instancia del editor a la variable global
-        //editorInstance = editor;
-        observacionInstance = observaciongeneraleditor;
-    })
-    .catch(error => {
-        console.error(error);
-    });
-
-</script>
 
 
 <script>

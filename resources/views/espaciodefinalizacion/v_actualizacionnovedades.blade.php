@@ -32,7 +32,7 @@
             <div class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <div>
-                <span class="badge bg-primary" id=""  style="font-size:15px">MOMENTO CONSCIENTE</span>
+                <span class="badge bg-primary" id=""  style="font-size:15px">Actualización y/o Novedades del hogar</span> 
                 <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
                
               </div>
@@ -114,7 +114,7 @@
           <div class="row">
             <div class="form-group col-sm" id="divobs">
                 <label for="actualizacion"></label>
-                <textarea class="form-control form-control-sm" name="actualizacion" id="actualizacion" rows="50" cols="20" class="">{{$actualizacion}}</textarea>
+                <textarea class="form-control form-control-sm" name="actualizacion" id="actualizacion" oninput="validateInput(this)" rows="10" cols="20" class="">{{$actualizacion}}</textarea>
             </div>
         </div>
 
@@ -198,9 +198,7 @@
                 data[obj.name] = obj.value;
                 });
                 // Agregar el contenido del editor CKEditor al objeto data
-                if (observacionInstance) {
-                    data['actualizacion'] = observacionInstance.getData();
-                }
+            
 
                 console.log(data);
 
@@ -242,52 +240,5 @@
     </script>
 
 
-<script>
-      
-      let observacionInstance, situacionInstance;
-
-ClassicEditor
-    .create(document.querySelector('#actualizacion'), {
-        toolbar: {
-            items: [
-                'heading',
-                '|',
-                'bold',
-                'italic',
-                'link',
-                'bulletedList',
-                'numberedList',
-                '|',
-                'undo',
-                'redo'
-            ]
-        },
-        language: 'es' // Opcional: configurar el idioma
-        ,
-        link: {
-            decorators: {
-                addTargetToLinks: {
-                    mode: 'automatic',
-                    callback: url => {
-                        // Si el enlace no tiene http:// o https://, agregarlo automáticamente
-                        if (!/^https?:\/\//i.test(url)) {
-                            return 'http://' + url;
-                        }
-                        return url;
-                    }
-                }
-            } }
-    })
-    .then(observaciongeneraleditor => {
-        console.log('Editor cargado correctamente', observaciongeneraleditor);
-        // Asignar la instancia del editor a la variable global
-        //editorInstance = editor;
-        observacionInstance = observaciongeneraleditor;
-    })
-    .catch(error => {
-        console.error(error);
-    });
-
-</script>
 
 @endsection

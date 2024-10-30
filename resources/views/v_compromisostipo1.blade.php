@@ -118,7 +118,7 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
 <div class="row">
             <div class="form-group col-sm" id="divobs">
                 <label for="compromiso"></label>
-                <textarea class="form-control form-control-sm" name="compromiso" id="compromiso" rows="50" cols="20" class="">{{$compromiso}}</textarea>
+                <textarea class="form-control form-control-sm" oninput="validateInput(this)" name="compromiso" id="compromiso" rows="10" cols="20" class="">{{$compromiso}}</textarea>
             </div>
         </div>
 
@@ -167,51 +167,7 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
-    
-    let observacionInstance, situacionInstance;
-
-ClassicEditor
-    .create(document.querySelector('#compromiso'), {
-        toolbar: {
-            items: [
-                'heading',
-                '|',
-                'bold',
-                'italic',
-                'link',
-                'bulletedList',
-                'numberedList',
-                '|',
-                'undo',
-                'redo'
-            ]
-        },
-        language: 'es' // Opcional: configurar el idioma
-        ,
-        link: {
-            decorators: {
-                addTargetToLinks: {
-                    mode: 'automatic',
-                    callback: url => {
-                        // Si el enlace no tiene http:// o https://, agregarlo automáticamente
-                        if (!/^https?:\/\//i.test(url)) {
-                            return 'http://' + url;
-                        }
-                        return url;
-                    }
-                }
-            } }
-    })
-    .then(observaciongeneraleditor => {
-        console.log('Editor cargado correctamente', observaciongeneraleditor);
-        // Asignar la instancia del editor a la variable global
-        //editorInstance = editor;
-        observacionInstance = observaciongeneraleditor;
-    })
-    .catch(error => {
-        console.error(error);
-    });
-
+  
 
       $('#siguiente').click(function(){
         var url = "../compromiso2/<?= $variable ?>"; window.location.href = url;
@@ -246,9 +202,6 @@ ClassicEditor
                 data[obj.name] = obj.value;
                 });
                 // Agregar el contenido del editor CKEditor al objeto data
-                if (observacionInstance) {
-                    data['compromiso'] = observacionInstance.getData();
-                }
 
                 console.log(data);
 
