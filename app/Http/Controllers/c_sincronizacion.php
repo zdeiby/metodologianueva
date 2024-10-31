@@ -75,7 +75,12 @@ public function fc_sincroprivacionesd(Request $request) {
         $idIntegrante = isset($item['idintegrante']) ? $item['idintegrante'] : null;
         $paso =         isset($item['paso'])         ? $item['paso'] : null;
         $linea =        isset($item['linea'])        ? $item['linea'] : null;
+        $momentoconciente =        isset($item['momentoconciente'])        ? $item['momentoconciente'] : null;
+        $categoria =        isset($item['categoria'])        ? $item['categoria'] : null;
+        $numerocompromiso =        isset($item['numerocompromiso'])        ? $item['numerocompromiso'] : null;
 
+        
+        
         // Remover el folio y idintegrante del array para evitar duplicados en el updateOrInsert
         $dataToUpdate = $item;
         unset($dataToUpdate['folio']);
@@ -89,6 +94,18 @@ public function fc_sincroprivacionesd(Request $request) {
 
         if ($linea !== null) {
             unset($dataToUpdate['linea']);
+        }
+
+        if ($momentoconciente !== null) {
+            unset($dataToUpdate['momentoconciente']);
+        }
+
+        if ($categoria !== null) {
+            unset($dataToUpdate['categoria']);
+        }
+
+        if ($numerocompromiso !== null) {
+            unset($dataToUpdate['numerocompromiso']);
         }
 
 
@@ -105,7 +122,16 @@ public function fc_sincroprivacionesd(Request $request) {
         if ($linea !== null) {
             $condition['linea'] = $linea;
         }
+        if ($momentoconciente !== null) {
+            $condition['momentoconciente'] = $momentoconciente;
+        }
 
+        if ($categoria !== null) {
+            $condition['categoria'] = $categoria;
+        }
+        if ($numerocompromiso !== null) {
+            $condition['numerocompromiso'] = $numerocompromiso;
+        }
         
         DB::table($tabla)->updateOrInsert(
             $condition,
