@@ -10,7 +10,7 @@ use App\Http\ComplementosControllers\sql;
 
 class c_sincronizacion extends Controller
 {
-    use Sql; 
+    use sql; 
 
 
 
