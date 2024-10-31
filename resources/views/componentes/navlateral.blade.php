@@ -545,12 +545,12 @@ function soloNumeros(e) {
                         <span>Cobertura</span>
                     </a>
                 </li>
-                 <!-- <li>
+                 <li>
                     <a href="{{route('sincronizacion')}}">
                         <ion-icon name="reload-outline"></ion-icon>
                         <span>Sincronización</span>
                     </a>
-                </li>  -->
+                </li> <!--  -->
              <!--   <li>
                     <a href="#">
                         <ion-icon name="document-text-outline"></ion-icon>
@@ -732,16 +732,7 @@ cloud.addEventListener("click",()=>{
     </script>
 
 <script>
-// function validateInput(textarea) {
-//     // Expresión regular para permitir solo letras con tildes, comas, puntos, punto y coma, guiones y diagonales
-//     const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ,.;/-]*$/;
-    
-//     // Validar el texto ingresado
-//     if (!regex.test(textarea.value)) {
-//         // Elimina el último carácter si no coincide con la expresión regular
-//         textarea.value = textarea.value.slice(0, -1);
-//     }
-// }
+
 
 function validateInput(textarea) {
     // Expresión regular para permitir solo letras con tildes, comas, puntos, punto y coma, guiones, diagonales y saltos de línea
