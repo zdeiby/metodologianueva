@@ -4,7 +4,7 @@ namespace App\Http\Complementoscontrollers;
 
 use Illuminate\Support\Facades\DB;
 
-trait sql
+trait Sql
 {
     public function disableForeignKeys()
     {
