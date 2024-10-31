@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use App\Http\ComplementosControllers\Sql;
+use App\Http\ComplementosControllers\sql;
 
 class c_sincronizacion extends Controller
 {
