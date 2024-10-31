@@ -203,8 +203,12 @@ body {
                   <h3>
                     <label>Encuadre</label>
                   </h3>
-             </div>  
-             <button type="button" class="btn btn-primary" id="saludoencuadrebtn" <?=($existel100p10010 == '1')?'':''?> data-bs-toggle="modal" data-bs-target="#exampleModal">Ver encuadre</button>
+             </div>
+             @if ($existel200p20010 == '0')
+             <button type="button" class="btn btn-primary" id="saludoencuadrebtn" <?=($existel200p20010 == '1')?'disabled':''?> data-bs-toggle="modal" data-bs-target="#exampleModal">Ver encuadre</button>
+             @else
+             <button type="button" class="btn btn-primary" disabled data-bs-toggle="modal" data-bs-target="#exampleModal">Ver encuadre</button>
+             @endif
              <div class="smCard">
                 </div>
               </div>
@@ -226,7 +230,7 @@ body {
                     <label>Momento Consciente</label>
                   </h3>               
                 </div>
-                <button type="button" id="gestionintegrantes"  class="btn btn-primary" onclick="window.location.href='../momentoconciente/{{$folioencriptado}}/'">Ir a momento consciente.</button>
+                <button type="button" id="gestionintegrantes" <?=(($existel200p20010 == '1' && $existel200p20020 == '0' ) || ($existel200p20010 == '1' && $existel200p20030 == '0') || ($existel200p20010 == '1' && $existel200p20040 == '0')  )?'':'disabled'?>  class="btn btn-primary" onclick="window.location.href='../momentoconciente/{{$folioencriptado}}/'">Ir a momento consciente.</button>
                 <div class="smCard">
                 </div>
               </div>
@@ -248,7 +252,7 @@ body {
                     <label>Compromisos</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" onclick="window.location.href='../compromiso1/{{$folioencriptado}}/'">Ir a compromisos</button>
+             <button type="button" class="btn btn-primary" <?=($existel200p20010 == '1' && $existel200p20020 == '1'  && $existel200p20030 == '1' && $existel200p20040 == '1' && $existel200p20050 == '0' )?'':'disabled'?> onclick="window.location.href='../compromiso1/{{$folioencriptado}}/'">Ir a compromisos</button>
              <div class="smCard">
                 </div>
               </div>
@@ -271,7 +275,7 @@ body {
                     <label>Espacio de finalización</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" onclick="window.location.href='../actualizacionnovedades/{{$folioencriptado}}/'">Ir a finalización</button>
+             <button type="button" class="btn btn-primary" <?=($existel200p20010 == '1' && $existel200p20020 == '1'  && $existel200p20030 == '1' && $existel200p20040 == '1' && $existel200p20050 == '1'  && $existel200p20060 == '0')?'':'disabled'?> onclick="window.location.href='../actualizacionnovedades/{{$folioencriptado}}/'">Ir a finalización</button>
              <div class="smCard">
                 </div>
               </div>
@@ -282,28 +286,7 @@ body {
 
 
       <!-- 5ta tarjeta -->
-   <!-- 4ta tarjeta -->
-   <div class="swiper-slide" style="display:none">
-        <div class="card_wrapper">
-          <div class="card">
-            <div class="content">
-              <div class="front">
-                <img src="{{ asset('assets/img/iconos/card5.jpg')}}" alt="" />
-              </div>
-              <div class="back">
-                <div class="middle">
-                  <h3>
-                    <label>Encuesta QT</label>
-                  </h3>
-             </div>  
-             <button type="button" class="btn btn-primary" id="encuestaqt" onclick="window.location.href='../cardsqt/{{$foliocodificado}}'" <?=($existel100p10010 == '1' && $existel100p10020 == '1'  && $existel100p10030 == '1' && $existel100p10040 == '1'  )?'':'disabled'?> >Ir a QT</button>
-             <div class="smCard">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       <!-- Agregar más swiper-slide según sea necesario -->
        <!-- Segunda tarjeta -->
@@ -494,7 +477,7 @@ body {
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="saveOrder()">Aceptar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  <?=($existel200p20010 == '1')?'':'onclick="saveOrder()"'?>>Aceptar</button>
       </div>
     </div>
   </div>
@@ -530,48 +513,7 @@ body {
       <div class="modal-header text-center">
         <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="sticky-top">
       </div>
-      <div class="modal-body p-3">
-        <div class="text-center">
-          <label style="font-size:20px;color:#0dcaf0">Resultado de acompañamiento</label>
-          <hr>
-        </div>
-        <div class="container-fluid">
-          <table class="table table-bordered table-vulnerability">
-              <tr>
-                        @foreach ($casillamatriz as $data)
-              @if ($data->casillamatriz == 1  || $data->casillamatriz == 2 || $data->casillamatriz == 4 || $data->casillamatriz == 5)
-                  <td class="alta-vulnerabilidad">
-                      Alta vulnerabilidad (Pobreza extrema en IPM y ingresos):<br>
-                      Esta categoría incluiría las casillas que representan la pobreza extrema en ambos indicadores (IPM y ingresos). Estas situaciones indican condiciones extremadamente precarias donde las personas enfrentan simultáneamente una falta significativa de ingresos y múltiples privaciones.
-                  </td>
-              @endif
-              @if ($data->casillamatriz == 3  || $data->casillamatriz == 6 )
-                  <td class="vulnerabilidad-ingresos">
-                      Vulnerabilidad moderada en ingresos:<br>
-                      Este grupo incluiría las casillas que presentan pobreza en términos de ingresos, pero no en términos de IPM.<br>
-                      Aquí, las personas pueden tener ingresos bajos pero acceso a servicios básicos y oportunidades que los sitúan fuera del umbral de la pobreza multidimensional.
-                  </td> 
-              @endif
-              @if ($data->casillamatriz == 7  || $data->casillamatriz == 8 )
-                  <td class="vulnerabilidad-ipm">
-                      Vulnerabilidad moderada en IPM:<br>
-                      Este grupo incluiría las casillas que representan pobreza en términos de IPM, pero no en términos de ingresos.<br>
-                      Esto puede indicar que las personas tienen ingresos suficientes, pero enfrentan privaciones significativas a nivel multidimensional.
-                  </td>
-              @endif
-              @if ($data->casillamatriz == 9)
-                  <td class="baja-vulnerabilidad">
-                      Baja vulnerabilidad o no vulnerable:<br>
-                      Esta categoría incluiría las casillas que representan la no pobreza en ambos indicadores.<br>
-                      Aquí, las personas tienen suficientes ingresos y acceso a servicios básicos y oportunidades, lo que las sitúa fuera del umbral de la pobreza tanto en términos de ingresos como de privaciones multidimensionales.
-                  </td> 
-              @endif
-          @endforeach
 
-              </tr>
-          </table>
-        </div>
-      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="resultadoencuesta">Aceptar</button>
       </div>

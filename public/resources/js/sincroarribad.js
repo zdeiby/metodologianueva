@@ -1551,7 +1551,7 @@ $.ajax({
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t1_accionmovilizadoraqt', 'Subida base de datos al servidor', '3');
-                    reintentarfuncion(t1_indicador_bl_1d, 't1_saludemocionalqt');
+                    reintentarfuncion(t1_indicador_bl_1d, 't1_indicador_bl_1');
                         console.log(xhr.responseText);
                     }
             })

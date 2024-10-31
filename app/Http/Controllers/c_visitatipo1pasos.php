@@ -20,43 +20,57 @@ class c_visitatipo1pasos extends Controller
         $hashids = new Hashids('', 10); 
         $folioDesencriptado = $hashids->decode($folio)[0];
         $foliocodificado = $folio;
-      $linea='100';
+      $linea='200';
    
-      $paso10010='10010';
-      $existel100p10010 = DB::table('t1_pasosvisita')
+      $paso20010='20010';
+      $existel200p20010 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso10010)
+      ->where('paso', $paso20010)
       ->exists();
-      $paso10020='10020';
-      $existel100p10020 = DB::table('t1_pasosvisita')
+      $paso20020='20020';
+      $existel200p20020 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso10020)
+      ->where('paso', $paso20020)
       ->exists();
-      $paso10030='10030';
-      $existel100p10030 = DB::table('t1_pasosvisita')
+      $paso20030='20030';
+      $existel200p20030 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso10030)
-      ->exists();
-
-      $paso10040='10040';
-      $existel100p10040 = DB::table('t1_pasosvisita')
-      ->where('folio', $folioDesencriptado)
-      ->where('linea', $linea)
-      ->where('paso', $paso10040)
+      ->where('paso', $paso20030)
       ->exists();
 
-      $casilla = DB::table('t1_casillamatriz')
+      $paso20040='20040';
+      $existel200p20040 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
-      ->get();
+      ->where('linea', $linea)
+      ->where('paso', $paso20040)
+      ->exists();
 
-      $integrantehogar = DB::table('t1_principalhogar')
-      ->join('t1_integranteshogar', 't1_principalhogar.idintegrantetitular', '=', 't1_integranteshogar.idintegrante')
-      ->where('t1_principalhogar.folio', $folioDesencriptado)
-      ->select('t1_principalhogar.*', 't1_integranteshogar.*') // Selecciona los campos que desees
-      ->first();
+      $paso20050='20050';
+      $existel200p20050 = DB::table('t1_pasosvisita')
+      ->where('folio', $folioDesencriptado)
+      ->where('linea', $linea)
+      ->where('paso', $paso20050)
+      ->exists();
+
+      $paso20060='20060';
+      $existel200p20060 = DB::table('t1_pasosvisita')
+      ->where('folio', $folioDesencriptado)
+      ->where('linea', $linea)
+      ->where('paso', $paso20060)
+      ->exists();
+
+    //   $casilla = DB::table('t1_casillamatriz')
+    //   ->where('folio', $folioDesencriptado)
+    //   ->get();
+
+    //   $integrantehogar = DB::table('t1_principalhogar')
+    //   ->join('t1_integranteshogar', 't1_principalhogar.idintegrantetitular', '=', 't1_integranteshogar.idintegrante')
+    //   ->where('t1_principalhogar.folio', $folioDesencriptado)
+    //   ->select('t1_principalhogar.*', 't1_integranteshogar.*') // Selecciona los campos que desees
+    //   ->first();
 
 
       $hashids = new Hashids('', 10);
@@ -79,9 +93,10 @@ class c_visitatipo1pasos extends Controller
         'porcentaje_rojo_bi'=>$porcentaje_rojo_bi, 'porcentaje_verde_bi'=>$porcentaje_verde_bi, //'porcentaje_gris_bi'=>$porcentaje_gris_bi,
         'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf, //'porcentaje_gris_bf'=>$porcentaje_gris_bf, 
         'v_visitatipo1pasos',
-        "folioDesencriptado"=>$folioDesencriptado, 'foliocodificado'=>$foliocodificado,  'existel100p10010' => $existel100p10010 ? 1 : 0,
-      'existel100p10020' => $existel100p10020 ? 1 : 0, 'existel100p10030' => $existel100p10030 ? 1 : 0,  'existel100p10040' => $existel100p10040 ? 1 : 0,
-       'casillamatriz'=>$casilla,'integrantehogar' => $integrantehogar]);
+        "folioDesencriptado"=>$folioDesencriptado, 'foliocodificado'=>$foliocodificado,  'existel200p20010' => $existel200p20010 ? 1 : 0,
+      'existel200p20020' => $existel200p20020 ? 1 : 0, 'existel200p20030' => $existel200p20030 ? 1 : 0,  'existel200p20040' => $existel200p20040 ? 1 : 0,
+      'existel200p20050' => $existel200p20050 ? 1 : 0,'existel200p20060' => $existel200p20060 ? 1 : 0,
+      ]);
 
       }
 

@@ -258,7 +258,7 @@
                   method: "GET",
                   dataType: 'JSON',
                   success: function(data) {
-                    redirectToIntegrantes()
+                    agregarpaso();
                     console.log(data);
                   },
                   error: function(xhr, status, error) {
@@ -316,14 +316,28 @@
 // });
 
 
-function agregarpaso(data){
+function agregarpaso(){
+  let folio ='<?= $folio ?>';
+  let linea= '<?= $linea ?>';
+  let paso=  '<?= $paso ?>';
+  let usuario = '{{ Session::get('cedula') }}';
+
+  data = {
+    folio: folio,
+    linea: linea,
+    paso: paso,
+    usuario: usuario
+  };
+
     $.ajax({
       url: '../agregarpasohogargeneral',
       method: 'GET', // Cambiar a GET si estás usando GET
       data: data, // Envía los datos de manera plana
       success: function(response) {
-        $('#finalizarboton').css('display','');
-          alertagood();
+        //$('#finalizarboton').css('display','');
+       redirectToIntegrantes()
+          //alertagood();
+          console.log(data)
       },
       error: function(xhr, status, error) {
           alertabad();
