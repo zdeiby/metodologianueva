@@ -545,12 +545,12 @@ function soloNumeros(e) {
                         <span>Cobertura</span>
                     </a>
                 </li>
-                 <li>
+                 <!-- <li>
                     <a href="{{route('sincronizacion')}}">
                         <ion-icon name="reload-outline"></ion-icon>
                         <span>Sincronización</span>
                     </a>
-                </li> <!--  -->
+                </li>  -->
              <!--   <li>
                     <a href="#">
                         <ion-icon name="document-text-outline"></ion-icon>
