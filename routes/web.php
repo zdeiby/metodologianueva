@@ -20,7 +20,7 @@ use App\Http\Controllers\c_visitatipo1pasos;
 use App\Http\Controllers\accionesmovilizadoras\c_momentoconciente;
 use App\Http\Controllers\c_compromisostipo1;
 use App\Http\Controllers\espaciodefinalizacion\c_finalizacion;
-
+use App\Http\Controllers\c_oportunidades;
 
 //RUTAS GET
 
@@ -164,3 +164,6 @@ Route::post('/guardarfirma',[c_finalizacion::class, 'fc_guardarfirma'])->name('g
 
 Route::get('/finalizarvisita',[c_finalizacion::class,'fc_finalizarvisita'])->name('finalizarvisita');
 
+//oportunidades
+
+Route::get('/oportunidades',[c_oportunidades::class, 'fc_oportunidades'])->name('oportunidades');
