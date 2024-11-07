@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\m_index;
+use App\Models\m_oportunidades;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 
 class c_oportunidades extends Controller
 {
@@ -13,42 +15,124 @@ class c_oportunidades extends Controller
             // Si no existe la sesión 'usuario', redirigir al login
             return redirect()->route('login');
         }
+
+        $modelo = new m_oportunidades();
+       // $oportunidad = $modelo-> m_listadooportunidades();
+       $oportunidad = DB::table('t3_oportunidad')->get();
+       $t1_integranteshogar = $modelo-> m_listadooportunidades();
+
+        $oportunidades = '';
         
-        $oportunidad = DB::table('t3_oportunidad')->get();
+        foreach ($oportunidad as $value) {
+            $oportunidades .= '<tr>
+                <td>'.$value->nombre_oportunidad.'</td>
+                <td>'.$value->descripcion.'</td>
+                <td>'.$value->ruta.'</td>
+                <td>'.$value->fecha_inicio.'</td>
+                <td>'.$value->fecha_limite_acercamiento.'</td>
+                <td class="align-middle text-center">
+                    <label type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="border-bottom: 2px solid black;">Más</label>
+                </td>
+                    <td class="text-center">
+                        <div class="container" >
+                            <select class="selectpicker" onchange="habilitaboton(' . $value->id_oportunidad . ')" id="speaker_' . $value->id_oportunidad . '" name="speaker" data-live-search="true" >
+                                <option selected disabled>Seleccione</option>';
+                                
+                                // Loop para los integrantes del hogar
+                                foreach ($t1_integranteshogar as $value2) {
+                                    if ($value2->id_oportunidad == $value->id_oportunidad) { // Verificar que el integrante pertenezca a esta oportunidad
+                                        $oportunidades .= '<option data-folio="' . $value2->folio . '" 
+                                            data-id="' . $value2->id . '" 
+                                            value="' . $value2->idintegrante . '">' 
+                                            . $value2->nombre1 . ' ' . $value2->nombre2 . ' ' 
+                                            . $value2->apellido1 . ' ' . $value2->apellido2 . 
+                                            '</option>';
+                                    }
+                                }
 
-      $oportunidades='';
-    
-      foreach ($oportunidad as $value) {
-      
-          $oportunidades .='<tr>
-          <td>'.$value->nombre_oportunidad.'</td>
-          <td>'.$value->descripcion_oportunidad.'</td>
-          <td>'.$value->alcance_oportunidad.'</td>
-         <td>'.$value->fecha_inicio.'</td>
-          <td>'.$value->fecha_limite_acercamiento.'</td>
-          
-            <td>
-             <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ver</button></td>
-            </td>
-            <td class="text-center">
-                    <div class="container">
-                <select class="selectpicker" id="speaker" name="speaker" data-live-search="true">
-                    <option selected disabled>Seleccione</option>
-                    <option value="speaker1">Juan Pérez</option>
-                    <option value="speaker2">María López</option>
-                    <option value="speaker3">Carlos García </option>
-                    <option value="speaker4">Ana Torres</option>
-                </select>
-            </div>
-            </td> 
-            <td>
-            <button class="btn btn-primary" type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Acercar</button>
-            </td>
-          ';
-
-      }
+                $oportunidades .= '</select>
+                        </div>
+                </td>
+                <td>
+                    <button class="btn btn-primary" id="acercar'.$value->id_oportunidad.'" onclick="agregaroportunidad(`'.$value->id_oportunidad.'`)" type="button" >Acercar</button>
+                </td>
+            </tr>';
+        }
+        
       return view('v_oportunidades',["oportunidades"=>$oportunidades]);
         
     }
 
+    public function fc_agregaroportunidad(Request $request){
+        $now = Carbon::now();
+        $id = $request->input('id');
+        $folio = $request->input('folio');
+        $idintegrante = $request->input('idintegrante');
+        $idoportunidad = $request->input('idoportunidad');
+        $usuario=$request->input('usuario');
+
+        $data = [
+            'folio' => $folio,
+            'idintegrante' => $idintegrante,
+            'idoportunidad' => $idoportunidad,
+            'usuario' => $usuario,
+            'estado' => 1,
+            'estado_oportunidad' => 1,
+            'sincro' => 0,
+            'updated_at' => $now
+        ];
+
+        $exists = DB::table('t1_oportunidad_integrantes')
+          ->where('id', $id)
+          ->exists();
+
+        if (!$exists) {
+                    // Si no existe, agregar created_at
+                    $data['created_at'] = $now;
+            }
+        
+        DB::table('t1_oportunidad_integrantes')->updateOrInsert(
+            [
+                'id' => $id // Condición para buscar el registro existente
+            ],
+           $data
+        );
+        $insertedId = DB::table('t1_oportunidad_integrantes')->insertGetId($data);
+        $estadooportunidad = DB::table('t1_oportunidad_integrantes')
+        ->where('id', $insertedId)
+        ->where('idoportunidad', $idoportunidad)
+        ->first();
+    
+        if ($estadooportunidad) {
+            $estado = $estadooportunidad->estado_oportunidad;
+        } else {
+            $estado = 0; // O cualquier valor predeterminado
+        }
+  
+        return response()->json(['estado' =>  $estado]);
+    }
+
+    public function fc_veroportunidad(Request $request){
+        $id = $request->input('id');
+        $folio = $request->input('folio');
+        $idintegrante = $request->input('idintegrante');
+        $idoportunidad = $request->input('idoportunidad');
+        $usuario=$request->input('usuario');
+
+        $estadooportunidad = DB::table('t1_oportunidad_integrantes')
+        ->where('id', $id)
+        ->where('idoportunidad', $idoportunidad)
+        ->first();
+    
+    if ($estadooportunidad) {
+        $estado = $estadooportunidad->estado_oportunidad;
+    } else {
+        $estado = 0; // O cualquier valor predeterminado
+    }
+    
+
+        return response()->json(['estado' =>  $estado]);
+    }
+
+    
 }

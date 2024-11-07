@@ -167,3 +167,7 @@ Route::get('/finalizarvisita',[c_finalizacion::class,'fc_finalizarvisita'])->nam
 //oportunidades
 
 Route::get('/oportunidades',[c_oportunidades::class, 'fc_oportunidades'])->name('oportunidades');
+Route::get('/agregaroportunidad',[c_oportunidades::class, 'fc_agregaroportunidad'])->name('agregaroportunidad');
+Route::get('/veroportunidad',[c_oportunidades::class, 'fc_veroportunidad'])->name('veroportunidad');
+
+

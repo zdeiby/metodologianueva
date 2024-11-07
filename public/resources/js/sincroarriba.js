@@ -1642,28 +1642,28 @@ $.ajax({
             })
 }
 
-function t1_v1finalizacion (){
-  actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '1');
-  let tabla= 't1_v1finalizacion';
-$.ajax({
-              url:'./sincroprivaciones',
-              method: "GET",
-              data: { tabla: tabla},  
-              dataType:'JSON',
-              success:function(data){ 
-                actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '2');
-                $('#barracarga').html('76%');
-                $('#barracarga').css('width','76%');                      
+// function t1_v1finalizacion (){
+//   actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '1');
+//   let tabla= 't1_v1finalizacion';
+// $.ajax({
+//               url:'./sincroprivaciones',
+//               method: "GET",
+//               data: { tabla: tabla},  
+//               dataType:'JSON',
+//               success:function(data){ 
+//                 actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '2');
+//                 $('#barracarga').html('76%');
+//                 $('#barracarga').css('width','76%');                      
                
-                reasignacionarriba();                   
-              },
-              error: function(xhr, status, error) {
-                actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '3');
-                    reintentarfuncion(t1_v1actualizacionnovedades, 't1_v1actualizacionnovedades');
-                        console.log(xhr.responseText);
-                    }
-            })
-}
+//                 reasignacionarriba();                   
+//               },
+//               error: function(xhr, status, error) {
+//                 actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '3');
+//                     reintentarfuncion(t1_v1actualizacionnovedades, 't1_v1actualizacionnovedades');
+//                         console.log(xhr.responseText);
+//                     }
+//             })
+// }
 
 
 function t1_v1finalizacion (){

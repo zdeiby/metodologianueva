@@ -8,22 +8,22 @@
 </style>
 
 <div class="container">
-    <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="sticky-top">
+    <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" >
 </div>
 
 <!-- Vista para PC -->
 <div class="container" id="responsivepc">
-    <div class="table-responsive">
-        <table id="example" class="table table-hover table-success  " style="width:100%">
+    <div class="" >
+        <table id="example" class="table table-striped " >
             <thead>
                 <tr>
                     <th>Nombre de la Oportunidad</th>
                     <th>Descripción</th>
-                    <th>Alcance</th>
+                    <th>Ruta</th>
                     <th>Fecha de Inicio</th>
                     <th>Fecha Límite de Acercamiento</th>
-                    <th>Ver Oportunidad</th>
-                    <th>Integrantes aplican</th>
+                    <th class="align-middle text-center">Ver Oportunidad</th>
+                    <th class="align-middle text-center">Integrantes que aplican</th>
                     <th>Acercar oportunidad</th>
                 </tr>
             </thead>
@@ -39,31 +39,134 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Oportunidad número 123</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="modlabel-body container"> <br>
+          <div class="container" >
+            <br>
+            <label><b>Nombre de la Oportunidad:</b> oportunidad</label> <hr>
+                    <label><b>Descripción:</b> 	descripción de oportunidad</label> <hr>
+                    <label><b>Alcance:</b> alcance de la oportunidad</label> <hr>
+                    <label><b>Fecha de Inicio:</b> 2024-10-21 00:00:00</label> <hr>
+                    <label><b>Fecha Límite de Acercamiento:</b> 2024-10-21 00:00:00</label>  <br><br>
+            </div><br>
+
+                    
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Salir</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
 
+<script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Inicializa el selectpicker
         $('.selectpicker').selectpicker();
+        $('.filter-option-inner-inner').css('font-size','13px');
     });
+</script>
+
+<script>
+
+function agregaroportunidad(idoportunidad) {
+    // Obtiene el select específico usando el id de oportunidad
+    let select = document.getElementById(`speaker_${idoportunidad}`);
+    let selectedOption = select.options[select.selectedIndex];
+
+    // Obtén los valores directamente
+    let idintegrante = selectedOption.value;
+    let folio = selectedOption.getAttribute('data-folio');
+
+    console.log("Value:", idintegrante);
+    console.log("Data-Folio:", folio);
+    $.ajax({
+     url: './agregaroportunidad',
+     data: {
+         folio: folio,
+         idintegrante: idintegrante,
+         usuario: '<?= session('documento') ?>',
+         idoportunidad: idoportunidad
+     },
+     method: "GET",
+     dataType: 'JSON',
+     success: function(data) {
+      if (data.estado == '1') {
+          $('#acercar'+idoportunidad).attr('disabled', 'disabled');
+          $('#acercar'+idoportunidad).removeClass('btn btn-primary').addClass('btn btn-danger');
+          $('#acercar'+idoportunidad).html('Acercada');
+          Swal.close();
+      } else {
+          $('#acercar'+idoportunidad).removeAttr('disabled');
+          $('#acercar'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-primary');
+          $('#acercar'+idoportunidad).html('Acercar');
+          Swal.close();
+      }
+     },
+     error: function(xhr, status, error) {
+         console.log(xhr.responseText);
+     }
+ });
+}
+
+function habilitaboton(idoportunidad){
+  Swal.fire({
+    title: 'Cargando',
+    text: 'Por favor espera...',
+    allowOutsideClick: false,
+    didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de carga
+    }
+});
+  let select = document.getElementById(`speaker_${idoportunidad}`);
+    let selectedOption = select.options[select.selectedIndex];
+
+    // Obtén los valores directamente
+    let idintegrante = selectedOption.value;
+    let id = selectedOption.getAttribute('data-id');
+    let folio = selectedOption.getAttribute('data-folio');
+  $.ajax({
+     url: './veroportunidad',
+     data: {
+         folio: folio,
+         idintegrante: idintegrante,
+         idoportunidad: idoportunidad,
+         id:id
+     },
+     method: "GET",
+     dataType: 'JSON',
+     success: function(data) {
+      if (data.estado == '1') {
+          $('#acercar'+idoportunidad).attr('disabled', 'disabled');
+          $('#acercar'+idoportunidad).removeClass('btn btn-primary').addClass('btn btn-danger');
+          $('#acercar'+idoportunidad).html('Acercada');
+          Swal.close();
+      } else {
+          $('#acercar'+idoportunidad).removeAttr('disabled');
+          $('#acercar'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-primary');
+          $('#acercar'+idoportunidad).html('Acercar');
+          Swal.close();
+      }
+
+     },
+     error: function(xhr, status, error) {
+         console.log(xhr.responseText);
+     }
+ });
+}
+      
+
+
+
+
 </script>
 @endsection
