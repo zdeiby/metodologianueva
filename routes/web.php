@@ -18,7 +18,7 @@ use App\Http\Controllers\c_cardsqt;
 use App\Http\Controllers\formularioqt\c_encuestaintegrantesqt;
 use App\Http\Controllers\c_visitatipo1pasos;   
 use App\Http\Controllers\accionesmovilizadoras\c_momentoconciente;
-use App\Http\Controllers\c_compromisostipo1;
+// use App\Http\Controllers\c_compromisostipo1;
 use App\Http\Controllers\espaciodefinalizacion\c_finalizacion;
 use App\Http\Controllers\c_oportunidades;
 use App\Http\Controllers\espaciodefinalizacion\c_oportunidadesvisita;
@@ -145,9 +145,9 @@ Route::get('/guardaraccionesmovilizadoras',[c_momentoconciente::class, 'fc_guard
 Route::get('/bienestarenfamilia/{folio}',[c_momentoconciente::class, 'fc_bienestarenfamilia'])->name('bienestarenfamilia');
 Route::get('/accionmovilizadoraqt/{folio}',[c_momentoconciente::class, 'fc_accionmovilizadoraqt'])->name('accionmovilizadoraqt');
 
-Route::get('/compromiso1/{folio}',[c_compromisostipo1::class, 'fc_compromiso1'])->name('compromiso1');
-Route::get('/compromiso2/{folio}',[c_compromisostipo1::class, 'fc_compromiso2'])->name('compromiso2');
-Route::get('/guardarcompromisos',[c_compromisostipo1::class, 'fc_guardarcompromisos'])->name('guardarcompromisos');
+// Route::get('/compromiso1/{folio}',[c_compromisostipo1::class, 'fc_compromiso1'])->name('compromiso1');
+// Route::get('/compromiso2/{folio}',[c_compromisostipo1::class, 'fc_compromiso2'])->name('compromiso2');
+// Route::get('/guardarcompromisos',[c_compromisostipo1::class, 'fc_guardarcompromisos'])->name('guardarcompromisos');
 Route::get('/agregarpasohogargeneral',[c_momentoconciente::class,'fc_agregarpasohogargeneral'])->name('agregarpasohogargeneral');
 Route::post('/guardarmomentoconciente',[c_momentoconciente::class, 'fc_guardarmomentoconciente'])->name('guardarmomentoconciente');
 Route::get('/verificarpasos',[c_momentoconciente::class, 'fc_verificarpasos'])->name('verificarpasos');

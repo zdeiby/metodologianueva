@@ -113,12 +113,7 @@
             <b> CRITERIOS DEL HOGAR PARA LA PRIOZACION QT.</b> ¿Cuáles son las razones del hogar para sugerir cambios en el orden de abordaje de las categorías del bienestar?.
           </div> -->
 
-          <div class="row">
-            <div class="form-group col-sm" id="divobs">
-                <label for="informe"></label>
-                <textarea class="form-control form-control-sm" name="informe" oninput="validateInput(this)" id="informe" rows="10" cols="20" class="">{{$informe}}</textarea>
-            </div>
-        </div>
+         
 
 <!-- FIRMA -->
 <div id="firmaacepta" class="text-center" >

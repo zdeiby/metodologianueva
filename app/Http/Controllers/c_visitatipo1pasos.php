@@ -55,12 +55,12 @@ class c_visitatipo1pasos extends Controller
       ->where('paso', $paso20050)
       ->exists();
 
-      $paso20060='20060';
-      $existel200p20060 = DB::table('t1_pasosvisita')
-      ->where('folio', $folioDesencriptado)
-      ->where('linea', $linea)
-      ->where('paso', $paso20060)
-      ->exists();
+    //   $paso20060='20060';
+    //   $existel200p20060 = DB::table('t1_pasosvisita')
+    //   ->where('folio', $folioDesencriptado)
+    //   ->where('linea', $linea)
+    //   ->where('paso', $paso20060)
+    //   ->exists();
 
     //   $casilla = DB::table('t1_casillamatriz')
     //   ->where('folio', $folioDesencriptado)
@@ -95,7 +95,7 @@ class c_visitatipo1pasos extends Controller
         'v_visitatipo1pasos',
         "folioDesencriptado"=>$folioDesencriptado, 'foliocodificado'=>$foliocodificado,  'existel200p20010' => $existel200p20010 ? 1 : 0,
       'existel200p20020' => $existel200p20020 ? 1 : 0, 'existel200p20030' => $existel200p20030 ? 1 : 0,  'existel200p20040' => $existel200p20040 ? 1 : 0,
-      'existel200p20050' => $existel200p20050 ? 1 : 0,'existel200p20060' => $existel200p20060 ? 1 : 0,
+      'existel200p20050' => $existel200p20050 ? 1 : 0,  //'existel200p20060' => $existel200p20060 ? 1 : 0,
       ]);
 
       }

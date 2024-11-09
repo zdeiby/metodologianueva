@@ -170,7 +170,7 @@
 
             </div>
             <div class="text-end col">
-            <button class="btn btn-outline-success" type="submit"  >Guardar</button>
+            <!-- <button class="btn btn-outline-success" type="submit"  >Guardar</button> -->
             <div class="btn btn-outline-primary" id="siguiente"  <?=$siguiente?> >Siguiente</div>
             </div> 
           </div>

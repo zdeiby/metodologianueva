@@ -1626,28 +1626,28 @@ $.ajax({
             })
 }
 
-function t1_v1finalizaciond (){
-  actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '1');
-  let tabla= 't1_v1finalizacion';
-$.ajax({
-              url:'./sincroprivacionesd',
-              method: "GET",
-              data: { tabla: tabla},  
-              dataType:'JSON',
-              success:function(data){ 
-                actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '2');
-                $('#barracarga').html('76%');
-                $('#barracarga').css('width','76%');                      
+// function t1_v1finalizaciond (){
+//   actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '1');
+//   let tabla= 't1_v1finalizacion';
+// $.ajax({
+//               url:'./sincroprivacionesd',
+//               method: "GET",
+//               data: { tabla: tabla},  
+//               dataType:'JSON',
+//               success:function(data){ 
+//                 actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '2');
+//                 $('#barracarga').html('76%');
+//                 $('#barracarga').css('width','76%');                      
                
-                reasignacionarribad();                   
-              },
-              error: function(xhr, status, error) {
-                actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '3');
-                    reintentarfuncion(t1_v1actualizacionnovedadesd, 't1_v1actualizacionnovedades');
-                        console.log(xhr.responseText);
-                    }
-            })
-}
+//                 reasignacionarribad();                   
+//               },
+//               error: function(xhr, status, error) {
+//                 actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '3');
+//                     reintentarfuncion(t1_v1actualizacionnovedadesd, 't1_v1actualizacionnovedades');
+//                         console.log(xhr.responseText);
+//                     }
+//             })
+// }
 
 
 function t1_v1finalizaciond (){
@@ -1663,7 +1663,7 @@ $.ajax({
                 $('#barracarga').html('77%');
                 $('#barracarga').css('width','77%');                      
                
-                t1_visitascompromisosd();                   
+                t1_saludemocionalqtd();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '3');
@@ -1673,28 +1673,28 @@ $.ajax({
             })
 }
 
-function t1_visitascompromisosd (){
-  actualizarTabla('t1_visitascompromisos', 'Subida base de datos al servidor', '1');
-  let tabla= 't1_visitascompromisos';
-$.ajax({
-              url:'./sincroprivacionesd',
-              method: "GET",
-              data: { tabla: tabla},  
-              dataType:'JSON',
-              success:function(data){ 
-                actualizarTabla('t1_visitascompromisos', 'Subida base de datos al servidor', '2');
-                $('#barracarga').html('78%');
-                $('#barracarga').css('width','78%');                      
+// function t1_visitascompromisosd (){
+//   actualizarTabla('t1_visitascompromisos', 'Subida base de datos al servidor', '1');
+//   let tabla= 't1_visitascompromisos';
+// $.ajax({
+//               url:'./sincroprivacionesd',
+//               method: "GET",
+//               data: { tabla: tabla},  
+//               dataType:'JSON',
+//               success:function(data){ 
+//                 actualizarTabla('t1_visitascompromisos', 'Subida base de datos al servidor', '2');
+//                 $('#barracarga').html('78%');
+//                 $('#barracarga').css('width','78%');                      
                
-                t1_saludemocionalqtd();                   
-              },
-              error: function(xhr, status, error) {
-                actualizarTabla('t1_visitascompromisos', 'Subida base de datos al servidor', '3');
-                    reintentarfuncion(t1_v1finalizaciond, 't1_v1finalizacion');
-                        console.log(xhr.responseText);
-                    }
-            })
-}
+//                 t1_saludemocionalqtd();                   
+//               },
+//               error: function(xhr, status, error) {
+//                 actualizarTabla('t1_visitascompromisos', 'Subida base de datos al servidor', '3');
+//                     reintentarfuncion(t1_v1finalizaciond, 't1_v1finalizacion');
+//                         console.log(xhr.responseText);
+//                     }
+//             })
+// }
 
 
 
@@ -1717,7 +1717,7 @@ $.ajax({
                 },
                 error: function(xhr, status, error) {
                   actualizarTabla('t1_saludemocionalqt', 'Descarga de tablas desde el servdor', '3');
-                      reintentarfuncion(t1_visitascompromisosd, 't1_pasosvisita');
+                      reintentarfuncion(t1_v1finalizaciond, 't1_v1finalizaciond');
                           console.log(xhr.responseText);
                       }
               })

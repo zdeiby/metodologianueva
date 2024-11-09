@@ -113,6 +113,7 @@ class c_momentoconciente extends Controller
 
              $datos = [
                  'accionmovilizadora' => '',
+                 'compromiso'=>'',
                  'siguiente' => 'style="display:none"', 
             ];
 
@@ -121,6 +122,8 @@ class c_momentoconciente extends Controller
                  // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
                  
                  $datos['accionmovilizadora'] = $registro->accionmovilizadora;
+                 $datos['compromiso'] = $registro->compromiso;
+
 
                  $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
 
@@ -176,6 +179,7 @@ class c_momentoconciente extends Controller
 
              $datos = [
                 'accionmovilizadora' => '',
+                'compromiso'=>'',
                  'siguiente' => 'style="display:none"', 
             ];
 
@@ -183,7 +187,7 @@ class c_momentoconciente extends Controller
              foreach ($informacion as $registro) {
                  // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
                  $datos['accionmovilizadora'] = $registro->accionmovilizadora;
-
+                    $datos['compromiso'] = $registro->compromiso;
                  $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
 
 

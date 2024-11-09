@@ -1,9 +1,9 @@
-@extends('componentes.navlateral')
+<!-- @extends('componentes.navlateral')
 
 @section('title', 'encuestaintegrantes')
 
 @section('content')
-<!-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" >  -->
+
 <style>
   #imagenDinamica:hover{
     border:2px solid gray;
@@ -22,10 +22,7 @@
 
 <div class="container">
     <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class=""  >
-<!-- <form class="d-flex pb-4" role="search">
-      <input class="form-control me-2" type="search" placeholder="Buscar folio o representante" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Buscar</button>
-    </form> -->
+
 
 
         <div class="accordion" id="accordionExample" >
@@ -60,9 +57,7 @@
    <li class="nav-item" role="presentation" style="cursor:pointer">
     <a id="legalqt"  class="nav-link active" >COMPROMISO BIENESTAR PRIORIZADO</a>
   </li>
- <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
-    <a id="financieroqt"  class="nav-link ">ACCION MOVILIZADOR QT</a>
-  </li> -->
+
   
 </ul>
 
@@ -78,10 +73,7 @@
 
 <div id="myTabContent" class="tab-content"><br>
   <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="identificacion">
-    <!-- <div class="text-center"><label for="">Avatar</label></div>
-        <div class="avatar text-center" style="cursor:pointer">
-          <img src="{{asset('avatares/blanco.png')}} " id="imagenDinamica" class="rounded-circle" alt="Avatar" style="width: 150px; height: 150px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        </div> -->
+
 
           <form id="formulario" class="row g-3 was-validated">     
             
@@ -245,4 +237,4 @@ function agregarpaso(data){
     </script>
 
 
-@endsection
+@endsection -->

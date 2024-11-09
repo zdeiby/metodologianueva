@@ -252,7 +252,7 @@ body {
                     <label>Oportunidades</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" <?=($existel200p20010 == '1' && $existel200p20020 == '1'  && $existel200p20030 == '1' && $existel200p20040 == '1' && $existel200p20050 == '0' )?'':'disabled'?> onclick="window.location.href='../ficherodeoportunidades/{{$folioencriptado}}/'">Ir a oportunidades</button>
+            <button type="button" class="btn btn-primary"   onclick="window.location.href='../ficherodeoportunidades/{{$folioencriptado}}/'">Ir a oportunidades</button> 
              <div class="smCard">
                 </div>
               </div>
@@ -275,7 +275,7 @@ body {
                     <label>Espacio de finalización</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" <?=($existel200p20010 == '1' && $existel200p20020 == '1'  && $existel200p20030 == '1' && $existel200p20040 == '1' && $existel200p20050 == '1'  && $existel200p20060 == '0')?'':'disabled'?> onclick="window.location.href='../actualizacionnovedades/{{$folioencriptado}}/'">Ir a finalización</button>
+             <button type="button" class="btn btn-primary" <?=($existel200p20010 == '1' && $existel200p20020 == '1'  && $existel200p20030 == '1' && $existel200p20040 == '1' && $existel200p20050 == '0' )?'':'disabled'?> onclick="window.location.href='../actualizacionnovedades/{{$folioencriptado}}/'">Ir a finalización</button>
              <div class="smCard">
                 </div>
               </div>

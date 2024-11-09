@@ -146,12 +146,16 @@
 
   </div>
 </div>
-
-
-
-
-
-
+<span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">COMPROMISO BIENESTAR EN FAMILIA.</span>
+<div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
+El gestor consigna información cualitativa. A qué se comprometen el hogar en relación a lo trabajado en las acciones movilizadoras en Bienestar en la familia.
+</div>
+<div class="row">
+            <div class="form-group col-sm" id="divobs">
+                <label for="compromiso"></label>
+                <textarea class="form-control form-control-sm" oninput="validateInput(this)" name="compromiso" id="compromiso" rows="10" cols="20" class="">{{$compromiso}}</textarea>
+            </div>
+        </div>
 <br>
 <br>
 <br>
