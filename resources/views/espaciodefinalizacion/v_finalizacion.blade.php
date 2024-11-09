@@ -59,9 +59,9 @@
         <a id="bienestarsaludemocionalqt" class="nav-link">ACTUALIZACIÓN Y/O NOVEDADES
         </a>
       </li>
-      <li class="nav-item" role="presentation" style="cursor:pointer">
+      <!-- <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link" >FICHERO DE OPORTUNIDADES</a>
-      </li>
+      </li> -->
       <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link active">TOMA DE EVIDENCIAS Y CIERRE</a>
       </li>
@@ -106,12 +106,12 @@
 
 
 
-          <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
+          <!-- <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
           <b>PROCEDENCIA E HISTORIA FAMILIAR.</b> ¿De dónde son originarios, hace cuánto viven en el sector y por qué vinieron a vivir allí? <br>
           <b>  RELACIONES Y DINÁMICA FAMILIAR.</b> ¿cómo describen su hogar, cómo definen sus relaciones, cómo se sienten en relación a la vida que llevan juntos?
             PROYECCIÓN. ¿Cuáles son sus metas el corto, mediano y largo plazo?, ¿qué esperan o sueñan en el hogar?<br>
             <b> CRITERIOS DEL HOGAR PARA LA PRIOZACION QT.</b> ¿Cuáles son las razones del hogar para sugerir cambios en el orden de abordaje de las categorías del bienestar?.
-          </div>
+          </div> -->
 
           <div class="row">
             <div class="form-group col-sm" id="divobs">
@@ -239,7 +239,7 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;
+        var url = "../actualizacionnovedades/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
@@ -277,7 +277,7 @@
 
 
       $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedades/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
+    // $('#legalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
     $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
 
       

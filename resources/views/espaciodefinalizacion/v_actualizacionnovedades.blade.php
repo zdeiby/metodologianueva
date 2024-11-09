@@ -56,9 +56,9 @@
         <a id="bienestarsaludemocionalqt" class="nav-link active">ACTUALIZACIÓN Y/O NOVEDADES
         </a>
       </li>
-      <li class="nav-item" role="presentation" style="cursor:pointer">
+      <!-- <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link" >FICHERO DE OPORTUNIDADES</a>
-      </li>
+      </li> -->
       <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
       </li>
@@ -170,7 +170,7 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;
+        var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
@@ -183,7 +183,7 @@
 
 
       $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedades/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
+    // $('#legalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
     $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
 
       

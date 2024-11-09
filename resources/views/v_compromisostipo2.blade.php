@@ -58,7 +58,7 @@
         </a>
       </li>
    <li class="nav-item" role="presentation" style="cursor:pointer">
-    <a id="legalqt"  class="nav-link active" >COMPROMISO BIENESTAR QT</a>
+    <a id="legalqt"  class="nav-link active" >COMPROMISO BIENESTAR PRIORIZADO</a>
   </li>
  <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
     <a id="financieroqt"  class="nav-link ">ACCION MOVILIZADOR QT</a>
@@ -110,7 +110,7 @@
 
 </div>
 <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
-El gestor consigna información cualitativa. A qué se comprometen el hogar en relación a lo trabajado en las acciones movilizadoras en Bienestar en la familia y el bienestar trabajado según lo priorizado en la QT.
+El gestor consigna información cualitativa. A qué se comprometen el hogar en relación a lo trabajado en las acciones movilizadoras y el bienestar trabajado según lo priorizado en la QT.
 </div>
 <div class="row">
             <div class="form-group col-sm" id="divobs">

@@ -53,15 +53,15 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link">ACTUALIZACIÓN Y/O NOVEDADES
+        <a id="bienestarsaludemocionalqt" class="nav-link active">FICHERO DE OPORTUNIDADES (Integrantes)
         </a>
       </li>
       <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="legalqt"  class="nav-link active" >FICHERO DE OPORTUNIDADES</a>
+        <a id="legalqt"  class="nav-link " >FICHERO DE OPORTUNIDADES (Hogar)</a>
       </li>
-      <li class="nav-item" role="presentation"  style="cursor:pointer">
+      <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
-      </li>
+      </li> -->
   
 </ul>
 
@@ -99,7 +99,7 @@
             <input type="text" placeholder="bienestar" class="form-control form-control-sm  " id="bienestar" name="bienestar" value="{{$bienestar}}" >
           </div>
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO CONSCIENTE.</span>
+          <!-- <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO CONSCIENTE.</span> -->
 
 
 
@@ -196,11 +196,11 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;
+        var url = "../ficherodeoportunidadeshogar/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../actualizacionnovedades/:folio";
+           var url = "../rombovisitatipo1/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -208,9 +208,9 @@
     
 
 
-       $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedades/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
+       $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogar/<?= $variable ?>"; window.location.href = url;})
+    // $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
       
 
       

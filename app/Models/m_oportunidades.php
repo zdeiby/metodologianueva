@@ -27,7 +27,8 @@ SELECT
             ih.apellido2, 
             oh.idoportunidad, 
             oh.estado_oportunidad,
-            oh.id, o.id_oportunidad
+             MAX(oh.id) AS id, 
+            o.id_oportunidad
         FROM 
             dbmetodologia.t3_oportunidad AS o
 		JOIN dbmetodologia.t1_indicadores_integrantes as indin
@@ -188,7 +189,7 @@ JOIN
             ih.apellido1, 
             ih.apellido2, 
             oh.idoportunidad,
-            oh.id, 
+            -- oh.id, 
             o.id_oportunidad,
             oh.estado_oportunidad;
     ');

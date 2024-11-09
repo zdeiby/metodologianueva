@@ -227,10 +227,10 @@ body {
               <div class="back">
                 <div class="middle">
                   <h3>
-                    <label>Momento Consciente</label>
+                    <label>Momento movilizador</label>
                   </h3>               
                 </div>
-                <button type="button" id="gestionintegrantes" <?=(($existel200p20010 == '1' && $existel200p20020 == '0' ) || ($existel200p20010 == '1' && $existel200p20030 == '0') || ($existel200p20010 == '1' && $existel200p20040 == '0')  )?'':'disabled'?>  class="btn btn-primary" onclick="window.location.href='../momentoconciente/{{$folioencriptado}}/'">Ir a momento consciente.</button>
+                <button type="button" id="gestionintegrantes" <?=(($existel200p20010 == '1' && $existel200p20020 == '0' ) || ($existel200p20010 == '1' && $existel200p20030 == '0') || ($existel200p20010 == '1' && $existel200p20040 == '0')  )?'':'disabled'?>  class="btn btn-primary" onclick="window.location.href='../momentoconciente/{{$folioencriptado}}/'">Ir a momento movilizador.</button>
                 <div class="smCard">
                 </div>
               </div>
@@ -249,10 +249,10 @@ body {
               <div class="back">
                 <div class="middle">
                   <h3>
-                    <label>Compromisos</label>
+                    <label>Oportunidades</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" <?=($existel200p20010 == '1' && $existel200p20020 == '1'  && $existel200p20030 == '1' && $existel200p20040 == '1' && $existel200p20050 == '0' )?'':'disabled'?> onclick="window.location.href='../compromiso1/{{$folioencriptado}}/'">Ir a compromisos</button>
+             <button type="button" class="btn btn-primary" <?=($existel200p20010 == '1' && $existel200p20020 == '1'  && $existel200p20030 == '1' && $existel200p20040 == '1' && $existel200p20050 == '0' )?'':'disabled'?> onclick="window.location.href='../ficherodeoportunidades/{{$folioencriptado}}/'">Ir a oportunidades</button>
              <div class="smCard">
                 </div>
               </div>

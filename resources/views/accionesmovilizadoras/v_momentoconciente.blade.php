@@ -62,7 +62,7 @@
     <a id="legalqt"  class="nav-link " >ACCIÓN MOVILIZADORA BIENESTAR EN LA FAMILIA</a>
   </li>
   <li class="nav-item" role="presentation"  style="cursor:pointer">
-    <a id="financieroqt"  class="nav-link ">ACCION MOVILIZADOR QT</a>
+    <a id="financieroqt"  class="nav-link ">ACCIÓN MOVILIZADORA BIENESTAR PRIORIZADO</a>
   </li>
   
 </ul>

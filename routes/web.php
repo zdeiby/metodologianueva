@@ -21,6 +21,8 @@ use App\Http\Controllers\accionesmovilizadoras\c_momentoconciente;
 use App\Http\Controllers\c_compromisostipo1;
 use App\Http\Controllers\espaciodefinalizacion\c_finalizacion;
 use App\Http\Controllers\c_oportunidades;
+use App\Http\Controllers\espaciodefinalizacion\c_oportunidadesvisita;
+
 
 //RUTAS GET
 
@@ -158,7 +160,6 @@ Route::get('/verificarpasos',[c_momentoconciente::class, 'fc_verificarpasos'])->
 Route::get('/finalizacion/{folio}',[c_finalizacion::class, 'fc_finalizacion'])->name('finalizacion');
 Route::get('/guardarfinalizaciones',[c_finalizacion::class, 'fc_guardarfinalizaciones'])->name('guardarfinalizaciones');
 Route::get('/actualizacionnovedades/{folio}',[c_finalizacion::class, 'fc_actualizacionnovedades'])->name('actualizacionnovedades');
-Route::get('/ficherodeoportunidades/{folio}',[c_finalizacion::class, 'fc_ficherodeoportunidades'])->name('ficherodeoportunidades');
 Route::get('/guardaractualizacionynovedadeshogar',[c_finalizacion::class, 'fc_guardaractualizacionynovedadeshogar'])->name('guardaractualizacionynovedadeshogar');
 Route::post('/guardarfirma',[c_finalizacion::class, 'fc_guardarfirma'])->name('guardarfirma');
 
@@ -170,4 +171,5 @@ Route::get('/oportunidades',[c_oportunidades::class, 'fc_oportunidades'])->name(
 Route::get('/agregaroportunidad',[c_oportunidades::class, 'fc_agregaroportunidad'])->name('agregaroportunidad');
 Route::get('/veroportunidad',[c_oportunidades::class, 'fc_veroportunidad'])->name('veroportunidad');
 
-
+Route::get('/ficherodeoportunidades/{folio}',[c_oportunidadesvisita::class, 'fc_ficherodeoportunidades'])->name('ficherodeoportunidades');
+Route::get('/ficherodeoportunidadeshogar/{folio}',[c_oportunidadesvisita::class, 'fc_ficherodeoportunidadeshogar'])->name('ficherodeoportunidadeshogar');
