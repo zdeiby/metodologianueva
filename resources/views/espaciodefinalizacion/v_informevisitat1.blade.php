@@ -53,11 +53,11 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">ACTUALIZACIÓN Y/O NOVEDADES
+        <a id="bienestarsaludemocionalqt" class="nav-link ">ACTUALIZACIÓN Y/O NOVEDADES
         </a>
       </li>
        <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="legalqt"  class="nav-link" >INFORME DE LA VISITA</a>
+        <a id="legalqt"  class="nav-link active" >INFORME DE LA VISITA</a>
       </li>
       <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
@@ -99,22 +99,22 @@
 
           </div>
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Actualización y/o Novedades del hogar.</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">INFORME</span>
 
 
 
 
           <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
-          <b>PROCEDENCIA E HISTORIA FAMILIAR.</b> ¿De dónde son originarios, hace cuánto viven en el sector y por qué vinieron a vivir allí? <br>
-          <b>  RELACIONES Y DINÁMICA FAMILIAR.</b> ¿cómo describen su hogar, cómo definen sus relaciones, cómo se sienten en relación a la vida que llevan juntos?
-            PROYECCIÓN. ¿Cuáles son sus metas el corto, mediano y largo plazo?, ¿qué esperan o sueñan en el hogar?<br>
-            <b> CRITERIOS DEL HOGAR PARA LA PRIOZACION QT.</b> ¿Cuáles son las razones del hogar para sugerir cambios en el orden de abordaje de las categorías del bienestar?.
+            <b>INFORME CUALITATIVO DEL GESTOR SOBRE EL DESARROLLO DE LA VISITA AL HOGAR.</b> Este cuadro permite al gestor detallar el desempeño y resultados obtenidos durante la visita al hogar, proporcionando una visión cualitativa del proceso. <br>
+            <b>DESCRIPCIÓN DEL PROCESO.</b> En este espacio, el gestor puede describir de manera libre y detallada cómo se llevó a cabo la visita, los aspectos positivos y áreas de mejora identificadas, así como cualquier circunstancia o interacción relevante que haya influido en el desarrollo de la misma. <br>
+            <b>PROPÓSITO.</b> El objetivo es que el gestor pueda reflejar su experiencia de manera clara, permitiendo una evaluación más completa del impacto de la visita y facilitando la planificación de acciones futuras. 
           </div>
+
 
           <div class="row">
             <div class="form-group col-sm" id="divobs">
                 <label for="actualizacion"></label>
-                <textarea class="form-control form-control-sm" name="actualizacion" id="actualizacion" oninput="validateInput(this)" rows="10" cols="20" class="" required>{{$actualizacion}}</textarea>
+                <textarea class="form-control form-control-sm" name="informe" id="informe" oninput="validateInput(this)" rows="10" cols="20" class="" required>{{$informe}}</textarea>
             </div>
         </div>
 
@@ -170,11 +170,11 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../informevisitat1/<?= $variable ?>"; window.location.href = url;
+        var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../rombovisitatipo1/:folio";
+           var url = "../actualizacionnovedades/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }

@@ -164,6 +164,8 @@ Route::get('/guardaractualizacionynovedadeshogar',[c_finalizacion::class, 'fc_gu
 Route::post('/guardarfirma',[c_finalizacion::class, 'fc_guardarfirma'])->name('guardarfirma');
 
 Route::get('/finalizarvisita',[c_finalizacion::class,'fc_finalizarvisita'])->name('finalizarvisita');
+Route::get('/informevisitat1/{folio}',[c_finalizacion::class,'fc_informevisitat1'])->name('informevisitat1');
+
 
 //oportunidades
 

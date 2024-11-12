@@ -153,7 +153,7 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
 <div class="row">
             <div class="form-group col-sm" id="divobs">
                 <label for="compromiso"></label>
-                <textarea class="form-control form-control-sm" oninput="validateInput(this)" name="compromiso" id="compromiso" rows="10" cols="20" class="">{{$compromiso}}</textarea>
+                <textarea class="form-control form-control-sm" oninput="validateInput(this)" name="compromiso" id="compromiso" rows="10" cols="20" class="" required>{{$compromiso}}</textarea>
             </div>
         </div>
 <br>

@@ -67,6 +67,51 @@ class c_finalizacion extends Controller
     }
 
 
+
+    public function fc_informevisitat1(Request $request,$folio){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
+
+         $herramientas = new m_herramientas();
+
+            $tabla = 't1_informesvisitas';
+            $hashids = new Hashids('', 10); 
+            $encodedFolio = $hashids->decode($folio);
+            $linea= 200;
+            $paso= 20050;
+           
+            $informacion = DB::table($tabla)
+                            ->where('folio', $encodedFolio)
+                            ->where('linea', $linea)
+                            ->where('paso', $paso)
+                            ->get();
+
+             $datos = [
+                 'informe' => '',
+                 'siguiente' => 'style="display:none"', 
+            ];
+
+            
+             foreach ($informacion as $registro) {
+                 // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
+                 
+                 $datos['informe'] = $registro->informe;
+
+                 $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
+
+
+             }
+
+
+            return view('espaciodefinalizacion/v_informevisitat1',  $datos,['variable'=>$folio,
+                                                                    'folio'=>$encodedFolio[0],
+                                                                     'tabla'=>$tabla, 'linea'=>$linea,
+                                                                     'paso'=>$paso,
+                                                                    
+                                                                    ]);
+    }
    
 
     public function fc_finalizacion(Request $request,$folio){

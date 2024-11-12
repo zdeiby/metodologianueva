@@ -10,13 +10,14 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Hashids\Hashids;
+use App\Models\m_herramientas;
 
 
 class c_encuestaintegrantesqt extends Controller
 {
 
 
-
+   
 // IR A LA VISTA BIENESTAR FISICO Y EMOCIONAL
 
     public function fc_bienestarsaludemocionalqt(Request $request,$folio, $integrante, $vista){

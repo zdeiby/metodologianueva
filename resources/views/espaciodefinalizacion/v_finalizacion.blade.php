@@ -59,9 +59,9 @@
         <a id="bienestarsaludemocionalqt" class="nav-link">ACTUALIZACIÓN Y/O NOVEDADES
         </a>
       </li>
-      <!-- <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="legalqt"  class="nav-link" >FICHERO DE OPORTUNIDADES</a>
-      </li> -->
+       <li class="nav-item" role="presentation" style="cursor:pointer">
+        <a id="legalqt"  class="nav-link" >INFORME DE LA VISITA</a>
+      </li> 
       <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link active">TOMA DE EVIDENCIAS Y CIERRE</a>
       </li>
@@ -234,7 +234,7 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../actualizacionnovedades/<?= $variable ?>"; window.location.href = url;
+        var url = "../informevisitat1/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;

@@ -18,7 +18,7 @@ class m_index extends Model
     {
         // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
         $resultado = DB::select('
-          SELECT 
+             SELECT 
         ph.folio, 
         ph.idintegrantetitular, 
         inte.nombre1, 
@@ -31,6 +31,7 @@ class m_index extends Model
         barr.barriovereda as barrio, 
         com.comuna as comuna,
         hgeo.direccion as direccion,
+        csm.casillamatriz,
         COALESCE(
         CASE 
             WHEN hvrdas.estado = 1 THEN CONCAT(tvrn.descripcion, " finalizada")
@@ -69,9 +70,10 @@ class m_index extends Model
                 ON ph.folio = hvrdas.folio AND hvrdas.linea = ultima_visita.max_linea
             LEFT JOIN 
                 t_visitasrealizadasnombres tvrn
-                ON hvrdas.linea = tvrn.linea;
-
-                    
+                ON hvrdas.linea = tvrn.linea
+            LEFT JOIN 
+				t1_casillamatriz csm ON ph.folio = csm.folio 
+                ;       
         ' );
 
         return $resultado;

@@ -8,6 +8,7 @@ use App\Models\m_cards;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Hashids\Hashids;
+use App\Models\m_herramientas;
 
 class c_cardsqt extends Controller
 {
@@ -27,17 +28,56 @@ class c_cardsqt extends Controller
       ->where('folio',$decodeFolio[0])
       ->first();
 
+
+      $herramientas = new m_herramientas();
+
+      $tabla = 't1_v1finalizacion';
+      $hashids = new Hashids('', 10); 
+      $encodedFolio = $decodeFolio[0];
+      $linea= 100;
+      $paso= 10050;
+     
+     
+      $informacion = DB::table($tabla)
+                      ->where('folio', $encodedFolio)
+                      ->get();
+
+       $datos = [
+          
+           'url_firma'=>'',
+           'siguiente' => 'style="display:none"', 
+      ];
+
+      
+       foreach ($informacion as $registro) {
+           // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
+
+           
+           $datos['url_firma'] = $registro->url_firma;
+
+
+           $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
+
+
+       }
+
+
+
+
+
+
     // calculo de indicadores para BSE
     include(app_path('Http/Complementoscontrollers/calculodeindicadoresporhogar.php'));
     //
 
-        return view('v_cardsqt',["variable"=>$decodeFolio[0], "folioencriptado"=>$folio,'jefes' => $jefes, 'foliobycript'=>$foliobycript, 'indicadoreshogar'=>$indicadoreshogar,
+        return view('v_cardsqt',$datos,["variable"=>$decodeFolio[0], "folioencriptado"=>$folio,'jefes' => $jefes, 'foliobycript'=>$foliobycript, 'indicadoreshogar'=>$indicadoreshogar,
         'porcentaje_rojo_bse'=>$porcentaje_rojo_bse, 'porcentaje_verde_bse'=>$porcentaje_verde_bse, //'porcentaje_gris_bse'=>$porcentaje_gris_bse,
         'porcentaje_rojo_bl'=>$porcentaje_rojo_bl, 'porcentaje_verde_bl'=>$porcentaje_verde_bl, //'porcentaje_gris_bl'=>$porcentaje_gris_bl,
         'porcentaje_rojo_bef'=>$porcentaje_rojo_bef, 'porcentaje_verde_bef'=>$porcentaje_verde_bef,// 'porcentaje_gris_bef'=>$porcentaje_gris_bef,
         'porcentaje_rojo_bi'=>$porcentaje_rojo_bi, 'porcentaje_verde_bi'=>$porcentaje_verde_bi, //'porcentaje_gris_bi'=>$porcentaje_gris_bi,
         'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf, //'porcentaje_gris_bf'=>$porcentaje_gris_bf
-
+        'tabla'=>$tabla,'linea'=>$linea,
+        'paso'=>$paso
 
     ]);
       }

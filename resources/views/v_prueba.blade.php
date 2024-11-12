@@ -66,7 +66,10 @@
                     <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                      <span role="status">Cargando...</span>
                 </button>
-                <button type="submit" class="btn btn-primary" onclick="habeasdata('{{ encrypt($value->folio) }}','{{$value->folio}}' )" id="{{$value->folio.'boton'}}">Realizar Gestión</button></td>
+                @if ($value->casillamatriz == 9)<button type="submit" class="btn btn-success" >Baja vulnerabilidad</button>
+                @else <button type="submit" class="btn btn-primary" onclick="habeasdata('{{ encrypt($value->folio) }}','{{$value->folio}}' )" id="{{$value->folio.'boton'}}">Realizar Gestión</button>
+                @endif
+              </td>
               
             </tr>
       @endforeach    
@@ -127,7 +130,14 @@
         <strong>Linea: </strong>Triage<br>
         <hr>
 <div class="text-center">
-      <form method="GET" action="rombo/{{encrypt($value->folio)}}"><input type="hidden" name="folio" value="{{encrypt($value->folio)}}"><button type="submit" class="btn btn-primary"  id="l1e1">Realizar visita</button></form>
+
+      @if ($value->casillamatriz == 9)<button type="submit" class="btn btn-success" >Baja vulnerabilidad</button>
+                @else 
+                <form method="GET" action="rombo/{{encrypt($value->folio)}}"><input type="hidden" name="folio" value="{{encrypt($value->folio)}}">
+                <button type="submit" class="btn btn-primary" onclick="habeasdata('{{ encrypt($value->folio) }}','{{$value->folio}}' )" id="{{$value->folio.'boton'}}">Realizar Gestión</button>
+                </form>
+                @endif
+    
  </div>           
       </div>
     </div>
