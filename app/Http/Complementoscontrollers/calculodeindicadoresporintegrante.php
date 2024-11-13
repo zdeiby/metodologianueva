@@ -34,13 +34,16 @@ $indicadores_bl_integrante = [
 ];
 
 
-$rojo_bl_integrante = count(array_filter($indicadores_bl_integrante, fn($indicador) => $indicador == 0));
-$verde_bl_integrante = count(array_filter($indicadores_bl_integrante, fn($indicador) => $indicador == 1));
+
+$rojo_bl_integrante = count(array_filter($indicadores_bl_integrante, fn($indicador) => $indicador == 0)); //0
+$verde_bl_integrante = count(array_filter($indicadores_bl_integrante, fn($indicador) => $indicador == 1)); //3
 //$gris_bl_integrante = count(array_filter($indicadores_bl_integrante, fn($indicador) => $indicador == 2));
 
-$total_indicadores_bl_integrante = $rojo_bl_integrante+$verde_bl_integrante+0.0001;
 
-$porcentaje_rojo_bl_integrante = round(($rojo_bl_integrante / $total_indicadores_bl_integrante) * 100);
+
+$total_indicadores_bl_integrante = $rojo_bl_integrante+$verde_bl_integrante+0.0001;  // 3.0001
+
+$porcentaje_rojo_bl_integrante = round(($rojo_bl_integrante / $total_indicadores_bl_integrante) * 100);  // 99.9%
 $porcentaje_verde_bl_integrante = round(($verde_bl_integrante / $total_indicadores_bl_integrante) * 100);
 //$porcentaje_gris_bl_integrante = round(($gris_bl_integrante / $total_indicadores_bl_integrante) * 100);
 
