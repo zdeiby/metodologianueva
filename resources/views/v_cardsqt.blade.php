@@ -3,7 +3,16 @@
 @section('title', 'CATEGORIAS DE BIENESTAR HERRAMIENTA QT')
 
 @section('content')
+<style>
 
+
+#draw-canvas {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #000;
+}
+
+</style>
 <div class="container">
 <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt=""   >
 <!-- <form class="d-flex pb-4" role="search">
@@ -277,8 +286,8 @@
   
   
       <div class="contenedor">
-          <div class="col-sm">
-              <img id="draw-image" src="<?= $url_firma ?>" alt="" />
+          <div class="col-sm" >
+              <img id="draw-image" width="80%" src="<?= $url_firma ?>" alt="" />
           </div>
       </div>
   </div>

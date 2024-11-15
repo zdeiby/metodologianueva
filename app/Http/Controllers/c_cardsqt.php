@@ -39,8 +39,11 @@ class c_cardsqt extends Controller
      
      
       $informacion = DB::table($tabla)
-                      ->where('folio', $encodedFolio)
-                      ->get();
+      ->where('folio', $encodedFolio)
+      ->where('linea', $linea)
+      ->where('paso', $paso)
+
+      ->get();
 
        $datos = [
           
@@ -53,7 +56,7 @@ class c_cardsqt extends Controller
            // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
 
            
-           $datos['url_firma'] = $registro->url_firma;
+           $datos['url_firma'] ='data:image/jpeg;base64,' . base64_encode($registro->url_firma);
 
 
            $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
