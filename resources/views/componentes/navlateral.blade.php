@@ -743,7 +743,7 @@ cloud.addEventListener("click",()=>{
 
 function validateInput(textarea) {
     // Expresión regular para permitir solo letras con tildes, comas, puntos, punto y coma, guiones, diagonales y saltos de línea
-    const regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ,.;/\-\n]*$/;
+    const regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ,.;/\-¿?¡!\n]*$/;
 
     textarea.value = textarea.value.toUpperCase();
     // Validar el texto ingresado

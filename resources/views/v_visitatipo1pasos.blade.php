@@ -1,17 +1,13 @@
-
-<link rel="shortcut icon" href="../favicon.ico">
-   
-    <link rel="stylesheet" href="{{ asset('/assets/css/swiper-bundle.min.css') }}">
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script> -->
-    <script src="{{ asset('/assets/js/sortable.min.js') }}"></script>
-
 @extends('componentes.navlateral')
 
 @section('title', 'Visita tipo 1')
 
 @section('content')
-  
+ 
+    <link rel="stylesheet" href="{{ asset('/assets/css/swiper-bundle.min.css') }}">
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script> -->
+    <script src="{{ asset('/assets/js/Sortable.min.js') }}"></script>  
 <div class="container">
 <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="isticky-top"  > <hr>
 
