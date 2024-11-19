@@ -101,7 +101,7 @@ ol, ul {
     width: 250px;
     height: 100%;
     overflow: hidden;
-    padding: 20px 15px;
+    padding: 20px 10px;
     background-color: #0dcaf0;
     transition: width 0.5s ease,background-color 0.3s ease,left 0.5s ease;
     z-index: 50;
@@ -114,7 +114,7 @@ ol, ul {
     }
 }
 .barra-lateral span{
-    width: 100px;
+    width: 148px;
     white-space: nowrap;
     font-size: 18px;
     text-align: left;
@@ -124,6 +124,7 @@ ol, ul {
 .barra-lateral span.oculto{
     opacity: 0;
     width: 0;
+    display:none;
 }
 
 /*------------> Nombre de la página */
@@ -180,28 +181,35 @@ ol, ul {
 .barra-lateral .navegacion::-webkit-scrollbar-thumb:hover{
     background-color: var(--color-scroll-hover);
 }
-.barra-lateral .navegacion li{  
-    list-style: none;
-    display: flex;
+ .barra-lateral .navegacion li{  
+ 
+
     margin-bottom: 5px;
-}
+} 
 .barra-lateral .navegacion a{
-    width: 100%;
+    width: 87%;
     height: 45px;
     display: flex;
     align-items: center;
     text-decoration: none;
     border-radius: 10px;
     color: var(--color-texto-menu);
+   
 }
 .barra-lateral .navegacion a:hover{
     background-color: var(--color-menu-hover);
-    color: var(--color-menu-hover-texto);
+    color:#0dcaf0 !important;
+} 
+
+/* Ocultar el triángulo cuando el menú esté comprimido */
+.barra-lateral.mini-barra-lateral .dropdown-toggle::after {
+    display: none !important; /* Oculta el triángulo */
 }
-.barra-lateral .navegacion ion-icon{
-    min-width: 50px;
-    font-size: 20px;
-}
+
+
+
+
+
 
 /*-----------------> Linea*/
 .barra-lateral .linea{
@@ -211,58 +219,9 @@ ol, ul {
     background-color: var(--color-linea);
 }
 
-/*----------------> Modo Oscuro*/
-.barra-lateral .modo-oscuro{
-    width: 100%;
-    margin-bottom: 80px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-.barra-lateral .modo-oscuro .info{
-    width: 150px;
-    height: 45px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    color: var(--color-texto-menu);
-}
-.barra-lateral .modo-oscuro ion-icon{
-
-    width: 50px;
-    font-size: 20px;
-}
 
 /*--->switch*/
-.barra-lateral .modo-oscuro .switch{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 50px;
-    height: 45px;
-    cursor: pointer;
-}
-.barra-lateral .modo-oscuro .base{
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 35px;
-    height: 20px;
-    background-color: var(--color-switch-base);
-    border-radius: 50px;
-}
-.barra-lateral .modo-oscuro .circulo{
-    position: absolute;
-    width: 18px;
-    height: 90%;
-    background-color: var(--color-switch-circulo);
-    border-radius: 50%;
-    left: 2px;
-    transition: left 0.5s ease;
-}
-.barra-lateral .modo-oscuro .circulo.prendido{
-    left: 15px;
-}
+
 
 /*---------------> Usuario*/
 .barra-lateral .usuario{
@@ -531,68 +490,63 @@ function soloNumeros(e) {
     color: var(--color-menu-active-texto);
 }
 </style>
-        <nav class="navegacion">
-            <ul>
+<nav class="bg-primary text-white vh-100 navegacion" style="background:#0dcaf0 !important; font-size:20px; " id="sidebar">
+    <ul class="nav flex-column ">
+        <li class="nav-item">
+            <a href="{{ route('index') }}" class="{{ request()->routeIs('index') ? 'inbox' : '' }} nav-link text-white d-flex align-items-center">
+                <ion-icon name="home-outline"></ion-icon>
+                <span class="nav-text ms-2">Inicio</span>
+            </a>
+        </li>
+        <li class="nav-item pasarhover">
+            <a href="{{route('prueba')}}" class="{{ request()->routeIs('prueba') ? 'inbox' : '' }} nav-link text-white d-flex align-items-center">
+                <ion-icon name="information-circle-outline"></ion-icon>
+                <span class="nav-text ms-2">Cobertura</span>
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a href="{{route('oportunidades')}}" class="{{ request()->routeIs('oportunidades') ? 'inbox' : '' }} nav-link dropdown-toggle text-white d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#submenuOportunidades" aria-expanded="false">
+                <ion-icon name="people-outline"></ion-icon>
+                <span class="nav-text ms-2">Oportunidades</span>
+            </a>
+            <ul class="collapse list-unstyled ps-3" id="submenuOportunidades">
                 <li>
-                    <a id="" href="{{ route('index') }}" class="{{ request()->routeIs('index') ? 'inbox' : '' }}">
-                        <ion-icon name="home-outline"></ion-icon>
-                        <span>Inicio</span>
+                    <a href="#" class="nav-link text-white d-flex align-items-center">
+                    <ion-icon name="people-circle-outline"></ion-icon>
+                        <span class="nav-text ms-2">Integrantes</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('prueba')}}" class="{{ request()->routeIs('prueba') ? 'inbox' : '' }}">
-                        <ion-icon name="information-circle-outline"></ion-icon>
-                        <span>Cobertura</span>
+                    <a href="#" class="nav-link text-white d-flex align-items-center">
+                    <ion-icon name="home-outline"></ion-icon>
+                    <span class="nav-text ms-2">Hogar</span>
                     </a>
                 </li>
-              <!--<li>
-                    <a href="{{route('oportunidades')}}">
-                        <ion-icon name="people-outline"></ion-icon>
-                        <span>Oportunidades</span>
-                    </a>
-                </li>    -->
-                 <!-- <li>
-                    <a href="{{route('sincronizacion')}}">
-                        <ion-icon name="reload-outline"></ion-icon>
-                        <span>Sincronización</span>
-                    </a>
-                </li>  -->
-             <!--   <li>
-                    <a href="#">
-                        <ion-icon name="document-text-outline"></ion-icon>
-                        <span>Solicitar Edición</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ion-icon name="cog-outline"></ion-icon>
-                        <span>Configuración</span>
-                    </a>
-                </li> -->
-                <li>
-                    <a href="#">
-                        <ion-icon name="log-out-outline"></ion-icon>
-                        <span><label for="cerrar" onclick="logout()">Cerrar Sesión</label></span>
-                    </a>
-                </li>
-                <!-- <li>
-                    <a href="#">
-                        <ion-icon name="trash-outline"></ion-icon>
-                        <span>Trash</span>
-                    </a>
-                </li> <br><br><div class="linea"></div>-->
-                <!-- <a onclick="window.history.back();">
-                        <ion-icon name="arrow-back-circle-outline"></ion-icon>
-                        <span><label for="volver" >Volver</label></span>
-                    </a> -->
             </ul>
-            
-        </nav>
-        <div class="text-center text-light">
+        </li>
+        <li class="nav-item">
+            <a href="{{route('sincronizacion')}}" class="{{ request()->routeIs('sincronizacion') ? 'inbox' : '' }} nav-link text-white d-flex align-items-center">
+                <ion-icon name="reload-outline"></ion-icon>
+                <span class="nav-text ms-2">Sincronización</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link text-white d-flex align-items-center">
+                <ion-icon name="log-out-outline"></ion-icon>
+                <span class="nav-text ms-2">Cerrar Sesión</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+        <!-- <div class=" text-light">
             <label for="" style="font-size:12px"><b>GESTOR: {{session('nombre')}}</b></label>
-        </div>
+        </div> -->
        
         <div>
+        <label for="" class="d-flex" style="font-size:11px;display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white"><b>GESTOR: {{session('nombre')}}</b></label>
+
             <div class="linea"></div>
     
             <div class="modo-oscuro" style="display:none">
@@ -609,6 +563,7 @@ function soloNumeros(e) {
                 </div>
                 
             </div>
+            
                 <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.1.5</label>
             <div class="usuario" style="display:none">
                 <img src="" alt="">

@@ -45,7 +45,7 @@ class c_oportunidades extends Controller
                                             data-id="' . $value2->id . '" 
                                             value="' . $value2->idintegrante . '">' 
                                             . $value2->nombre1 . ' ' . $value2->nombre2 . ' ' 
-                                            . $value2->apellido1 . ' ' . $value2->apellido2 . 
+                                            . $value2->apellido1 . ' ' . $value2->apellido2 . ' - FOLIO: ' . $value2->folio . 
                                             '</option>';
                                     }
                                 }
