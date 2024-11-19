@@ -524,12 +524,12 @@ function soloNumeros(e) {
                 </li>
             </ul>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a href="{{route('sincronizacion')}}" class="{{ request()->routeIs('sincronizacion') ? 'inbox' : '' }} nav-link text-white d-flex align-items-center">
                 <ion-icon name="reload-outline"></ion-icon>
                 <span class="nav-text ms-2">Sincronización</span>
             </a>
-        </li>
+        </li> -->
         <li class="nav-item">
             <a href="#" class="nav-link text-white d-flex align-items-center">
                 <ion-icon name="log-out-outline"></ion-icon>

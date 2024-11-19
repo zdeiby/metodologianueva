@@ -31,7 +31,7 @@
         }
     </style>
   
-<div class="container">
+<!-- <div class="container">
 <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="isticky-top"  >
   <hr>
   <div class="row align-items-center">
@@ -51,7 +51,7 @@
       </div>
     </div>
 
-  <hr>
+  <hr> -->
 
 
 
