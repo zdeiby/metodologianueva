@@ -170,6 +170,7 @@ Route::get('/informevisitat1/{folio}',[c_finalizacion::class,'fc_informevisitat1
 //oportunidades
 
 Route::get('/oportunidades',[c_oportunidades::class, 'fc_oportunidades'])->name('oportunidades');
+Route::get('/oportunidadeshogar',[c_oportunidades::class, 'fc_oportunidadeshogar'])->name('oportunidadeshogar');
 Route::get('/agregaroportunidad',[c_oportunidades::class, 'fc_agregaroportunidad'])->name('agregaroportunidad');
 Route::get('/veroportunidad',[c_oportunidades::class, 'fc_veroportunidad'])->name('veroportunidad');
 

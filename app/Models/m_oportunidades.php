@@ -30,7 +30,7 @@ SELECT
              MAX(oh.id) AS id, 
             o.id_oportunidad
         FROM 
-            dbmetodologia.t3_oportunidad AS o
+            dbmetodologia.t1_oportunidad AS o
 		JOIN dbmetodologia.t1_indicadores_integrantes as indin
         ON (
         (o.indicador_bse_1 = 1 AND indin.indicadorintegrantebse_1 = 0)  
@@ -197,5 +197,189 @@ JOIN
 
         return $resultado;
     }
+
+
+    public function m_listadooportunidadeshogar()
+    {
+        // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
+        $resultado = DB::select('   
+SELECT 
+            ih.idintegrante, 
+            ih.folio, 
+            ih.nombre1, 
+            ih.nombre2, 
+            ih.apellido1, 
+            ih.apellido2, 
+            oh.idoportunidad, 
+            oh.estado_oportunidad,
+             MAX(oh.id) AS id, 
+            o.id_oportunidad
+        FROM 
+            dbmetodologia.t1_oportunidad AS o
+	JOIN dbmetodologia.t1_indicadores_hogar as indin
+      ON (
+    (o.indicador_bse_1 = 1 AND indin.indicadorbse_1 = 0)  
+    OR (o.indicador_bse_1 = 2)  
+
+    OR (o.indicador_bse_2 = 1 AND indin.indicadorbse_2 = 0)
+    OR (o.indicador_bse_2 = 2)
+
+    OR (o.indicador_bse_3 = 1 AND indin.indicadorbse_3 = 0)
+    OR (o.indicador_bse_3 = 2)
+
+    OR (o.indicador_bse_4 = 1 AND indin.indicadorbse_4 = 0)
+    OR (o.indicador_bse_4 = 2)
+
+    OR (o.indicador_bse_5 = 1 AND indin.indicadorbse_5 = 0)
+    OR (o.indicador_bse_5 = 2)
+
+    OR (o.indicador_bse_6 = 1 AND indin.indicadorbse_6 = 0)
+    OR (o.indicador_bse_6 = 2)
+
+    OR (o.indicador_bse_7 = 1 AND indin.indicadorbse_7 = 0)
+    OR (o.indicador_bse_7 = 2)
+
+    OR (o.indicador_bl_1 = 1 AND indin.indicadorbl_1 = 0)
+    OR (o.indicador_bl_1 = 2)
+
+    OR (o.indicador_bl_2 = 1 AND indin.indicadorbl_2 = 0)
+    OR (o.indicador_bl_2 = 2)
+
+    OR (o.indicador_bl_3 = 1 AND indin.indicadorbl_3 = 0)
+    OR (o.indicador_bl_3 = 2)
+
+    OR (o.indicador_bl_4 = 1 AND indin.indicadorbl_4 = 0)
+    OR (o.indicador_bl_4 = 2)
+
+    OR (o.indicador_bl_5 = 1 AND indin.indicadorbl_5 = 0)
+    OR (o.indicador_bl_5 = 2)
+
+    OR (o.indicador_bl_6 = 1 AND indin.indicadorbl_6 = 0)
+    OR (o.indicador_bl_6 = 2)
+
+    OR (o.indicador_bl_7 = 1 AND indin.indicadorbl_7 = 0)
+    OR (o.indicador_bl_7 = 2)
+
+    OR (o.indicador_bl_8 = 1 AND indin.indicadorbl_8 = 0)
+    OR (o.indicador_bl_8 = 2)
+
+    OR (o.indicador_bl_9 = 1 AND indin.indicadorbl_9 = 0)
+    OR (o.indicador_bl_9 = 2)
+
+    OR (o.indicador_bl_10 = 1 AND indin.indicadorbl_10 = 0)
+    OR (o.indicador_bl_10 = 2)
+
+    OR (o.indicador_bef_1 = 1 AND indin.indicadorbef_1 = 0)
+    OR (o.indicador_bef_1 = 2)
+
+    OR (o.indicador_bef_2 = 1 AND indin.indicadorbef_2 = 0)
+    OR (o.indicador_bef_2 = 2)
+
+    OR (o.indicador_bef_3 = 1 AND indin.indicadorbef_3 = 0)
+    OR (o.indicador_bef_3 = 2)
+
+    OR (o.indicador_bef_4 = 1 AND indin.indicadorbef_4 = 0)
+    OR (o.indicador_bef_4 = 2)
+
+    OR (o.indicador_bef_5 = 1 AND indin.indicadorbef_5 = 0)
+    OR (o.indicador_bef_5 = 2)
+
+    OR (o.indicador_bi_1 = 1 AND indin.indicadorbi_1 = 0)
+    OR (o.indicador_bi_1 = 2)
+
+    OR (o.indicador_bi_2 = 1 AND indin.indicadorbi_2 = 0)
+    OR (o.indicador_bi_2 = 2)
+
+    OR (o.indicador_bi_3 = 1 AND indin.indicadorbi_3 = 0)
+    OR (o.indicador_bi_3 = 2)
+
+    OR (o.indicador_bi_4 = 1 AND indin.indicadorbi_4 = 0)
+    OR (o.indicador_bi_4 = 2)
+
+    OR (o.indicador_bi_5 = 1 AND indin.indicadorbi_5 = 0)
+    OR (o.indicador_bi_5 = 2)
+
+    OR (o.indicador_bi_6 = 1 AND indin.indicadorbi_6 = 0)
+    OR (o.indicador_bi_6 = 2)
+
+    OR (o.indicador_bf_1 = 1 AND indin.indicadorbf_1 = 0)
+    OR (o.indicador_bf_1 = 2)
+
+    OR (o.indicador_bf_2 = 1 AND indin.indicadorbf_2 = 0)
+    OR (o.indicador_bf_2 = 2)
+
+    OR (o.indicador_bf_3 = 1 AND indin.indicadorbf_3 = 0)
+    OR (o.indicador_bf_3 = 2)
+
+    OR (o.indicador_bf_4 = 1 AND indin.indicadorbf_4 = 0)
+    OR (o.indicador_bf_4 = 2)
+
+    OR (o.indicador_bf_5 = 1 AND indin.indicadorbf_5 = 0)
+    OR (o.indicador_bf_5 = 2)
+)
+
+JOIN 
+    dbmetodologia.t1_hogardatosgeograficos AS hg
+    ON (
+    (o.comuna_1_Popular = 1 AND hg.comuna = 1) OR 
+    (o.comuna_2_Santa_Cruz = 1 AND hg.comuna = 2) OR 
+    (o.comuna_3_Manrique = 1 AND hg.comuna = 3) OR 
+    (o.comuna_4_Aranjuez = 1 AND hg.comuna = 4) OR 
+    (o.comuna_5_Castilla = 1 AND hg.comuna = 5) OR 
+    (o.comuna_6_Doce_de_Octubre = 1 AND hg.comuna = 6) OR 
+    (o.comuna_7_Robledo = 1 AND hg.comuna = 7) OR 
+    (o.comuna_8_Villa_Hermosa = 1 AND hg.comuna = 8) OR 
+    (o.comuna_9_Buenos_Aires = 1 AND hg.comuna = 9) OR 
+    (o.comuna_10_La_Candelaria = 1 AND hg.comuna = 10) OR 
+    (o.comuna_11_Laureles_Estadio = 1 AND hg.comuna = 11) OR 
+    (o.comuna_12_La_America = 1 AND hg.comuna = 12) OR 
+    (o.comuna_13_San_Javier = 1 AND hg.comuna = 13) OR 
+    (o.comuna_14_El_Poblado = 1 AND hg.comuna = 14) OR 
+    (o.comuna_15_Guayabal = 1 AND hg.comuna = 15) OR 
+    (o.comuna_16_Belen = 1 AND hg.comuna = 16) OR 
+    (o.comuna_17_Ciudadela = 1 AND hg.comuna = 17) OR 
+    (o.comuna_50_Palmitas = 1 AND hg.comuna = 50) OR 
+    (o.comuna_60_San_Cristobal = 1 AND hg.comuna = 60) OR 
+    (o.comuna_70_Altavista = 1 AND hg.comuna = 70) OR 
+    (o.comuna_80_San_Antonio_de_Prado = 1 AND hg.comuna = 80) OR 
+    (o.comuna_90_Santa_Elena = 1 AND hg.comuna = 90)
+)
+        JOIN 
+        
+            dbmetodologia.t1_principalhogar AS ph
+          ON 
+       hg.folio = ph.folio
+
+			 LEFT JOIN 
+        
+            dbmetodologia.t1_integranteshogar AS ih
+          ON 
+       ph.idintegrantetitular = ih.idintegrante 
+
+
+
+        LEFT JOIN 
+            dbmetodologia.t1_oportunidad_integrantes AS oh
+            ON ih.idintegrante = oh.idintegrante 
+            AND ih.folio = oh.folio
+        WHERE 
+            ih.estado = 1 and hg.folio = ih.folio and o.aplica_hogar_integrante = "373"
+        GROUP BY 
+            ih.idintegrante, 
+            ih.folio, 
+            ih.nombre1, 
+            ih.nombre2, 
+            ih.apellido1, 
+            ih.apellido2, 
+            oh.idoportunidad,
+            -- oh.id, 
+            o.id_oportunidad,
+            oh.estado_oportunidad;
+    ');
+
+
+        return $resultado;
+    }
+
 
 }

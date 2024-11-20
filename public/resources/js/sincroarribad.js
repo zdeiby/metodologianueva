@@ -340,7 +340,7 @@ $.ajax({
                   $('#barracarga').html('16%');
                   $('#barracarga').css('width','16%');                      
                   actualizarTabla('t1_indicador_bl_3', 'Descarga de tablas desde el servdor', '2');
-                     t1_indicador_bl_6d()                  
+                  t1_indicador_bl_5d()                  
                 },
                 error: function(xhr, status, error) {
                   actualizarTabla('t1_indicador_bl_3', 'Descarga de tablas desde el servdor', '3');
@@ -349,9 +349,9 @@ $.ajax({
                       }
               })
 }
-function t1_indicador_bl_6d(){
-    actualizarTabla('t1_indicador_bl_6', 'Descarga de tablas desde el servdor', '1');
-    let tabla= 't1_indicador_bl_6';
+function t1_indicador_bl_5d(){
+    actualizarTabla('t1_indicador_bl_5', 'Descarga de tablas desde el servdor', '1');
+    let tabla= 't1_indicador_bl_5';
 $.ajax({
                 url:'./sincroprivacionesd',
                 method: "GET",
@@ -360,11 +360,11 @@ $.ajax({
                 success:function(data){
                   $('#barracarga').html('17%');
                   $('#barracarga').css('width','17%');                      
-                  actualizarTabla('t1_indicador_bl_6', 'Descarga de tablas desde el servdor', '2');
+                  actualizarTabla('t1_indicador_bl_5', 'Descarga de tablas desde el servdor', '2');
                   t1_indicador_bl_6d();                 
                 },
                 error: function(xhr, status, error) {
-                  actualizarTabla('t1_indicador_bl_6', 'Descarga de tablas desde el servdor', '3');
+                  actualizarTabla('t1_indicador_bl_5', 'Descarga de tablas desde el servdor', '3');
                       reintentarfuncion(t1_indicador_bl_3d, 't1_indicador_bl_3');
                           console.log(xhr.responseText);
                       }
@@ -1686,7 +1686,7 @@ $.ajax({
                  $('#barracarga').html('78%');
                  $('#barracarga').css('width','78%');                      
                
-                 t1_saludemocionalqtd();                   
+                 t3_oportunidades();                   
                },
                error: function(xhr, status, error) {
                  actualizarTabla('t1_informesvisitas', 'Subida base de datos al servidor', '3');
@@ -1695,6 +1695,28 @@ $.ajax({
                      }
              })
  }
+
+ function t3_oportunidades (){
+  actualizarTabla('t3_oportunidades', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_oportunidad';
+$.ajax({
+              url:'./oportunidadesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_oportunidadesd', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('78%');
+                $('#barracarga').css('width','78%');                                   
+                reasignacionarriba();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_oportunidadesd', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_informesvisitasd, 't1_informesvisitasd');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
 
 
 

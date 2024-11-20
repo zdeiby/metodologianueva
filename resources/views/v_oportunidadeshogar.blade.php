@@ -12,7 +12,7 @@
 </div>
 <br>
 <div class="text-center" style="font-size:25px; color:#0dcaf0">
-    <label for=""><b>Oportunidades para integrantes</b></label>
+    <label for=""><b>Oportunidades para hogares</b></label>
 </div>
 <hr>
 <!-- Vista para PC -->

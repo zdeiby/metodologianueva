@@ -18,7 +18,7 @@ class c_oportunidades extends Controller
 
         $modelo = new m_oportunidades();
        // $oportunidad = $modelo-> m_listadooportunidades();
-       $oportunidad = DB::table('t3_oportunidad')->get();
+       $oportunidad = DB::table('t1_oportunidad')->get();
        $t1_integranteshogar = $modelo-> m_listadooportunidades();
 
         $oportunidades = '';
@@ -132,6 +132,61 @@ class c_oportunidades extends Controller
     
 
         return response()->json(['estado' =>  $estado]);
+    }
+
+
+
+    public function fc_oportunidadeshogar(Request $request){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
+
+        $modelo = new m_oportunidades();
+       // $oportunidad = $modelo-> m_listadooportunidades();
+       $oportunidad = DB::table('t1_oportunidad')->get();
+       $t1_integranteshogar = $modelo-> m_listadooportunidadeshogar();
+
+        $oportunidades = '';
+        
+        foreach ($oportunidad as $value) {
+            $oportunidades .= '<tr>
+                <td>'.$value->nombre_oportunidad.'</td>
+                <td>'.$value->descripcion.'</td>
+                <td>'.$value->ruta.'</td>
+                <td>'.$value->fecha_inicio.'</td>
+                <td>'.$value->fecha_limite_acercamiento.'</td>
+                <td class="align-middle text-center">
+                    <label type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="border-bottom: 2px solid black;">Más</label>
+                </td>
+                    <td class="text-center">
+                        <div class="container" >
+                            <select class="selectpicker" onchange="habilitaboton(' . $value->id_oportunidad . ')" id="speaker_' . $value->id_oportunidad . '" name="speaker" data-live-search="true" >
+                                <option selected disabled>Seleccione</option>';
+                                
+                                // Loop para los integrantes del hogar
+                                foreach ($t1_integranteshogar as $value2) {
+                                    if ($value2->id_oportunidad == $value->id_oportunidad) { // Verificar que el integrante pertenezca a esta oportunidad
+                                        $oportunidades .= '<option data-folio="' . $value2->folio . '" 
+                                            data-id="' . $value2->id . '" 
+                                            value="' . $value2->idintegrante . '">' 
+                                            . $value2->nombre1 . ' ' . $value2->nombre2 . ' ' 
+                                            . $value2->apellido1 . ' ' . $value2->apellido2 . ' - FOLIO: ' . $value2->folio . 
+                                            '</option>';
+                                    }
+                                }
+
+                $oportunidades .= '</select>
+                        </div>
+                </td>
+                <td>
+                    <button class="btn btn-primary" id="acercar'.$value->id_oportunidad.'" onclick="agregaroportunidad(`'.$value->id_oportunidad.'`)" type="button" >Acercar</button>
+                </td>
+            </tr>';
+        }
+        
+      return view('v_oportunidadeshogar',["oportunidades"=>$oportunidades]);
+        
     }
 
     

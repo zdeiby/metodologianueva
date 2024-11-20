@@ -1679,7 +1679,7 @@ $.ajax({
                 $('#barracarga').html('77%');
                 $('#barracarga').css('width','77%');                      
                
-                reasignacionarriba();                   
+                t3_oportunidadesd();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '3');
@@ -1689,28 +1689,27 @@ $.ajax({
             })
 }
 
-// function t1_visitascompromisos (){
-//   actualizarTabla('t1_visitascompromisos', 'Subida base de datos al servidor', '1');
-//   let tabla= 't1_visitascompromisos';
-// $.ajax({
-//               url:'./sincroprivaciones',
-//               method: "GET",
-//               data: { tabla: tabla},  
-//               dataType:'JSON',
-//               success:function(data){ 
-//                 actualizarTabla('t1_visitascompromisos', 'Subida base de datos al servidor', '2');
-//                 $('#barracarga').html('78%');
-//                 $('#barracarga').css('width','78%');                      
-               
-//                 reasignacionarriba();                   
-//               },
-//               error: function(xhr, status, error) {
-//                 actualizarTabla('t1_visitascompromisos', 'Subida base de datos al servidor', '3');
-//                     reintentarfuncion(t1_v1finalizacion, 't1_v1finalizacion');
-//                         console.log(xhr.responseText);
-//                     }
-//             })
-// }
+ function t3_oportunidadesd (){
+   actualizarTabla('t3_oportunidades', 'Subida base de datos al servidor', '1');
+   let tabla= 't1_oportunidad';
+ $.ajax({
+               url:'./oportunidadesd',
+               method: "GET",
+               data: { tabla: tabla},  
+               dataType:'JSON',
+               success:function(data){ 
+                 actualizarTabla('t3_oportunidadesd', 'Subida base de datos al servidor', '2');
+                 $('#barracarga').html('78%');
+                 $('#barracarga').css('width','78%');                                   
+                 reasignacionarriba();                   
+               },
+               error: function(xhr, status, error) {
+                 actualizarTabla('t3_oportunidadesd', 'Subida base de datos al servidor', '3');
+                     reintentarfuncion(t1_v1finalizacion, 't1_v1finalizacion');
+                         console.log(xhr.responseText);
+                     }
+             })
+ }
 
 
 
@@ -1729,7 +1728,7 @@ $.ajax({
               },
               error: function(xhr, status, error) {
                 actualizarTabla('reasignacionarriba', 'Revisando si hay reasignación', '3');
-                    reintentarfuncion(t1_v1finalizacion, 'reasignacionarriba');
+                    reintentarfuncion(t3_oportunidadesd, 't3_oportunidades');
                         console.log(xhr.responseText);
                     }
             })

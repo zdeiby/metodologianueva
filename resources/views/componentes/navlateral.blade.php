@@ -504,20 +504,20 @@ function soloNumeros(e) {
                 <span class="nav-text ms-2">Cobertura</span>
             </a>
         </li>
-        <li class="nav-item dropdown">
-            <a href="{{route('oportunidades')}}" class="{{ request()->routeIs('oportunidades') ? 'inbox' : '' }} nav-link dropdown-toggle text-white d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#submenuOportunidades" aria-expanded="false">
+        <li class="nav-item dropdown" style="cursor:pointer">
+            <a  class="{{ request()->routeIs('oportunidades') ? 'inbox' : '' }} nav-link dropdown-toggle text-white d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#submenuOportunidades" aria-expanded="false">
                 <ion-icon name="people-outline"></ion-icon>
                 <span class="nav-text ms-2">Oportunidades</span>
             </a>
             <ul class="collapse list-unstyled ps-3" id="submenuOportunidades">
                 <li>
-                    <a href="#" class="nav-link text-white d-flex align-items-center">
+                    <a href="{{route('oportunidades')}}" class="nav-link text-white d-flex align-items-center">
                     <ion-icon name="people-circle-outline"></ion-icon>
                         <span class="nav-text ms-2">Integrantes</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white d-flex align-items-center">
+                    <a href="{{route('oportunidadeshogar')}}" class="nav-link text-white d-flex align-items-center">
                     <ion-icon name="home-outline"></ion-icon>
                     <span class="nav-text ms-2">Hogar</span>
                     </a>

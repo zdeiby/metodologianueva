@@ -132,6 +132,13 @@ public function fc_sincroprivacionesd(Request $request) {
         if ($numerocompromiso !== null) {
             $condition['numerocompromiso'] = $numerocompromiso;
         }
+
+        if (isset($dataToUpdate['url_firma'])) {
+            // Convertir Base64 a binario si es necesario
+            $dataToUpdate['url_firma'] = base64_decode(
+                preg_replace('/^data:image\/\w+;base64,/', '', $dataToUpdate['url_firma'])
+            );
+        }
         
         DB::table($tabla)->updateOrInsert(
             $condition,
@@ -197,32 +204,44 @@ public function fc_sincroprivaciones(Request $request)
 {
     $tabla = $request->input('tabla');
      // Obtener los datos desde la tabla t1_principalhogar donde sincro = 0
-     $datos = DB::table($tabla)
-     //->where('sincro', 0)
-      // Filtra los registros donde sincro es 0
-     ->get()
-     ->toArray(); // Convertir la colección a un array
+    //  $datos = DB::table($tabla)
+    //  //->where('sincro', 0)
+    //   // Filtra los registros donde sincro es 0
+    //  ->get()
+    //  ->toArray(); // Convertir la colección a un array
 
- // URL de la API que va a recibir los datos
- $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_sincroprivaciones';
+    $datos = DB::table($tabla)
+    // ->where('sincro', 0) // Si necesitas filtrar registros específicos
+    ->get()
+    ->map(function ($item) {
+        // Codificar url_firma si existe
+        if (!empty($item->url_firma)) {
+            $item->url_firma = 'data:image/jpeg;base64,' . base64_encode($item->url_firma);
+        }
+        return (array) $item; // Convertir a un array asociativo
+    })
+    ->toArray();
 
- // Enviar la solicitud POST a la API con los datos obtenidos
- $datos_con_tabla = [
-    'tabla' => $tabla, // Incluye el nombre de la tabla
-    'datos' => $datos  // Los datos obtenidos de la base de datos
-];
- $response = Http::post($url, $datos_con_tabla);
 
- // Manejar la respuesta de la API
- if ($response->successful()) {
-    DB::table($tabla)
-    //->where('sincro', 0)
-    
-    ->update(['sincro' => 1]);
-     return response()->json(['message' => 'Datos enviados con éxito', 'data' => $response->json()]);
- } else {
-     return response()->json(['error' => 'Error al enviar datos a la API'], $response->status());
- }
+    $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_sincroprivaciones';
+
+    // Enviar la solicitud POST a la API con los datos obtenidos
+    $datos_con_tabla = [
+       'tabla' => $tabla, // Incluye el nombre de la tabla
+       'datos' => $datos  // Los datos obtenidos de la base de datos
+   ];
+    $response = Http::post($url, $datos_con_tabla);
+   
+    // Manejar la respuesta de la API
+    if ($response->successful()) {
+       DB::table($tabla)
+       //->where('sincro', 0)
+       
+       ->update(['sincro' => 1]);
+        return response()->json(['message' => 'Datos enviados con éxito', 'data' => $response->json()]);
+    } else {
+        return response()->json(['error' => 'Error al enviar datos a la API'], $response->status());
+    }
 }
 
 
@@ -398,6 +417,40 @@ public function fc_verificarsihayfoliosnuevos() {
 
     }
 
+
+
+
+
+/// DESCARGA DE BASE DE DATOS DE OPORTUNIDADES 
+
+public function fc_oportunidadesd(Request $request) {
+    $tabla = $request->input('tabla');
+    $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarribad/fc_oportunidadesd?tabla='.urlencode($tabla); 
+   // $this->truncateTable($tabla);
+    // Realizar la solicitud GET usando file_get_contents
+    $response = file_get_contents($url);
+
+    // Decodificar el JSON
+    $data = json_decode($response, true);
+//dd( $data );
+foreach ($data as $item) {
+    // Define la condición como un array con clave-valor
+    $condition = ['id_oportunidad' => $item['id_oportunidad']];
+
+    // Crea una copia de $item y elimina 'id_oportunidad'
+    $datos = $item;
+    unset($datos['id_oportunidad']);
+
+    // Ejecuta updateOrInsert
+    DB::table($tabla)->updateOrInsert(
+        $condition, // Condiciones para buscar
+        $datos      // Datos a actualizar o insertar
+    );
+}
+
+
+    return response()->json($data);
+}
 
 
 

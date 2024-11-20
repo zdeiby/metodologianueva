@@ -22,6 +22,7 @@ Route::get('/reasignacionarriba', [c_sincronizacion::class, 'fc_reasignacionarri
 Route::get('/reasignacionabajo', [c_sincronizacion::class, 'fc_reasignacionabajo'])->name('reasignacionabajo');
 
 
+Route::get('/oportunidadesd', [c_sincronizacion::class, 'fc_oportunidadesd'])->name('oportunidadesd');
 
 
 
