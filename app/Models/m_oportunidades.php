@@ -181,6 +181,7 @@ JOIN
             AND ih.folio = oh.folio
         WHERE 
             ih.estado = 1 and hg.folio = ih.folio
+             AND CURRENT_DATE BETWEEN o.fecha_inicio AND o.fecha_limite_acercamiento 
         GROUP BY 
             ih.idintegrante, 
             ih.folio, 
@@ -359,11 +360,12 @@ JOIN
 
 
         LEFT JOIN 
-            dbmetodologia.t1_oportunidad_integrantes AS oh
+            dbmetodologia.t1_oportunidad_hogares AS oh
             ON ih.idintegrante = oh.idintegrante 
             AND ih.folio = oh.folio
         WHERE 
             ih.estado = 1 and hg.folio = ih.folio and o.aplica_hogar_integrante = "373"
+             AND CURRENT_DATE BETWEEN o.fecha_inicio AND o.fecha_limite_acercamiento 
         GROUP BY 
             ih.idintegrante, 
             ih.folio, 

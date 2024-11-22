@@ -70,6 +70,7 @@ class c_oportunidades extends Controller
         $idintegrante = $request->input('idintegrante');
         $idoportunidad = $request->input('idoportunidad');
         $usuario=$request->input('usuario');
+        $tabla=$request->input('tabla');
 
         $data = [
             'folio' => $folio,
@@ -79,10 +80,11 @@ class c_oportunidades extends Controller
             'estado' => 1,
             'estado_oportunidad' => 1,
             'sincro' => 0,
+            'etiqueta'=>'mef',
             'updated_at' => $now
         ];
 
-        $exists = DB::table('t1_oportunidad_integrantes')
+        $exists = DB::table($tabla)
           ->where('id', $id)
           ->exists();
 
@@ -91,14 +93,14 @@ class c_oportunidades extends Controller
                     $data['created_at'] = $now;
             }
         
-        DB::table('t1_oportunidad_integrantes')->updateOrInsert(
+        DB::table($tabla)->updateOrInsert(
             [
                 'id' => $id // Condición para buscar el registro existente
             ],
            $data
         );
-        $insertedId = DB::table('t1_oportunidad_integrantes')->insertGetId($data);
-        $estadooportunidad = DB::table('t1_oportunidad_integrantes')
+        $insertedId = DB::table($tabla)->insertGetId($data);
+        $estadooportunidad = DB::table($tabla)
         ->where('id', $insertedId)
         ->where('idoportunidad', $idoportunidad)
         ->first();
@@ -109,7 +111,7 @@ class c_oportunidades extends Controller
             $estado = 0; // O cualquier valor predeterminado
         }
   
-        return response()->json(['estado' =>  $estado]);
+        return response()->json(['estado' =>  $estado, 'insertedId'=>$insertedId]);
     }
 
     public function fc_veroportunidad(Request $request){
@@ -118,8 +120,9 @@ class c_oportunidades extends Controller
         $idintegrante = $request->input('idintegrante');
         $idoportunidad = $request->input('idoportunidad');
         $usuario=$request->input('usuario');
+        $tabla=$request->input('tabla');
 
-        $estadooportunidad = DB::table('t1_oportunidad_integrantes')
+        $estadooportunidad = DB::table($tabla)
         ->where('id', $id)
         ->where('idoportunidad', $idoportunidad)
         ->first();

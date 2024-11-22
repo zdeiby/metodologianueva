@@ -99,11 +99,13 @@ function agregaroportunidad(idoportunidad) {
          folio: folio,
          idintegrante: idintegrante,
          usuario: '<?= session('documento') ?>',
-         idoportunidad: idoportunidad
+         idoportunidad: idoportunidad,
+         tabla:'t1_oportunidad_integrantes',
      },
      method: "GET",
      dataType: 'JSON',
      success: function(data) {
+        selectedOption.setAttribute('data-id', data.insertedId);
       if (data.estado == '1') {
           $('#acercar'+idoportunidad).attr('disabled', 'disabled');
           $('#acercar'+idoportunidad).removeClass('btn btn-primary').addClass('btn btn-danger');
@@ -144,7 +146,8 @@ function habilitaboton(idoportunidad){
          folio: folio,
          idintegrante: idintegrante,
          idoportunidad: idoportunidad,
-         id:id
+         id:id,
+         tabla:'t1_oportunidad_integrantes',
      },
      method: "GET",
      dataType: 'JSON',
