@@ -564,7 +564,7 @@ function soloNumeros(e) {
                 
             </div>
             
-                <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.1.5</label>
+                <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.1.6</label>
             <div class="usuario" style="display:none">
                 <img src="" alt="">
                 <div class="info-usuario">
@@ -584,7 +584,6 @@ function soloNumeros(e) {
 </form>
 
     <main>
-
     @yield('content')
   
 
@@ -606,8 +605,57 @@ function soloNumeros(e) {
 
 
     <script>
-        new DataTable('#example');
-        new DataTable('#example2');
+     new DataTable('#example', {
+    language: {
+        decimal: ",",
+        emptyTable: "No hay datos disponibles en la tabla",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+        infoEmpty: "Mostrando 0 a 0 de 0 entradas",
+        infoFiltered: "(filtrado de _MAX_ entradas totales)",
+        lengthMenu: "Mostrar _MENU_ entradas",
+        loadingRecords: "Cargando...",
+        processing: "Procesando...",
+        search: "Buscar:",
+        zeroRecords: "No se encontraron registros coincidentes",
+        paginate: {
+            first: "Primero",
+            last: "Último",
+            next: "Siguiente",
+            previous: "Anterior"
+        },
+        aria: {
+            sortAscending: ": activar para ordenar columna ascendente",
+            sortDescending: ": activar para ordenar columna descendente"
+        }
+    }
+});
+
+
+new DataTable('#example2', {
+    language: {
+        decimal: ",",
+        emptyTable: "No hay datos disponibles en la tabla",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+        infoEmpty: "Mostrando 0 a 0 de 0 entradas",
+        infoFiltered: "(filtrado de _MAX_ entradas totales)",
+        lengthMenu: "Mostrar _MENU_ entradas",
+        loadingRecords: "Cargando...",
+        processing: "Procesando...",
+        search: "Buscar:",
+        zeroRecords: "No se encontraron registros coincidentes",
+        paginate: {
+            first: "Primero",
+            last: "Último",
+            next: "Siguiente",
+            previous: "Anterior"
+        },
+        aria: {
+            sortAscending: ": activar para ordenar columna ascendente",
+            sortDescending: ": activar para ordenar columna descendente"
+        }
+    }
+});
+
         const cloud = document.getElementById("cloud");
 const barraLateral = document.querySelector(".barra-lateral");
 const spans = document.querySelectorAll("span");

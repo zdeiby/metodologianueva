@@ -82,7 +82,7 @@
           <img src="{{asset('avatares/blanco.png')}} " id="imagenDinamica" class="rounded-circle" alt="Avatar" style="width: 150px; height: 150px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
         </div> -->
 
-          <form id="formulario" class="row g-3 was-validated">     
+          <form id="formulario">     
             
           <div class="col-md-3" style="display:none">
             <input type="text" placeholder="folio" class="form-control form-control-sm  " id="folioinput" name="folio" value="{{ $folio }}" >
@@ -96,63 +96,37 @@
             <input type="text" placeholder="tabla" class="form-control form-control-sm  " id="tabla" name="tabla" value="{{$tabla}}" >
             <input type="text" placeholder="linea" class="form-control form-control-sm  " id="linea" name="linea" value="{{$linea}}" >
             <input type="text" placeholder="paso" class="form-control form-control-sm  " id="paso" name="paso" value="{{$paso}}" >
-            <input type="text" placeholder="bienestar" class="form-control form-control-sm  " id="bienestar" name="bienestar" value="{{$bienestar}}" >
           </div>
 
           <!-- <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO CONSCIENTE.</span> -->
 
+            <!-- Vista para PC -->
+            <div class="container table-responsive" id="responsivepc" style="font-size:15px" width="100%">
+                <div class="" >
+                    <table id="example" class="table table-striped " >
+                        <thead>
+                            <tr>
+                                <th >Nombre de la Oportunidad</th>
+                                <!-- <th>Descripción</th>
+                                <th>Ruta</th> -->
+                                <th>Fecha Inicio oportunidad</th>
+                                <th>Fecha Límite de Acercamiento</th>
+                                <th class="align-middle text-center">Ver Oportunidad</th>
+                                <th class="align-middle text-center">Integrantes que aplican</th>
+                                <th>Acercar oportunidad</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size:15px" id="oportunidades">
+                           
+                        </tbody>
+                        <tfoot>
+                          
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
 
 
-@if(false)
-<div class="container mt-4">
-  <div class="border">
-    <!-- Fila de títulos -->
-    <div class="row g-0">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
-        <div class="p-2">
-          CATEGORIA DEL BIENESTAR
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="row g-0">
-          <div class="col-12 border-bottom p-2 text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
-            NOMBRE DE LAS ACCIONES MOVILIZADORAS
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Fila de contenido -->
-    <div class="row g-0" id="indicadorbse1">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
-        <div class="p-2">
-         {{$descripcion}}
-        </div>
-      </div>
-      <div class="col-md-8 d-flex align-items-stretch  ">
-        <div class="col-12 border-bottom p-2 d-flex align-items-center " style="    text-align: center !important;  display: flex;  flex-direction: column;">
-        <div class="col-md-6" >
-            <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
-            <select class="form-control form-control-sm" id="accionmovilizadora" name="accionmovilizadora" aria-describedby="validationServer04Feedback" required="">
-            {!! $t_accionesmovilizadora !!}
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-@else 
-<label>En construcción</label>
-@endif
-
-
-
-
-<br>
-<br>
-<br>
-<br>
 
 
 
@@ -171,7 +145,7 @@
             </div>
             <div class="text-end col">
             <!-- <button class="btn btn-outline-success" type="submit"  >Guardar</button> -->
-            <div class="btn btn-outline-primary" id="siguiente"  <?=$siguiente?> >Siguiente</div>
+            <div class="btn btn-outline-primary" id="siguiente"   >Siguiente</div>
             </div> 
           </div>
 
@@ -188,11 +162,12 @@
  
     </div>
 
+    <div id="modal">
+
+    </div>
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
-    
-
 
 
       $('#siguiente').click(function(){
@@ -213,72 +188,131 @@
     // $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
       
 
-      
-
-       $(document).ready(function() {
-
-
-        $('#accionmovilizadora').val('<?= $accionmovilizadora ?>')
-        
-        $('#formulario').on('submit', function(event) {
-            event.preventDefault(); // Detiene el envío del formulario
-            
-            var formData = $(this).serializeArray();
-            var data = {};
-            $(formData).each(function(index, obj) {
-                data[obj.name] = obj.value;
-            });
-
-
-            $('#formulario [name]').each(function() {
-                  var name = $(this).attr('name');
-
-                 // Si el elemento es un checkbox
-                  // if ($(this).is(':checkbox')) {
-                  //     // Solo sobrescribe el valor si no es "NO APLICA"
-                  //     if ($(this).val() !== 'NO APLICA') {
-                  //         data[name] = $(this).is(':checked') ? $(this).val() : 'NO';
-                  //     } else {
-                  //         data[name] = 'NO APLICA';
-                  //     }
-                  // }
-              });
-
-            console.log(data);
-
-            $.ajax({
-                url: '../guardaraccionesmovilizadoras',
-                method: 'GET', // Cambiar a GET si estás usando GET
-                data: data, // Envía los datos de manera plana
-                success: function(response) {
-                  agregarpaso(data);
-                },
-                error: function(xhr, status, error) {
-                    alertabad();
-                    console.error(error);
-                }
-            });
-        });
-});
-
-
-function agregarpaso(data){
-    $.ajax({
-      url: '../agregarpasohogargeneral',
-      method: 'GET', // Cambiar a GET si estás usando GET
-      data: data, // Envía los datos de manera plana
-      success: function(response) {
-        $('#siguiente').css('display','');
-          alertagood();
-      },
-      error: function(xhr, status, error) {
-          alertabad();
-          console.error(error);
-      }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inicializa el selectpicker
+        $('.selectpicker').selectpicker();
+        $('.filter-option-inner-inner').css('font-size','13px');
     });
+
+
+    $(document).ready(function() {
+    // Realizar la solicitud AJAX
+    paginacargando();
+    let dataTable = $('#example').DataTable();
+    $.ajax({
+        url: '../oportunidadesintegrantesglobal', // Cambia por la ruta de tu función
+        data: {folio:'<?= $folio ?>'},
+        type: 'GET', // O POST según sea tu caso
+        success: function(response) {
+            // Actualizar el contenido del tbody
+            dataTable.destroy();
+            $('#oportunidades').html(response.oportunidades);
+            $('#modal').html(response.modal);
+            dataTable = $('#example').DataTable();
+            paginalista();
+            $('.selectpicker').selectpicker();
+        $('.filter-option-inner-inner').css('font-size','13px');
+        },
+        error: function(xhr, status, error) {
+            console.error('Error al cargar las oportunidades:', error);
+        }
+    });
+});
+</script>
+
+<script>
+function agregaroportunidad(idoportunidad) {
+    // Obtiene el select específico usando el id de oportunidad
+    let select = document.getElementById(`speaker_${idoportunidad}`);
+    let selectedOption = select.options[select.selectedIndex];
+
+    // Obtén los valores directamente
+    let idintegrante = selectedOption.value;
+    let folio = selectedOption.getAttribute('data-folio');
+    $('#acercar'+idoportunidad).attr('disabled','disabled')
+    console.log("Value:", idintegrante);
+    console.log("Data-Folio:", folio);
+    $.ajax({
+     url: '../agregaroportunidad',
+     data: {
+         folio: folio,
+         idintegrante: idintegrante,
+         usuario: '<?= session('documento') ?>',
+         idoportunidad: idoportunidad,
+         tabla:'t1_oportunidad_integrantes',
+     },
+     method: "GET",
+     dataType: 'JSON',
+     success: function(data) {
+        selectedOption.setAttribute('data-id', data.insertedId);
+      if (data.estado == '1') {
+          $('#acercar'+idoportunidad).attr('disabled', 'disabled');
+          $('#acercar'+idoportunidad).removeClass('btn btn-primary').addClass('btn btn-danger');
+          $('#acercar'+idoportunidad).html('Acercada');
+          Swal.close();
+      } else {
+          $('#acercar'+idoportunidad).removeAttr('disabled');
+          $('#acercar'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-primary');
+          $('#acercar'+idoportunidad).html('Acercar');
+          Swal.close();
+      }
+     },
+     error: function(xhr, status, error) {
+         console.log(xhr.responseText);
+     }
+ });
 }
 
-    </script>
+function habilitaboton(idoportunidad){
+  Swal.fire({
+    title: 'Cargando',
+    text: 'Por favor espera...',
+    allowOutsideClick: false,
+    didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de carga
+    }
+});
+  let select = document.getElementById(`speaker_${idoportunidad}`);
+    let selectedOption = select.options[select.selectedIndex];
+
+    // Obtén los valores directamente
+    let idintegrante = selectedOption.value;
+    let id = selectedOption.getAttribute('data-id');
+    let folio = selectedOption.getAttribute('data-folio');
+  $.ajax({
+     url: '../veroportunidad',
+     data: {
+         folio: folio,
+         idintegrante: idintegrante,
+         idoportunidad: idoportunidad,
+         id:id,
+         tabla:'t1_oportunidad_integrantes',
+     },
+     method: "GET",
+     dataType: 'JSON',
+     success: function(data) {
+      if (data.estado == '1') {
+          $('#acercar'+idoportunidad).attr('disabled', 'disabled');
+          $('#acercar'+idoportunidad).removeClass('btn btn-primary').addClass('btn btn-danger');
+          $('#acercar'+idoportunidad).html('Acercada');
+          Swal.close();
+      } else {
+          $('#acercar'+idoportunidad).removeAttr('disabled');
+          $('#acercar'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-primary');
+          $('#acercar'+idoportunidad).html('Acercar');
+          Swal.close();
+      }
+
+     },
+     error: function(xhr, status, error) {
+         console.log(xhr.responseText);
+     }
+ });
+}
+      
 
 
+
+
+</script>
 @endsection

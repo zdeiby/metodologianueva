@@ -14,10 +14,10 @@ class m_oportunidades extends Model
     {
         parent::__construct();
     }
-    public function m_listadooportunidades()
+    public function m_listadooportunidades($folio)
     {
         // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
-        $resultado = DB::select('   
+        $resultado = DB::select("  
 SELECT 
             ih.idintegrante, 
             ih.folio, 
@@ -178,10 +178,11 @@ JOIN
         LEFT JOIN 
             dbmetodologia.t1_oportunidad_integrantes AS oh
             ON ih.idintegrante = oh.idintegrante 
-            AND ih.folio = oh.folio
+           AND o.id_oportunidad = oh.idoportunidad
+           -- AND ih.folio = oh.folio
         WHERE 
-            ih.estado = 1 and hg.folio = ih.folio
-             AND CURRENT_DATE BETWEEN o.fecha_inicio AND o.fecha_limite_acercamiento 
+            ih.estado = 1 and hg.folio = ih.folio and o.aplica_hogar_integrante = 373
+             AND CURRENT_DATE BETWEEN o.fecha_inicio AND o.fecha_limite_acercamiento  " . ($folio != '' ? "AND ih.folio = $folio" : "") . " 
         GROUP BY 
             ih.idintegrante, 
             ih.folio, 
@@ -193,17 +194,17 @@ JOIN
             -- oh.id, 
             o.id_oportunidad,
             oh.estado_oportunidad;
-    ');
+    ");
 
 
         return $resultado;
     }
 
 
-    public function m_listadooportunidadeshogar()
+    public function m_listadooportunidadeshogar($folio)
     {
         // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
-        $resultado = DB::select('   
+        $resultado = DB::select("   
 SELECT 
             ih.idintegrante, 
             ih.folio, 
@@ -362,9 +363,10 @@ JOIN
         LEFT JOIN 
             dbmetodologia.t1_oportunidad_hogares AS oh
             ON ih.idintegrante = oh.idintegrante 
-            AND ih.folio = oh.folio
+             AND o.id_oportunidad = oh.idoportunidad
+            -- AND ih.folio = oh.folio
         WHERE 
-            ih.estado = 1 and hg.folio = ih.folio and o.aplica_hogar_integrante = "373"
+            ih.estado = 1 and hg.folio = ih.folio and o.aplica_hogar_integrante = '373'  " . ($folio != '' ? "AND ih.folio = $folio" : "") . "
              AND CURRENT_DATE BETWEEN o.fecha_inicio AND o.fecha_limite_acercamiento 
         GROUP BY 
             ih.idintegrante, 
@@ -377,7 +379,7 @@ JOIN
             -- oh.id, 
             o.id_oportunidad,
             oh.estado_oportunidad;
-    ');
+    ");
 
 
         return $resultado;

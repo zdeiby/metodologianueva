@@ -11,27 +11,27 @@
     <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" >
 </div>
 <br>
-<div class="text-center" style="font-size:25px; color:#0dcaf0">
+<div class="text-center" style="font-size:20px; color:#0dcaf0">
     <label for=""><b>Oportunidades para hogares</b></label>
 </div>
 <hr>
 <!-- Vista para PC -->
-<div class="container" id="responsivepc">
+<div class="container" id="responsivepc" style="font-size:15px">
     <div class="" >
         <table id="example" class="table table-striped " >
             <thead>
                 <tr>
-                    <th>Nombre de la Oportunidad</th>
-                    <th>Descripción</th>
-                    <th>Ruta</th>
-                    <th>Fecha de Inicio</th>
+                    <th >Nombre de la Oportunidad</th>
+                    <!-- <th>Descripción</th>
+                    <th>Ruta</th> -->
+                    <th>Fecha Inicio oportunidad</th>
                     <th>Fecha Límite de Acercamiento</th>
                     <th class="align-middle text-center">Ver Oportunidad</th>
                     <th class="align-middle text-center">Integrantes que aplican</th>
                     <th>Acercar oportunidad</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="font-size:15px">
                 {!! $oportunidades !!}
             </tbody>
             <tfoot>
@@ -41,34 +41,6 @@
     </div>
 </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Oportunidad número 123</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modlabel-body container"> <br>
-          <div class="container" >
-            <br>
-            <label><b>Nombre de la Oportunidad:</b> oportunidad</label> <hr>
-                    <label><b>Descripción:</b> 	descripción de oportunidad</label> <hr>
-                    <label><b>Alcance:</b> alcance de la oportunidad</label> <hr>
-                    <label><b>Fecha de Inicio:</b> 2024-10-21 00:00:00</label> <hr>
-                    <label><b>Fecha Límite de Acercamiento:</b> 2024-10-21 00:00:00</label>  <br><br>
-            </div><br>
-
-                    
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Salir</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <script src="{{ asset('assets/jquery/jquery.js') }}"></script>

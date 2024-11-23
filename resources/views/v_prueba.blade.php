@@ -48,7 +48,7 @@
               <th>Gestión del hogar</th>
             </tr>
         </thead>
-        <tbody >
+        <tbody style="font-size:15px">
  @foreach ($folios as $value)
             <tr>
                 <td>{{$value->folio}}</td>
@@ -228,5 +228,7 @@
                     })
 
     }
+
+    
  </script>
 @endsection

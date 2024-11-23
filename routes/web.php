@@ -176,3 +176,7 @@ Route::get('/veroportunidad',[c_oportunidades::class, 'fc_veroportunidad'])->nam
 
 Route::get('/ficherodeoportunidades/{folio}',[c_oportunidadesvisita::class, 'fc_ficherodeoportunidades'])->name('ficherodeoportunidades');
 Route::get('/ficherodeoportunidadeshogar/{folio}',[c_oportunidadesvisita::class, 'fc_ficherodeoportunidadeshogar'])->name('ficherodeoportunidadeshogar');
+
+Route::get('/oportunidadesintegrantesglobal',[c_oportunidades::class, 'fc_oportunidadesintegrantesglobal'])->name('oportunidadesintegrantesglobal');
+Route::get('/oportunidadeshogarglobal',[c_oportunidades::class, 'fc_oportunidadeshogarglobal'])->name('oportunidadeshogarglobal');
+
