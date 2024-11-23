@@ -159,7 +159,6 @@
 </div>
 
 
- sdfsdfsdf
     </div>
 
     <div id="modal">
