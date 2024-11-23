@@ -492,7 +492,7 @@ function soloNumeros(e) {
 </style>
 <nav class="bg-primary text-white vh-100 navegacion" style="background:#0dcaf0 !important; font-size:20px; " id="sidebar">
     <ul class="nav flex-column ">
-        <!-- <li class="nav-item">
+        <li class="nav-item">
             <a href="{{ route('index') }}" class="{{ request()->routeIs('index') ? 'inbox' : '' }} nav-link text-white d-flex align-items-center">
                 <ion-icon name="home-outline"></ion-icon>
                 <span class="nav-text ms-2">Inicio</span>
@@ -523,7 +523,7 @@ function soloNumeros(e) {
                     </a>
                 </li>
             </ul>
-        </li> -->
+        </li>
         <!-- <li class="nav-item">
             <a href="{{route('sincronizacion')}}" class="{{ request()->routeIs('sincronizacion') ? 'inbox' : '' }} nav-link text-white d-flex align-items-center">
                 <ion-icon name="reload-outline"></ion-icon>
