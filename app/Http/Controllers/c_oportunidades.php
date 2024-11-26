@@ -76,6 +76,7 @@ foreach ($oportunidad as $value) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
                         <p><strong>Descripción:</strong> ' . $value->descripcion . '</p>
                         <p><strong>Ruta:</strong> ' . $value->ruta . '</p>
                     </div>
@@ -286,6 +287,7 @@ foreach ($oportunidad as $value) {
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                                <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
                                 <p><strong>Descripción:</strong> ' . $value->descripcion . '</p>
                                 <p><strong>Ruta:</strong> ' . $value->ruta . '</p>
                             </div>
@@ -367,6 +369,7 @@ foreach ($oportunidad as $value) {
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
+                            <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
                              <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
                              <p><strong>Ruta:</strong> '.$value->ruta.'</p>
                          </div>
@@ -452,6 +455,7 @@ foreach ($oportunidad as $value) {
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
+                            <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
                              <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
                              <p><strong>Ruta:</strong> '.$value->ruta.'</p>
                          </div>
