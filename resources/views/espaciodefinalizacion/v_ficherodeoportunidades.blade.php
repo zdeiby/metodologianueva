@@ -101,7 +101,7 @@
           <!-- <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO CONSCIENTE.</span> -->
 
             <!-- Vista para PC -->
-            <div class="container table-responsive" id="responsivepc" style="font-size:15px" width="100%">
+            <!-- <div class="container table-responsive" id="responsivepc" style="font-size:15px" width="100%"> -->
                 <div class="" >
                     <table id="example" class="table table-striped " >
                         <thead>
@@ -124,7 +124,7 @@
                         </tfoot>
                     </table>
                 </div>
-            </div>
+            <!-- </div> -->
 
 
 
@@ -207,10 +207,11 @@
             dataTable.destroy();
             $('#oportunidades').html(response.oportunidades);
             $('#modal').html(response.modal);
+            $('.selectpicker').selectpicker();
+            $('.filter-option-inner-inner').css('font-size','13px');
             dataTable = $('#example').DataTable();
             paginalista();
-            $('.selectpicker').selectpicker();
-        $('.filter-option-inner-inner').css('font-size','13px');
+            
         },
         error: function(xhr, status, error) {
             console.error('Error al cargar las oportunidades:', error);

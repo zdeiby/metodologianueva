@@ -20,68 +20,74 @@ class c_oportunidades extends Controller
        // $oportunidad = $modelo-> m_listadooportunidades();
        $oportunidad = DB::table('t1_oportunidad')
        ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
-       // ->where('aplica_hogar_integrante','374')
+       ->where('aplica_hogar_integrante','373')
        ->get();
        $t1_integranteshogar = $modelo-> m_listadooportunidades('');
 
         $oportunidades = '';
         
-        foreach ($oportunidad as $value) {
-            $oportunidades .= '<tr>
-                <td>'.$value->nombre_oportunidad.'</td>
-                <td>'.Str::limit($value->fecha_inicio, 10, '').'</td>
-                <td>'.Str::limit($value->fecha_limite_acercamiento, 10, '').'</td>
-                <td class="align-middle text-center">
+       
+foreach ($oportunidad as $value) {
+    // Filtrar integrantes relacionados con la oportunidad actual
+    $integrantesRelacionados = array_filter($t1_integranteshogar, function ($integrante) use ($value) {
+        return $integrante->id_oportunidad == $value->id_oportunidad;
+    });
 
-            <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal-'.$value->id_oportunidad.'">
+    // Solo incluir la oportunidad si tiene integrantes relacionados
+    if (!empty($integrantesRelacionados)) {
+        $oportunidades .= '<tr>
+            <td>' . $value->nombre_oportunidad . '</td>
+            <td>' . Str::limit($value->fecha_inicio, 10, '') . '</td>
+            <td>' . Str::limit($value->fecha_limite_acercamiento, 10, '') . '</td>
+            <td class="align-middle text-center">
+
+            <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal-' . $value->id_oportunidad . '">
                 Ver más
             </button>
-                        </td>
-                    <td class="text-center">
-                        <div class="container" >
-                            <select class="selectpicker" onchange="habilitaboton(' . $value->id_oportunidad . ')" id="speaker_' . $value->id_oportunidad . '" name="speaker" data-live-search="true" >
-                                <option selected disabled>Seleccione</option>';
-                                
-                                // Loop para los integrantes del hogar
-                                foreach ($t1_integranteshogar as $value2) {
-                                    if ($value2->id_oportunidad == $value->id_oportunidad) { // Verificar que el integrante pertenezca a esta oportunidad
-                                        $oportunidades .= '<option data-folio="' . $value2->folio . '" 
-                                            data-id="' . $value2->id . '" 
-                                            value="' . $value2->idintegrante . '">' 
-                                            . $value2->nombre1 . ' ' . $value2->nombre2 . ' ' 
-                                            . $value2->apellido1 . ' ' . $value2->apellido2 . ' - FOLIO: ' . $value2->folio . 
-                                            '</option>';
-                                    }
-                                }
+            </td>
+            <td class="text-center">
+                <div class="container">
+                    <select class="selectpicker" onchange="habilitaboton(' . $value->id_oportunidad . ')" id="speaker_' . $value->id_oportunidad . '" name="speaker" data-live-search="true">
+                        <option selected disabled>Seleccione</option>';
 
-                $oportunidades .= '</select>
-                        </div>
-                </td>
-                <td>
-                    <button class="btn btn-primary" id="acercar'.$value->id_oportunidad.'" onclick="agregaroportunidad(`'.$value->id_oportunidad.'`)" type="button" >Acercar</button>
-                </td>
-            </tr>
-            
-             <!-- Modal -->
-            <div class="modal fade" id="modal-'.$value->id_oportunidad.'" tabindex="-1" aria-labelledby="modalLabel-'.$value->id_oportunidad.'" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabel-'.$value->id_oportunidad.'">'.$value->nombre_oportunidad.'</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
-                            <p><strong>Ruta:</strong> '.$value->ruta.'</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
+        // Loop para los integrantes del hogar
+        foreach ($integrantesRelacionados as $integrante) {
+            $oportunidades .= '<option data-folio="' . $integrante->folio . '" 
+                data-id="' . $integrante->id . '" 
+                value="' . $integrante->idintegrante . '">' 
+                . $integrante->nombre1 . ' ' . $integrante->nombre2 . ' ' 
+                . $integrante->apellido1 . ' ' . $integrante->apellido2 . ' - FOLIO: ' . $integrante->folio . 
+                '</option>';
+        }
+
+        $oportunidades .= '</select>
+                </div>
+            </td>
+            <td>
+                <button class="btn btn-primary" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`)" type="button">Acercar</button>
+            </td>
+        </tr>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-' . $value->id_oportunidad . '" tabindex="-1" aria-labelledby="modalLabel-' . $value->id_oportunidad . '" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel-' . $value->id_oportunidad . '">' . $value->nombre_oportunidad . '</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Descripción:</strong> ' . $value->descripcion . '</p>
+                        <p><strong>Ruta:</strong> ' . $value->ruta . '</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
-    ';
-        }
+        </div>';
+    }
+}
         
       return view('v_oportunidades',["oportunidades"=>$oportunidades]);
         
@@ -173,7 +179,7 @@ class c_oportunidades extends Controller
        // $oportunidad = $modelo-> m_listadooportunidades();
        $oportunidad = DB::table('t1_oportunidad')
        ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
-        ->where('aplica_hogar_integrante','373')
+        ->where('aplica_hogar_integrante','374')
        ->get();
        
        $t1_integranteshogar = $modelo-> m_listadooportunidadeshogar('');
@@ -181,62 +187,68 @@ class c_oportunidades extends Controller
         $oportunidades = '';
         
         
-        foreach ($oportunidad as $value) {
-            $oportunidades .= '<tr>
-                <td>'.$value->nombre_oportunidad.'</td>
-                <td>'.Str::limit($value->fecha_inicio, 10, '').'</td>
-                <td>'.Str::limit($value->fecha_limite_acercamiento, 10, '').'</td>
-                <td class="align-middle text-center">
+      
+foreach ($oportunidad as $value) {
+    // Filtrar integrantes relacionados con la oportunidad actual
+    $integrantesRelacionados = array_filter($t1_integranteshogar, function ($integrante) use ($value) {
+        return $integrante->id_oportunidad == $value->id_oportunidad;
+    });
 
-            <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal-'.$value->id_oportunidad.'">
+    // Solo incluir la oportunidad si tiene integrantes relacionados
+    if (!empty($integrantesRelacionados)) {
+        $oportunidades .= '<tr>
+            <td>' . $value->nombre_oportunidad . '</td>
+            <td>' . Str::limit($value->fecha_inicio, 10, '') . '</td>
+            <td>' . Str::limit($value->fecha_limite_acercamiento, 10, '') . '</td>
+            <td class="align-middle text-center">
+
+            <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal-' . $value->id_oportunidad . '">
                 Ver más
             </button>
-                        </td>
-                    <td class="text-center">
-                        <div class="container" >
-                            <select class="selectpicker" onchange="habilitaboton(' . $value->id_oportunidad . ')" id="speaker_' . $value->id_oportunidad . '" name="speaker" data-live-search="true" >
-                                <option selected disabled>Seleccione</option>';
-                                
-                                // Loop para los integrantes del hogar
-                                foreach ($t1_integranteshogar as $value2) {
-                                    if ($value2->id_oportunidad == $value->id_oportunidad) { // Verificar que el integrante pertenezca a esta oportunidad
-                                        $oportunidades .= '<option data-folio="' . $value2->folio . '" 
-                                            data-id="' . $value2->id . '" 
-                                            value="' . $value2->idintegrante . '">' 
-                                            . $value2->nombre1 . ' ' . $value2->nombre2 . ' ' 
-                                            . $value2->apellido1 . ' ' . $value2->apellido2 . ' - FOLIO: ' . $value2->folio . 
-                                            '</option>';
-                                    }
-                                }
+            </td>
+            <td class="text-center">
+                <div class="container">
+                    <select class="selectpicker" onchange="habilitaboton(' . $value->id_oportunidad . ')" id="speaker_' . $value->id_oportunidad . '" name="speaker" data-live-search="true">
+                        <option selected disabled>Seleccione</option>';
 
-                $oportunidades .= '</select>
-                        </div>
-                </td>
-                <td>
-                    <button class="btn btn-primary" id="acercar'.$value->id_oportunidad.'" onclick="agregaroportunidad(`'.$value->id_oportunidad.'`)" type="button" >Acercar</button>
-                </td>
-            </tr>
-            
-             <!-- Modal -->
-            <div class="modal fade" id="modal-'.$value->id_oportunidad.'" tabindex="-1" aria-labelledby="modalLabel-'.$value->id_oportunidad.'" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabel-'.$value->id_oportunidad.'">'.$value->nombre_oportunidad.'</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
-                            <p><strong>Ruta:</strong> '.$value->ruta.'</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
+        // Loop para los integrantes del hogar
+        foreach ($integrantesRelacionados as $integrante) {
+            $oportunidades .= '<option data-folio="' . $integrante->folio . '" 
+                data-id="' . $integrante->id . '" 
+                value="' . $integrante->idintegrante . '">' 
+                . $integrante->nombre1 . ' ' . $integrante->nombre2 . ' ' 
+                . $integrante->apellido1 . ' ' . $integrante->apellido2 . ' - FOLIO: ' . $integrante->folio . 
+                '</option>';
+        }
+
+        $oportunidades .= '</select>
+                </div>
+            </td>
+            <td>
+                <button class="btn btn-primary" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`)" type="button">Acercar</button>
+            </td>
+        </tr>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-' . $value->id_oportunidad . '" tabindex="-1" aria-labelledby="modalLabel-' . $value->id_oportunidad . '" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel-' . $value->id_oportunidad . '">' . $value->nombre_oportunidad . '</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Descripción:</strong> ' . $value->descripcion . '</p>
+                        <p><strong>Ruta:</strong> ' . $value->ruta . '</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
-    ';
-        }
+        </div>';
+    }
+}
         
       return view('v_oportunidadeshogar',["oportunidades"=>$oportunidades]);
         
@@ -257,63 +269,68 @@ class c_oportunidades extends Controller
          $oportunidades = '';
          $modal ='';
          
-         foreach ($oportunidad as $value) {
-             $oportunidades .= '<tr>
-                 <td>'.$value->nombre_oportunidad.'</td>
-                 <td>'.Str::limit($value->fecha_inicio, 10, '').'</td>
-                 <td>'.Str::limit($value->fecha_limite_acercamiento, 10, '').'</td>
-                 <td class="align-middle text-center">
- 
-             <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal-'.$value->id_oportunidad.'">
-                 Ver más
-             </button>
-                         </td>
-                     <td class="text-center">
-                         <div class="container" >
-                             <select class="selectpicker" onchange="habilitaboton(' . $value->id_oportunidad . ')" id="speaker_' . $value->id_oportunidad . '" name="speaker" data-live-search="true" >
-                                 <option selected disabled>Seleccione</option>';
-                                 
-                                 // Loop para los integrantes del hogar
-                                 foreach ($t1_integranteshogar as $value2) {
-                                     if ($value2->id_oportunidad == $value->id_oportunidad) { // Verificar que el integrante pertenezca a esta oportunidad
-                                         $oportunidades .= '<option data-folio="' . $value2->folio . '" 
-                                             data-id="' . $value2->id . '" 
-                                             value="' . $value2->idintegrante . '">' 
-                                             . $value2->nombre1 . ' ' . $value2->nombre2 . ' ' 
-                                             . $value2->apellido1 . ' ' . $value2->apellido2 . ' - FOLIO: ' . $value2->folio . 
-                                             '</option>';
-                                     }
-                                 }
- 
-                 $oportunidades .= '</select>
-                         </div>
-                 </td>
-                 <td>
-                     <button class="btn btn-primary" id="acercar'.$value->id_oportunidad.'" onclick="agregaroportunidad(`'.$value->id_oportunidad.'`)" type="button" >Acercar</button>
-                 </td>
-             </tr>';
-
              
-         
-         $modal .=  '<div class="modal fade" id="modal-'.$value->id_oportunidad.'" tabindex="-1" aria-labelledby="modalLabel-'.$value->id_oportunidad.'" aria-hidden="true">
-                 <div class="modal-dialog">
-                     <div class="modal-content">
-                         <div class="modal-header">
-                             <h5 class="modal-title" id="modalLabel-'.$value->id_oportunidad.'">'.$value->nombre_oportunidad.'</h5>
-                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                         </div>
-                         <div class="modal-body">
-                             <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
-                             <p><strong>Ruta:</strong> '.$value->ruta.'</p>
-                         </div>
-                         <div class="modal-footer">
-                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-     ';
-         }
+foreach ($oportunidad as $value) {
+    // Filtrar integrantes relacionados con la oportunidad actual
+    $integrantesRelacionados = array_filter($t1_integranteshogar, function ($integrante) use ($value) {
+        return $integrante->id_oportunidad == $value->id_oportunidad;
+    });
+
+    // Solo incluir la oportunidad si tiene integrantes relacionados
+    if (!empty($integrantesRelacionados)) {
+        $oportunidades .= '<tr>
+            <td>' . $value->nombre_oportunidad . '</td>
+            <td>' . Str::limit($value->fecha_inicio, 10, '') . '</td>
+            <td>' . Str::limit($value->fecha_limite_acercamiento, 10, '') . '</td>
+            <td class="align-middle text-center">
+
+            <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal-' . $value->id_oportunidad . '">
+                Ver más
+            </button>
+            </td>
+            <td class="text-center">
+                <div class="container">
+                    <select class="selectpicker" onchange="habilitaboton(' . $value->id_oportunidad . ')" id="speaker_' . $value->id_oportunidad . '" name="speaker" data-live-search="true">
+                        <option selected disabled>Seleccione</option>';
+
+        // Loop para los integrantes del hogar
+        foreach ($integrantesRelacionados as $integrante) {
+            $oportunidades .= '<option data-folio="' . $integrante->folio . '" 
+                data-id="' . $integrante->id . '" 
+                value="' . $integrante->idintegrante . '">' 
+                . $integrante->nombre1 . ' ' . $integrante->nombre2 . ' ' 
+                . $integrante->apellido1 . ' ' . $integrante->apellido2 . ' - FOLIO: ' . $integrante->folio . 
+                '</option>';
+        }
+
+        $oportunidades .= '</select>
+                </div>
+            </td>
+            <td>
+                <button class="btn btn-primary" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`)" type="button">Acercar</button>
+            </td>
+        </tr>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-' . $value->id_oportunidad . '" tabindex="-1" aria-labelledby="modalLabel-' . $value->id_oportunidad . '" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel-' . $value->id_oportunidad . '">' . $value->nombre_oportunidad . '</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Descripción:</strong> ' . $value->descripcion . '</p>
+                        <p><strong>Ruta:</strong> ' . $value->ruta . '</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+    }
+}
 
          return response()->json(['oportunidades' => $oportunidades, 'modal'=>$modal]);
 
@@ -335,63 +352,68 @@ class c_oportunidades extends Controller
          $oportunidades = '';
          $modal ='';
          
-         foreach ($oportunidad as $value) {
-             $oportunidades .= '<tr>
-                 <td>'.$value->nombre_oportunidad.'</td>
-                 <td>'.Str::limit($value->fecha_inicio, 10, '').'</td>
-                 <td>'.Str::limit($value->fecha_limite_acercamiento, 10, '').'</td>
-                 <td class="align-middle text-center">
- 
-             <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal-'.$value->id_oportunidad.'">
-                 Ver más
-             </button>
-                         </td>
-                     <td class="text-center">
-                         <div class="container" >
-                             <select class="selectpicker" onchange="habilitaboton(' . $value->id_oportunidad . ')" id="speaker_' . $value->id_oportunidad . '" name="speaker" data-live-search="true" >
-                                 <option selected disabled>Seleccione</option>';
-                                 
-                                 // Loop para los integrantes del hogar
-                                 foreach ($t1_integranteshogar as $value2) {
-                                     if ($value2->id_oportunidad == $value->id_oportunidad) { // Verificar que el integrante pertenezca a esta oportunidad
-                                         $oportunidades .= '<option data-folio="' . $value2->folio . '" 
-                                             data-id="' . $value2->id . '" 
-                                             value="' . $value2->idintegrante . '">' 
-                                             . $value2->nombre1 . ' ' . $value2->nombre2 . ' ' 
-                                             . $value2->apellido1 . ' ' . $value2->apellido2 . ' - FOLIO: ' . $value2->folio . 
-                                             '</option>';
-                                     }
-                                 }
- 
-                 $oportunidades .= '</select>
-                         </div>
-                 </td>
-                 <td>
-                     <button class="btn btn-primary" id="acercar'.$value->id_oportunidad.'" onclick="agregaroportunidad(`'.$value->id_oportunidad.'`)" type="button" >Acercar</button>
-                 </td>
-             </tr>';
+            
+foreach ($oportunidad as $value) {
+    // Filtrar integrantes relacionados con la oportunidad actual
+    $integrantesRelacionados = array_filter($t1_integranteshogar, function ($integrante) use ($value) {
+        return $integrante->id_oportunidad == $value->id_oportunidad;
+    });
 
-             
-         
-         $modal .=  '<div class="modal fade" id="modal-'.$value->id_oportunidad.'" tabindex="-1" aria-labelledby="modalLabel-'.$value->id_oportunidad.'" aria-hidden="true">
-                 <div class="modal-dialog">
-                     <div class="modal-content">
-                         <div class="modal-header">
-                             <h5 class="modal-title" id="modalLabel-'.$value->id_oportunidad.'">'.$value->nombre_oportunidad.'</h5>
-                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                         </div>
-                         <div class="modal-body">
-                             <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
-                             <p><strong>Ruta:</strong> '.$value->ruta.'</p>
-                         </div>
-                         <div class="modal-footer">
-                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-     ';
-         }
+    // Solo incluir la oportunidad si tiene integrantes relacionados
+    if (!empty($integrantesRelacionados)) {
+        $oportunidades .= '<tr>
+            <td>' . $value->nombre_oportunidad . '</td>
+            <td>' . Str::limit($value->fecha_inicio, 10, '') . '</td>
+            <td>' . Str::limit($value->fecha_limite_acercamiento, 10, '') . '</td>
+            <td class="align-middle text-center">
+
+            <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal-' . $value->id_oportunidad . '">
+                Ver más
+            </button>
+            </td>
+            <td class="text-center">
+                <div class="container">
+                    <select class="selectpicker" onchange="habilitaboton(' . $value->id_oportunidad . ')" id="speaker_' . $value->id_oportunidad . '" name="speaker" data-live-search="true">
+                        <option selected disabled>Seleccione</option>';
+
+        // Loop para los integrantes del hogar
+        foreach ($integrantesRelacionados as $integrante) {
+            $oportunidades .= '<option data-folio="' . $integrante->folio . '" 
+                data-id="' . $integrante->id . '" 
+                value="' . $integrante->idintegrante . '">' 
+                . $integrante->nombre1 . ' ' . $integrante->nombre2 . ' ' 
+                . $integrante->apellido1 . ' ' . $integrante->apellido2 . ' - FOLIO: ' . $integrante->folio . 
+                '</option>';
+        }
+
+        $oportunidades .= '</select>
+                </div>
+            </td>
+            <td>
+                <button class="btn btn-primary" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`)" type="button">Acercar</button>
+            </td>
+        </tr>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-' . $value->id_oportunidad . '" tabindex="-1" aria-labelledby="modalLabel-' . $value->id_oportunidad . '" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel-' . $value->id_oportunidad . '">' . $value->nombre_oportunidad . '</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Descripción:</strong> ' . $value->descripcion . '</p>
+                        <p><strong>Ruta:</strong> ' . $value->ruta . '</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+    }
+}
 
          return response()->json(['oportunidades' => $oportunidades, 'modal'=>$modal]);
 

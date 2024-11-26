@@ -31,7 +31,7 @@ SELECT
             o.id_oportunidad
         FROM 
             dbmetodologia.t1_oportunidad AS o
-		JOIN dbmetodologia.t1_indicadores_integrantes as indin
+	/*	JOIN dbmetodologia.t1_indicadores_integrantes as indin
         ON (
         (o.indicador_bse_1 = 1 AND indin.indicadorintegrantebse_1 = 0)  
         OR (o.indicador_bse_1 = 2)  
@@ -107,7 +107,7 @@ SELECT
 
         OR (o.indicador_bf_5 = 1 AND indin.indicadorintegrantebf_5 = 0)
         OR (o.indicador_bf_5 = 2)
-    )
+    ) */
         JOIN 
         
             dbmetodologia.t1_integranteshogar AS ih
@@ -218,7 +218,7 @@ SELECT
             o.id_oportunidad
         FROM 
             dbmetodologia.t1_oportunidad AS o
-	JOIN dbmetodologia.t1_indicadores_hogar as indin
+/*	JOIN dbmetodologia.t1_indicadores_hogar as indin
       ON (
     (o.indicador_bse_1 = 1 AND indin.indicadorbse_1 = 0)  
     OR (o.indicador_bse_1 = 2)  
@@ -318,7 +318,7 @@ SELECT
 
     OR (o.indicador_bf_5 = 1 AND indin.indicadorbf_5 = 0)
     OR (o.indicador_bf_5 = 2)
-)
+)  */
 
 JOIN 
     dbmetodologia.t1_hogardatosgeograficos AS hg
@@ -366,7 +366,7 @@ JOIN
              AND o.id_oportunidad = oh.idoportunidad
             -- AND ih.folio = oh.folio
         WHERE 
-            ih.estado = 1 and hg.folio = ih.folio and o.aplica_hogar_integrante = '373'  " . ($folio != '' ? "AND ih.folio = $folio" : "") . "
+            ih.estado = 1 and hg.folio = ih.folio and o.aplica_hogar_integrante = '374'  " . ($folio != '' ? "AND ih.folio = $folio" : "") . "
              AND CURRENT_DATE BETWEEN o.fecha_inicio AND o.fecha_limite_acercamiento 
         GROUP BY 
             ih.idintegrante, 

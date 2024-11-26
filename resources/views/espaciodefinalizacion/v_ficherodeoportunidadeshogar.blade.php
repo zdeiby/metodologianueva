@@ -101,7 +101,7 @@
           <!-- <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO CONSCIENTE.</span> -->
 
             <!-- Vista para PC -->
-            <div class="container table-responsive" id="responsivepc" style="font-size:15px" width="100%">
+            <!-- <div class="container table-responsive" id="responsivepc" style="font-size:15px" width="100%"> -->
                 <div class="" >
                     <table id="example" class="table table-striped " >
                         <thead>
@@ -124,7 +124,7 @@
                         </tfoot>
                     </table>
                 </div>
-            </div>
+            <!-- </div> -->
 
 
 

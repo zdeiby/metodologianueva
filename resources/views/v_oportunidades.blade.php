@@ -16,7 +16,7 @@
 </div>
 <hr>
 <!-- Vista para PC -->
-<div class="container table-responsive" id="responsivepc" style="font-size:15px">
+<!-- <div class="container table-responsive" id="responsivepc" style="font-size:15px"> -->
     <div class="" >
         <table id="example" class="table table-striped " >
             <thead>
@@ -39,18 +39,26 @@
             </tfoot>
         </table>
     </div>
-</div>
+<!-- </div> -->
 
 
 
 
 <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Inicializa el selectpicker
-        $('.selectpicker').selectpicker();
-        $('.filter-option-inner-inner').css('font-size','13px');
-    });
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     // Inicializa el selectpicker
+    //     $('.selectpicker').selectpicker();
+    //     $('.filter-option-inner-inner').css('font-size','13px');
+    // });
+
+
+//     $(document).ready(function () {
+//     $('.selectpicker').selectpicker();
+//     $('.filter-option-inner-inner').css('font-size','13px');
+
+// });
+
 </script>
 
 <script>

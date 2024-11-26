@@ -605,7 +605,11 @@ function soloNumeros(e) {
 
 
     <script>
-     new DataTable('#example', {
+    
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    new DataTable('#example', {
     language: {
         decimal: ",",
         emptyTable: "No hay datos disponibles en la tabla",
@@ -629,6 +633,12 @@ function soloNumeros(e) {
         }
     }
 });
+
+
+        // Inicializa el selectpicker
+        $('.selectpicker').selectpicker();
+        $('.filter-option-inner-inner').css('font-size','13px');
+    });
 
 
 new DataTable('#example2', {
