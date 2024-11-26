@@ -1708,7 +1708,7 @@ $.ajax({
                 actualizarTabla('t3_oportunidadesd', 'Subida base de datos al servidor', '2');
                 $('#barracarga').html('78%');
                 $('#barracarga').css('width','78%');                                   
-                reasignacionarriba();                   
+                t1_oportunidad_hogaresd();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t3_oportunidadesd', 'Subida base de datos al servidor', '3');
@@ -1717,6 +1717,77 @@ $.ajax({
                     }
             })
 }
+
+
+
+
+function t1_oportunidad_hogaresd (){
+  actualizarTabla('t1_oportunidad_hogares', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_oportunidad_hogares';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_oportunidad_hogares', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('78%');
+                $('#barracarga').css('width','78%');                                   
+                t1_oportunidad_integrantesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_oportunidad_hogares', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_oportunidades, 't1_oportunidad_hogares');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t1_oportunidad_integrantesd (){
+  actualizarTabla('t1_oportunidad_integrantes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_oportunidad_integrantes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_oportunidad_integrantes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('78%');
+                $('#barracarga').css('width','78%');                                   
+                t3_oportunidad_integranteshogar_historicod();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_oportunidad_integrantes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_oportunidad_hogaresd, 't1_oportunidad_integrantes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_oportunidad_integranteshogar_historicod (){
+  actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_oportunidad_integranteshogar_historico';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('78%');
+                $('#barracarga').css('width','78%');                                   
+                t1_saludemocionalqtd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_oportunidad_integrantes, 't3_oportunidad_integranteshogar_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
 
 
 
@@ -1739,7 +1810,7 @@ $.ajax({
                 },
                 error: function(xhr, status, error) {
                   actualizarTabla('t1_saludemocionalqt', 'Descarga de tablas desde el servdor', '3');
-                      reintentarfuncion(t1_informesvisitasd, 't1_informesvisitas');
+                      reintentarfuncion(t3_oportunidad_integranteshogar_historicod, 't1_informesvisitas');
                           console.log(xhr.responseText);
                       }
               })

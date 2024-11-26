@@ -63,31 +63,38 @@
 
 <script>
 
-function agregaroportunidad(idoportunidad) {
+function agregaroportunidad(idoportunidad,aplica_hogar_integrante) {
     // Obtiene el select específico usando el id de oportunidad
     let select = document.getElementById(`speaker_${idoportunidad}`);
     let selectedOption = select.options[select.selectedIndex];
-
+console.log(aplica_hogar_integrante, 'HOLAAAAAAAAAAAAAAA')
     // Obtén los valores directamente
     let idintegrante = selectedOption.value;
     let folio = selectedOption.getAttribute('data-folio');
 
     console.log("Value:", idintegrante);
     console.log("Data-Folio:", folio);
+        $('#acercar'+idoportunidad).attr('disabled', 'disabled');
+
     $.ajax({
      url: './agregaroportunidad',
      data: {
          folio: folio,
          idintegrante: idintegrante,
-         usuario: '<?= session('documento') ?>',
-         idoportunidad: idoportunidad,
+         idoportunidad:idoportunidad,
+         usuario: '<?= Session::get('cedula') ?>',
+         linea:'0',
          tabla:'t1_oportunidad_integrantes',
+         aplica_hogar_integrante:aplica_hogar_integrante,
+
      },
      method: "GET",
      dataType: 'JSON',
      success: function(data) {
+              $('#acercar'+idoportunidad).removeAttr('disabled');
+
         selectedOption.setAttribute('data-id', data.insertedId);
-      if (data.estado == '1') {
+      if (data.success) {
           $('#acercar'+idoportunidad).attr('disabled', 'disabled');
           $('#acercar'+idoportunidad).removeClass('btn btn-primary').addClass('btn btn-danger');
           $('#acercar'+idoportunidad).html('Acercada');
@@ -127,7 +134,6 @@ function habilitaboton(idoportunidad){
          folio: folio,
          idintegrante: idintegrante,
          idoportunidad: idoportunidad,
-         id:id,
          tabla:'t1_oportunidad_integrantes',
      },
      method: "GET",

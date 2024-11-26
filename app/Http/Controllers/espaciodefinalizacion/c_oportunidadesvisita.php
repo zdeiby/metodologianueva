@@ -25,7 +25,7 @@ class c_oportunidadesvisita extends Controller
        
          $herramientas = new m_herramientas();
 
-            $tabla = 't1_accionmovilizadoraqt';
+           $tabla = 't1_oportunidad_integrantes';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
             $linea= 200;

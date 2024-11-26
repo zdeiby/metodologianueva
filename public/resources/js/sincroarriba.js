@@ -1690,7 +1690,7 @@ $.ajax({
 }
 
  function t3_oportunidadesd (){
-   actualizarTabla('t3_oportunidades', 'Subida base de datos al servidor', '1');
+   actualizarTabla('t1_oportunidad', 'Subida base de datos al servidor', '1');
    let tabla= 't1_oportunidad';
  $.ajax({
                url:'./oportunidadesd',
@@ -1698,18 +1698,86 @@ $.ajax({
                data: { tabla: tabla},  
                dataType:'JSON',
                success:function(data){ 
-                 actualizarTabla('t3_oportunidadesd', 'Subida base de datos al servidor', '2');
+                 actualizarTabla('t1_oportunidad', 'Subida base de datos al servidor', '2');
                  $('#barracarga').html('78%');
                  $('#barracarga').css('width','78%');                                   
-                 reasignacionarriba();                   
+                 t1_oportunidad_hogares();                   
                },
                error: function(xhr, status, error) {
-                 actualizarTabla('t3_oportunidadesd', 'Subida base de datos al servidor', '3');
-                     reintentarfuncion(t1_v1finalizacion, 't1_v1finalizacion');
+                 actualizarTabla('t1_oportunidad', 'Subida base de datos al servidor', '3');
+                     reintentarfuncion(t1_v1finalizacion, 't1_oportunidad');
                          console.log(xhr.responseText);
                      }
              })
  }
+
+
+ function t1_oportunidad_hogares (){
+  actualizarTabla('t1_oportunidad_hogares', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_oportunidad_hogares';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_oportunidad_hogares', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('78%');
+                $('#barracarga').css('width','78%');                                   
+                t1_oportunidad_integrantes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_oportunidad_hogares', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_oportunidadesd, 't1_oportunidad_hogares');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t1_oportunidad_integrantes (){
+  actualizarTabla('t1_oportunidad_integrantes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_oportunidad_integrantes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_oportunidad_integrantes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('78%');
+                $('#barracarga').css('width','78%');                                   
+                t3_oportunidad_integranteshogar_historico();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_oportunidad_integrantes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_oportunidad_hogares, 't1_oportunidad_integrantes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_oportunidad_integranteshogar_historico (){
+  actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_oportunidad_integranteshogar_historico';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('78%');
+                $('#barracarga').css('width','78%');                                   
+                reasignacionarriba();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_oportunidad_integrantes, 't3_oportunidad_integranteshogar_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
 
 
 

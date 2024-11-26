@@ -27,8 +27,8 @@ SELECT
             ih.apellido2, 
             oh.idoportunidad, 
             oh.estado_oportunidad,
-             MAX(oh.id) AS id, 
-            o.id_oportunidad
+            o.id_oportunidad,
+            o.aplica_hogar_integrante
         FROM 
             dbmetodologia.t1_oportunidad AS o
 	/*	JOIN dbmetodologia.t1_indicadores_integrantes as indin
@@ -191,8 +191,8 @@ JOIN
             ih.apellido1, 
             ih.apellido2, 
             oh.idoportunidad,
-            -- oh.id, 
             o.id_oportunidad,
+            o.aplica_hogar_integrante,
             oh.estado_oportunidad;
     ");
 
@@ -214,8 +214,8 @@ SELECT
             ih.apellido2, 
             oh.idoportunidad, 
             oh.estado_oportunidad,
-             MAX(oh.id) AS id, 
-            o.id_oportunidad
+            o.id_oportunidad,
+            o.aplica_hogar_integrante
         FROM 
             dbmetodologia.t1_oportunidad AS o
 /*	JOIN dbmetodologia.t1_indicadores_hogar as indin
@@ -376,9 +376,9 @@ JOIN
             ih.apellido1, 
             ih.apellido2, 
             oh.idoportunidad,
-            -- oh.id, 
             o.id_oportunidad,
-            oh.estado_oportunidad;
+           o.aplica_hogar_integrante,
+           oh.estado_oportunidad;
     ");
 
 
