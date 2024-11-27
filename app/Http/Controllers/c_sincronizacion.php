@@ -55,7 +55,6 @@ public function fc_t1_principalhogard(){
 }
 
 
-
 public function fc_sincroprivacionesd(Request $request) {
     $tabla = $request->input('tabla');
     $pdoccogestor = session('cedula');
@@ -78,6 +77,8 @@ public function fc_sincroprivacionesd(Request $request) {
         $momentoconciente =        isset($item['momentoconciente'])        ? $item['momentoconciente'] : null;
         $categoria =        isset($item['categoria'])        ? $item['categoria'] : null;
         $numerocompromiso =        isset($item['numerocompromiso'])        ? $item['numerocompromiso'] : null;
+        $created_at =        isset($item['created_at'])        ? $item['created_at'] : null;
+        $idoportunidad =        isset($item['idoportunidad'])        ? $item['idoportunidad'] : null;
 
         
         
@@ -108,6 +109,10 @@ public function fc_sincroprivacionesd(Request $request) {
             unset($dataToUpdate['numerocompromiso']);
         }
 
+        if ($idoportunidad !== null) {
+            unset($dataToUpdate['idoportunidad']);
+        }
+
 
         // Usar updateOrInsert para insertar o actualizar según el caso
         $condition = ['folio' => $folio];
@@ -133,12 +138,36 @@ public function fc_sincroprivacionesd(Request $request) {
             $condition['numerocompromiso'] = $numerocompromiso;
         }
 
+        if($tabla == 't3_oportunidad_integranteshogar_historico'){
+            $condition['created_at'] = $created_at;
+            unset($dataToUpdate['created_at']);
+ 
+        }
+
+        if ($idoportunidad !== null) {
+            $condition['idoportunidad'] = $idoportunidad;
+        }
+
+        if($tabla == 't1_oportunidad_integrantes'){
+            unset($condition['linea']);
+            $dataToUpdate['linea']= $linea;
+        }
+        if($tabla == 't1_oportunidad_hogares'){
+            unset($condition['linea']);
+            $dataToUpdate['linea']= $linea;
+            unset($condition['idintegrante']);
+            $dataToUpdate['idintegrante']= $idIntegrante;
+        }
+        
+
         if (isset($dataToUpdate['url_firma'])) {
             // Convertir Base64 a binario si es necesario
             $dataToUpdate['url_firma'] = base64_decode(
                 preg_replace('/^data:image\/\w+;base64,/', '', $dataToUpdate['url_firma'])
             );
         }
+
+       // dd( $condition);
         
         DB::table($tabla)->updateOrInsert(
             $condition,
@@ -148,6 +177,101 @@ public function fc_sincroprivacionesd(Request $request) {
 
     return response()->json($data);
 }
+
+
+
+// public function fc_sincroprivacionesd(Request $request) {
+//     $tabla = $request->input('tabla');
+//     $pdoccogestor = session('cedula');
+//     $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarribad/fc_sincroprivacionesd?pdoccogestor='.$pdoccogestor.'&tabla='.urlencode($tabla); 
+//     $this->truncateTable($tabla);
+//     // Realizar la solicitud GET usando file_get_contents
+//     $response = file_get_contents($url);
+
+//     // Decodificar el JSON
+//     $data = json_decode($response, true);
+
+//     foreach ($data as $item) {
+//         // Extraer el folio del objeto
+//         $folio = $item['folio']; // Asegúrate de que 'folio' sea el nombre correcto del campo en tu JSON
+
+//         // Extraer el idintegrante si existe
+//         $idIntegrante = isset($item['idintegrante']) ? $item['idintegrante'] : null;
+//         $paso =         isset($item['paso'])         ? $item['paso'] : null;
+//         $linea =        isset($item['linea'])        ? $item['linea'] : null;
+//         $momentoconciente =        isset($item['momentoconciente'])        ? $item['momentoconciente'] : null;
+//         $categoria =        isset($item['categoria'])        ? $item['categoria'] : null;
+//         $numerocompromiso =        isset($item['numerocompromiso'])        ? $item['numerocompromiso'] : null;
+
+        
+        
+//         // Remover el folio y idintegrante del array para evitar duplicados en el updateOrInsert
+//         $dataToUpdate = $item;
+//         unset($dataToUpdate['folio']);
+//         if ($idIntegrante !== null) {
+//             unset($dataToUpdate['idintegrante']);
+//         }
+
+//         if ($paso !== null) {
+//             unset($dataToUpdate['paso']);
+//         }
+
+//         if ($linea !== null) {
+//             unset($dataToUpdate['linea']);
+//         }
+
+//         if ($momentoconciente !== null) {
+//             unset($dataToUpdate['momentoconciente']);
+//         }
+
+//         if ($categoria !== null) {
+//             unset($dataToUpdate['categoria']);
+//         }
+
+//         if ($numerocompromiso !== null) {
+//             unset($dataToUpdate['numerocompromiso']);
+//         }
+
+
+//         // Usar updateOrInsert para insertar o actualizar según el caso
+//         $condition = ['folio' => $folio];
+//         if ($idIntegrante !== null) {
+//             $condition['idintegrante'] = $idIntegrante;
+//         }
+
+//         if ($paso !== null) {
+//             $condition['paso'] = $paso;
+//         }
+
+//         if ($linea !== null) {
+//             $condition['linea'] = $linea;
+//         }
+//         if ($momentoconciente !== null) {
+//             $condition['momentoconciente'] = $momentoconciente;
+//         }
+
+//         if ($categoria !== null) {
+//             $condition['categoria'] = $categoria;
+//         }
+//         if ($numerocompromiso !== null) {
+//             $condition['numerocompromiso'] = $numerocompromiso;
+//         }
+
+//         if (isset($dataToUpdate['url_firma'])) {
+//             // Convertir Base64 a binario si es necesario
+//             $dataToUpdate['url_firma'] = base64_decode(
+//                 preg_replace('/^data:image\/\w+;base64,/', '', $dataToUpdate['url_firma'])
+//             );
+//         }
+        
+//         DB::table($tabla)->updateOrInsert(
+//             $condition,
+//             $dataToUpdate
+//         );
+//     }
+
+//     return response()->json($data);
+// }
 
 
 public function fc_t1_hogarcondicionesalimentariasd(){  $pdoccogestor = session('cedula');  $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarribad/fc_t1_hogarcondicionesalimentariasd?pdoccogestor=' . $pdoccogestor;       $response = file_get_contents($url);   $data = json_decode($response, true);$this->truncateTable('t1_hogarcondicionesalimentarias'); foreach ($data as $item) { $folio = $item['folio'];$dataToUpdate = $item; unset($dataToUpdate['folio']);  DB::table('t1_hogarcondicionesalimentarias')->updateOrInsert(['folio' => $folio], $dataToUpdate);  } return response()->json($data); }
