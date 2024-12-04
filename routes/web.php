@@ -130,6 +130,7 @@ Route::get('/enfamiliaqt/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesq
 Route::get('/intelectualqt/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqt::class, 'fc_intelectualqt'])->name('intelectualqt');
 Route::get('/financieroqt/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqt::class, 'fc_financieroqt'])->name('financieroqt');
 Route::get('/finalizarintegrantesqt',[c_cardsqt::class,'fc_finalizarintegrantesqt'])->name('finalizarintegrantesqt');
+Route::get('/consultarindicador',[c_encuestaintegrantesqt::class,'fc_consultarindicador'])->name('consultarindicador');
 
 
 Route::get('/guardarformularioqt',[c_encuestaintegrantesqt::class, 'fc_guardarformularioqt'])->name('guardarformularioqt');

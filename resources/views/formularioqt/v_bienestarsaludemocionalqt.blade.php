@@ -129,14 +129,13 @@
     </div>
 
     <!-- Fila de contenido -->
-    <div class="row g-0" id="indicadorbse1" style="display:{{(($indicador_bse_1 == '0')?'':'nones')}}">
+    <div class="row g-0" id="indicadorbse1" style="display:{{(($indicador_bse_1 == '0')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom">
         <div class="p-2">
-          <div>
-          <label for="">Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS- </label> <br>
-          <button class="text-center">ola</button>
+          Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+          <div class="text-center">
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicador_bse_1 ?>')">Mover Indicador</div>
           </div>
-        
         </div>
       </div>
       <div class="col-md-8">
@@ -184,7 +183,10 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar tienen acceso a intervenciones de promoción y prevención en salud dentro del marco del SGSSS, adaptadas a su edad
-        </div>
+        <div class="text-center"><br>
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicador_bse_2 ?>')">Mover Indicador</div>
+          </div>
+      </div>
       </div>
       <div class="col-md-8">
       <div class="row g-0" >
@@ -477,11 +479,10 @@
     </div>
   </div>
 </div>
-
-
- 
     </div>
 
+
+<div id="modal"></div>
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
@@ -693,5 +694,36 @@ function checkAndSetSwitchValues(divId) {
     }
 }
 </script>
+
+
+<script>
+  function abrirmodal(indicador){
+    $.ajax({
+                url: '../../../consultarindicador',
+                method: 'GET', // Cambiar a GET si estás usando GET
+                data: {indicador:indicador, 
+                 folio: '<?= $folio ?>',
+                 integrante: '<?= $integrante ?>',
+                 tabla: '<?= $tabla?>'
+                }, // Envía los datos de manera plana
+                dataType: 'json',
+                success: function(data) {
+                  console.log(data);
+                  $('#modal').html(data.modal);
+                  var indicadors = 'modal-' + indicador; // Asegúrate de que "indicador_id" coincida con el ID generado
+                  var modal = new bootstrap.Modal(document.getElementById(indicadors)); 
+                  modal.show();
+                 $('#example').DataTable();
+                 // $('#siguiente').css('display','');
+                   // alertagood();
+                },
+                error: function(xhr, status, error) {
+                    alertabad();
+                    console.error(error);
+                }
+            });
+  }
+</script>
+
 
 @endsection

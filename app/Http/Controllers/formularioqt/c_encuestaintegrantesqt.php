@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Hashids\Hashids;
 use App\Models\m_herramientas;
-
-
+use App\Models\m_oportunidades;
+use Illuminate\Support\Str;
 class c_encuestaintegrantesqt extends Controller
 {
 
@@ -864,6 +864,158 @@ class c_encuestaintegrantesqt extends Controller
         );
     
         return response()->json(["request" => $data]); // Responder con los datos procesados
+    }
+
+    
+
+    public function fc_consultarindicador(Request $request)
+    {
+        $folio = $request->input('folio');
+        $idintegrante = $request->input('idintegrante');
+        $tabla = $request->input('tabla');
+        $indicador = $request->input('indicador');
+        $now = Carbon::now();
+
+        $modelo = new m_oportunidades();
+        // $oportunidad = $modelo-> m_listadooportunidades();
+        $oportunidad = DB::table('t1_oportunidad')
+        ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
+       // ->where('aplica_hogar_integrante','374')
+        ->get();
+    
+        $t1_integranteshogar = $modelo-> m_listadooportunidades($folio);
+        //dd($oportunidad);
+         $oportunidades = '';
+         $modal2 ='';
+         
+             
+         foreach ($oportunidad as $value) {
+            // Filtrar integrantes relacionados con la oportunidad actual
+            $integrantesRelacionados = array_filter($t1_integranteshogar, function ($integrante) use ($value) {
+                return $integrante->id_oportunidad == $value->id_oportunidad;
+            });
+        
+            // Solo incluir la oportunidad si tiene integrantes relacionados
+            if (!empty($integrantesRelacionados)) {
+                $oportunidades .= '
+                <div class="" >
+        <table id="example" class="table table-striped " >
+            <thead>
+                <tr>
+                    <th >Nombre de la Oportunidad</th>
+                    <!-- <th>Descripción</th>
+                    <th>Ruta</th> -->
+                    <th>Fecha Inicio oportunidad</th>
+                    <th>Fecha Límite de Acercamiento</th>
+                    <th class="align-middle text-center">Ver Oportunidad</th>
+                    <th class="align-middle text-center">Integrantes que aplican</th>
+                    <th>Acercar oportunidad</th>
+                </tr>
+            </thead>
+            <tbody style="font-size:15px">
+                
+                <tr>
+                    <td>' . $value->nombre_oportunidad . '</td>
+                    <td>' . Str::limit($value->fecha_inicio, 10, '') . '</td>
+                    <td>' . Str::limit($value->fecha_limite_acercamiento, 10, '') . '</td>
+                    <td class="align-middle text-center">
+        
+                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal-' . $value->id_oportunidad . '">
+                        Ver más
+                    </button>
+                    </td>
+                    <td class="text-center">
+                        <div class="container">
+                            <select class="selectpicker" onchange="habilitaboton(' . $value->id_oportunidad . ', ' . $value->aplica_hogar_integrante . ')" id="speaker_' . $value->id_oportunidad . '" name="speaker" data-live-search="true">
+                                <option selected disabled>Seleccione</option>';
+        
+                // Loop para los integrantes del hogar
+                foreach ($integrantesRelacionados as $integrante) {
+                    $oportunidades .= '<option data-folio="' . $integrante->folio . '" 
+                        value="' . $integrante->idintegrante . '">' 
+                        . $integrante->nombre1 . ' ' . $integrante->nombre2 . ' ' 
+                        . $integrante->apellido1 . ' ' . $integrante->apellido2 . ' - FOLIO: ' . $integrante->folio . 
+                        '</option>';
+                }
+        
+                $oportunidades .= '</select>
+                        </div>
+                    </td>
+                    <td style="display: flex; gap: 10px;">
+                <button class="btn btn-primary btn-sm" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',1)" type="button">Acercar</button>
+                <button class="btn btn-success btn-sm" id="efectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',2)" type="button">Efectiva</button>
+                <button class="btn btn-danger btn-sm" id="noefectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',3)" type="button">No Efectiva</button>
+                    </td>
+                </tr>
+                 </tbody>
+            <tfoot>
+               
+            </tfoot>
+        </table>
+    </div>
+        ';
+
+          $modal2 .=  '<div class="modal fade" id="modal-'.$value->id_oportunidad.'" tabindex="-1" aria-labelledby="modalLabel-'.$value->id_oportunidad.'" aria-hidden="true">
+                 <div class="modal-dialog">
+                     <div class="modal-content">
+                         <div class="modal-header">
+                             <h5 class="modal-title" id="modalLabel-'.$value->id_oportunidad.'">'.$value->nombre_oportunidad.'</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                         </div>
+                         <div class="modal-body">
+                            <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
+                             <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
+                             <p><strong>Ruta:</strong> '.$value->ruta.'</p>
+                         </div>
+                         <div class="modal-footer">
+                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+     ';
+            
+    }
+
+}
+
+
+        $modal='';
+        // Excluir 'folio' e 'idintegrante' del request y guardar el resto en $data
+        $modal .=  '<div class="modal fade modal-lg" id="modal-'.$indicador.'" tabindex="-1" aria-labelledby="modalLabel-'.$indicador.'" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel-'.$indicador.'">Mover indicador</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body ">
+                    <div class="form-group  was-validated" >
+                        <label for="ingresos1">Seleccione una opción:</label><br>
+                        <select class="form-control form-control-sm " id="ingresos1" name="ingresos1" aria-describedby="validationServer04Feedback" required>
+                            <option value="">Seleccione</option>
+                            <option value="1">Validación gestor</option>
+                            <option value="2">Fichero</option>
+                            <option value="3">Por preguntas de validación</option>
+                            <option value="4">Por intervención o acción movilizadora del gestor</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <label class="pb-2">Para mover este indicador por Gestor por favor dar clic en mover indicador.</label><br>
+                        <button type="button" class="btn btn-success btn-sm">Mover Indicador</button>
+                    </div>
+                    <hr>'.
+                     $oportunidades.
+                '</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>';
+    
+        return response()->json(["modal" => $modal]); // Responder con los datos procesados
     }
 
   
