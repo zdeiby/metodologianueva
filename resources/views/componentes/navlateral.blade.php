@@ -712,7 +712,7 @@ cloud.addEventListener("click",()=>{
     </script>
     
     <script>
-        
+   /*     
  window.onload = function () {
      document.addEventListener("contextmenu", function (e) {
          e.preventDefault();
@@ -747,7 +747,7 @@ cloud.addEventListener("click",()=>{
      }
 
 
- } 
+ } */
 
     </script>
 

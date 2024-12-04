@@ -62,9 +62,11 @@ foreach ($oportunidad as $value) {
         $oportunidades .= '</select>
                 </div>
             </td>
-            <td>
-                <button class="btn btn-primary" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ')" type="button">Acercar</button>
-            </td>
+            <td style="display: flex; gap: 10px;">
+                <button class="btn btn-primary btn-sm" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',1)" type="button">Acercar</button>
+                <button class="btn btn-success btn-sm" id="efectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',2)" type="button">Efectiva</button>
+                <button class="btn btn-danger btn-sm" id="noefectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',3)" type="button">No Efectiva</button>
+                </td>
         </tr>
 
         <!-- Modal -->
@@ -102,6 +104,7 @@ foreach ($oportunidad as $value) {
         $tabla = $request->input('tabla');
         $linea = $request->input('linea');
         $aplica_hogar_integrante= $request->input('aplica_hogar_integrante'); 
+        $estado_oportunidad= $request->input('estado_oportunidad'); 
 
 
 
@@ -112,7 +115,7 @@ foreach ($oportunidad as $value) {
             'usuario' => $usuario,
             'linea'=>$linea,
             'estado' => 1,
-            'estado_oportunidad' => 1,
+            'estado_oportunidad' => $estado_oportunidad,
             'sincro' => 0,
             'etiqueta' => 'mef',
             'aplica_hogar_integrante'=>$aplica_hogar_integrante,
@@ -129,7 +132,7 @@ foreach ($oportunidad as $value) {
                 'usuario' => $usuario,
                 'linea'=>$linea,
                 'estado' => 1,
-                'estado_oportunidad' => 1,
+                'estado_oportunidad' => $estado_oportunidad,
                 'sincro' => 0,
                 'etiqueta' => 'mef',
                 'aplica_hogar_integrante'=>$aplica_hogar_integrante,
@@ -145,7 +148,7 @@ foreach ($oportunidad as $value) {
                 'usuario' => $usuario,
                 'linea'=>$linea,
                 'estado' => 1,
-                'estado_oportunidad' => 1,
+                'estado_oportunidad' => $estado_oportunidad,
                 'sincro' => 0,
                 'etiqueta' => 'mef',
                 'aplica_hogar_integrante'=>$aplica_hogar_integrante,
@@ -174,7 +177,7 @@ foreach ($oportunidad as $value) {
                 $data_historico
                  );
              
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true, 'estado_oportunidad'=> $estado_oportunidad]);
 
     }
         if($aplica_hogar_integrante == '373'){  // integrantes
@@ -185,7 +188,7 @@ foreach ($oportunidad as $value) {
             DB::table('t3_oportunidad_integranteshogar_historico')->updateOrInsert(
                 $data_historico
                  );
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true, 'estado_oportunidad'=> $estado_oportunidad]);
 
     }
 

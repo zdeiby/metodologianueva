@@ -344,7 +344,7 @@
     <div class="row g-0" id="indicadorbef4" style="display:{{((($indicador_bef_4 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-        Los  integrantes del hogar participan de actividades sociales, culturales, recreativas y deportivas.
+        Los  integrantes del hogar participan en familia  de actividades sociales, culturales, recreativas y/o deportivas.
         </div>
       </div>
       <div class="col-md-8">

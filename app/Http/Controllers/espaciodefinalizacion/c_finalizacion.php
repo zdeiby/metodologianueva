@@ -131,6 +131,8 @@ class c_finalizacion extends Controller
            
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
+                            ->where('linea', $linea)
+                            ->where('paso', $paso)
                             ->get();
 
              $datos = [
