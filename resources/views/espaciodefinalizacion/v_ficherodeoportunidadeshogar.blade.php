@@ -241,15 +241,38 @@
      success: function(data) {
       $('#acercar'+idoportunidad).removeAttr('disabled');
         selectedOption.setAttribute('data-id', data.insertedId);
-      if (data.success) {
-          $('#acercar'+idoportunidad).attr('disabled', 'disabled');
+         if (data.success && data.estado_oportunidad == '1') {
+        $('#acercar'+idoportunidad).attr('disabled', 'disabled');
           $('#acercar'+idoportunidad).removeClass('btn btn-primary').addClass('btn btn-danger');
           $('#acercar'+idoportunidad).html('Acercada');
+          $('#efectiva'+idoportunidad).removeAttr('disabled');
+          $('#efectiva'+idoportunidad).removeClass('btn btn-success').addClass('btn btn-success');
+          $('#efectiva'+idoportunidad).html('Efectiva');
+          $('#noefectiva'+idoportunidad).removeAttr('disabled');
+          $('#noefectiva'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-danger');
+          $('#noefectiva'+idoportunidad).html('No efectiva');
           Swal.close();
-      } else {
-          $('#acercar'+idoportunidad).removeAttr('disabled');
-          $('#acercar'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-primary');
-          $('#acercar'+idoportunidad).html('Acercar');
+      }else if (data.success && data.estado_oportunidad == '2') {
+            $('#acercar'+idoportunidad).removeAttr('disabled');
+            $('#acercar'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-primary');
+            $('#acercar'+idoportunidad).html('Acercar');
+
+            $('#efectiva'+idoportunidad).attr('disabled', 'disabled');
+            $('#efectiva'+idoportunidad).html('Efectiva');
+            $('#noefectiva'+idoportunidad).attr('disabled', 'disabled');
+            $('#noefectiva'+idoportunidad).html('No efectiva');
+          Swal.close();
+      }
+      else if (data.success && data.estado_oportunidad == '3') {
+            $('#acercar'+idoportunidad).removeAttr('disabled');
+            $('#acercar'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-primary');
+            $('#acercar'+idoportunidad).html('Acercar');
+
+            $('#noefectiva'+idoportunidad).attr('disabled', 'disabled');
+            $('#noefectiva'+idoportunidad).removeClass('btn btn-primary').addClass('btn btn-danger');
+            $('#noefectiva'+idoportunidad).html('No efectiva');
+            $('#efectiva'+idoportunidad).attr('disabled', 'disabled');
+            $('#efectiva'+idoportunidad).html('Efectiva');
           Swal.close();
       }
      },
@@ -290,13 +313,51 @@ function habilitaboton(idoportunidad){
           $('#acercar'+idoportunidad).attr('disabled', 'disabled');
           $('#acercar'+idoportunidad).removeClass('btn btn-primary').addClass('btn btn-danger');
           $('#acercar'+idoportunidad).html('Acercada');
-          Swal.close();
-      } else {
-          $('#acercar'+idoportunidad).removeAttr('disabled');
-          $('#acercar'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-primary');
-          $('#acercar'+idoportunidad).html('Acercar');
+          $('#efectiva'+idoportunidad).removeAttr('disabled');
+          $('#efectiva'+idoportunidad).removeClass('btn btn-success').addClass('btn btn-success');
+          $('#efectiva'+idoportunidad).html('Efectiva');
+          $('#noefectiva'+idoportunidad).removeAttr('disabled');
+          $('#noefectiva'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-danger');
+          $('#noefectiva'+idoportunidad).html('No efectiva');
           Swal.close();
       }
+     else if (data.estado == '2') {
+            $('#acercar'+idoportunidad).removeAttr('disabled');
+            $('#acercar'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-primary');
+            $('#acercar'+idoportunidad).html('Acercar');
+
+            $('#efectiva'+idoportunidad).attr('disabled', 'disabled');
+            $('#efectiva'+idoportunidad).html('Efectiva');
+            $('#noefectiva'+idoportunidad).attr('disabled', 'disabled');
+            $('#noefectiva'+idoportunidad).html('No efectiva');
+        //   $('#acercar'+idoportunidad).attr('disabled', 'disabled');
+        //   $('#acercar'+idoportunidad).removeClass('btn btn-primary').addClass('btn btn-danger');
+        //   $('#acercar'+idoportunidad).html('Acercada');
+          
+          Swal.close();
+      }
+    else  if (data.estado == '3') {
+            $('#acercar'+idoportunidad).removeAttr('disabled');
+            $('#acercar'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-primary');
+            $('#acercar'+idoportunidad).html('Acercar');
+
+            $('#noefectiva'+idoportunidad).attr('disabled', 'disabled');
+            $('#noefectiva'+idoportunidad).removeClass('btn btn-primary').addClass('btn btn-danger');
+            $('#noefectiva'+idoportunidad).html('No efectiva');
+            $('#efectiva'+idoportunidad).attr('disabled', 'disabled');
+            $('#efectiva'+idoportunidad).html('Efectiva');
+            Swal.close();
+    }    else {
+            $('#acercar'+idoportunidad).removeAttr('disabled');
+            $('#acercar'+idoportunidad).removeClass('btn btn-danger').addClass('btn btn-primary');
+            $('#acercar'+idoportunidad).html('Acercar');
+            $('#efectiva'+idoportunidad).attr('disabled', 'disabled');
+            $('#efectiva'+idoportunidad).html('Efectiva');
+            $('#noefectiva'+idoportunidad).attr('disabled', 'disabled');
+            $('#noefectiva'+idoportunidad).html('No efectiva');
+           
+           Swal.close();
+       }
 
      },
      error: function(xhr, status, error) {
