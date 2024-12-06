@@ -35,6 +35,10 @@ class c_encuestaintegrantesqt extends Controller
             ->where('folio', $encodedFolio)
             ->get();
 
+            $indicadores_tabla = DB::table('t_bienestar_subcategoria_indicador')
+            ->get();
+            
+
             $representante = DB::table('t1_integranteshogar')
             ->where('idintegrante', $decodeIntegrante)
             ->where('folio', $encodedFolio)
@@ -183,7 +187,9 @@ class c_encuestaintegrantesqt extends Controller
                                                                     'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] ,
                                                                     'integrantecodificado'=>$integrante , 
                                                                      'tabla'=>$tabla, 'indicador_bse_1'=>$indicador_bse_1 ,'indicador_bse_2'=>$indicador_bse_2 , 'indicador_bse_3'=>$indicador_bse_3, 'indicador_bse_4'=>$indicador_bse_4, 'indicador_bse_5'=>$indicador_bse_5,
-                                                                     'indicador_bse_6'=>$indicador_bse_6, 'indicador_bse_7'=>$indicador_bse_7
+                                                                     'indicador_bse_6'=>$indicador_bse_6, 'indicador_bse_7'=>$indicador_bse_7,
+                                                                     'indicadores_tabla'=>$indicadores_tabla
+                                                                    
                                                                     ]);
     }
 
@@ -870,10 +876,14 @@ class c_encuestaintegrantesqt extends Controller
 
     public function fc_consultarindicador(Request $request)
     {
+
         $folio = $request->input('folio');
         $idintegrante = $request->input('idintegrante');
         $tabla = $request->input('tabla');
-        $indicador = $request->input('indicador');
+        $id_bienestar = $request->input('id_bienestar');
+        $id_subcategoria = $request->input('id_subcategoria');
+        $id_indicador = $request->input('id_indicador');
+
         $now = Carbon::now();
 
         $modelo = new m_oportunidades();
@@ -883,7 +893,7 @@ class c_encuestaintegrantesqt extends Controller
        // ->where('aplica_hogar_integrante','374')
         ->get();
     
-        $t1_integranteshogar = $modelo-> m_listadooportunidades($folio);
+        $t1_integranteshogar = $modelo-> m_listadooportunidadesmovimientoindicadores($folio,$idintegrante,$id_bienestar, $id_indicador);
         //dd($oportunidad);
          $oportunidades = '';
          $modal2 ='';
@@ -898,21 +908,7 @@ class c_encuestaintegrantesqt extends Controller
             // Solo incluir la oportunidad si tiene integrantes relacionados
             if (!empty($integrantesRelacionados)) {
                 $oportunidades .= '
-                <div class="" >
-        <table id="example" class="table table-striped " >
-            <thead>
-                <tr>
-                    <th >Nombre de la Oportunidad</th>
-                    <!-- <th>Descripción</th>
-                    <th>Ruta</th> -->
-                    <th>Fecha Inicio oportunidad</th>
-                    <th>Fecha Límite de Acercamiento</th>
-                    <th class="align-middle text-center">Ver Oportunidad</th>
-                    <th class="align-middle text-center">Integrantes que aplican</th>
-                    <th>Acercar oportunidad</th>
-                </tr>
-            </thead>
-            <tbody style="font-size:15px">
+               
                 
                 <tr>
                     <td>' . $value->nombre_oportunidad . '</td>
@@ -947,12 +943,7 @@ class c_encuestaintegrantesqt extends Controller
                 <button class="btn btn-danger btn-sm" id="noefectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',3)" type="button">No Efectiva</button>
                     </td>
                 </tr>
-                 </tbody>
-            <tfoot>
-               
-            </tfoot>
-        </table>
-    </div>
+                
         ';
 
           $modal2 .=  '<div class="modal fade" id="modal-'.$value->id_oportunidad.'" tabindex="-1" aria-labelledby="modalLabel-'.$value->id_oportunidad.'" aria-hidden="true">
@@ -982,11 +973,11 @@ class c_encuestaintegrantesqt extends Controller
 
         $modal='';
         // Excluir 'folio' e 'idintegrante' del request y guardar el resto en $data
-        $modal .=  '<div class="modal fade modal-lg" id="modal-'.$indicador.'" tabindex="-1" aria-labelledby="modalLabel-'.$indicador.'" aria-hidden="true">
+        $modal .=  '<div class="modal fade modal-xl" id="modal-'.$id_indicador.'" tabindex="-1" aria-labelledby="modalLabel-'.$id_indicador.'" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel-'.$indicador.'">Mover indicador</h5>
+                    <h5 class="modal-title" id="modalLabel-'.$id_indicador.'">Mover indicador</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body ">
@@ -1005,9 +996,33 @@ class c_encuestaintegrantesqt extends Controller
                         <label class="pb-2">Para mover este indicador por Gestor por favor dar clic en mover indicador.</label><br>
                         <button type="button" class="btn btn-success btn-sm">Mover Indicador</button>
                     </div>
-                    <hr>'.
-                     $oportunidades.
-                '</div>
+                    <hr>
+                                            <div class="" >
+                                <table id="example" class="table table-striped " >
+                                    <thead>
+                                        <tr>
+                                            <th >Nombre de la Oportunidad</th>
+                                            <!-- <th>Descripción</th>
+                                            <th>Ruta</th> -->
+                                            <th>Fecha Inicio oportunidad</th>
+                                            <th>Fecha Límite de Acercamiento</th>
+                                            <th class="align-middle text-center">Ver Oportunidad</th>
+                                            <th class="align-middle text-center">Integrantes que aplican</th>
+                                            <th>Acercar oportunidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-size:15px" id="oportunidades">
+                    
+                                     </tbody>
+                                        <tfoot>
+                                        
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+
+                    
+                    </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
@@ -1015,7 +1030,7 @@ class c_encuestaintegrantesqt extends Controller
         </div>
     </div>';
     
-        return response()->json(["modal" => $modal]); // Responder con los datos procesados
+        return response()->json(["modal" => $modal, 'oportunidades'=>$oportunidades]); // Responder con los datos procesados
     }
 
   
