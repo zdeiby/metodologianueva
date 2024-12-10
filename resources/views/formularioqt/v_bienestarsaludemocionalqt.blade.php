@@ -435,7 +435,7 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Todos los integrantes del hogar cuentan el  acceso y consumo oportuno de alimentos 
-        <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[6]->id_bienestar ?>','<?= $indicadores_tabla[6]->id_subcategoria ?>','<?= $indicadores_tabla[6]->id_indicador ?>')">Mover Indicador</div>
+        <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[6]->id_bienestar ?>','<?= $indicadores_tabla[6]->id_subcategoria ?>','<?= $indicadores_tabla[6]->id_indicador ?>')">Mover Indicador</div>
 
         </div>
       </div>
@@ -714,6 +714,41 @@ function checkAndSetSwitchValues(divId) {
   function abrirmodal(id_bienestar, id_subcategoria, id_indicador){
     $.ajax({
                 url: '../../../consultarindicador',
+                method: 'GET', // Cambiar a GET si estás usando GET
+                data: {id_bienestar:id_bienestar, 
+                  id_subcategoria:id_subcategoria, 
+                  id_indicador:id_indicador, 
+                 folio: '<?= $folio ?>',
+                 idintegrante: '<?= $integrante ?>',
+                 tabla: '<?= $tabla?>'
+                }, // Envía los datos de manera plana
+                dataType: 'json',
+                success: function(data) {
+                  console.log(data);
+                  $('#modal').html(data.modal);
+                  var indicadors = 'modal-' + id_indicador; // Asegúrate de que "indicador_id" coincida con el ID generado
+                  var modal = new bootstrap.Modal(document.getElementById(indicadors)); 
+                  modal.show();
+                  $('#oportunidades').html(data.oportunidades);
+                  $('.selectpicker').selectpicker();
+                  $('.filter-option-inner-inner').css('font-size','13px');
+                  $('#example').DataTable().destroy(); // Destruye la instancia existente
+                  $('#example').DataTable(); // Vuelve a inicializar
+
+                 // $('#siguiente').css('display','');
+                   // alertagood();
+                },
+                error: function(xhr, status, error) {
+                    alertabad();
+                    console.error(error);
+                }
+            });
+  }
+
+
+  function abrirmodalhogar(id_bienestar, id_subcategoria, id_indicador){
+    $.ajax({
+                url: '../../../consultarindicadorhogar',
                 method: 'GET', // Cambiar a GET si estás usando GET
                 data: {id_bienestar:id_bienestar, 
                   id_subcategoria:id_subcategoria, 
