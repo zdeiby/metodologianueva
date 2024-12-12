@@ -200,6 +200,9 @@ class c_encuestaintegrantesqt extends Controller
     $encodedFolio = $hashids->decode($folio);
     $decodeIntegrante = $hashids->decode($integrante);
 
+    $indicadores_tabla = DB::table('t_bienestar_subcategoria_indicador')
+            ->get();
+
     $informacion = DB::table($tabla)
                ->where('idintegrante', $decodeIntegrante)
                ->where('folio', $encodedFolio)
@@ -393,15 +396,10 @@ class c_encuestaintegrantesqt extends Controller
                 $datos['siguiente'] = (($registro->estado == '1') ? 'style="display:"' : 'style="display:none"');
             }
             
-            
-
-
-
-
-
+  
      return view('formularioqt/v_legalqt', $datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,'indicador_bl_1'=>$indicador_bl_1,'indicador_bl_2'=>$indicador_bl_2,
     'indicador_bl_3'=>$indicador_bl_3, 'indicador_bl_4'=>$indicador_bl_4, 'indicador_bl_5'=>$indicador_bl_5,'indicador_bl_6'=>$indicador_bl_6,'indicador_bl_7'=>$indicador_bl_7,
-'indicador_bl_8'=>$indicador_bl_8, 'indicador_bl_9'=>$indicador_bl_9, 'indicador_bl_10'=>$indicador_bl_10
+'indicador_bl_8'=>$indicador_bl_8, 'indicador_bl_9'=>$indicador_bl_9, 'indicador_bl_10'=>$indicador_bl_10, 'indicadores_tabla'=>$indicadores_tabla
     ]);
     } 
 
@@ -410,6 +408,9 @@ class c_encuestaintegrantesqt extends Controller
         $hashids = new Hashids('', 10); 
         $encodedFolio = $hashids->decode($folio);
         $decodeIntegrante = $hashids->decode($integrante);
+
+        $indicadores_tabla = DB::table('t_bienestar_subcategoria_indicador')
+        ->get();
 
         $informacion = DB::table($tabla)
         ->where('idintegrante', $decodeIntegrante)
@@ -465,7 +466,7 @@ class c_encuestaintegrantesqt extends Controller
                         }
 
 
-                         //indicador_bef_4
+                         //indicador_bef_5
             $t1_indicador_bef_5 = DB::table('t1_indicador_bef_5')
             ->where('folio', $encodedFolio)
             ->get();
@@ -473,6 +474,16 @@ class c_encuestaintegrantesqt extends Controller
             $indicador_bef_5='';
             foreach ($t1_indicador_bef_5 as $indicador) {
                 $indicador_bef_5=$indicador->codigoindicadorDA;
+            }
+
+            //indicador_bef_6
+            $t1_indicador_bef_6 = DB::table('t1_indicador_bef_6')
+            ->where('folio', $encodedFolio)
+            ->get();
+
+            $indicador_bef_6='';
+            foreach ($t1_indicador_bef_6 as $indicador) {
+                $indicador_bef_6=$indicador->codigoindicadorDA;
             }
 
 
@@ -497,6 +508,13 @@ class c_encuestaintegrantesqt extends Controller
                             'indicador_bef5_2' => '',
                             'indicador_bef5_3' => '',
                             'indicador_bef5_4' => '',
+                            'indicador_bef6_1' => '',
+                            'indicador_bef6_2' => '',
+                            'indicador_bef6_3' => '',
+                            'indicador_bef6_4' => '',
+                            'indicador_bef6_5' => '',
+                            'indicador_bef6_6' => '',
+
                             'siguiente' => 'style="display:none"',
                             'vista' => $vista
                         ];
@@ -521,12 +539,21 @@ class c_encuestaintegrantesqt extends Controller
                             $datos['indicador_bef5_2'] = $registro->indicador_bef5_2;
                             $datos['indicador_bef5_3'] = $registro->indicador_bef5_3;
                             $datos['indicador_bef5_4'] = $registro->indicador_bef5_4;
+                            $datos['indicador_bef6_1'] = $registro->indicador_bef6_1;
+                            $datos['indicador_bef6_2'] = $registro->indicador_bef6_2;
+                            $datos['indicador_bef6_3'] = $registro->indicador_bef6_3;
+                            $datos['indicador_bef6_4'] = $registro->indicador_bef6_4;
+                            $datos['indicador_bef6_5'] = $registro->indicador_bef6_5;
+                            $datos['indicador_bef6_6'] = $registro->indicador_bef6_6;
+
                         
                             $datos['siguiente'] = (($registro->estado == '1') ? 'style="display:"' : 'style="display:none"');
                         }
 
+                        
+
                         return view('formularioqt/v_enfamiliaqt',$datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
-                    'indicador_bef_1'=>$indicador_bef_1,'indicador_bef_2'=>$indicador_bef_2,'indicador_bef_3'=>$indicador_bef_3,'indicador_bef_4'=>$indicador_bef_4,'indicador_bef_5'=>$indicador_bef_5,
+                    'indicador_bef_1'=>$indicador_bef_1,'indicador_bef_2'=>$indicador_bef_2,'indicador_bef_3'=>$indicador_bef_3,'indicador_bef_4'=>$indicador_bef_4,'indicador_bef_5'=>$indicador_bef_5,'indicador_bef_6'=>$indicador_bef_6 , 'indicadores_tabla'=>$indicadores_tabla
                     ]);
                     } 
 
@@ -535,6 +562,9 @@ class c_encuestaintegrantesqt extends Controller
         $hashids = new Hashids('', 10); 
         $encodedFolio = $hashids->decode($folio);
         $decodeIntegrante = $hashids->decode($integrante);
+
+        $indicadores_tabla = DB::table('t_bienestar_subcategoria_indicador')
+        ->get();
 
         $informacion = DB::table($tabla)
         ->where('idintegrante', $decodeIntegrante)
@@ -692,7 +722,7 @@ class c_encuestaintegrantesqt extends Controller
 
 
         return view('formularioqt/v_intelectualqt',$datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
-        'indicador_bi_1'=>$indicador_bi_1,'indicador_bi_2'=>$indicador_bi_2, 'indicador_bi_3'=>$indicador_bi_3,'indicador_bi_4'=>$indicador_bi_4,'indicador_bi_5'=>$indicador_bi_5,'indicador_bi_6'=>$indicador_bi_6
+        'indicador_bi_1'=>$indicador_bi_1,'indicador_bi_2'=>$indicador_bi_2, 'indicador_bi_3'=>$indicador_bi_3,'indicador_bi_4'=>$indicador_bi_4,'indicador_bi_5'=>$indicador_bi_5,'indicador_bi_6'=>$indicador_bi_6, 'indicadores_tabla'=>$indicadores_tabla
     ]);
     } 
 
@@ -701,6 +731,10 @@ class c_encuestaintegrantesqt extends Controller
         $hashids = new Hashids('', 10); 
         $encodedFolio = $hashids->decode($folio);
         $decodeIntegrante = $hashids->decode($integrante);
+
+        $indicadores_tabla = DB::table('t_bienestar_subcategoria_indicador')
+        ->get();
+
         $informacion = DB::table($tabla)
         ->where('idintegrante', $decodeIntegrante)
         ->where('folio', $encodedFolio)
@@ -833,7 +867,7 @@ class c_encuestaintegrantesqt extends Controller
 
 
         return view('formularioqt/v_financieroqt', $datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante, 'tabla'=>$tabla,
-    'indicador_bf_1'=>$indicador_bf_1,'indicador_bf_2'=>$indicador_bf_2,'indicador_bf_3'=>$indicador_bf_3,'indicador_bf_4'=>$indicador_bf_4,'indicador_bf_5'=>$indicador_bf_5
+    'indicador_bf_1'=>$indicador_bf_1,'indicador_bf_2'=>$indicador_bf_2,'indicador_bf_3'=>$indicador_bf_3,'indicador_bf_4'=>$indicador_bf_4,'indicador_bf_5'=>$indicador_bf_5, 'indicadores_tabla'=>$indicadores_tabla
 
     ]);
     } 
@@ -992,11 +1026,33 @@ class c_encuestaintegrantesqt extends Controller
                         </select>
                     </div>
                     <hr>
-                    <div class="text-center">
-                        <label class="pb-2">Para mover este indicador por Gestor por favor dar clic en mover indicador.</label><br>
-                        <button type="button" class="btn btn-success btn-sm">Mover Indicador</button>
+                    '.((
+
+                        $id_bienestar == '1' && $id_indicador == '2' || $id_bienestar == '1' && $id_indicador == '4' 
+                        || $id_bienestar == '1' && $id_indicador == '5'
+                        || $id_bienestar == '2' && $id_indicador == '1' || $id_bienestar == '2' && $id_indicador == '2'
+                        || $id_bienestar == '2' && $id_indicador == '3'|| $id_bienestar == '2' && $id_indicador == '4'
+                        || $id_bienestar == '2' && $id_indicador == '5' ||  $id_bienestar == '2' && $id_indicador == '6'
+                        || $id_bienestar == '2' && $id_indicador == '8' ||  $id_bienestar == '2' && $id_indicador == '9'
+                        || $id_bienestar == '2' && $id_indicador == '10'
+
+                        || $id_bienestar == '3' && $id_indicador == '5' ||  $id_bienestar == '3' && $id_indicador == '6'
+
+                        || $id_bienestar == '4' && $id_indicador == '2' ||  $id_bienestar == '4' && $id_indicador == '3'
+                        || $id_bienestar == '4' && $id_indicador == '4' ||  $id_bienestar == '4' && $id_indicador == '5' ||  $id_bienestar == '4' && $id_indicador == '6'
+
+                        || $id_bienestar == '5' && $id_indicador == '1' ||  $id_bienestar == '5' && $id_indicador == '2'
+                        || $id_bienestar == '5' && $id_indicador == '3' 
+
+
+
+                    )?
+                   ' <div class="text-center  was-validated">
+                        <label class="pb-2">Para mover este indicador por Gestor por favor llena la observacion y luego dar clic en mover indicador.</label><br>
+                        <textarea class="form-control" id="observaciongestor" rows="4" required></textarea><br>
+                        <button type="button" class="btn btn-success btn-sm" onclick="moverindicadorgestor('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
                     </div>
-                    <hr>
+                    <hr>':'' ) .'
                                             <div class="" width="100%">
                                 <table id="example" class="table table-striped " >
                                     <thead>
@@ -1154,11 +1210,39 @@ class c_encuestaintegrantesqt extends Controller
                         </select>
                     </div>
                     <hr>
-                    <div class="text-center">
-                        <label class="pb-2">Para mover este indicador por Gestor por favor dar clic en mover indicador.</label><br>
-                        <button type="button" class="btn btn-success btn-sm">Mover Indicador</button>
+                   '.((
+                    
+                  
+                    $id_bienestar == '1' && $id_indicador == '2'  
+                    || $id_bienestar == '1' && $id_indicador == '4'  
+                    || $id_bienestar == '1' && $id_indicador == '5' 
+
+                    || $id_bienestar == '2' && $id_indicador == '1'    
+                    || $id_bienestar == '2' && $id_indicador == '2'
+                    || $id_bienestar == '2' && $id_indicador == '3'
+                    || $id_bienestar == '2' && $id_indicador == '4'
+                    || $id_bienestar == '2' && $id_indicador == '5' 
+                    ||  $id_bienestar == '2' && $id_indicador == '6'
+                    || $id_bienestar == '2' && $id_indicador == '8' 
+                    ||  $id_bienestar == '2' && $id_indicador == '9'
+                    || $id_bienestar == '2' && $id_indicador == '10'
+
+                    || $id_bienestar == '3' && $id_indicador == '5' ||  $id_bienestar == '3' && $id_indicador == '6'
+
+                    || $id_bienestar == '4' && $id_indicador == '2' ||  $id_bienestar == '4' && $id_indicador == '3'
+                    || $id_bienestar == '4' && $id_indicador == '4' ||  $id_bienestar == '4' && $id_indicador == '5' 
+                    ||  $id_bienestar == '4' && $id_indicador == '6'
+
+                    || $id_bienestar == '5' && $id_indicador == '1' ||  $id_bienestar == '5' && $id_indicador == '2'
+                    || $id_bienestar == '5' && $id_indicador == '3' 
+
+                   )?
+                   ' <div class="text-center  was-validated">
+                           <label class="pb-2">Para mover este indicador por Gestor por favor llena la observacion y luego dar clic en mover indicador.</label><br>
+                        <textarea class="form-control" id="observaciongestor" rows="4" required></textarea><br>
+                        <button type="button" class="btn btn-success btn-sm" onclick="moverindicadorgestor('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
                     </div>
-                    <hr>
+                    <hr>':'' ) .'
                                             <div class="" width="100%">
                                 <table id="example" class="table table-striped " >
                                     <thead>
@@ -1197,4 +1281,41 @@ class c_encuestaintegrantesqt extends Controller
 
 
   
+
+    public function fc_moverindicadorgestor(Request $request)
+    {
+
+        $folio = $request->input('folio');
+        $idintegrante = $request->input('idintegrante');
+        $id_bienestar = $request->input('id_bienestar');
+        $id_indicador = $request->input('id_indicador');
+        $usuario = $request->input('usuario');
+        $observaciongestor = $request->input('observaciongestor');
+
+
+
+        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_vp(?, ?, ?, ?, ?, ?)', [
+            $folio, 
+            $idintegrante, 
+            $id_bienestar, 
+            $id_indicador,
+            $usuario,
+            $observaciongestor
+        ]);
+        $resultado2 = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+            $folio, 
+            $idintegrante
+        ]);
+
+        
+
+        // Retornar una respuesta con el resultado
+        return response()->json([
+            'success' => true,
+            'message' => 'Procedimiento ejecutado correctamente.',
+            'data' => $resultado,
+        ]);
+        
+    }
+
 }

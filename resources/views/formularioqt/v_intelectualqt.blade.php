@@ -133,7 +133,10 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los niños y niñas entre 0 y 5 años están vinculados a programas de atención integral en cuidado a la primera infancia, con acceso a salud, nutrición y educación inicial (IPM)
-        </div>
+        <br><br><div class="text-center">
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[23]->id_bienestar ?>','<?= $indicadores_tabla[23]->id_subcategoria ?>','<?= $indicadores_tabla[23]->id_indicador ?>')">Mover Indicador</div>
+          </div>
+      </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
@@ -174,6 +177,9 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los niños,niñas y adolescentes en edad escolar (de 6 a 17 años) estan vinculados  al sistema educativo formal (IPM)
+        <br><br><div class="text-center">
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[24]->id_bienestar ?>','<?= $indicadores_tabla[24]->id_subcategoria ?>','<?= $indicadores_tabla[24]->id_indicador ?>')">Mover Indicador</div>
+          </div>
         </div>
       </div>
       <div class="col-md-8">
@@ -225,7 +231,10 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar mayores de 18 años que no hayan completado su educación básica acceden a programas  educación formal para adultos.
-        </div>
+        <br><br><div class="text-center">
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[25]->id_bienestar ?>','<?= $indicadores_tabla[25]->id_subcategoria ?>','<?= $indicadores_tabla[25]->id_indicador ?>')">Mover Indicador</div>
+          </div>
+      </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
@@ -304,7 +313,10 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar mayores de 10 años acceden a formación en alfabetización digital a traves de los recursos tecnológicos disponibles
-        </div>
+        <br><br><div class="text-center">
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[26]->id_bienestar ?>','<?= $indicadores_tabla[26]->id_subcategoria ?>','<?= $indicadores_tabla[26]->id_indicador ?>')">Mover Indicador</div>
+          </div>
+      </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
@@ -384,7 +396,10 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar mayores de 14 años  que lo desean acceden a  educación superior (tecnica profesional, tecnologias, universitario y postgrado)
-        </div>
+        <br><br><div class="text-center">
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[27]->id_bienestar ?>','<?= $indicadores_tabla[27]->id_subcategoria ?>','<?= $indicadores_tabla[27]->id_indicador ?>')">Mover Indicador</div>
+          </div>
+      </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
@@ -451,7 +466,10 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar de 14 años en adelante que lo desean acceden a  educación para el trabajo y desarrollo humano 
-        </div>
+        <br><br><div class="text-center">
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[28]->id_bienestar ?>','<?= $indicadores_tabla[28]->id_subcategoria ?>','<?= $indicadores_tabla[28]->id_indicador ?>')">Mover Indicador</div>
+          </div>
+      </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
@@ -547,36 +565,6 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-          Selecciona un avatar     
-        </div>
-      <div class="modal-body">
-      <img src="{{asset('avatares/1.png')}}" id="1" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('1')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/2.png')}}" id="2" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('2')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/3.png')}}" id="3" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('3')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/4.png')}}" id="4" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('4')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/5.png')}}" id="5" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('5')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/6.png')}}" id="6" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('6')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/7.png')}}" id="7" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('7')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/8.png')}}" id="8" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('8')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/9.png')}}" id="9" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('9')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/10.png')}}" id="10" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('10')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/11.png')}}" id="11" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('11')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/12.png')}}" id="12" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('12')" alt="Avatar" style="width: 150px; height: 150px;">
-      <img src="{{asset('avatares/13.png')}}" id="13" class="rounded-circle imagenDinamicaselect" onclick="agregarImagen('13')" alt="Avatar" style="width: 150px; height: 150px;">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" onclick="cargarImagen()">Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
  
     </div>
@@ -586,37 +574,6 @@
     <script>
     
 
-
-    function agregarImagen(id){
-      $(`#${id}`).addClass('imagenselect');
-      for (let index = 0; index < 14; index++) {
-        if(id == index){
-            localStorage.setItem('numimage',id)
-        }else{
-          $(`#${index}`).removeClass('imagenselect');
-        }
-      }
-    }
-
-    function cargarImagen(){
-      imagen=localStorage.getItem('numimage');
-      folio=localStorage.getItem('folio');
-      idintegrante=localStorage.getItem('idintegrante');
-      $.ajax({
-        url:'./guardaravatar',
-        data:{folio:folio, idintegrante:idintegrante, avatar:imagen},
-        method: "GET",
-        dataType:'JSON',
-        success:function(data){
-          $('#imagenDinamica').attr('src',`../public/avatares/${imagen}.png`);
-          localStorage.setItem('imagen',`../public/avatares/${imagen}.png`)
-          $('#exampleModal').modal('hide');
-        },
-        error: function(xhr, status, error) {
-                  console.log(xhr.responseText);
-              }
-      })
-    }
     
     $('#siguiente').click(function(){
         var url = "../../../financieroqt/<?= $variable ?>/<?= $integrantecodificado ?>/<?= $vista ?>"; window.location.href = url;
@@ -815,12 +772,87 @@ function checkAndSetSwitchValues(divId) {
     }
 }
 </script>
-
-
 <script>
   function abrirmodal(id_bienestar, id_subcategoria, id_indicador){
     $.ajax({
                 url: '../../../consultarindicador',
+                method: 'GET', // Cambiar a GET si estás usando GET
+                data: {id_bienestar:id_bienestar, 
+                  id_subcategoria:id_subcategoria, 
+                  id_indicador:id_indicador, 
+                 folio: '<?= $folio ?>',
+                 idintegrante: '<?= $integrante ?>',
+                 tabla: '<?= $tabla?>'
+                }, // Envía los datos de manera plana
+                dataType: 'json',
+                success: function(data) {
+                  console.log(data);
+                  $('#modal').html(data.modal);
+                  var indicadors = 'modal-' + id_indicador; // Asegúrate de que "indicador_id" coincida con el ID generado
+                  var modal = new bootstrap.Modal(document.getElementById(indicadors)); 
+                  modal.show();
+                  $('#oportunidades').html(data.oportunidades);
+                  $('.selectpicker').selectpicker();
+                  $('.filter-option-inner-inner').css('font-size','13px');
+                  $('#example').DataTable().destroy(); // Destruye la instancia existente
+                  $('#example').DataTable(); // Vuelve a inicializar
+
+                 // $('#siguiente').css('display','');
+                   // alertagood();
+                },
+                error: function(xhr, status, error) {
+                    alertabad();
+                    console.error(error);
+                }
+            });
+  }
+
+
+  function moverindicadorgestor(folio, idintegrante, id_bienestar, id_indicador) {
+  
+    var modalElement = document.getElementById('modal-'+ id_indicador);
+    var modalInstance = bootstrap.Modal.getInstance(modalElement);
+    var observaciongestor = $('#observaciongestor').val();
+    console.log(observaciongestor)
+     $.ajax({
+                 url: '../../../moverindicadorgestor',
+                 method: 'GET', // Cambiar a GET si estás usando GET
+                 data: {id_bienestar:id_bienestar, 
+                   id_indicador:id_indicador, 
+                  folio: '<?= $folio ?>',
+                  idintegrante: '<?= $integrante ?>',
+                  usuario: '<?= Session::get('cedula')?>',
+                  observaciongestor:observaciongestor
+
+
+                 }, // Envía los datos de manera plana
+                 dataType: 'json',
+                 success: function(data) {
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Indicardor movido con éxito",
+                    showConfirmButton: false,
+                    timer: 1000
+                    });
+                  setTimeout(() => {
+                    location.reload();
+                  }, 1000);
+                  location.reload();
+                    //modalInstance.hide();
+                 },
+                 error: function(xhr, status, error) {
+                     alertabad();
+                     console.error(error);
+                 }
+             });
+
+}
+
+
+  function abrirmodalhogar(id_bienestar, id_subcategoria, id_indicador){
+    $.ajax({
+                url: '../../../consultarindicadorhogar',
                 method: 'GET', // Cambiar a GET si estás usando GET
                 data: {id_bienestar:id_bienestar, 
                   id_subcategoria:id_subcategoria, 
@@ -858,7 +890,7 @@ function checkAndSetSwitchValues(divId) {
     // Obtiene el select específico usando el id de oportunidad
     let select = document.getElementById(`speaker_${idoportunidad}`);
     let selectedOption = select.options[select.selectedIndex];
-console.log(aplica_hogar_integrante, 'HOLAAAAAAAAAAAAAAA')
+//console.log(aplica_hogar_integrante, 'HOLAAAAAAAAAAAAAAA')
     // Obtén los valores directamente
     let idintegrante = selectedOption.value;
     let folio = selectedOption.getAttribute('data-folio');

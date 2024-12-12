@@ -132,6 +132,7 @@ Route::get('/financieroqt/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantes
 Route::get('/finalizarintegrantesqt',[c_cardsqt::class,'fc_finalizarintegrantesqt'])->name('finalizarintegrantesqt');
 Route::get('/consultarindicador',[c_encuestaintegrantesqt::class,'fc_consultarindicador'])->name('consultarindicador');
 Route::get('/consultarindicadorhogar',[c_encuestaintegrantesqt::class,'fc_consultarindicadorhogar'])->name('consultarindicadorhogar');
+Route::get('/moverindicadorgestor',[c_encuestaintegrantesqt::class,'fc_moverindicadorgestor'])->name('moverindicadorgestor');
 
 
 

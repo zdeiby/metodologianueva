@@ -59,6 +59,8 @@ $indicadores_bse = [
             'indicadorbef_3' => $indicadoreshogar->indicadorbef_3,
             'indicadorbef_4' => $indicadoreshogar->indicadorbef_4,
             'indicadorbef_5' => $indicadoreshogar->indicadorbef_5,
+            'indicadorbef_6' => $indicadoreshogar->indicadorbef_6,
+
         ];
         
         // Total de indicadores

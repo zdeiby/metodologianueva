@@ -362,7 +362,8 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar que lo requieren acceden a servicios de salud mental  y/o atención psicosocial.
-        <div class="text-center"><br>
+        <div class="text-center">
+          <br>
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div>
           </div>
         </div>
@@ -435,8 +436,10 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Todos los integrantes del hogar cuentan el  acceso y consumo oportuno de alimentos 
+        <div class="text-center">
+          <br>
         <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[6]->id_bienestar ?>','<?= $indicadores_tabla[6]->id_subcategoria ?>','<?= $indicadores_tabla[6]->id_indicador ?>')">Mover Indicador</div>
-
+        </div>
         </div>
       </div>
       <div class="col-md-8">
@@ -746,6 +749,48 @@ function checkAndSetSwitchValues(divId) {
   }
 
 
+  function moverindicadorgestor(folio, idintegrante, id_bienestar, id_indicador) {
+  
+    var modalElement = document.getElementById('modal-'+ id_indicador);
+    var modalInstance = bootstrap.Modal.getInstance(modalElement);
+    var observaciongestor = $('#observaciongestor').val();
+    console.log(observaciongestor)
+     $.ajax({
+                 url: '../../../moverindicadorgestor',
+                 method: 'GET', // Cambiar a GET si estás usando GET
+                 data: {id_bienestar:id_bienestar, 
+                   id_indicador:id_indicador, 
+                  folio: '<?= $folio ?>',
+                  idintegrante: '<?= $integrante ?>',
+                  usuario: '<?= Session::get('cedula')?>',
+                  observaciongestor:observaciongestor
+
+
+                 }, // Envía los datos de manera plana
+                 dataType: 'json',
+                 success: function(data) {
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Indicardor movido con éxito",
+                    showConfirmButton: false,
+                    timer: 1000
+                    });
+                  setTimeout(() => {
+                    location.reload();
+                  }, 1000);
+                  location.reload();
+                    //modalInstance.hide();
+                 },
+                 error: function(xhr, status, error) {
+                     alertabad();
+                     console.error(error);
+                 }
+             });
+
+}
+
+
   function abrirmodalhogar(id_bienestar, id_subcategoria, id_indicador){
     $.ajax({
                 url: '../../../consultarindicadorhogar',
@@ -786,7 +831,7 @@ function checkAndSetSwitchValues(divId) {
     // Obtiene el select específico usando el id de oportunidad
     let select = document.getElementById(`speaker_${idoportunidad}`);
     let selectedOption = select.options[select.selectedIndex];
-console.log(aplica_hogar_integrante, 'HOLAAAAAAAAAAAAAAA')
+//console.log(aplica_hogar_integrante, 'HOLAAAAAAAAAAAAAAA')
     // Obtén los valores directamente
     let idintegrante = selectedOption.value;
     let folio = selectedOption.getAttribute('data-folio');
