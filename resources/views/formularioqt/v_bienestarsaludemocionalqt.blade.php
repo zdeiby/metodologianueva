@@ -791,6 +791,48 @@ function checkAndSetSwitchValues(divId) {
 }
 
 
+function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicador) {
+  
+  var modalElement = document.getElementById('modal-'+ id_indicador);
+  var modalInstance = bootstrap.Modal.getInstance(modalElement);
+  var observaciongestor = $('#observaciongestor').val();
+  console.log(observaciongestor)
+   $.ajax({
+               url: '../../../moverindicadorgestorhogar',
+               method: 'GET', // Cambiar a GET si estás usando GET
+               data: {id_bienestar:id_bienestar, 
+                 id_indicador:id_indicador, 
+                folio: '<?= $folio ?>',
+                idintegrante: '<?= $integrante ?>',
+                usuario: '<?= Session::get('cedula')?>',
+                observaciongestor:observaciongestor
+
+
+               }, // Envía los datos de manera plana
+               dataType: 'json',
+               success: function(data) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Indicardor movido con éxito",
+                  showConfirmButton: false,
+                  timer: 1000
+                  });
+                setTimeout(() => {
+                  location.reload();
+                }, 1000);
+                location.reload();
+                  //modalInstance.hide();
+               },
+               error: function(xhr, status, error) {
+                   alertabad();
+                   console.error(error);
+               }
+           });
+
+}
+
+
   function abrirmodalhogar(id_bienestar, id_subcategoria, id_indicador){
     $.ajax({
                 url: '../../../consultarindicadorhogar',

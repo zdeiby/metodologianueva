@@ -1015,7 +1015,7 @@ class c_encuestaintegrantesqt extends Controller
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body ">
-                    <div class="form-group  was-validated" >
+                    <div class="form-group  was-validated" style="display:none">
                         <label for="ingresos1">Seleccione una opción:</label><br>
                         <select class="form-control form-control-sm " id="ingresos1" name="ingresos1" aria-describedby="validationServer04Feedback" required>
                             <option value="">Seleccione</option>
@@ -1053,7 +1053,7 @@ class c_encuestaintegrantesqt extends Controller
                         <button type="button" class="btn btn-success btn-sm" onclick="moverindicadorgestor('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
                     </div>
                     <hr>':'' ) .'
-                                            <div class="" width="100%">
+                                            <div class="" width="100%" style="display:none">
                                 <table id="example" class="table table-striped " >
                                     <thead>
                                         <tr>
@@ -1195,11 +1195,11 @@ class c_encuestaintegrantesqt extends Controller
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel-'.$id_indicador.'">Mover indicador</h5>
+                    <h5 class="modal-title" id="modalLabel-'.$id_indicador.'" >Mover indicador</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body ">
-                    <div class="form-group  was-validated" >
+                    <div class="form-group  was-validated" style="display:none">
                         <label for="ingresos1">Seleccione una opción:</label><br>
                         <select class="form-control form-control-sm " id="ingresos1" name="ingresos1" aria-describedby="validationServer04Feedback" required>
                             <option value="">Seleccione</option>
@@ -1240,10 +1240,10 @@ class c_encuestaintegrantesqt extends Controller
                    ' <div class="text-center  was-validated">
                            <label class="pb-2">Para mover este indicador por Gestor por favor llena la observacion y luego dar clic en mover indicador.</label><br>
                         <textarea class="form-control" id="observaciongestor" rows="4" required></textarea><br>
-                        <button type="button" class="btn btn-success btn-sm" onclick="moverindicadorgestor('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
+                        <button type="button" class="btn btn-success btn-sm" onclick="moverindicadorgestorhogar('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
                     </div>
                     <hr>':'' ) .'
-                                            <div class="" width="100%">
+                                            <div class="" width="100%" style="display:none">
                                 <table id="example" class="table table-striped " >
                                     <thead>
                                         <tr>
@@ -1331,17 +1331,17 @@ class c_encuestaintegrantesqt extends Controller
 
 
 
-        $resultado = DB::select('CALL sp_movimiento_indicador_hogar_vp(?, ?, ?, ?, ?, ?)', [
+        $resultado = DB::select('CALL sp_movimiento_indicador_hogar_vp(?, ?, ?, ?, ?)', [
             $folio, 
-            $idintegrante, 
+           // $idintegrante, 
             $id_bienestar, 
             $id_indicador,
             $usuario,
             $observaciongestor
         ]);
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?, ?)', [
-            $folio, 
-            $idintegrante
+        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+            $folio
+           // $idintegrante
         ]);
 
         
