@@ -374,7 +374,7 @@
         <div class="p-2">
         El hogar implementa un sistema de presupuesto familiar participativo, enfocado en el ahorro y la inversión responsable
         <br><br><div class="text-center">
-            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[32]->id_bienestar ?>','<?= $indicadores_tabla[32]->id_subcategoria ?>','<?= $indicadores_tabla[32]->id_indicador ?>')">Mover Indicador</div>
+            <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[32]->id_bienestar ?>','<?= $indicadores_tabla[32]->id_subcategoria ?>','<?= $indicadores_tabla[32]->id_indicador ?>')">Mover Indicador</div>
           </div>
       </div>
       </div>
@@ -483,10 +483,6 @@
         </div>
       </div>
     </div>
-
-
-
-
 
   </div>
 </div>

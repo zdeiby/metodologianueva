@@ -440,7 +440,8 @@ SELECT
 
      ".($id_bienestar == 5 && $id_indicador == 1  ? "(o.indicador_bf_1 = 1 AND indin.indicadorintegrantebf_1 = 0)":"") ."     
      ".($id_bienestar == 5 && $id_indicador == 2  ? "(o.indicador_bf_2 = 1 AND indin.indicadorintegrantebf_2 = 0)":"") ."     
-     ".($id_bienestar == 5 && $id_indicador == 3  ? "(o.indicador_bf_3 = 1 AND indin.indicadorintegrantebf_3 = 0)":"") ."     
+     ".($id_bienestar == 5 && $id_indicador == 3  ? "(o.indicador_bf_3 = 1 AND indin.indicadorintegrantebf_3 = 0)":"") ."  
+    ".($id_bienestar == 5 && $id_indicador == 4  ? "(o.indicador_bf_4 = 1 AND indin.indicadorbf_4 = 0)":"") ."   
      ".($id_bienestar == 5 && $id_indicador == 5  ? "(o.indicador_bf_5 = 1 AND indin.indicadorintegrantebf_5 = 0)":"") ."     
 
 
@@ -560,42 +561,45 @@ SELECT
             dbmetodologia.t1_oportunidad AS o
 JOIN dbmetodologia.t1_indicadores_hogar as indin
       ON (
-     " . ($id_bienestar == 1 && $id_indicador == 1  ? "(o.indicador_bse_1 = 1 AND indin.indicadorintegrantebse_1 = 0)  
-        --      OR (o.indicador_bse_1 = 2)" : "") . "
-        " . ($id_bienestar == 1 && $id_indicador == 2  ? " -- OR
-         (o.indicador_bse_2 = 1 AND indin.indicadorintegrantebse_2 = 0)
-       -- OR (o.indicador_bse_2 = 2)" : "") . "
-     ".($id_bienestar == 1 && $id_indicador == 3  ? " (o.indicador_bse_3 = 1 AND indin.indicadorintegrantebse_3 = 0) ":"") ."
-     ".($id_bienestar == 1 && $id_indicador == 4  ? " (o.indicador_bse_4 = 1 AND indin.indicadorintegrantebse_4 = 0)":"") ."
-     ".($id_bienestar == 1 && $id_indicador == 5  ? "(o.indicador_bse_5 = 1 AND indin.indicadorintegrantebse_5 = 0)":"") ."
-     ".($id_bienestar == 1 && $id_indicador == 6  ? "(o.indicador_bse_6 = 1 AND indin.indicadorintegrantebse_6 = 0)":"") ."
+     ".($id_bienestar == 1 && $id_indicador == 1  ? "(o.indicador_bse_1 = 1 AND indin.indicadorbse_1 = 0) " : "") . "
+     ".($id_bienestar == 1 && $id_indicador == 2  ? "(o.indicador_bse_2 = 1 AND indin.indicadorbse_2 = 0)" : "") . "
+     ".($id_bienestar == 1 && $id_indicador == 3  ? " (o.indicador_bse_3 = 1 AND indin.indicadorbse_3 = 0) ":"") ."
+     ".($id_bienestar == 1 && $id_indicador == 4  ? " (o.indicador_bse_4 = 1 AND indin.indicadorbse_4 = 0)":"") ."
+     ".($id_bienestar == 1 && $id_indicador == 5  ? "(o.indicador_bse_5 = 1 AND indin.indicadorbse_5 = 0)":"") ."
+     ".($id_bienestar == 1 && $id_indicador == 6  ? "(o.indicador_bse_6 = 1 AND indin.indicadorbse_6 = 0)":"") ."
      ".($id_bienestar == 1 && $id_indicador == 7  ? "(o.indicador_bse_7 = 1 AND indin.indicadorbse_7 = 0)":"") ."   
    
      
-     ".($id_bienestar == 2 && $id_indicador == 1  ? "(o.indicador_bl_1 = 1 AND indin.indicadorintegrantebl_1 = 0)":"") ."       
-     ".($id_bienestar == 2 && $id_indicador == 2  ? "(o.indicador_bl_2 = 1 AND indin.indicadorintegrantebl_2 = 0)":"") ."       
-     ".($id_bienestar == 2 && $id_indicador == 3  ? "(o.indicador_bl_3 = 1 AND indin.indicadorintegrantebl_3 = 0)":"") ."       
-     ".($id_bienestar == 2 && $id_indicador == 4  ? "(o.indicador_bl_4 = 1 AND indin.indicadorintegrantebl_4 = 0)":"") ."       
-     ".($id_bienestar == 2 && $id_indicador == 5  ? "(o.indicador_bl_5 = 1 AND indin.indicadorintegrantebl_5 = 0)":"") ."       
-     ".($id_bienestar == 2 && $id_indicador == 6  ? "(o.indicador_bl_6 = 1 AND indin.indicadorintegrantebl_6 = 0)":"") ."       
-     ".($id_bienestar == 2 && $id_indicador == 7  ? "(o.indicador_bl_7 = 1 AND indin.indicadorintegrantebl_7 = 0)":"") ."       
-     ".($id_bienestar == 2 && $id_indicador == 8  ? "(o.indicador_bl_8 = 1 AND indin.indicadorintegrantebl_8 = 0)":"") ." 
-     ".($id_bienestar == 2 && $id_indicador == 9  ? "(o.indicador_bl_9 = 1 AND indin.indicadorintegrantebl_9 = 0)":"") ."             
-     ".($id_bienestar == 2 && $id_indicador == 10  ? "(o.indicador_bl_10 = 1 AND indin.indicadorintegrantebl_10 = 0)":"") ."     
+     ".($id_bienestar == 2 && $id_indicador == 1  ? "(o.indicador_bl_1 = 1 AND indin.indicadorbl_1 = 0)":"") ."       
+     ".($id_bienestar == 2 && $id_indicador == 2  ? "(o.indicador_bl_2 = 1 AND indin.indicadorbl_2 = 0)":"") ."       
+     ".($id_bienestar == 2 && $id_indicador == 3  ? "(o.indicador_bl_3 = 1 AND indin.indicadorbl_3 = 0)":"") ."       
+     ".($id_bienestar == 2 && $id_indicador == 4  ? "(o.indicador_bl_4 = 1 AND indin.indicadorbl_4 = 0)":"") ."       
+     ".($id_bienestar == 2 && $id_indicador == 5  ? "(o.indicador_bl_5 = 1 AND indin.indicadorbl_5 = 0)":"") ."       
+     ".($id_bienestar == 2 && $id_indicador == 6  ? "(o.indicador_bl_6 = 1 AND indin.indicadorbl_6 = 0)":"") ."       
+     ".($id_bienestar == 2 && $id_indicador == 7  ? "(o.indicador_bl_7 = 1 AND indin.indicadorbl_7 = 0)":"") ."       
+     ".($id_bienestar == 2 && $id_indicador == 8  ? "(o.indicador_bl_8 = 1 AND indin.indicadorbl_8 = 0)":"") ." 
+     ".($id_bienestar == 2 && $id_indicador == 9  ? "(o.indicador_bl_9 = 1 AND indin.indicadorbl_9 = 0)":"") ."             
+     ".($id_bienestar == 2 && $id_indicador == 10  ? "(o.indicador_bl_10 = 1 AND indin.indicadorbl_10 = 0)":"") ."     
      
-
+     ".($id_bienestar == 3 && $id_indicador == 1  ? "(o.indicador_bef_1 = 1 AND indin.indicadorbef_1 = 0)":"") ."     
+     ".($id_bienestar == 3 && $id_indicador == 2  ? "(o.indicador_bef_2 = 1 AND indin.indicadorbef_2 = 0)":"") ."     
+     ".($id_bienestar == 3 && $id_indicador == 3  ? "(o.indicador_bef_3 = 1 AND indin.indicadorbef_3 = 0)":"") ."     
+     ".($id_bienestar == 3 && $id_indicador == 4  ? "(o.indicador_bef_4 = 1 AND indin.indicadorbef_4 = 0)":"") ."     
+     ".($id_bienestar == 3 && $id_indicador == 5  ? "(o.indicador_bef_5 = 1 AND indin.indicadorbef_5 = 0)":"") ."     
+     ".($id_bienestar == 3 && $id_indicador == 6  ? "(o.indicador_bef_6 = 1 AND indin.indicadorbef_6 = 0)":"") ." 
      -- bienestar intelectual
-    ".($id_bienestar == 4 && $id_indicador == 1  ? "(o.indicador_bi_1 = 1 AND indin.indicadorintegrantebi_1 = 0)":"") ."     
-     ".($id_bienestar == 4 && $id_indicador == 2  ? "(o.indicador_bi_2 = 1 AND indin.indicadorintegrantebi_2 = 0)":"") ."     
-     ".($id_bienestar == 4 && $id_indicador == 3  ? "(o.indicador_bi_3 = 1 AND indin.indicadorintegrantebi_3 = 0)":"") ."     
-     ".($id_bienestar == 4 && $id_indicador == 4  ? "(o.indicador_bi_4 = 1 AND indin.indicadorintegrantebi_4 = 0)":"") ."     
-     ".($id_bienestar == 4 && $id_indicador == 5  ? "(o.indicador_bi_5 = 1 AND indin.indicadorintegrantebi_5 = 0)":"") ."     
-     ".($id_bienestar == 4 && $id_indicador == 6  ? "(o.indicador_bi_6 = 1 AND indin.indicadorintegrantebi_6 = 0)":"") ."     
+    ".($id_bienestar == 4 && $id_indicador == 1   ? "(o.indicador_bi_1 = 1 AND indin.indicadorbi_1 = 0)":"") ."     
+     ".($id_bienestar == 4 && $id_indicador == 2  ? "(o.indicador_bi_2 = 1 AND indin.indicadorbi_2 = 0)":"") ."     
+     ".($id_bienestar == 4 && $id_indicador == 3  ? "(o.indicador_bi_3 = 1 AND indin.indicadorbi_3 = 0)":"") ."     
+     ".($id_bienestar == 4 && $id_indicador == 4  ? "(o.indicador_bi_4 = 1 AND indin.indicadorbi_4 = 0)":"") ."     
+     ".($id_bienestar == 4 && $id_indicador == 5  ? "(o.indicador_bi_5 = 1 AND indin.indicadorbi_5 = 0)":"") ."     
+     ".($id_bienestar == 4 && $id_indicador == 6  ? "(o.indicador_bi_6 = 1 AND indin.indicadorbi_6 = 0)":"") ."     
 
-     ".($id_bienestar == 5 && $id_indicador == 1  ? "(o.indicador_bf_1 = 1 AND indin.indicadorintegrantebf_1 = 0)":"") ."     
-     ".($id_bienestar == 5 && $id_indicador == 2  ? "(o.indicador_bf_2 = 1 AND indin.indicadorintegrantebf_2 = 0)":"") ."     
-     ".($id_bienestar == 5 && $id_indicador == 3  ? "(o.indicador_bf_3 = 1 AND indin.indicadorintegrantebf_3 = 0)":"") ."     
-     ".($id_bienestar == 5 && $id_indicador == 5  ? "(o.indicador_bf_5 = 1 AND indin.indicadorintegrantebf_5 = 0)":"") ."     
+     ".($id_bienestar == 5 && $id_indicador == 1  ? "(o.indicador_bf_1 = 1 AND indin.indicadorbf_1 = 0)":"") ."     
+     ".($id_bienestar == 5 && $id_indicador == 2  ? "(o.indicador_bf_2 = 1 AND indin.indicadorbf_2 = 0)":"") ."     
+     ".($id_bienestar == 5 && $id_indicador == 3  ? "(o.indicador_bf_3 = 1 AND indin.indicadorbf_3 = 0)":"") ."
+     ".($id_bienestar == 5 && $id_indicador == 4  ? "(o.indicador_bf_4 = 1 AND indin.indicadorbf_4 = 0)":"") ."      
+     ".($id_bienestar == 5 && $id_indicador == 5  ? "(o.indicador_bf_5 = 1 AND indin.indicadorbf_5 = 0)":"") ."     
 
 
 /*

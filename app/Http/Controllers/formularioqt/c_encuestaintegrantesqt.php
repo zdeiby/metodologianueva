@@ -1318,4 +1318,42 @@ class c_encuestaintegrantesqt extends Controller
         
     }
 
+
+    public function fc_moverindicadorgestorhogar(Request $request)
+    {
+
+        $folio = $request->input('folio');
+        $idintegrante = $request->input('idintegrante');
+        $id_bienestar = $request->input('id_bienestar');
+        $id_indicador = $request->input('id_indicador');
+        $usuario = $request->input('usuario');
+        $observaciongestor = $request->input('observaciongestor');
+
+
+
+        $resultado = DB::select('CALL sp_movimiento_indicador_hogar_vp(?, ?, ?, ?, ?, ?)', [
+            $folio, 
+            $idintegrante, 
+            $id_bienestar, 
+            $id_indicador,
+            $usuario,
+            $observaciongestor
+        ]);
+        $resultado2 = DB::select('CALL sp_indicadores_hogar(?, ?)', [
+            $folio, 
+            $idintegrante
+        ]);
+
+        
+
+        // Retornar una respuesta con el resultado
+        return response()->json([
+            'success' => true,
+            'message' => 'Procedimiento ejecutado correctamente.',
+            'data' => $resultado,
+        ]);
+        
+    }
+
+
 }

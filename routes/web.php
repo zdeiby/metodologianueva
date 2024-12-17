@@ -133,6 +133,10 @@ Route::get('/finalizarintegrantesqt',[c_cardsqt::class,'fc_finalizarintegrantesq
 Route::get('/consultarindicador',[c_encuestaintegrantesqt::class,'fc_consultarindicador'])->name('consultarindicador');
 Route::get('/consultarindicadorhogar',[c_encuestaintegrantesqt::class,'fc_consultarindicadorhogar'])->name('consultarindicadorhogar');
 Route::get('/moverindicadorgestor',[c_encuestaintegrantesqt::class,'fc_moverindicadorgestor'])->name('moverindicadorgestor');
+Route::get('/moverindicadorgestorhogar',[c_encuestaintegrantesqt::class,'fc_moverindicadorgestorhogar'])->name('moverindicadorgestorhogar');
+
+
+
 
 
 
