@@ -135,6 +135,8 @@ Route::get('/consultarindicadorhogar',[c_encuestaintegrantesqt::class,'fc_consul
 Route::get('/moverindicadorgestor',[c_encuestaintegrantesqt::class,'fc_moverindicadorgestor'])->name('moverindicadorgestor');
 Route::get('/moverindicadorgestorhogar',[c_encuestaintegrantesqt::class,'fc_moverindicadorgestorhogar'])->name('moverindicadorgestorhogar');
 
+Route::get('/moverporpregunta13',[c_encuestaintegrantesqt::class,'fc_moverporpregunta13'])->name('moverporpregunta13');
+
 
 
 

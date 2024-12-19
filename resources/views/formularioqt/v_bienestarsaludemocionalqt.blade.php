@@ -856,7 +856,7 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
                   $('.filter-option-inner-inner').css('font-size','13px');
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
-
+                  initializeCheckboxes();
                  // $('#siguiente').css('display','');
                    // alertagood();
                 },
@@ -1026,6 +1026,132 @@ function habilitaboton(idoportunidad){
  });
 }
       
+
+
+function initializeCheckboxes() {
+    const checkboxes = document.querySelectorAll('#container-psicosocial2 .form-check-input');
+    const noImplementaNingunaCheckbox = document.querySelector('#psicosocial2347'); // ID del checkbox "No implementa ninguna"
+
+    checkboxes.forEach((checkbox) => {
+        // Inicializar todos los checkboxes con valor "NO"
+        checkbox.setAttribute('respuesta', 'NO');
+        checkbox.checked = false;
+
+        // Cambiar valor al seleccionar/deseleccionar
+        checkbox.addEventListener('change', function () {
+            if (checkbox.id === 'psicosocial2347' && checkbox.checked) {
+                // Si selecciona "No implementa ninguna", desmarcar todos los demás
+                checkboxes.forEach((otherCheckbox) => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                        otherCheckbox.setAttribute('respuesta', 'NO');
+                    }
+                });
+            } else if (checkbox.checked) {
+                // Si selecciona cualquier otro, desmarcar "No implementa ninguna"
+                if (noImplementaNingunaCheckbox.checked) {
+                    noImplementaNingunaCheckbox.checked = false;
+                    noImplementaNingunaCheckbox.setAttribute('respuesta', 'NO');
+                }
+                checkbox.setAttribute('respuesta', 'SI');
+            } else {
+                checkbox.setAttribute('respuesta', 'NO');
+            }
+        });
+    });
+}
+
+
+
+function moverporpregunta13(folio, id_bienestar, id_indicador) {
+  
+           let  p1=$('#psicosocial292').attr('respuesta');
+           let  p2=$('#psicosocial293').attr('respuesta');
+           let  p3=$('#psicosocial294').attr('respuesta');
+           let  p4=$('#psicosocial295').attr('respuesta');
+           let  p5=$('#psicosocial296').attr('respuesta');
+           let  p6=$('#psicosocial297').attr('respuesta');
+           let  p7=$('#psicosocial298').attr('respuesta');
+           let  p8=$('#psicosocial299').attr('respuesta');
+           let  p9=$('#psicosocial2100').attr('respuesta');
+           let  p10=$('#psicosocial2101').attr('respuesta');
+           let  p11=$('#psicosocial2102').attr('respuesta');
+           let  p12=$('#psicosocial2103').attr('respuesta');
+           let  p13=$('#psicosocial2104').attr('respuesta');
+           let  p14=$('#psicosocial2105').attr('respuesta');
+           let  p15=$('#psicosocial2106').attr('respuesta');
+           let  p16=$('#psicosocial2347').attr('respuesta');
+
+            console.log({
+                  p1,
+                  p2,
+                  p3,
+                  p4,
+                  p5,
+                  p6,
+                  p7,
+                  p8,
+                  p9,
+                  p10,
+                  p11,
+                  p12,
+                  p13,
+                  p14,
+                  p15,
+                  p16
+              });
+   $.ajax({
+               url: '../../../moverporpregunta13',
+               method: 'GET', // Cambiar a GET si estás usando GET
+               data: {  folio: '<?= $folio ?>',
+                idintegrante: '<?= $integrante ?>',
+                id_bienestar:id_bienestar, 
+                id_indicador:id_indicador, 
+                usuario: '<?= Session::get('cedula')?>',
+                edad:'<?= $edad ?>',
+                p1:p1,
+                p2:p2,
+                p3:p3,
+                p4:p4,
+                p5:p5,
+                p6:p6,
+                p7:p7,
+                p8:p8,
+                p9:p9,
+                p10:p10,
+                p11:p11,
+                p12:p12,
+                p13:p13,
+                p14:p14,
+                p15:p15,
+                p16:p16,
+               // observaciongestor:observaciongestor
+
+
+               }, // Envía los datos de manera plana
+               dataType: 'json',
+               success: function(data) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Indicardor movido con éxito",
+                  showConfirmButton: false,
+                  timer: 1000
+                  });
+                setTimeout(() => {
+                  location.reload();
+                }, 1000);
+                location.reload();
+                  //modalInstance.hide();
+               },
+               error: function(xhr, status, error) {
+                   alertabad();
+                   console.error(error);
+               }
+           });
+
+}
+     
 
 </script>
 
