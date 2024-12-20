@@ -1151,6 +1151,50 @@ function moverporpregunta13(folio, id_bienestar, id_indicador) {
            });
 
 }
+
+
+function moverporpregunta17(folio, id_bienestar, id_indicador) {
+  
+  let  p1=$('#numerocomidas').val();
+  let  p2=$('#accesibilidadalimentos2').val();
+  let  p3=$('#accesibilidad').val();
+
+
+$.ajax({
+      url: '../../../moverporpregunta17',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: {  folio: '<?= $folio ?>',
+      
+       id_bienestar:id_bienestar, 
+       id_indicador:id_indicador, 
+       usuario: '<?= Session::get('cedula')?>',
+       p1:p1,
+       p2:p2,
+       p3:p3,
+
+      }, // Envía los datos de manera plana
+      dataType: 'json',
+      success: function(data) {
+       Swal.fire({
+         position: "center",
+         icon: "success",
+         title: "Indicardor movido con éxito",
+         showConfirmButton: false,
+         timer: 1000
+         });
+       setTimeout(() => {
+         location.reload();
+       }, 1000);
+       location.reload();
+         //modalInstance.hide();
+      },
+      error: function(xhr, status, error) {
+          alertabad();
+          console.error(error);
+      }
+  });
+
+}
      
 
 </script>

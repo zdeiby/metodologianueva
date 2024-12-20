@@ -414,6 +414,11 @@ class c_encuestaintegrantesqt extends Controller
     } 
 
     public function fc_enfamiliaqt(Request $request,$folio, $integrante, $vista){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
+
         $tabla = 't1_enfamiliaqt';
         $hashids = new Hashids('', 10); 
         $encodedFolio = $hashids->decode($folio);
@@ -1163,27 +1168,56 @@ class c_encuestaintegrantesqt extends Controller
          $modal2 ='';
          $modelo= new m_l1e1();
          $preguntas=$modelo->m_leerrespuestas();
-          ///movimiento por preguntas
-          $psicosocial2 = '
-          <div class="col-md-12" id="psicosocial2div">
-              <div class="form-check form-switch" id="container-psicosocial2">
-                  <label for="validationServer04" class="form-label">¿Qué estrategias implementas para reducir el estrés y para favorecer el bienestar emocional y físico?</label>';
-                  
+
+
+         $sino = '<option value="">Seleccione </option>';
+        foreach ($preguntas as $value) {
+          if ($value->id >= '1' && $value->id <= '2') {
+              $sino .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+          }};
+
+          $numerodecomidas='<option value="">Seleccione </option>';
           foreach ($preguntas as $value) {
-              if (($value->id >= 92 && $value->id <= 106) || $value->id == 347) {
-                  $psicosocial2 .= '
-                  <div class="psicosocial2' . $value->id . '">
-                      <label class="form-check-label psicosocial2' . $value->id . '" for="psicosocial2' . $value->id . '">' . htmlspecialchars($value->pregunta, ENT_QUOTES, 'UTF-8') . '</label>
-                      <input class="form-check-input" type="checkbox" name="psicosocial2[]" id="psicosocial2' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
-                  </div>';
-              }
+            if ($value->id >= '123' && $value->id <= '130') {
+                $numerodecomidas .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
+            }
           }
+
+
+          $disciplinapositiva = '
+          <label for="validationServer04" class="form-label">¿Cuáles de las siguientres estrategias de disciplina positiva se implementan en el hogar para fomentar el respeto mutuo y la resolución pacífica de conflictos?</label>
+          <div class="col-md-12" id="disciplinapositivadiv">
+              <div class="form-check form-switch" id="container-disciplinapositiva">';
+                  
+              foreach ($preguntas as $value) {
+                if ($value->id >= '298' && $value->id <= '304' ) {
+                    $disciplinapositiva .= '<div class="disciplinapositiva' . $value->id . '">
+                    <label class="form-check-label disciplinapositiva' . $value->id . '"  for="disciplinapositiva' . $value->id . '">' . $value->pregunta . '</label>
+                    <input class="form-check-input" type="checkbox" name="disciplinapositiva[]" id="disciplinapositiva' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                    </div>';
+                }
+            }
           
-          $psicosocial2 .= '
+          $disciplinapositiva .= '
               </div>
           </div>';
-          
-         
+
+          $tiempolibre = '
+          <label for="validationServer04" class="form-label">¿Cuáles de las siguientres estrategias de disciplina positiva se implementan en el hogar para fomentar el respeto mutuo y la resolución pacífica de conflictos?</label>
+          <div class="col-md-12" id="tiempolibrediv">
+              <div class="form-check form-switch" id="container-tiempolibre">';
+          foreach ($preguntas as $value) {
+            if ($value->id >= '305' && $value->id <= '309') {
+                $tiempolibre .= '<div class="tiempolibre' . $value->id . '">
+                <label class="form-check-label tiempolibre' . $value->id . '"  for="tiempolibre' . $value->id . '">' . $value->pregunta . '</label>
+                <input class="form-check-input" type="checkbox" name="tiempolibre[]" id="tiempolibre' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                </div>';
+            }
+        }
+        $tiempolibre .= '
+                </div>
+            </div>';
+
              
          foreach ($oportunidad as $value) {
             // Filtrar integrantes relacionados con la oportunidad actual
@@ -1334,14 +1368,72 @@ class c_encuestaintegrantesqt extends Controller
                                     </table>
                                 </div>
 
-                            '
-                                .(($id_bienestar == '1' && $id_indicador == '7')? '<div> '.$psicosocial2.' 
+                              '  .(($id_bienestar == '1' && $id_indicador == '7')? '
+                                <div> 
+                                <div class="col-md-12">
+                                    <label for="validationServer04" class="form-label">¿En tu hogar, cuántas comidas se consumen al día en promedio?</label>
+                                    <select class="form-control form-control-sm" id="numerocomidas" aria-describedby="validationServer04Feedback" required="">
+                                        '.$numerodecomidas.' 
+                                    </select>
+                                </div> 
+                                <br>
+                                <div class="col-md-12">
+                                    <label for="validationServer04" class="form-label">En los últimos 30 días, por falta de dinero u otros recursos, ¿alguna vez en tu hogar se quedaron sin alimentos?</label>
+                                    <select class="form-control form-control-sm" id="accesibilidadalimentos2" name="accesibilidadalimentos2" aria-describedby="validationServer04Feedback" required="">
+                                        '.$sino.' 
+                                    </select>
+                                </div> 
+                                <br>
+                                <div class="col-md-12">
+                                    <label for="validationServer04" class="form-label">En los últimos 30 días, por falta de dinero u otros recursos, ¿alguna vez en tu hogar sintieron hambre y no pudieron comer?</label>
+                                    <select class="form-control form-control-sm" id="accesibilidad"  aria-describedby="validationServer04Feedback" required="">
+                                        '.$sino.' 
+                                    </select>
+                                </div> 
+                                <br>
                                 <div class="text-center">
                                     <button type="button" class="btn btn-secondary" onclick="moverporpregunta17('.$folio.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button> 
                                 </div>
                                 </div>':
                                 '' ) .'
-                    
+
+                                 '  .(($id_bienestar == '3' && $id_indicador == '1')? '
+                                <div> 
+                               '.$disciplinapositiva.'
+                                <br>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-secondary" onclick="moverporpregunta31('.$folio.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button> 
+                                </div>
+                                </div>':
+                                '' ) .'
+
+                                   '  .(($id_bienestar == '3' && $id_indicador == '2')? '
+                                <div> 
+                                <label for="validationServer04" class="form-label">¿Cuándo en tu hogar se presenta una dificultad cuentas con una red de apoyo (familia, vecinos, otro)?</label>
+                                <div class="col-md-12">
+                                    <select class="form-control form-control-sm" id="redesdeapoyo"  aria-describedby="validationServer04Feedback" required="">
+                                        '.$sino.' 
+                                    </select>
+                                </div> 
+                                <br>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-secondary" onclick="moverporpregunta32('.$folio.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button> 
+                                </div>
+                                </div>':
+                                '' ) .'
+
+                                
+                                 '  .(($id_bienestar == '3' && $id_indicador == '4')? '
+                                <div> 
+                               '.$tiempolibre.'
+                                <br>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-secondary" onclick="moverporpregunta34('.$folio.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button> 
+                                </div>
+                                </div>':
+                                '' ) .'
+
+
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -1460,29 +1552,8 @@ class c_encuestaintegrantesqt extends Controller
 
 
 
-        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_bse_3(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)', [
-            $folio, 
-            $idintegrante,
-            $id_bienestar, 
-            $id_indicador,
-            $usuario,
-            $edad,
-            $p1, 
-            $p2, 
-            $p3, 
-            $p4, 
-            $p5, 
-            $p6, 
-            $p7, 
-            $p8, 
-            $p9, 
-            $p10, 
-            $p11, 
-            $p12, 
-            $p13, 
-            $p14, 
-            $p15, 
-            $p16  
+        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_bse_3(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)', [  
+            $folio,   $idintegrante,  $id_bienestar,   $id_indicador,  $usuario,  $edad,  $p1,   $p2,   $p3,   $p4,   $p5,   $p6,   $p7,   $p8,   $p9,   $p10,   $p11,   $p12,   $p13,   $p14,   $p15,   $p16  
         ]);
         
         $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
@@ -1500,6 +1571,157 @@ class c_encuestaintegrantesqt extends Controller
         ]);
         
     }
+
+    public function fc_moverporpregunta17(Request $request)
+    {
+
+        $folio = $request->input('folio');
+        $id_bienestar = $request->input('id_bienestar');
+        $id_indicador = $request->input('id_indicador');
+        $usuario = $request->input('usuario');
+        $p1 = $request->input('p1');
+        $p2 = $request->input('p2');
+        $p3 = $request->input('p3');
+
+
+
+
+        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_bse_7(?, ?, ?, ?, ?, ?, ?)', [  
+            $folio,  $id_bienestar,   $id_indicador,  $usuario,   $p1,   $p2,   $p3
+        ]);
+        
+        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+            $folio
+           // $idintegrante
+        ]);
+
+        
+
+        // Retornar una respuesta con el resultado
+        return response()->json([
+            'success' => true,
+            'message' => 'Procedimiento ejecutado correctamente.',
+            'data' => $resultado,
+        ]);
+        
+    }
+
+
+    public function fc_moverporpregunta31(Request $request)
+    {
+
+        $folio = $request->input('folio');
+        $id_bienestar = $request->input('id_bienestar');
+        $id_indicador = $request->input('id_indicador');
+        $usuario = $request->input('usuario');
+        $p1 = $request->input('p1');
+        $p2 = $request->input('p2');
+        $p3 = $request->input('p3');
+        $p4 = $request->input('p4');
+        $p5 = $request->input('p5');
+        $p6 = $request->input('p6');
+        $p7 = $request->input('p7');
+        // $p8 = $request->input('p8');
+        // $p9 = $request->input('p9');
+        // $p10 = $request->input('p10');
+        // $p11 = $request->input('p11');
+        // $p12 = $request->input('p12');
+        // $p13 = $request->input('p13');
+        // $p14 = $request->input('p14');
+
+
+
+
+        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_bef_1(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+            $folio, $id_bienestar, $id_indicador, $usuario, $p1, $p2, $p3, $p4, $p5, $p6, $p7
+        ]);
+        
+        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+            $folio
+           // $idintegrante
+        ]);
+
+        
+
+        // Retornar una respuesta con el resultado
+        return response()->json([
+            'success' => true,
+            'message' => 'Procedimiento ejecutado correctamente.',
+            'data' => $resultado,
+        ]);
+        
+    }
+
+
+    public function fc_moverporpregunta32(Request $request)
+    {
+
+        $folio = $request->input('folio');
+        $id_bienestar = $request->input('id_bienestar');
+        $id_indicador = $request->input('id_indicador');
+        $usuario = $request->input('usuario');
+        $p1 = $request->input('p1');
+
+
+
+
+        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_bef_2(?, ?, ?, ?, ?)', [  
+            $folio,  $id_bienestar,   $id_indicador,  $usuario,   $p1, 
+        ]);
+        
+        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+            $folio
+           // $idintegrante
+        ]);
+
+        
+
+        // Retornar una respuesta con el resultado
+        return response()->json([
+            'success' => true,
+            'message' => 'Procedimiento ejecutado correctamente.',
+            'data' => $resultado,
+        ]);
+        
+    }
+
+
+    public function fc_moverporpregunta34(Request $request)
+    {
+
+        $folio = $request->input('folio');
+        $id_bienestar = $request->input('id_bienestar');
+        $id_indicador = $request->input('id_indicador');
+        $usuario = $request->input('usuario');
+        $p1 = $request->input('p1');
+        $p2 = $request->input('p2');
+        $p3 = $request->input('p3');
+        $p4 = $request->input('p4');
+        $p5 = $request->input('p5');
+
+
+
+
+        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_bef_4(?, ?, ?, ?, ? , ? , ? , ? , ?)', [  
+            $folio,  $id_bienestar,   $id_indicador,  $usuario,   $p1, $p2,$p3,$p4,$p5
+        ]);
+        
+        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+            $folio
+           // $idintegrante
+        ]);
+
+        
+
+        // Retornar una respuesta con el resultado
+        return response()->json([
+            'success' => true,
+            'message' => 'Procedimiento ejecutado correctamente.',
+            'data' => $resultado,
+        ]);
+        
+    }
+
 
 
 }

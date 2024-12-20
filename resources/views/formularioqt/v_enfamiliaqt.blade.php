@@ -954,7 +954,7 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
                   $('.filter-option-inner-inner').css('font-size','13px');
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
-
+                  initializeCheckboxes();
                  // $('#siguiente').css('display','');
                    // alertagood();
                 },
@@ -1124,6 +1124,174 @@ function habilitaboton(idoportunidad){
  });
 }
       
+
+
+function initializeCheckboxes() {
+    const checkboxes = document.querySelectorAll('#container-disciplinapositiva .form-check-input');
+    const noImplementaNingunaCheckbox = document.querySelector('#disciplinapositiva304'); // ID del checkbox "No implementa ninguna"
+
+    checkboxes.forEach((checkbox) => {
+        // Inicializar todos los checkboxes con valor "NO"
+        checkbox.setAttribute('respuesta', 'NO');
+        checkbox.checked = false;
+
+        // Cambiar valor al seleccionar/deseleccionar
+        checkbox.addEventListener('change', function () {
+            if (checkbox.id === 'disciplinapositiva304' && checkbox.checked) {
+                // Si selecciona "No implementa ninguna", desmarcar todos los demás
+                checkboxes.forEach((otherCheckbox) => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                        otherCheckbox.setAttribute('respuesta', 'NO');
+                    }
+                });
+            } else if (checkbox.checked) {
+                // Si selecciona cualquier otro, desmarcar "No implementa ninguna"
+                if (noImplementaNingunaCheckbox.checked) {
+                    noImplementaNingunaCheckbox.checked = false;
+                    noImplementaNingunaCheckbox.setAttribute('respuesta', 'NO');
+                }
+                checkbox.setAttribute('respuesta', 'SI');
+            } else {
+                checkbox.setAttribute('respuesta', 'NO');
+            }
+        });
+    });
+}
+
+
+
+function moverporpregunta31(folio, id_bienestar, id_indicador) {
+  
+  let  p1=$('#disciplinapositiva298').attr('respuesta');
+  let  p2=$('#disciplinapositiva299').attr('respuesta');
+  let  p3=$('#disciplinapositiva300').attr('respuesta');
+  let  p4=$('#disciplinapositiva301').attr('respuesta');
+  let  p5=$('#disciplinapositiva302').attr('respuesta');
+  let  p6=$('#disciplinapositiva303').attr('respuesta');
+  let  p7=$('#disciplinapositiva304').attr('respuesta');
+
+
+$.ajax({
+      url: '../../../moverporpregunta31',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: {  folio: '<?= $folio ?>',
+       id_bienestar:id_bienestar, 
+       id_indicador:id_indicador, 
+       usuario: '<?= Session::get('cedula')?>',
+       p1:p1,
+       p2:p2,
+       p3:p3,
+       p4:p4,
+       p5:p5,
+       p6:p6,
+       p7:p7,
+
+
+      }, // Envía los datos de manera plana
+      dataType: 'json',
+      success: function(data) {
+       Swal.fire({
+         position: "center",
+         icon: "success",
+         title: "Indicardor movido con éxito",
+         showConfirmButton: false,
+         timer: 1000
+         });
+       setTimeout(() => {
+         location.reload();
+       }, 1000);
+       location.reload();
+         //modalInstance.hide();
+      },
+      error: function(xhr, status, error) {
+          alertabad();
+          console.error(error);
+      }
+  });
+
+}
+
+
+function moverporpregunta32(folio, id_bienestar, id_indicador) {
+  
+  let  p1=$('#redesdeapoyo').val();
+
+$.ajax({
+      url: '../../../moverporpregunta32',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: {  folio: '<?= $folio ?>',
+       id_bienestar:id_bienestar, 
+       id_indicador:id_indicador, 
+       usuario: '<?= Session::get('cedula')?>',
+       p1:p1
+      }, // Envía los datos de manera plana
+      dataType: 'json',
+      success: function(data) {
+       Swal.fire({
+         position: "center",
+         icon: "success",
+         title: "Indicardor movido con éxito",
+         showConfirmButton: false,
+         timer: 1000
+         });
+       setTimeout(() => {
+         location.reload();
+       }, 1000);
+       location.reload();
+         //modalInstance.hide();
+      },
+      error: function(xhr, status, error) {
+          alertabad();
+          console.error(error);
+      }
+  });
+
+}
+
+function moverporpregunta34(folio, id_bienestar, id_indicador) {
+  
+  let  p1=$('#tiempolibre305').attr('respuesta');
+  let  p2=$('#tiempolibre306').attr('respuesta');
+  let  p3=$('#tiempolibre307').attr('respuesta');
+  let  p4=$('#tiempolibre308').attr('respuesta');
+  let  p5=$('#tiempolibre309').attr('respuesta');
+
+$.ajax({
+      url: '../../../moverporpregunta34',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: {  folio: '<?= $folio ?>',
+       id_bienestar:id_bienestar, 
+       id_indicador:id_indicador, 
+       usuario: '<?= Session::get('cedula')?>',
+       p1:p1,
+       p2:p2,
+       p3:p3,
+       p4:p4,
+       p5:p5
+      }, // Envía los datos de manera plana
+      dataType: 'json',
+      success: function(data) {
+       Swal.fire({
+         position: "center",
+         icon: "success",
+         title: "Indicardor movido con éxito",
+         showConfirmButton: false,
+         timer: 1000
+         });
+       setTimeout(() => {
+         location.reload();
+       }, 1000);
+       location.reload();
+         //modalInstance.hide();
+      },
+      error: function(xhr, status, error) {
+          alertabad();
+          console.error(error);
+      }
+  });
+
+}
 
 </script>
 

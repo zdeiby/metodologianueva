@@ -136,6 +136,10 @@ Route::get('/moverindicadorgestor',[c_encuestaintegrantesqt::class,'fc_moverindi
 Route::get('/moverindicadorgestorhogar',[c_encuestaintegrantesqt::class,'fc_moverindicadorgestorhogar'])->name('moverindicadorgestorhogar');
 
 Route::get('/moverporpregunta13',[c_encuestaintegrantesqt::class,'fc_moverporpregunta13'])->name('moverporpregunta13');
+Route::get('/moverporpregunta17',[c_encuestaintegrantesqt::class,'fc_moverporpregunta17'])->name('moverporpregunta17');
+Route::get('/moverporpregunta31',[c_encuestaintegrantesqt::class,'fc_moverporpregunta31'])->name('moverporpregunta31');
+Route::get('/moverporpregunta32',[c_encuestaintegrantesqt::class,'fc_moverporpregunta32'])->name('moverporpregunta32');
+Route::get('/moverporpregunta34',[c_encuestaintegrantesqt::class,'fc_moverporpregunta34'])->name('moverporpregunta34');
 
 
 
