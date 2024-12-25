@@ -749,7 +749,7 @@ function checkAndSetSwitchValues(divId) {
                   $('.filter-option-inner-inner').css('font-size','13px');
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
-
+                  initializeCheckboxes2();
                  // $('#siguiente').css('display','');
                    // alertagood();
                 },
@@ -869,7 +869,8 @@ function checkAndSetSwitchValues(divId) {
                   $('.filter-option-inner-inner').css('font-size','13px');
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
-
+                  initializeCheckboxes();
+                 
                  // $('#siguiente').css('display','');
                    // alertagood();
                 },
@@ -1038,10 +1039,187 @@ function habilitaboton(idoportunidad){
      }
  });
 }
+
+
+function moverporpregunta54(folio, id_bienestar, id_indicador) {
+  
+  let  p1=$('#planeacionfinanciera4295').attr('respuesta');
+  let  p2=$('#planeacionfinanciera4296').attr('respuesta');
+  let  p3=$('#planeacionfinanciera4297').attr('respuesta');
+  let p4= $('#planeacionfinanciera4368').attr('respuesta');
+
+
+
+$.ajax({
+      url: '../../../moverporpregunta54',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: {  
+        folio: '<?= $folio ?>',
+       id_bienestar:id_bienestar, 
+       id_indicador:id_indicador, 
+       usuario: '<?= Session::get('cedula')?>',
+       p1:p1,
+       p2:p2,
+       p3:p3,
+       p4:p4
+
+      }, // Envía los datos de manera plana
+      dataType: 'json',
+      success: function(data) {
+       Swal.fire({
+         position: "center",
+         icon: "success",
+         title: "Indicador movido con éxito",
+         showConfirmButton: false,
+         timer: 1000
+         });
+       setTimeout(() => {
+         location.reload();
+       }, 1000);
+       location.reload();
+         //modalInstance.hide();
+      },
+      error: function(xhr, status, error) {
+          alertabad();
+          console.error(error);
+      }
+  });
+
+}
+
+function moverporpregunta55(folio, idintegrante, id_bienestar, id_indicador) {
+  
+  let  p1=$('#bancarizacion157').attr('respuesta');
+  let  p2=$('#bancarizacion158').attr('respuesta');
+  let  p3=$('#bancarizacion159').attr('respuesta');
+  let p4 = $('#bancarizacion160').attr('respuesta');
+  let p5 = $('#bancarizacion161').attr('respuesta');
+  let p6 = $('#bancarizacion162').attr('respuesta');
+  let p7 = $('#bancarizacion163').attr('respuesta');
+  let p8 = $('#bancarizacion164').attr('respuesta');
+  let p9 = $('#bancarizacion371').attr('respuesta');
+
+  
+
+
+$.ajax({
+      url: '../../../moverporpregunta55',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: {  
+        folio: '<?= $folio ?>',
+      idintegrante: '<?= $integrante ?>',
+       id_bienestar:id_bienestar, 
+       id_indicador:id_indicador, 
+       usuario: '<?= Session::get('cedula')?>',
+       edad: '<?= $edad ?>',
+       p1:p1,
+       p2:p2,
+       p3:p3,
+       p4:p4,
+       p5:p5,
+       p6:p6,
+       p7:p7,
+       p8:p8,
+       p9:p9,
+
+      }, // Envía los datos de manera plana
+      dataType: 'json',
+      success: function(data) {
+       Swal.fire({
+         position: "center",
+         icon: "success",
+         title: "Indicador movido con éxito",
+         showConfirmButton: false,
+         timer: 1000
+         });
+       setTimeout(() => {
+         location.reload();
+       }, 1000);
+       location.reload();
+         //modalInstance.hide();
+      },
+      error: function(xhr, status, error) {
+          alertabad();
+          console.error(error);
+      }
+  });
+
+}
+
+
       
 
 </script>
 
+<script>
+  function initializeCheckboxes() {
+    const checkboxes = document.querySelectorAll('#container-planeacionfinanciera4 .form-check-input');
+    const noImplementaNingunaCheckbox = document.querySelector('#planeacionfinanciera4368'); // ID del checkbox "No implementa ninguna"
+
+    checkboxes.forEach((checkbox) => {
+        // Inicializar todos los checkboxes con valor "NO"
+        checkbox.setAttribute('respuesta', 'NO');
+        checkbox.checked = false;
+
+        // Cambiar valor al seleccionar/deseleccionar
+        checkbox.addEventListener('change', function () {
+            if (checkbox.id === 'planeacionfinanciera4368' && checkbox.checked) {
+                // Si selecciona "No implementa ninguna", desmarcar todos los demás
+                checkboxes.forEach((otherCheckbox) => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                        otherCheckbox.setAttribute('respuesta', 'NO');
+                    }
+                });
+            } else if (checkbox.checked) {
+                // Si selecciona cualquier otro, desmarcar "No implementa ninguna"
+                if (noImplementaNingunaCheckbox.checked) {
+                    noImplementaNingunaCheckbox.checked = false;
+                    noImplementaNingunaCheckbox.setAttribute('respuesta', 'NO');
+                }
+                checkbox.setAttribute('respuesta', 'SI');
+            } else {
+                checkbox.setAttribute('respuesta', 'NO');
+            }
+        });
+    });
+}
+
+</script>
+<script>
+  function initializeCheckboxes2() {
+    const checkboxes = document.querySelectorAll('#container-bancarizacion .form-check-input');
+    const noImplementaNingunaCheckbox = document.querySelector('#bancarizacion371'); // ID del checkbox "No implementa ninguna"
+
+    checkboxes.forEach((checkbox) => {
+        // Inicializar todos los checkboxes con valor "NO"
+        checkbox.setAttribute('respuesta', 'NO');
+        checkbox.checked = false;
+
+        // Cambiar valor al seleccionar/deseleccionar
+        checkbox.addEventListener('change', function () {
+            if (checkbox.id === 'bancarizacion371' && checkbox.checked) {
+                // Si selecciona "No implementa ninguna", desmarcar todos los demás
+                checkboxes.forEach((otherCheckbox) => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                        otherCheckbox.setAttribute('respuesta', 'NO');
+                    }
+                });
+            } else if (checkbox.checked) {
+                // Si selecciona cualquier otro, desmarcar "No implementa ninguna"
+                if (noImplementaNingunaCheckbox.checked) {
+                    noImplementaNingunaCheckbox.checked = false;
+                    noImplementaNingunaCheckbox.setAttribute('respuesta', 'NO');
+                }
+                checkbox.setAttribute('respuesta', 'SI');
+            } else {
+                checkbox.setAttribute('respuesta', 'NO');
+            }
+        });
+    });
+}
+</script>
 
 
 
