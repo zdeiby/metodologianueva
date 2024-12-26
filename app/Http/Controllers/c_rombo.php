@@ -104,6 +104,9 @@ class c_rombo extends Controller
                 <td class="align-middle" style=" font-size:13px;" >
                     '.$value->nombre1.' '.$value->nombre2.' '.$value->apellido1.' '.$value->apellido2.'
                 </td>
+                 <td class="align-middle text-center" style=" font-size:13px;" >
+                    '.(($value->representante == '1')?'SI':'NO').' 
+                </td>
                 <td class="align-middle" >
                     <button class="habilitado btn btn-'.(($value->validacion)?'light':'warning').' btn-sm" '.(($value->validacion)?'':'disabled').' onclick="iraqt(`'.$hashids->encode($value->idintegrante).'`,`'.$hashids->encode($folioencriptado).'`)">
                         ver QT

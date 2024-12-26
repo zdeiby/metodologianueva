@@ -389,6 +389,7 @@
         <tr>
           <th scope="col">Categoría</th> 
           <th scope="col">Nombres y apellidos</th>
+          <th scope="col">Representante</th>
           <th scope="col">herramienta</th>
           <th scope="col">Avatar</th>
 
