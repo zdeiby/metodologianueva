@@ -1138,17 +1138,43 @@ class c_encuestaintegrantesqt extends Controller
 
 
                     )?
-                   ' <div class="text-center  was-validated">
+                   ' <div class="was-validated">
                         <label class="pb-2">Para mover este indicador por Gestor por favor llena la observacion y luego dar clic en mover indicador.</label><br>
-                        <textarea class="form-control" id="observaciongestor" rows="4" required></textarea><br>
-                        <button type="button" class="btn btn-success btn-sm" onclick="moverindicadorgestor('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" onchange="handleRadioChange(`opcion1`)" name="opcion" id="opcion1" required>
+                                <label class="form-check-label " for="opcion1">
+                                Oportunidad no incluida en fichero
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" onchange="handleRadioChange(`opcion2`)" name="opcion" id="opcion2" required>
+                                <label class="form-check-label " for="opcion2">
+                                Propios medios del hogar
+                                </label>
+                            </div>
+
+                         <div class="mt-3" style="display:none">
+                        <label for="selectedText">Texto seleccionado:</label>
+                            <input type="text" id="checkseleccionado" class="form-control">
+                        </div>
+                        <br>
+                         <div class="mb-3" id="nombreOportunidaddiv" style="display:none">
+                                <label for="nombreOportunidad" class="form-label ">Nombre oportunidad</label>
+                                <textarea class="form-control " id="nombreOportunidad" rows="2" placeholder="Nombre de la oportunidad" required></textarea>
+                            </div>
+
+                            <!-- Campo para el teléfono -->
+                            <div class="mb-3" id="telefonoContactodiv" style="display:none">
+                                <label for="telefonoContacto" class="form-label ">Teléfono contacto al que ofrece la oportunidad</label>
+                                <input type="number" class="form-control " id="telefonoContacto" placeholder="Cual" required>
+                            </div>
+                        <div class="text-center  was-validated">
+                                <label for="observaciongestor" class="form-label ">Observaciones</label>                        
+                                <textarea class="form-control" id="observaciongestor" rows="4" required></textarea><br>
+                                <button type="button" class="btn btn-success btn-sm" onclick="moverindicadorgestor('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
+                        </div>
                     </div>
                     <hr>':'' ) .'
-
-                    
-
-
-
                     
                                             <div class="" width="100%" style="display:none">
                                 <table id="example" class="table table-striped " >
@@ -1467,10 +1493,41 @@ class c_encuestaintegrantesqt extends Controller
                     || $id_bienestar == '5' && $id_indicador == '3' 
 
                    )?
-                   ' <div class="text-center  was-validated">
-                           <label class="pb-2">Para mover este indicador por Gestor por favor llena la observacion y luego dar clic en mover indicador.</label><br>
-                        <textarea class="form-control" id="observaciongestor" rows="4" required></textarea><br>
-                        <button type="button" class="btn btn-success btn-sm" onclick="moverindicadorgestorhogar('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
+                   ' <div class="was-validated">
+                        <label class="pb-2">Para mover este indicador por Gestor por favor llena la observacion y luego dar clic en mover indicador.</label><br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" onchange="handleRadioChange(`opcion1`)" name="opcion" id="opcion1" required>
+                                <label class="form-check-label " for="opcion1">
+                                Oportunidad no incluida en fichero
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" onchange="handleRadioChange(`opcion2`)" name="opcion" id="opcion2" required>
+                                <label class="form-check-label " for="opcion2">
+                                Propios medios del hogar
+                                </label>
+                            </div>
+
+                         <div class="mt-3" style="display:none">
+                        <label for="selectedText">Texto seleccionado:</label>
+                            <input type="text" id="checkseleccionado" class="form-control">
+                        </div>
+                        <br>
+                         <div class="mb-3" id="nombreOportunidaddiv" style="display:none">
+                                <label for="nombreOportunidad" class="form-label ">Nombre oportunidad</label>
+                                <textarea class="form-control " id="nombreOportunidad" rows="2" placeholder="Nombre de la oportunidad" required></textarea>
+                            </div>
+
+                            <!-- Campo para el teléfono -->
+                            <div class="mb-3" id="telefonoContactodiv" style="display:none">
+                                <label for="telefonoContacto" class="form-label ">Teléfono contacto al que ofrece la oportunidad</label>
+                                <input type="number" class="form-control " id="telefonoContacto" placeholder="Cual" required>
+                            </div>
+                        <div class="text-center  was-validated">
+                                <label for="observaciongestor" class="form-label ">Observaciones</label>                        
+                                <textarea class="form-control" id="observaciongestor" rows="4" required></textarea><br>
+                                <button type="button" class="btn btn-success btn-sm" onclick="moverindicadorgestorhogar('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
+                        </div>
                     </div>
                     <hr>':'' ) .'
                                             <div class="" width="100%" style="display:none">
@@ -1598,16 +1655,21 @@ class c_encuestaintegrantesqt extends Controller
         $id_indicador = $request->input('id_indicador');
         $usuario = $request->input('usuario');
         $observaciongestor = $request->input('observaciongestor');
+        $metodo= $request->input('metodo');
+        $nombreoportunidad= $request->input('nombreoportunidad');
+        $telefono= $request->input('telefono');
 
 
-
-        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_vp(?, ?, ?, ?, ?, ?)', [
+        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_vp(?, ?, ?, ?, ?, ?, ? , ? , ?)', [
             $folio, 
             $idintegrante, 
             $id_bienestar, 
             $id_indicador,
-            $usuario,
-            $observaciongestor
+            $usuario, 
+            $metodo,
+            $observaciongestor,
+            $nombreoportunidad,
+             $telefono
         ]);
         $resultado2 = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
             $folio, 
@@ -1635,23 +1697,28 @@ class c_encuestaintegrantesqt extends Controller
         $id_indicador = $request->input('id_indicador');
         $usuario = $request->input('usuario');
         $observaciongestor = $request->input('observaciongestor');
+        $metodo= $request->input('metodo');
+        $nombreoportunidad= $request->input('nombreoportunidad');
+        $telefono= $request->input('telefono');
 
 
 
-        $resultado = DB::select('CALL sp_movimiento_indicador_hogar_vp(?, ?, ?, ?, ?)', [
+        $resultado = DB::select('CALL sp_movimiento_indicador_hogar_vp(?, ?, ?, ?, ?, ? , ? , ?)', [
             $folio, 
            // $idintegrante, 
             $id_bienestar, 
             $id_indicador,
-            $usuario,
-            $observaciongestor
+            $usuario, 
+            $metodo,
+            $observaciongestor,
+            $nombreoportunidad,
+            $telefono
+           
         ]);
         $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
             $folio
            // $idintegrante
         ]);
-
-        
 
         // Retornar una respuesta con el resultado
         return response()->json([

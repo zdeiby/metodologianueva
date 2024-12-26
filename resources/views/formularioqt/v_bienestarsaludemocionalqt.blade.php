@@ -590,6 +590,8 @@
     </script>
  <script>
 
+
+
         document.addEventListener('DOMContentLoaded', function () {
     // Array de switches con un flag para identificar el switch 'Ninguna'
     var healthSwitches = {
@@ -737,9 +739,12 @@ function checkAndSetSwitchValues(divId) {
                   $('.filter-option-inner-inner').css('font-size','13px');
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
-
+                  initializeCheckboxes();
+                  
                  // $('#siguiente').css('display','');
                    // alertagood();
+
+
                 },
                 error: function(xhr, status, error) {
                     alertabad();
@@ -753,7 +758,46 @@ function checkAndSetSwitchValues(divId) {
   
     var modalElement = document.getElementById('modal-'+ id_indicador);
     var modalInstance = bootstrap.Modal.getInstance(modalElement);
+    let nombreoportunidad = $('#nombreOportunidad').val();
+    let telefono = $('#telefonoContacto').val();
     var observaciongestor = $('#observaciongestor').val();
+
+    if($('#checkseleccionado').val() == 'Oportunidad no incluida en fichero'  && nombreoportunidad == ''){
+      Swal.fire({
+          icon: 'warning',
+          title: 'Advertencia',
+          text: 'Debe llenar el nombre de la oportunidad si seleccionó "Oportunidad no incluida en fichero".'
+        }); 
+        return
+}
+if($('#checkseleccionado').val() == 'Oportunidad no incluida en fichero'  && telefono == ''){
+      Swal.fire({
+          icon: 'warning',
+          title: 'Advertencia',
+          text: 'Debe llenar el campo telefono de la oportunidad si seleccionó "Oportunidad no incluida en fichero".'
+        }); 
+        return
+}
+
+if( observaciongestor == ''){
+      Swal.fire({
+          icon: 'warning',
+          title: 'Advertencia',
+          text: 'Debe llenar el campo de observación'
+        }); 
+        return
+}
+
+if($('#checkseleccionado').val() == '' ){
+      Swal.fire({
+          icon: 'warning',
+          title: 'Advertencia',
+          text: 'Debes seleccionar alguna opción".'
+        }); 
+        return
+}
+
+
     console.log(observaciongestor)
      $.ajax({
                  url: '../../../moverindicadorgestor',
@@ -763,7 +807,10 @@ function checkAndSetSwitchValues(divId) {
                   folio: '<?= $folio ?>',
                   idintegrante: '<?= $integrante ?>',
                   usuario: '<?= Session::get('cedula')?>',
-                  observaciongestor:observaciongestor
+                  metodo:$('#checkseleccionado').val(),
+                  observaciongestor:observaciongestor,
+                  nombreoportunidad:nombreoportunidad,
+                  telefono:telefono
 
 
                  }, // Envía los datos de manera plana
@@ -774,12 +821,12 @@ function checkAndSetSwitchValues(divId) {
                     icon: "success",
                     title: "Indicardor movido con éxito",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 10000
                     });
                   setTimeout(() => {
                     location.reload();
-                  }, 1000);
-                  location.reload();
+                  }, 100);
+                 // location.reload();
                     //modalInstance.hide();
                  },
                  error: function(xhr, status, error) {
@@ -796,7 +843,44 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
   var modalElement = document.getElementById('modal-'+ id_indicador);
   var modalInstance = bootstrap.Modal.getInstance(modalElement);
   var observaciongestor = $('#observaciongestor').val();
-  console.log(observaciongestor)
+  let nombreoportunidad = $('#nombreOportunidad').val();
+  let telefono = $('#telefonoContacto').val();
+
+    if($('#checkseleccionado').val() == 'Oportunidad no incluida en fichero'  && nombreoportunidad == ''){
+      Swal.fire({
+          icon: 'warning',
+          title: 'Advertencia',
+          text: 'Debe llenar el nombre de la oportunidad si seleccionó "Oportunidad no incluida en fichero".'
+        }); 
+        return
+      }
+      if($('#checkseleccionado').val() == 'Oportunidad no incluida en fichero'  && telefono == ''){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Advertencia',
+                text: 'Debe llenar el campo telefono de la oportunidad si seleccionó "Oportunidad no incluida en fichero".'
+              }); 
+              return
+      }
+
+      if( observaciongestor == ''){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Advertencia',
+                text: 'Debe llenar el campo de observación'
+              }); 
+              return
+      }
+
+      if($('#checkseleccionado').val() == '' ){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Advertencia',
+                text: 'Debes seleccionar alguna opción".'
+              }); 
+              return
+      }
+
    $.ajax({
                url: '../../../moverindicadorgestorhogar',
                method: 'GET', // Cambiar a GET si estás usando GET
@@ -805,7 +889,10 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
                 folio: '<?= $folio ?>',
                 idintegrante: '<?= $integrante ?>',
                 usuario: '<?= Session::get('cedula')?>',
-                observaciongestor:observaciongestor
+                metodo:$('#checkseleccionado').val(),
+                  observaciongestor:observaciongestor,
+                  nombreoportunidad:nombreoportunidad,
+                  telefono:telefono
 
 
                }, // Envía los datos de manera plana
@@ -859,6 +946,9 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
                   initializeCheckboxes();
                  // $('#siguiente').css('display','');
                    // alertagood();
+
+
+
                 },
                 error: function(xhr, status, error) {
                     alertabad();
@@ -1027,6 +1117,25 @@ function habilitaboton(idoportunidad){
 }
       
 
+function handleRadioChange(id) {
+      console.log(`Cambiaste la selección al radio con ID: ${id}`);
+
+      // Acción específica según el ID
+      if (id === 'opcion1') {
+        console.log('Opción 1 seleccionada');
+        $('#checkseleccionado').val('Oportunidad no incluida en fichero');
+        $('#nombreOportunidaddiv').css('display','');
+        $('#telefonoContactodiv').css('display','');
+      } else if (id === 'opcion2') {
+        $('#checkseleccionado').val('Propios medios del hogar');
+        $('#nombreOportunidaddiv').css('display','none');
+        $('#telefonoContactodiv').css('display','none');
+        $('#nombreOportunidad').val('');
+        $('#telefonoContacto').val('');
+
+      }
+    }
+
 
 function initializeCheckboxes() {
     const checkboxes = document.querySelectorAll('#container-psicosocial2 .form-check-input');
@@ -1059,6 +1168,7 @@ function initializeCheckboxes() {
             }
         });
     });
+
 }
 
 
