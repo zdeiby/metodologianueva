@@ -1178,6 +1178,19 @@ function moverporpregunta41(folio, idintegrante, id_bienestar, id_indicador) {
   let p6 = $('#cuidadomenores').val();
 
 
+  if (p1 == '' || p2 == '' || p3 == '' || p4 == '' || p5 == '' || p6 == '') {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes seleccionar todos los campos",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
+
+
 $.ajax({
       url: '../../../moverporpregunta41',
       method: 'GET', // Cambiar a GET si estás usando GET

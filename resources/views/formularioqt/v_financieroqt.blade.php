@@ -1130,7 +1130,19 @@ function moverporpregunta54(folio, id_bienestar, id_indicador) {
   let  p3=$('#planeacionfinanciera4297').attr('respuesta');
   let p4= $('#planeacionfinanciera4368').attr('respuesta');
 
+  let atLeastOneChecked = $('.planeacionfinanciera4-input:checked').length > 0;
 
+if (!atLeastOneChecked) {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes seleccionar al menos una opción",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
 
 $.ajax({
       url: '../../../moverporpregunta54',
@@ -1158,7 +1170,7 @@ $.ajax({
        setTimeout(() => {
          location.reload();
        }, 1000);
-       location.reload();
+     //  location.reload();
          //modalInstance.hide();
       },
       error: function(xhr, status, error) {
@@ -1169,7 +1181,7 @@ $.ajax({
 
 }
 
-function moverporpregunta55(folio, idintegrante, id_bienestar, id_indicador) {
+function moverporpregunta55(folio, idintegrante, id_bienestar, id_indicador) {  // bancarizacion
   
   let  p1=$('#bancarizacion157').attr('respuesta');
   let  p2=$('#bancarizacion158').attr('respuesta');
@@ -1181,7 +1193,19 @@ function moverporpregunta55(folio, idintegrante, id_bienestar, id_indicador) {
   let p8 = $('#bancarizacion164').attr('respuesta');
   let p9 = $('#bancarizacion371').attr('respuesta');
 
-  
+  let atLeastOneChecked = $('.bancarizacion-input:checked').length > 0;
+
+if (!atLeastOneChecked) {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes seleccionar al menos una opción",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
 
 
 $.ajax({
@@ -1217,7 +1241,7 @@ $.ajax({
        setTimeout(() => {
          location.reload();
        }, 1000);
-       location.reload();
+      // location.reload();
          //modalInstance.hide();
       },
       error: function(xhr, status, error) {
@@ -1321,6 +1345,40 @@ function handleRadioChange(id) {
       }
     }
 
+</script>
+
+<script>
+function updateRequiredPlaneacionFinanciera4() {
+    // Selecciona todos los checkboxes de planeacion financiera 4
+    const checkboxes = document.querySelectorAll('.planeacionfinanciera4-input');
+    // Verifica si al menos uno está seleccionado
+    const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    // Si al menos uno está seleccionado, elimina 'required' de todos
+    if (atLeastOneChecked) {
+        checkboxes.forEach(checkbox => checkbox.removeAttribute('required'));
+    } else {
+        // Si ninguno está seleccionado, agrega 'required' a todos
+        checkboxes.forEach(checkbox => checkbox.setAttribute('required', true));
+    }
+}
+</script>
+
+<script>
+function updateRequiredBancarizacion() {
+    // Selecciona todos los checkboxes de bancarización
+    const checkboxes = document.querySelectorAll('.bancarizacion-input');
+    // Verifica si al menos uno está seleccionado
+    const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    // Si al menos uno está seleccionado, elimina 'required' de todos
+    if (atLeastOneChecked) {
+        checkboxes.forEach(checkbox => checkbox.removeAttribute('required'));
+    } else {
+        // Si ninguno está seleccionado, agrega 'required' a todos
+        checkboxes.forEach(checkbox => checkbox.setAttribute('required', true));
+    }
+}
 </script>
 
 

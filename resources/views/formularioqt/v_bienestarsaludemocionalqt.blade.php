@@ -1174,6 +1174,20 @@ function initializeCheckboxes() {
 
 
 function moverporpregunta13(folio, id_bienestar, id_indicador) {
+
+  let atLeastOneChecked = $('.psicosocial-input:checked').length > 0;
+
+if (!atLeastOneChecked) {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes seleccionar al menos una opción",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
   
            let  p1=$('#psicosocial292').attr('respuesta');
            let  p2=$('#psicosocial293').attr('respuesta');
@@ -1251,7 +1265,7 @@ function moverporpregunta13(folio, id_bienestar, id_indicador) {
                 setTimeout(() => {
                   location.reload();
                 }, 1000);
-                location.reload();
+               // location.reload();
                   //modalInstance.hide();
                },
                error: function(xhr, status, error) {
@@ -1264,10 +1278,22 @@ function moverporpregunta13(folio, id_bienestar, id_indicador) {
 
 
 function moverporpregunta17(folio, id_bienestar, id_indicador) {
-  
+ 
   let  p1=$('#numerocomidas').val();
   let  p2=$('#accesibilidadalimentos2').val();
   let  p3=$('#accesibilidad').val();
+
+  if (p1 == '' || p2 == ''  || p3 == ''  ) {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes Seleccionar todas las opciones",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
 
 
 $.ajax({
@@ -1295,7 +1321,7 @@ $.ajax({
        setTimeout(() => {
          location.reload();
        }, 1000);
-       location.reload();
+      // location.reload();
          //modalInstance.hide();
       },
       error: function(xhr, status, error) {
@@ -1307,6 +1333,26 @@ $.ajax({
 }
      
 
+</script>
+
+
+<script>
+function handleCheckboxChange() {
+    // Selecciona todos los checkboxes con la clase 'psicosocial-input'
+    const checkboxes = document.querySelectorAll('.psicosocial-input');
+
+    // Comprueba si al menos uno está seleccionado
+    const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    // Si al menos uno está seleccionado, elimina 'required' de todos
+    checkboxes.forEach(checkbox => {
+        if (atLeastOneChecked) {
+            checkbox.removeAttribute('required');
+        } else {
+            checkbox.setAttribute('required', true);
+        }
+    });
+}
 </script>
 
 

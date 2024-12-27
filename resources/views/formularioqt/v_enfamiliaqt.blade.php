@@ -1036,6 +1036,7 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
                   initializeCheckboxes();
+                  initializeCheckboxes2();
                  // $('#siguiente').css('display','');
                    // alertagood();
                 },
@@ -1240,6 +1241,39 @@ function initializeCheckboxes() {
     });
 }
 
+function initializeCheckboxes2() {
+    const checkboxes = document.querySelectorAll('#container-tiempolibre .form-check-input');
+    const noImplementaNingunaCheckbox = document.querySelector('#tiempolibre309'); // ID del checkbox "No implementa ninguna"
+
+    checkboxes.forEach((checkbox) => {
+        // Inicializar todos los checkboxes con valor "NO"
+        checkbox.setAttribute('respuesta', 'NO');
+        checkbox.checked = false;
+
+        // Cambiar valor al seleccionar/deseleccionar
+        checkbox.addEventListener('change', function () {
+            if (checkbox.id === 'tiempolibre309' && checkbox.checked) {
+                // Si selecciona "No implementa ninguna", desmarcar todos los demás
+                checkboxes.forEach((otherCheckbox) => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                        otherCheckbox.setAttribute('respuesta', 'NO');
+                    }
+                });
+            } else if (checkbox.checked) {
+                // Si selecciona cualquier otro, desmarcar "No implementa ninguna"
+                if (noImplementaNingunaCheckbox.checked) {
+                    noImplementaNingunaCheckbox.checked = false;
+                    noImplementaNingunaCheckbox.setAttribute('respuesta', 'NO');
+                }
+                checkbox.setAttribute('respuesta', 'SI');
+            } else {
+                checkbox.setAttribute('respuesta', 'NO');
+            }
+        });
+    });
+}
+
 
 
 function moverporpregunta31(folio, id_bienestar, id_indicador) {
@@ -1251,6 +1285,21 @@ function moverporpregunta31(folio, id_bienestar, id_indicador) {
   let  p5=$('#disciplinapositiva302').attr('respuesta');
   let  p6=$('#disciplinapositiva303').attr('respuesta');
   let  p7=$('#disciplinapositiva304').attr('respuesta');
+
+
+  let atLeastOneChecked = $('.disciplinapositiva-input:checked').length > 0;
+
+if (!atLeastOneChecked) {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes seleccionar al menos una opción",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
 
 
 $.ajax({
@@ -1298,6 +1347,18 @@ function moverporpregunta32(folio, id_bienestar, id_indicador) {
   
   let  p1=$('#redesdeapoyo').val();
 
+  if (p1 == '') {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes seleccionar al menos una opción",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
+
 $.ajax({
       url: '../../../moverporpregunta32',
       method: 'GET', // Cambiar a GET si estás usando GET
@@ -1337,6 +1398,20 @@ function moverporpregunta34(folio, id_bienestar, id_indicador) {
   let  p3=$('#tiempolibre307').attr('respuesta');
   let  p4=$('#tiempolibre308').attr('respuesta');
   let  p5=$('#tiempolibre309').attr('respuesta');
+
+  let atLeastOneChecked = $('.tiempolibre-input:checked').length > 0;
+
+if (!atLeastOneChecked) {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes seleccionar al menos una opción",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
 
 $.ajax({
       url: '../../../moverporpregunta34',
@@ -1394,6 +1469,41 @@ function handleRadioChange(id) {
       }
     }
 
+</script>
+
+
+<script>
+function validateDisciplinaPositiva() {
+    // Selecciona todos los checkboxes de disciplina positiva
+    const checkboxes = document.querySelectorAll('.disciplinapositiva-input');
+    // Verifica si al menos uno está seleccionado
+    const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    // Si al menos uno está seleccionado, elimina 'required' de todos
+    if (atLeastOneChecked) {
+        checkboxes.forEach(checkbox => checkbox.removeAttribute('required'));
+    } else {
+        // Si ninguno está seleccionado, agrega 'required' a todos
+        checkboxes.forEach(checkbox => checkbox.setAttribute('required', true));
+    }
+}
+</script>
+
+<script>
+function updateRequiredTiempoLibre() {
+    // Selecciona todos los checkboxes de tiempo libre
+    const checkboxes = document.querySelectorAll('.tiempolibre-input');
+    // Verifica si al menos uno está seleccionado
+    const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    // Si al menos uno está seleccionado, elimina 'required' de todos
+    if (atLeastOneChecked) {
+        checkboxes.forEach(checkbox => checkbox.removeAttribute('required'));
+    } else {
+        // Si ninguno está seleccionado, agrega 'required' a todos
+        checkboxes.forEach(checkbox => checkbox.setAttribute('required', true));
+    }
+}
 </script>
 
 

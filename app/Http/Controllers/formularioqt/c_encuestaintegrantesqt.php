@@ -968,7 +968,7 @@ class c_encuestaintegrantesqt extends Controller
         
           ///movimiento por preguntas
           $psicosocial2 = '
-          <div class="col-md-12" id="psicosocial2div">
+          <div class="col-md-12 was-validated" id="psicosocial2div">
               <div class="form-check form-switch" id="container-psicosocial2">
                   <label for="validationServer04" class="form-label">¿Qué estrategias implementas para reducir el estrés y para favorecer el bienestar emocional y físico?</label>';
                   
@@ -977,7 +977,7 @@ class c_encuestaintegrantesqt extends Controller
                   $psicosocial2 .= '
                   <div class="psicosocial2' . $value->id . '">
                       <label class="form-check-label psicosocial2' . $value->id . '" for="psicosocial2' . $value->id . '">' . htmlspecialchars($value->pregunta, ENT_QUOTES, 'UTF-8') . '</label>
-                      <input class="form-check-input" type="checkbox" name="psicosocial2[]" id="psicosocial2' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                      <input class="form-check-input psicosocial-input" onchange="handleCheckboxChange()" type="checkbox" name="psicosocial2[]" id="psicosocial2' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
                   </div>';
               }
           }
@@ -1010,13 +1010,13 @@ class c_encuestaintegrantesqt extends Controller
 
             
             $bancarizacion = '<label for="validationServer04" class="form-label">¿Cuáles mecanismos o productos financieros conoces, has usado o usas en la actualidad?.</label>
-            <div class="col-md-12" id="bancarizaciondiv">
+            <div class="col-md-12 was-validated" id="bancarizaciondiv">
                 <div class="form-check form-switch" id="container-bancarizacion">';
             foreach ($preguntas as $value) {
                 if (($value->id >= 157 && $value->id <= 164) || $value->id == 371) {
                     $bancarizacion .= '<div class="bancarizacion' . $value->id . '">
                     <label class="form-check-label bancarizacion' . $value->id . '" for="bancarizacion' . $value->id . '">' . $value->pregunta . '</label>
-                    <input class="form-check-input" type="checkbox" name="bancarizacion[]" id="bancarizacion' . $value->id . '" value="' . $value->id . '" respuesta="NO" required>
+                    <input class="form-check-input bancarizacion-input" type="checkbox" name="bancarizacion[]" id="bancarizacion' . $value->id . '" value="' . $value->id . '" respuesta="NO" required onchange="updateRequiredBancarizacion()">
                     </div>';
                 }
             }
@@ -1206,44 +1206,44 @@ class c_encuestaintegrantesqt extends Controller
                                 '' ) .'
 
                                    ' .(($id_bienestar == '4' && $id_indicador == '1')? ' <div> 
-                                <div class="col-md-12">
-                                    <label for="validationServer04" class="form-label">¿En tu hogar, cuántas comidas se consumen al día en promedio?</label>
+                                <div class="col-md-12 was-validated">
+                                    <label for="numerocomidas" class="form-label">¿En tu hogar, cuántas comidas se consumen al día en promedio?</label>
                                     <select class="form-control form-control-sm" id="numerocomidas" aria-describedby="validationServer04Feedback" required="">
                                         '.$numerodecomidas.' 
                                     </select>
                                 </div> 
                                 <br>
-                                <div class="col-md-12">
+                                <div class="col-md-12 was-validated">
                                     <label for="validationServer04" class="form-label">En los últimos 30 días, por falta de dinero u otros recursos, ¿alguna vez en tu hogar se quedaron sin alimentos?</label>
                                     <select class="form-control form-control-sm" id="accesibilidadalimentos2" name="accesibilidadalimentos2" aria-describedby="validationServer04Feedback" required="">
                                         '.$sino.' 
                                     </select>
                                 </div> 
                                 <br>
-                                <div class="col-md-12">
+                                <div class="col-md-12 was-validated">
                                     <label for="validationServer04" class="form-label">En los últimos 30 días, por falta de dinero u otros recursos, ¿alguna vez en tu hogar sintieron hambre y no pudieron comer?</label>
                                     <select class="form-control form-control-sm" id="accesibilidad"  aria-describedby="validationServer04Feedback" required="">
                                         '.$sino.' 
                                     </select>
                                 </div> 
                                 <br>
-                                <div class="col-md-12">
+                                <div class="col-md-12 was-validated">
                                         <label for="validationServer04" class="form-label">¿Cuentas con afiliación al sistema de salud?</label>
                                         <select class="form-control form-control-sm" id="regimendesalud" name="regimendesalud" aria-describedby="validationServer04Feedback" required="">
                                         '.$regimendesalud.'
                                     </select>
                                     </div>
                                      <br>
-                                    <div class="col-md-12" style="" id="educaciondiv">
+                                    <div class="col-md-12 was-validated" style="" id="educaciondiv">
                                         <label for="validationServer04" class="form-label">¿Estás estudiando actualmente?</label>
                                         <select class="form-control form-control-sm" id="educacion" name="educacion" aria-describedby="validationServer04Feedback" required="required">
                                         '.$sino.'
                                     </select>
                                     </div>
                                         <br>
-                                    <div class="col-md-12" id="cuidadomenoresdiv" style="">
+                                    <div class="col-md-12 was-validated" id="cuidadomenoresdiv" style="">
                                     <label for="validationServer04" class="form-label">¿El integrante  entre 0 y 5 años de edad que no están estudiando, están al cuidado de un adulto responsable?</label>
-                                    <select class="form-control form-control-sm" id="cuidadomenores" name="cuidadomenores" aria-describedby="validationServer04Feedback">
+                                    <select class="form-control form-control-sm" id="cuidadomenores" name="cuidadomenores" aria-describedby="validationServer04Feedback" required>
                                     '.$sino.'
                                     </select>
                                     </div>
@@ -1321,14 +1321,14 @@ class c_encuestaintegrantesqt extends Controller
 
           $disciplinapositiva = '
           <label for="validationServer04" class="form-label">¿Cuáles de las siguientres estrategias de disciplina positiva se implementan en el hogar para fomentar el respeto mutuo y la resolución pacífica de conflictos?</label>
-          <div class="col-md-12" id="disciplinapositivadiv">
+          <div class="col-md-12 was-validated" id="disciplinapositivadiv">
               <div class="form-check form-switch" id="container-disciplinapositiva">';
                   
               foreach ($preguntas as $value) {
                 if ($value->id >= '298' && $value->id <= '304' ) {
                     $disciplinapositiva .= '<div class="disciplinapositiva' . $value->id . '">
                     <label class="form-check-label disciplinapositiva' . $value->id . '"  for="disciplinapositiva' . $value->id . '">' . $value->pregunta . '</label>
-                    <input class="form-check-input" type="checkbox" name="disciplinapositiva[]" id="disciplinapositiva' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                    <input class="form-check-input disciplinapositiva-input" type="checkbox" name="disciplinapositiva[]" id="disciplinapositiva' . $value->id . '" value="' . $value->id . '" respuesta="SI" required onchange="validateDisciplinaPositiva()">
                     </div>';
                 }
             }
@@ -1339,13 +1339,13 @@ class c_encuestaintegrantesqt extends Controller
 
           $tiempolibre = '
           <label for="validationServer04" class="form-label">¿Cuáles de las siguientres estrategias de disciplina positiva se implementan en el hogar para fomentar el respeto mutuo y la resolución pacífica de conflictos?</label>
-          <div class="col-md-12" id="tiempolibrediv">
+          <div class="col-md-12 was-validated" id="tiempolibrediv">
               <div class="form-check form-switch" id="container-tiempolibre">';
           foreach ($preguntas as $value) {
             if ($value->id >= '305' && $value->id <= '309') {
                 $tiempolibre .= '<div class="tiempolibre' . $value->id . '">
                 <label class="form-check-label tiempolibre' . $value->id . '"  for="tiempolibre' . $value->id . '">' . $value->pregunta . '</label>
-                <input class="form-check-input" type="checkbox" name="tiempolibre[]" id="tiempolibre' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                <input class="form-check-input tiempolibre-input" type="checkbox" name="tiempolibre[]" id="tiempolibre' . $value->id . '" value="' . $value->id . '" respuesta="SI" required onchange="updateRequiredTiempoLibre()">
                 </div>';
             }
         }
@@ -1356,13 +1356,13 @@ class c_encuestaintegrantesqt extends Controller
 
             $planeacionfinanciera4 = '
           <label for="validationServer04" class="form-label">¿En tu hogar toman decisiones conjuntas en relación a los siguientes temas?.</label>
-          <div class="col-md-12" id="planeacionfinanciera4div">
+          <div class="col-md-12 was-validated" id="planeacionfinanciera4div">
               <div class="form-check form-switch" id="container-planeacionfinanciera4">';
           foreach ($preguntas as $value) {
               if ($value->id >= '295' && $value->id <= '297' || $value->id == '368') {
                   $planeacionfinanciera4 .= '<div class="planeacionfinanciera4' . $value->id . '">
                   <label class="form-check-label planeacionfinanciera4' . $value->id . '"  for="planeacionfinanciera4' . $value->id . '">' . $value->pregunta . '</label>
-                  <input class="form-check-input" type="checkbox" name="planeacionfinanciera4[]" id="planeacionfinanciera4' . $value->id . '" value="' . $value->id . '" respuesta="SI" required>
+                  <input class="form-check-input planeacionfinanciera4-input" type="checkbox" name="planeacionfinanciera4[]" id="planeacionfinanciera4' . $value->id . '" value="' . $value->id . '" respuesta="SI" required onchange="updateRequiredPlaneacionFinanciera4()">
                   </div>';
               }}
               $planeacionfinanciera4 .= '
@@ -1555,21 +1555,21 @@ class c_encuestaintegrantesqt extends Controller
 
                               '  .(($id_bienestar == '1' && $id_indicador == '7')? '
                                 <div> 
-                                <div class="col-md-12">
+                                <div class="col-md-12 was-validated">
                                     <label for="validationServer04" class="form-label">¿En tu hogar, cuántas comidas se consumen al día en promedio?</label>
                                     <select class="form-control form-control-sm" id="numerocomidas" aria-describedby="validationServer04Feedback" required="">
                                         '.$numerodecomidas.' 
                                     </select>
                                 </div> 
                                 <br>
-                                <div class="col-md-12">
+                                <div class="col-md-12 was-validated">
                                     <label for="validationServer04" class="form-label">En los últimos 30 días, por falta de dinero u otros recursos, ¿alguna vez en tu hogar se quedaron sin alimentos?</label>
                                     <select class="form-control form-control-sm" id="accesibilidadalimentos2" name="accesibilidadalimentos2" aria-describedby="validationServer04Feedback" required="">
                                         '.$sino.' 
                                     </select>
                                 </div> 
                                 <br>
-                                <div class="col-md-12">
+                                <div class="col-md-12 was-validated">
                                     <label for="validationServer04" class="form-label">En los últimos 30 días, por falta de dinero u otros recursos, ¿alguna vez en tu hogar sintieron hambre y no pudieron comer?</label>
                                     <select class="form-control form-control-sm" id="accesibilidad"  aria-describedby="validationServer04Feedback" required="">
                                         '.$sino.' 
@@ -1595,7 +1595,7 @@ class c_encuestaintegrantesqt extends Controller
                                    '  .(($id_bienestar == '3' && $id_indicador == '2')? '
                                 <div> 
                                 <label for="validationServer04" class="form-label">¿Cuándo en tu hogar se presenta una dificultad cuentas con una red de apoyo (familia, vecinos, otro)?</label>
-                                <div class="col-md-12">
+                                <div class="col-md-12 was-validated">
                                     <select class="form-control form-control-sm" id="redesdeapoyo"  aria-describedby="validationServer04Feedback" required="">
                                         '.$sino.' 
                                     </select>
