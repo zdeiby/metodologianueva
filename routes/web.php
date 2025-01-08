@@ -144,6 +144,11 @@ Route::get('/moverporpregunta41',[c_encuestaintegrantesqt::class,'fc_moverporpre
 Route::get('/moverporpregunta54',[c_encuestaintegrantesqt::class,'fc_moverporpregunta54'])->name('moverporpregunta54');
 Route::get('/moverporpregunta55',[c_encuestaintegrantesqt::class,'fc_moverporpregunta55'])->name('moverporpregunta55');
 
+Route::get('/moverporpregunta33',[c_encuestaintegrantesqt::class,'fc_moverporpregunta33'])->name('moverporpregunta33');
+Route::get('/moverporpregunta27',[c_encuestaintegrantesqt::class,'fc_moverporpregunta27'])->name('moverporpregunta27');
+
+Route::get('/moverporpregunta29',[c_encuestaintegrantesqt::class,'fc_moverporpregunta29'])->name('moverporpregunta29');
+Route::get('/moverporpregunta35',[c_encuestaintegrantesqt::class,'fc_moverporpregunta35'])->name('moverporpregunta35');
 
 
 

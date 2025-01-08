@@ -1050,7 +1050,7 @@ if($('#checkseleccionado').val() == '' ){
 </script>
 
 <script>
-  function agregaroportunidad(idoportunidad,aplica_hogar_integrante, estado_oportunidad) {
+  function agregaroportunidad(idoportunidad,aplica_hogar_integrante, estado_oportunidad, id_bienestar = 0, id_indicador = 0) {
     // Obtiene el select específico usando el id de oportunidad
     let select = document.getElementById(`speaker_${idoportunidad}`);
     let selectedOption = select.options[select.selectedIndex];
@@ -1069,6 +1069,8 @@ if($('#checkseleccionado').val() == '' ){
          folio: folio,
          idintegrante: idintegrante,
          idoportunidad:idoportunidad,
+         id_bienestar: id_bienestar,
+         id_indicador: id_indicador,
          usuario: '<?= Session::get('cedula') ?>',
          estado_oportunidad:estado_oportunidad,
          linea:'200',
@@ -1102,6 +1104,19 @@ if($('#checkseleccionado').val() == '' ){
             $('#noefectiva'+idoportunidad).attr('disabled', 'disabled');
             $('#noefectiva'+idoportunidad).html('No efectiva');
           Swal.close();
+
+          //para actualizar
+
+                Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Indicardor movido con éxito",
+              showConfirmButton: false,
+              timer: 1000
+              });
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
       }
       else if (data.success && data.estado_oportunidad == '3') {
             $('#acercar'+idoportunidad).removeAttr('disabled');
@@ -1226,7 +1241,64 @@ function handleRadioChange(id) {
       }
     }
 
+
+    function moverporpregunta27(folio, id_integrante, id_bienestar, id_indicador) {
+  
+  let  p1=$('#observaciongestor27').val();
+
+
+if (p1 == '') {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes ingresar información al campo información",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
+
+$.ajax({
+      url: '../../../moverporpregunta27',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: {  folio: '<?= $folio ?>',
+        id_integrante:id_integrante,
+       id_bienestar:id_bienestar, 
+       id_indicador:id_indicador, 
+       usuario: '<?= Session::get('cedula')?>',
+       p1:p1,
+      }, // Envía los datos de manera plana
+      dataType: 'json',
+      success: function(data) {
+       Swal.fire({
+         position: "center",
+         icon: "success",
+         title: "Indicardor movido con éxito",
+         showConfirmButton: false,
+         timer: 1000
+         });
+       setTimeout(() => {
+         location.reload();
+       }, 1000);
+       //location.reload();
+         //modalInstance.hide();
+      },
+      error: function(xhr, status, error) {
+          alertabad();
+          console.error(error);
+      }
+  });
+
+}
+
+
+
+
 </script>
+
+
+
 
 
 @endsection

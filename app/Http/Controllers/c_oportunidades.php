@@ -105,7 +105,8 @@ foreach ($oportunidad as $value) {
         $linea = $request->input('linea');
         $aplica_hogar_integrante= $request->input('aplica_hogar_integrante'); 
         $estado_oportunidad= $request->input('estado_oportunidad'); 
-
+        $id_bienestar= $request->input('id_bienestar');
+        $id_indicador= $request->input('id_indicador');
 
 
         $data_historico = [
@@ -167,6 +168,35 @@ foreach ($oportunidad as $value) {
             // Si no existe, agregar `created_at` y hacer un insert
             $data['created_at'] = $now;
         } 
+
+        if($aplica_hogar_integrante == '374' && $id_bienestar != '0'  && $id_indicador != '0'){ //hogar
+           $resultado = DB::select('CALL sp_movimiento_indicador_hogar_oportunidades(?, ?, ?, ?, ?, ?)', [  
+            $folio,  $id_bienestar,   $id_indicador,  $usuario,   $idoportunidad, $estado_oportunidad, 
+        ]);
+        
+        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+            $folio
+           // $idintegrante
+        ]); 
+        }
+
+
+       
+        if($aplica_hogar_integrante == '373' && $id_bienestar != '0'  && $id_indicador != '0'){ //integrante
+            //dd($folio, $idintegrante,  $id_bienestar,   $id_indicador,  $usuario,   $idoportunidad, $estado_oportunidad);
+            $resultado = DB::select('CALL sp_movimiento_indicador_integrante_oportunidades(?, ? , ? , ?, ?, ?, ?)', [  
+             $folio, $idintegrante,  $id_bienestar,   $id_indicador,  $usuario,   $idoportunidad, $estado_oportunidad
+         ]);
+         
+         $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+             $folio
+            // $idintegrante
+         ]); 
+         }
+        
+
+
+
 
         if($aplica_hogar_integrante == '374'){  // hogar
             DB::table($tabla)->updateOrInsert(

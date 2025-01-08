@@ -959,7 +959,7 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
 </script>
 
 <script>
-  function agregaroportunidad(idoportunidad,aplica_hogar_integrante, estado_oportunidad) {
+  function agregaroportunidad(idoportunidad,aplica_hogar_integrante, estado_oportunidad, id_bienestar = 0, id_indicador = 0) {
     // Obtiene el select específico usando el id de oportunidad
     let select = document.getElementById(`speaker_${idoportunidad}`);
     let selectedOption = select.options[select.selectedIndex];
@@ -978,6 +978,8 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
          folio: folio,
          idintegrante: idintegrante,
          idoportunidad:idoportunidad,
+         id_bienestar: id_bienestar,
+         id_indicador: id_indicador,
          usuario: '<?= Session::get('cedula') ?>',
          estado_oportunidad:estado_oportunidad,
          linea:'200',
