@@ -202,7 +202,10 @@
           </div>
           <div class="col-md-6" id="telefonodiv" >
             <label for="validationServer04" class="form-label">Telefono</label>
-            <input type="text" class="form-control form-control-sm" name="telefono" id="telefono" value="" maxlength="10" oninput="limitarEntrada(this)">
+            <input type="text" class="form-control form-control-sm" name="telefono" id="telefono" value="" maxlength="10" minlength="10" 
+            pattern="\d{10,}" 
+            oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Por favor, ingresa al menos 10 dígitos.')"
+            oninput="limitarEntrada(this)">
             </div><div class="col-md-6" id="celulardiv" >
             <label for="validationServer04" class="form-label">Celular</label>
             <input type="text" class="form-control form-control-sm" name="celular" id="celular" value="" maxlength="10" oninput="limitarEntrada(this)">
@@ -1057,11 +1060,17 @@ $('#representante').change(function(){
   if($('#representante').val()=='1' || $('#parentesco').val()==''){
     $('#parentescodiv').css('display','none');
     $('#parentesco').removeAttr('required');
+    $('#telefono').attr('required', 'required');
     $('#parentesco').val('0');
+    $('#telefono').removeClass('input-error'); // Elimina cualquier clase de error si la tienes
+    $('#telefono')[0].setCustomValidity('');   // Limpia el mensaje de error del navegador
   } if($('#representante').val()=='2' ){
     $('#parentescodiv').css('display','');
     $('#parentesco').attr('required', 'required');
+    $('#telefono').removeAttr('required');
     $('#parentesco').val('');
+    $('#telefono').removeClass('input-error'); // Elimina cualquier clase de error si la tienes
+    $('#telefono')[0].setCustomValidity('');   // Limpia el mensaje de error del navegador
   }
 })
 
@@ -1890,7 +1899,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function limitarEntrada(input) {
     // Permite solo números
     input.value = input.value.replace(/[^0-9]/g, '');
+
+    
 }
+
+
+
 
     </script>
  

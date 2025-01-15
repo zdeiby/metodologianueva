@@ -1535,7 +1535,7 @@ function t1_indicador_bl_1d (){
 
 
 function t1_accionmovilizadoraqtd (){
-  actualizarTabla('t1_accionmovilizadoraqt', 'Subida base de datos al servidor', '1');
+  actualizarTabla('t1_accionmovilizadoraqt', 'Descarga de tablas desde el servdor', '1');
   let tabla= 't1_accionmovilizadoraqt';
 $.ajax({
               url:'./sincroprivacionesd',
@@ -1543,14 +1543,14 @@ $.ajax({
               data: { tabla: tabla},  
               dataType:'JSON',
               success:function(data){ 
-                actualizarTabla('t1_accionmovilizadoraqt', 'Subida base de datos al servidor', '2');
+                actualizarTabla('t1_accionmovilizadoraqt', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('72%');
                 $('#barracarga').css('width','72%');                      
                
                 t1_momentoconciented();                   
               },
               error: function(xhr, status, error) {
-                actualizarTabla('t1_accionmovilizadoraqt', 'Subida base de datos al servidor', '3');
+                actualizarTabla('t1_accionmovilizadoraqt', 'Descarga de tablas desde el servdor', '3');
                     reintentarfuncion(t1_indicador_bl_1d, 't1_indicador_bl_1');
                         console.log(xhr.responseText);
                     }
@@ -1558,7 +1558,7 @@ $.ajax({
 }
 
 function t1_momentoconciented (){
-  actualizarTabla('t1_momentoconciente', 'Subida base de datos al servidor', '1');
+  actualizarTabla('t1_momentoconciente', 'Descarga de tablas desde el servdor', '1');
   let tabla= 't1_momentoconciente';
 $.ajax({
               url:'./sincroprivacionesd',
@@ -1566,14 +1566,14 @@ $.ajax({
               data: { tabla: tabla},  
               dataType:'JSON',
               success:function(data){ 
-                actualizarTabla('t1_momentoconciente', 'Subida base de datos al servidor', '2');
+                actualizarTabla('t1_momentoconciente', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('73%');
                 $('#barracarga').css('width','73%');                      
                
                 t1_ordenprioridadesqtd();                   
               },
               error: function(xhr, status, error) {
-                actualizarTabla('t1_momentoconciente', 'Subida base de datos al servidor', '3');
+                actualizarTabla('t1_momentoconciente', 'Descarga de tablas desde el servdor', '3');
                     reintentarfuncion(t1_accionmovilizadoraqtd, 't1_accionmovilizadoraqt');
                         console.log(xhr.responseText);
                     }
@@ -1581,7 +1581,7 @@ $.ajax({
 }
 
 function t1_ordenprioridadesqtd (){
-  actualizarTabla('t1_ordenprioridadesqt', 'Subida base de datos al servidor', '1');
+  actualizarTabla('t1_ordenprioridadesqt', 'Descarga de tablas desde el servdor', '1');
   let tabla= 't1_ordenprioridadesqt';
 $.ajax({
               url:'./sincroprivacionesd',
@@ -1589,14 +1589,14 @@ $.ajax({
               data: { tabla: tabla},  
               dataType:'JSON',
               success:function(data){ 
-                actualizarTabla('t1_ordenprioridadesqt', 'Subida base de datos al servidor', '2');
+                actualizarTabla('t1_ordenprioridadesqt', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('74%');
                 $('#barracarga').css('width','74%');                      
                
                 t1_v1actualizacionnovedadesd();                   
               },
               error: function(xhr, status, error) {
-                actualizarTabla('t1_ordenprioridadesqt', 'Subida base de datos al servidor', '3');
+                actualizarTabla('t1_ordenprioridadesqt', 'Descarga de tablas desde el servdor', '3');
                     reintentarfuncion(t1_momentoconciented, 't1_momentoconciente');
                         console.log(xhr.responseText);
                     }
@@ -1604,7 +1604,7 @@ $.ajax({
 }
 
 function t1_v1actualizacionnovedadesd (){
-  actualizarTabla('t1_v1actualizacionnovedades', 'Subida base de datos al servidor', '1');
+  actualizarTabla('t1_v1actualizacionnovedades', 'Descarga de tablas desde el servdor', '1');
   let tabla= 't1_v1actualizacionnovedades';
 $.ajax({
               url:'./sincroprivacionesd',
@@ -1612,14 +1612,14 @@ $.ajax({
               data: { tabla: tabla},  
               dataType:'JSON',
               success:function(data){ 
-                actualizarTabla('t1_v1actualizacionnovedades', 'Subida base de datos al servidor', '2');
+                actualizarTabla('t1_v1actualizacionnovedades', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('75%');
                 $('#barracarga').css('width','75%');                      
                
                 t1_v1finalizaciond();                   
               },
               error: function(xhr, status, error) {
-                actualizarTabla('t1_v1actualizacionnovedades', 'Subida base de datos al servidor', '3');
+                actualizarTabla('t1_v1actualizacionnovedades', 'Descarga de tablas desde el servdor', '3');
                     reintentarfuncion(t1_ordenprioridadesqtd, 't1_ordenprioridadesqt');
                         console.log(xhr.responseText);
                     }
@@ -1627,7 +1627,7 @@ $.ajax({
 }
 
 // function t1_v1finalizaciond (){
-//   actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '1');
+//   actualizarTabla('t1_v1finalizacion', 'Descarga de tablas desde el servdor', '1');
 //   let tabla= 't1_v1finalizacion';
 // $.ajax({
 //               url:'./sincroprivacionesd',
@@ -1635,14 +1635,14 @@ $.ajax({
 //               data: { tabla: tabla},  
 //               dataType:'JSON',
 //               success:function(data){ 
-//                 actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '2');
+//                 actualizarTabla('t1_v1finalizacion', 'Descarga de tablas desde el servdor', '2');
 //                 $('#barracarga').html('76%');
 //                 $('#barracarga').css('width','76%');                      
                
 //                 reasignacionarribad();                   
 //               },
 //               error: function(xhr, status, error) {
-//                 actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '3');
+//                 actualizarTabla('t1_v1finalizacion', 'Descarga de tablas desde el servdor', '3');
 //                     reintentarfuncion(t1_v1actualizacionnovedadesd, 't1_v1actualizacionnovedades');
 //                         console.log(xhr.responseText);
 //                     }
@@ -1651,7 +1651,7 @@ $.ajax({
 
 
 function t1_v1finalizaciond (){
-  actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '1');
+  actualizarTabla('t1_v1finalizacion', 'Descarga de tablas desde el servdor', '1');
   let tabla= 't1_v1finalizacion';
 $.ajax({
               url:'./sincroprivacionesd',
@@ -1659,14 +1659,14 @@ $.ajax({
               data: { tabla: tabla},  
               dataType:'JSON',
               success:function(data){ 
-                actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '2');
+                actualizarTabla('t1_v1finalizacion', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('77%');
                 $('#barracarga').css('width','77%');                      
                
                 t1_informesvisitasd();                   
               },
               error: function(xhr, status, error) {
-                actualizarTabla('t1_v1finalizacion', 'Subida base de datos al servidor', '3');
+                actualizarTabla('t1_v1finalizacion', 'Descarga de tablas desde el servdor', '3');
                     reintentarfuncion(t1_v1actualizacionnovedadesd, 't1_v1actualizacionnovedades');
                         console.log(xhr.responseText);
                     }
@@ -1674,7 +1674,7 @@ $.ajax({
 }
 
  function t1_informesvisitasd (){
-   actualizarTabla('t1_visitascompromisos', 'Subida base de datos al servidor', '1');
+   actualizarTabla('t1_visitascompromisos', 'Descarga de tablas desde el servdor', '1');
    let tabla= 't1_informesvisitas';
  $.ajax({
                url:'./sincroprivacionesd',
@@ -1682,14 +1682,14 @@ $.ajax({
                data: { tabla: tabla},  
                dataType:'JSON',
                success:function(data){ 
-                 actualizarTabla('t1_informesvisitas', 'Subida base de datos al servidor', '2');
+                 actualizarTabla('t1_informesvisitas', 'Descarga de tablas desde el servdor', '2');
                  $('#barracarga').html('78%');
                  $('#barracarga').css('width','78%');                      
                
                  t3_oportunidades();                   
                },
                error: function(xhr, status, error) {
-                 actualizarTabla('t1_informesvisitas', 'Subida base de datos al servidor', '3');
+                 actualizarTabla('t1_informesvisitas', 'Descarga de tablas desde el servdor', '3');
                      reintentarfuncion(t1_v1finalizaciond, 't1_v1finalizacion');
                          console.log(xhr.responseText);
                      }
@@ -1697,7 +1697,7 @@ $.ajax({
  }
 
  function t3_oportunidades (){
-  actualizarTabla('t3_oportunidades', 'Subida base de datos al servidor', '1');
+  actualizarTabla('t3_oportunidades', 'Descarga de tablas desde el servdor', '1');
   let tabla= 't1_oportunidad';
 $.ajax({
               url:'./oportunidadesd',
@@ -1705,13 +1705,13 @@ $.ajax({
               data: { tabla: tabla},  
               dataType:'JSON',
               success:function(data){ 
-                actualizarTabla('t3_oportunidadesd', 'Subida base de datos al servidor', '2');
+                actualizarTabla('t3_oportunidadesd', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('78%');
                 $('#barracarga').css('width','78%');                                   
                 t1_oportunidad_hogaresd();                   
               },
               error: function(xhr, status, error) {
-                actualizarTabla('t3_oportunidadesd', 'Subida base de datos al servidor', '3');
+                actualizarTabla('t3_oportunidadesd', 'Descarga de tablas desde el servdor', '3');
                     reintentarfuncion(t1_informesvisitasd, 't1_informesvisitasd');
                         console.log(xhr.responseText);
                     }
@@ -1722,7 +1722,7 @@ $.ajax({
 
 
 function t1_oportunidad_hogaresd (){
-  actualizarTabla('t1_oportunidad_hogares', 'Subida base de datos al servidor', '1');
+  actualizarTabla('t1_oportunidad_hogares', 'Descarga de tablas desde el servdor', '1');
   let tabla= 't1_oportunidad_hogares';
 $.ajax({
               url:'./sincroprivacionesd',
@@ -1730,13 +1730,13 @@ $.ajax({
               data: { tabla: tabla},  
               dataType:'JSON',
               success:function(data){ 
-                actualizarTabla('t1_oportunidad_hogares', 'Subida base de datos al servidor', '2');
+                actualizarTabla('t1_oportunidad_hogares', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('78%');
                 $('#barracarga').css('width','78%');                                   
                 t1_oportunidad_integrantesd();                   
               },
               error: function(xhr, status, error) {
-                actualizarTabla('t1_oportunidad_hogares', 'Subida base de datos al servidor', '3');
+                actualizarTabla('t1_oportunidad_hogares', 'Descarga de tablas desde el servdor', '3');
                     reintentarfuncion(t3_oportunidades, 't1_oportunidad_hogares');
                         console.log(xhr.responseText);
                     }
@@ -1745,7 +1745,7 @@ $.ajax({
 
 
 function t1_oportunidad_integrantesd (){
-  actualizarTabla('t1_oportunidad_integrantes', 'Subida base de datos al servidor', '1');
+  actualizarTabla('t1_oportunidad_integrantes', 'Descarga de tablas desde el servdor', '1');
   let tabla= 't1_oportunidad_integrantes';
 $.ajax({
               url:'./sincroprivacionesd',
@@ -1753,13 +1753,13 @@ $.ajax({
               data: { tabla: tabla},  
               dataType:'JSON',
               success:function(data){ 
-                actualizarTabla('t1_oportunidad_integrantes', 'Subida base de datos al servidor', '2');
+                actualizarTabla('t1_oportunidad_integrantes', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('78%');
                 $('#barracarga').css('width','78%');                                   
                 t3_oportunidad_integranteshogar_historicod();                   
               },
               error: function(xhr, status, error) {
-                actualizarTabla('t1_oportunidad_integrantes', 'Subida base de datos al servidor', '3');
+                actualizarTabla('t1_oportunidad_integrantes', 'Descarga de tablas desde el servdor', '3');
                     reintentarfuncion(t1_oportunidad_hogaresd, 't1_oportunidad_integrantes');
                         console.log(xhr.responseText);
                     }
@@ -1767,7 +1767,7 @@ $.ajax({
 }
 
 function t3_oportunidad_integranteshogar_historicod (){
-  actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Subida base de datos al servidor', '1');
+  actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Descarga de tablas desde el servdor', '1');
   let tabla= 't3_oportunidad_integranteshogar_historico';
 $.ajax({
               url:'./sincroprivacionesd',
@@ -1775,13 +1775,13 @@ $.ajax({
               data: { tabla: tabla},  
               dataType:'JSON',
               success:function(data){ 
-                actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Subida base de datos al servidor', '2');
+                actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('78%');
                 $('#barracarga').css('width','78%');                                   
                 t1_saludemocionalqtd();                   
               },
               error: function(xhr, status, error) {
-                actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Subida base de datos al servidor', '3');
+                actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Descarga de tablas desde el servdor', '3');
                     reintentarfuncion(t1_oportunidad_integrantes, 't3_oportunidad_integranteshogar_historico');
                         console.log(xhr.responseText);
                     }

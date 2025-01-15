@@ -62,6 +62,7 @@ class c_integrantes extends Controller
       ->where('folio', $request->input('folio'))
       ->where('idintegrante', $request->input('idintegrante'))
       ->where('representante', '!=', 1)
+      ->where('idintegrante', '!=', $request->input('folio').'01')
       ->delete();
       if($integrantehogar ==1){
         DB::table('t1_integrantesidentitario')

@@ -373,7 +373,7 @@ function alertabadeliminado(){
 Swal.fire({
   icon: "error",
   title: "Oops...",
-  text: "No puedes eliminar al representante del hogar",
+  text: "No puedes eliminar al representante del hogar ni al integrante principal",
   footer: ''
 });
 }
@@ -564,13 +564,13 @@ function soloNumeros(e) {
                 
             </div>
             
-                <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.1.6</label>
+                <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.1.7</label>
             <div class="usuario" style="display:none">
                 <img src="" alt="">
                 <div class="info-usuario">
                     <div class="nombre-email">
-                        <span class="nombre">Jhampier</span>
-                        <span class="email">jhampier@gmail.com</span>
+                        <span class="nombre">Deiby Graciano</span>
+                        <span class="email">deibygj@hotmail.com</span>
                     </div>
                     <ion-icon name="ellipsis-vertical-outline"></ion-icon>
                 </div>
