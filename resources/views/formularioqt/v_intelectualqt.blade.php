@@ -133,9 +133,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los niños y niñas entre 0 y 5 años están vinculados a programas de atención integral en cuidado a la primera infancia, con acceso a salud, nutrición y educación inicial (IPM)
+         @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[23]->id_bienestar ?>','<?= $indicadores_tabla[23]->id_subcategoria ?>','<?= $indicadores_tabla[23]->id_indicador ?>')">Mover Indicador</div>
           </div>
+           @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -177,9 +179,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los niños,niñas y adolescentes en edad escolar (de 6 a 17 años) estan vinculados  al sistema educativo formal (IPM)
+           @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[24]->id_bienestar ?>','<?= $indicadores_tabla[24]->id_subcategoria ?>','<?= $indicadores_tabla[24]->id_indicador ?>')">Mover Indicador</div>
           </div>
+        @endif
         </div>
       </div>
       <div class="col-md-8">
@@ -231,9 +235,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar mayores de 18 años que no hayan completado su educación básica acceden a programas  educación formal para adultos.
+         @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[25]->id_bienestar ?>','<?= $indicadores_tabla[25]->id_subcategoria ?>','<?= $indicadores_tabla[25]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> 
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -313,9 +319,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar mayores de 10 años acceden a formación en alfabetización digital a traves de los recursos tecnológicos disponibles
+         @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[26]->id_bienestar ?>','<?= $indicadores_tabla[26]->id_subcategoria ?>','<?= $indicadores_tabla[26]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> 
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -396,9 +404,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar mayores de 14 años  que lo desean acceden a  educación superior (tecnica profesional, tecnologias, universitario y postgrado)
+         @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[27]->id_bienestar ?>','<?= $indicadores_tabla[27]->id_subcategoria ?>','<?= $indicadores_tabla[27]->id_indicador ?>')">Mover Indicador</div>
           </div>
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -466,9 +476,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar de 14 años en adelante que lo desean acceden a  educación para el trabajo y desarrollo humano 
+         @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[28]->id_bienestar ?>','<?= $indicadores_tabla[28]->id_subcategoria ?>','<?= $indicadores_tabla[28]->id_indicador ?>')">Mover Indicador</div>
           </div>
+        @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -1063,6 +1075,19 @@ if($('#checkseleccionado').val() == '' ){
             $('#noefectiva'+idoportunidad).attr('disabled', 'disabled');
             $('#noefectiva'+idoportunidad).html('No efectiva');
           Swal.close();
+
+           //para actualizar
+
+           Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Indicardor movido con éxito",
+              showConfirmButton: false,
+              timer: 1000
+              });
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
       }
       else if (data.success && data.estado_oportunidad == '3') {
             $('#acercar'+idoportunidad).removeAttr('disabled');
@@ -1075,6 +1100,8 @@ if($('#checkseleccionado').val() == '' ){
             $('#efectiva'+idoportunidad).attr('disabled', 'disabled');
             $('#efectiva'+idoportunidad).html('Efectiva');
           Swal.close();
+
+          
       }
      },
      error: function(xhr, status, error) {
@@ -1256,5 +1283,39 @@ function handleRadioChange(id) {
 
 </script>
 
+<script>
 
+    function seleccionartipodemovimiento(){
+      if($('#tipomovimientoindicadores').val() == 1){
+        console.log('moverindicadorporgestor')
+        $('#moverindicadorporgestor').css('display','');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 2){
+        console.log('moverindicadorporoportunidades')
+        $('#moverindicadorporoportunidades').css('display','');
+        $('#moverindicadorporgestor').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 3){
+        console.log('moverindicadorporpreguntas')
+        $('.moverindicadorporpreguntas').css('display','');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 4){
+        console.log('moverindicadorporgestorfinal')
+        $('#moverindicadorporgestorfinal').css('display','');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+      };
+    }
+     
+   
+</script>
 @endsection

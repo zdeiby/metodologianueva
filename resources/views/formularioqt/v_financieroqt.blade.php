@@ -133,9 +133,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Las personas de 18 años y más que lo requieran acceden a programas de formación, apoyo al emprendimiento e innovación, con el fin de  adquirir habilidades prácticas para iniciar y gestionar sus propios negocios.
+         @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[29]->id_bienestar ?>','<?= $indicadores_tabla[29]->id_subcategoria ?>','<?= $indicadores_tabla[29]->id_indicador ?>')">Mover Indicador</div>
           </div>
+        @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -187,9 +189,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar  de 18 años y más que  lo requieren  acceden a servicios de intermediación laboral 
+         @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[30]->id_bienestar ?>','<?= $indicadores_tabla[30]->id_subcategoria ?>','<?= $indicadores_tabla[30]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> 
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -231,9 +235,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Las personas de 18 años y más que lo requieren se vinculan a un empleo formal (cruce institucional, validación de gestor)
+        @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[31]->id_bienestar ?>','<?= $indicadores_tabla[31]->id_subcategoria ?>','<?= $indicadores_tabla[31]->id_indicador ?>')">Mover Indicador</div>
           </div>
+           @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -373,9 +379,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         El hogar implementa un sistema de presupuesto familiar participativo, enfocado en el ahorro y la inversión responsable
+        @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[32]->id_bienestar ?>','<?= $indicadores_tabla[32]->id_subcategoria ?>','<?= $indicadores_tabla[32]->id_indicador ?>')">Mover Indicador</div>
           </div>
+           @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -435,9 +443,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar acceden  a servicios financieros adaptados a sus necesidades,  que contribuyen a mejorar su flujo de dinero y su bienestar económico. 
+         @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[33]->id_bienestar ?>','<?= $indicadores_tabla[33]->id_subcategoria ?>','<?= $indicadores_tabla[33]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> 
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -1019,6 +1029,19 @@ if($('#checkseleccionado').val() == '' ){
             $('#noefectiva'+idoportunidad).attr('disabled', 'disabled');
             $('#noefectiva'+idoportunidad).html('No efectiva');
           Swal.close();
+
+           //para actualizar
+
+           Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Indicardor movido con éxito",
+              showConfirmButton: false,
+              timer: 1000
+              });
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
       }
       else if (data.success && data.estado_oportunidad == '3') {
             $('#acercar'+idoportunidad).removeAttr('disabled');
@@ -1383,6 +1406,40 @@ function updateRequiredBancarizacion() {
 }
 </script>
 
+<script>
 
+    function seleccionartipodemovimiento(){
+      if($('#tipomovimientoindicadores').val() == 1){
+        console.log('moverindicadorporgestor')
+        $('#moverindicadorporgestor').css('display','');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 2){
+        console.log('moverindicadorporoportunidades')
+        $('#moverindicadorporoportunidades').css('display','');
+        $('#moverindicadorporgestor').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 3){
+        console.log('moverindicadorporpreguntas')
+        $('.moverindicadorporpreguntas').css('display','');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 4){
+        console.log('moverindicadorporgestorfinal')
+        $('#moverindicadorporgestorfinal').css('display','');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+      };
+    }
+     
+   
+</script>
 
 @endsection

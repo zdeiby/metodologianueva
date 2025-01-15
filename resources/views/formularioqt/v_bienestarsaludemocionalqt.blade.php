@@ -133,9 +133,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom">
         <div class="p-2">
           Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
+          @if($vista != '1')
           <div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[0]->id_bienestar ?>','<?= $indicadores_tabla[0]->id_subcategoria ?>','<?= $indicadores_tabla[0]->id_indicador ?>')">Mover Indicador</div>
           </div>
+          @endif
         </div>
       </div>
       <div class="col-md-8">
@@ -183,9 +185,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar tienen acceso a intervenciones de promoción y prevención en salud dentro del marco del SGSSS, adaptadas a su edad
+         @if($vista != '1')
         <div class="text-center"><br>
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[1]->id_bienestar ?>','<?= $indicadores_tabla[1]->id_subcategoria ?>','<?= $indicadores_tabla[1]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> 
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -230,9 +234,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar implementan estrategias para  reducir el estrés y  para favorecer el bienestar emocional y fisico
-        <div class="text-center"><br>
+         @if($vista != '1')
+         <div class="text-center"><br>
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[2]->id_bienestar ?>','<?= $indicadores_tabla[2]->id_subcategoria ?>','<?= $indicadores_tabla[2]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> @endif
+
       </div>
       </div>
       <div class="col-md-8">
@@ -274,9 +280,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Las personas con discapacidad acceden a programas y/o servicios relacionados con su tipo de discapacidad
-        <div class="text-center"><br>
+         @if($vista != '1')
+         <div class="text-center"><br>
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[3]->id_bienestar ?>','<?= $indicadores_tabla[3]->id_subcategoria ?>','<?= $indicadores_tabla[3]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> 
+          @endif
         </div>
       </div>
       <div class="col-md-8">
@@ -318,9 +326,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar que lo requieren acceden  a programas y/o servicios de intervención frente al consumo de sustancias psicoactivas
+         @if($vista != '1')
         <div class="text-center"><br>
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[4]->id_bienestar ?>','<?= $indicadores_tabla[4]->id_subcategoria ?>','<?= $indicadores_tabla[4]->id_indicador ?>')">Mover Indicador</div>
           </div>
+           @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -362,10 +372,12 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar que lo requieren acceden a servicios de salud mental  y/o atención psicosocial.
+        @if($vista != '1')
         <div class="text-center">
           <br>
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div>
           </div>
+           @endif
         </div>
       </div>
       <div class="col-md-8">
@@ -436,10 +448,12 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Todos los integrantes del hogar cuentan el  acceso y consumo oportuno de alimentos 
+          @if($vista != '1')
         <div class="text-center">
           <br>
         <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[6]->id_bienestar ?>','<?= $indicadores_tabla[6]->id_subcategoria ?>','<?= $indicadores_tabla[6]->id_indicador ?>')">Mover Indicador</div>
         </div>
+         @endif
         </div>
       </div>
       <div class="col-md-8">
@@ -1013,6 +1027,19 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
             $('#noefectiva'+idoportunidad).attr('disabled', 'disabled');
             $('#noefectiva'+idoportunidad).html('No efectiva');
           Swal.close();
+
+           //para actualizar
+
+           Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Indicardor movido con éxito",
+              showConfirmButton: false,
+              timer: 1000
+              });
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
       }
       else if (data.success && data.estado_oportunidad == '3') {
             $('#acercar'+idoportunidad).removeAttr('disabled');
@@ -1355,6 +1382,42 @@ function handleCheckboxChange() {
         }
     });
 }
+</script>
+
+<script>
+
+    function seleccionartipodemovimiento(){
+      if($('#tipomovimientoindicadores').val() == 1){
+        console.log('moverindicadorporgestor')
+        $('#moverindicadorporgestor').css('display','');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 2){
+        console.log('moverindicadorporoportunidades')
+        $('#moverindicadorporoportunidades').css('display','');
+        $('#moverindicadorporgestor').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 3){
+        console.log('moverindicadorporpreguntas')
+        $('.moverindicadorporpreguntas').css('display','');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 4){
+        console.log('moverindicadorporgestorfinal')
+        $('#moverindicadorporgestorfinal').css('display','');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+      };
+    }
+     
+   
 </script>
 
 

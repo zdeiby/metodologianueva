@@ -131,10 +131,11 @@
     <div class="row g-0" id="indicadorbef1" style="display:{{((($indicador_bef_1 == '0') && $representante == 'SI')?'':'none')}}" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-        Los integrantes del hogar implementan estrategias de disciplina positiva, fomentando el respeto mutuo y la resolución pacífica de conflictos en el entorno familiar.
+        Los integrantes del hogar implementan estrategias de disciplina positiva, fomentando el respeto mutuo y la resolución pacífica de conflictos en el entorno familiar. 
+        @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[17]->id_bienestar ?>','<?= $indicadores_tabla[17]->id_subcategoria ?>','<?= $indicadores_tabla[17]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> @endif
       </div>
       </div>
       <div class="col-md-8" >
@@ -212,10 +213,12 @@
     <div class="row g-0" id="indicadorbef2" style="display:{{((($indicador_bef_2 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-        Los integrantes del hogar establecen  vínculos solidarios y de comunicación para resolver necesidades especificas con sus  redes de apoyo familiares y comunitarias 
+        Los integrantes del hogar establecen  vínculos solidarios y de comunicación para resolver necesidades especificas con sus  redes de apoyo familiares y comunitarias  
+        @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[18]->id_bienestar ?>','<?= $indicadores_tabla[18]->id_subcategoria ?>','<?= $indicadores_tabla[18]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> 
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -285,9 +288,12 @@
         <div class="p-2">
        
         Los integrantes del hogar conocen las rutas para la prevención e intervención de la violencia intrafamiliar y las violencias basadas en género.
+        @if($vista != '1')
          <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[19]->id_bienestar ?>','<?= $indicadores_tabla[19]->id_subcategoria ?>','<?= $indicadores_tabla[19]->id_indicador ?>')">Mover Indicador</div>
-          </div></div>
+          </div>
+           @endif
+        </div>
       </div>
       <div class="col-md-8">
         <div class="row g-0">
@@ -354,9 +360,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los  integrantes del hogar participan en familia  de actividades sociales, culturales, recreativas y/o deportivas.
+        @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[20]->id_bienestar ?>','<?= $indicadores_tabla[20]->id_subcategoria ?>','<?= $indicadores_tabla[20]->id_indicador ?>')">Mover Indicador</div>
           </div>
+           @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -434,9 +442,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar que realizan actividades de cuidado, acceden a programas que favorecen la apropiación de estrategias para facilitar su labor y que promuevan su bienestar emocional.  
+       @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[21]->id_bienestar ?>','<?= $indicadores_tabla[21]->id_subcategoria ?>','<?= $indicadores_tabla[21]->id_indicador ?>')">Mover Indicador</div>
           </div>
+      @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -514,9 +524,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         El hogar accede a servicios para el mejoramiento de sus condiciones de habitabilidad
+         @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[22]->id_bienestar ?>','<?= $indicadores_tabla[22]->id_subcategoria ?>','<?= $indicadores_tabla[22]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> 
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -1103,6 +1115,19 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
             $('#noefectiva'+idoportunidad).attr('disabled', 'disabled');
             $('#noefectiva'+idoportunidad).html('No efectiva');
           Swal.close();
+
+           //para actualizar
+
+           Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Indicardor movido con éxito",
+              showConfirmButton: false,
+              timer: 1000
+              });
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
       }
       else if (data.success && data.estado_oportunidad == '3') {
             $('#acercar'+idoportunidad).removeAttr('disabled');
@@ -1561,6 +1586,40 @@ function updateRequiredTiempoLibre() {
 }
 </script>
 
+<script>
 
+    function seleccionartipodemovimiento(){
+      if($('#tipomovimientoindicadores').val() == 1){
+        console.log('moverindicadorporgestor')
+        $('#moverindicadorporgestor').css('display','');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 2){
+        console.log('moverindicadorporoportunidades')
+        $('#moverindicadorporoportunidades').css('display','');
+        $('#moverindicadorporgestor').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 3){
+        console.log('moverindicadorporpreguntas')
+        $('.moverindicadorporpreguntas').css('display','');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 4){
+        console.log('moverindicadorporgestorfinal')
+        $('#moverindicadorporgestorfinal').css('display','');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+      };
+    }
+     
+   
+</script>
 
 @endsection

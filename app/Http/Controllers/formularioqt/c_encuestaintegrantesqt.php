@@ -1106,17 +1106,66 @@ class c_encuestaintegrantesqt extends Controller
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body ">
-                    <div class="form-group  was-validated" style="display:none">
+                    <div class="form-group  was-validated" style="display:">
                         <label for="ingresos1">Seleccione una opción:</label><br>
-                        <select class="form-control form-control-sm " id="ingresos1" name="ingresos1" aria-describedby="validationServer04Feedback" required>
-                            <option value="">Seleccione</option>
-                            <option value="1">Validación gestor</option>
-                            <option value="2">Fichero</option>
-                            <option value="3">Por preguntas de validación</option>
-                            <option value="4">Por intervención o acción movilizadora del gestor</option>
+                        <select class="form-control form-control-sm " id="tipomovimientoindicadores" onchange="seleccionartipodemovimiento()" aria-describedby="validationServer04Feedback" required>
+                              <option value="">Seleccione</option>
+                         '.((
+                            $id_bienestar == '1' && $id_indicador == '2' || $id_bienestar == '1' && $id_indicador == '4' 
+                            || $id_bienestar == '1' && $id_indicador == '5'
+                            || $id_bienestar == '2' && $id_indicador == '1' || $id_bienestar == '2' && $id_indicador == '2'
+                            || $id_bienestar == '2' && $id_indicador == '3'|| $id_bienestar == '2' && $id_indicador == '4'
+                            || $id_bienestar == '2' && $id_indicador == '5' ||  $id_bienestar == '2' && $id_indicador == '6'
+                            || $id_bienestar == '2' && $id_indicador == '8' ||  $id_bienestar == '2' && $id_indicador == '9'
+                            || $id_bienestar == '2' && $id_indicador == '10'
+    
+                            || $id_bienestar == '3' && $id_indicador == '5' ||  $id_bienestar == '3' && $id_indicador == '6'
+    
+                            || $id_bienestar == '4' && $id_indicador == '2' ||  $id_bienestar == '4' && $id_indicador == '3'
+                            || $id_bienestar == '4' && $id_indicador == '4' ||  $id_bienestar == '4' && $id_indicador == '5' ||  $id_bienestar == '4' && $id_indicador == '6'
+    
+                            || $id_bienestar == '5' && $id_indicador == '1' ||  $id_bienestar == '5' && $id_indicador == '2'
+                            || $id_bienestar == '5' && $id_indicador == '3' 
+
+                   )? '<option value="1">Validación gestor</option>':'' ) .'
+
+                     '.((  $id_bienestar == '1' && $id_indicador == '2' 
+                    || $id_bienestar == '1' && $id_indicador == '4'  
+                    || $id_bienestar == '1' && $id_indicador == '5'  
+                    || $id_bienestar == '2' && $id_indicador == '1'  
+                    || $id_bienestar == '2' && $id_indicador == '2'  
+                    || $id_bienestar == '2' && $id_indicador == '3'  
+                    || $id_bienestar == '2' && $id_indicador == '4'  
+                    || $id_bienestar == '2' && $id_indicador == '5'  
+                    || $id_bienestar == '2' && $id_indicador == '6'  
+                    || $id_bienestar == '2' && $id_indicador == '7'  
+                    || $id_bienestar == '2' && $id_indicador == '8'  
+                    || $id_bienestar == '2' && $id_indicador == '9'  
+                    || $id_bienestar == '2' && $id_indicador == '10'  
+                
+                    || $id_bienestar == '3' && $id_indicador == '5'  
+                    || $id_bienestar == '4' && $id_indicador == '1'  
+                    || $id_bienestar == '4' && $id_indicador == '2'  
+                    || $id_bienestar == '4' && $id_indicador == '3'  
+                    || $id_bienestar == '4' && $id_indicador == '4'  
+                    || $id_bienestar == '4' && $id_indicador == '5'  
+                    || $id_bienestar == '4' && $id_indicador == '6'  
+                    || $id_bienestar == '5' && $id_indicador == '1'  
+                    || $id_bienestar == '5' && $id_indicador == '2'  
+                    || $id_bienestar == '5' && $id_indicador == '5'  
+                )? '<option value="2">Fichero</option>' : '' ) .'
+
+
+                      '  .(($id_bienestar == '1' && $id_indicador == '3'||
+                            $id_bienestar == '4' && $id_indicador == '1' ||
+                            $id_bienestar == '5' && $id_indicador == '5')? 
+                      '<option value="3">Por preguntas de validación</option>' : '' ) .' 
+                            
+                        '.(($id_bienestar == '2' && $id_indicador == '7')?
+                        '<option value="4">Por intervención o acción movilizadora del gestor</option>':'' ) .'
                         </select>
                     </div>
-                    <hr>
+                    <br>
                     '.((
 
                         $id_bienestar == '1' && $id_indicador == '2' || $id_bienestar == '1' && $id_indicador == '4' 
@@ -1138,7 +1187,7 @@ class c_encuestaintegrantesqt extends Controller
 
 
                     )?
-                   ' <div class="was-validated">
+                   ' <div class="was-validated" style="display:none" id="moverindicadorporgestor">
                         <label class="pb-2">Para mover este indicador por Gestor por favor llena la observacion y luego dar clic en mover indicador.</label><br>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" onchange="handleRadioChange(`opcion1`)" name="opcion" id="opcion1" required>
@@ -1174,9 +1223,9 @@ class c_encuestaintegrantesqt extends Controller
                                 <button type="button" class="btn btn-success btn-sm" onclick="moverindicadorgestor('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
                         </div>
                     </div>
-                    <hr>':'' ) .'
+                    <br>':'' ) .'
                     
-                                            <div class="" width="100%" style="display:">
+                                            <div class="" width="100%" style="display:none"  id="moverindicadorporoportunidades">
                                 <table id="example" class="table table-striped " >
                                     <thead>
                                         <tr>
@@ -1198,14 +1247,16 @@ class c_encuestaintegrantesqt extends Controller
                                         </tfoot>
                                     </table>
                                 </div>
-                               ' .(($id_bienestar == '1' && $id_indicador == '3')? '<div> '.$psicosocial2.' 
-                                <div class="text-center">
+                               ' .(($id_bienestar == '1' && $id_indicador == '3')? '
+                               <div class="moverindicadorporpreguntas" style="display:none">  '.$psicosocial2.' 
+                                <div class="text-center" >
                                     <button type="button" class="btn btn-secondary" onclick="moverporpregunta13('.$folio.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button> 
                                 </div>
                                 </div>':
                                 '' ) .'
 
-                                   ' .(($id_bienestar == '4' && $id_indicador == '1')? ' <div> 
+                                   ' .(($id_bienestar == '4' && $id_indicador == '1')? ' 
+                                   <div class="moverindicadorporpreguntas" style="display:none">  
                                 <div class="col-md-12 was-validated">
                                     <label for="numerocomidas" class="form-label">¿En tu hogar, cuántas comidas se consumen al día en promedio?</label>
                                     <select class="form-control form-control-sm" id="numerocomidas" aria-describedby="validationServer04Feedback" required="">
@@ -1255,7 +1306,7 @@ class c_encuestaintegrantesqt extends Controller
                                 '' ) .'
 
                                 '  .(($id_bienestar == '5' && $id_indicador == '5')? '
-                                <div> 
+                                <div class="moverindicadorporpreguntas" style="display:none"> 
                                '.$bancarizacion.'
                                 <br>
                                 <div class="text-center">
@@ -1265,7 +1316,7 @@ class c_encuestaintegrantesqt extends Controller
                                 '' ) .'
 
                                       '  .((   $id_bienestar == '2' && $id_indicador == '7')?
-                                            ' <div class="was-validated">
+                                            ' <div class="was-validated" style="display:none" id="moverindicadorporgestorfinal">
                                                     <label class="pb-2">Para mover este indicador por Gestor por favor llena la observacion y luego dar clic en mover indicador.</label><br>
                                                     <!-- <div class="form-check">
                                                             <input class="form-check-input" type="radio" onchange="handleRadioChange(`opcion1`)" name="opcion" id="opcion1" required>
@@ -1301,7 +1352,7 @@ class c_encuestaintegrantesqt extends Controller
                                                             <button type="button" class="btn btn-success btn-sm" onclick="moverporpregunta27('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
                                                     </div>
                                                 </div>
-                                                <hr>':'' ) .'
+                                                <br>':'' ) .'
                                                                     
 
                     
@@ -1496,17 +1547,76 @@ class c_encuestaintegrantesqt extends Controller
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body ">
-                    <div class="form-group  was-validated" style="display:none">
-                        <label for="ingresos1">Seleccione una opción:</label><br>
-                        <select class="form-control form-control-sm " id="ingresos1" name="ingresos1" aria-describedby="validationServer04Feedback" required>
+                    <div class="form-group  was-validated" style="display:">
+                        <label for="tipomovimientoindicadores">Seleccione una opción:</label><br>
+                        <select class="form-control form-control-sm " id="tipomovimientoindicadores" onchange="seleccionartipodemovimiento()"  aria-describedby="validationServer04Feedback" required>
                             <option value="">Seleccione</option>
-                            <option value="1">Validación gestor</option>
-                            <option value="2">Fichero</option>
-                            <option value="3">Por preguntas de validación</option>
-                            <option value="4">Por intervención o acción movilizadora del gestor</option>
+                         '.((
+                    
+                  
+                    $id_bienestar == '1' && $id_indicador == '2'  
+                    || $id_bienestar == '1' && $id_indicador == '4'  
+                    || $id_bienestar == '1' && $id_indicador == '5' 
+
+                    || $id_bienestar == '2' && $id_indicador == '1'    
+                    || $id_bienestar == '2' && $id_indicador == '2'
+                    || $id_bienestar == '2' && $id_indicador == '3'
+                    || $id_bienestar == '2' && $id_indicador == '4'
+                    || $id_bienestar == '2' && $id_indicador == '5' 
+                    ||  $id_bienestar == '2' && $id_indicador == '6'
+                    || $id_bienestar == '2' && $id_indicador == '8' 
+                    ||  $id_bienestar == '2' && $id_indicador == '9'
+                    || $id_bienestar == '2' && $id_indicador == '10'
+
+                    || $id_bienestar == '3' && $id_indicador == '5' ||  $id_bienestar == '3' && $id_indicador == '6'
+
+                    || $id_bienestar == '4' && $id_indicador == '2' ||  $id_bienestar == '4' && $id_indicador == '3'
+                    || $id_bienestar == '4' && $id_indicador == '4' ||  $id_bienestar == '4' && $id_indicador == '5' 
+                    ||  $id_bienestar == '4' && $id_indicador == '6'
+
+                    || $id_bienestar == '5' && $id_indicador == '1' ||  $id_bienestar == '5' && $id_indicador == '2'
+                    || $id_bienestar == '5' && $id_indicador == '3' 
+
+                   )? '<option value="1">Validación gestor</option>':'' ) .'
+                      
+
+                   '.((  $id_bienestar == '1' && $id_indicador == '2' 
+                    || $id_bienestar == '1' && $id_indicador == '4'  
+                    || $id_bienestar == '1' && $id_indicador == '5'  
+                    || $id_bienestar == '2' && $id_indicador == '1'  
+                    || $id_bienestar == '2' && $id_indicador == '2'  
+                    || $id_bienestar == '2' && $id_indicador == '3'  
+                    || $id_bienestar == '2' && $id_indicador == '4'  
+                    || $id_bienestar == '2' && $id_indicador == '5'  
+                    || $id_bienestar == '2' && $id_indicador == '6'  
+                    || $id_bienestar == '2' && $id_indicador == '7'  
+                    || $id_bienestar == '2' && $id_indicador == '8'  
+                    || $id_bienestar == '2' && $id_indicador == '9'  
+                    || $id_bienestar == '2' && $id_indicador == '10'  
+                
+                    || $id_bienestar == '3' && $id_indicador == '5'  
+                    || $id_bienestar == '4' && $id_indicador == '1'  
+                    || $id_bienestar == '4' && $id_indicador == '2'  
+                    || $id_bienestar == '4' && $id_indicador == '3'  
+                    || $id_bienestar == '4' && $id_indicador == '4'  
+                    || $id_bienestar == '4' && $id_indicador == '5'  
+                    || $id_bienestar == '4' && $id_indicador == '6'  
+                    || $id_bienestar == '5' && $id_indicador == '1'  
+                    || $id_bienestar == '5' && $id_indicador == '2'  
+                    || $id_bienestar == '5' && $id_indicador == '5'  
+                )? '<option value="2">Fichero</option>' : '' ) .'
+
+
+
+                      '  .(($id_bienestar == '1' && $id_indicador == '7' || $id_bienestar == '3' && $id_indicador == '1'  ||  $id_bienestar == '3' && $id_indicador == '2'  
+                      ||  $id_bienestar == '3' && $id_indicador == '4'  ||  $id_bienestar == '5' && $id_indicador == '4')? 
+                      '<option value="3">Por preguntas de validación</option>' : '' ) .' 
+                            
+                        '.(($id_bienestar == '3' && $id_indicador == '3')?
+                        '<option value="4">Por intervención o acción movilizadora del gestor</option>':'' ) .'
                         </select>
                     </div>
-                    <hr>
+                    <br>
                    '.((
                     
                   
@@ -1534,7 +1644,7 @@ class c_encuestaintegrantesqt extends Controller
                     || $id_bienestar == '5' && $id_indicador == '3' 
 
                    )?
-                   ' <div class="was-validated">
+                   ' <div class="was-validated" style="display:none" id="moverindicadorporgestor">
                         <label class="pb-2">Para mover este indicador por Gestor por favor llena la observacion y luego dar clic en mover indicador.</label><br>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" onchange="handleRadioChange(`opcion1`)" name="opcion" id="opcion1" required>
@@ -1570,8 +1680,8 @@ class c_encuestaintegrantesqt extends Controller
                                 <button type="button" class="btn btn-success btn-sm" onclick="moverindicadorgestorhogar('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button>
                         </div>
                     </div>
-                    <hr>':'' ) .'
-                                            <div class="" width="100%" style="display:">
+                    <br>':'' ) .'
+                                            <div class="" width="100%" style="display:none" id="moverindicadorporoportunidades">
                                 <table id="example" class="table table-striped " >
                                     <thead>
                                         <tr>
@@ -1595,8 +1705,8 @@ class c_encuestaintegrantesqt extends Controller
                                 </div>
 
                               '  .(($id_bienestar == '1' && $id_indicador == '7')? '
-                                <div> 
-                                <div class="col-md-12 was-validated">
+                                <div class="moverindicadorporpreguntas" style="display:none"> 
+                                <div class="col-md-12 was-validated "   >
                                     <label for="validationServer04" class="form-label">¿En tu hogar, cuántas comidas se consumen al día en promedio?</label>
                                     <select class="form-control form-control-sm" id="numerocomidas" aria-describedby="validationServer04Feedback" required="">
                                         '.$numerodecomidas.' 
@@ -1624,7 +1734,7 @@ class c_encuestaintegrantesqt extends Controller
                                 '' ) .'
 
                                  '  .(($id_bienestar == '3' && $id_indicador == '1')? '
-                                <div> 
+                                <div class="moverindicadorporpreguntas" style="display:none"> 
                                '.$disciplinapositiva.'
                                 <br>
                                 <div class="text-center">
@@ -1634,7 +1744,7 @@ class c_encuestaintegrantesqt extends Controller
                                 '' ) .'
 
                                    '  .(($id_bienestar == '3' && $id_indicador == '2')? '
-                                <div> 
+                                <div class="moverindicadorporpreguntas" style="display:none"> 
                                 <label for="validationServer04" class="form-label">¿Cuándo en tu hogar se presenta una dificultad cuentas con una red de apoyo (familia, vecinos, otro)?</label>
                                 <div class="col-md-12 was-validated">
                                     <select class="form-control form-control-sm" id="redesdeapoyo"  aria-describedby="validationServer04Feedback" required="">
@@ -1650,7 +1760,7 @@ class c_encuestaintegrantesqt extends Controller
 
                                 
                                  '  .(($id_bienestar == '3' && $id_indicador == '4')? '
-                                <div> 
+                                <div class="moverindicadorporpreguntas" style="display:none"> 
                                '.$tiempolibre.'
                                 <br>
                                 <div class="text-center">
@@ -1661,7 +1771,7 @@ class c_encuestaintegrantesqt extends Controller
 
 
                                   '  .(($id_bienestar == '5' && $id_indicador == '4')? '
-                                <div> 
+                                <div class="moverindicadorporpreguntas" style="display:none"> 
                                '.$planeacionfinanciera4.'
                                 <br>
                                 <div class="text-center">
@@ -1671,11 +1781,8 @@ class c_encuestaintegrantesqt extends Controller
                                 '' ) .'
 
 
-                                   '.((
-            
-                    $id_bienestar == '3' && $id_indicador == '3'  
-                   )?
-                   ' <div class="was-validated">
+                        '.(($id_bienestar == '3' && $id_indicador == '3')?
+                   ' <div class="was-validated" style="display:none" id="moverindicadorporgestorfinal">
                         <label class="pb-2">Para mover este indicador por Gestor por favor llena la observacion y luego dar clic en mover indicador.</label><br>
                            <!-- <div class="form-check">
                                 <input class="form-check-input" type="radio" onchange="handleRadioChange(`opcion1`)" name="opcion" id="opcion1" required>
@@ -1711,7 +1818,7 @@ class c_encuestaintegrantesqt extends Controller
                                 <button type="button" class="btn btn-success btn-sm" onclick="moverporpregunta33('.$folio.','.$id_bienestar.','.$id_indicador.',)">Mover Indicador</button>
                         </div>
                     </div>
-                    <hr>':'' ) .'
+                    <br>':'' ) .'
 
 
      
@@ -1756,10 +1863,17 @@ class c_encuestaintegrantesqt extends Controller
             $nombreoportunidad,
              $telefono
         ]);
-        $resultado2 = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
-            $folio, 
-            $idintegrante
+        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+            $folio
+           // $idintegrante
         ]);
+
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
 
         
 
@@ -1804,6 +1918,13 @@ class c_encuestaintegrantesqt extends Controller
             $folio
            // $idintegrante
         ]);
+
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
 
         // Retornar una respuesta con el resultado
         return response()->json([
@@ -1854,6 +1975,13 @@ class c_encuestaintegrantesqt extends Controller
            // $idintegrante
         ]);
 
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+
         
 
         // Retornar una respuesta con el resultado
@@ -1887,6 +2015,13 @@ class c_encuestaintegrantesqt extends Controller
             $folio
            // $idintegrante
         ]);
+
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
 
         
 
@@ -1934,6 +2069,13 @@ class c_encuestaintegrantesqt extends Controller
            // $idintegrante
         ]);
 
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+
         
 
         // Retornar una respuesta con el resultado
@@ -1966,6 +2108,13 @@ class c_encuestaintegrantesqt extends Controller
             $folio
            // $idintegrante
         ]);
+
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
 
         
 
@@ -2003,6 +2152,13 @@ class c_encuestaintegrantesqt extends Controller
             $folio
            // $idintegrante
         ]);
+
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
 
         
 
@@ -2044,6 +2200,13 @@ class c_encuestaintegrantesqt extends Controller
            // $idintegrante
         ]);
 
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+
         
 
         // Retornar una respuesta con el resultado
@@ -2081,6 +2244,13 @@ class c_encuestaintegrantesqt extends Controller
             $folio
            // $idintegrante
         ]);
+
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
 
         
 
@@ -2125,6 +2295,13 @@ class c_encuestaintegrantesqt extends Controller
            // $idintegrante
         ]);
 
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+
         
 
         // Retornar una respuesta con el resultado
@@ -2157,6 +2334,13 @@ class c_encuestaintegrantesqt extends Controller
             $folio
            // $idintegrante
         ]);
+
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
 
         
 
@@ -2191,6 +2375,13 @@ class c_encuestaintegrantesqt extends Controller
             $folio
            // $idintegrante
         ]);
+
+        if (isset($idintegrante)) {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
 
         
 

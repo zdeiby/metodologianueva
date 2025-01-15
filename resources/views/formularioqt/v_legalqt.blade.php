@@ -133,9 +133,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom">
         <div class="p-2">
         Los integrantes del hogar con nacionalidad colombiana  tienen los documentos de identificación según su edad 
+        @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[7]->id_bienestar ?>','<?= $indicadores_tabla[7]->id_subcategoria ?>','<?= $indicadores_tabla[7]->id_indicador ?>')">Mover Indicador</div>
           </div>
+          @endif
         </div>
       </div>
       <div class="col-md-8">
@@ -183,9 +185,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los hombres de 18 a 49 años tienen resuelta su situación militar
-        <br><br><div class="text-center">
+          @if($vista != '1')
+          <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[8]->id_bienestar ?>','<?= $indicadores_tabla[8]->id_subcategoria ?>','<?= $indicadores_tabla[8]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> 
+          @endif
         </div>
       </div>
       <div class="col-md-8">
@@ -221,9 +225,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         La población con enfoque diferencial etnico (afro e indígena) cuenta con  el certificado de pertenencia etnica, para su reconocimiento como comunidad y acceso  programas específicos para su desarrollo.
-        <br><br><div class="text-center">
+         @if($vista != '1')
+         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[9]->id_bienestar ?>','<?= $indicadores_tabla[9]->id_subcategoria ?>','<?= $indicadores_tabla[9]->id_indicador ?>')">Mover Indicador</div>
-          </div>  
+          </div> 
+          @endif 
       </div>
       </div>
       <div class="col-md-8">
@@ -256,9 +262,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Las personas refugiadas, migrantes y  reciben asistencia para su regularización e identificación en el territorio nacional, facilitando su integración local y social.
+        @if($vista != '1') 
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[10]->id_bienestar ?>','<?= $indicadores_tabla[10]->id_subcategoria ?>','<?= $indicadores_tabla[10]->id_indicador ?>')">Mover Indicador</div>
           </div>
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -300,9 +308,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Las personas con discapacidad poseen el certificado emitido por la entidad de salud competente, facilitando su reconocimiento y acceso a servicios y programas de apoyo
-        <br><br><div class="text-center">
+         @if($vista != '1')
+         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[11]->id_bienestar ?>','<?= $indicadores_tabla[11]->id_subcategoria ?>','<?= $indicadores_tabla[11]->id_indicador ?>')">Mover Indicador</div>
           </div>
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -344,9 +354,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         La población victima del conflicto armado cuenta con RUV
-        <br><br><div class="text-center">
+         @if($vista != '1')
+         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[12]->id_bienestar ?>','<?= $indicadores_tabla[12]->id_subcategoria ?>','<?= $indicadores_tabla[12]->id_indicador ?>')">Mover Indicador</div>
           </div>
+          @endif
         </div>
       </div>
       <div class="col-md-8">
@@ -416,9 +428,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los integrantes del hogar de 18 años o más reciben orientación para el reconocimiento de las instituciones de administración de justicia y de garantía de derechos existentes en el territorio.
-        <br><br><div class="text-center">
+         @if($vista != '1')
+         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[13]->id_bienestar ?>','<?= $indicadores_tabla[13]->id_subcategoria ?>','<?= $indicadores_tabla[13]->id_indicador ?>')">Mover Indicador</div>
           </div>
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -449,9 +463,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         El integrante victima del  conflicto armado,  recibe acompañamiento para  el goce efectivo de sus derechos
-        <br><br><div class="text-center">
+        @if($vista != '1')
+         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[14]->id_bienestar ?>','<?= $indicadores_tabla[14]->id_subcategoria ?>','<?= $indicadores_tabla[14]->id_indicador ?>')">Mover Indicador</div>
           </div>
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -493,9 +509,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         El hogar en situación de victimización (violencia intrafamiliar, violencia de género, abuso sexual ) recibe acompañamiento para el goce efectivo de derechos
-        <br><br><div class="text-center">
+         @if($vista != '1')
+         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[15]->id_bienestar ?>','<?= $indicadores_tabla[15]->id_subcategoria ?>','<?= $indicadores_tabla[15]->id_indicador ?>')">Mover Indicador</div>
           </div>
+          @endif
       </div>
       </div>
       <div class="col-md-8">
@@ -535,9 +553,11 @@
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los  integrante del hogar  que lo requieren acceden a servicios de justicia según su necesidad 
-        <br><br><div class="text-center">
+        @if($vista != '1')
+         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[16]->id_bienestar ?>','<?= $indicadores_tabla[16]->id_subcategoria ?>','<?= $indicadores_tabla[16]->id_indicador ?>')">Mover Indicador</div>
           </div>
+          @endif
         </div>
       </div>
       <div class="col-md-8">
@@ -1298,7 +1318,41 @@ $.ajax({
 </script>
 
 
+<script>
 
+    function seleccionartipodemovimiento(){
+      if($('#tipomovimientoindicadores').val() == 1){
+        console.log('moverindicadorporgestor')
+        $('#moverindicadorporgestor').css('display','');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 2){
+        console.log('moverindicadorporoportunidades')
+        $('#moverindicadorporoportunidades').css('display','');
+        $('#moverindicadorporgestor').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 3){
+        console.log('moverindicadorporpreguntas')
+        $('.moverindicadorporpreguntas').css('display','');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+        $('#moverindicadorporgestorfinal').css('display','none');
+      };
+      if($('#tipomovimientoindicadores').val() == 4){
+        console.log('moverindicadorporgestorfinal')
+        $('#moverindicadorporgestorfinal').css('display','');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+      };
+    }
+     
+   
+</script>
 
 
 @endsection

@@ -192,11 +192,14 @@ foreach ($oportunidad as $value) {
              $folio
             // $idintegrante
          ]); 
-         }
+
+         
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
         
-
-
-
+         }
 
         if($aplica_hogar_integrante == '374'){  // hogar
             DB::table($tabla)->updateOrInsert(
