@@ -61,6 +61,13 @@
  </div>
 
  
+ <link rel="stylesheet" href="{{ asset('resources/handsontable/handsontable.full.min.css') }}">
+    <!-- Enlace al archivo JS -->
+    <script src="{{ asset('resources/handsontable/handsontable.full.min.js') }}"></script>
+    <!-- Enlace al archivo de idioma español -->
+    <script src="{{ asset('resources/handsontable/es-MX.js') }}"></script>
+    <script src="{{ asset('resources/handsontable/xlsx.full.min.js') }}"></script>
+
 
  <script>
     function habeasdata(folio, folioencriptado){
@@ -133,12 +140,7 @@
     
  </script>
 <!-- Enlace al archivo CSS -->
-<link rel="stylesheet" href="{{ asset('resources/handsontable/handsontable.full.min.css') }}">
-    <!-- Enlace al archivo JS -->
-    <script src="{{ asset('resources/handsontable/handsontable.full.min.js') }}"></script>
-    <!-- Enlace al archivo de idioma español -->
-    <script src="{{ asset('resources/handsontable/es-MX.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
 <script> 
     // document.addEventListener('DOMContentLoaded', function () {
      

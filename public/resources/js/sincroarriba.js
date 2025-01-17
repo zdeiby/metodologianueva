@@ -871,7 +871,7 @@ $.ajax({
                   actualizarTabla('t1_indicador_bef_2', 'Subida base de datos al servidor', '2');
                   $('#barracarga').html('41%');
                   $('#barracarga').css('width','41%');                      
-                  t1_indicador_bef_3();                
+                  t1_indicador_bef_6();                
                 },
                 error: function(xhr, status, error) {
                   actualizarTabla('t1_indicador_bef_2', 'Subida base de datos al servidor', '3');
@@ -879,6 +879,28 @@ $.ajax({
                           console.log(xhr.responseText);
                       }
               })
+}
+
+function t1_indicador_bef_6 (){
+  actualizarTabla('t1_indicador_bef_6', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_indicador_bef_6';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bef_6', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('41%');
+                $('#barracarga').css('width','41%');                      
+                t1_indicador_bef_3();                
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bef_6', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_financieroqt, 't1_financieroqt');
+                        console.log(xhr.responseText);
+                    }
+            })
 }
 
 function t1_indicador_bef_3 (){
@@ -1767,9 +1789,9 @@ $.ajax({
               dataType:'JSON',
               success:function(data){ 
                 actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Subida base de datos al servidor', '2');
-                $('#barracarga').html('78%');
-                $('#barracarga').css('width','78%');                                   
-                reasignacionarriba();                   
+                $('#barracarga').html('79%');
+                $('#barracarga').css('width','79%');                                   
+                t3_movimiento_indicadores_hogar_ip_historico();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Subida base de datos al servidor', '3');
@@ -1780,6 +1802,320 @@ $.ajax({
 }
 
 
+//historicos movimientos de indicadores
+
+function t3_movimiento_indicadores_hogar_ip_historico (){
+  actualizarTabla('t3_movimiento_indicadores_hogar_ip_historico', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_hogar_ip_historico';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_hogar_ip_historico', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('79%');
+                $('#barracarga').css('width','79%');                                   
+                t3_movimiento_indicadores_hogar_oportunidades_historico();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_hogar_ip_historico', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_oportunidad_integranteshogar_historico, 't3_movimiento_indicadores_hogar_ip_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t3_movimiento_indicadores_hogar_oportunidades_historico (){
+  actualizarTabla('t3_movimiento_indicadores_hogar_oportunidades_historico', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_hogar_oportunidades_historico';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_hogar_oportunidades_historico', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('80%');
+                $('#barracarga').css('width','80%');                                   
+                t3_movimiento_indicadores_hogar_vp_historico();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_hogar_oportunidades_historico', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_hogar_ip_historico, 't3_movimiento_indicadores_hogar_oportunidades_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_hogar_vp_historico (){
+  actualizarTabla('t3_movimiento_indicadores_hogar_vp_historico', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_hogar_vp_historico';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_hogar_vp_historico', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('81%');
+                $('#barracarga').css('width','81%');                                   
+                t3_movimiento_indicadores_integrante_ip_historico();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_hogar_vp_historico', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_hogar_oportunidades_historico, 't3_movimiento_indicadores_hogar_vp_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_ip_historico (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_ip_historico', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_ip_historico';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_ip_historico', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('82%');
+                $('#barracarga').css('width','82%');                                   
+                t3_movimiento_indicadores_integrante_oportunidades_historico();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_ip_historico', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_hogar_vp_historico, 't3_movimiento_indicadores_integrante_ip_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_oportunidades_historico (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_oportunidades_historico', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_oportunidades_historico';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_oportunidades_historico', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('82%');
+                $('#barracarga').css('width','82%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bef_1();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_oportunidades_historico', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_ip_historico, 't3_movimiento_indicadores_integrante_oportunidades_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t3_movimiento_indicadores_integrante_pv_historico_bef_1 (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_1', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bef_1';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_1', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('83%');
+                $('#barracarga').css('width','83%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bef_2();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_1', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_oportunidades_historico, 't3_movimiento_indicadores_integrante_pv_historico_bef_1');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bef_2 (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_2', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bef_2';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_2', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('84%');
+                $('#barracarga').css('width','84%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bef_4();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_2', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bef_1, 't3_movimiento_indicadores_integrante_pv_historico_bef_2');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bef_4 (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_4', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bef_4';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_4', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('85%');
+                $('#barracarga').css('width','85%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bf_4();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_4', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bef_2, 't3_movimiento_indicadores_integrante_pv_historico_bef_4');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bf_4 (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bf_4', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bf_4';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bf_4', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('86%');
+                $('#barracarga').css('width','86%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bf_5();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bf_4', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bef_4, 't3_movimiento_indicadores_integrante_pv_historico_bf_4');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bf_5 (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bf_5', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bf_5';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bf_5', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('86%');
+                $('#barracarga').css('width','86%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bi_1();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bf_5', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bf_4, 't3_movimiento_indicadores_integrante_pv_historico_bf_5');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bi_1 (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bi_1', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bi_1';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bi_1', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('87%');
+                $('#barracarga').css('width','87%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bse_3();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bi_1', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bf_5, 't3_movimiento_indicadores_integrante_pv_historico_bi_1');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bse_3 (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_3', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bse_3';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_3', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('88%');
+                $('#barracarga').css('width','88%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bse_7();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_3', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bi_1, 't3_movimiento_indicadores_integrante_pv_historico_bse_3');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bse_7 (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_7', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bse_7';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_7', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('89%');
+                $('#barracarga').css('width','89%');                                   
+                t3_movimiento_indicadores_integrante_vp_historico();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_7', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bse_3, 't3_movimiento_indicadores_integrante_pv_historico_bse_7');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_vp_historico (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_vp_historico', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_vp_historico';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_vp_historico', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                reasignacionarriba();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_vp_historico', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bse_7, 't3_movimiento_indicadores_integrante_vp_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+//
+
 
 function reasignacionarriba (){
   actualizarTabla('reasignacionarriba', 'Revisando si hay reasignación', '1');
@@ -1789,14 +2125,14 @@ $.ajax({
               dataType:'JSON',
               success:function(data){ 
                 actualizarTabla('reasignacionarriba', 'Revisando si hay reasignación', '2');
-                $('#barracarga').html('72%');
-                $('#barracarga').css('width','72%');                      
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                      
                
                 reasignacionabajo();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('reasignacionarriba', 'Revisando si hay reasignación', '3');
-                    reintentarfuncion(t3_oportunidadesd, 't3_oportunidades');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_vp_historico, 't3_oportunidades');
                         console.log(xhr.responseText);
                     }
             })
@@ -1810,8 +2146,8 @@ $.ajax({
               dataType:'JSON',
               success:function(data){ 
                 actualizarTabla('reasignacionabajo', 'Revisando si hay reasignación', '2');
-                $('#barracarga').html('73%');
-                $('#barracarga').css('width','73%');                      
+                $('#barracarga').html('91%');
+                $('#barracarga').css('width','91%');                      
                
                 verificarsihayfoliosnuevos();                   
               },

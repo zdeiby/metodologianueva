@@ -1113,6 +1113,7 @@ class c_encuestaintegrantesqt extends Controller
                          '.((
                             $id_bienestar == '1' && $id_indicador == '2' || $id_bienestar == '1' && $id_indicador == '4' 
                             || $id_bienestar == '1' && $id_indicador == '5'
+                             || $id_bienestar == '1' && $id_indicador == '6'
                             || $id_bienestar == '2' && $id_indicador == '1' || $id_bienestar == '2' && $id_indicador == '2'
                             || $id_bienestar == '2' && $id_indicador == '3'|| $id_bienestar == '2' && $id_indicador == '4'
                             || $id_bienestar == '2' && $id_indicador == '5' ||  $id_bienestar == '2' && $id_indicador == '6'
@@ -1131,7 +1132,8 @@ class c_encuestaintegrantesqt extends Controller
 
                      '.((  $id_bienestar == '1' && $id_indicador == '2' 
                     || $id_bienestar == '1' && $id_indicador == '4'  
-                    || $id_bienestar == '1' && $id_indicador == '5'  
+                    || $id_bienestar == '1' && $id_indicador == '5' 
+                    || $id_bienestar == '1' && $id_indicador == '6'  
                     || $id_bienestar == '2' && $id_indicador == '1'  
                     || $id_bienestar == '2' && $id_indicador == '2'  
                     || $id_bienestar == '2' && $id_indicador == '3'  
@@ -1169,7 +1171,8 @@ class c_encuestaintegrantesqt extends Controller
                     '.((
 
                         $id_bienestar == '1' && $id_indicador == '2' || $id_bienestar == '1' && $id_indicador == '4' 
-                        || $id_bienestar == '1' && $id_indicador == '5'
+                        || $id_bienestar == '1' && $id_indicador == '5' 
+                        || $id_bienestar == '1' && $id_indicador == '6'  
                         || $id_bienestar == '2' && $id_indicador == '1' || $id_bienestar == '2' && $id_indicador == '2'
                         || $id_bienestar == '2' && $id_indicador == '3'|| $id_bienestar == '2' && $id_indicador == '4'
                         || $id_bienestar == '2' && $id_indicador == '5' ||  $id_bienestar == '2' && $id_indicador == '6'
