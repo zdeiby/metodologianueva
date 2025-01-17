@@ -597,6 +597,17 @@ function soloNumeros(e) {
    <script src="{{asset('resources/js/dataTables.js')}}"></script>
    <script src="{{asset('resources/js/dataTables.boostrap5.js')}}"></script>
    <script src="{{ asset('assets/bootstrap/bootstrap-select.min.js') }}" ></script>
+
+
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="{{ asset('resources/handsontable/handsontable.full.min.css') }}">
+    <!-- Enlace al archivo JS -->
+    <script src="{{ asset('resources/handsontable/handsontable.full.min.js') }}"></script>
+    <!-- Enlace al archivo de idioma español -->
+    <script src="{{ asset('resources/handsontable/es-MX.js') }}"></script>
+
+
+
    <script>
     function logout() {
         document.getElementById('logoutForm').submit();

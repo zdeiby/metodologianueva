@@ -36,7 +36,7 @@ class m_index extends Model
         CASE 
             WHEN hvrdas.estado = 1 THEN CONCAT(tvrn.descripcion, " finalizada")
             WHEN hvrdas.estado = 0 THEN CONCAT(tvrn.descripcion, " abierta")
-            ELSE "Triage" 
+            ELSE "Triaje" 
         END, 
         "visita 100"
                 ) AS ultimo_idestacion

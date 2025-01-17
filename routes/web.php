@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\c_login;
 use App\Http\Controllers\c_index;
 use App\Http\Controllers\c_prueba;
+use App\Http\Controllers\c_cobertura;
 use App\Http\Controllers\c_register;
 use App\Http\Controllers\c_session;
 use App\Http\Controllers\c_rombo;
@@ -36,7 +37,8 @@ Route::get('/guardarhabeasdata',[c_prueba::class, 'fc_guardarhabeasdata'])->name
 
 
 
-Route::get('/cobertura',[c_prueba::class, 'fc_index'])->name('prueba');
+//Route::get('/cobertura',[c_prueba::class, 'fc_index'])->name('prueba');
+Route::get('/cobertura',[c_cobertura::class, 'fc_index'])->name('prueba');
 
 Route::get('/sincronizacion',[c_sincronizacion::class, 'fc_sincronizacion'])->name('sincronizacion');
 
