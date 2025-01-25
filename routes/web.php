@@ -24,9 +24,24 @@ use App\Http\Controllers\espaciodefinalizacion\c_finalizacion;
 use App\Http\Controllers\c_oportunidades;
 use App\Http\Controllers\espaciodefinalizacion\c_oportunidadesvisita;
 
+//refuerzo t1 2
+use App\Http\Controllers\c_visitatipo1pasosrefuerzo2; 
+use App\Http\Controllers\accionesmovilizadorast1refuerzo2\c_momentoconcientet1refuerzo2;
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_oportunidadesvisitat1refuerzo2;
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_finalizaciont1refuerzo2;
 
+// refuerzo t1 1
+use App\Http\Controllers\c_visitatipo1pasosrefuerzo1; 
+use App\Http\Controllers\accionesmovilizadorast1refuerzo1\c_momentoconcientet1refuerzo1;
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo1\c_oportunidadesvisitat1refuerzo1;
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo1\c_finalizaciont1refuerzo1;
 //RUTAS GET
 
+//refuerzo t1 3
+use App\Http\Controllers\c_visitatipo1pasosrefuerzo3; 
+use App\Http\Controllers\accionesmovilizadorast1refuerzo3\c_momentoconcientet1refuerzo3;
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo3\c_oportunidadesvisitat1refuerzo3;
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo3\c_finalizaciont1refuerzo3;
 
 
 Route::get('/',[c_index::class, 'fc_index'])->name('index');
@@ -204,3 +219,62 @@ Route::get('/ficherodeoportunidadeshogar/{folio}',[c_oportunidadesvisita::class,
 Route::get('/oportunidadesintegrantesglobal',[c_oportunidades::class, 'fc_oportunidadesintegrantesglobal'])->name('oportunidadesintegrantesglobal');
 Route::get('/oportunidadeshogarglobal',[c_oportunidades::class, 'fc_oportunidadeshogarglobal'])->name('oportunidadeshogarglobal');
 
+
+
+//tipo 1 refuerzo 
+
+Route::get('/rombovisitatipo1refuerzo1/{folio}',[c_visitatipo1pasosrefuerzo1::class,'fc_visitatipo1pasosrefuerzo1'])->name('rombovisitatipo1refuerzo1');
+Route::get('/momentoconcientet1refuerzo1/{folio}',[c_momentoconcientet1refuerzo1::class, 'fc_momentoconcientet1refuerzo1'])->name('momentoconcientet1refuerzo1');
+Route::get('/guardaraccionesmovilizadorast1refuerzo1',[c_momentoconcientet1refuerzo1::class, 'fc_guardaraccionesmovilizadorast1refuerzo1'])->name('guardaraccionesmovilizadorast1refuerzo1');
+Route::get('/bienestarenfamiliat1refuerzo1/{folio}',[c_momentoconcientet1refuerzo1::class, 'fc_bienestarenfamiliat1refuerzo1'])->name('bienestarenfamiliat1refuerzo1');
+Route::get('/accionmovilizadoraqtt1refuerzo1/{folio}',[c_momentoconcientet1refuerzo1::class, 'fc_accionmovilizadoraqtt1refuerzo1'])->name('accionmovilizadoraqtt1refuerzo1');
+Route::get('/ficherodeoportunidadest1refuerzo1/{folio}',[c_oportunidadesvisitat1refuerzo1::class, 'fc_ficherodeoportunidadest1refuerzo1'])->name('ficherodeoportunidadest1refuerzo1');
+Route::get('/ficherodeoportunidadeshogart1refuerzo1/{folio}',[c_oportunidadesvisitat1refuerzo1::class, 'fc_ficherodeoportunidadeshogart1refuerzo1'])->name('ficherodeoportunidadeshogart1refuerzo1');
+
+Route::get('/finalizaciont1refuerzo1/{folio}',[c_finalizaciont1refuerzo1::class, 'fc_finalizaciont1refuerzo1'])->name('finalizaciont1refuerzo1');
+Route::get('/guardarfinalizacionest1refuerzo1',[c_finalizaciont1refuerzo1::class, 'fc_guardarfinalizacionest1refuerzo1'])->name('guardarfinalizacionest1refuerzo1');
+Route::get('/actualizacionnovedadest1refuerzo1/{folio}',[c_finalizaciont1refuerzo1::class, 'fc_actualizacionnovedadest1refuerzo1'])->name('actualizacionnovedadest1refuerzo1');
+Route::get('/guardaractualizacionynovedadeshogart1refuerzo1',[c_finalizaciont1refuerzo1::class, 'fc_guardaractualizacionynovedadeshogart1refuerzo1'])->name('guardaractualizacionynovedadeshogart1refuerzo1');
+Route::post('/guardarfirmat1refuerzo1',[c_finalizaciont1refuerzo1::class, 'fc_guardarfirmat1refuerzo1'])->name('guardarfirmat1refuerzo1');
+
+Route::get('/finalizarvisitat1refuerzo1',[c_finalizaciont1refuerzo1::class,'fc_finalizarvisitat1refuerzo1'])->name('finalizarvisitat1refuerzo1');
+Route::get('/informevisitat1refuerzo1/{folio}',[c_finalizaciont1refuerzo1::class,'fc_informevisitat1refuerzo1'])->name('informevisitat1refuerzo1');
+
+
+//tipo 1 refuerzo 2 
+
+Route::get('/rombovisitatipo1refuerzo2/{folio}',[c_visitatipo1pasosrefuerzo2::class,'fc_visitatipo1pasosrefuerzo2'])->name('rombovisitatipo1refuerzo2');
+Route::get('/momentoconcientet1refuerzo2/{folio}',[c_momentoconcientet1refuerzo2::class, 'fc_momentoconcientet1refuerzo2'])->name('momentoconcientet1refuerzo2');
+Route::get('/guardaraccionesmovilizadorast1refuerzo2',[c_momentoconcientet1refuerzo2::class, 'fc_guardaraccionesmovilizadorast1refuerzo2'])->name('guardaraccionesmovilizadorast1refuerzo2');
+Route::get('/bienestarenfamiliat1refuerzo2/{folio}',[c_momentoconcientet1refuerzo2::class, 'fc_bienestarenfamiliat1refuerzo2'])->name('bienestarenfamiliat1refuerzo2');
+Route::get('/accionmovilizadoraqtt1refuerzo2/{folio}',[c_momentoconcientet1refuerzo2::class, 'fc_accionmovilizadoraqtt1refuerzo2'])->name('accionmovilizadoraqtt1refuerzo2');
+Route::get('/ficherodeoportunidadest1refuerzo2/{folio}',[c_oportunidadesvisitat1refuerzo2::class, 'fc_ficherodeoportunidadest1refuerzo2'])->name('ficherodeoportunidadest1refuerzo2');
+Route::get('/ficherodeoportunidadeshogart1refuerzo2/{folio}',[c_oportunidadesvisitat1refuerzo2::class, 'fc_ficherodeoportunidadeshogart1refuerzo2'])->name('ficherodeoportunidadeshogart1refuerzo2');
+
+Route::get('/finalizaciont1refuerzo2/{folio}',[c_finalizaciont1refuerzo2::class, 'fc_finalizaciont1refuerzo2'])->name('finalizaciont1refuerzo2');
+Route::get('/guardarfinalizacionest1refuerzo2',[c_finalizaciont1refuerzo2::class, 'fc_guardarfinalizacionest1refuerzo2'])->name('guardarfinalizacionest1refuerzo2');
+Route::get('/actualizacionnovedadest1refuerzo2/{folio}',[c_finalizaciont1refuerzo2::class, 'fc_actualizacionnovedadest1refuerzo2'])->name('actualizacionnovedadest1refuerzo2');
+Route::get('/guardaractualizacionynovedadeshogart1refuerzo2',[c_finalizaciont1refuerzo2::class, 'fc_guardaractualizacionynovedadeshogart1refuerzo2'])->name('guardaractualizacionynovedadeshogart1refuerzo2');
+Route::post('/guardarfirmat1refuerzo2',[c_finalizaciont1refuerzo2::class, 'fc_guardarfirmat1refuerzo2'])->name('guardarfirmat1refuerzo2');
+
+Route::get('/finalizarvisitat1refuerzo2',[c_finalizaciont1refuerzo2::class,'fc_finalizarvisitat1refuerzo2'])->name('finalizarvisitat1refuerzo2');
+Route::get('/informevisitat1refuerzo2/{folio}',[c_finalizaciont1refuerzo2::class,'fc_informevisitat1refuerzo2'])->name('informevisitat1refuerzo2');
+
+//tipo 1 refuerzo 3 
+
+Route::get('/rombovisitatipo1refuerzo3/{folio}',[c_visitatipo1pasosrefuerzo3::class,'fc_visitatipo1pasosrefuerzo3'])->name('rombovisitatipo1refuerzo3');
+Route::get('/momentoconcientet1refuerzo3/{folio}',[c_momentoconcientet1refuerzo3::class, 'fc_momentoconcientet1refuerzo3'])->name('momentoconcientet1refuerzo3');
+Route::get('/guardaraccionesmovilizadorast1refuerzo3',[c_momentoconcientet1refuerzo3::class, 'fc_guardaraccionesmovilizadorast1refuerzo3'])->name('guardaraccionesmovilizadorast1refuerzo3');
+Route::get('/bienestarenfamiliat1refuerzo3/{folio}',[c_momentoconcientet1refuerzo3::class, 'fc_bienestarenfamiliat1refuerzo3'])->name('bienestarenfamiliat1refuerzo3');
+Route::get('/accionmovilizadoraqtt1refuerzo3/{folio}',[c_momentoconcientet1refuerzo3::class, 'fc_accionmovilizadoraqtt1refuerzo3'])->name('accionmovilizadoraqtt1refuerzo3');
+Route::get('/ficherodeoportunidadest1refuerzo3/{folio}',[c_oportunidadesvisitat1refuerzo3::class, 'fc_ficherodeoportunidadest1refuerzo3'])->name('ficherodeoportunidadest1refuerzo3');
+Route::get('/ficherodeoportunidadeshogart1refuerzo3/{folio}',[c_oportunidadesvisitat1refuerzo3::class, 'fc_ficherodeoportunidadeshogart1refuerzo3'])->name('ficherodeoportunidadeshogart1refuerzo3');
+
+Route::get('/finalizaciont1refuerzo3/{folio}',[c_finalizaciont1refuerzo3::class, 'fc_finalizaciont1refuerzo3'])->name('finalizaciont1refuerzo3');
+Route::get('/guardarfinalizacionest1refuerzo3',[c_finalizaciont1refuerzo3::class, 'fc_guardarfinalizacionest1refuerzo3'])->name('guardarfinalizacionest1refuerzo3');
+Route::get('/actualizacionnovedadest1refuerzo3/{folio}',[c_finalizaciont1refuerzo3::class, 'fc_actualizacionnovedadest1refuerzo3'])->name('actualizacionnovedadest1refuerzo3');
+Route::get('/guardaractualizacionynovedadeshogart1refuerzo3',[c_finalizaciont1refuerzo3::class, 'fc_guardaractualizacionynovedadeshogart1refuerzo3'])->name('guardaractualizacionynovedadeshogart1refuerzo3');
+Route::post('/guardarfirmat1refuerzo3',[c_finalizaciont1refuerzo3::class, 'fc_guardarfirmat1refuerzo3'])->name('guardarfirmat1refuerzo3');
+
+Route::get('/finalizarvisitat1refuerzo3',[c_finalizaciont1refuerzo3::class,'fc_finalizarvisitat1refuerzo3'])->name('finalizarvisitat1refuerzo3');
+Route::get('/informevisitat1refuerzo3/{folio}',[c_finalizaciont1refuerzo3::class,'fc_informevisitat1refuerzo3'])->name('informevisitat1refuerzo3');
