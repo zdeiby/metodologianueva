@@ -20,19 +20,27 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
         $hashids = new Hashids('', 10); 
         $folioDesencriptado = $hashids->decode($folio)[0];
         $foliocodificado = $folio;
-      $linea='200';
+      $linea='300';
+      $paso='30010';
+
+      $prioridades = DB::table('t1_ordenprioridadesqt')
+        ->select('categoria', 'prioridad')
+        ->orderBy('prioridad', 'asc') // Ordenar de menor a mayor prioridad
+        ->get();
+
    
-      $paso20010='20010';
-      $existel200p20010 = DB::table('t1_pasosvisita')
+      $paso30010='30010';
+      $existel300p30010 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso20010)
+      ->where('paso', $paso30010)
       ->exists();
-      $paso20020='20020';
-      $existel200p20020 = DB::table('t1_pasosvisita')
+
+      $paso30020='30020';
+      $existel300p30020 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso20020)
+      ->where('paso', $paso30020)
       ->exists();
       $paso20030='20030';
       $existel200p20030 = DB::table('t1_pasosvisita')
@@ -54,6 +62,8 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
       ->where('linea', $linea)
       ->where('paso', $paso20050)
       ->exists();
+
+
 
     //   $paso20060='20060';
     //   $existel200p20060 = DB::table('t1_pasosvisita')
@@ -93,135 +103,204 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
         'porcentaje_rojo_bi'=>$porcentaje_rojo_bi, 'porcentaje_verde_bi'=>$porcentaje_verde_bi, //'porcentaje_gris_bi'=>$porcentaje_gris_bi,
         'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf, //'porcentaje_gris_bf'=>$porcentaje_gris_bf, 
         'v_visitatipo1pasos',
-        "folioDesencriptado"=>$folioDesencriptado, 'foliocodificado'=>$foliocodificado,  'existel200p20010' => $existel200p20010 ? 1 : 0,
-      'existel200p20020' => $existel200p20020 ? 1 : 0, 'existel200p20030' => $existel200p20030 ? 1 : 0,  'existel200p20040' => $existel200p20040 ? 1 : 0,
-      'existel200p20050' => $existel200p20050 ? 1 : 0,  //'existel200p20060' => $existel200p20060 ? 1 : 0,
+        "folioDesencriptado"=>$folioDesencriptado, 'foliocodificado'=>$foliocodificado,  'existel300p30010' => $existel300p30010 ? 1 : 0,
+        'existel300p30020' => $existel300p30020 ? 1 : 0, 'existel200p20030' => $existel200p20030 ? 1 : 0,  'existel200p20040' => $existel200p20040 ? 1 : 0,
+        'existel200p20050' => $existel200p20050 ? 1 : 0,  //'existel200p20060' => $existel200p20060 ? 1 : 0,
+        'prioridades'=>$prioridades,
+        'folio'=>$decodeFolio[0],
+        'linea'=>$linea,
+        'paso'=>$paso,
       ]);
 
       }
 
-      public function fc_guardarprioridad(Request $request){
-        $now = Carbon::now();
+//       public function fc_guardarprioridad(Request $request){
+//         $now = Carbon::now();
 
-        $orden = $request->input('order');
+//         $orden = $request->input('order');
 
-//dd($orden);
-        $folio = $orden[0]['folio'];
-        $linea = 200;  // poner linea 
-        $paso = 20010;  // poner paso
-        $usuario =  $orden[0]['usuario']; // Este campo no es clave primaria
+// //dd($orden);
+//         $folio = $orden[0]['folio'];
+//         $linea = 200;  // poner linea 
+//         $paso = 20010;  // poner paso
+//         $usuario =  $orden[0]['usuario']; // Este campo no es clave primaria
     
-        // Datos a insertar o actualizar
-        $data = [
-            'folio' => $folio,
-            'linea' => $linea,
-            'paso' => $paso,
-            'usuario' => $usuario,
-            'estado' => 1,
-            'sincro' => 0,
-            'updated_at' => $now
-        ];
+//         // Datos a insertar o actualizar
+//         $data = [
+//             'folio' => $folio,
+//             'linea' => $linea,
+//             'paso' => $paso,
+//             'usuario' => $usuario,
+//             'estado' => 1,
+//             'sincro' => 0,
+//             'updated_at' => $now
+//         ];
     
-        // Verificar si el registro existe
-        $exists = DB::table('t1_pasosvisita')
-            ->where('folio', $folio)
-            ->where('linea', $linea)
-            ->where('paso', $paso)
-            ->exists();
+//         // Verificar si el registro existe
+//         $exists = DB::table('t1_pasosvisita')
+//             ->where('folio', $folio)
+//             ->where('linea', $linea)
+//             ->where('paso', $paso)
+//             ->exists();
     
-        if (!$exists) {
-            // Si no existe, agregar created_at
-            $data['created_at'] = $now;
-        }
+//         if (!$exists) {
+//             // Si no existe, agregar created_at
+//             $data['created_at'] = $now;
+//         }
 
 
-        //para agregar fecha de inicio de visita 
+//         //para agregar fecha de inicio de visita 
 
-        $existsvisitas = DB::table('t1_visitasrealizadas')
-        ->where('folio', $folio)
-        ->where('linea', $linea)
-        ->exists();
+//         $existsvisitas = DB::table('t1_visitasrealizadas')
+//         ->where('folio', $folio)
+//         ->where('linea', $linea)
+//         ->exists();
 
-            if (!$existsvisitas) {
-                // Si no existe, agregar created_at
-                $datavisitageneral['created_at'] = $now;
-            }
+//             if (!$existsvisitas) {
+//                 // Si no existe, agregar created_at
+//                 $datavisitageneral['created_at'] = $now;
+//             }
 
-            $datavisitageneral = [
-                'folio' => $folio,
-                'linea' => $linea,
-                'iniciovisita' => $now,
-                'usuario' => $usuario,
-                'estado' => 0,
-                'sincro' => 0,
-                'updated_at' => $now
-            ];
-            DB::table('t1_visitasrealizadas')->updateOrInsert(
-                [
-                    'folio' => $folio,
-                    'linea' => $linea,
-                ],
-                $datavisitageneral
-            );
+//             $datavisitageneral = [
+//                 'folio' => $folio,
+//                 'linea' => $linea,
+//                 'iniciovisita' => $now,
+//                 'usuario' => $usuario,
+//                 'estado' => 0,
+//                 'sincro' => 0,
+//                 'updated_at' => $now
+//             ];
+//             DB::table('t1_visitasrealizadas')->updateOrInsert(
+//                 [
+//                     'folio' => $folio,
+//                     'linea' => $linea,
+//                 ],
+//                 $datavisitageneral
+//             );
     
-        DB::table('t1_pasosvisita')->updateOrInsert(
-            [
-                'folio' => $folio,
-                'linea' => $linea,
-                'paso' => $paso,
-            ],
-            $data
-        );
+//         DB::table('t1_pasosvisita')->updateOrInsert(
+//             [
+//                 'folio' => $folio,
+//                 'linea' => $linea,
+//                 'paso' => $paso,
+//             ],
+//             $data
+//         );
 
       
-        foreach ($orden as $item) {
+//         foreach ($orden as $item) {
 
-            $exists = DB::table('t1_ordenprioridadesqt')
-            ->where('folio',  $item['folio'])
-            ->where('categoria', $item['categoria'])
-            ->exists();
+//             $exists = DB::table('t1_ordenprioridadesqt')
+//             ->where('folio',  $item['folio'])
+//             ->where('categoria', $item['categoria'])
+//             ->exists();
     
-         $datosparatabla= [
-            'prioridad' => $item['prioridad'],
-            'usuario' => $item['usuario'],
-            'linea' => $linea,
-            'estado' => $data['estado'],
-            'sincro' => $data['sincro'],
-            'updated_at' => $now,
+//          $datosparatabla= [
+//             'prioridad' => $item['prioridad'],
+//             'usuario' => $item['usuario'],
+//             'linea' => $linea,
+//             'estado' => $data['estado'],
+//             'sincro' => $data['sincro'],
+//             'updated_at' => $now,
 
-        ];
+//         ];
 
-        if (!$existsvisitas) {
-            // Si no existe, agregar created_at
-            $datavisitageneral['created_at'] = $now;
-        }
+//         if (!$existsvisitas) {
+//             // Si no existe, agregar created_at
+//             $datavisitageneral['created_at'] = $now;
+//         }
 
-        DB::table('t1_ordenprioridadesqt')->updateOrInsert(
-            [
-                'folio' =>  $item['folio'],
-                'categoria' =>  $item['categoria'],
+//         DB::table('t1_ordenprioridadesqt')->updateOrInsert(
+//             [
+//                 'folio' =>  $item['folio'],
+//                 'categoria' =>  $item['categoria'],
                 
-            ],
+//             ],
             
-                $datosparatabla
+//                 $datosparatabla
             
-        );
-    }
+//         );
+//     }
     
     
-        return response()->json(['message' => $folio]);
-      }
+//         return response()->json(['message' => $folio]);
+//       }
 
 
-      public function fc_agregarpasoresultado(Request $request){
+
+
+    //   public function fc_agregarpasoresultado(Request $request){
+    //     $now = Carbon::now();
+    //     $folio = $request->input('folio');
+    //     $linea = 100;  // poner linea 
+    //     $paso = 10040;  // poner paso
+    //     $usuario = $request->input('usuario'); // Este campo no es clave primaria
+    
+    //     // Datos a insertar o actualizar
+    //     $data = [
+    //         'folio' => $folio,
+    //         'linea' => $linea,
+    //         'paso' => $paso,
+    //         'usuario' => $usuario,
+    //         'estado' => 1,
+    //         'sincro' => 0,
+    //         'updated_at' => $now
+    //     ];
+    
+    //     // Verificar si el registro existe
+    //     $exists = DB::table('t1_pasosvisita')
+    //         ->where('folio', $folio)
+    //         ->where('linea', $linea)
+    //         ->where('paso', $paso)
+    //         ->exists();
+    
+    //     if (!$exists) {
+    //         // Si no existe, agregar created_at
+    //         $data['created_at'] = $now;
+    //     }
+    
+    //     // Usar updateOrInsert para guardar o actualizar el registro, sin incluir 'usuario' en las condiciones
+    //     DB::table('t1_pasosvisita')->updateOrInsert(
+    //         [
+    //             'folio' => $folio,
+    //             'linea' => $linea,
+    //             'paso' => $paso,
+    //         ],
+    //         $data
+    //     );
+
+    //     DB::select('CALL sp_calcular_indicadores(?)', [$folio]);
+    //     DB::select('CALL sp_indicadores_hogar(?)', [$folio]);
+
+    //     $integranteshogar=  DB::table('t1_integranteshogar')
+    //     ->where('folio',$folio)
+    //     ->get();
+
+    // foreach ($integranteshogar as $integrante) {
+    //     $idintegrante = $integrante->idintegrante;
+    //     DB::select('CALL sp_indicadores_integrantes(?,?)', [$folio,$idintegrante]);  
+    //   }
+    //    return response()->json(['message' => $folio]);
+
+    // }
+
+    public function fc_agregarpasoeiniciovisita(Request $request)
+    {
         $now = Carbon::now();
         $folio = $request->input('folio');
-        $linea = 100;  // poner linea 
-        $paso = 10040;  // poner paso
+        $linea = $request->input('linea');
+        $paso = $request->input('paso');
         $usuario = $request->input('usuario'); // Este campo no es clave primaria
     
-        // Datos a insertar o actualizar
-        $data = [
+        // 📌 Verificar si el registro existe en `t1_pasosvisita`
+        $existsPasos = DB::table('t1_pasosvisita')
+            ->where('folio', $folio)
+            ->where('linea', $linea)
+            ->where('paso', $paso)
+            ->exists();
+    
+        // 📌 Datos a insertar o actualizar en `t1_pasosvisita`
+        $dataPasos = [
             'folio' => $folio,
             'linea' => $linea,
             'paso' => $paso,
@@ -231,40 +310,59 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
             'updated_at' => $now
         ];
     
-        // Verificar si el registro existe
-        $exists = DB::table('t1_pasosvisita')
-            ->where('folio', $folio)
-            ->where('linea', $linea)
-            ->where('paso', $paso)
-            ->exists();
-    
-        if (!$exists) {
-            // Si no existe, agregar created_at
-            $data['created_at'] = $now;
+        if (!$existsPasos) {
+            $dataPasos['created_at'] = $now;
         }
     
-        // Usar updateOrInsert para guardar o actualizar el registro, sin incluir 'usuario' en las condiciones
+        // ✅ Insertar o actualizar en `t1_pasosvisita`
         DB::table('t1_pasosvisita')->updateOrInsert(
             [
                 'folio' => $folio,
                 'linea' => $linea,
-                'paso' => $paso,
+                'paso' => $paso
             ],
-            $data
+            $dataPasos
         );
+    
+        // 📌 Verificar si el registro existe en `t1_visitasrealizadas`
+        $existsVisitas = DB::table('t1_visitasrealizadas')
+            ->where('folio', $folio)
+            ->where('linea', $linea)
+            ->exists();
 
-        DB::select('CALL sp_calcular_indicadores(?)', [$folio]);
-        DB::select('CALL sp_indicadores_hogar(?)', [$folio]);
-
-        $integranteshogar=  DB::table('t1_integranteshogar')
-        ->where('folio',$folio)
-        ->get();
-
-    foreach ($integranteshogar as $integrante) {
-        $idintegrante = $integrante->idintegrante;
-        DB::select('CALL sp_indicadores_integrantes(?,?)', [$folio,$idintegrante]);  
-      }
-       return response()->json(['message' => $folio]);
-
+            $cif = DB::table('t_cif')->orderBy('id', 'asc')->value('id');
+       // dd($cif);
+    
+        // 📌 Datos a insertar o actualizar en `t1_visitasrealizadas`
+        $dataVisita = [
+            'folio' => $folio,
+            'linea' => $linea,
+            'iniciovisita' => $now,
+            'usuario' => $usuario,
+            'cif' => $cif,
+            'estado' => 0,
+            'sincro' => 0,
+            'updated_at' => $now
+        ];
+    
+        if (!$existsVisitas) {
+            $dataVisita['created_at'] = $now;
+        }
+    
+        // ✅ Insertar o actualizar en `t1_visitasrealizadas`
+        DB::table('t1_visitasrealizadas')->updateOrInsert(
+            [
+                'folio' => $folio,
+                'linea' => $linea
+            ],
+            $dataVisita
+        );
+    
+        // 🎯 Respuesta JSON
+        return response()->json(['message' => "Registro exitoso para folio: {$folio}"]);
     }
+
+
+
+
 }

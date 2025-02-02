@@ -489,6 +489,16 @@ paginacargando();
         $('#idintegrante').html(`Nombre: ${nombre} `);
         $('#nombre').html(`Idintegrante: ${idintegrante} `);
 
+        if(idintegrante == folio+'01'){
+          console.log('guau eres el primero :O');
+          $('#nombre1').addClass('blocked');
+          $('#nombre2').addClass('blocked');
+          $('#apellido1').addClass('blocked');
+          $('#apellido2').addClass('blocked');
+          $('#documento').addClass('blocked');
+
+        }
+
         $.ajax({
         url:'./responderencuesta',
         data:{folio:folio, idintegrante:idintegrante},
@@ -1076,9 +1086,12 @@ $('#representante').change(function(){
 
 $('#tipodocumento').change(function(){
   if($('#tipodocumento').val()=='11'){
+   ;
+    if(localStorage.getItem('idintegrante') != localStorage.getItem('folio')+'01'){ 
     $('#documentodiv').css('display','none');
-    $('#documento').removeAttr('required');
+    $('#documento').removeAttr('required')
     $('#documento').val('0');
+    }
   }else{
     $('#documentodiv').css('display','');
     $('#documento').attr('required', 'required');

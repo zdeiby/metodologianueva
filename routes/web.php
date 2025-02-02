@@ -223,6 +223,10 @@ Route::get('/oportunidadeshogarglobal',[c_oportunidades::class, 'fc_oportunidade
 
 //tipo 1 refuerzo 
 
+
+Route::get('/agregarpasoeiniciovisita',[c_visitatipo1pasosrefuerzo1::class, 'fc_agregarpasoeiniciovisita'])->name('agregarpasoeiniciovisita');
+
+
 Route::get('/rombovisitatipo1refuerzo1/{folio}',[c_visitatipo1pasosrefuerzo1::class,'fc_visitatipo1pasosrefuerzo1'])->name('rombovisitatipo1refuerzo1');
 Route::get('/momentoconcientet1refuerzo1/{folio}',[c_momentoconcientet1refuerzo1::class, 'fc_momentoconcientet1refuerzo1'])->name('momentoconcientet1refuerzo1');
 Route::get('/guardaraccionesmovilizadorast1refuerzo1',[c_momentoconcientet1refuerzo1::class, 'fc_guardaraccionesmovilizadorast1refuerzo1'])->name('guardaraccionesmovilizadorast1refuerzo1');

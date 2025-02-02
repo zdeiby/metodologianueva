@@ -187,7 +187,7 @@ body {
 <div class="swiper mySwiper container">
     <div class="swiper-wrapper">
       <!-- primera tarjeta -->
-   <!--   <div class="swiper-slide">
+   <div class="swiper-slide">
         <div class="card_wrapper">
           <div class="card">
             <div class="content">
@@ -200,18 +200,16 @@ body {
                     <label>Encuadre</label>
                   </h3>
              </div>
-             @if ($existel200p20010 == '0')
-             <button type="button" class="btn btn-primary" id="saludoencuadrebtn" <?=($existel200p20010 == '1')?'disabled':''?> data-bs-toggle="modal" data-bs-target="#exampleModal">Ver encuadre</button>
-             @else
-             <button type="button" class="btn btn-primary" disabled data-bs-toggle="modal" data-bs-target="#exampleModal">Ver encuadre</button>
-             @endif
+            
+             <button type="button" class="btn btn-primary" id="saludoencuadrebtn"  data-bs-toggle="modal" data-bs-target="#exampleModal">Ver encuadre</button>
+            
              <div class="smCard">
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div> -->
+      </div> 
       <!-- segunda tarjeta -->
       <div class="swiper-slide">
         <div class="card_wrapper">
@@ -226,7 +224,7 @@ body {
                     <label>Momento movilizador</label>
                   </h3>               
                 </div>
-                <button type="button" id="gestionintegrantes" <?=!(($existel200p20010 == '1' && $existel200p20020 == '0' ) || ($existel200p20010 == '1' && $existel200p20030 == '0') || ($existel200p20010 == '1' && $existel200p20040 == '0')  )?'':'disabled'?>  class="btn btn-primary" onclick="window.location.href='../momentoconcientet1refuerzo1/{{$folioencriptado}}/'">Ir a momento movilizador.</button>
+                <button type="button" id="gestionintegrantes" <?=/* ! */ (($existel300p30010 == '1' && $existel300p30020 == '0' ) /* || ($existel300p30010 == '1' && $existel200p20030 == '0') || ($existel300p30010 == '1' && $existel200p20040 == '0') */  )?'':'disabled'?>  class="btn btn-primary" onclick="window.location.href='../momentoconcientet1refuerzo1/{{$folioencriptado}}/'">Ir a momento movilizador.</button>
                 <div class="smCard">
                 </div>
               </div>
@@ -271,7 +269,7 @@ body {
                     <label>Espacio de finalización</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" <?=($existel200p20010 == '1' && $existel200p20020 == '1'  && $existel200p20030 == '1' && $existel200p20040 == '1' && $existel200p20050 == '0' )?'':'disabled'?> onclick="window.location.href='../actualizacionnovedades/{{$folioencriptado}}/'">Ir a finalización</button>
+             <button type="button" class="btn btn-primary" <?=($existel300p30010 == '1' && $existel300p30020 == '1'  && $existel200p20030 == '1' && $existel200p20040 == '1' && $existel200p20050 == '0' )?'':'disabled'?> onclick="window.location.href='../actualizacionnovedades/{{$folioencriptado}}/'">Ir a finalización</button>
              <div class="smCard">
                 </div>
               </div>
@@ -373,7 +371,7 @@ body {
           <label style="font-size:20px;color:#0dcaf0">PRIORIZACIÓN QT</label>
           <hr>
         </div>
-        <table class="table table-bordered">
+        <!-- <table class="table table-bordered">
     <thead>
         <tr>
             <th>CAT BIENESTAR</th>
@@ -422,7 +420,69 @@ body {
                 </div>
             </td>
         </tr>
-        <tr id="row-familia"> <!-- ID especial para esta fila -->
+        <tr id="row-familia"> 
+            <td><strong>B EN FAMILIA</strong></td>
+            <td><strong>{{$porcentaje_rojo_bef}}</strong></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bef}}%; background-color:  #00FF00;" aria-valuenow="{{$porcentaje_verde_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bef}}%</div>
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bef}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bef}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bef}}%</div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table> -->
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>CAT BIENESTAR</th>
+            <th>VR QT</th>
+            <th>PESO</th>
+        </tr>
+    </thead>
+    <tbody id="tabla-prioridades">
+        <tr id="row-financiero" data-categoria="5">
+            <td>B FINANCIERO</td>
+            <td>{{$porcentaje_rojo_bf}}</td>
+            <td>
+                <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bf}}%; background-color:  #00FF00;" aria-valuenow="{{$porcentaje_verde_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bf}}%</div>
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bf}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bf}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bf}}%</div>
+                </div>
+            </td>
+        </tr>
+        <tr id="row-legal" data-categoria="2">
+            <td>B LEGAL</td>
+            <td>{{$porcentaje_rojo_bl}}</td>
+            <td>
+                <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bl}}%; background-color:  #00FF00;" aria-valuenow="{{$porcentaje_verde_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bl}}%</div>
+                <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bl}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bl}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bl}}%</div>
+                </div>
+            </td>
+        </tr>
+        <tr id="row-salud" data-categoria="1">
+            <td>B SALUD EMOCIONAL</td>
+            <td>{{$porcentaje_rojo_bse}}</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bse}}%; background-color:  #00FF00;" aria-valuenow="{{$porcentaje_verde_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bse}}%</div>
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bse}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bse}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bse}}%</div>
+                </div>
+            </td>
+        </tr>
+        <tr id="row-intelectual" data-categoria="4">
+            <td>B INTELECTUAL</td>
+            <td>{{$porcentaje_rojo_bi}}</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_verde_bi}}%; background-color:  #00FF00;" aria-valuenow="{{$porcentaje_verde_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_verde_bi}}%</div>
+                    <div class="progress-bar" role="progressbar" style="width: {{$porcentaje_rojo_bi}}%; background-color: #FF0000;" aria-valuenow="{{$porcentaje_rojo_bi}}" aria-valuemin="0" aria-valuemax="100">{{$porcentaje_rojo_bi}}%</div>
+                </div>
+            </td>
+        </tr>
+        <tr id="row-familia"> 
             <td><strong>B EN FAMILIA</strong></td>
             <td><strong>{{$porcentaje_rojo_bef}}</strong></td>
             <td>
@@ -440,7 +500,7 @@ body {
         
 
 
-        <div class="container mt-5">
+        <!-- <div class="container mt-5">
         <label class="text-center">Organice las prioridades segun las especificaciones del hogar</label>
         <table class="table table-bordered">
             <thead>
@@ -468,12 +528,12 @@ body {
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> -->
         
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  <?=($existel200p20010 == '1')?'':'onclick="saveOrder()"'?>>Aceptar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="agregarpaso()">Aceptar</button>
       </div>
     </div>
   </div>
@@ -524,50 +584,92 @@ body {
    <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 <!-- Inicialización de Swiper -->
 
+
 <script>
-$(document).ready(function() {
-  $('#saludoencuadre').click(function() {
+function agregarpaso(){
+  let folio ='<?= $folio ?>';
+  let linea= '<?= $linea ?>';
+  let paso=  '<?= $paso ?>';
+  let usuario = '{{ Session::get('cedula') }}';
+
+  data = {
+    folio: folio,
+    linea: linea,
+    paso: paso,
+    usuario: usuario
+  };
+
+  if(<?= $existel300p30010 ?> == '1'){
+
+  }else{
     $.ajax({
-      url: '../agregarpasoencuadre',
-      data: { folio: '{{$folioDesencriptado}}', usuario:'{{ Session::get('cedula') }}' },
-      method: "GET",
-      dataType: 'JSON',
-      success: function(data) {
-      //  $('#saludoencuadrebtn').attr('disabled', 'disabled');
-        $('#gestionintegrantes').removeAttr('disabled');
-        console.log(data);
+      url: '../agregarpasoeiniciovisita',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: data, // Envía los datos de manera plana
+      success: function(response) {
+        //$('#finalizarboton').css('display','');
+     
+          //alertagood();
+          console.log(data);
+          location.reload();
       },
       error: function(xhr, status, error) {
-        console.log(xhr.responseText);
+          alertabad();
+          console.error(error);
       }
     });
-  });
+  }
+
+    
+}
+
+</script>
+
+
+<script>
+// $(document).ready(function() {
+//   $('#saludoencuadre').click(function() {
+//     $.ajax({
+//       url: '../agregarpasoencuadre',
+//       data: { folio: '{{$folioDesencriptado}}', usuario:'{{ Session::get('cedula') }}' },
+//       method: "GET",
+//       dataType: 'JSON',
+//       success: function(data) {
+//       //  $('#saludoencuadrebtn').attr('disabled', 'disabled');
+//         $('#gestionintegrantes').removeAttr('disabled');
+//         console.log(data);
+//       },
+//       error: function(xhr, status, error) {
+//         console.log(xhr.responseText);
+//       }
+//     });
+//   });
 
 
  
 
 
 
-  $('#resultadoencuesta').click(function() {
-    paginacargando();
-    $.ajax({
-      url: '../agregarpasoresultado',
-      data: { folio: '{{$folioDesencriptado}}', usuario:'{{ Session::get('cedula') }}' },
-      method: "GET",
-      dataType: 'JSON',
-      success: function(data) {
-       $('#encuestaqt').prop('disabled',false);
-       paginalista();
-        console.log(data);
-      },
-      error: function(xhr, status, error) {
-        paginalista();
-        alertabad();
-        console.log(xhr.responseText);
-      }
-    });
-  });
-});
+//   $('#resultadoencuesta').click(function() {
+//     paginacargando();
+//     $.ajax({
+//       url: '../agregarpasoresultado',
+//       data: { folio: '{{$folioDesencriptado}}', usuario:'{{ Session::get('cedula') }}' },
+//       method: "GET",
+//       dataType: 'JSON',
+//       success: function(data) {
+//        $('#encuestaqt').prop('disabled',false);
+//        paginalista();
+//         console.log(data);
+//       },
+//       error: function(xhr, status, error) {
+//         paginalista();
+//         alertabad();
+//         console.log(xhr.responseText);
+//       }
+//     });
+//   });
+// });
 
 
 </script>
@@ -607,6 +709,8 @@ $(document).ready(function() {
 </script>
 
 
+
+
 <!-- <script>
         // Función para actualizar las prioridades
         function actualizarPrioridades() {
@@ -635,7 +739,7 @@ $(document).ready(function() {
         actualizarPrioridades();
     </script> -->
 
-    <script>
+    <!-- <script>
 document.addEventListener('DOMContentLoaded', function () {
     // Función para actualizar las prioridades
     function actualizarPrioridades() {
@@ -690,10 +794,10 @@ window.saveOrder = function() {
                       });
 
             };
-</script>
+</script> -->
 
 
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', function() {
     function ordenarFilas() {
         const tbody = document.querySelector('table tbody');
@@ -716,11 +820,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     ordenarFilas(); // Llamar a la función al cargar la página
 });
-</script>
+</script> -->
 
 
 
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Función para sincronizar el orden de la segunda tabla con la primera
     function sincronizarOrden() {
@@ -742,7 +846,64 @@ document.addEventListener('DOMContentLoaded', function() {
     // Llamar a la función para sincronizar el orden después de que ambas tablas estén completamente cargadas
     sincronizarOrden();
 });
+</script> -->
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function ordenarFilas() {
+        const tbody = document.getElementById('tabla-prioridades');
+        if (!tbody) {
+            console.error("⚠️ No se encontró el tbody. Esperando...");
+            return;
+        }
+
+        let filas = Array.from(tbody.querySelectorAll('tr:not(#row-familia)')); // Ignorar "B EN FAMILIA"
+
+        // 📌 Obtener prioridades desde Laravel
+        const prioridades = @json($prioridades);
+
+        // 🔥 Convertir prioridades en un objeto (clave = categoría ID, valor = prioridad)
+        const prioridadOrden = {};
+        prioridades.forEach(item => {
+            prioridadOrden[item.categoria] = item.prioridad;
+        });
+
+        console.log("✅ Objeto de prioridades dinámico:", prioridadOrden); // 🛠️ Depuración en consola
+
+        // 🏆 ORDENAR LAS FILAS SEGÚN EL JSON DE PRIORIDADES
+        filas.sort((a, b) => {
+            const categoriaA = a.getAttribute("data-categoria");
+            const categoriaB = b.getAttribute("data-categoria");
+
+            return (prioridadOrden[categoriaA] || 99) - (prioridadOrden[categoriaB] || 99);
+        });
+
+        // 🔄 REINSERTAR LAS FILAS ORDENADAS
+        filas.forEach(fila => tbody.appendChild(fila));
+
+        // 🔚 Mantener "B EN FAMILIA" al final
+        const rowFamilia = document.getElementById('row-familia');
+        if (rowFamilia) {
+            tbody.appendChild(rowFamilia);
+        }
+    }
+
+    // ⏳ Esperar hasta que la tabla esté en el DOM antes de ejecutar
+    let checkTableInterval = setInterval(() => {
+        const tbody = document.getElementById('tabla-prioridades');
+        if (tbody) {
+            clearInterval(checkTableInterval);
+            ordenarFilas();
+        }
+    }, 300);
+});
 </script>
+
+
+
 
 
 

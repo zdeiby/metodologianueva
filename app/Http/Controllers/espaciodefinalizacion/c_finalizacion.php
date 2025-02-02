@@ -273,13 +273,13 @@ class c_finalizacion extends Controller
           $image = Image::make($imageBinary);
       
           // Redimensionar y reducir la calidad de la imagen
-          $image->resize(400, 300, function ($constraint) {
+          $image->resize(800, 600, function ($constraint) { //400 x 300
               $constraint->aspectRatio(); // Mantener la relación de aspecto
               $constraint->upsize(); // Evitar que se escale si es más pequeña
           });
       
           // Codificar la imagen en binario en el formato original
-          $processedImageData = (string) $image->encode($imageFormat, 50); // Ajuste de calidad
+          $processedImageData = (string) $image->encode($imageFormat, 100); // Ajuste de calidad 50%
       
           $now = Carbon::now();
           $data = $request->except(['folio', 'tabla', 'linea', 'paso', '_token']);
