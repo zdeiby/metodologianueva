@@ -162,7 +162,7 @@
                 'Comuna',
                 'Dirección',
                 'Visita',
-                'Gestiónar'
+                'Gestionar'
             ],
             columns: [
                 { data: 'folio',
