@@ -436,7 +436,7 @@ foreach ($oportunidad as $value) {
         // $oportunidad = $modelo-> m_listadooportunidades();
         $oportunidad = DB::table('t1_oportunidad')
         ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
-        ->where('aplica_hogar_integrante','373')
+        ->where('aplica_hogar_integrante','374')
         ->get();
     
         $t1_integranteshogar = $modelo-> m_listadooportunidadeshogar($folio);
