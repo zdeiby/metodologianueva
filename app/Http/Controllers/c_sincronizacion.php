@@ -576,6 +576,15 @@ foreach ($data as $item) {
     return response()->json($data);
 }
 
+public function fc_guardarsincro(Request $request) {
+   // $tabla='t3_sincronizacion';
+    $pdoccogestor = session('cedula');
+    $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_guardarsincro?pdoccogestor='.$pdoccogestor.''; 
+    // Realizar la solicitud GET usando file_get_contents
+    $response = file_get_contents($url);
+    return $response;
+    }
+
 
 
     }

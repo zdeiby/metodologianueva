@@ -2104,6 +2104,28 @@ $.ajax({
                 actualizarTabla('t3_movimiento_indicadores_integrante_vp_historico', 'Subida base de datos al servidor', '2');
                 $('#barracarga').html('90%');
                 $('#barracarga').css('width','90%');                                   
+                t3_sincronizacion();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_vp_historico', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bse_7, 't3_movimiento_indicadores_integrante_vp_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t3_sincronizacion (){
+  actualizarTabla('t3_sincronizacion', 'Subida base de datos al servidor', '1');
+ // let tabla= 't3_movimiento_indicadores_integrante_vp_historico';
+$.ajax({
+              url:'./fc_guardarsincro',
+              method: "GET",
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_sincronizacion', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
                 reasignacionarriba();                   
               },
               error: function(xhr, status, error) {

@@ -70,6 +70,8 @@ class c_encuestaintegrantesqt extends Controller
             ->where('folio', $encodedFolio)
             ->get();
 
+           // dd($t1_indicador_bse_2);
+
             $indicador_bse_2='';
             foreach ($t1_indicador_bse_2 as $indicador) {
                 $indicador_bse_2=$indicador->codigoindicadorDA;

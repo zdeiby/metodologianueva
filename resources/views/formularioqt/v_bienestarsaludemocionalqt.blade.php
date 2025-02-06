@@ -134,9 +134,9 @@
         <div class="p-2">
           Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
           @if($vista != '1')
-          <div class="text-center">
+          <!-- <div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[0]->id_bienestar ?>','<?= $indicadores_tabla[0]->id_subcategoria ?>','<?= $indicadores_tabla[0]->id_indicador ?>')">Mover Indicador</div>
-          </div>
+          </div> -->
           @endif
         </div>
       </div>

@@ -110,12 +110,12 @@
     @endif
 
 
-    <li class="scene">
+  <!--  <li class="scene">
             <div class="movie">
                 <div class="poster" >
                     <div id="imgicon"></div>
                     <div style="text-align: center; padding-top:10px" >
-                        <!-- <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">Visita</div> -->
+                   
                         <img class="" src="{{ asset('assets/img/iconos/4.jpg')}}" width="100%" alt="">
                         <br> <br>
                         <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">VISITA TIPO 1 (REFUERZO)</div>
@@ -137,7 +137,7 @@
                     @endif
                 </div>
             </div>
-        </li>
+        </li> -->
 
 
 
