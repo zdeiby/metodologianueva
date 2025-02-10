@@ -183,6 +183,11 @@ Route::get('/momentoconciente/{folio}',[c_momentoconciente::class, 'fc_momentoco
 Route::get('/guardaraccionesmovilizadoras',[c_momentoconciente::class, 'fc_guardaraccionesmovilizadoras'])->name('guardaraccionesmovilizadoras');
 Route::get('/bienestarenfamilia/{folio}',[c_momentoconciente::class, 'fc_bienestarenfamilia'])->name('bienestarenfamilia');
 Route::get('/accionmovilizadoraqt/{folio}',[c_momentoconciente::class, 'fc_accionmovilizadoraqt'])->name('accionmovilizadoraqt');
+Route::get('/accionmovilizadoracompromisos/{folio}',[c_momentoconciente::class, 'fc_accionmovilizadoracompromisos'])->name('accionmovilizadoracompromisos');
+Route::get('/guardaraccionesmovilizadorascompromisos',[c_momentoconciente::class, 'fc_guardaraccionesmovilizadorascompromisos'])->name('guardaraccionesmovilizadorascompromisos');
+
+
+
 
 // Route::get('/compromiso1/{folio}',[c_compromisostipo1::class, 'fc_compromiso1'])->name('compromiso1');
 // Route::get('/compromiso2/{folio}',[c_compromisostipo1::class, 'fc_compromiso2'])->name('compromiso2');

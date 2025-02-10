@@ -1719,7 +1719,7 @@ $.ajax({
  }
 
  function t3_oportunidades (){
-  actualizarTabla('t3_oportunidades', 'Descarga de tablas desde el servdor', '1');
+  actualizarTabla('t1_oportunidad', 'Descarga de tablas desde el servdor', '1');
   let tabla= 't1_oportunidad';
 $.ajax({
               url:'./oportunidadesd',
@@ -1727,20 +1727,41 @@ $.ajax({
               data: { tabla: tabla},  
               dataType:'JSON',
               success:function(data){ 
-                actualizarTabla('t3_oportunidadesd', 'Descarga de tablas desde el servdor', '2');
+                actualizarTabla('t1_oportunidad', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('78%');
                 $('#barracarga').css('width','78%');                                   
-                t1_oportunidad_hogaresd();                   
+                t3_aliados();                   
               },
               error: function(xhr, status, error) {
-                actualizarTabla('t3_oportunidadesd', 'Descarga de tablas desde el servdor', '3');
-                    reintentarfuncion(t1_informesvisitasd, 't1_informesvisitasd');
+                actualizarTabla('t1_oportunidad', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_informesvisitasd, 't1_oportunidad');
                         console.log(xhr.responseText);
                     }
             })
 }
 
 
+function t3_aliados (){
+  actualizarTabla('t1_lista_aliados', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_lista_aliados';
+$.ajax({
+              url:'./aliadosd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_lista_aliados', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('78%');
+                $('#barracarga').css('width','78%');                                   
+                t1_oportunidad_hogares();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_lista_aliados', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_v1finalizacion, 't1_lista_aliados');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
 
 
 function t1_oportunidad_hogaresd (){
@@ -2119,11 +2140,34 @@ $.ajax({
                 actualizarTabla('t3_movimiento_indicadores_integrante_vp_historico', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('90%');
                 $('#barracarga').css('width','90%');                                   
-                t1_saludemocionalqtd();                   
+                t1_accionmovilizadoracompromisosd();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t3_movimiento_indicadores_integrante_vp_historico', 'Descarga de tablas desde el servdor', '3');
                     reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bse_7d, 't3_movimiento_indicadores_integrante_vp_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t1_accionmovilizadoracompromisosd (){
+  actualizarTabla('t1_accionmovilizadoracompromisos', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_accionmovilizadoracompromisos';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_accionmovilizadoracompromisos', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_saludemocionalqtd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_accionmovilizadoracompromisos', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bse_7d, 't1_accionmovilizadoracompromisos');
                         console.log(xhr.responseText);
                     }
             })

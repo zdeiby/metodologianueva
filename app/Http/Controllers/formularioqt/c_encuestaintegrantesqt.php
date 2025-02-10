@@ -1369,7 +1369,7 @@ class c_encuestaintegrantesqt extends Controller
         </div>
     </div>';
     
-        return response()->json(["modal" => $modal, 'oportunidades'=>$oportunidades]); // Responder con los datos procesados
+        return response()->json(["modal" => $modal, 'oportunidades'=>$oportunidades, 'modal2'=>$modal2]); // Responder con los datos procesados
     }
 
 

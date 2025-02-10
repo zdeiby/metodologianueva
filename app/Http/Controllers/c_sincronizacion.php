@@ -70,7 +70,7 @@ public function fc_sincroprivacionesd(Request $request) {
         // Extraer el folio del objeto
         $folio = $item['folio']; // Asegúrate de que 'folio' sea el nombre correcto del campo en tu JSON
 
-        // Extraer el idintegrante si existe
+        // Extraer las llaves primarias
         $idIntegrante = isset($item['idintegrante']) ? $item['idintegrante'] : null;
         $paso =         isset($item['paso'])         ? $item['paso'] : null;
         $linea =        isset($item['linea'])        ? $item['linea'] : null;
@@ -79,7 +79,7 @@ public function fc_sincroprivacionesd(Request $request) {
         $numerocompromiso =        isset($item['numerocompromiso'])        ? $item['numerocompromiso'] : null;
         $created_at =        isset($item['created_at'])        ? $item['created_at'] : null;
         $idoportunidad =        isset($item['idoportunidad'])        ? $item['idoportunidad'] : null;
-
+        $numero_compromiso =        isset($item['numero_compromiso'])        ? $item['numero_compromiso'] : null;
         
         
         // Remover el folio y idintegrante del array para evitar duplicados en el updateOrInsert
@@ -88,7 +88,7 @@ public function fc_sincroprivacionesd(Request $request) {
         if ($idIntegrante !== null) {
             unset($dataToUpdate['idintegrante']);
         }
-
+        //remueve las primarias para insertar
         if ($paso !== null) {
             unset($dataToUpdate['paso']);
         }
@@ -111,6 +111,10 @@ public function fc_sincroprivacionesd(Request $request) {
 
         if ($idoportunidad !== null) {
             unset($dataToUpdate['idoportunidad']);
+        }
+
+        if ($numero_compromiso !== null) {
+            unset($dataToUpdate['numero_compromiso']);
         }
 
 
@@ -136,6 +140,10 @@ public function fc_sincroprivacionesd(Request $request) {
         }
         if ($numerocompromiso !== null) {
             $condition['numerocompromiso'] = $numerocompromiso;
+        }
+
+        if ($numero_compromiso !== null) {
+            $condition['numero_compromiso'] = $numero_compromiso;
         }
 
         if($tabla == 't3_oportunidad_integranteshogar_historico'){
@@ -564,6 +572,37 @@ foreach ($data as $item) {
     // Crea una copia de $item y elimina 'id_oportunidad'
     $datos = $item;
     unset($datos['id_oportunidad']);
+
+    // Ejecuta updateOrInsert
+    DB::table($tabla)->updateOrInsert(
+        $condition, // Condiciones para buscar
+        $datos      // Datos a actualizar o insertar
+    );
+}
+
+
+    return response()->json($data);
+}
+
+/// DESCARGA ALIADOS 
+
+public function fc_aliadosd(Request $request) {
+    $tabla = $request->input('tabla');
+    $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarribad/fc_aliadosd?tabla='.urlencode($tabla); 
+   // $this->truncateTable($tabla);
+    // Realizar la solicitud GET usando file_get_contents
+    $response = file_get_contents($url);
+
+    // Decodificar el JSON
+    $data = json_decode($response, true);
+//dd( $data );
+foreach ($data as $item) {
+    // Define la condición como un array con clave-valor
+    $condition = ['nit' => $item['nit']];
+
+    // Crea una copia de $item y elimina 'id_oportunidad'
+    $datos = $item;
+    unset($datos['nit']);
 
     // Ejecuta updateOrInsert
     DB::table($tabla)->updateOrInsert(

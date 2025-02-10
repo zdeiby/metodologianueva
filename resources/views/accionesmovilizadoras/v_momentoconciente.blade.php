@@ -62,7 +62,11 @@
     <a id="legalqt"  class="nav-link " >ACCIÓN MOVILIZADORA BIENESTAR EN LA FAMILIA</a>
   </li>
   <li class="nav-item" role="presentation"  style="cursor:pointer">
-    <a id="financieroqt"  class="nav-link ">ACCIÓN MOVILIZADORA BIENESTAR PRIORIZADO</a>
+    <a id="financieroqt"  class="nav-link ">ACCIÓN BIENESTAR PRIORIZADO</a>
+  </li>
+
+  <li class="nav-item" role="presentation"  style="cursor:pointer">
+    <a id="compromisos"  class="nav-link ">COMPROMISOS</a>
   </li>
   
 </ul>
@@ -215,6 +219,7 @@
       $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconciente/<?= $variable ?>"; window.location.href = url;})
     $('#legalqt').click(function(){var url = "../bienestarenfamilia/<?= $variable ?>"; window.location.href = url;})
     $('#financieroqt').click(function(){var url = "../accionmovilizadoraqt/<?= $variable ?>"; window.location.href = url;})
+    $('#compromisos').click(function(){var url = "../accionmovilizadoracompromisos/<?= $variable ?>"; window.location.href = url;})
 
       
 

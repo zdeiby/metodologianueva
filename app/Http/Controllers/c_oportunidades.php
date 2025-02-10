@@ -19,6 +19,7 @@ class c_oportunidades extends Controller
         $modelo = new m_oportunidades();
        // $oportunidad = $modelo-> m_listadooportunidades();
        $oportunidad = DB::table('t1_oportunidad')
+          ->join('t1_lista_aliados', 't1_oportunidad.nit', '=', 't1_lista_aliados.nit')
        ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
        ->where('aplica_hogar_integrante','373')
        ->get();
@@ -78,6 +79,7 @@ foreach ($oportunidad as $value) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <p><strong>Nombre aliado:</strong> ' . $value->nombre_aliado . '</p>
                         <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
                         <p><strong>Descripción:</strong> ' . $value->descripcion . '</p>
                         <p><strong>Ruta:</strong> ' . $value->ruta . '</p>
@@ -264,6 +266,7 @@ foreach ($oportunidad as $value) {
         $modelo = new m_oportunidades();
        // $oportunidad = $modelo-> m_listadooportunidades();
        $oportunidad = DB::table('t1_oportunidad')
+          ->join('t1_lista_aliados', 't1_oportunidad.nit', '=', 't1_lista_aliados.nit')
        ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
         ->where('aplica_hogar_integrante','374')
        ->get();
@@ -325,6 +328,7 @@ foreach ($oportunidad as $value) {
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                            <p><strong>Nombre aliado:</strong> ' . $value->nombre_aliado . '</p>
                                 <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
                                 <p><strong>Descripción:</strong> ' . $value->descripcion . '</p>
                                 <p><strong>Ruta:</strong> ' . $value->ruta . '</p>
@@ -348,6 +352,7 @@ foreach ($oportunidad as $value) {
         $modelo = new m_oportunidades();
         // $oportunidad = $modelo-> m_listadooportunidades();
         $oportunidad = DB::table('t1_oportunidad')
+           ->join('t1_lista_aliados', 't1_oportunidad.nit', '=', 't1_lista_aliados.nit')
         ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
        // ->where('aplica_hogar_integrante','374')
         ->get();
@@ -409,6 +414,7 @@ foreach ($oportunidad as $value) {
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
+                         <p><strong>Nombre aliado:</strong> ' . $value->nombre_aliado . '</p>
                             <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
                              <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
                              <p><strong>Ruta:</strong> '.$value->ruta.'</p>
@@ -435,6 +441,7 @@ foreach ($oportunidad as $value) {
         $modelo = new m_oportunidades();
         // $oportunidad = $modelo-> m_listadooportunidades();
         $oportunidad = DB::table('t1_oportunidad')
+           ->join('t1_lista_aliados', 't1_oportunidad.nit', '=', 't1_lista_aliados.nit')
         ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
         ->where('aplica_hogar_integrante','374')
         ->get();
@@ -497,6 +504,7 @@ foreach ($oportunidad as $value) {
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
+                         <p><strong>Nombre aliado:</strong> ' . $value->nombre_aliado . '</p>
                             <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
                              <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
                              <p><strong>Ruta:</strong> '.$value->ruta.'</p>

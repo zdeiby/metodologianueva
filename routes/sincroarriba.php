@@ -26,7 +26,7 @@ Route::get('/fc_guardarsincro', [c_sincronizacion::class, 'fc_guardarsincro'])->
 
 
 Route::get('/oportunidadesd', [c_sincronizacion::class, 'fc_oportunidadesd'])->name('oportunidadesd');
-
+Route::get('/aliadosd', [c_sincronizacion::class, 'fc_aliadosd'])->name('aliadosd');
 
 
 Route::get('/verificarsihayfoliosnuevos', [c_sincronizacion::class, 'fc_verificarsihayfoliosnuevos'])->name('verificarsihayfoliosnuevos');

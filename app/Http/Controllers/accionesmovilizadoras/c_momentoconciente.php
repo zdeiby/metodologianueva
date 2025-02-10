@@ -218,6 +218,67 @@ class c_momentoconciente extends Controller
     }
 
 
+    public function fc_accionmovilizadoracompromisos(Request $request,$folio){
+        if (!session('nombre')) {
+            // Si no existe la sesión 'usuario', redirigir al login
+            return redirect()->route('login');
+        }
+       
+         $herramientas = new m_herramientas();
+
+            $tabla = 't1_accionmovilizadoracompromisos';
+            $hashids = new Hashids('', 10); 
+            $encodedFolio = $hashids->decode($folio);
+            $linea= 200;
+            $paso= 20040;
+    
+            // $categorias = DB::table('t1_ordenprioridadesqt')
+            // ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
+            // ->where('t1_ordenprioridadesqt.folio', $encodedFolio)
+            // ->where('t1_ordenprioridadesqt.linea', $linea)
+            // ->where('t1_ordenprioridadesqt.prioridad', 1)
+            // ->select('t_bienestares.descripcion','t1_ordenprioridadesqt.categoria')
+            // ->get();
+    
+            // $bienestar= $categorias[0]->categoria;
+    
+           
+            $informacion = DB::table($tabla)
+                ->where('folio', $encodedFolio)
+                ->where('linea', $linea)
+                ->where('paso', $paso)
+                ->select('compromiso', 'numero_compromiso') // Solo seleccionamos los campos necesarios
+                ->get();
+
+                $compromisosArray = [1 => '', 2 => '', 3 => '', 4 => ''];
+
+                foreach ($informacion as $compromiso) {
+                    $compromisosArray[$compromiso->numero_compromiso] = $compromiso->compromiso;
+                }
+
+
+               // dd($compromisosArray);
+             $datos = [
+                'accionmovilizadora' => '',
+                'compromiso'=>'',
+                 'siguiente' => 'style="display:none"', 
+            ];
+
+          // dd($informacion);
+
+
+            return view('accionesmovilizadoras/v_accionmovilizadoracompromisos',  $datos,['variable'=>$folio,
+                                                                    'folio'=>$encodedFolio[0],
+                                                                    'tabla'=>$tabla,
+                                                                    'compromisosArray'=>$compromisosArray,
+                                                                    'linea'=>$linea,
+                                                                    'paso'=>$paso,
+                                                                    
+                                                                    ]);
+    }
+
+
+
 
     
      public function fc_guardaraccionesmovilizadoras(Request $request)
@@ -249,6 +310,45 @@ class c_momentoconciente extends Controller
     
          return response()->json(["request" => $data]); // Responder con los datos procesados
      }
+
+     public function fc_guardarAccionesMovilizadorascompromisos(Request $request) {
+        $folio = $request->query('folio');
+        $tabla = $request->query('tabla');
+        $linea = $request->query('linea');
+        $paso = $request->query('paso');
+        $usuario = $request->query('usuario');
+        $compromisos = json_decode($request->query('compromisos'), true); // Convertir JSON a array
+
+        //dd($tabla);
+    
+        if (!$folio || !$linea || !$paso || !$usuario || !$compromisos) {
+            return response()->json(['error' => 'Datos incompletos'], 400);
+        }
+    
+        foreach ($compromisos as $compromiso) {
+            DB::table($tabla)->updateOrInsert(
+                // Condiciones para encontrar el registro
+                [
+                    'folio' => $folio,
+                    'linea' => $linea,
+                    'paso' => $paso,
+                    'numero_compromiso' => $compromiso['numero_compromiso'],
+                ],
+                // Datos a actualizar o insertar
+                [
+                    'compromiso' => $compromiso['compromiso'],
+                    'usuario' => $usuario,
+                    'estado' => '1',
+                    'sincro' => '0',
+                    'updated_at' => now() // Se actualiza, pero `created_at` se mantiene intacto si ya existe
+                ]
+            );
+        }
+    
+        return response()->json(['message' => 'Compromisos guardados o actualizados correctamente']);
+    }
+    
+    
 
 
      

@@ -581,6 +581,7 @@
  
     </div>
     <div id="modal"></div>
+    <div id="modal2"></div>
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
