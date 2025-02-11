@@ -525,6 +525,7 @@
  
     </div>
     <div id="modal"></div>
+    <div id="modal2"></div>
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
@@ -760,6 +761,7 @@ function checkAndSetSwitchValues(divId) {
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
                   initializeCheckboxes2();
+                  $('#modal2').html(data.modal2);
                  // $('#siguiente').css('display','');
                    // alertagood();
                 },
@@ -962,7 +964,7 @@ if($('#checkseleccionado').val() == '' ){
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
                   initializeCheckboxes();
-                 
+                  $('#modal2').html(data.modal2);
                  // $('#siguiente').css('display','');
                    // alertagood();
                 },
@@ -1440,6 +1442,19 @@ function updateRequiredBancarizacion() {
     }
      
    
+    function abrirSegundoModal(id_oportunidad) {
+    var modalId = 'detalle-modal-' + id_oportunidad;
+    var modalElement = document.getElementById(modalId);
+
+    if (!modalElement) {
+        console.error("❌ Error: No se encontró el modal con ID:", modalId);
+        return;
+    }
+
+    // Abre el segundo modal sin cerrar el primero
+    var segundoModal = new bootstrap.Modal(modalElement, { backdrop: 'static', keyboard: false });
+    segundoModal.show();
+}
 </script>
 
 @endsection

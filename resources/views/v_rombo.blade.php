@@ -426,7 +426,8 @@
           <th scope="col">Representante</th>
           <th scope="col">herramienta</th>
           <th scope="col">Avatar</th>
-
+          <th scope="col">Cuenta con SISBEN</th>
+          <th scope="col">Ruta SISBEN</th>
         </tr>
       </thead>
       <tbody id="integrantes"  >

@@ -955,6 +955,7 @@ class c_encuestaintegrantesqt extends Controller
         $modelo = new m_oportunidades();
         // $oportunidad = $modelo-> m_listadooportunidades();
         $oportunidad = DB::table('t1_oportunidad')
+        ->join('t1_lista_aliados', 't1_oportunidad.nit', '=', 't1_lista_aliados.nit')
         ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
        // ->where('aplica_hogar_integrante','374')
         ->get();
@@ -1043,7 +1044,7 @@ class c_encuestaintegrantesqt extends Controller
                     <td>' . Str::limit($value->fecha_limite_acercamiento, 10, '') . '</td>
                     <td class="align-middle text-center">
         
-                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal-' . $value->id_oportunidad . '">
+                    <button type="button" class="btn btn-outline-success btn-sm" onclick="abrirSegundoModal(' . $value->id_oportunidad . ')">
                         Ver más
                     </button>
                     </td>
@@ -1073,25 +1074,28 @@ class c_encuestaintegrantesqt extends Controller
                 
         ';
 
-          $modal2 .=  '<div class="modal fade" id="modal-'.$value->id_oportunidad.'" tabindex="-1" aria-labelledby="modalLabel-'.$value->id_oportunidad.'" aria-hidden="true">
-                 <div class="modal-dialog">
-                     <div class="modal-content">
-                         <div class="modal-header">
-                             <h5 class="modal-title" id="modalLabel-'.$value->id_oportunidad.'">'.$value->nombre_oportunidad.'</h5>
-                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                         </div>
-                         <div class="modal-body">
-                            <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
-                             <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
-                             <p><strong>Ruta:</strong> '.$value->ruta.'</p>
-                         </div>
-                         <div class="modal-footer">
-                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-     ';
+        $modal2 .=  '<div class="modal fade" id="detalle-modal-'.$value->id_oportunidad.'" tabindex="-1" 
+        aria-labelledby="detalle-modalLabel-'.$value->id_oportunidad.'" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detalle-modalLabel-'.$value->id_oportunidad.'">
+                        '.$value->nombre_oportunidad.'
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <p><strong>Nombre aliado:</strong> ' . $value->nombre_aliado . '</p>
+                   <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
+                    <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
+                    <p><strong>Ruta:</strong> '.$value->ruta.'</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>';
             
     }
 
@@ -1390,6 +1394,7 @@ class c_encuestaintegrantesqt extends Controller
         $modelo = new m_oportunidades();
         // $oportunidad = $modelo-> m_listadooportunidades();
         $oportunidad = DB::table('t1_oportunidad')
+        ->join('t1_lista_aliados', 't1_oportunidad.nit', '=', 't1_lista_aliados.nit')
         ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
        // ->where('aplica_hogar_integrante','374')
         ->get();
@@ -1487,7 +1492,7 @@ class c_encuestaintegrantesqt extends Controller
                     <td>' . Str::limit($value->fecha_limite_acercamiento, 10, '') . '</td>
                     <td class="align-middle text-center">
         
-                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal-' . $value->id_oportunidad . '">
+                    <button type="button" class="btn btn-outline-success btn-sm" onclick="abrirSegundoModal(' . $value->id_oportunidad . ')">
                         Ver más
                     </button>
                     </td>
@@ -1517,25 +1522,29 @@ class c_encuestaintegrantesqt extends Controller
                 
         ';
 
-          $modal2 .=  '<div class="modal fade" id="modal-'.$value->id_oportunidad.'" tabindex="-1" aria-labelledby="modalLabel-'.$value->id_oportunidad.'" aria-hidden="true">
-                 <div class="modal-dialog">
-                     <div class="modal-content">
-                         <div class="modal-header">
-                             <h5 class="modal-title" id="modalLabel-'.$value->id_oportunidad.'">'.$value->nombre_oportunidad.'</h5>
-                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                         </div>
-                         <div class="modal-body">
-                            <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
-                             <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
-                             <p><strong>Ruta:</strong> '.$value->ruta.'</p>
-                         </div>
-                         <div class="modal-footer">
-                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-     ';
+        $modal2 .=  '<div class="modal fade" id="detalle-modal-'.$value->id_oportunidad.'" tabindex="-1" 
+        aria-labelledby="detalle-modalLabel-'.$value->id_oportunidad.'" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detalle-modalLabel-'.$value->id_oportunidad.'">
+                        '.$value->nombre_oportunidad.'
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <p><strong>Nombre aliado:</strong> ' . $value->nombre_aliado . '</p>
+                   <p><strong>Requisitos:</strong> ' . $value->requisitos . '</p>
+                    <p><strong>Descripción:</strong> '.$value->descripcion.'</p>
+                    <p><strong>Ruta:</strong> '.$value->ruta.'</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>';
+
             
     }
 
@@ -1837,7 +1846,7 @@ class c_encuestaintegrantesqt extends Controller
         </div>
     </div>';
     
-        return response()->json(["modal" => $modal, 'oportunidades'=>$oportunidades]); // Responder con los datos procesados
+        return response()->json(["modal" => $modal, 'oportunidades'=>$oportunidades, 'modal2'=>$modal2]); // Responder con los datos procesados
     }
 
 

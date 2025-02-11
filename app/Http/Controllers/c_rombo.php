@@ -80,7 +80,7 @@ class c_rombo extends Controller
         $folioencriptado=$request->input('folioencriptado');
         $modelo= new m_cards();
         $integrantes=$modelo-> m_leerintegrantes($folio);
-        
+       // dd($integrantes);
         $hashids = new Hashids('', 10); 
 
         $foliosintegrante = '';
@@ -115,6 +115,16 @@ class c_rombo extends Controller
                 <td style="width:100px !important; ">
                     <img src="' .(($value->avatar)? asset('avatares/'.$value->avatar.'.png'):(($value->sexo =="13")?asset('avatares/mujer_avatar.png'):asset('avatares/hombre_avatar.png'))) . '" width="100%" alt="">
                 </td>
+
+                 <td class="align-middle text-center" style=" font-size:13px; '.(($value->cuenta_con_sisben =='NO')?'background:red':'').'" >
+                    '.$value->cuenta_con_sisben.' 
+                </td>
+
+                 <td class="align-middle text-center" style=" font-size:13px;" >
+                     '.(($value->ruta_sisben == '')?'SIN DATO':$value->ruta_sisben).'  
+                </td>
+
+
                 <td class="align-middle align-center" style="text-align: center !important;">
                     <i class="bi bi-chevron-down"></i> <!-- Icono de flecha al final -->
                 </td>

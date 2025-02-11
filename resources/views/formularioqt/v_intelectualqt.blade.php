@@ -809,7 +809,7 @@ function checkAndSetSwitchValues(divId) {
                   $('.filter-option-inner-inner').css('font-size','13px');
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
-
+                  $('#modal2').html(data.modal2);
                  // $('#siguiente').css('display','');
                    // alertagood();
                 },
@@ -927,7 +927,7 @@ if($('#checkseleccionado').val() == '' ){
                   $('.filter-option-inner-inner').css('font-size','13px');
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
-
+                  $('#modal2').html(data.modal2);
                  // $('#siguiente').css('display','');
                    // alertagood();
                 },
@@ -1317,6 +1317,21 @@ function handleRadioChange(id) {
       };
     }
      
+
+    function abrirSegundoModal(id_oportunidad) {
+    var modalId = 'detalle-modal-' + id_oportunidad;
+    var modalElement = document.getElementById(modalId);
+
+    if (!modalElement) {
+        console.error("❌ Error: No se encontró el modal con ID:", modalId);
+        return;
+    }
+
+    // Abre el segundo modal sin cerrar el primero
+    var segundoModal = new bootstrap.Modal(modalElement, { backdrop: 'static', keyboard: false });
+    segundoModal.show();
+}
+
    
 </script>
 @endsection

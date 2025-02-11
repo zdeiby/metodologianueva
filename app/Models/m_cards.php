@@ -21,7 +21,14 @@ class m_cards extends Model
                 CASE 
                     WHEN fe.estado = 1 AND inte.estado = 1 AND fn.estado = 1 AND lg.estado = 1 THEN 1
                     ELSE 0
-                END as validacion
+                END as validacion, 
+                CASE 
+                    WHEN sis.cuenta_con_sisben = 1  THEN "SÍ"
+                    WHEN sis.cuenta_con_sisben = 2  THEN "NO"
+                    ELSE "SIN DATO"
+                END as cuenta_con_sisben,
+                sis.ruta_sisben
+
                  FROM t1_integranteshogar ih
            left join t1_saludemocionalqt ii on ih.idintegrante = ii.idintegrante
             LEFT JOIN 
@@ -32,6 +39,8 @@ class m_cards extends Model
                 t1_financieroqt fn ON ih.idintegrante = fn.idintegrante
             LEFT JOIN 
                 t1_enfamiliaqt lg ON ih.idintegrante = lg.idintegrante
+                LEFT JOIN 
+                t1_sisben sis ON ih.idintegrante = sis.idintegrante
             where ih.folio  ="'.$folio.'";       
                     ' );
 

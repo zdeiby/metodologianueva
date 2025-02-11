@@ -80,41 +80,60 @@ class m_index extends Model
     }
 
 
-    // public function m_leerprincipalhogar()
-    // {
-    //     // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
-    //     $resultado = DB::select('
-    //             SELECT 
-    //                 ph.folio, 
-    //                 ph.idintegrantetitular, 
-    //                 inte.nombre1, 
-    //                 inte.nombre2, 
-    //                 inte.apellido1, 
-    //                 inte.apellido2, 
-    //                 inte.documento, 
-    //                 inte.celular,
-    //                 inte.telefono, 
-    //                 barr.barriovereda as barrio, 
-    //                 com.comuna as comuna,
-    //                 "triage" as ultimo_idestacion
-    //             FROM 
-    //                 t1_principalhogar ph
-    //             JOIN 
-    //                 t1_integranteshogar inte 
-    //                 ON ph.idintegrantetitular = inte.idintegrante
-    //             LEFT JOIN 
-    //                 t1_hogardatosgeograficos hgeo 
-    //                 ON ph.folio = hgeo.folio
-    //             LEFT JOIN 
-    //             t_barrios barr 
-    //             ON hgeo.barrio = barr.codigo
-    //              LEFT JOIN 
-    //             t_comunas com 
-    //             ON hgeo.comuna = com.codigo
-    //             ;
-                    
-    //     ' );
+     public function m_leerprincipalintegrantes()
+     {
+         // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
+         $resultado = DB::select('
+                 SELECT 
+                     inte.folio, 
+                     inte.idintegrante,
+                     banc.pregunta as cedula, 
+                     inte.documento, 
+                     inte.nombre1, 
+                     inte.nombre2, 
+                     inte.apellido1, 
+                     inte.apellido2,
+                    CASE 
+                        WHEN COALESCE(inte.estadointegrante, "") = "" THEN "Activo"
+                        WHEN inte.estadointegrante = "1" THEN "Activo"
+                        WHEN inte.estadointegrante = "0" THEN "Inactivo"
+                        ELSE inte.estadointegrante
+                    END AS estadointegrante,
 
-    //     return $resultado;
-    // }
+                     bancsis.pregunta as sisben,
+                     sis.ruta_sisben as ruta
+                     
+                    /* inte.celular,
+                     inte.telefono, */
+                     
+                 FROM 
+                     t1_integranteshogar inte
+              
+                        LEFT JOIN 
+                     t_bancopreguntas banc 
+                     ON inte.tipodocumento = banc.id
+
+                     LEFT JOIN 
+                     t1_sisben sis 
+                     ON inte.idintegrante = sis.idintegrante
+
+                      LEFT JOIN 
+                     t_bancopreguntas bancsis 
+                     ON sis.cuenta_con_sisben = bancsis.id
+
+                /* LEFT JOIN 
+                 t_barrios barr 
+                 ON hgeo.barrio = barr.codigo
+                  LEFT JOIN 
+                 t_comunas com 
+                 ON hgeo.comuna = com.codigo */ 
+                 /*  LEFT JOIN 
+                     t1_hogardatosgeograficos hgeo 
+                     ON ph.folio = hgeo.folio */
+                 ;
+              
+         ' );
+
+         return $resultado;
+     }
 }

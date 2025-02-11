@@ -524,6 +524,38 @@ function soloNumeros(e) {
                 </li>
             </ul>
         </li>
+       
+
+
+
+
+        <li class="nav-item dropdown" style="cursor:pointer">
+            <a  class="{{ request()->routeIs('oportunidades') ? 'inbox' : '' }} nav-link dropdown-toggle text-white d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#submenuAlertas" aria-expanded="false">
+                <ion-icon name="notifications-outline"></ion-icon>
+                <span class="nav-text ms-2">Alertas</span>
+            </a>
+            <ul class="collapse list-unstyled ps-3" id="submenuAlertas">
+                    <li class="nav-item">
+                    <a href="{{route('sisben')}}" class="{{ request()->routeIs('sisben') ? 'inbox' : '' }} nav-link text-white d-flex align-items-center">
+                        <ion-icon name="medkit-outline"></ion-icon>
+                        <span class="nav-text ms-2">Sisbén</span>
+                    </a>
+                </li> 
+                <!-- <li>
+                    <a href="{{route('oportunidadeshogar')}}" class="nav-link text-white d-flex align-items-center">
+                    <ion-icon name="home-outline"></ion-icon>
+                    <span class="nav-text ms-2">Hogar</span>
+                    </a>
+                </li> -->
+            </ul>
+        </li>
+
+
+
+
+
+
+
         <li class="nav-item">
             <a href="{{route('sincronizacion')}}" class="{{ request()->routeIs('sincronizacion') ? 'inbox' : '' }} nav-link text-white d-flex align-items-center">
                 <ion-icon name="reload-outline"></ion-icon>
