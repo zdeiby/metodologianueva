@@ -1753,11 +1753,34 @@ $.ajax({
                 actualizarTabla('t1_lista_aliados', 'Subida base de datos al servidor', '2');
                 $('#barracarga').html('78%');
                 $('#barracarga').css('width','78%');                                   
-                t1_oportunidad_hogares();                   
+                t1_sisben();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t1_lista_aliados', 'Subida base de datos al servidor', '3');
                     reintentarfuncion(t1_v1finalizacion, 't1_lista_aliados');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_sisben (){
+  actualizarTabla('t1_sisben', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_sisben';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_sisben', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('77%');
+                $('#barracarga').css('width','77%');                      
+               
+                t1_oportunidad_hogaresd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_sisben', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t3_aliados, 't1_sisben');
                         console.log(xhr.responseText);
                     }
             })
