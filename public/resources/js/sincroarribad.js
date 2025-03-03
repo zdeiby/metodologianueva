@@ -1848,7 +1848,7 @@ $.ajax({
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Descarga de tablas desde el servdor', '3');
-                    reintentarfuncion(t1_oportunidad_integrantes, 't3_oportunidad_integranteshogar_historico');
+                    reintentarfuncion(t1_oportunidad_integrantesd, 't3_oportunidad_integranteshogar_historico');
                         console.log(xhr.responseText);
                     }
             })
