@@ -132,7 +132,7 @@
      <div class="row g-0" id="indicadorbi1" style="display:{{(($indicador_bi_1 == '0')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-        Los niños y niñas entre 0 y 5 años están vinculados a programas de atención integral en cuidado a la primera infancia, con acceso a salud, nutrición y educación inicial (IPM)
+        Los niños y niñas menores de 5 años están vinculados a programas de atención integral en cuidado a la primera infancia, con acceso a salud, nutrición y educación inicial (IPM). 
          @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[23]->id_bienestar ?>','<?= $indicadores_tabla[23]->id_subcategoria ?>','<?= $indicadores_tabla[23]->id_indicador ?>')">Mover Indicador</div>
@@ -234,7 +234,8 @@
      <div class="row g-0" id="indicadorbi3" style="display:{{(($indicador_bi_3 == '0')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-        Los integrantes del hogar mayores de 18 años que no hayan completado su educación básica acceden a programas  educación formal para adultos.
+        Los integrantes del hogar mayores o igual a 18 años que no hayan completado su educación básica acceden a programas  educación formal para adultos
+        
          @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[25]->id_bienestar ?>','<?= $indicadores_tabla[25]->id_subcategoria ?>','<?= $indicadores_tabla[25]->id_indicador ?>')">Mover Indicador</div>
@@ -886,7 +887,7 @@ if($('#checkseleccionado').val() == '' ){
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Indicardor movido con éxito",
+                  title: "Indicador movido con éxito",
                   showConfirmButton: false,
                   timer: 10000
                   });
@@ -1002,7 +1003,7 @@ if($('#checkseleccionado').val() == '' ){
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Indicardor movido con éxito",
+                  title: "Indicador movido con éxito",
                   showConfirmButton: false,
                   timer: 1000
                   });
@@ -1082,7 +1083,7 @@ if($('#checkseleccionado').val() == '' ){
            Swal.fire({
               position: "center",
               icon: "success",
-              title: "Indicardor movido con éxito",
+              title: "Indicador movido con éxito",
               showConfirmButton: false,
               timer: 1000
               });
@@ -1286,13 +1287,14 @@ function handleRadioChange(id) {
 
 <script>
 
-    function seleccionartipodemovimiento(){
+function seleccionartipodemovimiento(){
       if($('#tipomovimientoindicadores').val() == 1){
         console.log('moverindicadorporgestor')
         $('#moverindicadorporgestor').css('display','');
         $('#moverindicadorporoportunidades').css('display','none');
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 2){
         console.log('moverindicadorporoportunidades')
@@ -1300,6 +1302,7 @@ function handleRadioChange(id) {
         $('#moverindicadorporgestor').css('display','none');
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 3){
         console.log('moverindicadorporpreguntas')
@@ -1307,6 +1310,7 @@ function handleRadioChange(id) {
         $('#moverindicadorporoportunidades').css('display','none');
         $('#moverindicadorporgestor').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 4){
         console.log('moverindicadorporgestorfinal')
@@ -1314,6 +1318,16 @@ function handleRadioChange(id) {
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporoportunidades').css('display','none');
         $('#moverindicadorporgestor').css('display','none');
+        $('#moverporcruce').css('display','none');
+      };
+
+      if($('#tipomovimientoindicadores').val() == 5){
+        console.log('cruce institucional')
+        $('#moverindicadorporgestorfinal').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+        $('#moverporcruce').css('display','');
       };
     }
      

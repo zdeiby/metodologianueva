@@ -134,9 +134,9 @@
         <div class="p-2">
           Los integrantes de la familia están afiliados al Sistema General de Seguridad Social en Salud – SGSS-
           @if($vista != '1')
-          <!-- <div class="text-center">
+           <div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[0]->id_bienestar ?>','<?= $indicadores_tabla[0]->id_subcategoria ?>','<?= $indicadores_tabla[0]->id_indicador ?>')">Mover Indicador</div>
-          </div> -->
+          </div> 
           @endif
         </div>
       </div>
@@ -834,7 +834,7 @@ if($('#checkseleccionado').val() == '' ){
                   Swal.fire({
                     position: "center",
                     icon: "success",
-                    title: "Indicardor movido con éxito",
+                    title: "Indicador movido con éxito",
                     showConfirmButton: false,
                     timer: 10000
                     });
@@ -916,7 +916,7 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Indicardor movido con éxito",
+                  title: "Indicador movido con éxito",
                   showConfirmButton: false,
                   timer: 1000
                   });
@@ -1035,7 +1035,7 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
            Swal.fire({
               position: "center",
               icon: "success",
-              title: "Indicardor movido con éxito",
+              title: "Indicador movido con éxito",
               showConfirmButton: false,
               timer: 1000
               });
@@ -1289,7 +1289,7 @@ if (!atLeastOneChecked) {
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Indicardor movido con éxito",
+                  title: "Indicador movido con éxito",
                   showConfirmButton: false,
                   timer: 1000
                   });
@@ -1345,7 +1345,7 @@ $.ajax({
        Swal.fire({
          position: "center",
          icon: "success",
-         title: "Indicardor movido con éxito",
+         title: "Indicador movido con éxito",
          showConfirmButton: false,
          timer: 1000
          });
@@ -1395,6 +1395,7 @@ function handleCheckboxChange() {
         $('#moverindicadorporoportunidades').css('display','none');
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 2){
         console.log('moverindicadorporoportunidades')
@@ -1402,6 +1403,7 @@ function handleCheckboxChange() {
         $('#moverindicadorporgestor').css('display','none');
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 3){
         console.log('moverindicadorporpreguntas')
@@ -1409,6 +1411,7 @@ function handleCheckboxChange() {
         $('#moverindicadorporoportunidades').css('display','none');
         $('#moverindicadorporgestor').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 4){
         console.log('moverindicadorporgestorfinal')
@@ -1416,6 +1419,16 @@ function handleCheckboxChange() {
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporoportunidades').css('display','none');
         $('#moverindicadorporgestor').css('display','none');
+        $('#moverporcruce').css('display','none');
+      };
+
+      if($('#tipomovimientoindicadores').val() == 5){
+        console.log('cruce institucional')
+        $('#moverindicadorporgestorfinal').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+        $('#moverporcruce').css('display','');
       };
     }
      

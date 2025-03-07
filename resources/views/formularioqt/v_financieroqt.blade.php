@@ -835,7 +835,7 @@ function checkAndSetSwitchValues(divId) {
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Indicardor movido con éxito",
+                  title: "Indicador movido con éxito",
                   showConfirmButton: false,
                   timer: 1000
                   });
@@ -920,7 +920,7 @@ if($('#checkseleccionado').val() == '' ){
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Indicardor movido con éxito",
+                  title: "Indicador movido con éxito",
                   showConfirmButton: false,
                   timer: 10000
                   });
@@ -1037,7 +1037,7 @@ if($('#checkseleccionado').val() == '' ){
            Swal.fire({
               position: "center",
               icon: "success",
-              title: "Indicardor movido con éxito",
+              title: "Indicador movido con éxito",
               showConfirmButton: false,
               timer: 1000
               });
@@ -1410,13 +1410,14 @@ function updateRequiredBancarizacion() {
 
 <script>
 
-    function seleccionartipodemovimiento(){
+function seleccionartipodemovimiento(){
       if($('#tipomovimientoindicadores').val() == 1){
         console.log('moverindicadorporgestor')
         $('#moverindicadorporgestor').css('display','');
         $('#moverindicadorporoportunidades').css('display','none');
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 2){
         console.log('moverindicadorporoportunidades')
@@ -1424,6 +1425,7 @@ function updateRequiredBancarizacion() {
         $('#moverindicadorporgestor').css('display','none');
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 3){
         console.log('moverindicadorporpreguntas')
@@ -1431,6 +1433,7 @@ function updateRequiredBancarizacion() {
         $('#moverindicadorporoportunidades').css('display','none');
         $('#moverindicadorporgestor').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 4){
         console.log('moverindicadorporgestorfinal')
@@ -1438,8 +1441,19 @@ function updateRequiredBancarizacion() {
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporoportunidades').css('display','none');
         $('#moverindicadorporgestor').css('display','none');
+        $('#moverporcruce').css('display','none');
+      };
+
+      if($('#tipomovimientoindicadores').val() == 5){
+        console.log('cruce institucional')
+        $('#moverindicadorporgestorfinal').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+        $('#moverporcruce').css('display','');
       };
     }
+     
      
    
     function abrirSegundoModal(id_oportunidad) {

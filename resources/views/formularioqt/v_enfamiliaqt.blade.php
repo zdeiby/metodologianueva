@@ -926,7 +926,7 @@ if($('#checkseleccionado').val() == '' ){
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Indicardor movido con éxito",
+                  title: "Indicador movido con éxito",
                   showConfirmButton: false,
                   timer: 10000
                   });
@@ -1007,7 +1007,7 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Indicardor movido con éxito",
+                  title: "Indicador movido con éxito",
                   showConfirmButton: false,
                   timer: 1000
                   });
@@ -1123,7 +1123,7 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
            Swal.fire({
               position: "center",
               icon: "success",
-              title: "Indicardor movido con éxito",
+              title: "Indicador movido con éxito",
               showConfirmButton: false,
               timer: 1000
               });
@@ -1353,7 +1353,7 @@ $.ajax({
        Swal.fire({
          position: "center",
          icon: "success",
-         title: "Indicardor movido con éxito",
+         title: "Indicador movido con éxito",
          showConfirmButton: false,
          timer: 1000
          });
@@ -1402,7 +1402,7 @@ $.ajax({
        Swal.fire({
          position: "center",
          icon: "success",
-         title: "Indicardor movido con éxito",
+         title: "Indicador movido con éxito",
          showConfirmButton: false,
          timer: 1000
          });
@@ -1460,7 +1460,7 @@ $.ajax({
        Swal.fire({
          position: "center",
          icon: "success",
-         title: "Indicardor movido con éxito",
+         title: "Indicador movido con éxito",
          showConfirmButton: false,
          timer: 1000
          });
@@ -1510,7 +1510,7 @@ $.ajax({
        Swal.fire({
          position: "center",
          icon: "success",
-         title: "Indicardor movido con éxito",
+         title: "Indicador movido con éxito",
          showConfirmButton: false,
          timer: 1000
          });
@@ -1590,13 +1590,14 @@ function updateRequiredTiempoLibre() {
 
 <script>
 
-    function seleccionartipodemovimiento(){
+function seleccionartipodemovimiento(){
       if($('#tipomovimientoindicadores').val() == 1){
         console.log('moverindicadorporgestor')
         $('#moverindicadorporgestor').css('display','');
         $('#moverindicadorporoportunidades').css('display','none');
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 2){
         console.log('moverindicadorporoportunidades')
@@ -1604,6 +1605,7 @@ function updateRequiredTiempoLibre() {
         $('#moverindicadorporgestor').css('display','none');
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 3){
         console.log('moverindicadorporpreguntas')
@@ -1611,6 +1613,7 @@ function updateRequiredTiempoLibre() {
         $('#moverindicadorporoportunidades').css('display','none');
         $('#moverindicadorporgestor').css('display','none');
         $('#moverindicadorporgestorfinal').css('display','none');
+        $('#moverporcruce').css('display','none');
       };
       if($('#tipomovimientoindicadores').val() == 4){
         console.log('moverindicadorporgestorfinal')
@@ -1618,8 +1621,50 @@ function updateRequiredTiempoLibre() {
         $('.moverindicadorporpreguntas').css('display','none');
         $('#moverindicadorporoportunidades').css('display','none');
         $('#moverindicadorporgestor').css('display','none');
+        $('#moverporcruce').css('display','none');
+      };
+
+      if($('#tipomovimientoindicadores').val() == 5){
+        console.log('cruce institucional')
+        $('#moverindicadorporgestorfinal').css('display','none');
+        $('.moverindicadorporpreguntas').css('display','none');
+        $('#moverindicadorporoportunidades').css('display','none');
+        $('#moverindicadorporgestor').css('display','none');
+        $('#moverporcruce').css('display','');
       };
     }
+     
+
+    // function seleccionartipodemovimiento(){
+    //   if($('#tipomovimientoindicadores').val() == 1){
+    //     console.log('moverindicadorporgestor')
+    //     $('#moverindicadorporgestor').css('display','');
+    //     $('#moverindicadorporoportunidades').css('display','none');
+    //     $('.moverindicadorporpreguntas').css('display','none');
+    //     $('#moverindicadorporgestorfinal').css('display','none');
+    //   };
+    //   if($('#tipomovimientoindicadores').val() == 2){
+    //     console.log('moverindicadorporoportunidades')
+    //     $('#moverindicadorporoportunidades').css('display','');
+    //     $('#moverindicadorporgestor').css('display','none');
+    //     $('.moverindicadorporpreguntas').css('display','none');
+    //     $('#moverindicadorporgestorfinal').css('display','none');
+    //   };
+    //   if($('#tipomovimientoindicadores').val() == 3){
+    //     console.log('moverindicadorporpreguntas')
+    //     $('.moverindicadorporpreguntas').css('display','');
+    //     $('#moverindicadorporoportunidades').css('display','none');
+    //     $('#moverindicadorporgestor').css('display','none');
+    //     $('#moverindicadorporgestorfinal').css('display','none');
+    //   };
+    //   if($('#tipomovimientoindicadores').val() == 4){
+    //     console.log('moverindicadorporgestorfinal')
+    //     $('#moverindicadorporgestorfinal').css('display','');
+    //     $('.moverindicadorporpreguntas').css('display','none');
+    //     $('#moverindicadorporoportunidades').css('display','none');
+    //     $('#moverindicadorporgestor').css('display','none');
+    //   };
+    // }
      
  
     function abrirSegundoModal(id_oportunidad) {

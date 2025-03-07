@@ -1171,6 +1171,27 @@ class c_encuestaintegrantesqt extends Controller
                             
                         '.(($id_bienestar == '2' && $id_indicador == '7')?
                         '<option value="4">Por intervención o acción movilizadora del gestor</option>':'' ) .'
+
+
+                         '.(($id_bienestar == '1' && $id_indicador == '1' 
+                         
+                            || $id_bienestar == '2' && $id_indicador == '1'
+                            || $id_bienestar == '2' && $id_indicador == '2'
+                            || $id_bienestar == '2' && $id_indicador == '3'
+                            || $id_bienestar == '2' && $id_indicador == '4'
+                            || $id_bienestar == '2' && $id_indicador == '5'
+                            || $id_bienestar == '2' && $id_indicador == '6'
+
+                            || $id_bienestar == '4' && $id_indicador == '1'
+                            || $id_bienestar == '4' && $id_indicador == '2'
+                            || $id_bienestar == '4' && $id_indicador == '3'
+                            || $id_bienestar == '4' && $id_indicador == '5'
+                         
+                             || $id_bienestar == '5' && $id_indicador == '3'
+                         
+                         )?
+                        '<option value="5">Por cruce institucional</option>':'' ) .'
+
                         </select>
                     </div>
                     <br>
@@ -1362,6 +1383,18 @@ class c_encuestaintegrantesqt extends Controller
                                                     </div>
                                                 </div>
                                                 <br>':'' ) .'
+
+
+                                    
+                                             <div class="was-validated" style="display:none" id="moverporcruce">
+                                             <div class="alert alert-primary" role="alert">
+                                                   Este indicador también puede ser gestionado o movilizado a través de cruce institucional
+                                             </div>
+                                                  
+                                                </div>
+                                                <br>
+
+
                                                                     
 
                     
@@ -1628,6 +1661,27 @@ class c_encuestaintegrantesqt extends Controller
                             
                         '.(($id_bienestar == '3' && $id_indicador == '3')?
                         '<option value="4">Por intervención o acción movilizadora del gestor</option>':'' ) .'
+
+                               '.(($id_bienestar == '1' && $id_indicador == '1' 
+                         
+                            || $id_bienestar == '2' && $id_indicador == '1'
+                            || $id_bienestar == '2' && $id_indicador == '2'
+                            || $id_bienestar == '2' && $id_indicador == '3'
+                            || $id_bienestar == '2' && $id_indicador == '4'
+                            || $id_bienestar == '2' && $id_indicador == '5'
+                            || $id_bienestar == '2' && $id_indicador == '6'
+
+                            || $id_bienestar == '4' && $id_indicador == '1'
+                            || $id_bienestar == '4' && $id_indicador == '2'
+                            || $id_bienestar == '4' && $id_indicador == '3'
+                            || $id_bienestar == '4' && $id_indicador == '5'
+                         
+                             || $id_bienestar == '5' && $id_indicador == '3'
+                         
+                         )?
+                        '<option value="5">Por cruce institucional</option>':'' ) .'
+
+
                         </select>
                     </div>
                     <br>
@@ -1833,6 +1887,14 @@ class c_encuestaintegrantesqt extends Controller
                         </div>
                     </div>
                     <br>':'' ) .'
+
+                    
+                                             <div class="was-validated" style="display:none" id="moverporcruce">
+                                                  <div class="alert alert-primary" role="alert">
+                                                   Este indicador también puede ser gestionado o movilizado a través de cruce institucional
+                                                </div>
+                                                </div>
+                                                <br>
 
 
      
