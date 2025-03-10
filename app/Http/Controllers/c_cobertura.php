@@ -5,6 +5,9 @@ use App\Models\m_index;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+use Hashids\Hashids;
+use Illuminate\Support\Str; 
 
 class c_cobertura extends Controller
 {
@@ -15,29 +18,14 @@ class c_cobertura extends Controller
         }
       $modelo= new m_index();
       $pphogar=$modelo->m_leerprincipalhogar();
-       // dd($pphogar);
       $folios='';
       $estacion='';
-    //   foreach ($pphogar as $value) {
-    //       $estacion='';
-      
-    //       $folios .='<tr>
-    //       <td>'.$value->folio.'</td>
-    //       <td>'.$value->documento.'</td>
-    //       <td>'.$value->nombre1.' '.$value->nombre2.' '.$value->apellido1.' '.$value->apellido2.'</td>
-    //       <td>'.$value->celular.'</td>
-    //      <td>'.$value->telefono.'</td>
-    //       <td>'.$value->comuna.'</td>
-    //       <td>'.$value->barrio.'</td>
-    //       <td>'.$value->direccion.'</td>
-
-    //       <td>'.$estacion.'</td>
-
-    //       ';
+      $hashids = new Hashids('', 10);
 
     //   }
 
-    $folios = array_map(function ($item) {
+    $folios = array_map(function ($item) use ($hashids) {
+      $encodedFolio = $hashids->encode($item->folio);
         return [
             'folio' => $item->folio ?? '',
             'documento' => $item->documento ?? '',
@@ -51,6 +39,7 @@ class c_cobertura extends Controller
             'gestion' => ($item->casillamatriz == 9)
                 ? '<button type="submit" style="width:100px" class="btn btn-success btn-sm">Baja vulnerabilidad</button>'
                 : '<button type="submit"  class="btn btn-primary btn-sm"  onclick="habeasdata(\'' . encrypt($item->folio) . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'boton">Gestiónar</button>',
+            'actualizar' => '<button type="submit"  class="btn btn-primary btn-sm" style="background:#ff8403 !important; border: 1px solid #ff8403"  onclick="actualizar(\'' . $encodedFolio . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'actualizar">Actualizar</button>',
         ];
     }, $pphogar);
 

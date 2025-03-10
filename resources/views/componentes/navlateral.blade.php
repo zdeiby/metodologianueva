@@ -494,7 +494,7 @@ function soloNumeros(e) {
     <ul class="nav flex-column ">
         <li class="nav-item">
             <a href="{{ route('index') }}" class="{{ request()->routeIs('index') ? 'inbox' : '' }} nav-link text-white d-flex align-items-center">
-                <ion-icon name="home-outline"></ion-icon>
+                <ion-icon name="pie-chart-outline"></ion-icon>
                 <span class="nav-text ms-2">Inicio</span>
             </a>
         </li>
@@ -549,6 +549,28 @@ function soloNumeros(e) {
                 </li> -->
             </ul>
         </li>
+
+
+        <!-- <li class="nav-item dropdown" style="cursor:pointer">
+            <a  class="{{ request()->routeIs('oportunidades') ? 'inbox' : '' }} nav-link dropdown-toggle text-white d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#submenuHogar" aria-expanded="false">
+                <ion-icon name="home-outline"></ion-icon>
+                <span class="nav-text ms-2">Hogar</span>
+            </a>
+            <ul class="collapse list-unstyled ps-3" id="submenuHogar">
+                    <li class="nav-item">
+                    <a href="{{route('sisben')}}" class="{{ request()->routeIs('sisben') ? 'inbox' : '' }} nav-link text-white d-flex align-items-center">
+                        <ion-icon name="create-outline"></ion-icon>
+                        <span class="nav-text ms-2">Actualizar Datos</span>
+                    </a>
+                </li> 
+                 <li>
+                    <a href="{{route('oportunidadeshogar')}}" class="nav-link text-white d-flex align-items-center">
+                    <ion-icon name="home-outline"></ion-icon>
+                    <span class="nav-text ms-2">Hogar</span>
+                    </a>
+                </li> 
+            </ul>
+        </li> -->
 
 
 

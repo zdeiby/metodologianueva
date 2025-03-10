@@ -137,6 +137,15 @@
 
     }
 
+
+    function actualizar(folioencriptado, folio){
+      paginacargando();
+      paginalista();
+        let url = `{{ url('editarintegrantesgeneral') }}/${folioencriptado}`;
+        // Redirigir a la URL construida
+        window.location.href = url;    
+      }
+
     
  </script>
 <!-- Enlace al archivo CSS -->
@@ -162,7 +171,8 @@
                 'Comuna',
                 'Dirección',
                 'Visita',
-                'Gestionar'
+                'Gestionar',
+                 'Actualizar Datos'
             ],
             columns: [
                 { data: 'folio',
@@ -208,6 +218,13 @@
                     renderer: 'html', // Habilita contenido HTML en esta columna
                     readOnly: true,
                     width: 110,
+                }
+                ,
+                {
+                    data: 'actualizar',
+                    renderer: 'html', // Habilita contenido HTML en esta columna
+                    readOnly: true,
+                    width: 130,
                 }
             ],
             licenseKey: 'non-commercial-and-evaluation', // Cambiar si tienes una licencia comercial

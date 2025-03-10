@@ -13,8 +13,12 @@ use App\Http\Controllers\c_rombo;
 use App\Http\Controllers\c_rombointegrantes;
 use App\Http\Controllers\c_integrantes;
 use App\Http\Controllers\c_editarintegrantes;
+use App\Http\Controllers\c_editarIntegrantesgeneral;
+use App\Http\Controllers\c_editarintegrantesdatosgeneral;
 use App\Http\Controllers\c_encuestaintegrantes;
 use App\Http\Controllers\vistaslineas\c_l1e1;
+use App\Http\Controllers\editarintegrantesyhogar\c_editarhogardatosgeograficos;
+
 use App\Http\Controllers\c_sincronizacion; 
 use App\Http\Controllers\c_cardsqt;
 use App\Http\Controllers\formularioqt\c_encuestaintegrantesqt;
@@ -288,3 +292,20 @@ Route::post('/guardarfirmat1refuerzo3',[c_finalizaciont1refuerzo3::class, 'fc_gu
 
 Route::get('/finalizarvisitat1refuerzo3',[c_finalizaciont1refuerzo3::class,'fc_finalizarvisitat1refuerzo3'])->name('finalizarvisitat1refuerzo3');
 Route::get('/informevisitat1refuerzo3/{folio}',[c_finalizaciont1refuerzo3::class,'fc_informevisitat1refuerzo3'])->name('informevisitat1refuerzo3');
+
+
+// rutas para editar integrantes y hogar
+
+Route::get('/editarintegrantesgeneral/{folio}',[c_editarIntegrantesgeneral::class,'fc_integrantes'])->name('editarintegrantesgeneral');
+Route::get('/leerintegrantesgeneral',[c_editarIntegrantesgeneral::class,'fc_leerintegrantes'])->name('leerintegrantesgeneral');
+
+
+Route::get('/editarintegrantesdatosgeneral',[c_editarintegrantesdatosgeneral::class, 'fc_editarintegrantes'])->name('editarintegrantesdatosgeneral');
+Route::get('/responderencuestadatosgeneral',[c_editarintegrantesdatosgeneral::class, 'fc_responderencuesta'])->name('responderencuestadatosgeneral'); 
+Route::get('/guardarintegrantedatosgeneral',[c_editarintegrantesdatosgeneral::class, 'fc_guardarintegrante'])->name('guardarintegrantedatosgeneral');   
+Route::get('/guardaravatardatosgeneral',[c_editarintegrantesdatosgeneral::class, 'fc_guardaravatar'])->name('guardaravatardatosgeneral');
+Route::get('/guardaridentitariodatosgeneral',[c_editarintegrantesdatosgeneral::class, 'fc_guardaridentitario'])->name('guardaridentitariodatosgeneral');    
+Route::get('/consultarrepresentantedatosgeneral',[c_editarintegrantesdatosgeneral::class, 'fc_consultarrepresentante'])->name('consultarrepresentantedatosgeneral');
+
+
+Route::get('/editarencuestahogardatosgeograficos/{lineaestacion}',[c_editarhogardatosgeograficos::class,'fc_encuestahogardatosgeograficos'])->name('encuestahogardatosgeograficos');
