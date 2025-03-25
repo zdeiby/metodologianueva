@@ -201,7 +201,7 @@ body {
                   </h3>
              </div>
             
-             <button type="button" class="btn btn-primary" id="saludoencuadrebtn"  data-bs-toggle="modal" data-bs-target="#exampleModal">Ver encuadre</button>
+             <button type="button" class="btn btn-primary" id="saludoencuadrebtn" <?= $existel300p30010?'disabled':'' ?>  data-bs-toggle="modal" data-bs-target="#exampleModal">Ver encuadre</button>
             
              <div class="smCard">
                 </div>

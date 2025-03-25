@@ -35,18 +35,14 @@ class m_herramientas extends Model
 
     public function m_leeracciones($tabla, $idbienestar)
     {
-        // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
         $resultado = DB::select(' SELECT * FROM '.$tabla.' WHERE bienestar = '.$idbienestar.';' );  
-       // Inicializar el HTML del <select>
 
-    $respuestas = '<option value="">Seleccione</option>'; // Opción predeterminada
+    $respuestas = '<option value="">Seleccione</option>'; 
     
-    // Iterar sobre los resultados y agregar cada opción
     foreach ($resultado as $accion) {
         $respuestas .= '<option value="' . htmlspecialchars($accion->id) . '">' . htmlspecialchars($accion->descripcion) . '</option>';
     }
     
-    // Cerrar el <select>
 
     
     return $respuestas;

@@ -109,8 +109,8 @@
         </li>
     @endif
 
-
-  <!--  <li class="scene">
+   @if ($realizadosvt1 == '1')
+  <li class="scene">
             <div class="movie">
                 <div class="poster" >
                     <div id="imgicon"></div>
@@ -137,8 +137,8 @@
                     @endif
                 </div>
             </div>
-        </li> -->
-
+        </li> 
+   @endif
 
 
 
