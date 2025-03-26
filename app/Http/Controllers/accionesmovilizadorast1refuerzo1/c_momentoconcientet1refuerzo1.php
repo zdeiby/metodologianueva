@@ -300,8 +300,11 @@ class c_momentoconcientet1refuerzo1 extends Controller
                     $tabla = 't1_accionmovilizadoracompromisos';
                     $hashids = new Hashids('', 10); 
                     $encodedFolio = $hashids->decode($folio);
-                    $linea= 200;
-                    $paso= 20040;
+                    $linea= 300;
+                    $paso= 30040;
+
+                    $lineaanterior= 200;
+                    $pasoanterior= 20040;
             
                     // $categorias = DB::table('t1_ordenprioridadesqt')
                     // ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
@@ -326,6 +329,21 @@ class c_momentoconcientet1refuerzo1 extends Controller
                         foreach ($informacion as $compromiso) {
                             $compromisosArray[$compromiso->numero_compromiso] = $compromiso->compromiso;
                         }
+
+
+
+                        $informacionant = DB::table($tabla)
+                        ->where('folio', $encodedFolio)
+                        ->where('linea', $lineaanterior)
+                        ->where('paso', $pasoanterior)
+                        ->select('compromiso', 'numero_compromiso') // Solo seleccionamos los campos necesarios
+                        ->get();
+        
+                        $compromisosArray2 = [1 => '', 2 => '', 3 => '', 4 => ''];
+        
+                        foreach ($informacionant as $compromiso) {
+                            $compromisosArray2[$compromiso->numero_compromiso] = $compromiso->compromiso;
+                        }
         
         
                        // dd($compromisosArray);
@@ -342,6 +360,7 @@ class c_momentoconcientet1refuerzo1 extends Controller
                                                                             'folio'=>$encodedFolio[0],
                                                                             'tabla'=>$tabla,
                                                                             'compromisosArray'=>$compromisosArray,
+                                                                            'compromisosArray2'=>$compromisosArray2,
                                                                             'linea'=>$linea,
                                                                             'paso'=>$paso,
                                                                             
@@ -498,11 +517,11 @@ class c_momentoconcientet1refuerzo1 extends Controller
 
 
 
-      public function fc_verificarpasos(Request $request)
+      public function fc_verificarpasost1refuerzo1(Request $request)
       {
           $folio = $request->input('folio');
           $linea = $request->input('linea');
-          $pasos = ['20020', '20030', '20040']; // Pasos a verificar
+          $pasos = ['30020', '30030', '30040']; // Pasos a verificar
       
           // Realiza la consulta utilizando el Query Builder
           $resultado = DB::table('t1_pasosvisita')

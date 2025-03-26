@@ -250,6 +250,7 @@ Route::get('/guardarfinalizacionest1refuerzo1',[c_finalizaciont1refuerzo1::class
 Route::get('/actualizacionnovedadest1refuerzo1/{folio}',[c_finalizaciont1refuerzo1::class, 'fc_actualizacionnovedadest1refuerzo1'])->name('actualizacionnovedadest1refuerzo1');
 Route::get('/guardaractualizacionynovedadeshogart1refuerzo1',[c_finalizaciont1refuerzo1::class, 'fc_guardaractualizacionynovedadeshogart1refuerzo1'])->name('guardaractualizacionynovedadeshogart1refuerzo1');
 Route::post('/guardarfirmat1refuerzo1',[c_finalizaciont1refuerzo1::class, 'fc_guardarfirmat1refuerzo1'])->name('guardarfirmat1refuerzo1');
+Route::get('/verificarpasost1refuerzo1',[c_momentoconcientet1refuerzo1::class, 'fc_verificarpasost1refuerzo1'])->name('verificarpasost1refuerzo1');
 
 Route::get('/finalizarvisitat1refuerzo1',[c_finalizaciont1refuerzo1::class,'fc_finalizarvisitat1refuerzo1'])->name('finalizarvisitat1refuerzo1');
 Route::get('/informevisitat1refuerzo1/{folio}',[c_finalizaciont1refuerzo1::class,'fc_informevisitat1refuerzo1'])->name('informevisitat1refuerzo1');

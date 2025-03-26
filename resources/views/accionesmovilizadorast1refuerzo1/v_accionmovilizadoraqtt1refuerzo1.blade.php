@@ -252,7 +252,7 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
       $('#siguiente').click(function(){
 
             $.ajax({
-                url: '../verificarpasos',
+                url: '../verificarpasost1refuerzo1',
                 method: 'GET', // Cambiar a GET si estás usando GET
                 data: { folio: '{{ $folio }}',
                         linea: '{{ $linea }}',

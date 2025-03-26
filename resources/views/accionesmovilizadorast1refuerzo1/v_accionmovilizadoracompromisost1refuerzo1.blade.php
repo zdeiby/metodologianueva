@@ -102,7 +102,7 @@
             <input type="text" placeholder="paso" class="form-control form-control-sm  " id="paso" name="paso" value="{{$paso}}" >
           </div>
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">COMPROMISOS DEL HOGAR / INTEGRANTES.</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">COMPROMISOS DEL HOGAR / INTEGRANTES ANTERIOR.</span>
 
 
 
@@ -119,13 +119,13 @@
       
             <div class="accordion-item">
             <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOneant" aria-expanded="true">
                     <b style="text-decoration: underline;">Compromiso 1</b>
                 </button>
             </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse show">
+            <div id="flush-collapseOneant" class="accordion-collapse collapse show">
                 <div class="container pt-4 pb-4">
-                    <textarea class="form-control form-control-sm" id="compromiso1" name="compromiso1" rows="5" oninput="validarCompromisos()" required>{{ $compromisosArray[1] }}</textarea>
+                    <textarea class="form-control form-control-sm" id="compromiso1ant" rows="5" oninput="validarCompromisos2()" disabled required>{{ $compromisosArray2[1] }}</textarea>
                 </div>
             </div>
         </div>
@@ -133,13 +133,13 @@
         <!-- Compromiso 2 (Deshabilitado al inicio) -->
         <div class="accordion-item">
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwoant" aria-expanded="false">
                     <b style="text-decoration: underline;">Compromiso 2</b>
                 </button>
             </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse">
+            <div id="flush-collapseTwoant" class="accordion-collapse collapse">
                 <div class="container pt-4 pb-4">
-                    <textarea class="form-control form-control-sm" id="compromiso2" name="compromiso2" rows="5" oninput="validarCompromisos()" disabled>{{ $compromisosArray[2] }}</textarea>
+                    <textarea class="form-control form-control-sm" id="compromiso2ant"  rows="5" oninput="validarCompromisos2()" disabled>{{ $compromisosArray2[2] }}</textarea>
                 </div>
             </div>
         </div>
@@ -147,13 +147,13 @@
         <!-- Compromiso 3 (Deshabilitado al inicio) -->
         <div class="accordion-item">
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThreeant" aria-expanded="false">
                     <b style="text-decoration: underline;">Compromiso 3</b>
                 </button>
             </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse">
+            <div id="flush-collapseThreeant" class="accordion-collapse collapse">
                 <div class="container pt-4 pb-4">
-                    <textarea class="form-control form-control-sm" id="compromiso3" name="compromiso3" rows="5" oninput="validarCompromisos()" disabled>{{ $compromisosArray[3] }}</textarea>
+                    <textarea class="form-control form-control-sm" id="compromiso3ant"  rows="5" oninput="validarCompromisos2()" disabled>{{ $compromisosArray2[3] }}</textarea>
                 </div>
             </div>
         </div>
@@ -161,21 +161,104 @@
         <!-- Compromiso 4 (Deshabilitado al inicio) -->
         <div class="accordion-item">
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFourant" aria-expanded="false">
                     <b style="text-decoration: underline;">Compromiso 4</b>
                 </button>
             </h2>
-            <div id="flush-collapseFour" class="accordion-collapse collapse">
+            <div id="flush-collapseFourant" class="accordion-collapse collapse">
                 <div class="container pt-4 pb-4">
-                    <textarea class="form-control form-control-sm" id="compromiso4" name="compromiso4" rows="5" disabled>{{ $compromisosArray[4] }}</textarea>
+                    <textarea class="form-control form-control-sm" id="compromiso4ant"  rows="5" disabled>{{ $compromisosArray2[4] }}</textarea>
                 </div>
             </div>
         </div>
     
 
 
+
+
+
+  
+
   </div>
+
+  <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">COMPROMISOS DEL HOGAR / INTEGRANTES .</span>
+
+
+
+
+<!-- <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">COMPROMISO BIENESTAR PRIORIZADO.</span> -->
+<div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
+El gestor consigna información cualitativa. A que se compromete el hogar en relación a las acciones de autogestión orientadas a mejorar las condiciones de vida, enfocándose en superar indicadores, aprovechar oportunidades acercadas y abordar necesidades específicas de los integrantes del hogar- QT
+</div>
+<div class="row">
+  <!-- <div class="form-group col-sm" id="divobs">
+      <label for="compromiso"></label>
+      <textarea class="form-control form-control-sm" oninput="validateInput(this)"  rows="10" cols="20" class="" readOnly>{{$compromiso}}</textarea>
+  </div> -->
+
+  <div class="accordion-item">
+  <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true">
+          <b style="text-decoration: underline;">Compromiso 1</b>
+      </button>
+  </h2>
+  <div id="flush-collapseOne" class="accordion-collapse collapse show">
+      <div class="container pt-4 pb-4">
+          <textarea class="form-control form-control-sm" id="compromiso1" name="compromiso1" rows="5" oninput="validarCompromisos()" required>{{ $compromisosArray[1] }}</textarea>
+      </div>
   </div>
+</div>
+
+<!-- Compromiso 2 (Deshabilitado al inicio) -->
+<div class="accordion-item">
+  <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false">
+          <b style="text-decoration: underline;">Compromiso 2</b>
+      </button>
+  </h2>
+  <div id="flush-collapseTwo" class="accordion-collapse collapse">
+      <div class="container pt-4 pb-4">
+          <textarea class="form-control form-control-sm" id="compromiso2" name="compromiso2" rows="5" oninput="validarCompromisos()" disabled>{{ $compromisosArray[2] }}</textarea>
+      </div>
+  </div>
+</div>
+
+<!-- Compromiso 3 (Deshabilitado al inicio) -->
+<div class="accordion-item">
+  <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false">
+          <b style="text-decoration: underline;">Compromiso 3</b>
+      </button>
+  </h2>
+  <div id="flush-collapseThree" class="accordion-collapse collapse">
+      <div class="container pt-4 pb-4">
+          <textarea class="form-control form-control-sm" id="compromiso3" name="compromiso3" rows="5" oninput="validarCompromisos()" disabled>{{ $compromisosArray[3] }}</textarea>
+      </div>
+  </div>
+</div>
+
+<!-- Compromiso 4 (Deshabilitado al inicio) -->
+<div class="accordion-item">
+  <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false">
+          <b style="text-decoration: underline;">Compromiso 4</b>
+      </button>
+  </h2>
+  <div id="flush-collapseFour" class="accordion-collapse collapse">
+      <div class="container pt-4 pb-4">
+          <textarea class="form-control form-control-sm" id="compromiso4" name="compromiso4" rows="5" disabled>{{ $compromisosArray[4] }}</textarea>
+      </div>
+  </div>
+</div>
+
+
+
+  </div>
+
+
+
+
+  
           <!-- <hr> -->
           <br>
 
@@ -216,34 +299,34 @@
 
       $('#siguiente').click(function(){
 
-            $.ajax({
-                url: '../verificarpasos',
-                method: 'GET', // Cambiar a GET si estás usando GET
-                data: { folio: '{{ $folio }}',
-                        linea: '{{ $linea }}',
+            // $.ajax({
+            //     url: '../verificarpasos',
+            //     method: 'GET', // Cambiar a GET si estás usando GET
+            //     data: { folio: '{{ $folio }}',
+            //             linea: '{{ $linea }}',
                         
-                }, // Envía los datos de manera plana
-                success: function(response) {
-                  console.log(response.resultado)
-                  if(response.resultado == 1){
+            //     }, // Envía los datos de manera plana
+            //     success: function(response) {
+            //       console.log(response.resultado)
+            //       if(response.resultado == 1){
                   var url = "../rombovisitatipo1refuerzo1/<?= $variable ?>"; window.location.href = url;
-                  }else{
-                    Swal.fire({
-                      icon: "error",
-                      title: "Oops...",
-                      text: "Debes completar los pasos anteriores",
-                      footer: ''
-                    });
-                  }
-                },
-                error: function(xhr, status, error) {
-                    alertabad();
-                    console.error(error);
-                }
-            });
+    //               }else{
+    //                 Swal.fire({
+    //                   icon: "error",
+    //                   title: "Oops...",
+    //                   text: "Debes completar los pasos anteriores",
+    //                   footer: ''
+    //                 });
+    //               }
+    //             },
+    //             error: function(xhr, status, error) {
+    //                 alertabad();
+    //                 console.error(error);
+    //             }
+    //         });
 
-     //   var url = "../rombovisitatipo1/<?= $variable ?>"; window.location.href = url;
-      }); 
+    //  //   var url = "../rombovisitatipo1/<?= $variable ?>"; window.location.href = url;
+       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
            var url = "../accionmovilizadoraqtt1refuerzo1/:folio";
@@ -275,7 +358,7 @@
         let compromisos = [];
 
         // Recorrer los textareas de compromisos
-        $('textarea[id^="compromiso"]').each(function(index) {
+        $('textarea[id^="compromiso"]').not('[id$="ant"]').each(function(index) {
             var valor = $(this).val().trim();
 
             if (valor !== "") { // Solo agregar si tiene contenido
@@ -387,9 +470,47 @@
         $('#siguiente').css('display','');
         }
         validarCompromisos();
-    };
-</script>
 
+        let compromiso12 = document.getElementById("compromiso1ant");
+      if (compromiso12.value.trim() !== "") {
+        $('#siguiente').css('display','');
+        }
+        validarCompromisos2();
+    };
+
+    function validarCompromisos2() {
+        let compromiso1 = document.getElementById("compromiso1ant");
+        let compromiso2 = document.getElementById("compromiso2ant");
+        let compromiso3 = document.getElementById("compromiso3ant");
+        let compromiso4 = document.getElementById("compromiso4ant");
+
+        // Obtener los div de los acordeones
+        let collapseOne = document.getElementById("flush-collapseOneant");
+        let collapseTwo = document.getElementById("flush-collapseTwoant");
+        let collapseThree = document.getElementById("flush-collapseThreeant");
+        let collapseFour = document.getElementById("flush-collapseFourant");
+
+        // Habilitar los campos según la información disponible
+      //  compromiso2.disabled = compromiso1.value.trim() === "";
+      //  compromiso3.disabled = compromiso2.value.trim() === "";
+      //  compromiso4.disabled = compromiso3.value.trim() === "";
+
+        // Desplegar los acordeones si tienen información
+        if (compromiso1.value.trim() !== "") {
+            collapseOne.classList.add("show");
+        }
+        if (compromiso2.value.trim() !== "") {
+            collapseTwo.classList.add("show");
+        }
+        if (compromiso3.value.trim() !== "") {
+            collapseThree.classList.add("show");
+        }
+        if (compromiso4.value.trim() !== "") {
+            collapseFour.classList.add("show");
+        }
+    }
+
+</script>
 
 
 @endsection

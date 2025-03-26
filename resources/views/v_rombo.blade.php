@@ -116,7 +116,7 @@
                     <div id="imgicon"></div>
                     <div style="text-align: center; padding-top:10px" >
                    
-                        <img class="" src="{{ asset('assets/img/iconos/4.jpg')}}" width="100%" alt="">
+                        <img class="" src="{{ asset('assets/img/iconos/1.jpg')}}" width="100%" alt="">
                         <br> <br>
                         <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">VISITA TIPO 1 (REFUERZO)</div>
 
@@ -126,7 +126,7 @@
                     <div >
                       <label for="" style="color:white;font-size:18px">Visita tipo 1 Refuerzo 1</label>
                     </div>
-                    <img src="{{ asset('imagenes/banner2.jpg')}}" style="border-radius:10px" width="100%" alt="">
+                    <img src="{{ asset('imagenes/banner3.jpg')}}" style="border-radius:10px" width="100%" height="150px" alt="">
                     <br>
                     <br> 
                    
