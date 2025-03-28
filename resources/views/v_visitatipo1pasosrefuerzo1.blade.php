@@ -224,7 +224,7 @@ body {
                     <label>Momento movilizador</label>
                   </h3>               
                 </div>
-                <button type="button" id="gestionintegrantes" <?=/* ! */ (($existel300p30010 == '1' && $existel300p30020 == '0' ) /* || ($existel300p30010 == '1' && $existel200p20030 == '0') || ($existel300p30010 == '1' && $existel200p20040 == '0') */  )?'':'disabled'?>  class="btn btn-primary" onclick="window.location.href='../momentoconcientet1refuerzo1/{{$folioencriptado}}/'">Ir a momento movilizador.</button>
+                <button type="button" id="gestionintegrantes" <?=/* ! */ (($existel300p30010 == '1' && $existel300p30020 == '0' ) /* || ($existel300p30010 == '1' && $existel300p30030 == '0') || ($existel300p30010 == '1' && $existel300p30040 == '0') */  )?'':'disabled'?>  class="btn btn-primary" onclick="window.location.href='../momentoconcientet1refuerzo1/{{$folioencriptado}}/'">Ir a momento movilizador.</button>
                 <div class="smCard">
                 </div>
               </div>
@@ -246,7 +246,7 @@ body {
                     <label>Oportunidades</label>
                   </h3>
              </div>  
-            <button type="button" class="btn btn-primary"   onclick="window.location.href='../ficherodeoportunidades/{{$folioencriptado}}/'">Ir a oportunidades</button> 
+            <button type="button" class="btn btn-primary"   onclick="window.location.href='../ficherodeoportunidadest1refuerzo1/{{$folioencriptado}}/'">Ir a oportunidades</button> 
              <div class="smCard">
                 </div>
               </div>
@@ -269,7 +269,7 @@ body {
                     <label>Espacio de finalización</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" <?=($existel300p30010 == '1' && $existel300p30020 == '1'  && $existel200p20030 == '1' && $existel200p20040 == '1' && $existel200p20050 == '0' )?'':'disabled'?> onclick="window.location.href='../actualizacionnovedades/{{$folioencriptado}}/'">Ir a finalización</button>
+             <button type="button" class="btn btn-primary" <?=($existel300p30010 == '1' && $existel300p30020 == '1'  && $existel300p30030 == '1' && $existel300p30040 == '1' && $existel300p30050 == '0' )?'':'disabled'?> onclick="window.location.href='../actualizacionnovedadest1refuerzo1/{{$folioencriptado}}/'">Ir a finalización</button>
              <div class="smCard">
                 </div>
               </div>

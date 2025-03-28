@@ -195,11 +195,11 @@
 
 <script>
    $('#siguiente').click(function(){
-        var url = "../rombovisitatipo1/<?= $variable ?>"; window.location.href = url;
+        var url = "../rombovisitatipo1refuerzo1/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../ficherodeoportunidades/:folio";
+           var url = "../ficherodeoportunidadest1refuerzo1/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -207,8 +207,8 @@
     
 
 
-       $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogar/<?= $variable ?>"; window.location.href = url;})
+       $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidadest1refuerzo1/<?= $variable ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogart1refuerzo1/<?= $variable ?>"; window.location.href = url;})
     // $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
       
 

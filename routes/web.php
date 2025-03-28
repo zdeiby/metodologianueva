@@ -310,3 +310,9 @@ Route::get('/consultarrepresentantedatosgeneral',[c_editarintegrantesdatosgenera
 
 
 Route::get('/editarencuestahogardatosgeograficos/{lineaestacion}',[c_editarhogardatosgeograficos::class,'fc_encuestahogardatosgeograficos'])->name('encuestahogardatosgeograficos');
+
+
+
+
+
+require __DIR__.'/webfess.php'; // rutas para la sincronizacion arriba   busca las rutas en routes/sincroarriba.php

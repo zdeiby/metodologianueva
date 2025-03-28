@@ -53,11 +53,11 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link ">ACTUALIZACIÓN Y/O NOVEDADES
+        <a id="bienestarsaludemocionalqt" class="nav-link active">ACTUALIZACIÓN Y/O NOVEDADES
         </a>
       </li>
        <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="legalqt"  class="nav-link active" >INFORME DE LA VISITA</a>
+        <a id="legalqt"  class="nav-link" >INFORME DE LA VISITA</a>
       </li>
       <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
@@ -92,29 +92,24 @@
             <input type="text" placeholder="usuario" class="form-control form-control-sm  " id="usuario" name="usuario" value="{{ Session::get('cedula') }}" >
           </div>
 
-          <div class="col-md-3" style="display:none">
-            <input type="text" placeholder="tabla" class="form-control form-control-sm  " id="tabla" name="tabla" value="{{$tabla}}" >
-            <input type="text" placeholder="linea" class="form-control form-control-sm  " id="linea" name="linea" value="{{$linea}}" >
-            <input type="text" placeholder="paso" class="form-control form-control-sm  " id="paso" name="paso" value="{{$paso}}" >
+         
 
-          </div>
-
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">INFORME</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Actualización y/o Novedades del hogar.</span>
 
 
 
 
           <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
-            <b>INFORME CUALITATIVO DEL GESTOR SOBRE EL DESARROLLO DE LA VISITA AL HOGAR.</b> Este cuadro permite al gestor detallar el desempeño y resultados obtenidos durante la visita al hogar, proporcionando una visión cualitativa del proceso. <br>
-            <b>DESCRIPCIÓN DEL PROCESO.</b> En este espacio, el gestor puede describir de manera libre y detallada cómo se llevó a cabo la visita, los aspectos positivos y áreas de mejora identificadas, así como cualquier circunstancia o interacción relevante que haya influido en el desarrollo de la misma. <br>
-            <b>PROPÓSITO.</b> El objetivo es que el gestor pueda reflejar su experiencia de manera clara, permitiendo una evaluación más completa del impacto de la visita y facilitando la planificación de acciones futuras. 
+          <b>PROCEDENCIA E HISTORIA FAMILIAR.</b> ¿De dónde son originarios, hace cuánto viven en el sector y por qué vinieron a vivir allí? <br>
+          <b>  RELACIONES Y DINÁMICA FAMILIAR.</b> ¿cómo describen su hogar, cómo definen sus relaciones, cómo se sienten en relación a la vida que llevan juntos?
+            PROYECCIÓN. ¿Cuáles son sus metas el corto, mediano y largo plazo?, ¿qué esperan o sueñan en el hogar?<br>
+            <b> CRITERIOS DEL HOGAR PARA LA PRIOZACION QT.</b> ¿Cuáles son las razones del hogar para sugerir cambios en el orden de abordaje de las categorías del bienestar?.
           </div>
-
 
           <div class="row">
             <div class="form-group col-sm" id="divobs">
                 <label for="actualizacion"></label>
-                <textarea class="form-control form-control-sm" name="informe" id="informe" oninput="validateInput(this)" rows="10" cols="20" class="" required>{{$informe}}</textarea>
+                <textarea class="form-control form-control-sm" name="actualizacion" id="actualizacion" oninput="validateInput(this)" rows="10" cols="20" class="" required></textarea>
             </div>
         </div>
 
@@ -145,7 +140,7 @@
             </div>
             <div class="text-end col">
             <button class="btn btn-outline-success" type="submit"  >Guardar</button>
-            <div class="btn btn-outline-primary" id="siguiente"  <?=$siguiente?> >Siguiente</div>
+            <div class="btn btn-outline-primary" id="siguiente"   >Siguiente</div>
             </div> 
           </div>
 
@@ -165,77 +160,7 @@
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
-    
 
-
-
-      $('#siguiente').click(function(){
-        var url = "../finalizaciont1refuerzo1/<?= $variable ?>"; window.location.href = url;
-      }); 
-      function redirectToIntegrantes() {
-           var folio = `<?=$variable ?>`;
-           var url = "../actualizacionnovedadest1refuerzo1/:folio";
-           url = url.replace(':folio', folio);
-           window.location.href = url;
-       }
-
-    
-
-
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedadest1refuerzo1/<?= $variable ?>"; window.location.href = url;})
-     $('#legalqt').click(function(){var url = "../informevisitat1refuerzo1/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../finalizaciont1refuerzo1/<?= $variable ?>"; window.location.href = url;})
-
-      
-    $(document).ready(function() {
-        $('#formulario').on('submit', function(event) {
-                event.preventDefault(); // Detiene el envío del formulario
-
-                var formData = $(this).serializeArray();
-
-                var data = {};
-                $(formData).each(function(index, obj) {
-                data[obj.name] = obj.value;
-                });
-                // Agregar el contenido del editor CKEditor al objeto data
-            
-
-                console.log(data);
-
-                $.ajax({
-                    url: '../guardaractualizacionynovedadeshogar',
-                    method: 'GET', // Cambiar a POST si es necesario
-                    data: data, // Envía los datos de manera plana
-                    success: function(response) {
-                        $('#siguiente').css('display','');
-                        alertagood();
-                    },
-                    error: function(xhr, status, error) {
-                        alertabad();
-                        console.error(error);
-                    }
-                });
-            });
-});
-
-
-
-
-// function agregarpaso(data){
-//     $.ajax({
-//       url: '../agregarpasohogargeneral',
-//       method: 'GET', // Cambiar a GET si estás usando GET
-//       data: data, // Envía los datos de manera plana
-//       success: function(response) {
-//         $('#siguiente').css('display','');
-//           alertagood();
-//       },
-//       error: function(xhr, status, error) {
-//           alertabad();
-//           console.error(error);
-//       }
-//     });
-// }
 
     </script>
 

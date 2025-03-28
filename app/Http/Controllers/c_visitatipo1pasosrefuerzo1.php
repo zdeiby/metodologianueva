@@ -42,35 +42,35 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
       ->where('linea', $linea)
       ->where('paso', $paso30020)
       ->exists();
-      $paso20030='20030';
-      $existel200p20030 = DB::table('t1_pasosvisita')
+      $paso30030='30030';
+      $existel300p30030 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso20030)
+      ->where('paso', $paso30030)
       ->exists();
 
-      $paso20040='20040';
-      $existel200p20040 = DB::table('t1_pasosvisita')
+      $paso30040='30040';
+      $existel300p30040 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso20040)
+      ->where('paso', $paso30040)
       ->exists();
 
-      $paso20050='20050';
-      $existel200p20050 = DB::table('t1_pasosvisita')
+      $paso30050='30050';
+      $existel300p30050 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
-      ->where('paso', $paso20050)
+      ->where('paso', $paso30050)
       ->exists();
 
 
 
-    //   $paso20060='20060';
-    //   $existel200p20060 = DB::table('t1_pasosvisita')
-    //   ->where('folio', $folioDesencriptado)
-    //   ->where('linea', $linea)
-    //   ->where('paso', $paso20060)
-    //   ->exists();
+       $paso30060='30060';
+       $existel300p30060 = DB::table('t1_pasosvisita')
+       ->where('folio', $folioDesencriptado)
+       ->where('linea', $linea)
+       ->where('paso', $paso30060)
+       ->exists();
 
     //   $casilla = DB::table('t1_casillamatriz')
     //   ->where('folio', $folioDesencriptado)
@@ -104,8 +104,8 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
         'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf, //'porcentaje_gris_bf'=>$porcentaje_gris_bf, 
         'v_visitatipo1pasos',
         "folioDesencriptado"=>$folioDesencriptado, 'foliocodificado'=>$foliocodificado,  'existel300p30010' => $existel300p30010 ? 1 : 0,
-        'existel300p30020' => $existel300p30020 ? 1 : 0, 'existel200p20030' => $existel200p20030 ? 1 : 0,  'existel200p20040' => $existel200p20040 ? 1 : 0,
-        'existel200p20050' => $existel200p20050 ? 1 : 0,  //'existel200p20060' => $existel200p20060 ? 1 : 0,
+        'existel300p30020' => $existel300p30020 ? 1 : 0, 'existel300p30030' => $existel300p30030 ? 1 : 0,  'existel300p30040' => $existel300p30040 ? 1 : 0,
+        'existel300p30050' => $existel300p30050 ? 1 : 0,  'existel300p30060' => $existel300p30060 ? 1 : 0,
         'prioridades'=>$prioridades,
         'folio'=>$decodeFolio[0],
         'linea'=>$linea,
