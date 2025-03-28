@@ -308,10 +308,10 @@ class c_finalizaciont1refuerzo1 extends Controller
       
       
 
-      public function fc_finalizarvisita(Request $request){
+      public function fc_finalizarvisitat1refuerzo1(Request $request){
         $now = Carbon::now();
         $folio = $request->input('folio');
-        $linea = 200;  // poner linea 
+        $linea = $request->input('linea');
         //$paso = 20060;  // poner paso
         $usuario = $request->input('usuario'); // Este campo no es clave primaria
   

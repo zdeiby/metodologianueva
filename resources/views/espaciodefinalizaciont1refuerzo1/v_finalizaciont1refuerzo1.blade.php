@@ -255,8 +255,8 @@
 
         $('#finalizarboton').click(function(){
               $.ajax({
-                  url: '../finalizarvisita',
-                  data: { folio: $('#folioinput').val(), usuario:'{{ Session::get('cedula') }}' },
+                  url: '../finalizarvisitat1refuerzo1',
+                  data: { folio: $('#folioinput').val(), usuario:'{{ Session::get('cedula') }}', linea:<?= $linea ?> },
                   method: "GET",
                   dataType: 'JSON',
                   success: function(data) {
