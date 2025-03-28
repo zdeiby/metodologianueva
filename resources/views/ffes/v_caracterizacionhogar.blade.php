@@ -53,11 +53,11 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">caracterizacion integrantes
+        <a id="bienestarsaludemocionalqt" class="nav-link ">caracterizacion integrantes
         </a>
       </li>
        <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="legalqt"  class="nav-link " >caracterizacion hogar</a>
+        <a id="legalqt"  class="nav-link active" >caracterizacion hogar</a>
       </li>
       <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
