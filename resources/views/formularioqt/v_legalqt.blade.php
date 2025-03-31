@@ -593,12 +593,70 @@
 
 
 
+<!-- FFES -->
+
+<span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">FFES</span>
+          
+          <div class="container mt-4">
+  <div class="border">
+    <!-- Fila de títulos -->
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+        <div class="p-2 text-center">
+        INDICADOR
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2 text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+          QUIERO Y NO TENGO
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+           <label for="">SI</label>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Fila de contenido -->
+ <div class="row g-0" id="indicadorbl2" >
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+        <div class="p-2">
+        Los hombres de 18 a 49 años tienen resuelta su situación militar
+          @if($vista != '1')
+          <br><br><div class="text-center">
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[8]->id_bienestar ?>','<?= $indicadores_tabla[8]->id_subcategoria ?>','<?= $indicadores_tabla[8]->id_indicador ?>')">Mover Indicador</div>
+          </div> 
+          @endif
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Los niños, niñas y adolescentes en situación de victimización (Violencias y vulneraciones) reciben acompañamiento para el goce efectivo de derechos
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl2_1" id="indicadorbl2_1" <?= ($indicadorbl2_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_1) ?>">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Los Niños, Niñas y Adolescentes  del hogar de 6 a 17 años reciben orientación para el reconocimiento de las instituciones de administración de justicia y de garantía de sus derechos.
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl2_2" id="indicadorbl2_2" <?= ($indicadorbl2_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_2) ?>">
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+</div>
 
 
-
-
-
-
+<!-- FFES -->
 
 
           <hr>

@@ -458,7 +458,7 @@
       </div>
       <div class="col-md-8">
         <div class="row g-0" >
-          <div class="col-10 border-bottom border-start p-2">
+          <div class="col-10 border-bottom border-start p-3">
           Contar con los recursos economicos para el acceso y consumo oportuno de alimentos
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
@@ -468,7 +468,7 @@
           </div>
         </div>
         <div class="row g-0" >
-          <div class="col-10 border-bottom border-start p-2">
+          <div class="col-10 border-bottom border-start p-3">
           Implementar  estrategias para contar con disponibilidad de alimentos en el hogar (intercambios, huertas..)
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
@@ -478,11 +478,100 @@
           </div>
         </div>
       </div>
-      </div>
-     
+    </div>
 
 
   </div>
+
+
+<!-- LOGRO -->
+
+<span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">FFES</span>
+
+
+
+  <div class="border">
+    <!-- Fila de títulos -->
+    <div class="row g-0" >
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+        <div class="p-2 text-center">
+        INDICADOR
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0" >
+          <div class="col-10 border-bottom border-start p-2 text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+          QUIERO Y NO TENGO
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+           <label for="">SI</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+   
+    <!-- FFES -->
+
+      <!-- Fila de contenido -->
+      <div class="row g-0" id="indicadorbse6" >
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+        <div class="p-2">
+        Los integrantes del hogar que lo requieren acceden a servicios de salud mental  y/o atención psicosocial.
+        @if($vista != '1')
+        <div class="text-center">
+          <br>
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div>
+          </div>
+           @endif
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0" >
+          <div class="col-10 border-bottom border-start p-2">
+          Los Niños, Niñas y adolescentes del hogar implementan estrategias para  reducir el estrés y para favorecer el bienestar emocional y fisico
+
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse6_1" id="indicadorbse6_1" <?= ($indicadorbse6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_1) ?>">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0" >
+          <div class="col-10 border-bottom border-start p-2">
+          Los niños, niñas y adolescentes del hogar expuestos a factores de amenaza, riesgo o vulneración de derechos reconocen y acceden a los servicios de protección y atención.
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse6_2" id="indicadorbse6_2" <?= ($indicadorbse6_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_2) ?>">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0" >
+          <div class="col-10 border-start p-2 border-bottom">
+          Los niños, niñas y adolescentes del hogar con necesidades en la salud mental  reciben tratamiento oportuno y adecuado en servicios de salud mental. 
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse6_3" id="indicadorbse6_3" <?= ($indicadorbse6_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_3) ?>">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+     
+<!-- FIN FFES -->
+
+    
+  </div>
+
+
+
+
 
   </div>
   </div>
