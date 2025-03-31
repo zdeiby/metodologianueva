@@ -20,7 +20,11 @@
 </style>
 
 <div class="container">
-    <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class=""  >
+  <div class="row justify-content-center">
+    
+    <div class="col-md-12">
+      <div class="card">
+        <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class=""  >
 <!-- <form class="d-flex pb-4" role="search">
       <input class="form-control me-2" type="search" placeholder="Buscar folio o representante" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -89,6 +93,17 @@
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
           <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Estrategias para reducir el estrés</span>
+
+          <!-- Cabecera con información del integrante -->
+          <div class="mt-2 mb-2">
+            <div style="background-color: #f8f9fa; border-radius: 5px; padding: 8px 15px;">
+              <div class="d-flex align-items-center">
+                <span class="badge rounded-pill" style="font-size: 14px; background-color: #28a745; color: white; padding: 8px 12px; margin-right: 10px;">{{ $folio }}</span>
+                <span class="badge rounded-pill" style="font-size: 14px; background-color: #9c27b0; color: white; padding: 8px 12px; margin-right: 10px; text-transform: uppercase;">{{ trim(($datosIntegrante->nombre1 ?? '') . ' ' . ($datosIntegrante->nombre2 ?? '') . ' ' . ($datosIntegrante->apellido1 ?? '') . ' ' . ($datosIntegrante->apellido2 ?? '')) }}</span>
+                <span class="badge rounded-pill" style="font-size: 14px; background-color: #fd7e14; color: white; padding: 8px 12px;">{{ isset($datosIntegrante->edad) ? $datosIntegrante->edad . ' años' : 'Edad no disponible' }}</span>
+              </div>
+            </div>
+          </div>
 
           <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
           <b>Instrucciones:</b> Seleccione las estrategias que implementa el integrante para reducir el estrés y favorecer el bienestar emocional y físico.
