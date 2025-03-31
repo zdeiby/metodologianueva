@@ -1,0 +1,399 @@
+@extends('componentes.navlateral')
+
+@section('title', 'Actualización novedades')
+
+@section('content')
+<!-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" >  -->
+<style>
+  #imagenDinamica:hover{
+    border:2px solid gray;
+  }
+  .imagenDinamicaselect:hover{
+    border:2px solid gray;
+  }
+
+  .imagenselect{
+    border:2px solid gray;
+    background: transparent;
+    background-color: #e0e0e0;
+  }
+</style>
+
+<div class="container">
+    <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class=""  >
+<!-- <form class="d-flex pb-4" role="search">
+      <input class="form-control me-2" type="search" placeholder="Buscar folio o representante" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form> -->
+
+
+        <div class="accordion" id="accordionExample" >
+        <div class="accordion-item" id="l1e1">
+            <div class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <div>
+                <span class="badge bg-primary" id=""  style="font-size:15px">Actualización y/o Novedades del hogar</span> 
+                <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
+               
+              </div>
+            
+            </button>
+    <br>
+        </div>
+
+    <div><span class="badge bg-success mt-2" id="folio"></span>
+    <span class="badge bg-primary" style="background:#a80a85 !important; color:white" id="nombre"></span>
+    <span class="badge bg-primary" style="background:#0dcaf0 !important; color:white" id="sexointegrante"></span>
+    <span class="badge bg-primary" style="background:#FF8803 !important; color:white" id="edadintegrante"></span>
+
+    </div>
+
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      <div class="row">
+      <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="bienestarsaludemocionalqt" class="nav-link active">caracterizacion integrantes
+        </a>
+      </li>
+       <li class="nav-item" role="presentation" style="cursor:pointer">
+        <a id="legalqt"  class="nav-link " >caracterizacion hogar</a>
+      </li>
+      <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
+      </li> -->
+  
+</ul>
+
+
+
+<style>
+  .invalid-checkbox {
+      border: 1px solid red;
+      border-radius: 4px;
+      padding: 10px;
+    }
+</style>
+
+<div id="myTabContent" class="tab-content"><br>
+  <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="identificacion">
+    <!-- <div class="text-center"><label for="">Avatar</label></div>
+        <div class="avatar text-center" style="cursor:pointer">
+          <img src="{{asset('avatares/blanco.png')}} " id="imagenDinamica" class="rounded-circle" alt="Avatar" style="width: 150px; height: 150px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        </div> -->
+
+          <form id="formulario" class="row g-3 was-validated">     
+            
+          <input type="hidden" name="folio" id="folioinput" value="{{ $folio }}">
+          <input type="hidden" name="idintegrante" id="idintegranteinput" value="{{ $idintegrante }}">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Estrategias para reducir el estrés</span>
+
+          <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
+          <b>Instrucciones:</b> Seleccione las estrategias que implementa el integrante para reducir el estrés y favorecer el bienestar emocional y físico.
+          </div>
+
+          <div class="card mt-3">
+            <div class="card-header bg-light">
+              <h5 class="card-title mb-0">Seleccione las estrategias que implementa para reducir el estrés</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card border-light mb-3">
+                    <div class="card-body">
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_1" value="2" {{ in_array(2, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_1"><strong>A. Actividad física</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_2" value="3" {{ in_array(3, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_2"><strong>B. Meditación</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_3" value="4" {{ in_array(4, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_3"><strong>C. Respiración profunda</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_4" value="5" {{ in_array(5, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_4"><strong>D. Yoga</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_5" value="6" {{ in_array(6, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_5"><strong>E. Escuchar música</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_6" value="7" {{ in_array(7, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_6"><strong>F. Leer</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_7" value="8" {{ in_array(8, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_7"><strong>G. Escribir</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_8" value="9" {{ in_array(9, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_8"><strong>H. Pintar/dibujar</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_9" value="10" {{ in_array(10, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_9"><strong>I. Hablar con amigos o familiares</strong></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card border-light mb-3">
+                    <div class="card-body">
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_10" value="11" {{ in_array(11, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_10"><strong>J. Terapia psicológica</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_11" value="12" {{ in_array(12, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_11"><strong>K. Consumo de medicamentos</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_12" value="13" {{ in_array(13, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_12"><strong>L. Consumo de sustancias psicoactivas</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_13" value="14" {{ in_array(14, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_13"><strong>M. Consumo de alcohol</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_14" value="15" {{ in_array(15, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_14"><strong>N. Consumo de cigarrillo</strong></label>
+                        </div>
+                      </div>                     
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_15" value="16" {{ in_array(16, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_15"><strong>O. Otro (especificar)</strong></label>
+                        </div>
+                        <div id="otro_especificar_container" class="mt-2" style="{{ in_array(16, $estrategiasSeleccionadas) ? '' : 'display: none;' }}">
+                          <input type="text" class="form-control" id="otro_especificar" name="otro_especificar" placeholder="Especifique otra estrategia" value="{{ $otroEspecificar }}" oninput="validateInput(this)">
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" name="estrategias[]" id="estrategia_16" value="17" {{ in_array(17, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_16"><strong>P. No implementa ninguna</strong></label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_17" value="18" {{ in_array(18, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <label class="form-check-label" for="estrategia_17"><strong>Q. Actividades académicas (talleres, cursos)</strong></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <br>
+          <br>
+
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+  </div>
+  </div>
+          <hr>
+          <div class="row">  
+            <div class="text-start col">
+
+
+             <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
+
+
+
+            </div>
+            <div class="text-end col">
+            <button class="btn btn-outline-success" type="submit"  >Guardar</button>
+            <div class="btn btn-outline-primary" id="siguiente"   >Siguiente</div>
+            </div> 
+          </div>
+
+        </form> 
+      </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ 
+    </div>
+
+    <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
+
+    <script>
+    $(document).ready(function() {
+        // Manejar la visibilidad del campo "Otro (especificar)"
+        $('#estrategia_15').change(function() {
+            if($(this).is(':checked')) {
+                $('#otro_especificar_container').show();
+                // Enfocar el campo de texto para facilitar la entrada
+                $('#otro_especificar').focus();
+            } else {
+                $('#otro_especificar_container').hide();
+                $('#otro_especificar').val('');
+            }
+        });
+        
+        // Manejar la opción "No implementa ninguna"
+        $('#estrategia_16').change(function() {
+            if($(this).is(':checked')) {
+                // Desmarcar y deshabilitar todas las demás opciones
+                $('.estrategia-checkbox').prop('checked', false).prop('disabled', true);
+                // Ocultar el campo "Otro (especificar)"
+                $('#otro_especificar_container').hide();
+                $('#otro_especificar').val('');
+            } else {
+                // Habilitar todas las opciones
+                $('.estrategia-checkbox').prop('disabled', false);
+            }
+        });
+        
+        // Si "No implementa ninguna" está marcado al cargar la página, deshabilitar las demás opciones
+        if($('#estrategia_16').is(':checked')) {
+            $('.estrategia-checkbox').prop('disabled', true);
+        }
+        
+        // Manejar el envío del formulario
+        $('form').submit(function(e) {
+            e.preventDefault();
+            
+            // Validar que si se seleccionó "Otro", se haya especificado el texto
+            if($('#estrategia_15').is(':checked') && $('#otro_especificar').val().trim() === '') {
+                Swal.fire({
+                    title: 'Atención',
+                    text: 'Por favor especifique la otra estrategia',
+                    icon: 'warning',
+                    confirmButtonText: 'Aceptar'
+                });
+                $('#otro_especificar').focus();
+                return false;
+            }
+            
+            // Recopilar datos del formulario
+            var formData = $(this).serialize();
+            
+            // Mostrar indicador de carga
+            Swal.fire({
+                title: 'Guardando...',
+                text: 'Por favor espere mientras se guardan los datos',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+            
+            // Enviar datos mediante AJAX
+            $.ajax({
+                url: "{{ route('guardar.estrategias') }}",
+                type: "POST",
+                data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    Swal.close();
+                    if(response.success) {
+                        Swal.fire({
+                            title: 'Éxito',
+                            text: 'Datos guardados correctamente',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.message || 'Ocurrió un error al guardar los datos',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.close();
+                    console.error("Error en la solicitud AJAX:", xhr.responseText);
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Ocurrió un error al procesar la solicitud. Por favor, intente nuevamente.',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    });
+                }
+            });
+        });
+        
+        // Manejar el botón "Siguiente"
+        $('#siguiente').click(function() {
+            // Mostrar mensaje informativo
+            Swal.fire({
+                title: 'Información',
+                text: 'La navegación al siguiente paso estará disponible cuando se implementen los formularios correspondientes.',
+                icon: 'info',
+                confirmButtonText: 'Aceptar'
+            });
+        });
+        
+        // Función para el botón "Volver"
+        $('#volver').click(function() {
+            // Mostrar mensaje informativo
+            Swal.fire({
+                title: 'Información',
+                text: 'La navegación a la vista de integrantes estará disponible cuando se implemente el formulario correspondiente.',
+                icon: 'info',
+                confirmButtonText: 'Aceptar'
+            });
+        });
+        
+        // Función para validar input
+        function validateInput(input) {
+            // Eliminar caracteres especiales
+            input.value = input.value.replace(/[^\w\s.,]/gi, '');
+        }
+    });
+    </script>
+@endsection
