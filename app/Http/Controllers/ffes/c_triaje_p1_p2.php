@@ -61,7 +61,6 @@ class c_triaje_p1_p2 extends Controller
         $integrantesCuidados = DB::table('t1_triaje_integrantes_cuidador_nino')
             ->where('folio', $folioDesencriptado)
             ->where('idintegrante_cuidador', $idintegranteDesencriptado)
-            ->where('estado', 1)
             ->pluck('idintegrante')
             ->toArray();
         
@@ -130,14 +129,24 @@ class c_triaje_p1_p2 extends Controller
             // Si es cuidadora, procesar los integrantes seleccionados
             $integrantesSeleccionados = $request->input('integrantes_cuidados', []);
             
-            // Primero, marcar todos los registros existentes como inactivos (estado = 0)
-            DB::table('t1_triaje_integrantes_cuidador_nino')
+            // Obtener los integrantes que actualmente están registrados
+            $integrantesActuales = DB::table('t1_triaje_integrantes_cuidador_nino')
                 ->where('folio', $folio)
                 ->where('idintegrante_cuidador', $idintegrante)
-                ->update([
-                    'estado' => 0,
-                    'updated_at' => $now
-                ]);
+                ->pluck('idintegrante')
+                ->toArray();
+                
+            // Identificar integrantes que ya no están seleccionados (desmarcados)
+            $integrantesDesmarcados = array_diff($integrantesActuales, $integrantesSeleccionados);
+            
+            // Eliminar completamente los registros de integrantes desmarcados
+            if (!empty($integrantesDesmarcados)) {
+                DB::table('t1_triaje_integrantes_cuidador_nino')
+                    ->where('folio', $folio)
+                    ->where('idintegrante_cuidador', $idintegrante)
+                    ->whereIn('idintegrante', $integrantesDesmarcados)
+                    ->delete();
+            }
             
             // Luego, para cada integrante seleccionado, crear o actualizar el registro
             foreach ($integrantesSeleccionados as $integranteCuidado) {
@@ -148,18 +157,7 @@ class c_triaje_p1_p2 extends Controller
                     ->where('idintegrante_cuidador', $idintegrante)
                     ->exists();
                 
-                if ($existeRelacion) {
-                    // Si existe, actualizar el estado a activo
-                    DB::table('t1_triaje_integrantes_cuidador_nino')
-                        ->where('folio', $folio)
-                        ->where('idintegrante', $integranteCuidado)
-                        ->where('idintegrante_cuidador', $idintegrante)
-                        ->update([
-                            'estado' => 1,
-                            'sincro' => 0,
-                            'updated_at' => $now
-                        ]);
-                } else {
+                if (!$existeRelacion) {
                     // Si no existe, crear un nuevo registro
                     DB::table('t1_triaje_integrantes_cuidador_nino')->insert([
                         'folio' => $folio,
@@ -173,14 +171,11 @@ class c_triaje_p1_p2 extends Controller
                 }
             }
         } else {
-            // Si no es cuidadora, marcar todos los registros como inactivos
+            // Si no es cuidadora, eliminar todos los registros
             DB::table('t1_triaje_integrantes_cuidador_nino')
                 ->where('folio', $folio)
                 ->where('idintegrante_cuidador', $idintegrante)
-                ->update([
-                    'estado' => 0,
-                    'updated_at' => $now
-                ]);
+                ->delete();
         }
         
         // También registramos el paso como completado en t1_pasosvisita
