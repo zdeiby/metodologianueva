@@ -6,11 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Hashids\Hashids;
 use App\Models\ffes\m_triaje_p1_p2;
 
 class c_triaje_p1_p2 extends Controller
 {
+    public function __construct()
+    {
+        // Ya no necesitamos verificar la estructura de la tabla
+        // porque usaremos una tabla separada para los integrantes cuidados
+    }
+    
     public function fc_triaje_p1_p2(Request $request, $folio, $idintegrante)
     {
         if (!session('nombre')) {
@@ -40,10 +47,23 @@ class c_triaje_p1_p2 extends Controller
             // Si no se encuentra el integrante, mostrar un mensaje de error
             return redirect()->route('index')->with('error', 'No se encontró el integrante especificado.');
         }
+        
+        // Obtener todos los integrantes del hogar
+        $integrantesHogar = DB::table('t1_integranteshogar')
+            ->where('folio', $folioDesencriptado)
+            ->get();
             
         // Obtener respuestas existentes si las hay
         $modelo = new m_triaje_p1_p2();
         $respuestasExistentes = $modelo->m_obtenerRespuestas($folioDesencriptado, $idintegranteDesencriptado);
+        
+        // Obtener integrantes cuidados por este integrante
+        $integrantesCuidados = DB::table('t1_triaje_integrantes_cuidador_nino')
+            ->where('folio', $folioDesencriptado)
+            ->where('idintegrante_cuidador', $idintegranteDesencriptado)
+            ->where('estado', 1)
+            ->pluck('idintegrante')
+            ->toArray();
         
         return view('ffes.v_triaje_p1_p2', [
             'folio' => $folioDesencriptado,
@@ -51,12 +71,18 @@ class c_triaje_p1_p2 extends Controller
             'idintegrante' => $idintegranteDesencriptado,
             'idintegranteEncriptado' => $hashids->encode($idintegranteDesencriptado),
             'datosIntegrante' => $datosIntegrante,
-            'respuestas' => $respuestasExistentes
+            'integrantesHogar' => $integrantesHogar,
+            'respuestas' => $respuestasExistentes,
+            'integrantesCuidados' => $integrantesCuidados
         ]);
     }
     
     public function fc_guardar_triaje_p1_p2(Request $request)
     {
+        if (!session('nombre')) {
+            return response()->json(['error' => 'Sesión no válida'], 401);
+        }
+        
         $now = Carbon::now();
         
         // Obtener datos del formulario
@@ -68,7 +94,7 @@ class c_triaje_p1_p2 extends Controller
         $hogarAcogida = $request->has('hogar_acogida') ? 1 : 0;
         $cuidadoraNna = $request->has('cuidadora_nna') ? 1 : 0;
         
-        // Datos a insertar o actualizar
+        // Datos a insertar o actualizar para la tabla principal
         $data = [
             'folio' => $folio,
             'idintegrante' => $idintegrante,
@@ -90,7 +116,7 @@ class c_triaje_p1_p2 extends Controller
             $data['created_at'] = $now;
         }
         
-        // Usar updateOrInsert para guardar o actualizar el registro
+        // Usar updateOrInsert para guardar o actualizar el registro principal
         DB::table('t1_triaje_p1_p2')->updateOrInsert(
             [
                 'folio' => $folio,
@@ -98,6 +124,64 @@ class c_triaje_p1_p2 extends Controller
             ],
             $data
         );
+        
+        // Procesar los integrantes cuidados
+        if ($cuidadoraNna == 1) {
+            // Si es cuidadora, procesar los integrantes seleccionados
+            $integrantesSeleccionados = $request->input('integrantes_cuidados', []);
+            
+            // Primero, marcar todos los registros existentes como inactivos (estado = 0)
+            DB::table('t1_triaje_integrantes_cuidador_nino')
+                ->where('folio', $folio)
+                ->where('idintegrante_cuidador', $idintegrante)
+                ->update([
+                    'estado' => 0,
+                    'updated_at' => $now
+                ]);
+            
+            // Luego, para cada integrante seleccionado, crear o actualizar el registro
+            foreach ($integrantesSeleccionados as $integranteCuidado) {
+                // Verificar si ya existe un registro para este par de integrantes
+                $existeRelacion = DB::table('t1_triaje_integrantes_cuidador_nino')
+                    ->where('folio', $folio)
+                    ->where('idintegrante', $integranteCuidado)
+                    ->where('idintegrante_cuidador', $idintegrante)
+                    ->exists();
+                
+                if ($existeRelacion) {
+                    // Si existe, actualizar el estado a activo
+                    DB::table('t1_triaje_integrantes_cuidador_nino')
+                        ->where('folio', $folio)
+                        ->where('idintegrante', $integranteCuidado)
+                        ->where('idintegrante_cuidador', $idintegrante)
+                        ->update([
+                            'estado' => 1,
+                            'sincro' => 0,
+                            'updated_at' => $now
+                        ]);
+                } else {
+                    // Si no existe, crear un nuevo registro
+                    DB::table('t1_triaje_integrantes_cuidador_nino')->insert([
+                        'folio' => $folio,
+                        'idintegrante' => $integranteCuidado,
+                        'idintegrante_cuidador' => $idintegrante,
+                        'estado' => 1,
+                        'sincro' => 0,
+                        'created_at' => $now,
+                        'updated_at' => $now
+                    ]);
+                }
+            }
+        } else {
+            // Si no es cuidadora, marcar todos los registros como inactivos
+            DB::table('t1_triaje_integrantes_cuidador_nino')
+                ->where('folio', $folio)
+                ->where('idintegrante_cuidador', $idintegrante)
+                ->update([
+                    'estado' => 0,
+                    'updated_at' => $now
+                ]);
+        }
         
         // También registramos el paso como completado en t1_pasosvisita
         $linea = 300; // Asumimos que es la línea para triaje

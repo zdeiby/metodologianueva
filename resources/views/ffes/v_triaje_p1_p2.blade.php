@@ -130,6 +130,48 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
+                                            <!-- Sección de integrantes del hogar (inicialmente oculta) -->
+                                            <div id="seccionIntegrantes" class="mt-4" style="display: {{ isset($respuestas->cuidadora_nna) && $respuestas->cuidadora_nna == 1 ? 'block' : 'none' }}">
+                                                <div class="alert alert-warning" role="alert">
+                                                    <strong>Seleccione los integrantes del hogar que son cuidados por esta persona:</strong>
+                                                </div>
+                                                <div class="row">
+                                                    @foreach($integrantesHogar as $integrante)
+                                                        @if($integrante->idintegrante != $idintegrante) <!-- No mostrar al integrante actual -->
+                                                            <div class="col-md-6 mb-2">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input integrante-checkbox" type="checkbox" 
+                                                                                name="integrantes_cuidados[]" 
+                                                                                id="integrante_{{ $integrante->idintegrante }}" 
+                                                                                value="{{ $integrante->idintegrante }}"
+                                                                                {{ in_array($integrante->idintegrante, $integrantesCuidados) ? 'checked' : '' }}>
+                                                                            <label class="form-check-label" for="integrante_{{ $integrante->idintegrante }}">
+                                                                                <strong>{{ $integrante->nombre1 }} {{ $integrante->nombre2 }} {{ $integrante->apellido1 }} {{ $integrante->apellido2 }}</strong>
+                                                                                <br>
+                                                                                <span class="badge bg-primary" style="background:#0dcaf0 !important; color:white">
+                                                                                    @if(isset($integrante->sexo) && $integrante->sexo == 13)
+                                                                                        Mujer
+                                                                                    @else
+                                                                                        Hombre
+                                                                                    @endif
+                                                                                </span>
+                                                                                <span class="badge bg-primary" style="background:#FF8803 !important; color:white">
+                                                                                    @if(isset($integrante->edad))
+                                                                                        {{ $integrante->edad }} años
+                                                                                    @endif
+                                                                                </span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -160,6 +202,17 @@
 <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 <script>
     $(document).ready(function() {
+        // Controlar la visibilidad de la sección de integrantes
+        $('#cuidadora_nna').change(function() {
+            if($(this).is(':checked')) {
+                $('#seccionIntegrantes').slideDown(300);
+            } else {
+                $('#seccionIntegrantes').slideUp(300);
+                // Desmarcar todos los checkboxes de integrantes
+                $('.integrante-checkbox').prop('checked', false);
+            }
+        });
+        
         // Manejar el evento de guardar
         $('#btnGuardar').click(function() {
             // Mostrar indicador de carga
@@ -206,7 +259,6 @@
         // Redirección para las pestañas
         $('#caracterizacionIntegrantes').click(function() {
             // Redireccionar a la vista de caracterización de integrantes
-            // Aquí debes poner la URL correcta
             window.location.href = "{{ route('caracterizacionffes') }}";
         });
         
@@ -218,7 +270,6 @@
     
     function redirectToIntegrantes() {
         // Redireccionar a la vista de integrantes
-        // Aquí debes poner la URL correcta
         window.location.href = "{{ route('index') }}";
     }
 </script>
