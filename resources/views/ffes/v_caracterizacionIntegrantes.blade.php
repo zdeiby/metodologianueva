@@ -57,11 +57,11 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">caracterizacion integrantes
+        <a id="caracterizacionIntegranteffes" class="nav-link active">caracterizacion integrantes
         </a>
       </li>
        <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="legalqt"  class="nav-link " >caracterizacion hogar</a>
+        <a id="legalqt"  class="nav-link" onclick="redirigirAPrimeraInfancia()" >Primera Infancia</a>
       </li>
       <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
@@ -410,5 +410,15 @@
             input.value = input.value.replace(/[^\w\s.,]/gi, '');
         }
     });
+
+      // Función para redirigir a la vista de primera infancia
+      function redirigirAPrimeraInfancia() {
+            var folio = $('#folioContainer').attr('folio');
+            var idintegrante = $('#idintegranteinput').val();
+            window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        }
+   
+
+
     </script>
 @endsection
