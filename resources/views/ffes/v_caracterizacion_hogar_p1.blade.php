@@ -418,7 +418,21 @@
             @endif
         @endif
         
-        // Manejar el cambio en los switches de situaciones
+        // Manejar el cambio en "Ninguna de las anteriores"
+        $('#situacionK').change(function() {
+            const isChecked = $(this).prop('checked');
+            
+            if (isChecked) {
+                // Desmarcar todas las demás situaciones
+                $('.situacion-switch').prop('checked', false);
+                // Ocultar todos los contenedores de integrantes
+                $('.integrantes-container').hide();
+                // Desmarcar todos los integrantes
+                $('input[name^="integrantes"]').prop('checked', false);
+            }
+        });
+        
+        // Manejar cambio en las situaciones A-J
         $('.situacion-switch').change(function() {
             const situacion = $(this).data('situacion');
             const isChecked = $(this).prop('checked');
@@ -426,15 +440,16 @@
             // Mostrar u ocultar el contenedor de integrantes según el estado del switch
             $(`#integrantesSituacion${situacion}`).toggle(isChecked);
             
-            // Si se marca "Ninguna de las anteriores", desmarcar las demás opciones
-            if ($(this).attr('id') === 'situacionK' && isChecked) {
-                $('.situacion-switch').not(this).prop('checked', false);
-                $('.integrantes-container').hide();
+            // Si se marca cualquier situación A-J, desmarcar "Ninguna de las anteriores"
+            if (isChecked) {
+                $('#situacionK').prop('checked', false);
             }
             
-            // Si se marca cualquier otra opción, desmarcar "Ninguna de las anteriores"
-            if ($(this).attr('id') !== 'situacionK' && isChecked) {
-                $('#situacionK').prop('checked', false);
+            // Si no hay ninguna situación seleccionada, permitir seleccionar "Ninguna de las anteriores"
+            if ($('.situacion-switch:checked').length === 0) {
+                $('#situacionK').prop('disabled', false);
+            } else {
+                $('#situacionK').prop('disabled', $('.situacion-switch:checked').length > 0);
             }
         });
         

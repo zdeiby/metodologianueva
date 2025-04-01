@@ -66,21 +66,27 @@ class c_caracterizacion_hogar_p1 extends Controller
             $idintegrante = $request->input('idintegrante');
             $documento_profesional = $request->input('documento_profesional');
             
+            // Verificar si se seleccionó "Ninguna de las anteriores"
+            $ningunaSeleccionada = $request->has('situacionK');
+            
             // Obtener datos de las situaciones seleccionadas
             $situaciones = [];
-            $integrantes = $request->input('integrantes', []);
+            $integrantes = [];
             
-            // Determinar qué situaciones fueron seleccionadas basado en los integrantes
-            foreach (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'] as $situacion) {
-                if (isset($integrantes[$situacion]) && !empty($integrantes[$situacion])) {
-                    $situaciones[] = $situacion;
-                }
-            }
-            
-            // Verificar si se seleccionó "Ninguna de las anteriores"
-            if ($request->has('situacionK')) {
+            if ($ningunaSeleccionada) {
+                // Si se seleccionó "Ninguna de las anteriores", solo guardar esa opción
                 $situaciones = ['K'];
-                $integrantes = [];
+                // No hay integrantes afectados cuando se selecciona "Ninguna de las anteriores"
+            } else {
+                // Procesar situaciones normales (A-J) y sus integrantes
+                $integrantes = $request->input('integrantes', []);
+                
+                // Determinar qué situaciones fueron seleccionadas basado en los integrantes
+                foreach (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'] as $situacion) {
+                    if (isset($integrantes[$situacion]) && !empty($integrantes[$situacion])) {
+                        $situaciones[] = $situacion;
+                    }
+                }
             }
             
             // Estructura de respuestas en formato para JSON
