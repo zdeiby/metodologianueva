@@ -34,12 +34,26 @@ class c_caracterizacionIntegrantes extends Controller
         // Obtener datos del integrante
         $datosIntegrante = DB::table('t1_integranteshogar')
             ->where('folio', $folioDesencriptado)
-            ->where('idintegrante', $idintegranteDesencriptado)
+            ->where('idintegrante', (string)$idintegranteDesencriptado)
             ->first();
             
+        // Si no se encuentra, intentar con una consulta más flexible
         if (!$datosIntegrante) {
-            // Si no se encuentra el integrante, mostrar un mensaje de error
-            return redirect()->route('index')->with('error', 'No se encontró el integrante especificado.');
+            \Log::info("No se encontró el integrante con folio: {$folioDesencriptado} e idintegrante: {$idintegranteDesencriptado}");
+            
+            // Intentar buscar solo por folio para ver si el problema es con el idintegrante
+            $integrantesConEseFolio = DB::table('t1_integranteshogar')
+                ->where('folio', $folioDesencriptado)
+                ->get();
+                
+            if ($integrantesConEseFolio->count() > 0) {
+                // Si hay integrantes con ese folio, tomar el primero
+                $datosIntegrante = $integrantesConEseFolio->first();
+                \Log::info("Se encontró un integrante alternativo con folio: {$folioDesencriptado} e idintegrante: {$datosIntegrante->idintegrante}");
+            } else {
+                // Si no se encuentra el integrante, mostrar un mensaje de error
+                return redirect()->route('index')->with('error', 'No se encontró ningún integrante con el folio especificado: ' . $folioDesencriptado);
+            }
         }
         
         // Obtener estrategias existentes si las hay

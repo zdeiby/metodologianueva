@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Hashids\Hashids;
 use App\Models\ffes\m_caracterizacionIntegrante_primeraInfancia;
+use Illuminate\Support\Facades\Log;
 
 class c_caracterizacionIntegrantes_primerInfancia extends Controller
 {
@@ -34,16 +35,29 @@ class c_caracterizacionIntegrantes_primerInfancia extends Controller
         // Obtener datos del integrante
         $datosIntegrante = DB::table('t1_integranteshogar')
             ->where('folio', $folioDesencriptado)
-            ->where('idintegrante', $idintegranteDesencriptado)
+            ->where('idintegrante', (string)$idintegranteDesencriptado)
             ->first();
             
         if (!$datosIntegrante) {
-            // Si no se encuentra el integrante, mostrar un mensaje de error
-            return redirect()->route('index')->with('error', 'No se encontró el integrante especificado.');
+            Log::info("No se encontró el integrante con folio: {$folioDesencriptado} e idintegrante: {$idintegranteDesencriptado}");
+            
+            // Intentar buscar solo por folio para ver si el problema es con el idintegrante
+            $integrantesConEseFolio = DB::table('t1_integranteshogar')
+                ->where('folio', $folioDesencriptado)
+                ->get();
+                
+            if ($integrantesConEseFolio->count() > 0) {
+                // Si hay integrantes con ese folio, tomar el primero
+                $datosIntegrante = $integrantesConEseFolio->first();
+                Log::info("Se encontró un integrante alternativo con folio: {$folioDesencriptado} e idintegrante: {$datosIntegrante->idintegrante}");
+            } else {
+                // Si no se encuentra el integrante, mostrar un mensaje de error
+                return redirect()->route('index')->with('error', 'No se encontró ningún integrante con el folio especificado: ' . $folioDesencriptado);
+            }
         }
-
-           // Validar que el integrante sea menor de 6 años
-           if (isset($datosIntegrante->edad) && $datosIntegrante->edad >= 6) {
+        
+        // Validar que el integrante sea menor de 6 años
+        if (isset($datosIntegrante->edad) && $datosIntegrante->edad >= 6) {
             // Si el integrante es mayor o igual a 6 años, redirigir con un mensaje
             return redirect()->route('caracterizacion_integrantes', [
                 'folio' => $folio,
@@ -116,7 +130,7 @@ class c_caracterizacionIntegrantes_primerInfancia extends Controller
             // Verificar que el integrante sea menor de 6 años
             $datosIntegrante = DB::table('t1_integranteshogar')
                 ->where('folio', $folio)
-                ->where('idintegrante', $idintegrante)
+                ->where('idintegrante', (string)$idintegrante)
                 ->first();
                 
             if (!$datosIntegrante) {

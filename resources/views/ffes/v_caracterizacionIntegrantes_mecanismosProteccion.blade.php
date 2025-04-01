@@ -62,7 +62,7 @@
       </li>
       
       <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="primeraInfanciaqt" class="nav-link" href="{{ $datosIntegrante->edad < 6 ? route('primera_infancia', ['folio' => $folio, 'idintegrante' => $idintegrante]) : '#' }}" {{ $datosIntegrante->edad >= 6 ? 'onclick="alertEdad(event)"' : '' }}>Primera Infancia</a>
+        <a id="primeraInfanciaqt" class="nav-link"  onclick="redirigirAPrimeraInfancia()">Primera Infancia</a>
       </li>
        <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="mecanismosqt"  class="nav-link active" >Mecanismos de Protección</a>
@@ -112,7 +112,7 @@
 </div>
 
           <div class="alert alert-warning" role="alert">
-            <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Esta información es relevante para la protección de los derechos del integrante.
+            <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este formulario solo aplica para personas mayores de 5 y menores de 18 años.
           </div>
 
           <div class="card mt-3">
@@ -181,6 +181,52 @@
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
+    // Definir las funciones de redirección fuera del document.ready para que estén disponibles globalmente
+    function redirigirAPrimeraInfancia() {
+        var folio = $('#folioContainer').attr('folio');
+        var idintegrante = $('#idintegranteinput').val();
+        
+        // Obtener el texto de la edad y eliminar la palabra 'años' si está presente
+        var edadTexto = $('#edadintegrante').text().replace('años', '').trim();
+        // Si no hay texto en el elemento con id edadintegrante, intentar obtenerlo del otro elemento
+        if (!edadTexto) {
+            edadTexto = $('.badge.rounded-pill[style*="background-color: #fd7e14"]').text().replace('años', '').trim();
+        }
+        
+        var edad = parseInt(edadTexto);
+        
+        // Añadir log para depuración
+        console.log("Edad detectada:", edad);
+        
+        if (edad < 6) {
+            window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        } else {
+            Swal.fire({
+                title: 'Atención',
+                text: 'El formulario de primera infancia solo aplica para niños menores de 6 años.',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar'
+            });
+        }
+    }
+    
+    function redirigirACaracterizacionIntegrantes() {
+        var folio = $('#folioContainer').attr('folio');
+        var idintegrante = $('#idintegranteinput').val();
+        window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+    }
+    
+    // Función para mostrar alerta de edad
+    function alertEdad(event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Atención',
+            text: 'El formulario de primera infancia solo aplica para niños menores de 6 años.',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+    
     $(document).ready(function() {
         // Manejar el envío del formulario
         $('form').submit(function(e) {
@@ -254,16 +300,7 @@
             });
         });
         
-        // Función para mostrar alerta de edad
-        function alertEdad(event) {
-            event.preventDefault();
-            Swal.fire({
-                title: 'Atención',
-                text: 'El formulario de primera infancia solo aplica para niños menores de 6 años.',
-                icon: 'warning',
-                confirmButtonText: 'Aceptar'
-            });
-        }
+        // Resto del código dentro de document.ready
     });
     </script>
 

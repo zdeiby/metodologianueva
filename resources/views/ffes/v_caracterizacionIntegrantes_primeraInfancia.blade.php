@@ -305,7 +305,29 @@ $('form').submit(function(e) {
      function redirigirAMecanismosProteccion() {
             var folio = $('#folioContainer').attr('folio');
             var idintegrante = $('#idintegranteinput').val();
-            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            
+            // Obtener el texto de la edad y eliminar la palabra 'años' si está presente
+            var edadTexto = $('#edadintegrante').text().replace('años', '').trim();
+            // Si no hay texto en el elemento con id edadintegrante, intentar obtenerlo del otro elemento
+            if (!edadTexto) {
+                edadTexto = $('.badge.rounded-pill[style*="background-color: #fd7e14"]').text().replace('años', '').trim();
+            }
+            
+            var edad = parseInt(edadTexto);
+            
+            // Añadir log para depuración
+            console.log("Edad detectada:", edad);
+            
+            if (edad > 5 && edad < 18) {
+                window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            } else {
+                Swal.fire({
+                    title: 'Atención',
+                    text: 'El formulario de mecanismos de protección solo aplica para personas mayores de 5 y menores de 18 años.',
+                    icon: 'warning',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
         }
 
         // Función para redirigir a la vista de primera infancia

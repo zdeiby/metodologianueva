@@ -31,15 +31,45 @@ class c_caracterizacionIntegrantes_mecanismosProteccion extends Controller
         // Si la decodificación devuelve un array vacío, asumimos que es un valor sin encriptar
         $idintegranteDesencriptado = !empty($decodedIdIntegrante) ? $decodedIdIntegrante[0] : $idintegrante;
         
+        if (!$folioDesencriptado || !$idintegranteDesencriptado) {
+            return redirect()->route('caracterizacion_integrantes', [
+                'folio' => $folio,
+                'idintegrante' => $idintegrante
+            ])->with('error', 'Parámetros inválidos');
+        }
+        
         // Obtener datos del integrante
         $datosIntegrante = DB::table('t1_integranteshogar')
             ->where('folio', $folioDesencriptado)
-            ->where('idintegrante', $idintegranteDesencriptado)
+            ->where('idintegrante', (string)$idintegranteDesencriptado)
             ->first();
             
         if (!$datosIntegrante) {
-            // Si no se encuentra el integrante, mostrar un mensaje de error
-            return redirect()->route('index')->with('error', 'No se encontró el integrante especificado.');
+            \Log::info("No se encontró el integrante con folio: {$folioDesencriptado} e idintegrante: {$idintegranteDesencriptado}");
+            
+            // Intentar buscar solo por folio para ver si el problema es con el idintegrante
+            $integrantesConEseFolio = DB::table('t1_integranteshogar')
+                ->where('folio', $folioDesencriptado)
+                ->get();
+                
+            if ($integrantesConEseFolio->count() > 0) {
+                // Si hay integrantes con ese folio, tomar el primero
+                $datosIntegrante = $integrantesConEseFolio->first();
+                \Log::info("Se encontró un integrante alternativo con folio: {$folioDesencriptado} e idintegrante: {$datosIntegrante->idintegrante}");
+            } else {
+                return redirect()->route('caracterizacion_integrantes', [
+                    'folio' => $folio,
+                    'idintegrante' => $idintegrante
+                ])->with('error', 'No se encontró ningún integrante con el folio especificado: ' . $folioDesencriptado);
+            }
+        }
+        
+        // Validar edad: solo permitir mayores de 5 y menores de 18 años
+        if ($datosIntegrante->edad <= 5 || $datosIntegrante->edad >= 18) {
+            return redirect()->route('caracterizacion_integrantes', [
+                'folio' => $folio,
+                'idintegrante' => $idintegrante
+            ])->with('error', 'Este formulario solo aplica para personas mayores de 5 y menores de 18 años');
         }
         
         // Obtener respuesta existente si la hay
