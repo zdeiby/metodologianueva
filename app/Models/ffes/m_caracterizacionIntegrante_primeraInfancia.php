@@ -12,10 +12,10 @@ class m_caracterizacionIntegrante_primeraInfancia extends Model
 
     protected $table = 't1_caracterizacionIntegrante_primeraInfancia';
     
-    public function __construct(array $attributes = [])
+   /*  public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-    }
+    } */
     
     // Método para obtener respuesta existente
     public function m_obtenerServicioPrimeraInfancia($folio, $idintegrante)
@@ -50,5 +50,20 @@ class m_caracterizacionIntegrante_primeraInfancia extends Model
             'created_at' => now(),
             'updated_at' => now()
         ]);
+    }
+    
+    // Método para actualizar respuesta existente
+    public function m_actualizarServicioPrimeraInfancia($datos)
+    {
+        return DB::table($this->table)
+            ->where('folio', $datos['folio'])
+            ->where('idintegrante', $datos['idintegrante'])
+            ->update([
+                'servicio_primera_infancia' => $datos['servicio_primera_infancia'],
+                'documento_profesional' => $datos['documento_profesional'],
+                'estado' => 1,
+                'sincro' => 0,
+                'updated_at' => now()
+            ]);
     }
 }

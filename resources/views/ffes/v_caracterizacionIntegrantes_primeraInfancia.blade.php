@@ -115,6 +115,10 @@
   <b>Instrucciones:</b> Seleccione el servicio de primera infancia en el que se encuentra recibiendo atención el integrante.
 </div>
 
+          <div class="alert alert-warning" role="alert">
+            <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este formulario solo aplica para niños menores de 6 años.
+          </div>
+
           <div class="card mt-3">
   <div class="card-header bg-light">
     <h5 class="card-title mb-0">¿En qué servicios de primera infancia se encuentra recibiendo atención?</h5>
@@ -181,39 +185,8 @@
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
-    $(document).ready(function() {
-        // Manejar la visibilidad del campo "Otro (especificar)"
-        $('#estrategia_15').change(function() {
-            if($(this).is(':checked')) {
-                $('#otro_especificar_container').show();
-                // Enfocar el campo de texto para facilitar la entrada
-                $('#otro_especificar').focus();
-            } else {
-                $('#otro_especificar_container').hide();
-                $('#otro_especificar').val('');
-            }
-        });
-        
-        // Manejar la opción "No implementa ninguna"
-        $('#estrategia_16').change(function() {
-            if($(this).is(':checked')) {
-                // Desmarcar y deshabilitar todas las demás opciones
-                $('.estrategia-checkbox').prop('checked', false).prop('disabled', true);
-                // Ocultar el campo "Otro (especificar)"
-                $('#otro_especificar_container').hide();
-                $('#otro_especificar').val('');
-            } else {
-                // Habilitar todas las opciones
-                $('.estrategia-checkbox').prop('disabled', false);
-            }
-        });
-        
-        // Si "No implementa ninguna" está marcado al cargar la página, deshabilitar las demás opciones
-        if($('#estrategia_16').is(':checked')) {
-            $('.estrategia-checkbox').prop('disabled', true);
-        }
-        
-        // Manejar el envío del formulario
+    $(document).ready(function() {       
+    
      // Manejar el envío del formulario
 $('form').submit(function(e) {
     e.preventDefault();
@@ -324,5 +297,27 @@ $('form').submit(function(e) {
             var idintegrante = $('#idintegranteinput').val();
             window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
         }
+
+
+
+        // Función para redirigir a la vista de primera infancia
+function redirigirAPrimeraInfancia() {
+    var folio = $('#folioContainer').attr('folio');
+    var idintegrante = $('#idintegranteinput').val();
+    var edad = parseInt($('#edadintegrante').text());
+    
+    if (edad < 6) {
+        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+    } else {
+        Swal.fire({
+            title: 'Atención',
+            text: 'El formulario de primera infancia solo aplica para niños menores de 6 años.',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+}
+
+
     </script>
 @endsection

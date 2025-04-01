@@ -41,6 +41,15 @@ class c_caracterizacionIntegrantes_primerInfancia extends Controller
             // Si no se encuentra el integrante, mostrar un mensaje de error
             return redirect()->route('index')->with('error', 'No se encontró el integrante especificado.');
         }
+
+           // Validar que el integrante sea menor de 6 años
+           if (isset($datosIntegrante->edad) && $datosIntegrante->edad >= 6) {
+            // Si el integrante es mayor o igual a 6 años, redirigir con un mensaje
+            return redirect()->route('caracterizacion_integrantes', [
+                'folio' => $folio,
+                'idintegrante' => $idintegrante
+            ])->with('error', 'Este formulario solo aplica para niños menores de 6 años.');
+        }
         
         // Obtener servicio de primera infancia existente si lo hay
         $modelo = new m_caracterizacionIntegrante_primeraInfancia();
@@ -102,28 +111,60 @@ class c_caracterizacionIntegrantes_primerInfancia extends Controller
                 'message' => 'Error: Datos incompletos. Por favor seleccione un servicio.'
             ], 400);
         }
+
+        try {
+            // Verificar que el integrante sea menor de 6 años
+            $datosIntegrante = DB::table('t1_integranteshogar')
+                ->where('folio', $folio)
+                ->where('idintegrante', $idintegrante)
+                ->first();
+                
+            if (!$datosIntegrante) {
+                return response()->json([
+                    'success' => false, 
+                    'message' => 'Error: No se encontró el integrante especificado.'
+                ], 404);
+            }
+            
+            if (isset($datosIntegrante->edad) && $datosIntegrante->edad >= 6) {
+                return response()->json([
+                    'success' => false, 
+                    'message' => 'Error: Este formulario solo aplica para niños menores de 6 años.'
+                ], 400);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false, 
+                'message' => 'Error: ' . $e->getMessage()
+            ], 500);
+        }
         
         try {
-            // Eliminar respuesta existente
+            // Verificar si existe un registro
             $modelo = new m_caracterizacionIntegrante_primeraInfancia();
-            $modelo->m_eliminarServicioPrimeraInfancia($folio, $idintegrante);
+            $registroExistente = $modelo->m_obtenerServicioPrimeraInfancia($folio, $idintegrante);
             
-            // Datos a guardar
-            $datos = [
-                'folio' => $folio,
-                'idintegrante' => $idintegrante,
-                'servicio_primera_infancia' => $servicio_primera_infancia,
-                'documento_profesional' => $documento_profesional
-            ];
-            
-            // Guardar en la base de datos
-            $resultado = $modelo->m_guardarServicioPrimeraInfancia($datos);
-            
-            if ($resultado) {
-                return response()->json(['success' => true, 'message' => 'Datos guardados correctamente']);
+            if ($registroExistente) {
+                // Actualizar respuesta existente
+                $modelo->m_actualizarServicioPrimeraInfancia([
+                    'folio' => $folio,
+                    'idintegrante' => $idintegrante,
+                    'servicio_primera_infancia' => $servicio_primera_infancia,
+                    'documento_profesional' => $documento_profesional
+                ]);
+                $mensaje = 'Datos actualizados correctamente';
             } else {
-                return response()->json(['success' => false, 'message' => 'Error al guardar los datos'], 500);
+                // Crear un nuevo registro
+                $modelo->m_guardarServicioPrimeraInfancia([
+                    'folio' => $folio,
+                    'idintegrante' => $idintegrante,
+                    'servicio_primera_infancia' => $servicio_primera_infancia,
+                    'documento_profesional' => $documento_profesional
+                ]);
+                $mensaje = 'Datos guardados correctamente';
             }
+            
+            return response()->json(['success' => true, 'message' => $mensaje]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Error: ' . $e->getMessage()], 500);
         }
