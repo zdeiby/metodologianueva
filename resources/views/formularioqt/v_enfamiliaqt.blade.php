@@ -607,6 +607,8 @@
 
 <!-- LOGRO -->
 <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">  FFES </span>
+<hr>
+<span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">PARTICIPACION SOCIAL Y CIUDADANA EN NIÑOS, NIÑAS Y ADOLESCENTES</span>
 
 <div class="container mt-4">
   <div class="border">
@@ -632,7 +634,7 @@
     <div class="row g-0" id="indicadorbef6">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-        El hogar accede a servicios para el mejoramiento de sus condiciones de habitabilidad
+        Los  niños, niñas y adolescentes del hogar participan de actividades sociales, culturales, recreativas y/o deportivas. 
          @if($vista != '1')
         <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[22]->id_bienestar ?>','<?= $indicadores_tabla[22]->id_subcategoria ?>','<?= $indicadores_tabla[22]->id_indicador ?>')">Mover Indicador</div>
@@ -642,12 +644,34 @@
       </div>
       <div class="col-md-8">
         <div class="row g-0">
-          <div class="col-10 border-bottom border-start p-5">
-          Los  niños, niñas y adolescentes del hogar participan de actividades sociales, culturales, recreativas y/o deportivas. 
+          <div class="col-10 border-bottom border-start p-2">
+          Reconocer la importancia de los espacios sociales, de recreación, cultura, deporte y aprovechamiento del tiempo libre.
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicador_bef6_1" id="indicador_bef6_1" <?= ($indicador_bef6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bef6_1) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicador_bef7_1" id="indicador_bef7_1" <?= ($indicador_bef6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bef6_1) ?>">
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Conocer los espacios de ciudad que permiten la interacción social, recreacion, el deporte, la cultura y aprovechamiento del tiempo libre
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicador_bef7_2" id="indicador_bef7_2" <?= ($indicador_bef6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bef6_1) ?>">
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Acceder a servicios relacionados de actividades culturales, sociales, recreativas y deportivas.
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicador_bef7_3" id="indicador_bef7_3" <?= ($indicador_bef6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bef6_1) ?>">
             </div>
           </div>
         </div>

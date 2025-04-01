@@ -596,7 +596,9 @@
 <!-- FFES -->
 
 <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">FFES</span>
-          
+    <hr>
+    <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">RESTABLECIMIENTO DE DERECHOS Y MECANISMOS DE PROTECCION A NIÑOS, NIÑAS Y ADOLESCENTES</span>
+      
           <div class="container mt-4">
   <div class="border">
     <!-- Fila de títulos -->
@@ -621,7 +623,8 @@
  <div class="row g-0" id="indicadorbl2" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-        Los hombres de 18 a 49 años tienen resuelta su situación militar
+        	
+        Los niños, niñas y adolescentes en situación de victimización (Violencias y vulneraciones) reciben acompañamiento para el goce efectivo de derechos
           @if($vista != '1')
           <br><br><div class="text-center">
             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[8]->id_bienestar ?>','<?= $indicadores_tabla[8]->id_subcategoria ?>','<?= $indicadores_tabla[8]->id_indicador ?>')">Mover Indicador</div>
@@ -632,24 +635,97 @@
       <div class="col-md-8">
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-          Los niños, niñas y adolescentes en situación de victimización (Violencias y vulneraciones) reciben acompañamiento para el goce efectivo de derechos
+          Conocer las rutas ,  programas e instituciones para la protección y restablecimiento de derechos de los NNA
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl2_1" id="indicadorbl2_1" <?= ($indicadorbl2_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_1) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl11_1" id="indicadorbl11_1" <?= ($indicadorbl2_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_1) ?>">
             </div>
           </div>
         </div>
         <div class="row g-0">
           <div class="col-10 border-bottom border-start p-2">
-          Los Niños, Niñas y Adolescentes  del hogar de 6 a 17 años reciben orientación para el reconocimiento de las instituciones de administración de justicia y de garantía de sus derechos.
+          Gestionar los recursos y apoyos para asistir a las instituciones y programas para la proteccion y restablecimiento de los derechos de los NNA
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl2_2" id="indicadorbl2_2" <?= ($indicadorbl2_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_2) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl11_2" id="indicadorbl11_2" <?= ($indicadorbl2_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_2) ?>">
             </div>
           </div>
         </div>
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Accede de forma oportuna a los programas , instituciones para la proteccion y restablecimiento de los derechos de los NNA
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl11_3" id="indicadorbl11_3" <?= ($indicadorbl2_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_2) ?>">
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+</div>
+</div>
+
+      
+    
+          <div class="container mt-4">
+  <div class="border">
+    <!-- Fila de títulos -->
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+        <div class="p-2 text-center">
+        INDICADOR
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2 text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+          QUIERO Y NO TENGO
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+           <label for="">SI</label>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Fila de contenido -->
+ <div class="row g-0" id="indicadorbl2" >
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+        <div class="p-2">
+        	
+        Los Niños, Niñas y Adolescentes  del hogar de 6 a 17 años reciben orientación para el reconocimiento de las instituciones de administración de justicia y de garantía de sus derechos.
+          @if($vista != '1')
+          <br><br><div class="text-center">
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[8]->id_bienestar ?>','<?= $indicadores_tabla[8]->id_subcategoria ?>','<?= $indicadores_tabla[8]->id_indicador ?>')">Mover Indicador</div>
+          </div> 
+          @endif
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Reconocer la importancia de las instituciones de administracion de justicia y rutas para la garantía de sus derechos.
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl12_1" id="indicadorbl12_1" <?= ($indicadorbl2_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_1) ?>">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-10 border-bottom border-start p-2">
+          Conocer las instituciones de administración de justicia presentes en el territorio y las rutas para acceder a ellas.
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl12_2" id="indicadorbl12_2" <?= ($indicadorbl2_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_2) ?>">
+            </div>
+          </div>
+        </div>
+       
       
       </div>
     </div>

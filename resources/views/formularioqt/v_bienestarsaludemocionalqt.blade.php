@@ -483,12 +483,178 @@
 
   </div>
 
-
+   
+    <!-- FFES -->
 <!-- LOGRO -->
+<hr>
+<span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">FFES</span>
 
-<span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">FFES</span>
+<hr>
+<span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">SALUD Y BIENESTAR</span>
+
+  <div class="border">
+    <!-- Fila de títulos -->
+    <div class="row g-0" >
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+        <div class="p-2 text-center">
+        INDICADOR
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0" >
+          <div class="col-10 border-bottom border-start p-2 text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+          QUIERO Y NO TENGO
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+           <label for="">SI</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  
 
 
+
+      <!-- Fila de contenido -->
+      <div class="row g-0" id="indicadorbse6" >
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+        <div class="p-2">
+        Los Niños, Niñas y adolescentes del hogar implementan estrategias para  reducir el estrés y para favorecer el bienestar emocional y fisico
+        @if($vista != '1')
+        <div class="text-center">
+          <br>
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div>
+          </div>
+           @endif
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0" >
+          <div class="col-10 border-bottom border-start p-2">
+          Conocer  estrategias que puedan ser aplicadas para favorecer el bienestar emocional y fisico
+
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse1_4" id="indicadorbse1_4" <?= ($indicadorbse6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_1) ?>">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0" >
+          <div class="col-10 border-bottom border-start p-2">
+          Implementar estrategias de bienestar como salidas, actividades familiares, otras que contribuyen al bienestar emocional y fisico
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse1_5" id="indicadorbse1_5" <?= ($indicadorbse6_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_2) ?>">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0" >
+          <div class="col-10 border-start p-2 border-bottom">
+          Establecer habitos  para el desarrollo de actividades que favorezan el bienestar emocional y fisico
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse1_6" id="indicadorbse1_6" <?= ($indicadorbse6_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_3) ?>">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0" >
+          <div class="col-10 border-start p-2 border-bottom">
+          Conocer y acceder a rutas o lugares que brinden servicios orientados a favorecer el bienestar emocional y fisico
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse1_7" id="indicadorbse1_7" <?= ($indicadorbse6_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_3) ?>">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <hr>
+<span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">FACTORES DE RIESGO PSICOSOCIAL</span>
+
+  <div class="border">
+    <!-- Fila de títulos -->
+    <div class="row g-0" >
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+        <div class="p-2 text-center">
+        INDICADOR
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0" >
+          <div class="col-10 border-bottom border-start p-2 text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+          QUIERO Y NO TENGO
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom text-center" style="background:#2fa4e7; color:white; font-weight:bold">
+           <label for="">SI</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+
+
+      <!-- Fila de contenido -->
+      <div class="row g-0" id="indicadorbse6" >
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+        <div class="p-2">
+        Los niños, niñas y adolescentes del hogar expuestos a factores de amenaza, riesgo o vulneración de derechos reconocen y acceden a los servicios de protección y atención.
+        @if($vista != '1')
+        <div class="text-center">
+          <br>
+            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div>
+          </div>
+           @endif
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0" >
+          <div class="col-10 border-bottom border-start p-2">
+          Reconocer los comportamientos y situaciones que vulneran los derechos y afectan la integridad, salud mental y psicosocial de los niños, niñas y adolescentes
+
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse8_1" id="indicadorbse8_1" <?= ($indicadorbse6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_1) ?>">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0" >
+          <div class="col-10 border-bottom border-start p-2">
+          Conocer las instituciones que ofrecen programas para la protección de derechos, atención en salud mental  y/o rutas para atencion psicosocial 
+          </div>
+          <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse8_2" id="indicadorbse8_2" <?= ($indicadorbse6_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_2) ?>">
+            </div>
+          </div>
+        </div>
+        <div class="row g-0" >
+          <div class="col-10 border-start p-2 border-bottom">
+          Acceder de forma oportuna a la oferta  existente para la proteccion de derechos, a la integridad, atencion a la salud mental y/o psicosocial 
+          </div>
+          <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
+            <div class="form-check form-switch">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse8_3" id="indicadorbse8_3" <?= ($indicadorbse6_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_3) ?>">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<hr>
+
+
+<span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">SALUD MENTAL</span>
 
   <div class="border">
     <!-- Fila de títulos -->
@@ -512,13 +678,13 @@
   
 
    
-    <!-- FFES -->
+ 
 
       <!-- Fila de contenido -->
       <div class="row g-0" id="indicadorbse6" >
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
-        Los integrantes del hogar que lo requieren acceden a servicios de salud mental  y/o atención psicosocial.
+        Los niños, niñas y adolescentes del hogar con necesidades en la salud mental  reciben tratamiento oportuno y adecuado en servicios de salud mental.
         @if($vista != '1')
         <div class="text-center">
           <br>
@@ -530,46 +696,52 @@
       <div class="col-md-8">
         <div class="row g-0" >
           <div class="col-10 border-bottom border-start p-2">
-          Los Niños, Niñas y adolescentes del hogar implementan estrategias para  reducir el estrés y para favorecer el bienestar emocional y fisico
+          Reconoce la importancia de la atencion oportuna y tratamiento integral en la salud mental.
 
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse6_1" id="indicadorbse6_1" <?= ($indicadorbse6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_1) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse9_1" id="indicadorbse9_1" <?= ($indicadorbse6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_1) ?>">
             </div>
           </div>
         </div>
         <div class="row g-0" >
           <div class="col-10 border-bottom border-start p-2">
-          Los niños, niñas y adolescentes del hogar expuestos a factores de amenaza, riesgo o vulneración de derechos reconocen y acceden a los servicios de protección y atención.
+          Conoce las  instituciones que ofrecen servicios y tratamientos para la  atención en  salud mental.
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse6_2" id="indicadorbse6_2" <?= ($indicadorbse6_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_2) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse9_2" id="indicadorbse9_2" <?= ($indicadorbse6_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_2) ?>">
             </div>
           </div>
         </div>
         <div class="row g-0" >
           <div class="col-10 border-start p-2 border-bottom">
-          Los niños, niñas y adolescentes del hogar con necesidades en la salud mental  reciben tratamiento oportuno y adecuado en servicios de salud mental. 
+          Accede de manera oportuna a los programas e intervenciones necesarias para la atencion de la salud mental
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse6_3" id="indicadorbse6_3" <?= ($indicadorbse6_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_3) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse9_3" id="indicadorbse9_3" <?= ($indicadorbse6_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_3) ?>">
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
-</div>
-     
-<!-- FIN FFES -->
 
-    
+
+
   </div>
 
 
+
+
+  
+
+
+
+<!-- FIN FFES -->
 
 
 
