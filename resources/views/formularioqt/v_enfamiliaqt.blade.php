@@ -631,7 +631,7 @@
       </div>
     </div>
   
-    <div class="row g-0" id="indicadorbef6">
+    <div class="row g-0" id="indicadorbef7" style="display:{{((($indicador_bef_5 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los  niños, niñas y adolescentes del hogar participan de actividades sociales, culturales, recreativas y/o deportivas. 
@@ -649,7 +649,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicador_bef7_1" id="indicador_bef7_1" <?= ($indicador_bef6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bef6_1) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicador_bef7_1" id="indicador_bef7_1" <?= ($indicador_bef7_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bef7_1) ?>">
             </div>
           </div>
         </div>
@@ -660,7 +660,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicador_bef7_2" id="indicador_bef7_2" <?= ($indicador_bef6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bef6_1) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicador_bef7_2" id="indicador_bef7_2" <?= ($indicador_bef7_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bef7_2) ?>">
             </div>
           </div>
         </div>
@@ -671,7 +671,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicador_bef7_3" id="indicador_bef7_3" <?= ($indicador_bef6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bef6_1) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicador_bef7_3" id="indicador_bef7_3" <?= ($indicador_bef7_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicador_bef7_3) ?>">
             </div>
           </div>
         </div>
@@ -820,6 +820,11 @@
     'indicador_bef6_5': { isNone: false },
     'indicador_bef6_6': { isNone: false },
 
+    'indicador_bef7_1': { isNone: false },
+    'indicador_bef7_2': { isNone: false },
+    'indicador_bef7_3': { isNone: false },
+
+
     'ninguna_switch': { isNone: true }  // Este es el switch exclusivo
 };
 
@@ -874,6 +879,7 @@
     checkAndSetSwitchValues('indicadorbef4');
     checkAndSetSwitchValues('indicadorbef5');
     checkAndSetSwitchValues('indicadorbef6');
+    checkAndSetSwitchValues('indicadorbef7');
 
 
     // Configuración del observador para ambos divs
@@ -883,7 +889,8 @@
     var observer2 = createObserver('indicadorbef4');
     var observer2 = createObserver('indicadorbef5');
     var observer2 = createObserver('indicadorbef6');
-   
+    var observer2 = createObserver('indicadorbef7');
+
 
 });
 
