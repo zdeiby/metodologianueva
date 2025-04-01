@@ -127,7 +127,8 @@ class c_l1e1 extends Controller
 
       $tipologia = '<option value="">Seleccione </option>';
       foreach ($preguntas as $value) {
-        if ($value->id >= '179' && $value->id <=  ($existeMenorDe59 == 1 ? '190' : '191')) {
+        if ($value->id >= '179' && $value->id <=  ($existeMenorDe59 == 1 ? '190' : '191') ||
+        $value->id == 375) {
             $tipologia .= '<option value="' . $value->id . '">' . $value->pregunta . '</option>';
         }
     }
