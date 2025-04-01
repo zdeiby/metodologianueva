@@ -6,6 +6,7 @@ use App\Http\Controllers\ffes\c_caracterizacionhogar;
 use App\Http\Controllers\ffes\c_triaje_p1_p2;
 use App\Http\Controllers\ffes\c_caracterizacionIntegrantes;
 use App\Http\Controllers\ffes\c_caracterizacionIntegrantes_primerInfancia;
+use App\Http\Controllers\ffes\c_caracterizacionIntegrantes_mecanismosProteccion;
 use Hashids\Hashids;
 
 // Rutas para caracterización de hogares
@@ -23,6 +24,10 @@ Route::post('/guardar_estrategias',[c_caracterizacionIntegrantes::class, 'fc_gua
 // Rutas para servicios de primera infancia
 Route::get('/primera_infancia/{folio}/{idintegrante}',[c_caracterizacionIntegrantes_primerInfancia::class, 'fc_primeraInfancia'])->name('primera_infancia');
 Route::post('/guardar_primera_infancia',[c_caracterizacionIntegrantes_primerInfancia::class, 'fc_guardar_primeraInfancia'])->name('guardar.primeraInfancia');
+
+// Rutas para mecanismos de protección
+Route::get('/mecanismos_proteccion/{folio}/{idintegrante}',[c_caracterizacionIntegrantes_mecanismosProteccion::class, 'fc_mecanismosProteccion'])->name('mecanismos_proteccion');
+Route::post('/guardar_mecanismos_proteccion',[c_caracterizacionIntegrantes_mecanismosProteccion::class, 'fc_guardar_mecanismosProteccion'])->name('guardar.mecanismosProteccion');
 
 // Rutas temporalmente comentadas hasta implementar los formularios correspondientes
 // Route::get('/integrantes/{folio}',[c_caracterizacion::class, 'fc_integrantes'])->name('integrantes');

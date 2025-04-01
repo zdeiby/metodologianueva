@@ -63,6 +63,9 @@
        <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link" onclick="redirigirAPrimeraInfancia()" >Primera Infancia</a>
       </li>
+      <li class="nav-item" role="presentation" style="cursor:pointer">
+        <a id="mecanismosqt"  class="nav-link" onclick="redirigirAMecanismosProteccion()" >Mecanismos de Protección</a>
+      </li>
       <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
       </li> -->
@@ -416,6 +419,13 @@
             var folio = $('#folioContainer').attr('folio');
             var idintegrante = $('#idintegranteinput').val();
             window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        }
+        
+        // Función para redirigir a la vista de mecanismos de protección
+        function redirigirAMecanismosProteccion() {
+            var folio = $('#folioContainer').attr('folio');
+            var idintegrante = $('#idintegranteinput').val();
+            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
         }
    
 

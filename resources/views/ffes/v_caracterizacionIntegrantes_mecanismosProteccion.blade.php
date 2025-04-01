@@ -57,23 +57,16 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="caracterizacionIntegranteffes" class="nav-link" onclick="redirigirACaracterizacionIntegrantes()">caracterizacion integrantes
+        <a id="caracterizacionIntegranteffes" class="nav-link" href="{{ route('caracterizacion_integrantes', ['folio' => $folio, 'idintegrante' => $idintegrante]) }}">Caracterización integrantes
         </a>
       </li>
       
-      <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">Primera Infancia
-        </a>
+      <li class="nav-item" role="presentation" style="cursor:pointer">
+        <a id="primeraInfanciaqt" class="nav-link" href="{{ $datosIntegrante->edad < 6 ? route('primera_infancia', ['folio' => $folio, 'idintegrante' => $idintegrante]) : '#' }}" {{ $datosIntegrante->edad >= 6 ? 'onclick="alertEdad(event)"' : '' }}>Primera Infancia</a>
       </li>
        <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="mecanismosqt"  class="nav-link" onclick="redirigirAMecanismosProteccion()" >Mecanismos de Protección</a>
+        <a id="mecanismosqt"  class="nav-link active" >Mecanismos de Protección</a>
       </li>
-       <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="legalqt"  class="nav-link " >caracterizacion hogar</a>
-      </li>
-      <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
-      </li> -->
   
 </ul>
 
@@ -100,7 +93,7 @@
           <input type="hidden" name="idintegrante" id="idintegranteinput" value="{{ $idintegrante }}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Servicios de Primera Infancia</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Mecanismos de Protección</span>
 
 
           <!-- Cabecera con información del integrante -->
@@ -115,21 +108,21 @@
           </div>
 
           <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
-  <b>Instrucciones:</b> Seleccione el servicio de primera infancia en el que se encuentra recibiendo atención el integrante.
+  <b>Instrucciones:</b> Seleccione si conoce o no las instituciones y mecanismos que garantizan sus derechos.
 </div>
 
           <div class="alert alert-warning" role="alert">
-            <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este formulario solo aplica para niños menores de 6 años.
+            <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Esta información es relevante para la protección de los derechos del integrante.
           </div>
 
           <div class="card mt-3">
   <div class="card-header bg-light">
-    <h5 class="card-title mb-0">¿En qué servicios de primera infancia se encuentra recibiendo atención?</h5>
+    <h5 class="card-title mb-0">¿Conoces las instituciones y mecanismos para garantízar tus derechos?</h5>
   </div>
   <div class="card-body">
     <div class="row">
       <div class="col-md-12">
-        <select class="form-select" id="servicio_primera_infancia" name="servicio_primera_infancia">
+        <select class="form-select" id="conoce_institucion_mecanismo" name="conoce_institucion_mecanismo">
           <option value="">Seleccione una opción</option>
           @foreach($serviciosPrimeraInfancia as $servicio)
             <option value="{{ $servicio->id }}" {{ isset($servicioSeleccionado) && $servicioSeleccionado == $servicio->id ? 'selected' : '' }}>
@@ -188,144 +181,90 @@
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
     <script>
-    $(document).ready(function() {       
-    
-     // Manejar el envío del formulario
-$('form').submit(function(e) {
-    e.preventDefault();
-    
-    // Verificar que se haya seleccionado una opción
-    var servicioSeleccionado = $('#servicio_primera_infancia').val();
-    if(!servicioSeleccionado) {
-        Swal.fire({
-            title: 'Atención',
-            text: 'Por favor seleccione un servicio de primera infancia',
-            icon: 'warning',
-            confirmButtonText: 'Aceptar'
-        });
-        return false;
-    }
-    
-    // Recopilar datos del formulario
-    var formData = {
-        folio: $('#folioinput').val(),
-        idintegrante: $('#idintegranteinput').val(),
-        servicio_primera_infancia: servicioSeleccionado,
-        _token: $('meta[name="csrf-token"]').attr('content')
-    };
-    
-    // Mostrar indicador de carga
-    Swal.fire({
-        title: 'Guardando...',
-        text: 'Por favor espere mientras se guardan los datos',
-        allowOutsideClick: false,
-        didOpen: () => {
-            Swal.showLoading();
-        }
-    });
-    
-    // Enviar datos mediante AJAX
-    $.ajax({
-        url: "{{ route('guardar.primeraInfancia') }}",
-        type: "POST",
-        data: formData,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(response) {
-            Swal.close();
-            if(response.success) {
+    $(document).ready(function() {
+        // Manejar el envío del formulario
+        $('form').submit(function(e) {
+            e.preventDefault();
+            
+            // Verificar que se haya seleccionado una opción
+            var servicioSeleccionado = $('#conoce_institucion_mecanismo').val();
+            if(!servicioSeleccionado) {
                 Swal.fire({
-                    title: 'Éxito',
-                    text: 'Datos guardados correctamente',
-                    icon: 'success',
+                    title: 'Atención',
+                    text: 'Por favor seleccione una opción sobre el conocimiento de instituciones y mecanismos',
+                    icon: 'warning',
                     confirmButtonText: 'Aceptar'
                 });
-            } else {
-                Swal.fire({
-                    title: 'Error',
-                    text: response.message || 'Ocurrió un error al guardar los datos',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
+                return false;
             }
-        },
-        error: function(xhr, status, error) {
-            Swal.close();
-            console.error("Error en la solicitud AJAX:", xhr.responseText);
+            
+            // Recopilar datos del formulario
+            var formData = {
+                folio: $('#folioinput').val(),
+                idintegrante: $('#idintegranteinput').val(),
+                conoce_institucion_mecanismo: servicioSeleccionado,
+                _token: $('meta[name="csrf-token"]').attr('content')
+            };
+            
+            // Mostrar indicador de carga
             Swal.fire({
-                title: 'Error',
-                text: 'Ocurrió un error al procesar la solicitud. Por favor, intente nuevamente.',
-                icon: 'error',
+                title: 'Guardando...',
+                text: 'Por favor espere mientras se guardan los datos',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+            
+            // Enviar datos mediante AJAX
+            $.ajax({
+                url: "{{ route('guardar.mecanismosProteccion') }}",
+                type: "POST",
+                data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    Swal.close();
+                    if(response.success) {
+                        Swal.fire({
+                            title: 'Éxito',
+                            text: 'Datos guardados correctamente',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.message || 'Ocurrió un error al guardar los datos',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.close();
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Ocurrió un error al guardar los datos: ' + error,
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    });
+                }
+            });
+        });
+        
+        // Función para mostrar alerta de edad
+        function alertEdad(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Atención',
+                text: 'El formulario de primera infancia solo aplica para niños menores de 6 años.',
+                icon: 'warning',
                 confirmButtonText: 'Aceptar'
             });
         }
     });
-});
-        
-        // Manejar el botón "Siguiente"
-        $('#siguiente').click(function() {
-            // Mostrar mensaje informativo
-            Swal.fire({
-                title: 'Información',
-                text: 'La navegación al siguiente paso estará disponible cuando se implementen los formularios correspondientes.',
-                icon: 'info',
-                confirmButtonText: 'Aceptar'
-            });
-        });
-        
-        // Función para el botón "Volver"
-        $('#volver').click(function() {
-            // Mostrar mensaje informativo
-            Swal.fire({
-                title: 'Información',
-                text: 'La navegación a la vista de integrantes estará disponible cuando se implemente el formulario correspondiente.',
-                icon: 'info',
-                confirmButtonText: 'Aceptar'
-            });
-        });
-        
-        // Función para validar input
-        function validateInput(input) {
-            // Eliminar caracteres especiales
-            input.value = input.value.replace(/[^\w\s.,]/gi, '');
-        }
-    });
-
-
-
-     // Función para redirigir a la vista de caracterización integrantes
-     function redirigirACaracterizacionIntegrantes() {
-            var folio = $('#folioContainer').attr('folio');
-            var idintegrante = $('#idintegranteinput').val();
-            window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
-        }
-
-     // Función para redirigir a la vista de mecanismos de protección
-     function redirigirAMecanismosProteccion() {
-            var folio = $('#folioContainer').attr('folio');
-            var idintegrante = $('#idintegranteinput').val();
-            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
-        }
-
-        // Función para redirigir a la vista de primera infancia
-function redirigirAPrimeraInfancia() {
-    var folio = $('#folioContainer').attr('folio');
-    var idintegrante = $('#idintegranteinput').val();
-    var edad = parseInt($('#edadintegrante').text());
-    
-    if (edad < 6) {
-        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
-    } else {
-        Swal.fire({
-            title: 'Atención',
-            text: 'El formulario de primera infancia solo aplica para niños menores de 6 años.',
-            icon: 'warning',
-            confirmButtonText: 'Aceptar'
-        });
-    }
-}
-
-
     </script>
+
 @endsection
