@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class m_caracterizacion_hogar_p1 extends Model
+class m_caracterizacion_hogar_p2 extends Model
 {
     use HasFactory;
 

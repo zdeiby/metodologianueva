@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Hashids\Hashids;
-use App\Models\ffes\m_caracterizacion_hogar_p1;
+use App\Models\ffes\m_caracterizacion_hogar_p2;
 use Illuminate\Support\Facades\Crypt;
 
-class c_caracterizacion_hogar_p1 extends Controller
+class c_caracterizacion_hogar_p2 extends Controller
 {
-    public function fc_caracterizacion_hogar_p1($folio, $idintegrante)
+    public function fc_caracterizacion_hogar_p2($folio, $idintegrante)
     {
         try {
             // Desencriptar el folio si es necesario
@@ -38,16 +38,16 @@ class c_caracterizacion_hogar_p1 extends Controller
             }
             
             // Obtener datos de caracterización de hogar si existen
-            $modelo = new m_caracterizacion_hogar_p1();
+            $modelo = new m_caracterizacion_hogar_p2();
             $caracterizacionHogar = $modelo->m_obtenerCaracterizacionHogar($folioDesencriptado, $idintegrante);
             
             // Obtener las respuestas si existen
             $respuestas = null;
-            if ($caracterizacionHogar && isset($caracterizacionHogar->situacionesriesgo_hogar_p1)) {
-                $respuestas = json_decode($caracterizacionHogar->situacionesriesgo_hogar_p1, true);
+            if ($caracterizacionHogar && isset($caracterizacionHogar->nino_medidas_restablecimiento_p2)) {
+                $respuestas = json_decode($caracterizacionHogar->nino_medidas_restablecimiento_p2, true);
             }
             
-            return view('ffes.v_caracterizacion_hogar_p1', [
+            return view('ffes.v_caracterizacion_hogar_p2', [
                 'folio' => $folioDesencriptado,
                 'idintegrante' => $idintegrante,
                 'datosIntegrante' => $datosIntegrante,
@@ -59,97 +59,53 @@ class c_caracterizacion_hogar_p1 extends Controller
         }
     }
     
-    public function fc_guardar_caracterizacion_hogar_p1(Request $request)
+    public function fc_guardar_caracterizacion_hogar_p2(Request $request)
     {
         try {
             $folio = $request->input('folio');
             $idintegrante = $request->input('idintegrante');
             $documento_profesional = $request->input('documento_profesional');
             
-            // Verificar si se seleccionó "Ninguna de las anteriores"
-            $ningunaSeleccionada = $request->has('situacionK');
+            // Obtener la respuesta seleccionada
+            $respuesta = $request->input('respuesta');
             
-            // Mapeo de letras a IDs
-            $mapeoSituaciones = [
-                'A' => 25, // Abandono y falta de padres
-                'B' => 26, // Acoso escolar o bullying
-                'C' => 27, // Reclutamiento forzado y utilización en conflicto armado
-                'D' => 28, // Ciber acoso
-                'E' => 29, // Amenazas o presión grupal
-                'F' => 30, // Tráfico y comercialización de sustancias
-                'G' => 31, // Matrimonio infantil
-                'H' => 32, // Conducta suicida o riesgo de suicidio infantil
-                'I' => 33, // Otras conductas delictivas como hurto por fuera del hogar, extorción, intento de homicidio
-                'J' => 34, // Barrera culturales y lingüisticas (población indigena)
-                'K' => 35  // Ninguna de las anteriores
-            ];
-            
-            // Inicializar el array de respuestas en el nuevo formato
+            // Inicializar array de respuestas en el nuevo formato
             $respuestasData = [];
             
-            if ($ningunaSeleccionada) {
-                // Si se seleccionó "Ninguna de las anteriores"
-                
-                // Agregar "Ninguna de las anteriores" con valor "SI"
-                $respuestasData[] = [
-                    'id' => (string)$mapeoSituaciones['K'],
-                    'valor' => 'SI',
-                    'idintegrante' => []
-                ];
-                
-                // Agregar todas las demás situaciones con valor "NO"
-                foreach (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'] as $situacion) {
-                    $respuestasData[] = [
-                        'id' => (string)$mapeoSituaciones[$situacion],
-                        'valor' => 'NO',
-                        'idintegrante' => []
-                    ];
-                }
-            } else {
-                // Procesar situaciones normales (A-J) y sus integrantes
+            // Si la respuesta es A (SI) o B (NO), procesar los integrantes seleccionados
+            if ($respuesta == 1 || $respuesta == 0) {
                 $integrantes = $request->input('integrantes', []);
                 
-                // Agregar "Ninguna de las anteriores" con valor "NO"
+                // Crear un objeto en el formato esperado
                 $respuestasData[] = [
-                    'id' => (string)$mapeoSituaciones['K'],
-                    'valor' => 'NO',
+                    'id' => (string)$respuesta, // 1 para SI, 0 para NO
+                    'valor' => ($respuesta == 1) ? 'SI' : 'NO',
+                    'idintegrante' => $integrantes
+                ];
+            } else if ($respuesta == 36) {
+                // Si es C (NO. NO LO HA REQUERIDO), no hay integrantes
+                $respuestasData[] = [
+                    'id' => '36',
+                    'valor' => 'NO_REQUERIDO',
                     'idintegrante' => []
                 ];
-                
-                // Para cada situación, crear un objeto en el formato esperado
-                foreach (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'] as $situacion) {
-                    if (isset($integrantes[$situacion]) && !empty($integrantes[$situacion])) {
-                        // Si está seleccionada, valor "SI" y agregar integrantes
-                        $respuestasData[] = [
-                            'id' => (string)$mapeoSituaciones[$situacion],
-                            'valor' => 'SI',
-                            'idintegrante' => $integrantes[$situacion]
-                        ];
-                    } else {
-                        // Si no está seleccionada, valor "NO" y sin integrantes
-                        $respuestasData[] = [
-                            'id' => (string)$mapeoSituaciones[$situacion],
-                            'valor' => 'NO',
-                            'idintegrante' => []
-                        ];
-                    }
-                }
             }
+            
+            // Guardar en la base de datos
+            $modelo = new m_caracterizacion_hogar_p2();
+            
+            // Verificar si ya existe un registro para actualizar
+            $caracterizacionExistente = $modelo->m_obtenerCaracterizacionHogar($folio, $idintegrante);
             
             // Preparar los datos para guardar
             $datos = [
                 'folio' => $folio,
                 'idintegrante' => $idintegrante,
-                'situacionesriesgo_hogar_p1' => json_encode($respuestasData),
+                'nino_medidas_restablecimiento_p2' => json_encode($respuestasData),
                 'documento_profesional' => $documento_profesional
             ];
             
-            // Guardar en la base de datos
-            $modelo = new m_caracterizacion_hogar_p1();
-            
-            // Verificar si ya existe un registro para actualizar o crear uno nuevo
-            $caracterizacionExistente = $modelo->m_obtenerCaracterizacionHogar($folio, $idintegrante);
-            
+            // Actualizar o crear registro
             if ($caracterizacionExistente) {
                 // Actualizar registro existente
                 $resultado = $modelo->m_actualizarCaracterizacionHogar($datos);
@@ -190,7 +146,7 @@ class c_caracterizacion_hogar_p1 extends Controller
                 $folioDesencriptado = $folio;
             }
             
-            // Obtener integrantes menores de 18 años
+            // Obtener integrantes menores de 18 años (0-17 años)
             $integrantes = DB::table('t1_integranteshogar')
                 ->where('folio', $folioDesencriptado)
                 ->where(function($query) {

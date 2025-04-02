@@ -45,17 +45,9 @@
                 <div class="accordion-body">
                     <div class="row">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item" role="presentation"  style="cursor:pointer">
-                                <a id="caracterizacionIntegranteffes" class="nav-link" href="{{ route('caracterizacion_integrantes', ['folio' => $folio, 'idintegrante' => $idintegrante]) }}">Caracterización integrantes</a>
-                            </li>
+                            
                             <li class="nav-item" role="presentation" style="cursor:pointer">
-                                <a id="primeraInfanciaqt" class="nav-link" onclick="redirigirAPrimeraInfancia()">Primera Infancia</a>
-                            </li>
-                            <li class="nav-item" role="presentation" style="cursor:pointer">
-                                <a id="mecanismosqt"  class="nav-link" onclick="redirigirAMecanismosProteccion()">Mecanismos de Protección</a>
-                            </li>
-                            <li class="nav-item" role="presentation" style="cursor:pointer">
-                                <a id="legalqt"  class="nav-link active" >Caracterización hogar</a>
+                                <a id="legalqt"  class="nav-link active" >Caracterización hogar FFES</a>
                             </li>
                         </ul>
 
@@ -314,7 +306,7 @@
                     </div>
                     <div class="text-end col">
                         <button class="btn btn-outline-success" id="btnGuardar" type="button">Guardar</button>
-                        <div class="btn btn-outline-primary" id="siguiente">Siguiente</div>
+                        <div class="btn btn-outline-primary" id="siguiente" onclick="redirigirACaracterizacionHogarP2()">Siguiente</div>
                     </div> 
                 </div>
             </div>
@@ -349,14 +341,33 @@
                             
                             // Verificar si este integrante estaba seleccionado previamente
                             let isChecked = '';
+                            const letraActual = letra; // Guardar la letra actual en una variable JavaScript
                             @if(isset($respuestas) && $respuestas)
-                                if (@json($respuestas) && 
-                                    @json($respuestas)['pregunta1'] && 
-                                    @json($respuestas)['pregunta1']['integrantes'] && 
-                                    @json($respuestas)['pregunta1']['integrantes'][letra] && 
-                                    @json($respuestas)['pregunta1']['integrantes'][letra].includes(integrante.idintegrante.toString())) {
-                                    isChecked = 'checked';
-                                }
+                                @foreach($respuestas as $respuesta)
+                                    @if(isset($respuesta['id']) && isset($respuesta['idintegrante']))
+                                        // Mapeo de IDs a letras
+                                        @php
+                                            $mapeoInverso = [
+                                                '25' => 'A',
+                                                '26' => 'B',
+                                                '27' => 'C',
+                                                '28' => 'D',
+                                                '29' => 'E',
+                                                '30' => 'F',
+                                                '31' => 'G',
+                                                '32' => 'H',
+                                                '33' => 'I',
+                                                '34' => 'J',
+                                                '35' => 'K'
+                                            ];
+                                            $letraSituacion = isset($mapeoInverso[$respuesta['id']]) ? $mapeoInverso[$respuesta['id']] : '';
+                                        @endphp
+                                        
+                                        if (@json($letraSituacion) === letraActual && @json($respuesta['idintegrante']).includes(integrante.idintegrante.toString())) {
+                                            isChecked = 'checked';
+                                        }
+                                    @endif
+                                @endforeach
                             @endif
                             
                             htmlIntegrantes += `
@@ -410,12 +421,32 @@
         
         // Marcar situaciones previamente seleccionadas
         @if(isset($respuestas) && $respuestas)
-            @if(isset($respuestas['pregunta1']) && isset($respuestas['pregunta1']['situaciones']))
-                @foreach($respuestas['pregunta1']['situaciones'] as $situacion)
-                    $('#situacion{{ $situacion }}').prop('checked', true);
-                    $('#integrantesSituacion{{ $situacion }}').show();
-                @endforeach
-            @endif
+            @foreach($respuestas as $respuesta)
+                @if(isset($respuesta['id']) && isset($respuesta['valor']) && $respuesta['valor'] == 'SI')
+                    // Mapeo de IDs a letras
+                    @php
+                        $mapeoInverso = [
+                            '25' => 'A',
+                            '26' => 'B',
+                            '27' => 'C',
+                            '28' => 'D',
+                            '29' => 'E',
+                            '30' => 'F',
+                            '31' => 'G',
+                            '32' => 'H',
+                            '33' => 'I',
+                            '34' => 'J',
+                            '35' => 'K'
+                        ];
+                        $letraSituacion = isset($mapeoInverso[$respuesta['id']]) ? $mapeoInverso[$respuesta['id']] : '';
+                    @endphp
+                    
+                    @if($letraSituacion)
+                        $('#situacion{{ $letraSituacion }}').prop('checked', true);
+                        $('#integrantesSituacion{{ $letraSituacion }}').show();
+                    @endif
+                @endif
+            @endforeach
         @endif
         
         // Manejar el cambio en "Ninguna de las anteriores"
@@ -633,6 +664,12 @@
     function redirectToIntegrantes() {
         var folio = $('#folioContainer').attr('folio');
         window.location.href = "{{ route('integrantes', ['folio' => ':folio']) }}".replace(':folio', folio);
+    }
+    
+    function redirigirACaracterizacionHogarP2() {
+        var folio = $('#folioContainer').attr('folio');
+        var idintegrante = $('#idintegranteinput').val();
+        window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
     }
 </script>
 @endsection
