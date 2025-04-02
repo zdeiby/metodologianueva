@@ -17,6 +17,22 @@
     background: transparent;
     background-color: #e0e0e0;
   }
+  
+  /* Estilos para los switches */
+  .form-switch {
+    padding-left: 2.5em;
+  }
+  
+  .form-switch .form-check-input {
+    width: 2em;
+    margin-left: -2.5em;
+    height: 1em;
+  }
+  
+  .form-switch .form-check-input:checked {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
 </style>
 
 <div class="container">
@@ -192,11 +208,12 @@
                             
                             htmlIntegrantes += `
                                 <div class="col-md-6 mb-2">
-                                    <div class="form-check">
+                                    <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" 
                                                id="integrante${opcion}_${integrante.idintegrante}" 
                                                name="integrantes[]" 
                                                value="${integrante.idintegrante}"
+                                               role="switch"
                                                ${isChecked}>
                                         <label class="form-check-label" for="integrante${opcion}_${integrante.idintegrante}">
                                             ${nombreCompleto}
