@@ -161,6 +161,18 @@ class c_encuestaintegrantesqt extends Controller
                 'indicadorbse6_3' => '',
                 'indicadorbse7_1' => '',
                 'indicadorbse7_2' => '',
+
+                'indicadorbse8_1' => '',
+                'indicadorbse8_2' => '',
+                'indicadorbse8_3' => '',
+                'indicadorbse8_4' => '',
+                'indicadorbse9_1' => '',
+                'indicadorbse9_2' => '',
+                'indicadorbse9_3' => '',
+                'indicadorbse10_1' => '',
+                'indicadorbse10_2' => '',
+                'indicadorbse10_3' => '',
+
                 'siguiente' => 'style="display:none"',
                 'vista' => $vista
             ];
@@ -187,6 +199,17 @@ class c_encuestaintegrantesqt extends Controller
                 $datos['indicadorbse6_3'] = $registro->indicadorbse6_3;
                 $datos['indicadorbse7_1'] = $registro->indicadorbse7_1;
                 $datos['indicadorbse7_2'] = $registro->indicadorbse7_2;
+
+                $datos['indicadorbse8_1'] = $registro->indicadorbse8_1;
+                $datos['indicadorbse8_2'] = $registro->indicadorbse8_2;
+                $datos['indicadorbse8_3'] = $registro->indicadorbse8_3;
+                $datos['indicadorbse8_4'] = $registro->indicadorbse8_4;
+                $datos['indicadorbse9_1'] = $registro->indicadorbse9_1;
+                $datos['indicadorbse9_2'] = $registro->indicadorbse9_2;
+                $datos['indicadorbse9_3'] = $registro->indicadorbse9_3;
+                $datos['indicadorbse10_1'] = $registro->indicadorbse10_1;
+                $datos['indicadorbse10_2'] = $registro->indicadorbse10_2;
+                $datos['indicadorbse10_3'] = $registro->indicadorbse10_3;
 
                 $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
 
@@ -372,6 +395,14 @@ class c_encuestaintegrantesqt extends Controller
                 'indicadorbl9_3' => '',
                 'indicadorbl10_1' => '',
                 'indicadorbl10_2' => '',
+
+                'indicadorbl11_1' => '',
+                'indicadorbl11_2' => '',
+                'indicadorbl11_3' => '',
+                'indicadorbl12_1' => '',
+                'indicadorbl12_2' => '',
+
+
                 'siguiente' => 'style="display:none"',
                 'vista' => $vista
             ];
@@ -404,6 +435,13 @@ class c_encuestaintegrantesqt extends Controller
                 $datos['indicadorbl9_3'] = $registro->indicadorbl9_3;
                 $datos['indicadorbl10_1'] = $registro->indicadorbl10_1;
                 $datos['indicadorbl10_2'] = $registro->indicadorbl10_2;
+
+                $datos['indicadorbl11_1'] = $registro->indicadorbl11_1;
+                $datos['indicadorbl11_2'] = $registro->indicadorbl11_2;
+                $datos['indicadorbl11_3'] = $registro->indicadorbl11_3;
+                $datos['indicadorbl12_1'] = $registro->indicadorbl12_1;
+                $datos['indicadorbl12_2'] = $registro->indicadorbl12_2;
+
             
                 $datos['siguiente'] = (($registro->estado == '1') ? 'style="display:"' : 'style="display:none"');
             }
@@ -531,6 +569,10 @@ class c_encuestaintegrantesqt extends Controller
                             'indicador_bef6_4' => '',
                             'indicador_bef6_5' => '',
                             'indicador_bef6_6' => '',
+                            
+                            'indicador_bef7_1' => '',
+                            'indicador_bef7_2' => '',
+                            'indicador_bef7_3' => '',
 
                             'siguiente' => 'style="display:none"',
                             'vista' => $vista
@@ -562,6 +604,11 @@ class c_encuestaintegrantesqt extends Controller
                             $datos['indicador_bef6_4'] = $registro->indicador_bef6_4;
                             $datos['indicador_bef6_5'] = $registro->indicador_bef6_5;
                             $datos['indicador_bef6_6'] = $registro->indicador_bef6_6;
+
+                            $datos['indicador_bef7_1'] = $registro->indicador_bef7_1;
+                            $datos['indicador_bef7_2'] = $registro->indicador_bef7_2;
+                            $datos['indicador_bef7_3'] = $registro->indicador_bef7_3;
+
 
                         
                             $datos['siguiente'] = (($registro->estado == '1') ? 'style="display:"' : 'style="display:none"');

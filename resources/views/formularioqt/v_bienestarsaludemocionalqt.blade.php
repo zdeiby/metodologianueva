@@ -516,7 +516,7 @@
 
 
       <!-- Fila de contenido -->
-      <div class="row g-0" id="indicadorbse6" >
+      <div class="row g-0" id="indicadorbse8" style="display:{{((($indicador_bse_6 == '0'))?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los Niños, Niñas y adolescentes del hogar implementan estrategias para  reducir el estrés y para favorecer el bienestar emocional y fisico
@@ -536,7 +536,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse1_4" id="indicadorbse1_4" <?= ($indicadorbse6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_1) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse8_1" id="indicadorbse8_1" <?= ($indicadorbse8_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse8_1) ?>">
             </div>
           </div>
         </div>
@@ -546,7 +546,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse1_5" id="indicadorbse1_5" <?= ($indicadorbse6_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_2) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse8_2" id="indicadorbse8_2" <?= ($indicadorbse8_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse8_2) ?>">
             </div>
           </div>
         </div>
@@ -556,7 +556,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse1_6" id="indicadorbse1_6" <?= ($indicadorbse6_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_3) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse8_3" id="indicadorbse8_3" <?= ($indicadorbse8_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse8_3) ?>">
             </div>
           </div>
         </div>
@@ -566,7 +566,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse1_7" id="indicadorbse1_7" <?= ($indicadorbse6_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_3) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse8_4" id="indicadorbse8_4" <?= ($indicadorbse8_4 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse8_4) ?>">
             </div>
           </div>
         </div>
@@ -602,7 +602,7 @@
 
 
       <!-- Fila de contenido -->
-      <div class="row g-0" id="indicadorbse6" >
+      <div class="row g-0" id="indicadorbse9" style="display:{{((($indicador_bse_6 == '0'))?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los niños, niñas y adolescentes del hogar expuestos a factores de amenaza, riesgo o vulneración de derechos reconocen y acceden a los servicios de protección y atención.
@@ -622,7 +622,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse8_1" id="indicadorbse8_1" <?= ($indicadorbse6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_1) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse9_1" id="indicadorbse9_1" <?= ($indicadorbse9_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse9_1) ?>">
             </div>
           </div>
         </div>
@@ -632,7 +632,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse8_2" id="indicadorbse8_2" <?= ($indicadorbse6_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_2) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse9_2" id="indicadorbse9_2" <?= ($indicadorbse9_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse9_2) ?>">
             </div>
           </div>
         </div>
@@ -642,7 +642,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse8_3" id="indicadorbse8_3" <?= ($indicadorbse6_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_3) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse9_3" id="indicadorbse9_3" <?= ($indicadorbse9_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse9_3) ?>">
             </div>
           </div>
         </div>
@@ -681,7 +681,7 @@
  
 
       <!-- Fila de contenido -->
-      <div class="row g-0" id="indicadorbse6" >
+      <div class="row g-0" id="indicadorbse10" style="display:{{((($indicador_bse_6 == '0'))?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los niños, niñas y adolescentes del hogar con necesidades en la salud mental  reciben tratamiento oportuno y adecuado en servicios de salud mental.
@@ -701,7 +701,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse9_1" id="indicadorbse9_1" <?= ($indicadorbse6_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_1) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse10_1" id="indicadorbse10_1" <?= ($indicadorbse10_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse10_1) ?>">
             </div>
           </div>
         </div>
@@ -711,7 +711,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse9_2" id="indicadorbse9_2" <?= ($indicadorbse6_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_2) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse10_2" id="indicadorbse10_2" <?= ($indicadorbse10_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse10_2) ?>">
             </div>
           </div>
         </div>
@@ -721,7 +721,7 @@
           </div>
           <div class="col-2 border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse9_3" id="indicadorbse9_3" <?= ($indicadorbse6_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse6_3) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbse10_3" id="indicadorbse10_3" <?= ($indicadorbse10_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbse10_3) ?>">
             </div>
           </div>
         </div>
@@ -891,6 +891,21 @@
         'indicadorbse6_3': { isNone: false },
         'indicadorbse7_1': { isNone: false },
         'indicadorbse7_2': { isNone: false },
+
+        'indicadorbse8_1': { isNone: false },
+        'indicadorbse8_2': { isNone: false },
+        'indicadorbse8_3': { isNone: false },
+        'indicadorbse8_4': { isNone: false },
+
+        'indicadorbse9_1': { isNone: false },
+        'indicadorbse9_2': { isNone: false },
+        'indicadorbse9_3': { isNone: false },
+
+        'indicadorbse10_1': { isNone: false },
+        'indicadorbse10_2': { isNone: false },
+        'indicadorbse10_3': { isNone: false },
+
+
         'ninguna_switch': { isNone: true }  // Este es el switch exclusivo
     };
 
@@ -945,6 +960,10 @@
     checkAndSetSwitchValues('indicadorbse5');
     checkAndSetSwitchValues('indicadorbse6');
     checkAndSetSwitchValues('indicadorbse7');
+    checkAndSetSwitchValues('indicadorbse8');
+    checkAndSetSwitchValues('indicadorbse9');
+    checkAndSetSwitchValues('indicadorbse10');
+
 
     // Configuración del observador para ambos divs
     var observer1 = createObserver('indicadorbse1');
@@ -954,6 +973,10 @@
     var observer2 = createObserver('indicadorbse5');
     var observer2 = createObserver('indicadorbse6');
     var observer2 = createObserver('indicadorbse7');
+    var observer2 = createObserver('indicadorbse8');
+    var observer2 = createObserver('indicadorbse9');
+    var observer2 = createObserver('indicadorbse10');
+
 
 });
 

@@ -620,7 +620,7 @@
       </div>
     </div>
 <!-- Fila de contenido -->
- <div class="row g-0" id="indicadorbl2" >
+ <div class="row g-0" id="indicadorbl11" style="display:{{((($indicador_bl_9 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         	
@@ -639,7 +639,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl11_1" id="indicadorbl11_1" <?= ($indicadorbl2_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_1) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl11_1" id="indicadorbl11_1" <?= ($indicadorbl11_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl11_1) ?>">
             </div>
           </div>
         </div>
@@ -649,7 +649,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl11_2" id="indicadorbl11_2" <?= ($indicadorbl2_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_2) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl11_2" id="indicadorbl11_2" <?= ($indicadorbl11_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl11_2) ?>">
             </div>
           </div>
         </div>
@@ -659,7 +659,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl11_3" id="indicadorbl11_3" <?= ($indicadorbl2_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_2) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl11_3" id="indicadorbl11_3" <?= ($indicadorbl11_3 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl11_3) ?>">
             </div>
           </div>
         </div>
@@ -692,7 +692,7 @@
       </div>
     </div>
 <!-- Fila de contenido -->
- <div class="row g-0" id="indicadorbl2" >
+ <div class="row g-0" id="indicadorbl12" style="display:{{((($indicador_bl_9 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         	
@@ -711,7 +711,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl12_1" id="indicadorbl12_1" <?= ($indicadorbl2_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_1) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl12_1" id="indicadorbl12_1" <?= ($indicadorbl12_1 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl12_1) ?>">
             </div>
           </div>
         </div>
@@ -721,7 +721,7 @@
           </div>
           <div class="col-2 border-bottom border-start border-end d-flex align-items-center justify-content-center border-bottom">
             <div class="form-check form-switch">
-              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl12_2" id="indicadorbl12_2" <?= ($indicadorbl2_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl2_2) ?>">
+              <input class="form-check-input" <?= ($vista != '1')?'disabled':'' ?> type="checkbox" name="indicadorbl12_2" id="indicadorbl12_2" <?= ($indicadorbl12_2 == 'SI') ? 'checked' : ''; ?>  value="<?= ($indicadorbl12_2) ?>">
             </div>
           </div>
         </div>
@@ -861,6 +861,14 @@
     'indicadorbl9_3': { isNone: false },
     'indicadorbl10_1': { isNone: false },
     'indicadorbl10_2': { isNone: false },
+
+    'indicadorbl11_1': { isNone: false },
+    'indicadorbl11_2': { isNone: false },
+    'indicadorbl11_3': { isNone: false },
+
+    'indicadorbl12_1': { isNone: false },
+    'indicadorbl12_2': { isNone: false },
+    
     'ninguna_switch': { isNone: true }  // Este es el switch exclusivo
 };
 
@@ -919,6 +927,9 @@
     checkAndSetSwitchValues('indicadorbl8');
     checkAndSetSwitchValues('indicadorbl9');
     checkAndSetSwitchValues('indicadorbl10');
+    checkAndSetSwitchValues('indicadorbl11');
+    checkAndSetSwitchValues('indicadorbl12');
+
 
     // Configuración del observador para ambos divs
     var observer1 = createObserver('indicadorbl1');
@@ -931,6 +942,8 @@
     var observer2 = createObserver('indicadorbl8');
     var observer2 = createObserver('indicadorbl9');
     var observer2 = createObserver('indicadorbl10');
+    var observer2 = createObserver('indicadorbl11');
+    var observer2 = createObserver('indicadorbl12');
 
 });
 
