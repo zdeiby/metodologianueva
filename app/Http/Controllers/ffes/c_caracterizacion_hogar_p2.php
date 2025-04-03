@@ -72,21 +72,30 @@ class c_caracterizacion_hogar_p2 extends Controller
             // Inicializar array de respuestas en el nuevo formato
             $respuestasData = [];
             
-            // Si la respuesta es A (SI) o B (NO), procesar los integrantes seleccionados
-            if ($respuesta == 1 || $respuesta == 0) {
+            // Determinar el valor y los integrantes según la respuesta seleccionada
+            if ($respuesta == 1) {
+                // Opción A: SI
                 $integrantes = $request->input('integrantes', []);
                 
-                // Crear un objeto en el formato esperado
                 $respuestasData[] = [
-                    'id' => (string)$respuesta, // 1 para SI, 0 para NO
-                    'valor' => ($respuesta == 1) ? 'SI' : 'NO',
+                    'id' => "1",
+                    'valor' => "SI",
+                    'idintegrante' => $integrantes
+                ];
+            } else if ($respuesta == 41) {
+                // Opción B: NO, PERO LO REQUIERE
+                $integrantes = $request->input('integrantes', []);
+                
+                $respuestasData[] = [
+                    'id' => "41",
+                    'valor' => "NO, PERO LO REQUIERE",
                     'idintegrante' => $integrantes
                 ];
             } else if ($respuesta == 36) {
-                // Si es C (NO. NO LO HA REQUERIDO), no hay integrantes
+                // Opción C: NO, NO LO HA REQUERIDO
                 $respuestasData[] = [
-                    'id' => '36',
-                    'valor' => 'NO_REQUERIDO',
+                    'id' => "36",
+                    'valor' => "NO, NO LO HA REQUERIDO",
                     'idintegrante' => []
                 ];
             }
@@ -97,7 +106,7 @@ class c_caracterizacion_hogar_p2 extends Controller
             // Verificar si ya existe un registro para actualizar
             $caracterizacionExistente = $modelo->m_obtenerCaracterizacionHogar($folio, $idintegrante);
             
-            // Preparar los datos para guardar
+            // Preparar los datos para guardar (SOLO la columna nino_medidas_restablecimiento_p2)
             $datos = [
                 'folio' => $folio,
                 'idintegrante' => $idintegrante,
@@ -107,8 +116,15 @@ class c_caracterizacion_hogar_p2 extends Controller
             
             // Actualizar o crear registro
             if ($caracterizacionExistente) {
-                // Actualizar registro existente
-                $resultado = $modelo->m_actualizarCaracterizacionHogar($datos);
+                // Actualizar SOLO la columna específica sin afectar otras columnas
+                $resultado = DB::table('t1_caracterizacion_hogar_ffes')
+                    ->where('folio', $folio)
+                    ->where('idintegrante', $idintegrante)
+                    ->update([
+                        'nino_medidas_restablecimiento_p2' => json_encode($respuestasData),
+                        'documento_profesional' => $documento_profesional,
+                        'updated_at' => now()
+                    ]);
             } else {
                 // Crear nuevo registro
                 $resultado = $modelo->m_guardarCaracterizacionHogar($datos);

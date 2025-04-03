@@ -121,12 +121,12 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Opción B - NO -->
+                                            <!-- Opción B - NO, PERO LO REQUIERE -->
                                             <div class="respuesta-item mb-3">
                                                 <div class="form-check">
-                                                    <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaB" value="0" 
-                                                        {{ isset($respuestas) && is_array($respuestas) && count($respuestas) > 0 && isset($respuestas[0]['id']) && $respuestas[0]['id'] == '0' ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="respuestaB">B. NO</label>
+                                                    <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaB" value="41" 
+                                                        {{ isset($respuestas) && is_array($respuestas) && count($respuestas) > 0 && isset($respuestas[0]['id']) && $respuestas[0]['id'] == '41' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="respuestaB">B. NO, PERO LO REQUIERE</label>
                                                 </div>
                                                 <div class="integrantes-container mt-2 ml-4" id="integrantesRespuestaB" style="display: none;">
                                                     <div class="card">
@@ -265,15 +265,15 @@
             // Ocultar todos los contenedores de integrantes
             $('.integrantes-container').hide();
             
-            // Si la respuesta es A (1) o B (0), mostrar el contenedor correspondiente
+            // Si la respuesta es A (1) o B (41), mostrar el contenedor correspondiente
             if (respuesta == 1) {
                 $('#integrantesRespuestaA').show();
                 // Desmarcar los integrantes de la opción B
-                $('input[name="integrantes[]"]').prop('checked', false);
-            } else if (respuesta == 0) {
+                $('#listaIntegrantesB input[name="integrantes[]"]').prop('checked', false);
+            } else if (respuesta == 41) {
                 $('#integrantesRespuestaB').show();
                 // Desmarcar los integrantes de la opción A
-                $('input[name="integrantes[]"]').prop('checked', false);
+                $('#listaIntegrantesA input[name="integrantes[]"]').prop('checked', false);
             } else {
                 // Si es C (36), desmarcar todos los integrantes
                 $('input[name="integrantes[]"]').prop('checked', false);
@@ -296,9 +296,11 @@
                 return false;
             }
             
-            // Verificar que para las respuestas A (1) o B (0) se haya seleccionado al menos un integrante
-            if (respuestaSeleccionada == 1 || respuestaSeleccionada == 0) {
-                const integrantesSeleccionados = $('input[name="integrantes[]"]:checked').length;
+            // Verificar que para las respuestas A (1) o B (41) se haya seleccionado al menos un integrante
+            if (respuestaSeleccionada == 1 || respuestaSeleccionada == 41) {
+                // Obtener los integrantes seleccionados dependiendo de la opción
+                let contenedorSeleccionado = respuestaSeleccionada == 1 ? '#listaIntegrantesA' : '#listaIntegrantesB';
+                const integrantesSeleccionados = $(contenedorSeleccionado + ' input[name="integrantes[]"]:checked').length;
                 
                 if (integrantesSeleccionados === 0) {
                     Swal.fire({
@@ -320,10 +322,11 @@
                 _token: $('input[name="_token"]').val()
             };
             
-            // Si la respuesta es A (1) o B (0), agregar los integrantes seleccionados
-            if (respuestaSeleccionada == 1 || respuestaSeleccionada == 0) {
+            // Si la respuesta es A (1) o B (41), agregar los integrantes seleccionados
+            if (respuestaSeleccionada == 1 || respuestaSeleccionada == 41) {
+                let contenedorSeleccionado = respuestaSeleccionada == 1 ? '#listaIntegrantesA' : '#listaIntegrantesB';
                 const integrantes = [];
-                $('input[name="integrantes[]"]:checked').each(function() {
+                $(contenedorSeleccionado + ' input[name="integrantes[]"]:checked').each(function() {
                     integrantes.push($(this).val());
                 });
                 datos.integrantes = integrantes;
