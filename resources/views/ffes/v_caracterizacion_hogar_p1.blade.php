@@ -47,8 +47,16 @@
                         <ul class="nav nav-tabs" role="tablist">
                             
                             <li class="nav-item" role="presentation" style="cursor:pointer">
-                                <a id="legalqt"  class="nav-link active" >Caracterización hogar FFES</a>
+                                <a id="legalqt"  class="nav-link active" >Caracterización hogar FFES Pregunta 1</a>
                             </li>
+                            <li class="nav-item" role="presentation" style="cursor:pointer">
+                                <a id="linkPregunta2" class="nav-link">Caracterización hogar FFES Pregunta 2 - 2.1</a>
+                            </li>
+                            @if(isset($pregunta2Respondida) && $pregunta2Respondida)
+                            <li class="nav-item" role="presentation" style="cursor:pointer">
+                                <a id="linkPregunta3" class="nav-link">Caracterización hogar FFES Pregunta 3</a>
+                            </li>
+                            @endif
                         </ul>
 
                         <style>
@@ -81,8 +89,11 @@
 
                                     <!-- Aquí irá el contenido de las situaciones -->
                                     <div class="form-group mb-4">
+                                    <div class="card">
+                                    <div class="card-header bg-primary text-white">
                                         <h5>En tu hogar ¿se presenta actualmente algunas de las siguientes situaciones en los niños, niñas y adolescentes?</h5>
-                                        
+                                        </div>
+                                        <div class="card-body">
                                         <div class="situaciones-container">
                                             <!-- Situación A -->
                                             <div class="situacion-item mb-3">
@@ -292,6 +303,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        </div>
+</div>
                                     </div>
                                 </form>
                             </div>
@@ -594,6 +607,38 @@
                     });
                 }
             });
+        });
+        
+        // Evento para el enlace de Pregunta 2
+        $('#linkPregunta2').click(function() {
+            // Obtener el folio actual
+            const folio = $('#folioinput').val();
+            
+            // Obtener el idintegrante de la URL actual
+            const urlActual = window.location.href;
+            const match = urlActual.match(/\/caracterizacion_hogar_p1\/[^\/]+\/([^\/]+)/);
+            const idintegrante = match ? match[1] : '0'; // Si no se encuentra, usar '0' como valor predeterminado
+            
+            // Redirigir a la página de caracterización hogar P2 con el folio y el idintegrante
+            window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
+                .replace(':folio', folio)
+                .replace(':idintegrante', idintegrante);
+        });
+        
+        // Evento para el enlace de Pregunta 3 (si existe)
+        $('#linkPregunta3').click(function() {
+            // Obtener el folio actual
+            const folio = $('#folioinput').val();
+            
+            // Obtener el idintegrante de la URL actual
+            const urlActual = window.location.href;
+            const match = urlActual.match(/\/caracterizacion_hogar_p1\/[^\/]+\/([^\/]+)/);
+            const idintegrante = match ? match[1] : '0';
+            
+            // Redirigir a la página de caracterización hogar P3
+            window.location.href = "{{ route('caracterizacion_hogar_p3', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
+                .replace(':folio', folio)
+                .replace(':idintegrante', idintegrante);
         });
     });
 

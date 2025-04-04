@@ -47,11 +47,24 @@ class c_caracterizacion_hogar_p1 extends Controller
                 $respuestas = json_decode($caracterizacionHogar->situacionesriesgo_hogar_p1, true);
             }
             
+            // Verificar si existe respuesta para la pregunta 2 (consulta directa)
+            $pregunta2Respondida = false;
+            $respuestaPregunta2 = DB::table('t1_caracterizacion_hogar_ffes')
+                ->where('folio', $folioDesencriptado)
+                ->where('idintegrante', $idintegrante)
+                ->whereNotNull('nino_medidas_restablecimiento_p2')
+                ->first();
+            
+            if ($respuestaPregunta2 && $respuestaPregunta2->nino_medidas_restablecimiento_p2 != null) {
+                $pregunta2Respondida = true;
+            }
+            
             return view('ffes.v_caracterizacion_hogar_p1', [
                 'folio' => $folioDesencriptado,
                 'idintegrante' => $idintegrante,
                 'datosIntegrante' => $datosIntegrante,
-                'respuestas' => $respuestas
+                'respuestas' => $respuestas,
+                'pregunta2Respondida' => $pregunta2Respondida
             ]);
             
         } catch (\Exception $e) {
