@@ -9,6 +9,7 @@ use App\Http\Controllers\ffes\c_caracterizacionIntegrantes_primerInfancia;
 use App\Http\Controllers\ffes\c_caracterizacionIntegrantes_mecanismosProteccion;
 use App\Http\Controllers\ffes\c_caracterizacion_hogar_p1;
 use App\Http\Controllers\ffes\c_caracterizacion_hogar_p2;
+use App\Http\Controllers\ffes\c_caracterizacion_hogar_p3;
 use Hashids\Hashids;
 
 // Rutas para caracterización de hogares
@@ -40,6 +41,11 @@ Route::get('/obtener_integrantes_menores/{folio}',[c_caracterizacion_hogar_p1::c
 Route::get('/caracterizacion_hogar_p2/{folio}/{idintegrante}',[c_caracterizacion_hogar_p2::class, 'fc_caracterizacion_hogar_p2'])->name('caracterizacion_hogar_p2');
 Route::post('/guardar_caracterizacion_hogar_p2',[c_caracterizacion_hogar_p2::class, 'fc_guardar_caracterizacion_hogar_p2'])->name('guardar_caracterizacion_hogar_p2');
 Route::get('/obtener_integrantes_menores_p2/{folio}',[c_caracterizacion_hogar_p2::class, 'fc_obtener_integrantes_menores'])->name('obtener_integrantes_menores_p2');
+
+// Rutas para caracterización de hogar p3
+Route::get('/caracterizacion_hogar_p3/{folio}/{idintegrante}',[c_caracterizacion_hogar_p3::class, 'fc_caracterizacion_hogar_p3'])->name('caracterizacion_hogar_p3');
+Route::post('/guardar_caracterizacion_hogar_p3',[c_caracterizacion_hogar_p3::class, 'fc_guardar_caracterizacion_hogar_p3'])->name('guardar_caracterizacion_hogar_p3');
+Route::get('/obtener_integrantes_menores_p3/{folio}',[c_caracterizacion_hogar_p3::class, 'fc_obtener_integrantes_menores'])->name('obtener_integrantes_menores_p3');
 
 // Rutas temporalmente comentadas hasta implementar los formularios correspondientes
 // Route::get('/integrantes/{folio}',[c_caracterizacion::class, 'fc_integrantes'])->name('integrantes');

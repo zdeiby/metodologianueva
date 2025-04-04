@@ -61,10 +61,26 @@
                 <div class="accordion-body">
                     <div class="row">
                         <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation" style="cursor:pointer">
+    <a id="linkPregunta1" class="nav-link">Caracterización hogar FFES Pregunta1</a>
+</li>
                             
                             <li class="nav-item" role="presentation" style="cursor:pointer">
-                                <a id="legalqt"  class="nav-link active" >Caracterización hogar FFES</a>
+                                <a id="legalqt"  class="nav-link active" >Caracterización hogar FFES Pregunta 2 - 2.1</a>
                             </li>
+                            
+                            @php
+                                // Verificar si la pregunta 2 ya fue respondida
+                                $pregunta2Respondida = false;
+                                if (isset($respuestas) && is_array($respuestas) && count($respuestas) > 0) {
+                                    $pregunta2Respondida = true;
+                                }
+                            @endphp
+                            @if($pregunta2Respondida)
+                            <li class="nav-item" role="presentation" style="cursor:pointer">
+                                <a id="linkPregunta3" class="nav-link">Caracterización hogar FFES Pregunta 3</a>
+                            </li>
+                            @endif
                         </ul>
 
                         <style>
@@ -328,6 +344,22 @@
     $(document).ready(function() {
         // Cargar integrantes al cargar la página
         cargarIntegrantesMenores();
+
+        // Evento para el enlace de Pregunta 1
+    $('#linkPregunta1').click(function() {
+        // Obtener el folio actual
+        const folio = $('#folioinput').val();
+        
+        // Obtener el idintegrante de la URL actual
+        const urlActual = window.location.href;
+        const match = urlActual.match(/\/caracterizacion_hogar_p2\/[^\/]+\/([^\/]+)/);
+        const idintegrante = match ? match[1] : '0'; // Si no se encuentra, usar '0' como valor predeterminado
+        
+        // Redirigir a la página de caracterización hogar P1 con el folio y el idintegrante
+        window.location.href = "{{ route('caracterizacion_hogar_p1', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
+            .replace(':folio', folio)
+            .replace(':idintegrante', idintegrante);
+    });
         
         // Inicializar la pregunta 2.1 si ya está seleccionada la opción A (SI)
         if ($('#respuestaA').prop('checked')) {
@@ -469,6 +501,22 @@
                 title: 'Información',
                 text: 'Funcionalidad "Siguiente" en desarrollo'
             });
+        });
+        
+        // Evento para el enlace de Pregunta 3 (si existe)
+        $('#linkPregunta3').click(function() {
+            // Obtener el folio actual
+            const folio = $('#folioinput').val();
+            
+            // Obtener el idintegrante de la URL actual
+            const urlActual = window.location.href;
+            const match = urlActual.match(/\/caracterizacion_hogar_p2\/[^\/]+\/([^\/]+)/);
+            const idintegrante = match ? match[1] : '0';
+            
+            // Redirigir a la página de caracterización hogar P3
+            window.location.href = "{{ route('caracterizacion_hogar_p3', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
+                .replace(':folio', folio)
+                .replace(':idintegrante', idintegrante);
         });
     });
 
