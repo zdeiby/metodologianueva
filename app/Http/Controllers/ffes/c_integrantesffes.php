@@ -54,7 +54,7 @@ class c_integrantesffes extends Controller
                     Realizar Encuesta
                   </button></td> -->
                    <td class="align-middle">
-                  <button disabled class="habilitado btn btn-success btn-sm" '.(($value->validacion == '0')?'':'').' onclick="editarintegrantes('.$folio.','.$value->idintegrante.',`'.$folioencriptado.'`)">
+                  <button  class="habilitado btn btn-success btn-sm" '.(($value->validacion == '0')?'':'').' onclick="editarintegrantes('.$folio.','.$value->idintegrante.',`'.$folioencriptado.'`)">
                     Caracterización
                   </button>
                   </td>

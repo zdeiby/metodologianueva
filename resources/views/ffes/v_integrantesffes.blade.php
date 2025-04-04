@@ -57,7 +57,7 @@
           <td>{{ $h->comuna }}</td>
           <td>{{ $h->direccion }}</td> -->
           <td>
-          <button type="button" class="btn btn-warning btn-sm habilitado" disabled
+          <button type="button" class="btn btn-warning btn-sm habilitado" 
                     onclick="editarIntegrantes('{{ $h->folio }}', '{{ $h->idintegrantetitular }} ')">
               Caracterización
             </button>
