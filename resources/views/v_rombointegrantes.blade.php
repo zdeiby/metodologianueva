@@ -204,7 +204,7 @@ body {
           <div class="card">
             <div class="content">
               <div class="front">
-                <img src="{{ asset('assets/img/iconos/card3.jpg')}}" alt="" />
+                <img src="{{ asset('assets/img/iconos/card10.jpg')}}" alt="" />
               </div>
               <div class="back">
                 <div class="middle">
