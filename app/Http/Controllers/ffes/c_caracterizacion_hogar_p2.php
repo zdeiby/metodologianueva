@@ -43,15 +43,23 @@ class c_caracterizacion_hogar_p2 extends Controller
             
             // Obtener las respuestas si existen
             $respuestas = null;
+            $respuestas_2_1 = null;
+            
             if ($caracterizacionHogar && isset($caracterizacionHogar->nino_medidas_restablecimiento_p2)) {
                 $respuestas = json_decode($caracterizacionHogar->nino_medidas_restablecimiento_p2, true);
+            }
+            
+            // Obtener respuestas para la pregunta 2.1 si existen
+            if ($caracterizacionHogar && isset($caracterizacionHogar->cuales_medidas_restablecimiento_p2_1)) {
+                $respuestas_2_1 = json_decode($caracterizacionHogar->cuales_medidas_restablecimiento_p2_1, true);
             }
             
             return view('ffes.v_caracterizacion_hogar_p2', [
                 'folio' => $folioDesencriptado,
                 'idintegrante' => $idintegrante,
                 'datosIntegrante' => $datosIntegrante,
-                'respuestas' => $respuestas
+                'respuestas' => $respuestas,
+                'respuestas_2_1' => $respuestas_2_1
             ]);
             
         } catch (\Exception $e) {
@@ -72,32 +80,88 @@ class c_caracterizacion_hogar_p2 extends Controller
             // Inicializar array de respuestas en el nuevo formato
             $respuestasData = [];
             
-            // Determinar el valor y los integrantes según la respuesta seleccionada
+            // Guardar todas las opciones con SI/NO
+            $opcionesP2 = [
+                ['id' => "1", 'texto' => "SI"],
+                ['id' => "41", 'texto' => "NO, PERO LO REQUIERE"],
+                ['id' => "36", 'texto' => "NO, NO LO HA REQUERIDO"]
+            ];
+            
+            // Obtener integrantes para la opción seleccionada
+            $integrantes = [];
+            if ($respuesta == 1 || $respuesta == 41) {
+                $integrantes = $request->input('integrantes', []);
+            }
+            
+            // Guardar todas las opciones, indicando cuál fue seleccionada
+            foreach ($opcionesP2 as $opcion) {
+                if ($opcion['id'] == $respuesta) {
+                    // Esta opción fue seleccionada
+                    $respuestasData[] = [
+                        'id' => $opcion['id'],
+                        'valor' => "SI",
+                        'idintegrante' => $integrantes
+                    ];
+                } else {
+                    // Esta opción NO fue seleccionada
+                    $respuestasData[] = [
+                        'id' => $opcion['id'],
+                        'valor' => "NO",
+                        'idintegrante' => []
+                    ];
+                }
+            }
+            
+            // Preparar los datos para la pregunta 2.1
+            $respuestas2_1Data = [];
+            
+            // Definir las opciones disponibles para la pregunta 2.1, solo las opciones reales
+            $opcionesP2_1 = [
+                ['id' => '37', 'label' => 'A. Medio institucional estramural'],
+                ['id' => '38', 'label' => 'B. Intervencion de apoyo psicologico especializado'],
+                ['id' => '42', 'label' => 'C. Ubicación en medio familiar con cuidados personales o custodia'],
+                ['id' => '39', 'label' => 'D. Sistema de responsabildad penal extramural']
+            ];
+            
             if ($respuesta == 1) {
-                // Opción A: SI
+                $respuesta2_1 = $request->input('respuesta_2_1');
+                
+                if (!$respuesta2_1) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Si la respuesta a la pregunta 2 es SI, debe seleccionar una opción en la pregunta 2.1'
+                    ]);
+                }
+                
                 $integrantes = $request->input('integrantes', []);
                 
-                $respuestasData[] = [
-                    'id' => "1",
-                    'valor' => "SI",
-                    'idintegrante' => $integrantes
-                ];
-            } else if ($respuesta == 41) {
-                // Opción B: NO, PERO LO REQUIERE
-                $integrantes = $request->input('integrantes', []);
-                
-                $respuestasData[] = [
-                    'id' => "41",
-                    'valor' => "NO, PERO LO REQUIERE",
-                    'idintegrante' => $integrantes
-                ];
-            } else if ($respuesta == 36) {
-                // Opción C: NO, NO LO HA REQUERIDO
-                $respuestasData[] = [
-                    'id' => "36",
-                    'valor' => "NO, NO LO HA REQUERIDO",
-                    'idintegrante' => []
-                ];
+                // Guardar todas las opciones, indicando cuál fue seleccionada
+                foreach ($opcionesP2_1 as $opcion) {
+                    if ($opcion['id'] == $respuesta2_1) {
+                        // Esta opción fue seleccionada
+                        $respuestas2_1Data[] = [
+                            'id' => $opcion['id'],
+                            'valor' => "SI",
+                            'idintegrante' => $integrantes // Usar los mismos integrantes seleccionados en la pregunta 2
+                        ];
+                    } else if ($opcion['id'] != "40") { // No incluimos NO_APLICA cuando hay una selección
+                        // Esta opción NO fue seleccionada
+                        $respuestas2_1Data[] = [
+                            'id' => $opcion['id'],
+                            'valor' => "NO",
+                            'idintegrante' => []
+                        ];
+                    }
+                }
+            } else {
+                // Si la respuesta a la pregunta 2 no es "A. SI", marcamos todas las opciones como NO
+                foreach ($opcionesP2_1 as $opcion) {
+                    $respuestas2_1Data[] = [
+                        'id' => $opcion['id'],
+                        'valor' => "NO",
+                        'idintegrante' => []
+                    ];
+                }
             }
             
             // Guardar en la base de datos
@@ -106,27 +170,27 @@ class c_caracterizacion_hogar_p2 extends Controller
             // Verificar si ya existe un registro para actualizar
             $caracterizacionExistente = $modelo->m_obtenerCaracterizacionHogar($folio, $idintegrante);
             
-            // Preparar los datos para guardar (SOLO la columna nino_medidas_restablecimiento_p2)
-            $datos = [
-                'folio' => $folio,
-                'idintegrante' => $idintegrante,
-                'nino_medidas_restablecimiento_p2' => json_encode($respuestasData),
-                'documento_profesional' => $documento_profesional
-            ];
-            
             // Actualizar o crear registro
             if ($caracterizacionExistente) {
-                // Actualizar SOLO la columna específica sin afectar otras columnas
+                // Actualizar SOLO las columnas específicas sin afectar otras columnas
                 $resultado = DB::table('t1_caracterizacion_hogar_ffes')
                     ->where('folio', $folio)
                     ->where('idintegrante', $idintegrante)
                     ->update([
                         'nino_medidas_restablecimiento_p2' => json_encode($respuestasData),
+                        'cuales_medidas_restablecimiento_p2_1' => json_encode($respuestas2_1Data),
                         'documento_profesional' => $documento_profesional,
                         'updated_at' => now()
                     ]);
             } else {
                 // Crear nuevo registro
+                $datos = [
+                    'folio' => $folio,
+                    'idintegrante' => $idintegrante,
+                    'nino_medidas_restablecimiento_p2' => json_encode($respuestasData),
+                    'cuales_medidas_restablecimiento_p2_1' => json_encode($respuestas2_1Data),
+                    'documento_profesional' => $documento_profesional
+                ];
                 $resultado = $modelo->m_guardarCaracterizacionHogar($datos);
             }
             

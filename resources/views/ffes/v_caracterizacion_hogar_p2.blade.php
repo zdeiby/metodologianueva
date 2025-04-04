@@ -104,7 +104,7 @@
                                             <div class="respuesta-item mb-3">
                                                 <div class="form-check">
                                                     <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaA" value="1" 
-                                                        {{ isset($respuestas) && is_array($respuestas) && count($respuestas) > 0 && isset($respuestas[0]['id']) && $respuestas[0]['id'] == '1' ? 'checked' : '' }}>
+                                                        {{ isset($respuestas) && is_array($respuestas) && !empty(array_filter($respuestas, function($r) { return isset($r['id']) && $r['id'] == '1' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="respuestaA">A. SI</label>
                                                 </div>
                                                 <div class="integrantes-container mt-2 ml-4" id="integrantesRespuestaA" style="display: none;">
@@ -125,7 +125,7 @@
                                             <div class="respuesta-item mb-3">
                                                 <div class="form-check">
                                                     <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaB" value="41" 
-                                                        {{ isset($respuestas) && is_array($respuestas) && count($respuestas) > 0 && isset($respuestas[0]['id']) && $respuestas[0]['id'] == '41' ? 'checked' : '' }}>
+                                                        {{ isset($respuestas) && is_array($respuestas) && !empty(array_filter($respuestas, function($r) { return isset($r['id']) && $r['id'] == '41' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="respuestaB">B. NO, PERO LO REQUIERE</label>
                                                 </div>
                                                 <div class="integrantes-container mt-2 ml-4" id="integrantesRespuestaB" style="display: none;">
@@ -146,8 +146,51 @@
                                             <div class="respuesta-item mb-3">
                                                 <div class="form-check">
                                                     <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaC" value="36" 
-                                                        {{ isset($respuestas) && is_array($respuestas) && count($respuestas) > 0 && isset($respuestas[0]['id']) && $respuestas[0]['id'] == '36' ? 'checked' : '' }}>
+                                                        {{ isset($respuestas) && is_array($respuestas) && !empty(array_filter($respuestas, function($r) { return isset($r['id']) && $r['id'] == '36' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="respuestaC">C. NO. NO LO HA REQUERIDO</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Pregunta 2.1 - Solo visible cuando la respuesta a la pregunta 2 es "A. SI" -->
+                                    <div id="pregunta2_1Container" class="form-group mb-4" style="display: none;">
+                                        <h5>2.1 Para los niños, niñas y adolescentes que se les marca pregunta 2: SI ¿En cuales de las siguientes medidas de restablecimiento de derechos?</h5>
+                                        
+                                        <div class="respuestas-container mt-3">
+                                            <!-- Opción A - Medio institucional estramural -->
+                                            <div class="respuesta-item mb-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1A" value="37" 
+                                                        {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '37' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="respuesta2_1A">A. Medio institucional estramural</label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Opción B - Intervencion de apoyo psicologico especializado -->
+                                            <div class="respuesta-item mb-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1B" value="38" 
+                                                        {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '38' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="respuesta2_1B">B. Intervencion de apoyo psicologico especializado</label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Opción C - Ubicación en medio familiar con cuidados personales o custodia -->
+                                            <div class="respuesta-item mb-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1C" value="42" 
+                                                        {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '42' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="respuesta2_1C">C. Ubicación en medio familiar con cuidados personales o custodia</label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Opción D - Sistema de responsabildad penal extramural -->
+                                            <div class="respuesta-item mb-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1D" value="39" 
+                                                        {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '39' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="respuesta2_1D">D. Sistema de responsabildad penal extramural</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -181,6 +224,24 @@
         // Obtener el folio del formulario
         const folio = $('#folioinput').val();
         
+        // Verificar si hay respuestas guardadas para la pregunta 2.1 y pre-seleccionar la opción
+        @if(isset($respuestas_2_1) && is_array($respuestas_2_1) && count($respuestas_2_1) > 0)
+            // Buscar la respuesta que tiene valor "SI"
+            @php
+                $respuestaSeleccionada = null;
+                foreach ($respuestas_2_1 as $resp) {
+                    if (isset($resp['valor']) && $resp['valor'] == 'SI' && isset($resp['id']) && $resp['id'] != '40') {
+                        $respuestaSeleccionada = $resp['id'];
+                        break;
+                    }
+                }
+            @endphp
+            @if($respuestaSeleccionada)
+                const respuesta2_1Id = "{{ $respuestaSeleccionada }}";
+                $('#respuesta2_1' + (respuesta2_1Id == "37" ? 'A' : respuesta2_1Id == "38" ? 'B' : respuesta2_1Id == "42" ? 'C' : 'D')).prop('checked', true);
+            @endif
+        @endif
+        
         // Realizar petición AJAX para obtener los integrantes del hogar
         $.ajax({
             url: '{{ route("obtener_integrantes_menores_p2", ["folio" => ":folio"]) }}'.replace(':folio', folio),
@@ -200,8 +261,18 @@
                             
                             // Verificar si este integrante estaba seleccionado previamente
                             let isChecked = '';
-                            @if(isset($respuestas) && is_array($respuestas) && count($respuestas) > 0 && isset($respuestas[0]['idintegrante']))
-                                if (@json($respuestas[0]['idintegrante']).includes(integrante.idintegrante.toString())) {
+                            @if(isset($respuestas) && is_array($respuestas))
+                                // Buscar la respuesta con valor SI y verificar sus integrantes
+                                @php
+                                    $integrantesSeleccionados = [];
+                                    foreach ($respuestas as $resp) {
+                                        if (isset($resp['valor']) && $resp['valor'] == 'SI' && isset($resp['idintegrante'])) {
+                                            $integrantesSeleccionados = $resp['idintegrante'];
+                                            break;
+                                        }
+                                    }
+                                @endphp
+                                if (@json($integrantesSeleccionados).includes(integrante.idintegrante.toString())) {
                                     isChecked = 'checked';
                                 }
                             @endif
@@ -258,6 +329,11 @@
         // Cargar integrantes al cargar la página
         cargarIntegrantesMenores();
         
+        // Inicializar la pregunta 2.1 si ya está seleccionada la opción A (SI)
+        if ($('#respuestaA').prop('checked')) {
+            $('#pregunta2_1Container').show();
+        }
+        
         // Manejar cambio en las opciones de respuesta
         $('.respuesta-radio').change(function() {
             const respuesta = $(this).val();
@@ -270,13 +346,19 @@
                 $('#integrantesRespuestaA').show();
                 // Desmarcar los integrantes de la opción B
                 $('#listaIntegrantesB input[name="integrantes[]"]').prop('checked', false);
+                // Mostrar la pregunta 2.1
+                $('#pregunta2_1Container').show();
             } else if (respuesta == 41) {
                 $('#integrantesRespuestaB').show();
                 // Desmarcar los integrantes de la opción A
                 $('#listaIntegrantesA input[name="integrantes[]"]').prop('checked', false);
+                // Ocultar la pregunta 2.1
+                $('#pregunta2_1Container').hide();
             } else {
                 // Si es C (36), desmarcar todos los integrantes
                 $('input[name="integrantes[]"]').prop('checked', false);
+                // Ocultar la pregunta 2.1
+                $('#pregunta2_1Container').hide();
             }
         });
         
@@ -330,6 +412,20 @@
                     integrantes.push($(this).val());
                 });
                 datos.integrantes = integrantes;
+            }
+            
+            // Agregar la respuesta a la pregunta 2.1 si se seleccionó la opción A (1)
+            if (respuestaSeleccionada == 1) {
+                const respuesta2_1 = $('input[name="respuesta_2_1"]:checked').val();
+                if (!respuesta2_1) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validación',
+                        text: 'Debe seleccionar una respuesta para la pregunta 2.1'
+                    });
+                    return false;
+                }
+                datos.respuesta_2_1 = respuesta2_1;
             }
             
             // Enviar los datos mediante AJAX
