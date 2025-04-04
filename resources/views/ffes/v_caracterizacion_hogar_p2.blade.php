@@ -112,101 +112,111 @@
                                     </div>
 
                                     <!-- Contenido de la pregunta sobre restablecimiento de derechos extramural -->
-                                    <div class="form-group mb-4">
-                                        <h5>¿En tu hogar actualmente alguno de los niños que se encuentran en el hogar estan bajo una medida de restablecimiento de derechos extramural?</h5>
-                                        
-                                        <div class="respuestas-container mt-3">
-                                            <!-- Opción A - SI -->
-                                            <div class="respuesta-item mb-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaA" value="1" 
-                                                        {{ isset($respuestas) && is_array($respuestas) && !empty(array_filter($respuestas, function($r) { return isset($r['id']) && $r['id'] == '1' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="respuestaA">A. SI</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesRespuestaA" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                    <div class="col-md-12 mt-4">
+                                        <div class="card">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="mb-0">¿En tu hogar actualmente alguno de los niños que se encuentran en el hogar estan bajo una medida de restablecimiento de derechos extramural?</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="respuestas-container">
+                                                    <!-- Opción A - SI -->
+                                                    <div class="respuesta-item mb-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaA" value="1" 
+                                                                {{ isset($respuestas) && is_array($respuestas) && !empty(array_filter($respuestas, function($r) { return isset($r['id']) && $r['id'] == '1' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="respuestaA">A. SI</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesA">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesRespuestaA" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesA">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Opción B - NO, PERO LO REQUIERE -->
-                                            <div class="respuesta-item mb-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaB" value="41" 
-                                                        {{ isset($respuestas) && is_array($respuestas) && !empty(array_filter($respuestas, function($r) { return isset($r['id']) && $r['id'] == '41' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="respuestaB">B. NO, PERO LO REQUIERE</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesRespuestaB" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                                    <!-- Opción B - NO, PERO LO REQUIERE -->
+                                                    <div class="respuesta-item mb-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaB" value="41" 
+                                                                {{ isset($respuestas) && is_array($respuestas) && !empty(array_filter($respuestas, function($r) { return isset($r['id']) && $r['id'] == '41' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="respuestaB">B. NO, PERO LO REQUIERE</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesB">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesRespuestaB" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesB">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Opción C - NO. NO LO HA REQUERIDO -->
-                                            <div class="respuesta-item mb-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaC" value="36" 
-                                                        {{ isset($respuestas) && is_array($respuestas) && !empty(array_filter($respuestas, function($r) { return isset($r['id']) && $r['id'] == '36' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="respuestaC">C. NO. NO LO HA REQUERIDO</label>
+                                                    <!-- Opción C - NO. NO LO HA REQUERIDO -->
+                                                    <div class="respuesta-item mb-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaC" value="36" 
+                                                                {{ isset($respuestas) && is_array($respuestas) && !empty(array_filter($respuestas, function($r) { return isset($r['id']) && $r['id'] == '36' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="respuestaC">C. NO. NO LO HA REQUERIDO</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Pregunta 2.1 - Solo visible cuando la respuesta a la pregunta 2 es "A. SI" -->
-                                    <div id="pregunta2_1Container" class="form-group mb-4" style="display: none;">
-                                        <h5>2.1 Para los niños, niñas y adolescentes que se les marca pregunta 2: SI ¿En cuales de las siguientes medidas de restablecimiento de derechos?</h5>
-                                        
-                                        <div class="respuestas-container mt-3">
-                                            <!-- Opción A - Medio institucional estramural -->
-                                            <div class="respuesta-item mb-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1A" value="37" 
-                                                        {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '37' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="respuesta2_1A">A. Medio institucional estramural</label>
-                                                </div>
+                                    <div id="pregunta2_1Container" class="col-md-12 mt-4" style="display: none;">
+                                        <div class="card">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="mb-0">2.1 Para los niños, niñas y adolescentes que se les marca pregunta 2: SI ¿En cuales de las siguientes medidas de restablecimiento de derechos?</h5>
                                             </div>
+                                            <div class="card-body">
+                                                <div class="respuestas-container">
+                                                    <!-- Opción A - Medio institucional estramural -->
+                                                    <div class="respuesta-item mb-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1A" value="37" 
+                                                                {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '37' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="respuesta2_1A">A. Medio institucional estramural</label>
+                                                        </div>
+                                                    </div>
 
-                                            <!-- Opción B - Intervencion de apoyo psicologico especializado -->
-                                            <div class="respuesta-item mb-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1B" value="38" 
-                                                        {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '38' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="respuesta2_1B">B. Intervencion de apoyo psicologico especializado</label>
-                                                </div>
-                                            </div>
+                                                    <!-- Opción B - Intervencion de apoyo psicologico especializado -->
+                                                    <div class="respuesta-item mb-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1B" value="38" 
+                                                                {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '38' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="respuesta2_1B">B. Intervencion de apoyo psicologico especializado</label>
+                                                        </div>
+                                                    </div>
 
-                                            <!-- Opción C - Ubicación en medio familiar con cuidados personales o custodia -->
-                                            <div class="respuesta-item mb-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1C" value="42" 
-                                                        {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '42' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="respuesta2_1C">C. Ubicación en medio familiar con cuidados personales o custodia</label>
-                                                </div>
-                                            </div>
+                                                    <!-- Opción C - Ubicación en medio familiar con cuidados personales o custodia -->
+                                                    <div class="respuesta-item mb-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1C" value="42" 
+                                                                {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '42' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="respuesta2_1C">C. Ubicación en medio familiar con cuidados personales o custodia</label>
+                                                        </div>
+                                                    </div>
 
-                                            <!-- Opción D - Sistema de responsabildad penal extramural -->
-                                            <div class="respuesta-item mb-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1D" value="39" 
-                                                        {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '39' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="respuesta2_1D">D. Sistema de responsabildad penal extramural</label>
+                                                    <!-- Opción D - Sistema de responsabildad penal extramural -->
+                                                    <div class="respuesta-item mb-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1D" value="39" 
+                                                                {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '39' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="respuesta2_1D">D. Sistema de responsabildad penal extramural</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

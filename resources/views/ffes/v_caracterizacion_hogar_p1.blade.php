@@ -89,8 +89,11 @@
 
                                     <!-- Aquí irá el contenido de las situaciones -->
                                     <div class="form-group mb-4">
+                                    <div class="card">
+                                    <div class="card-header bg-primary text-white">
                                         <h5>En tu hogar ¿se presenta actualmente algunas de las siguientes situaciones en los niños, niñas y adolescentes?</h5>
-                                        
+                                        </div>
+                                        <div class="card-body">
                                         <div class="situaciones-container">
                                             <!-- Situación A -->
                                             <div class="situacion-item mb-3">
@@ -300,6 +303,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        </div>
+</div>
                                     </div>
                                 </form>
                             </div>
