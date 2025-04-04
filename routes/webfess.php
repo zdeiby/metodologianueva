@@ -9,13 +9,9 @@ use App\Http\Controllers\ffes\c_caracterizacionIntegrantes_primerInfancia;
 use App\Http\Controllers\ffes\c_caracterizacionIntegrantes_mecanismosProteccion;
 use App\Http\Controllers\ffes\c_caracterizacion_hogar_p1;
 use App\Http\Controllers\ffes\c_caracterizacion_hogar_p2;
-<<<<<<< HEAD
 //CONTROLLER DEIBY
 use App\Http\Controllers\ffes\c_integrantesffes;
 //FIN CONTROLLER DEIBY
-=======
-use App\Http\Controllers\ffes\c_caracterizacion_hogar_p3;
->>>>>>> 29def5c8cfe19963d5c5195447090079f741fdfd
 use Hashids\Hashids;
 
 // Rutas para caracterización de hogares
