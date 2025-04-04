@@ -88,222 +88,222 @@
                                     </div>
 
                                     <!-- Aquí irá el contenido de las situaciones -->
-                                    <div class="form-group mb-4">
-                                    <div class="card">
-                                    <div class="card-header bg-primary text-white">
-                                        <h5>En tu hogar ¿se presenta actualmente algunas de las siguientes situaciones en los niños, niñas y adolescentes?</h5>
-                                        </div>
-                                        <div class="card-body">
-                                        <div class="situaciones-container">
-                                            <!-- Situación A -->
-                                            <div class="situacion-item mb-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input situacion-switch" type="checkbox" id="situacionA" data-situacion="A">
-                                                    <label class="form-check-label" for="situacionA">A. Abandono y falta de padres</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionA" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                    <div class="col-md-12 mt-4">
+                                        <div class="card">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="mb-0">En tu hogar ¿se presenta actualmente algunas de las siguientes situaciones en los niños, niñas y adolescentes?</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="situaciones-container">
+                                                    <!-- Situación A -->
+                                                    <div class="situacion-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input situacion-switch" type="checkbox" id="situacionA" data-situacion="A">
+                                                            <label class="form-check-label" for="situacionA">A. Abandono y falta de padres</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesA">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionA" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesA">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Situación B -->
-                                            <div class="situacion-item mb-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input situacion-switch" type="checkbox" id="situacionB" data-situacion="B">
-                                                    <label class="form-check-label" for="situacionB">B. Acoso escolar o bullying</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionB" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                                    <!-- Situación B -->
+                                                    <div class="situacion-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input situacion-switch" type="checkbox" id="situacionB" data-situacion="B">
+                                                            <label class="form-check-label" for="situacionB">B. Acoso escolar o bullying</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesB">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionB" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesB">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Situación C -->
-                                            <div class="situacion-item mb-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input situacion-switch" type="checkbox" id="situacionC" data-situacion="C">
-                                                    <label class="form-check-label" for="situacionC">C. Reclutamiento forzado y utilización en conflicto armado</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionC" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                                    <!-- Situación C -->
+                                                    <div class="situacion-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input situacion-switch" type="checkbox" id="situacionC" data-situacion="C">
+                                                            <label class="form-check-label" for="situacionC">C. Reclutamiento forzado y utilización en conflicto armado</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesC">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionC" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesC">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Situación D -->
-                                            <div class="situacion-item mb-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input situacion-switch" type="checkbox" id="situacionD" data-situacion="D">
-                                                    <label class="form-check-label" for="situacionD">D. Ciber acoso</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionD" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                                    <!-- Situación D -->
+                                                    <div class="situacion-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input situacion-switch" type="checkbox" id="situacionD" data-situacion="D">
+                                                            <label class="form-check-label" for="situacionD">D. Ciber acoso</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesD">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionD" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesD">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Situación E -->
-                                            <div class="situacion-item mb-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input situacion-switch" type="checkbox" id="situacionE" data-situacion="E">
-                                                    <label class="form-check-label" for="situacionE">E. Amenazas o presión grupal</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionE" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                                    <!-- Situación E -->
+                                                    <div class="situacion-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input situacion-switch" type="checkbox" id="situacionE" data-situacion="E">
+                                                            <label class="form-check-label" for="situacionE">E. Amenazas o presión grupal</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesE">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionE" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesE">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Situación F -->
-                                            <div class="situacion-item mb-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input situacion-switch" type="checkbox" id="situacionF" data-situacion="F">
-                                                    <label class="form-check-label" for="situacionF">F. Tráfico y comercialización de sustancias</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionF" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                                    <!-- Situación F -->
+                                                    <div class="situacion-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input situacion-switch" type="checkbox" id="situacionF" data-situacion="F">
+                                                            <label class="form-check-label" for="situacionF">F. Tráfico y comercialización de sustancias</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesF">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionF" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesF">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Situación G -->
-                                            <div class="situacion-item mb-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input situacion-switch" type="checkbox" id="situacionG" data-situacion="G">
-                                                    <label class="form-check-label" for="situacionG">G. Matrimonio infantil</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionG" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                                    <!-- Situación G -->
+                                                    <div class="situacion-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input situacion-switch" type="checkbox" id="situacionG" data-situacion="G">
+                                                            <label class="form-check-label" for="situacionG">G. Matrimonio infantil</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesG">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionG" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesG">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Situación H -->
-                                            <div class="situacion-item mb-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input situacion-switch" type="checkbox" id="situacionH" data-situacion="H">
-                                                    <label class="form-check-label" for="situacionH">H. Conducta suicida o riesgo de suicidio infantil</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionH" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                                    <!-- Situación H -->
+                                                    <div class="situacion-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input situacion-switch" type="checkbox" id="situacionH" data-situacion="H">
+                                                            <label class="form-check-label" for="situacionH">H. Conducta suicida o riesgo de suicidio infantil</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesH">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionH" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesH">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Situación I -->
-                                            <div class="situacion-item mb-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input situacion-switch" type="checkbox" id="situacionI" data-situacion="I">
-                                                    <label class="form-check-label" for="situacionI">I. Otras conductas delictivas como hurto por fuera del hogar, extorción, intento de homicidio</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionI" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                                    <!-- Situación I -->
+                                                    <div class="situacion-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input situacion-switch" type="checkbox" id="situacionI" data-situacion="I">
+                                                            <label class="form-check-label" for="situacionI">I. Otras conductas delictivas como hurto por fuera del hogar, extorción, intento de homicidio</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesI">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionI" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesI">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Situación J -->
-                                            <div class="situacion-item mb-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input situacion-switch" type="checkbox" id="situacionJ" data-situacion="J">
-                                                    <label class="form-check-label" for="situacionJ">J. Barrera culturales y lingüisticas (población indigena)</label>
-                                                </div>
-                                                <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionJ" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header bg-light">
-                                                            Seleccione los integrantes menores de 18 años afectados:
+                                                    <!-- Situación J -->
+                                                    <div class="situacion-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input situacion-switch" type="checkbox" id="situacionJ" data-situacion="J">
+                                                            <label class="form-check-label" for="situacionJ">J. Barrera culturales y lingüisticas (población indigena)</label>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <div class="row" id="listaIntegrantesJ">
-                                                                <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesSituacionJ" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesJ">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes menores de 18 años -->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Situación K -->
-                                            <div class="situacion-item mb-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="situacionK" data-situacion="K">
-                                                    <label class="form-check-label" for="situacionK">K. Ninguna de las anteriores</label>
+                                                    <!-- Situación K -->
+                                                    <div class="situacion-item mb-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" id="situacionK" data-situacion="K">
+                                                            <label class="form-check-label" for="situacionK">K. Ninguna de las anteriores</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        </div>
+
 </div>
                                     </div>
                                 </form>
