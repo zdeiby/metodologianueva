@@ -23,8 +23,24 @@ class c_cobertura extends Controller
       $hashids = new Hashids('', 10);
 
     //   }
+    
 
     $folios = array_map(function ($item) use ($hashids) {
+
+        $grupoHTML = '';
+
+            if (in_array($item->casillamatriz, [1, 2, 4])) {
+                $grupoHTML = '<div class="badge-grupo grupo-1" title="Alta vulnerabilidad: pobreza extrema en IPM e ingresos">Grupo 1</div>';
+            } elseif (in_array($item->casillamatriz, [3, 5, 6])) {
+                $grupoHTML = '<div class="badge-grupo grupo-2" title="Vulnerabilidad moderada en ingresos o en IPM">Grupo 2</div>';
+            } elseif (in_array($item->casillamatriz, [7, 8])) {
+                $grupoHTML = '<div class="badge-grupo grupo-3" title="Vulnerabilidad moderada solo en IPM">Grupo 3</div>';
+            } elseif ($item->casillamatriz == 9) {
+                $grupoHTML = '<div class="badge-grupo grupo-4" title="Baja vulnerabilidad o no vulnerable">Grupo 4</div>';
+            } else {
+                $grupoHTML = '<div class="badge-grupo grupo-na" title="Sin información de visita inicial">Sin visita inicial</div>';
+            }
+
       $encodedFolio = $hashids->encode($item->folio);
         return [
             'folio' => $item->folio ?? '',
@@ -36,6 +52,10 @@ class c_cobertura extends Controller
             'comuna' => $item->comuna ?? '',
             'direccion' => $item->direccion ?? '',
             'estacion' =>  $item->ultimo_idestacion ?? 'Gestión no especificada',
+          'grupo' => $grupoHTML,
+
+
+
             'gestion' => ($item->casillamatriz == 9)
                 ? '<button type="submit" style="width:100px" class="btn btn-success btn-sm">Baja vulnerabilidad</button>'
                 : '<button type="submit"  class="btn btn-primary btn-sm"  onclick="habeasdata(\'' . encrypt($item->folio) . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'boton">Gestiónar</button>',
