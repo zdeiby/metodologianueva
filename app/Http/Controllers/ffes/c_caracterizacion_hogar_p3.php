@@ -41,8 +41,8 @@ class c_caracterizacion_hogar_p3 extends Controller
             
             // Obtener las respuestas si existen
             $respuestas = null;
-            if ($caracterizacionHogar && isset($caracterizacionHogar->factores_protectores_p3)) {
-                $respuestas = json_decode($caracterizacionHogar->factores_protectores_p3, true);
+            if ($caracterizacionHogar && isset($caracterizacionHogar->salud_mental_p3)) {
+                $respuestas = json_decode($caracterizacionHogar->salud_mental_p3, true);
             }
             
             // Verificar si existe respuesta para la pregunta 2
@@ -86,49 +86,54 @@ class c_caracterizacion_hogar_p3 extends Controller
             $respuesta = $request->input('respuesta');
             
             // Validar que se haya seleccionado una respuesta
-            if (!$respuesta) {
+            if ($respuesta === null) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Debe seleccionar una respuesta'
                 ]);
             }
             
-            // Definir todas las opciones disponibles
-            $opcionesP3 = [
-                ['id' => "1", 'texto' => "SI"],
-                ['id' => "0", 'texto' => "NO"]
-            ];
-            
             // Preparar el array para guardar las respuestas
             $respuestasData = [];
             
-            // Procesar cada opción disponible
-            foreach ($opcionesP3 as $opcion) {
-                if ($opcion['id'] == $respuesta) {
-                    // Esta opción fue seleccionada
-                    $integrantes = $request->input('integrantes', []);
-                    
-                    // Si la opción es SI y se seleccionaron integrantes, validar
-                    if ($opcion['id'] == '1' && empty($integrantes)) {
-                        return response()->json([
-                            'success' => false,
-                            'message' => 'Si la respuesta es SI, debe seleccionar al menos un integrante'
-                        ]);
-                    }
-                    
-                    $respuestasData[] = [
-                        'id' => $opcion['id'],
-                        'valor' => "SI",
-                        'idintegrante' => $integrantes
-                    ];
-                } else {
-                    // Esta opción NO fue seleccionada
-                    $respuestasData[] = [
-                        'id' => $opcion['id'],
-                        'valor' => "NO",
-                        'idintegrante' => []
-                    ];
+            if ($respuesta == '1') {
+                // Si la respuesta es SI
+                $integrantes = $request->input('integrantes', []);
+                
+                // Validar que se hayan seleccionado integrantes
+                if (empty($integrantes)) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Si la respuesta es SI, debe seleccionar al menos un integrante'
+                    ]);
                 }
+                
+                $respuestasData = [
+                    [
+                        'id' => '1',
+                        'valor' => 'SI',
+                        'idintegrante' => $integrantes
+                    ],
+                    [
+                        'id' => '0',
+                        'valor' => 'NO',
+                        'idintegrante' => []
+                    ]
+                ];
+            } else {
+                // Si la respuesta es NO
+                $respuestasData = [
+                    [
+                        'id' => '1',
+                        'valor' => 'NO',
+                        'idintegrante' => []
+                    ],
+                    [
+                        'id' => '0',
+                        'valor' => 'SI',
+                        'idintegrante' => []
+                    ]
+                ];
             }
             
             // Convertir a JSON el array de respuestas
@@ -144,7 +149,7 @@ class c_caracterizacion_hogar_p3 extends Controller
                 'folio' => $folio,
                 'idintegrante' => $idintegrante,
                 'documento_profesional' => $documento_profesional,
-                'factores_protectores_p3' => $respuestasJson
+                'salud_mental_p3' => $respuestasJson
             ]);
             
             return response()->json([

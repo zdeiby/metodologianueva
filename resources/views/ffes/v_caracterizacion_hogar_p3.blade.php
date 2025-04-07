@@ -112,7 +112,7 @@
                                                     <div class="respuesta-item mb-3">
                                                         <div class="form-check">
                                                             <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaA" value="1" 
-                                                                {{ isset($respuestas) && is_array($respuestas) && !empty(array_filter($respuestas, function($r) { return isset($r['id']) && $r['id'] == '1' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                                {{ isset($respuestas) && is_array($respuestas) && isset($respuestas[0]['valor']) && $respuestas[0]['valor'] == 'SI' && $respuestas[0]['id'] == '1' ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="respuestaA">SI</label>
                                                         </div>
                                                         <div class="integrantes-container mt-2 ml-4" id="integrantesRespuestaA" style="display: none;">
@@ -127,7 +127,7 @@
                                                     <div class="respuesta-item mb-3">
                                                         <div class="form-check">
                                                             <input class="form-check-input respuesta-radio" type="radio" name="respuesta" id="respuestaB" value="0" 
-                                                                {{ isset($respuestas) && is_array($respuestas) && !empty(array_filter($respuestas, function($r) { return isset($r['id']) && $r['id'] == '0' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
+                                                                {{ isset($respuestas) && is_array($respuestas) && isset($respuestas[1]['valor']) && $respuestas[1]['valor'] == 'SI' && $respuestas[1]['id'] == '0' ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="respuestaB">NO</label>
                                                         </div>
                                                     </div>
@@ -311,27 +311,13 @@
             // Verificar si se ha seleccionado una respuesta
             const respuestaSeleccionada = $('input[name="respuesta"]:checked').val();
             
-            if (!respuestaSeleccionada) {
+            if (respuestaSeleccionada === undefined) {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Validación',
                     text: 'Debe seleccionar una respuesta'
                 });
                 return false;
-            }
-            
-            // Verificar que para la respuesta A (1) se haya seleccionado al menos un integrante
-            if (respuestaSeleccionada == 1) {
-                const integrantesSeleccionados = $('input[name="integrantes[]"]:checked').length;
-                
-                if (integrantesSeleccionados === 0) {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Validación',
-                        text: 'Debe seleccionar al menos un integrante'
-                    });
-                    return false;
-                }
             }
             
             // Recopilar datos del formulario
@@ -342,10 +328,20 @@
                 _token: $('input[name="_token"]').val()
             };
             
-            // Si la respuesta es A (1), incluir los integrantes seleccionados
-            if (respuestaSeleccionada == 1) {
-                formData.integrantes = [];
+            // Si la respuesta es SI (1), validar y agregar integrantes
+            if (respuestaSeleccionada === '1') {
+                const integrantesSeleccionados = $('input[name="integrantes[]"]:checked').length;
                 
+                if (integrantesSeleccionados === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validación',
+                        text: 'Si la respuesta es SI, debe seleccionar al menos un integrante'
+                    });
+                    return false;
+                }
+                
+                formData.integrantes = [];
                 $('input[name="integrantes[]"]:checked').each(function() {
                     formData.integrantes.push($(this).val());
                 });
