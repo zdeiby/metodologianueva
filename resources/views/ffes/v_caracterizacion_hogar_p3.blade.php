@@ -135,6 +135,424 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- Pregunta 3.1 - Primera parte (Diagnósticos A-G) -->
+                                    <div class="col-md-12 mt-4" id="pregunta3_1_container" style="display: none;">
+                                        <div class="card">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="mb-0">3.1 ¿Cuál o Cuales de los siguientes diagnosticos en salud mental el niño, niña o adolescente presenta?</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="diagnosticos-container">
+                                                    <!-- Diagnóstico A -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoA" data-diagnostico="A" data-id="43" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '43' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoA">A. Trastornos depresivos</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoA" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoA">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico B -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoB" data-diagnostico="B" data-id="44" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '44' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoB">B. Trastornos del neuro desarrollo (discapacidad intelectual, trastornos de la comunicación, trastornos del espectro autista, trastorno por déficit de atención e hiperactividad (TDAH), trastornos específicos del aprendizaje, trastornos motores</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoB" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoB">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico C -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoC" data-diagnostico="C" data-id="45" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '45' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoC">C. Trastorno de ansiedad (trastorno de ansiedad por separación, mutismo selectivo, trastorno de pánico en adolescentes, fobia social, fobias especificas)</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoC" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoC">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico D -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoD" data-diagnostico="D" data-id="46" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '46' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoD">D. Trastornos de la Conducta Alimentaria y de la Ingesta de Alimentos (anorexia, bulimia, trastorno por atracón en adolescentes)</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoD" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoD">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico E -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoE" data-diagnostico="E" data-id="47" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '47' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoE">E. Trastornos Relacionados con Sustancias y Trastornos Adictivos (trastorno por uso de sustancias, trastorno por juego patologico)</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoE" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoE">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico F -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoF" data-diagnostico="F" data-id="48" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '48' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoF">F. Trastorno Obsesivo-Compulsivo y Trastornos Relacionados (trastorno obsesivo compulsivo (TOC) infantil y adolescente, trastorno dismórfico corporal en adolescentes)</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoF" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoF">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico G -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoG" data-diagnostico="G" data-id="49" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '49' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoG">G. Trastornos Disruptivos, del Control de los Impulsos y de la Conducta (trastorno negativista desafiante -TND, trastorno de conducta, trastorno explosivo intermitente)</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoG" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoG">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico H -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoH" data-diagnostico="H" data-id="50" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '50' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoH">H. Espectro de la Esquizofrenia y Otros Trastornos Psicóticos (trastorno esquizofreniforme Infantil o Adolescente, trastorno psicótico breve, trastorno esquizoafectivo de Inicio Temprano)</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoH" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoH">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico I -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoI" data-diagnostico="I" data-id="51" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '51' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoI">I. Trastorno bipolar y trastornos relacionados (trastorno bipolar en adolescentes, trastorno ciclotímico de inicio temprano)</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoI" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoI">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico J -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoJ" data-diagnostico="J" data-id="52" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '52' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoJ">J. Trastornos del Sueño-Vigilia (trastorno de insomnio infantil y adolescente, trastorno del sueño por pesadillas, terrores nocturnos, sonambulismo infantil, narcolepsia en adolescentes)</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoJ" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoJ">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico K -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoK" data-diagnostico="K" data-id="53" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '53' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoK">K. Trastornos de la Personalidad (trastorno de la personalidad límite de inicio adolescente, trastorno antisocial de la personalidad)</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoK" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoK">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico L -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoL" data-diagnostico="L" data-id="54" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '54' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoL">L. Trastornos de la Excreción (enuresis, encopresis)</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoL" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoL">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico M -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoM" data-diagnostico="M" data-id="55" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '55' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoM">M. Trastornos Relacionados con Trauma y Factores de Estrés (trastorno de apego reactivo, trastorno de relación social desinhibida, trastorno de estrés postraumático-TEPT)</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoM" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoM">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Diagnóstico N -->
+                                                    <div class="diagnostico-item mb-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input diagnostico-switch" type="checkbox" id="diagnosticoN" data-diagnostico="N" data-id="56" role="switch"
+                                                                @if(isset($diagnosticos) && is_array($diagnosticos))
+                                                                    @foreach($diagnosticos as $diagnostico)
+                                                                        @if($diagnostico['id'] == '56' && $diagnostico['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="diagnosticoN">N. Intento de suicido y autolesiones</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesDiagnosticoN" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesDiagnosticoN">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 3 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -284,9 +702,19 @@
             // Si la respuesta es A (1), mostrar el contenedor correspondiente
             if (respuesta == 1) {
                 $('#integrantesRespuestaA').show();
+                $('#pregunta3_1_container').show();
+                
+                // Cargar integrantes para los diagnósticos cuando se selecciona SI
+                setTimeout(function() {
+                    cargarIntegrantesParaDiagnosticos();
+                }, 500);
             } else {
                 // Si es B (0), desmarcar todos los integrantes
                 $('input[name="integrantes[]"]').prop('checked', false);
+                $('#pregunta3_1_container').hide();
+                
+                // Desmarcar todos los diagnósticos cuando se selecciona NO
+                $('.diagnostico-switch').prop('checked', false);
             }
         });
         
@@ -320,6 +748,55 @@
                 return false;
             }
             
+            // Validaciones para pregunta 3 y 3.1
+            if (respuestaSeleccionada == 1) { // Si la respuesta a la pregunta 3 es SI
+                // Validar que haya al menos un integrante seleccionado en la pregunta 3
+                const integrantesSeleccionados = $('input[name="integrantes[]"]:checked').length;
+                if (integrantesSeleccionados === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validación',
+                        text: 'Si la respuesta es SI, debe seleccionar al menos un integrante en la pregunta 3'
+                    });
+                    return false;
+                }
+                
+                // Validar que haya al menos un diagnóstico seleccionado en la pregunta 3.1
+                const diagnosticosSeleccionados = $('.diagnostico-switch:checked').length;
+                if (diagnosticosSeleccionados === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validación',
+                        text: 'Si la respuesta es SI, debe seleccionar al menos un diagnóstico en la pregunta 3.1'
+                    });
+                    return false;
+                }
+                
+                // Validar que cada diagnóstico seleccionado tenga al menos un integrante seleccionado
+                let diagnosticosSinIntegrantes = false;
+                let nombreDiagnosticoSinIntegrantes = '';
+                
+                $('.diagnostico-switch:checked').each(function() {
+                    const diagnostico = $(this).data('diagnostico');
+                    const integrantesDiagnostico = $(`input[name="integrantesDiagnostico${diagnostico}[]"]:checked`).length;
+                    
+                    if (integrantesDiagnostico === 0) {
+                        diagnosticosSinIntegrantes = true;
+                        nombreDiagnosticoSinIntegrantes = $(this).siblings('label').text();
+                        return false; // Salir del bucle each
+                    }
+                });
+                
+                if (diagnosticosSinIntegrantes) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validación',
+                        text: `Debe seleccionar al menos un integrante para el diagnóstico: ${nombreDiagnosticoSinIntegrantes}`
+                    });
+                    return false;
+                }
+            }
+            
             // Recopilar datos del formulario
             const formData = {
                 folio: $('#folioinput').val(),
@@ -330,21 +807,47 @@
             
             // Si la respuesta es SI (1), validar y agregar integrantes
             if (respuestaSeleccionada === '1') {
-                const integrantesSeleccionados = $('input[name="integrantes[]"]:checked').length;
-                
-                if (integrantesSeleccionados === 0) {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Validación',
-                        text: 'Si la respuesta es SI, debe seleccionar al menos un integrante'
-                    });
-                    return false;
-                }
-                
-                formData.integrantes = [];
+                const integrantesSeleccionados = [];
                 $('input[name="integrantes[]"]:checked').each(function() {
-                    formData.integrantes.push($(this).val());
+                    integrantesSeleccionados.push($(this).val());
                 });
+                
+                formData.integrantes = integrantesSeleccionados;
+                
+                // Obtener los diagnósticos seleccionados (pregunta 3.1)
+                const diagnosticos = [];
+                
+                // Recorrer cada diagnóstico (A-N)
+                const letras = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"];
+                const diagnosticosIds = ['43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56'];
+                
+                letras.forEach(function(letra, index) {
+                    const diagnosticoId = diagnosticosIds[index];
+                    const isChecked = $(`#diagnostico${letra}`).is(':checked');
+                    let integrantesDiagnostico = [];
+                    
+                    if (isChecked) {
+                        // Si el diagnóstico está seleccionado, obtener los integrantes seleccionados
+                        $(`input[name="integrantesDiagnostico${letra}[]"]:checked`).each(function() {
+                            integrantesDiagnostico.push($(this).val());
+                        });
+                        
+                        diagnosticos.push({
+                            id: diagnosticoId,
+                            valor: 'SI',
+                            idintegrante: integrantesDiagnostico
+                        });
+                    } else {
+                        // Si no está seleccionado, valor NO sin integrantes
+                        diagnosticos.push({
+                            id: diagnosticoId,
+                            valor: 'NO',
+                            idintegrante: []
+                        });
+                    }
+                });
+                
+                formData.diagnosticos = diagnosticos;
             }
             
             // Enviar datos mediante AJAX
@@ -386,6 +889,167 @@
                 title: 'Información',
                 text: 'Funcionalidad "Siguiente" en desarrollo'
             });
+        });
+        
+        // Cargar los integrantes para cada diagnóstico cuando la pregunta 3 tenga algún integrante seleccionado
+        function cargarIntegrantesParaDiagnosticos() {
+            // Obtener el folio actual
+            const folio = $('#folioinput').val();
+            
+            // Realizar petición AJAX para obtener los integrantes del hogar
+            $.ajax({
+                url: '{{ route("obtener_integrantes_menores_p3", ["folio" => ":folio"]) }}'.replace(':folio', folio),
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        // Letras de los diagnósticos
+                        const letras = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"];
+                        const diagnosticosIds = ['43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56'];
+                        
+                        // Obtener IDs de integrantes seleccionados en la pregunta 3
+                        const integrantesSeleccionados = [];
+                        $('input[name="integrantes[]"]:checked').each(function() {
+                            integrantesSeleccionados.push($(this).val());
+                        });
+                        
+                        // Para cada diagnóstico, generar HTML con los integrantes seleccionados
+                        letras.forEach(function(letra, index) {
+                            let htmlIntegrantes = '';
+                            const diagnosticoId = diagnosticosIds[index];
+                            
+                            response.integrantes.forEach(function(integrante) {
+                                // Solo mostrar los integrantes seleccionados en la pregunta 3
+                                if (integrantesSeleccionados.includes(integrante.idintegrante.toString())) {
+                                    const nombreCompleto = (integrante.nombre1 || '') + ' ' + 
+                                                          (integrante.nombre2 || '') + ' ' + 
+                                                          (integrante.apellido1 || '') + ' ' + 
+                                                          (integrante.apellido2 || '');
+                                    
+                                    // Verificar si el integrante estaba seleccionado previamente en este diagnóstico
+                                    let isChecked = '';
+                                    
+                                    @if(isset($diagnosticos) && is_array($diagnosticos))
+                                        // Para cada diagnóstico guardado
+                                        @foreach($diagnosticos as $diagnostico)
+                                            // Si coincide el ID del diagnóstico y el valor es SI
+                                            if ('{{ $diagnostico['id'] ?? '' }}' === diagnosticoId && 
+                                                '{{ $diagnostico['valor'] ?? '' }}' === 'SI') {
+                                                // Verificar si este integrante está en el array de integrantes del diagnóstico
+                                                const integrantesGuardados = @json($diagnostico['idintegrante'] ?? []);
+                                                if (integrantesGuardados.includes(integrante.idintegrante.toString())) {
+                                                    isChecked = 'checked';
+                                                }
+                                            }
+                                        @endforeach
+                                    @endif
+                                    
+                                    htmlIntegrantes += `
+                                        <div class="col-md-6 mb-2">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" 
+                                                       id="integrante${letra}_${integrante.idintegrante}" 
+                                                       name="integrantesDiagnostico${letra}[]" 
+                                                       value="${integrante.idintegrante}"
+                                                       role="switch"
+                                                       ${isChecked}>
+                                                <label class="form-check-label" for="integrante${letra}_${integrante.idintegrante}">
+                                                    ${nombreCompleto}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                            });
+                            
+                            // Insertar HTML en el contenedor correspondiente
+                            $(`#listaIntegrantesDiagnostico${letra}`).html(htmlIntegrantes);
+                            
+                            // Mostrar los contenedores de integrantes para los diagnósticos seleccionados
+                            if ($(`#diagnostico${letra}`).is(':checked')) {
+                                $(`#integrantesDiagnostico${letra}`).show();
+                            }
+                        });
+                        
+                    } else {
+                        console.error('Error al cargar integrantes para diagnósticos:', response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error en la petición AJAX para diagnósticos:', error);
+                }
+            });
+        }
+        
+        // Manejar cambio en las opciones de respuesta
+        $('.respuesta-radio').change(function() {
+            const respuesta = $(this).val();
+            
+            // Ocultar todos los contenedores de integrantes
+            $('.integrantes-container').hide();
+            
+            // Si la respuesta es A (1), mostrar el contenedor correspondiente
+            if (respuesta == 1) {
+                $('#integrantesRespuestaA').show();
+                $('#pregunta3_1_container').show();
+            } else {
+                // Si es B (0), desmarcar todos los integrantes
+                $('input[name="integrantes[]"]').prop('checked', false);
+                $('#pregunta3_1_container').hide();
+                
+                // Desmarcar todos los diagnósticos cuando se selecciona NO
+                $('.diagnostico-switch').prop('checked', false);
+            }
+        });
+        
+        // Manejar cambio en los integrantes de la pregunta 3
+        $(document).on('change', 'input[name="integrantes[]"]', function() {
+            if ($('#respuestaA').is(':checked')) {
+                cargarIntegrantesParaDiagnosticos();
+            }
+        });
+        
+        // Manejar cambio en los checkboxes de diagnóstico
+        $('.diagnostico-switch').change(function() {
+            const diagnostico = $(this).data('diagnostico');
+            const isChecked = $(this).prop('checked');
+            
+            // Mostrar u ocultar el contenedor de integrantes según el estado del checkbox
+            $(`#integrantesDiagnostico${diagnostico}`).toggle(isChecked);
+            
+            // Si se marca un diagnóstico, mostrar mensaje indicando que se deben seleccionar integrantes
+            if (isChecked) {
+                // Verificar si no hay integrantes seleccionados
+                const integrantesSeleccionados = $(`input[name="integrantesDiagnostico${diagnostico}[]"]:checked`).length;
+                if (integrantesSeleccionados === 0) {
+                    // Mostrar mensaje de ayuda
+                    const mensajeHTML = `<div class="alert alert-info mt-2 mb-0 mensaje-ayuda">
+                        <small>Debe seleccionar al menos un integrante para este diagnóstico</small>
+                    </div>`;
+                    
+                    // Eliminar mensaje anterior si existe
+                    $(`#integrantesDiagnostico${diagnostico} .mensaje-ayuda`).remove();
+                    
+                    // Agregar mensaje al final del contenedor
+                    $(`#integrantesDiagnostico${diagnostico} .card-body`).append(mensajeHTML);
+                }
+            }
+        });
+        
+        // Cargar integrantes inicialmente
+        $(document).ready(function() {
+            // Verificar si ya hay integrantes seleccionados al cargar la página
+            if ($('#respuestaA').is(':checked')) {
+                $('#pregunta3_1_container').show();
+                
+                // Esperar a que se carguen los integrantes de la pregunta 3
+                var checkIntegrantes = setInterval(function() {
+                    if ($('input[name="integrantes[]"]:checked').length > 0) {
+                        cargarIntegrantesParaDiagnosticos();
+                        clearInterval(checkIntegrantes);
+                    }
+                }, 500);
+            }
         });
     });
 </script>
