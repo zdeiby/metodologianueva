@@ -43,7 +43,7 @@ class m_caracterizacion_hogar_p3 extends Model
             ->first();
         
         $updateData = [
-            'factores_protectores_p3' => $datos['factores_protectores_p3'] ?? null,
+            'salud_mental_p3' => $datos['salud_mental_p3'] ?? null,
             'updated_at' => now()
         ];
         
@@ -60,7 +60,7 @@ class m_caracterizacion_hogar_p3 extends Model
                 'folio' => $datos['folio'],
                 'idintegrante' => $datos['idintegrante'],
                 'documento_profesional' => $datos['documento_profesional'],
-                'factores_protectores_p3' => $datos['factores_protectores_p3'] ?? null,
+                'salud_mental_p3' => $datos['salud_mental_p3'] ?? null,
                 'estado' => 1,
                 'sincro' => 0,
                 'created_at' => now(),
