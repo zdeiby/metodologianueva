@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ffes\m_caracterizacion_hogar_p3;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class c_caracterizacion_hogar_p3 extends Controller
 {
@@ -44,6 +45,12 @@ class c_caracterizacion_hogar_p3 extends Controller
             if ($caracterizacionHogar && isset($caracterizacionHogar->salud_mental_p3)) {
                 $respuestas = json_decode($caracterizacionHogar->salud_mental_p3, true);
             }
+
+            // Obtener los diagnósticos si existen
+            $diagnosticos = null;
+            if ($caracterizacionHogar && isset($caracterizacionHogar->cualdiagnostico_salud_mental_p3_1)) {
+                $diagnosticos = json_decode($caracterizacionHogar->cualdiagnostico_salud_mental_p3_1, true);
+            }
             
             // Verificar si existe respuesta para la pregunta 2
             $pregunta2Respondida = false;
@@ -62,6 +69,7 @@ class c_caracterizacion_hogar_p3 extends Controller
                 'idintegrante' => $idintegrante,
                 'datosIntegrante' => $datosIntegrante,
                 'respuestas' => $respuestas,
+                'diagnosticos' => $diagnosticos,
                 'pregunta2Respondida' => $pregunta2Respondida
             ]);
             
@@ -74,22 +82,16 @@ class c_caracterizacion_hogar_p3 extends Controller
     public function fc_guardar_caracterizacion_hogar_p3(Request $request)
     {
         try {
-            // Validar la petición
-            $request->validate([
-                'folio' => 'required',
-                'idintegrante' => 'required',
-            ]);
-            
-            // Obtener los datos del formulario
+            // Obtener datos del formulario
             $folio = $request->input('folio');
             $idintegrante = $request->input('idintegrante');
             $respuesta = $request->input('respuesta');
             
-            // Validar que se haya seleccionado una respuesta
-            if ($respuesta === null) {
+            // Validar datos requeridos
+            if (empty($folio) || empty($idintegrante) || $respuesta === null) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Debe seleccionar una respuesta'
+                    'message' => 'Faltan datos requeridos'
                 ]);
             }
             
@@ -120,6 +122,60 @@ class c_caracterizacion_hogar_p3 extends Controller
                         'idintegrante' => []
                     ]
                 ];
+                
+                // Si la respuesta es SI, procesar los diagnósticos (pregunta 3.1)
+                $diagnosticosData = [];
+                $diagnosticosRequest = $request->input('diagnosticos', []);
+                
+                if (!empty($diagnosticosRequest)) {
+                    // Usar los diagnósticos enviados desde el frontend
+                    $diagnosticosData = $diagnosticosRequest;
+                    
+                    // Verificar que cada diagnóstico tenga el formato correcto
+                    foreach ($diagnosticosData as &$diagnostico) {
+                        // Asegurarse de que cada diagnóstico tenga id, valor e idintegrante
+                        if (!isset($diagnostico['id'])) {
+                            $diagnostico['id'] = '0';
+                        }
+                        
+                        if (!isset($diagnostico['valor'])) {
+                            $diagnostico['valor'] = 'NO';
+                        }
+                        
+                        if (!isset($diagnostico['idintegrante']) || !is_array($diagnostico['idintegrante'])) {
+                            $diagnostico['idintegrante'] = [];
+                        }
+                        
+                        // Si el valor es SI pero no hay integrantes, convertir a NO
+                        if ($diagnostico['valor'] === 'SI' && empty($diagnostico['idintegrante'])) {
+                            $diagnostico['valor'] = 'NO';
+                        }
+                        
+                        // Asegurarse de que solo los integrantes seleccionados en la pregunta 3 estén presentes
+                        if ($diagnostico['valor'] === 'SI' && !empty($diagnostico['idintegrante'])) {
+                            $diagnostico['idintegrante'] = array_values(array_intersect($diagnostico['idintegrante'], $integrantes));
+                        }
+                    }
+                } else {
+                    // Si no se envió diagnósticos pero la respuesta es SI, establecer todos como NO
+                    $diagnosticosIds = ['43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56'];
+                    foreach ($diagnosticosIds as $id) {
+                        $diagnosticosData[] = [
+                            'id' => $id,
+                            'valor' => 'NO',
+                            'idintegrante' => []
+                        ];
+                    }
+                }
+                
+                // Convertir a JSON los diagnósticos
+                $diagnosticosJson = json_encode($diagnosticosData);
+                
+                // Log para depuración
+                Log::info('Diagnósticos a guardar:', [
+                    'data' => $diagnosticosData,
+                    'json' => $diagnosticosJson
+                ]);
             } else {
                 // Si la respuesta es NO
                 $respuestasData = [
@@ -134,6 +190,21 @@ class c_caracterizacion_hogar_p3 extends Controller
                         'idintegrante' => []
                     ]
                 ];
+                
+                // Si la respuesta es NO, establecer todos los diagnósticos como NO
+                $diagnosticosIds = ['43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56'];
+                $diagnosticosData = [];
+                
+                foreach ($diagnosticosIds as $id) {
+                    $diagnosticosData[] = [
+                        'id' => $id,
+                        'valor' => 'NO',
+                        'idintegrante' => []
+                    ];
+                }
+                
+                // Convertir a JSON los diagnósticos
+                $diagnosticosJson = json_encode($diagnosticosData);
             }
             
             // Convertir a JSON el array de respuestas
@@ -145,11 +216,21 @@ class c_caracterizacion_hogar_p3 extends Controller
             // Verificar si ya existe un registro para actualizar
             $documento_profesional = auth()->user()->documento ?? '0';
             
-            $modelo->m_guardarCaracterizacionHogar([
+            // Guardar en la base de datos manteniendo los valores existentes para otras columnas
+            $resultado = $modelo->m_guardarCaracterizacionHogar([
                 'folio' => $folio,
                 'idintegrante' => $idintegrante,
                 'documento_profesional' => $documento_profesional,
-                'salud_mental_p3' => $respuestasJson
+                'salud_mental_p3' => $respuestasJson,
+                'cualdiagnostico_salud_mental_p3_1' => $diagnosticosJson
+            ]);
+            
+            // Log para depuración
+            Log::info('Resultado guardado:', [
+                'folio' => $folio,
+                'salud_mental_p3' => $respuestasJson,
+                'cualdiagnostico_salud_mental_p3_1' => $diagnosticosJson,
+                'resultado' => $resultado
             ]);
             
             return response()->json([
