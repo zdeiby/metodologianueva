@@ -748,6 +748,55 @@
                 return false;
             }
             
+            // Validaciones para pregunta 3 y 3.1
+            if (respuestaSeleccionada == 1) { // Si la respuesta a la pregunta 3 es SI
+                // Validar que haya al menos un integrante seleccionado en la pregunta 3
+                const integrantesSeleccionados = $('input[name="integrantes[]"]:checked').length;
+                if (integrantesSeleccionados === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validación',
+                        text: 'Si la respuesta es SI, debe seleccionar al menos un integrante en la pregunta 3'
+                    });
+                    return false;
+                }
+                
+                // Validar que haya al menos un diagnóstico seleccionado en la pregunta 3.1
+                const diagnosticosSeleccionados = $('.diagnostico-switch:checked').length;
+                if (diagnosticosSeleccionados === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validación',
+                        text: 'Si la respuesta es SI, debe seleccionar al menos un diagnóstico en la pregunta 3.1'
+                    });
+                    return false;
+                }
+                
+                // Validar que cada diagnóstico seleccionado tenga al menos un integrante seleccionado
+                let diagnosticosSinIntegrantes = false;
+                let nombreDiagnosticoSinIntegrantes = '';
+                
+                $('.diagnostico-switch:checked').each(function() {
+                    const diagnostico = $(this).data('diagnostico');
+                    const integrantesDiagnostico = $(`input[name="integrantesDiagnostico${diagnostico}[]"]:checked`).length;
+                    
+                    if (integrantesDiagnostico === 0) {
+                        diagnosticosSinIntegrantes = true;
+                        nombreDiagnosticoSinIntegrantes = $(this).siblings('label').text();
+                        return false; // Salir del bucle each
+                    }
+                });
+                
+                if (diagnosticosSinIntegrantes) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validación',
+                        text: `Debe seleccionar al menos un integrante para el diagnóstico: ${nombreDiagnosticoSinIntegrantes}`
+                    });
+                    return false;
+                }
+            }
+            
             // Recopilar datos del formulario
             const formData = {
                 folio: $('#folioinput').val(),
@@ -967,6 +1016,24 @@
             
             // Mostrar u ocultar el contenedor de integrantes según el estado del checkbox
             $(`#integrantesDiagnostico${diagnostico}`).toggle(isChecked);
+            
+            // Si se marca un diagnóstico, mostrar mensaje indicando que se deben seleccionar integrantes
+            if (isChecked) {
+                // Verificar si no hay integrantes seleccionados
+                const integrantesSeleccionados = $(`input[name="integrantesDiagnostico${diagnostico}[]"]:checked`).length;
+                if (integrantesSeleccionados === 0) {
+                    // Mostrar mensaje de ayuda
+                    const mensajeHTML = `<div class="alert alert-info mt-2 mb-0 mensaje-ayuda">
+                        <small>Debe seleccionar al menos un integrante para este diagnóstico</small>
+                    </div>`;
+                    
+                    // Eliminar mensaje anterior si existe
+                    $(`#integrantesDiagnostico${diagnostico} .mensaje-ayuda`).remove();
+                    
+                    // Agregar mensaje al final del contenedor
+                    $(`#integrantesDiagnostico${diagnostico} .card-body`).append(mensajeHTML);
+                }
+            }
         });
         
         // Cargar integrantes inicialmente
