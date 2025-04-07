@@ -194,6 +194,41 @@ body {
           </div>
         </div>
       </div>
+
+ <!-- FFes -->
+
+  @if ($metodologia == 2)
+  <!-- Segunda tarjeta -->
+  <div class="swiper-slide">
+        <div class="card_wrapper">
+          <div class="card">
+            <div class="content">
+              <div class="front">
+                <img src="{{ asset('assets/img/iconos/card10.jpg')}}" alt="" />
+              </div>
+              <div class="back">
+                <div class="middle">
+                  <h3>
+                    <label>caracterización FFES</label>
+                  </h3>
+             </div>  
+             <button type="button" class="btn btn-primary" <?=($existel100p10010 == '1' && $existel100p10020 == '1'  && $existel100p10025 == '0'  )?'':'disabled'?> onclick="window.location.href='../integrantesffes/{{$foliocodificado}}'">Ir a caracterización FFES</button>
+             <div class="smCard">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+ @endif
+<!-- END FFES -->
+
+
+
+
+
+
       <!-- Segunda tarjeta -->
       <div class="swiper-slide">
         <div class="card_wrapper">
@@ -208,7 +243,11 @@ body {
                     <label>Encuesta hogar</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" <?=($existel100p10010 == '1' && $existel100p10020 == '1'  && $existel100p10030 == '0'  )?'':'disabled'?> onclick="window.location.href='../encuestahogarconformacionfamiliar/{{$variable}}'">Ir a encuesta de hogar</button>
+             @if ($metodologia == 1)
+             <button type="button" class="btn btn-primary mef" <?=($existel100p10010 == '1' && $existel100p10020 == '1' && $existel100p10025 == '1'  && $existel100p10030 == '0'   )?'':'disabled'?> onclick="window.location.href='../encuestahogarconformacionfamiliar/{{$variable}}'">Ir a encuesta de hogar</button>
+            @else
+             <button type="button" class="btn btn-primary ffes" <?=($existel100p10010 == '1' && $existel100p10020 == '1'  && $existel100p10030 == '0'   )?'':'disabled'?> onclick="window.location.href='../encuestahogarconformacionfamiliar/{{$variable}}'">Ir a encuesta de hogar</button>
+             @endif
              <div class="smCard">
                 </div>
               </div>

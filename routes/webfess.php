@@ -9,7 +9,9 @@ use App\Http\Controllers\ffes\c_caracterizacionIntegrantes_primerInfancia;
 use App\Http\Controllers\ffes\c_caracterizacionIntegrantes_mecanismosProteccion;
 use App\Http\Controllers\ffes\c_caracterizacion_hogar_p1;
 use App\Http\Controllers\ffes\c_caracterizacion_hogar_p2;
-use App\Http\Controllers\ffes\c_caracterizacion_hogar_p3;
+//CONTROLLER DEIBY
+use App\Http\Controllers\ffes\c_integrantesffes;
+//FIN CONTROLLER DEIBY
 use Hashids\Hashids;
 
 // Rutas para caracterización de hogares
@@ -86,3 +88,14 @@ Route::get('/test_primera_infancia/{folio_real}/{idintegrante_real}', function($
         'idintegrante' => $idintegrante_encriptado
     ]);
 })->name('test_primera_infancia');
+
+
+
+
+
+//ESTAS RUTAS SE AGREGARON PARA LISTAR LOS INTEGRANTES ANTES DE RESPONDER LA CARACTERIZACION DE FESS  DEIBY
+
+Route::get('/integrantesffes/{folio}',[c_integrantesffes::class,'fc_integrantes'])->name('editarintegrantesgeneral');
+Route::get('/leerintegrantesgeneralffes',[c_integrantesffes::class,'fc_leerintegrantes'])->name('leerintegrantesgeneral');
+Route::get('/finalizarintegrantesffes',[c_integrantesffes::class,'fc_finalizarintegrantes'])->name('finalizarintegrantesffes');
+// FIN ESTAS RUTAS SE AGREGARON PARA LISTAR LOS INTEGRANTES ANTES DE RESPONDER LA CARACTERIZACION DE FESS  DEIBY
