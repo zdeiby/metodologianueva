@@ -553,6 +553,42 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- Pregunta 3.2 -->
+                                    <div class="col-md-12 mt-4" id="pregunta3_2_container" style="display: none;">
+                                        <div class="card">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="mb-0">3.2 ¿Ha accedido a servicios de atención e intervención en la salud mental?</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="respuestas-container">
+                                                    <!-- Opción A: SI -->
+                                                    <div class="respuesta-item mb-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input respuesta3-2-radio" type="radio" name="respuesta3_2" id="respuesta3_2A" value="1" 
+                                                                {{ isset($respuestaP3_2) && is_array($respuestaP3_2) && isset($respuestaP3_2[0]['valor']) && $respuestaP3_2[0]['valor'] == 'SI' && $respuestaP3_2[0]['id'] == '1' ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="respuesta3_2A">SI</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesRespuesta3_2A" style="display: none;">
+                                                            <p class="mb-2">Seleccione los integrantes menores de 18 años:</p>
+                                                            <div class="row" id="listaIntegrantes3_2A">
+                                                                <!-- Los integrantes se cargarán dinámicamente mediante JavaScript -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Opción B: NO -->
+                                                    <div class="respuesta-item mb-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input respuesta3-2-radio" type="radio" name="respuesta3_2" id="respuesta3_2B" value="0" 
+                                                                {{ isset($respuestaP3_2) && is_array($respuestaP3_2) && isset($respuestaP3_2[1]['valor']) && $respuestaP3_2[1]['valor'] == 'SI' && $respuestaP3_2[1]['id'] == '0' ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="respuesta3_2B">NO</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -640,6 +676,9 @@
                     if ($('#respuestaA').prop('checked')) {
                         $('#integrantesRespuestaA').show();
                     }
+
+                    // Cargar también los integrantes para la pregunta 3.2
+                    cargarIntegrantes3_2();
                 } else {
                     console.error('Error al cargar integrantes:', response.message);
                     Swal.fire({
@@ -658,6 +697,69 @@
                 });
             }
         });
+    }
+
+    // Función para cargar integrantes en la pregunta 3.2
+    function cargarIntegrantes3_2() {
+        // Verificar que la respuesta principal sea SI
+        if ($('#respuestaA').prop('checked')) {
+            // Clonar los integrantes seleccionados en la pregunta 3
+            let htmlIntegrantes3_2 = '';
+            
+            // Obtener integrantes seleccionados en la pregunta 3
+            $('input[name="integrantes[]"]:checked').each(function() {
+                const idIntegrante = $(this).val();
+                const nombreCompleto = $(this).siblings('label').text().trim();
+                
+                // Verificar si este integrante estaba seleccionado previamente en 3.2
+                let isChecked = '';
+                @if(isset($respuestaP3_2) && is_array($respuestaP3_2))
+                    // Buscar la respuesta con valor SI y verificar sus integrantes
+                    @php
+                        $integrantesSeleccionados3_2 = [];
+                        foreach ($respuestaP3_2 as $resp) {
+                            if (isset($resp['valor']) && $resp['valor'] == 'SI' && isset($resp['idintegrante'])) {
+                                $integrantesSeleccionados3_2 = $resp['idintegrante'];
+                                break;
+                            }
+                        }
+                    @endphp
+                    if (@json($integrantesSeleccionados3_2).includes(idIntegrante.toString())) {
+                        isChecked = 'checked';
+                    }
+                @endif
+                
+                htmlIntegrantes3_2 += `
+                    <div class="col-md-6 mb-2">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" 
+                                   id="integrante3_2_${idIntegrante}" 
+                                   name="integrantes3_2[]" 
+                                   value="${idIntegrante}"
+                                   role="switch"
+                                   ${isChecked}>
+                            <label class="form-check-label" for="integrante3_2_${idIntegrante}">
+                                ${nombreCompleto}
+                            </label>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            // Insertar HTML en el contenedor correspondiente
+            $('#listaIntegrantes3_2A').html(htmlIntegrantes3_2);
+            
+            // Mostrar el contenedor de la pregunta 3.2
+            $('#pregunta3_2_container').show();
+            
+            // Mostrar los integrantes si la respuesta es SI
+            if ($('#respuesta3_2A').prop('checked')) {
+                $('#integrantesRespuesta3_2A').show();
+            }
+        } else {
+            // Si la respuesta principal es NO, ocultar la pregunta 3.2
+            $('#pregunta3_2_container').hide();
+        }
     }
 
     $(document).ready(function() {
@@ -703,35 +805,57 @@
             if (respuesta == 1) {
                 $('#integrantesRespuestaA').show();
                 $('#pregunta3_1_container').show();
+                $('#pregunta3_2_container').show();
                 
                 // Cargar integrantes para los diagnósticos cuando se selecciona SI
                 setTimeout(function() {
                     cargarIntegrantesParaDiagnosticos();
+                    cargarIntegrantes3_2();
                 }, 500);
             } else {
                 // Si es B (0), desmarcar todos los integrantes
                 $('input[name="integrantes[]"]').prop('checked', false);
                 $('#pregunta3_1_container').hide();
+                $('#pregunta3_2_container').hide();
                 
                 // Desmarcar todos los diagnósticos cuando se selecciona NO
                 $('.diagnostico-switch').prop('checked', false);
+                
+                // Desmarcar las opciones de la pregunta 3.2
+                $('.respuesta3-2-radio').prop('checked', false);
             }
         });
         
-        // Manejar el evento del botón Anterior
-        $('#btnAnterior').click(function() {
-            // Obtener el folio actual
-            const folio = $('#folioinput').val();
+        // Manejar cambio en las opciones de respuesta de la pregunta 3.2
+        $('.respuesta3-2-radio').change(function() {
+            const respuesta = $(this).val();
             
-            // Obtener el idintegrante
-            const idintegrante = $('#idintegranteinput').val();
+            // Ocultar todos los contenedores de integrantes de la pregunta 3.2
+            $('#integrantesRespuesta3_2A').hide();
             
-            // Redirigir a la página de caracterización hogar P2
-            window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                .replace(':folio', folio)
-                .replace(':idintegrante', idintegrante);
+            // Si la respuesta es A (1), mostrar el contenedor correspondiente
+            if (respuesta == 1) {
+                $('#integrantesRespuesta3_2A').show();
+                // Sincronizar integrantes con los seleccionados en la pregunta 3
+                cargarIntegrantes3_2();
+            } else {
+                // Si es B (0), desmarcar todos los integrantes de la pregunta 3.2
+                $('input[name="integrantes3_2[]"]').prop('checked', false);
+            }
         });
-        
+
+        // Manejar cambio en los integrantes de la pregunta 3
+        $(document).on('change', 'input[name="integrantes[]"]', function() {
+            if ($('#respuestaA').is(':checked')) {
+                cargarIntegrantesParaDiagnosticos();
+                
+                // Si la pregunta 3.2 está visible y la respuesta es SI, actualizar los integrantes
+                if ($('#pregunta3_2_container').is(':visible') && $('#respuesta3_2A').is(':checked')) {
+                    cargarIntegrantes3_2();
+                }
+            }
+        });
+
         // Manejar el envío del formulario
         $('#btnGuardar').click(function(e) {
             e.preventDefault();
@@ -797,6 +921,29 @@
                 }
             }
             
+            // Validar la pregunta 3.2
+            if (respuestaSeleccionada == 1 && $('input[name="respuesta3_2"]:checked').val() === undefined) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Validación',
+                    text: 'Debe seleccionar una respuesta en la pregunta 3.2'
+                });
+                return false;
+            }
+            
+            // Si la respuesta a la pregunta 3.2 es SI, validar que haya al menos un integrante seleccionado
+            if (respuestaSeleccionada == 1 && $('input[name="respuesta3_2"]:checked').val() == 1) {
+                const integrantes3_2Seleccionados = $('input[name="integrantes3_2[]"]:checked').length;
+                if (integrantes3_2Seleccionados === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validación',
+                        text: 'Si la respuesta es SI en la pregunta 3.2, debe seleccionar al menos un integrante'
+                    });
+                    return false;
+                }
+            }
+            
             // Recopilar datos del formulario
             const formData = {
                 folio: $('#folioinput').val(),
@@ -849,6 +996,70 @@
                 
                 formData.diagnosticos = diagnosticos;
             }
+            
+            // Obtener la respuesta de la pregunta 3.2
+            const respuesta3_2 = $('input[name="respuesta3_2"]:checked').val();
+            const respuestas3_2 = [];
+            
+            if (respuestaSeleccionada === '1') {
+                // Solo procesar la pregunta 3.2 si la pregunta 3 tiene respuesta SI
+                if (respuesta3_2 === '1') {
+                    // Si la respuesta es SI, recopilar integrantes seleccionados
+                    const integrantes3_2 = [];
+                    $('input[name="integrantes3_2[]"]:checked').each(function() {
+                        integrantes3_2.push($(this).val());
+                    });
+                    
+                    respuestas3_2.push({
+                        id: '1',
+                        valor: 'SI',
+                        idintegrante: integrantes3_2
+                    });
+                    respuestas3_2.push({
+                        id: '0',
+                        valor: 'NO',
+                        idintegrante: []
+                    });
+                } else if (respuesta3_2 === '0') {
+                    // Si la respuesta es NO
+                    respuestas3_2.push({
+                        id: '1',
+                        valor: 'NO',
+                        idintegrante: []
+                    });
+                    respuestas3_2.push({
+                        id: '0',
+                        valor: 'SI',
+                        idintegrante: []
+                    });
+                } else {
+                    // Si no seleccionó nada (no debería pasar debido a la validación)
+                    respuestas3_2.push({
+                        id: '1',
+                        valor: 'NO',
+                        idintegrante: []
+                    });
+                    respuestas3_2.push({
+                        id: '0',
+                        valor: 'SI',
+                        idintegrante: []
+                    });
+                }
+            } else {
+                // Si la respuesta a la pregunta 3 es NO
+                respuestas3_2.push({
+                    id: '1',
+                    valor: 'NO',
+                    idintegrante: []
+                });
+                respuestas3_2.push({
+                    id: '0',
+                    valor: 'SI',
+                    idintegrante: []
+                });
+            }
+            
+            formData.respuesta3_2 = respuestas3_2;
             
             // Enviar datos mediante AJAX
             $.ajax({
