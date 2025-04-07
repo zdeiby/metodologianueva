@@ -45,6 +45,7 @@ class m_caracterizacion_hogar_p3 extends Model
         $updateData = [
             'salud_mental_p3' => $datos['salud_mental_p3'] ?? null,
             'cualdiagnostico_salud_mental_p3_1' => $datos['cualdiagnostico_salud_mental_p3_1'] ?? null,
+            'acedio_servicios_salud_mental_p3_2' => $datos['acedio_servicios_salud_mental_p3_2'] ?? null,
             'updated_at' => now()
         ];
         
@@ -63,6 +64,7 @@ class m_caracterizacion_hogar_p3 extends Model
                 'documento_profesional' => $datos['documento_profesional'],
                 'salud_mental_p3' => $datos['salud_mental_p3'] ?? null,
                 'cualdiagnostico_salud_mental_p3_1' => $datos['cualdiagnostico_salud_mental_p3_1'] ?? null,
+                'acedio_servicios_salud_mental_p3_2' => $datos['acedio_servicios_salud_mental_p3_2'] ?? null,
                 'estado' => 1,
                 'sincro' => 0,
                 'created_at' => now(),

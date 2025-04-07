@@ -52,6 +52,12 @@ class c_caracterizacion_hogar_p3 extends Controller
                 $diagnosticos = json_decode($caracterizacionHogar->cualdiagnostico_salud_mental_p3_1, true);
             }
             
+            // Obtener respuestas de la pregunta 3.2 si existen
+            $respuestaP3_2 = null;
+            if ($caracterizacionHogar && isset($caracterizacionHogar->acedio_servicios_salud_mental_p3_2)) {
+                $respuestaP3_2 = json_decode($caracterizacionHogar->acedio_servicios_salud_mental_p3_2, true);
+            }
+            
             // Verificar si existe respuesta para la pregunta 2
             $pregunta2Respondida = false;
             $respuestaPregunta2 = DB::table('t1_caracterizacion_hogar_ffes')
@@ -70,6 +76,7 @@ class c_caracterizacion_hogar_p3 extends Controller
                 'datosIntegrante' => $datosIntegrante,
                 'respuestas' => $respuestas,
                 'diagnosticos' => $diagnosticos,
+                'respuestaP3_2' => $respuestaP3_2,
                 'pregunta2Respondida' => $pregunta2Respondida
             ]);
             
@@ -86,6 +93,16 @@ class c_caracterizacion_hogar_p3 extends Controller
             $folio = $request->input('folio');
             $idintegrante = $request->input('idintegrante');
             $respuesta = $request->input('respuesta');
+            
+            // Log para depuración
+            Log::info('Datos recibidos:', [
+                'folio' => $folio,
+                'idintegrante' => $idintegrante,
+                'respuesta' => $respuesta,
+                'respuesta3_2' => $request->input('respuesta3_2'),
+                'integrantes3_2' => $request->input('integrantes3_2'),
+                'completo' => $request->all()
+            ]);
             
             // Validar datos requeridos
             if (empty($folio) || empty($idintegrante) || $respuesta === null) {
@@ -176,6 +193,106 @@ class c_caracterizacion_hogar_p3 extends Controller
                     'data' => $diagnosticosData,
                     'json' => $diagnosticosJson
                 ]);
+                
+                // Procesar la pregunta 3.2
+                $respuesta3_2Data = [];
+                $respuesta3_2Request = $request->input('respuesta3_2', []);
+                
+                // Log para depuración de la entrada de la pregunta 3.2
+                Log::info('Datos de respuesta3_2 recibidos:', [
+                    'respuesta3_2' => $respuesta3_2Request
+                ]);
+                
+                if (!empty($respuesta3_2Request)) {
+                    // Usar los datos enviados desde el frontend
+                    $respuesta3_2Data = $respuesta3_2Request;
+                    
+                    // Verificar que los datos tengan el formato correcto
+                    foreach ($respuesta3_2Data as &$resp) {
+                        if (!isset($resp['id'])) {
+                            $resp['id'] = '0';
+                        }
+                        
+                        if (!isset($resp['valor'])) {
+                            $resp['valor'] = 'NO';
+                        }
+                        
+                        if (!isset($resp['idintegrante']) || !is_array($resp['idintegrante'])) {
+                            $resp['idintegrante'] = [];
+                        }
+                        
+                        // Asegurarse de que solo los integrantes seleccionados en la pregunta 3 estén presentes
+                        if ($resp['valor'] === 'SI' && !empty($resp['idintegrante'])) {
+                            $resp['idintegrante'] = array_values(array_intersect($resp['idintegrante'], $integrantes));
+                        }
+                    }
+                } else {
+                    // Procesar la pregunta 3.2 como se hacía anteriormente
+                    $respuesta3_2 = $request->input('respuesta3_2');
+                    
+                    if ($respuesta3_2 == '1') {
+                        // Si la respuesta es SI, obtener los integrantes seleccionados
+                        $integrantes3_2 = $request->input('integrantes3_2', []);
+                        
+                        // Validar que se hayan seleccionado integrantes
+                        if (empty($integrantes3_2)) {
+                            return response()->json([
+                                'success' => false,
+                                'message' => 'Si la respuesta en la pregunta 3.2 es SI, debe seleccionar al menos un integrante'
+                            ]);
+                        }
+                        
+                        $respuesta3_2Data = [
+                            [
+                                'id' => '1',
+                                'valor' => 'SI',
+                                'idintegrante' => $integrantes3_2
+                            ],
+                            [
+                                'id' => '0',
+                                'valor' => 'NO',
+                                'idintegrante' => []
+                            ]
+                        ];
+                    } else if ($respuesta3_2 == '0') {
+                        // Si la respuesta es NO
+                        $respuesta3_2Data = [
+                            [
+                                'id' => '1',
+                                'valor' => 'NO',
+                                'idintegrante' => []
+                            ],
+                            [
+                                'id' => '0',
+                                'valor' => 'SI',
+                                'idintegrante' => []
+                            ]
+                        ];
+                    } else {
+                        // Si no se seleccionó respuesta (no debería ocurrir por la validación en el frontend)
+                        $respuesta3_2Data = [
+                            [
+                                'id' => '1',
+                                'valor' => 'NO',
+                                'idintegrante' => []
+                            ],
+                            [
+                                'id' => '0',
+                                'valor' => 'SI',
+                                'idintegrante' => []
+                            ]
+                        ];
+                    }
+                }
+                
+                // Convertir a JSON la respuesta 3.2
+                $respuesta3_2Json = json_encode($respuesta3_2Data);
+                
+                // Log para depuración de la pregunta 3.2
+                Log::info('Respuesta 3.2 a guardar:', [
+                    'data' => $respuesta3_2Data,
+                    'json' => $respuesta3_2Json
+                ]);
             } else {
                 // Si la respuesta es NO
                 $respuestasData = [
@@ -205,6 +322,21 @@ class c_caracterizacion_hogar_p3 extends Controller
                 
                 // Convertir a JSON los diagnósticos
                 $diagnosticosJson = json_encode($diagnosticosData);
+                
+                // Para la pregunta 3.2, establecer como NO cuando la pregunta 3 es NO
+                $respuesta3_2Data = [
+                    [
+                        'id' => '1',
+                        'valor' => 'NO',
+                        'idintegrante' => []
+                    ],
+                    [
+                        'id' => '0',
+                        'valor' => 'SI',
+                        'idintegrante' => []
+                    ]
+                ];
+                $respuesta3_2Json = json_encode($respuesta3_2Data);
             }
             
             // Convertir a JSON el array de respuestas
@@ -222,7 +354,8 @@ class c_caracterizacion_hogar_p3 extends Controller
                 'idintegrante' => $idintegrante,
                 'documento_profesional' => $documento_profesional,
                 'salud_mental_p3' => $respuestasJson,
-                'cualdiagnostico_salud_mental_p3_1' => $diagnosticosJson
+                'cualdiagnostico_salud_mental_p3_1' => $diagnosticosJson,
+                'acedio_servicios_salud_mental_p3_2' => $respuesta3_2Json
             ]);
             
             // Log para depuración
@@ -230,6 +363,7 @@ class c_caracterizacion_hogar_p3 extends Controller
                 'folio' => $folio,
                 'salud_mental_p3' => $respuestasJson,
                 'cualdiagnostico_salud_mental_p3_1' => $diagnosticosJson,
+                'acedio_servicios_salud_mental_p3_2' => $respuesta3_2Json,
                 'resultado' => $resultado
             ]);
             
