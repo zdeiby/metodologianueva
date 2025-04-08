@@ -3,6 +3,50 @@
 @section('title', 'Página de inicio')
 
 @section('content')
+
+<style>
+ .badge-grupo {
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    text-align: center;
+    width: 100px;
+    margin: auto;
+    font-weight: bold;
+    color: white;
+    display: block;
+}
+
+.grupo-1 {
+    background-color: #dc3545; /* rojo */
+    color: white !important;
+}
+
+.grupo-2 {
+    background-color: #ffc107; /* amarillo */
+    color: white !important;
+    color: #333;
+}
+
+.grupo-3 {
+    background-color: #0dcaf0; /* azul claro */
+    color: white !important;
+}
+
+.grupo-4 {
+    background-color: #198754; /* verde */
+    color: white !important;
+}
+
+.grupo-na {
+    background-color: #6c757d; /* gris */
+    color: white !important;
+}
+
+</style>
+
+
+
     <style>/* Mostrar datos para dispositivos de pantalla grande (PC) */
     /* Estilo permanente para la cabecera de Handsontable */
     .ht_clone_top thead th {
@@ -171,8 +215,9 @@
                 'Comuna',
                 'Dirección',
                 'Visita',
+                'Grupo',
                 'Gestionar',
-                 'Actualizar Datos'
+                'Actualizar Datos'
             ],
             columns: [
                 { data: 'folio',
@@ -212,6 +257,12 @@
                   width: 80, // Define el ancho máximo de la columna
                   wordWrap: true // Permite que el texto se ajuste a varias líneas
                   
+              },
+              {
+              data: 'grupo',
+                width: 130,
+                renderer: 'html',
+                wordWrap: true
               },
                 {
                     data: 'gestion',
@@ -263,7 +314,7 @@
     XLSX.writeFile(wb, 'cobertura.xlsx'); // Descarga el archivo Excel
 }
 
-  
+
 </script>
 
 @endsection
