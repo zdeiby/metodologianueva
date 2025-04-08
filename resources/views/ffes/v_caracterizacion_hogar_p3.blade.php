@@ -662,7 +662,7 @@
                                            role="switch"
                                            ${isChecked}>
                                     <label class="form-check-label" for="integranteA_${integrante.idintegrante}">
-                                        ${nombreCompleto}
+                                        ${nombreCompleto} <span class="text-muted">(${integrante.edad})</span>
                                     </label>
                                 </div>
                             </div>
@@ -709,7 +709,9 @@
             // Obtener integrantes seleccionados en la pregunta 3
             $('input[name="integrantes[]"]:checked').each(function() {
                 const idIntegrante = $(this).val();
-                const nombreCompleto = $(this).siblings('label').text().trim();
+                const nombreCompleto = $(this).siblings('label').text().trim().replace(/ \(\d+\)$/, '');
+                const edadMatch = $(this).siblings('label').text().match(/\((\d+)\)/);
+                const edad = edadMatch ? edadMatch[1] : '';
                 
                 // Verificar si este integrante estaba seleccionado previamente en 3.2
                 let isChecked = '';
@@ -739,7 +741,7 @@
                                    role="switch"
                                    ${isChecked}>
                             <label class="form-check-label" for="integrante3_2_${idIntegrante}">
-                                ${nombreCompleto}
+                                ${nombreCompleto} <span class="text-muted">(${edad})</span>
                             </label>
                         </div>
                     </div>
@@ -1165,7 +1167,7 @@
                                                        role="switch"
                                                        ${isChecked}>
                                                 <label class="form-check-label" for="integrante${letra}_${integrante.idintegrante}">
-                                                    ${nombreCompleto}
+                                                    ${nombreCompleto} <span class="text-muted">(${integrante.edad})</span>
                                                 </label>
                                             </div>
                                         </div>
