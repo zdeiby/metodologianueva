@@ -408,42 +408,53 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         // Marcar las situaciones que estaban seleccionadas previamente
                         @if(isset($respuestas) && is_array($respuestas))
+                            // Verificar primero si "Ninguna de las anteriores" está seleccionada
+                            let ningunaSeleccionada = false;
+                            
                             @foreach($respuestas as $respuesta)
-                                @if(isset($respuesta['id']) && isset($respuesta['valor']) && $respuesta['valor'] == 'SI')
-                                    @php
-                                        $mapeoInverso = [
-                                            '57' => 'A',
-                                            '58' => 'B',
-                                            '59' => 'C',
-                                            '60' => 'D',
-                                            '61' => 'E',
-                                            '62' => 'F',
-                                            '63' => 'G',
-                                            '64' => 'H',
-                                            '65' => 'I',
-                                            '35' => 'J'
-                                        ];
-                                        $letraSituacion = isset($mapeoInverso[$respuesta['id']]) ? $mapeoInverso[$respuesta['id']] : '';
-                                    @endphp
-                                    
-                                    if ("{{ $letraSituacion }}" === 'J') {
-                                        console.log("Marcando 'Ninguna de las anteriores'");
-                                        checkboxNinguna.checked = true;
-                                    } else {
-                                        console.log("Marcando situación {{ $letraSituacion }}");
-                                        const checkboxSituacion = document.querySelector(`.situacion-switch[data-situacion="{{ $letraSituacion }}"]`);
-                                        if (checkboxSituacion) {
-                                            checkboxSituacion.checked = true;
-                                            
-                                            // Mostrar contenedor de integrantes
-                                            const contenedor = document.getElementById(`integrantesSituacion{{ $letraSituacion }}`);
-                                            if (contenedor) {
-                                                contenedor.style.display = 'block';
-                                            }
-                                        }
-                                    }
+                                @if(isset($respuesta['id']) && $respuesta['id'] == '35' && isset($respuesta['valor']) && $respuesta['valor'] == 'SI')
+                                    console.log("Marcando 'Ninguna de las anteriores'");
+                                    checkboxNinguna.checked = true;
+                                    ningunaSeleccionada = true;
                                 @endif
                             @endforeach
+                            
+                            // Solo procesar las otras situaciones si "Ninguna" no está seleccionada
+                            if (!ningunaSeleccionada) {
+                                @foreach($respuestas as $respuesta)
+                                    @if(isset($respuesta['id']) && isset($respuesta['valor']) && $respuesta['valor'] == 'SI')
+                                        @php
+                                            $mapeoInverso = [
+                                                '57' => 'A',
+                                                '58' => 'B',
+                                                '59' => 'C',
+                                                '60' => 'D',
+                                                '61' => 'E',
+                                                '62' => 'F',
+                                                '63' => 'G',
+                                                '64' => 'H',
+                                                '65' => 'I',
+                                                '35' => 'J'
+                                            ];
+                                            $letraSituacion = isset($mapeoInverso[$respuesta['id']]) ? $mapeoInverso[$respuesta['id']] : '';
+                                        @endphp
+                                        
+                                        if ("{{ $letraSituacion }}" !== 'J') {
+                                            console.log("Marcando situación {{ $letraSituacion }}");
+                                            const checkboxSituacion = document.querySelector(`.situacion-switch[data-situacion="{{ $letraSituacion }}"]`);
+                                            if (checkboxSituacion) {
+                                                checkboxSituacion.checked = true;
+                                                
+                                                // Mostrar contenedor de integrantes
+                                                const contenedor = document.getElementById(`integrantesSituacion{{ $letraSituacion }}`);
+                                                if (contenedor) {
+                                                    contenedor.style.display = 'block';
+                                                }
+                                            }
+                                        }
+                                    @endif
+                                @endforeach
+                            }
                         @endif
                         
                         // Configurar eventos después de cargar los integrantes
@@ -582,10 +593,30 @@ document.addEventListener('DOMContentLoaded', function() {
         
         console.log("Datos a enviar:", datos);
         
-        // Enviar datos mediante AJAX
+        // Enviar datos mediante AJAX usando FormData para que sea compatible con la forma en que Laravel espera los datos
+        const formData = new FormData();
+        formData.append('folio', datos.folio);
+        formData.append('idintegrante', datos.idintegrante);
+        formData.append('documento_profesional', datos.documento_profesional);
+        formData.append('_token', datos._token);
+        
+        // Añadir situacionJ si está marcada
+        if (datos.situacionJ) {
+            formData.append('situacionJ', '1');
+        }
+        
+        // Añadir integrantes para cada situación
+        for (const situacion in datos.integrantes) {
+            if (datos.integrantes[situacion].length > 0) {
+                datos.integrantes[situacion].forEach(integranteId => {
+                    formData.append(`integrantes[${situacion}][]`, integranteId);
+                });
+            }
+        }
+        
         const xhr = new XMLHttpRequest();
         xhr.open('POST', "{{ route('guardar_caracterizacion_hogar_p4') }}", true);
-        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        // No establecemos Content-Type para que el navegador lo configure automáticamente con el boundary del FormData
         xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
         
         xhr.onload = function() {
@@ -619,7 +650,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error de red en la petición AJAX");
         };
         
-        xhr.send(JSON.stringify(datos));
+        xhr.send(formData);
     });
     
     // Configurar los eventos de navegación

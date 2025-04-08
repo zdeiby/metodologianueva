@@ -74,7 +74,7 @@ class c_caracterizacion_hogar_p4 extends Controller
             ]);
             
             // Verificar si se seleccionó "Ninguna de las anteriores"
-            $ningunaSeleccionada = $request->has('instanciaJ');
+            $ningunaSeleccionada = $request->has('situacionJ');
             
             // Mapeo de letras a IDs
             $mapeoInstancias = [
@@ -161,8 +161,8 @@ class c_caracterizacion_hogar_p4 extends Controller
             $caracterizacionExistente = $modelo->m_obtenerCaracterizacionHogar($folio, $idintegrante);
             
             if ($caracterizacionExistente) {
-                // Actualizar registro existente
-                $resultado = $modelo->m_actualizarCaracterizacionHogar($datos);
+                // Actualizar solo las columnas específicas de la pregunta 4
+                $resultado = $modelo->m_actualizarColumnasPregunta4($datos);
             } else {
                 // Crear nuevo registro
                 $resultado = $modelo->m_guardarCaracterizacionHogar($datos);
