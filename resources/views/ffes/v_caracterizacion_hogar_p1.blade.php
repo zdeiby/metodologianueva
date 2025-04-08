@@ -297,7 +297,7 @@
 
                                                     <!-- Situación K -->
                                                     <div class="situacion-item mb-3">
-                                                        <div class="form-check">
+                                                        <div class="form-check form-switch">
                                                             <input class="form-check-input" type="checkbox" id="situacionK" data-situacion="K">
                                                             <label class="form-check-label" for="situacionK">K. Ninguna de las anteriores</label>
                                                         </div>

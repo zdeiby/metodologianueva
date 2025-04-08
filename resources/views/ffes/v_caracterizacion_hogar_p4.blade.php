@@ -46,16 +46,16 @@
                         <ul class="nav nav-tabs" role="tablist">
                             
                             <li class="nav-item" role="presentation" style="cursor:pointer">
-                                <a id="linkPregunta1" class="nav-link">Caracterización hogar FFES Pregunta 1</a>
+                                <a id="linkPregunta1" class="nav-link">Hogar FFES Pregunta 1</a>
                             </li>
                             <li class="nav-item" role="presentation" style="cursor:pointer">
-                                <a id="linkPregunta2" class="nav-link">Caracterización hogar FFES Pregunta 2 - 2.1</a>
+                                <a id="linkPregunta2" class="nav-link">Hogar FFES Pregunta 2 - 2.1</a>
                             </li>
                             <li class="nav-item" role="presentation" style="cursor:pointer">
-                                <a id="linkPregunta3" class="nav-link">Caracterización hogar FFES Pregunta 3</a>
+                                <a id="linkPregunta3" class="nav-link">Hogar FFES Pregunta 3 - 3.2</a>
                             </li>
                             <li class="nav-item" role="presentation" style="cursor:pointer">
-                                <a id="legalqt" class="nav-link active">Caracterización hogar FFES Pregunta 4</a>
+                                <a id="legalqt" class="nav-link active">Hogar FFES Pregunta 4</a>
                             </li>
                         </ul>
 
@@ -292,7 +292,8 @@
                                 </form>
                             </div>
                         </div>
-                        <hr>
+                        <!-- Separador horizontal con mejor espaciado -->
+                        <hr class="mt-4 mb-4" style="border-top: 1px solid #dee2e6; width: 98%; margin-left: auto; margin-right: auto;">
                         <div class="row">  
                             <div class="text-start col">
                                 <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
