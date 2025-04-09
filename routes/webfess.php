@@ -11,6 +11,10 @@ use App\Http\Controllers\ffes\c_caracterizacion_hogar_p1;
 use App\Http\Controllers\ffes\c_caracterizacion_hogar_p2;
 use App\Http\Controllers\ffes\c_caracterizacion_hogar_p3;
 use App\Http\Controllers\ffes\c_caracterizacion_hogar_p4;
+
+use App\Http\Controllers\ffes\c_integrantesffes;
+
+
 use Hashids\Hashids;
 
 // Rutas para caracterización de hogares
