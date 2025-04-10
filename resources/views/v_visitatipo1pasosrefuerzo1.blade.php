@@ -201,7 +201,7 @@ body {
                   </h3>
              </div>
             
-             <button type="button" class="btn btn-primary" id="saludoencuadrebtn" <?= $existel300p30010?'disabled':'' ?>  data-bs-toggle="modal" data-bs-target="#exampleModal">Ver encuadre</button>
+             <button type="button" class="btn btn-primary" id="saludoencuadrebtn" onclick="agregarpaso()"  data-bs-toggle="modal" data-bs-target="#exampleModal">Ver encuadre</button>
             
              <div class="smCard">
                 </div>
@@ -269,7 +269,7 @@ body {
                     <label>Espacio de finalización</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" <?=($existel300p30010 == '1' && $existel300p30020 == '1'  && $existel300p30030 == '1' && $existel300p30040 == '1' && $existel300p30050 == '0' )?'':'disabled'?> onclick="window.location.href='../actualizacionnovedadest1refuerzo1/{{$folioencriptado}}/'">Ir a finalización</button>
+             <button type="button" class="btn btn-primary" <?=($existel300p30010 == '1' && $existel300p30020 == '1'  && $existel300p30030 == '1' && $existel300p30040 == '1' && $existel300p30050 == '0' )?'':'disabled'?> onclick="window.location.href='../informevisitat1refuerzo1/{{$folioencriptado}}/'">Ir a finalización</button>
              <div class="smCard">
                 </div>
               </div>
@@ -533,7 +533,7 @@ body {
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="agregarpaso()">Aceptar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Aceptar</button>
       </div>
     </div>
   </div>
@@ -599,9 +599,12 @@ function agregarpaso(){
     usuario: usuario
   };
 
-  if(<?= $existel300p30010 ?> == '1'){
+  
 
+  if(<?= $existel300p30010 ?> == '1'){
+console.log('ya esta')
   }else{
+    console.log('no esta')
     $.ajax({
       url: '../agregarpasoeiniciovisita',
       method: 'GET', // Cambiar a GET si estás usando GET
@@ -627,49 +630,49 @@ function agregarpaso(){
 
 
 <script>
-// $(document).ready(function() {
-//   $('#saludoencuadre').click(function() {
-//     $.ajax({
-//       url: '../agregarpasoencuadre',
-//       data: { folio: '{{$folioDesencriptado}}', usuario:'{{ Session::get('cedula') }}' },
-//       method: "GET",
-//       dataType: 'JSON',
-//       success: function(data) {
-//       //  $('#saludoencuadrebtn').attr('disabled', 'disabled');
-//         $('#gestionintegrantes').removeAttr('disabled');
-//         console.log(data);
-//       },
-//       error: function(xhr, status, error) {
-//         console.log(xhr.responseText);
-//       }
-//     });
-//   });
+//  $(document).ready(function() {
+//    $('#saludoencuadre').click(function() {
+//      $.ajax({
+//        url: '../agregarpasoencuadre',
+//        data: { folio: '{{$folioDesencriptado}}', usuario:'{{ Session::get('cedula') }}' },
+//        method: "GET",
+//        dataType: 'JSON',
+//        success: function(data) {
+//        //  $('#saludoencuadrebtn').attr('disabled', 'disabled');
+//          $('#gestionintegrantes').removeAttr('disabled');
+//          console.log(data);
+//        },
+//        error: function(xhr, status, error) {
+//          console.log(xhr.responseText);
+//        }
+//      });
+//    });
 
 
  
 
 
 
-//   $('#resultadoencuesta').click(function() {
-//     paginacargando();
-//     $.ajax({
-//       url: '../agregarpasoresultado',
-//       data: { folio: '{{$folioDesencriptado}}', usuario:'{{ Session::get('cedula') }}' },
-//       method: "GET",
-//       dataType: 'JSON',
-//       success: function(data) {
-//        $('#encuestaqt').prop('disabled',false);
-//        paginalista();
-//         console.log(data);
-//       },
-//       error: function(xhr, status, error) {
-//         paginalista();
-//         alertabad();
-//         console.log(xhr.responseText);
-//       }
-//     });
-//   });
-// });
+   $('#resultadoencuesta').click(function() {
+     paginacargando();
+     $.ajax({
+       url: '../agregarpasoresultado',
+       data: { folio: '{{$folioDesencriptado}}', usuario:'{{ Session::get('cedula') }}' },
+       method: "GET",
+       dataType: 'JSON',
+       success: function(data) {
+        $('#encuestaqt').prop('disabled',false);
+        paginalista();
+         console.log(data);
+       },
+       error: function(xhr, status, error) {
+         paginalista();
+         alertabad();
+         console.log(xhr.responseText);
+       }
+     });
+   }); 
+ /*}); */
 
 
 </script>

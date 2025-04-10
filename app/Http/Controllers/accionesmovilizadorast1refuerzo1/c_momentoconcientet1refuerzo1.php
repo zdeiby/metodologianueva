@@ -215,14 +215,23 @@ class c_momentoconcientet1refuerzo1 extends Controller
                     $linea= 300;
                     $paso= 30040;
             
-                    $categorias = DB::table('t1_ordenprioridadesqt')
+                    $categoriasant = DB::table('t1_ordenprioridadesqt')
                     ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
                     ->where('t1_ordenprioridadesqt.folio', $encodedFolio)
                     ->where('t1_ordenprioridadesqt.linea', $lineaanterior)
                     ->where('t1_ordenprioridadesqt.prioridad', 1)
                     ->select('t_bienestares.descripcion','t1_ordenprioridadesqt.categoria')
                     ->get();
+
+                    $categorias = DB::table('t1_ordenprioridadesqt')
+                    ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
+                    ->where('t1_ordenprioridadesqt.folio', $encodedFolio)
+                    ->where('t1_ordenprioridadesqt.linea', $lineaanterior)
+                    ->where('t1_ordenprioridadesqt.prioridad', 2)
+                    ->select('t_bienestares.descripcion','t1_ordenprioridadesqt.categoria')
+                    ->get();
             
+                    $bienestarant= $categoriasant[0]->categoria;
                     $bienestar= $categorias[0]->categoria;
             
                    
@@ -236,7 +245,7 @@ class c_momentoconcientet1refuerzo1 extends Controller
                     ->where('folio', $encodedFolio)
                     ->where('linea', $lineaanterior)
                     ->where('paso', $pasoanterior)
-                    ->where('bienestar', $bienestar)
+                    ->where('bienestar', $bienestarant)
                     ->get();
 
 
@@ -264,15 +273,15 @@ class c_momentoconcientet1refuerzo1 extends Controller
                      }
         
                     //  $datos['t_accionesmovilizadora'] ='';
-                    if($bienestar == '1'){
+                    if($bienestar == '1' || $bienestarant == '1'){
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','1');
-                    }else if($bienestar == '2'){
+                    }else if($bienestar == '2'  || $bienestarant == '2'){
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','2');
-                    }else if($bienestar == '3'){
+                    }else if($bienestar == '3' || $bienestarant == '3'){
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','3');
-                    }else if($bienestar == '4'){
+                    }else if($bienestar == '4' || $bienestarant == '4'){
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','4');
-                    }else if($bienestar == '5'){
+                    }else if($bienestar == '5' || $bienestarant == '5'){
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','5');
                     }
         
@@ -281,9 +290,12 @@ class c_momentoconcientet1refuerzo1 extends Controller
                                                                             'folio'=>$encodedFolio[0],
                                                                              'tabla'=>$tabla,
                                                                               'descripcion'=>$categorias[0]->descripcion,
+                                                                              'descripcionant'=>$categoriasant[0]->descripcion,
                                                                               'linea'=>$linea,
                                                                              'paso'=>$paso,
                                                                              'bienestar'=>$bienestar,
+                                                                              'bienestarant'=>$bienestarant,
+                                                                             
                                                                             ]);
             }
 
