@@ -198,6 +198,8 @@ class c_rombointegrantes extends Controller
 
         DB::select('CALL sp_calcular_indicadores(?)', [$folio]);
         DB::select('CALL sp_indicadores_hogar(?)', [$folio]);
+       // DB::select('CALL sp_calcular_indicadores_ffes(?)', [$folio]);
+        DB::select('CALL sp_indicadores_hogar_ffes(?)', [$folio]);
 
         $integranteshogar=  DB::table('t1_integranteshogar')
         ->where('folio',$folio)
@@ -205,7 +207,9 @@ class c_rombointegrantes extends Controller
 
     foreach ($integranteshogar as $integrante) {
         $idintegrante = $integrante->idintegrante;
-        DB::select('CALL sp_indicadores_integrantes(?,?)', [$folio,$idintegrante]);  
+        DB::select('CALL sp_indicadores_integrantes(?,?)', [$folio,$idintegrante]); 
+        DB::select('CALL sp_indicadores_integrantes_ffes(?,?)', [$folio,$idintegrante]);  
+ 
       }
        return response()->json(['message' => $folio]);
 
