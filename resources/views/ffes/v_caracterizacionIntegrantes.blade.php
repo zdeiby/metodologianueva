@@ -124,55 +124,55 @@
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_1" value="2" {{ in_array(2, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_1"><strong>A. Actividad física</strong></label>
+                          <label class="form-check-label" for="estrategia_1"><strong>A. Yoga</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_2" value="3" {{ in_array(3, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_2"><strong>B. Meditación</strong></label>
+                          <label class="form-check-label" for="estrategia_2"><strong>B. Técnicas de relajación y meditación</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_3" value="4" {{ in_array(4, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_3"><strong>C. Respiración profunda</strong></label>
+                          <label class="form-check-label" for="estrategia_3"><strong>C. Participación en  actividades de grupo</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_4" value="5" {{ in_array(5, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_4"><strong>D. Yoga</strong></label>
+                          <label class="form-check-label" for="estrategia_4"><strong>D. Gestión de apoyo social (familiares y amigos)</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_5" value="6" {{ in_array(6, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_5"><strong>E. Escuchar música</strong></label>
+                          <label class="form-check-label" for="estrategia_5"><strong>E. Gestión de ayuda profesional</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_6" value="7" {{ in_array(7, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_6"><strong>F. Leer</strong></label>
+                          <label class="form-check-label" for="estrategia_6"><strong>F. Actividades físicas, el juego.</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_7" value="8" {{ in_array(8, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_7"><strong>G. Escribir</strong></label>
+                          <label class="form-check-label" for="estrategia_7"><strong>G.  Alimentación sana</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_8" value="9" {{ in_array(9, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_8"><strong>H. Pintar/dibujar</strong></label>
+                          <label class="form-check-label" for="estrategia_8"><strong>H. Planificación de actividades cotidianas</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_9" value="10" {{ in_array(10, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_9"><strong>I. Hablar con amigos o familiares</strong></label>
+                          <label class="form-check-label" for="estrategia_9"><strong>I. Higiene del sueño</strong></label>
                         </div>
                       </div>
                     </div>
@@ -184,31 +184,31 @@
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_10" value="11" {{ in_array(11, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_10"><strong>J. Terapia psicológica</strong></label>
+                          <label class="form-check-label" for="estrategia_10"><strong>J. Mindfulness</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_11" value="12" {{ in_array(12, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_11"><strong>K. Consumo de medicamentos</strong></label>
+                          <label class="form-check-label" for="estrategia_11"><strong>K. Voluntariado</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_12" value="13" {{ in_array(13, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_12"><strong>L. Consumo de sustancias psicoactivas</strong></label>
+                          <label class="form-check-label" for="estrategia_12"><strong>L. Tiempo en la naturaleza</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_13" value="14" {{ in_array(14, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_13"><strong>M. Consumo de alcohol</strong></label>
+                          <label class="form-check-label" for="estrategia_13"><strong>M. Terapia de arte o musicoterapia.</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                           <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_14" value="15" {{ in_array(15, $estrategiasSeleccionadas) ? 'checked' : '' }}>
-                          <label class="form-check-label" for="estrategia_14"><strong>N. Consumo de cigarrillo</strong></label>
+                          <label class="form-check-label" for="estrategia_14"><strong>N. Rutinas de autocuidado</strong></label>
                         </div>
                       </div>                     
                       <div class="col-md-12 mb-3">

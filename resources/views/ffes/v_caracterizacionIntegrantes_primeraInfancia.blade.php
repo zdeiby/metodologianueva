@@ -68,9 +68,9 @@
        <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="mecanismosqt"  class="nav-link" onclick="redirigirAMecanismosProteccion()" >Mecanismos de Protección</a>
       </li>
-       <li class="nav-item" role="presentation" style="cursor:pointer">
+      <!--  <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link " >caracterizacion hogar</a>
-      </li>
+      </li> -->
       <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
       </li> -->
