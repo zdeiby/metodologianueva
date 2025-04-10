@@ -118,13 +118,13 @@
                    
                         <img class="" src="{{ asset('assets/img/iconos/1.jpg')}}" width="100%" alt="">
                         <br> <br>
-                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">VISITA TIPO 1 (REFUERZO)</div>
+                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">SEGUNDA VISITA T1</div>
 
                     </div>
                 </div>
                 <div class="info" style="text-align: center;">
                     <div >
-                      <label for="" style="color:white;font-size:18px">Visita tipo 1 Refuerzo 1</label>
+                      <label for="" style="color:white;font-size:18px">Segunda visita T1</label>
                     </div>
                     <img src="{{ asset('imagenes/banner3.jpg')}}" style="border-radius:10px" width="100%" height="150px" alt="">
                     <br>

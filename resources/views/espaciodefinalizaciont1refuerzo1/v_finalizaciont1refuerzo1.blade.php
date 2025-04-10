@@ -62,10 +62,10 @@
       <div class="accordion-body">
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item" role="presentation"  style="cursor:pointer">
+      <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="bienestarsaludemocionalqt" class="nav-link">ACTUALIZACIÓN Y/O NOVEDADES
         </a>
-      </li>
+      </li> -->
        <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link" >INFORME DE LA VISITA</a>
       </li> 

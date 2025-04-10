@@ -128,7 +128,7 @@
                 <div class="row g-0" id="indicadorbse1">
                   <div class="col-md-4 d-flex align-items-center border-end border-bottom">
                     <div class="p-2">
-                    {{$descripcion}}
+                    {{$descripcionant}}
                     </div>
                   </div>
                   <div class="col-md-8 d-flex align-items-stretch  ">

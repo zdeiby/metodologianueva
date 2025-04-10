@@ -52,10 +52,10 @@
       <div class="accordion-body">
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item" role="presentation"  style="cursor:pointer">
+      <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="bienestarsaludemocionalqt" class="nav-link ">ACTUALIZACIÓN Y/O NOVEDADES
         </a>
-      </li>
+      </li> -->
        <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link active" >INFORME DE LA VISITA</a>
       </li>
@@ -172,9 +172,16 @@
       $('#siguiente').click(function(){
         var url = "../finalizaciont1refuerzo1/<?= $variable ?>"; window.location.href = url;
       }); 
-      function redirectToIntegrantes() {
+      // function redirectToIntegrantes() {
+      //      var folio = `<?=$variable ?>`;
+      //      var url = "../actualizacionnovedadest1refuerzo1/:folio";
+      //      url = url.replace(':folio', folio);
+      //      window.location.href = url;
+      //  }
+
+       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../actualizacionnovedadest1refuerzo1/:folio";
+           var url = "../rombovisitatipo1/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
