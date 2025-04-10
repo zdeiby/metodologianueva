@@ -115,7 +115,7 @@ class c_caracterizacion_hogar_p2 extends Controller
             // Preparar los datos para la pregunta 2.1
             $respuestas2_1Data = [];
             
-            // Definir las opciones disponibles para la pregunta 2.1, solo las opciones reales
+            // Definir las opciones disponibles para la pregunta 2.1
             $opcionesP2_1 = [
                 ['id' => '37', 'label' => 'A. Medio institucional estramural'],
                 ['id' => '38', 'label' => 'B. Intervencion de apoyo psicologico especializado'],
@@ -123,38 +123,31 @@ class c_caracterizacion_hogar_p2 extends Controller
                 ['id' => '39', 'label' => 'D. Sistema de responsabildad penal extramural']
             ];
             
+            // Procesar las medidas cuando la respuesta es SI
             if ($respuesta == 1) {
-                $respuesta2_1 = $request->input('respuesta_2_1');
+                // Obtener las medidas enviadas desde el frontend
+                $medidas = $request->input('medidas', []);
                 
-                if (!$respuesta2_1) {
+                // Validar que haya al menos una medida seleccionada
+                $hayMedidasSI = false;
+                foreach ($medidas as $medida) {
+                    if (isset($medida['valor']) && $medida['valor'] === 'SI') {
+                        $hayMedidasSI = true;
+                        break;
+                    }
+                }
+                
+                if (!$hayMedidasSI) {
                     return response()->json([
                         'success' => false,
-                        'message' => 'Si la respuesta a la pregunta 2 es SI, debe seleccionar una opción en la pregunta 2.1'
+                        'message' => 'Si la respuesta a la pregunta 2 es SI, debe seleccionar al menos una medida en la pregunta 2.1'
                     ]);
                 }
                 
-                $integrantes = $request->input('integrantes', []);
-                
-                // Guardar todas las opciones, indicando cuál fue seleccionada
-                foreach ($opcionesP2_1 as $opcion) {
-                    if ($opcion['id'] == $respuesta2_1) {
-                        // Esta opción fue seleccionada
-                        $respuestas2_1Data[] = [
-                            'id' => $opcion['id'],
-                            'valor' => "SI",
-                            'idintegrante' => $integrantes // Usar los mismos integrantes seleccionados en la pregunta 2
-                        ];
-                    } else if ($opcion['id'] != "40") { // No incluimos NO_APLICA cuando hay una selección
-                        // Esta opción NO fue seleccionada
-                        $respuestas2_1Data[] = [
-                            'id' => $opcion['id'],
-                            'valor' => "NO",
-                            'idintegrante' => []
-                        ];
-                    }
-                }
+                // Guardar las medidas en el formato requerido
+                $respuestas2_1Data = $medidas;
             } else {
-                // Si la respuesta a la pregunta 2 no es "A. SI", marcamos todas las opciones como NO
+                // Si la respuesta no es SI, establecer todas las medidas como NO
                 foreach ($opcionesP2_1 as $opcion) {
                     $respuestas2_1Data[] = [
                         'id' => $opcion['id'],
@@ -202,15 +195,14 @@ class c_caracterizacion_hogar_p2 extends Controller
             } else {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Error al guardar los datos'
+                    'message' => 'No se pudieron guardar los datos'
                 ]);
             }
-            
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Error: ' . $e->getMessage()
-            ], 500);
+                'message' => 'Error al guardar los datos: ' . $e->getMessage()
+            ]);
         }
     }
     

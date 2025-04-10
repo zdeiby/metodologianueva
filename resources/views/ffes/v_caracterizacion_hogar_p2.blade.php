@@ -184,37 +184,117 @@
                                                 <div class="respuestas-container">
                                                     <!-- Opción A - Medio institucional estramural -->
                                                     <div class="respuesta-item mb-3">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1A" value="37" 
-                                                                {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '37' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
-                                                            <label class="form-check-label" for="respuesta2_1A">A. Medio institucional estramural</label>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input medida-switch" type="checkbox" id="medidaA" data-medida="A" data-id="37" role="switch"
+                                                                @if(isset($respuestas_2_1) && is_array($respuestas_2_1))
+                                                                    @foreach($respuestas_2_1 as $respuesta)
+                                                                        @if($respuesta['id'] == '37' && $respuesta['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="medidaA">A. Medio institucional estramural</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesMedidaA" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesMedidaA">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 2 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <!-- Opción B - Intervencion de apoyo psicologico especializado -->
                                                     <div class="respuesta-item mb-3">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1B" value="38" 
-                                                                {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '38' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
-                                                            <label class="form-check-label" for="respuesta2_1B">B. Intervencion de apoyo psicologico especializado</label>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input medida-switch" type="checkbox" id="medidaB" data-medida="B" data-id="38" role="switch"
+                                                                @if(isset($respuestas_2_1) && is_array($respuestas_2_1))
+                                                                    @foreach($respuestas_2_1 as $respuesta)
+                                                                        @if($respuesta['id'] == '38' && $respuesta['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="medidaB">B. Intervencion de apoyo psicologico especializado</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesMedidaB" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesMedidaB">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 2 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <!-- Opción C - Ubicación en medio familiar con cuidados personales o custodia -->
                                                     <div class="respuesta-item mb-3">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1C" value="42" 
-                                                                {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '42' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
-                                                            <label class="form-check-label" for="respuesta2_1C">C. Ubicación en medio familiar con cuidados personales o custodia</label>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input medida-switch" type="checkbox" id="medidaC" data-medida="C" data-id="42" role="switch"
+                                                                @if(isset($respuestas_2_1) && is_array($respuestas_2_1))
+                                                                    @foreach($respuestas_2_1 as $respuesta)
+                                                                        @if($respuesta['id'] == '42' && $respuesta['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="medidaC">C. Ubicación en medio familiar con cuidados personales o custodia</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesMedidaC" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesMedidaC">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 2 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <!-- Opción D - Sistema de responsabildad penal extramural -->
                                                     <div class="respuesta-item mb-3">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input respuesta-radio-2-1" type="radio" name="respuesta_2_1" id="respuesta2_1D" value="39" 
-                                                                {{ isset($respuestas_2_1) && is_array($respuestas_2_1) && !empty(array_filter($respuestas_2_1, function($r) { return isset($r['id']) && $r['id'] == '39' && isset($r['valor']) && $r['valor'] == 'SI'; })) ? 'checked' : '' }}>
-                                                            <label class="form-check-label" for="respuesta2_1D">D. Sistema de responsabildad penal extramural</label>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input medida-switch" type="checkbox" id="medidaD" data-medida="D" data-id="39" role="switch"
+                                                                @if(isset($respuestas_2_1) && is_array($respuestas_2_1))
+                                                                    @foreach($respuestas_2_1 as $respuesta)
+                                                                        @if($respuesta['id'] == '39' && $respuesta['valor'] == 'SI')
+                                                                            checked
+                                                                            @break
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                >
+                                                            <label class="form-check-label" for="medidaD">D. Sistema de responsabildad penal extramural</label>
+                                                        </div>
+                                                        <div class="integrantes-container mt-2 ml-4" id="integrantesMedidaD" style="display: none;">
+                                                            <div class="card">
+                                                                <div class="card-header bg-light">
+                                                                    Seleccione los integrantes menores de 18 años afectados:
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row" id="listaIntegrantesMedidaD">
+                                                                        <!-- Aquí se cargarán dinámicamente los integrantes seleccionados en la pregunta 2 -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -252,20 +332,13 @@
         
         // Verificar si hay respuestas guardadas para la pregunta 2.1 y pre-seleccionar la opción
         @if(isset($respuestas_2_1) && is_array($respuestas_2_1) && count($respuestas_2_1) > 0)
-            // Buscar la respuesta que tiene valor "SI"
-            @php
-                $respuestaSeleccionada = null;
-                foreach ($respuestas_2_1 as $resp) {
-                    if (isset($resp['valor']) && $resp['valor'] == 'SI' && isset($resp['id']) && $resp['id'] != '40') {
-                        $respuestaSeleccionada = $resp['id'];
-                        break;
-                    }
-                }
-            @endphp
-            @if($respuestaSeleccionada)
-                const respuesta2_1Id = "{{ $respuestaSeleccionada }}";
-                $('#respuesta2_1' + (respuesta2_1Id == "37" ? 'A' : respuesta2_1Id == "38" ? 'B' : respuesta2_1Id == "42" ? 'C' : 'D')).prop('checked', true);
-            @endif
+            // Para cada medida verificar si está activa y mostrar su panel de integrantes
+            @foreach($respuestas_2_1 as $respuesta)
+                @if(isset($respuesta['valor']) && $respuesta['valor'] == 'SI' && isset($respuesta['id']))
+                    $('#medida' + ({{ $respuesta['id'] }} == 37 ? 'A' : {{ $respuesta['id'] }} == 38 ? 'B' : {{ $respuesta['id'] }} == 42 ? 'C' : 'D')).prop('checked', true);
+                    $('#integrantesMedida' + ({{ $respuesta['id'] }} == 37 ? 'A' : {{ $respuesta['id'] }} == 38 ? 'B' : {{ $respuesta['id'] }} == 42 ? 'C' : 'D')).show();
+                @endif
+            @endforeach
         @endif
         
         // Realizar petición AJAX para obtener los integrantes del hogar
@@ -331,6 +404,9 @@
                     if ($('#respuestaB').prop('checked')) {
                         $('#integrantesRespuestaB').show();
                     }
+                    
+                    // Cargar integrantes para las medidas de la pregunta 2.1
+                    cargarIntegrantesParaMedidas();
                 } else {
                     console.error('Error al cargar integrantes:', response.message);
                     Swal.fire({
@@ -347,6 +423,102 @@
                     title: 'Error',
                     text: 'Ocurrió un error al cargar los integrantes. Por favor, intente nuevamente.'
                 });
+            }
+        });
+    }
+    
+    // Función para cargar integrantes en las medidas de la pregunta 2.1
+    function cargarIntegrantesParaMedidas() {
+        // Obtener el folio actual
+        const folio = $('#folioinput').val();
+        
+        // Realizar petición AJAX para obtener los integrantes del hogar
+        $.ajax({
+            url: '{{ route("obtener_integrantes_menores_p2", ["folio" => ":folio"]) }}'.replace(':folio', folio),
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    // Letras de las medidas
+                    const letras = ["A", "B", "C", "D"];
+                    const medidasIds = ['37', '38', '42', '39'];
+                    
+                    // Obtener IDs de integrantes seleccionados en la pregunta 2
+                    const integrantesSeleccionados = [];
+                    if ($('#respuestaA').prop('checked')) {
+                        $('#listaIntegrantesA input[name="integrantes[]"]:checked').each(function() {
+                            integrantesSeleccionados.push($(this).val());
+                        });
+                    } else if ($('#respuestaB').prop('checked')) {
+                        $('#listaIntegrantesB input[name="integrantes[]"]:checked').each(function() {
+                            integrantesSeleccionados.push($(this).val());
+                        });
+                    }
+                    
+                    // Para cada medida, crear checkboxes para cada integrante
+                    letras.forEach((letra, index) => {
+                        let htmlIntegrantes = '';
+                        const medidaId = medidasIds[index];
+                        
+                        // Solo procesar si hay integrantes seleccionados en la pregunta 2
+                        if (integrantesSeleccionados.length > 0) {
+                            // Para cada integrante del hogar, verificar si está en los seleccionados de la pregunta 2
+                            response.integrantes.forEach(integrante => {
+                                if (integrantesSeleccionados.includes(integrante.idintegrante.toString())) {
+                                    const nombreCompleto = `${integrante.nombre1} ${integrante.nombre2 || ''} ${integrante.apellido1} ${integrante.apellido2 || ''} (${integrante.edad})`.replace(/\s+/g, ' ').trim();
+                                    
+                                    // Verificar si este integrante estaba seleccionado previamente
+                                    let isChecked = '';
+                                    @if(isset($respuestas_2_1) && is_array($respuestas_2_1))
+                                        // Verificar cada respuesta de la pregunta 2.1
+                                        @foreach($respuestas_2_1 as $resp)
+                                            // Si esta respuesta tiene el mismo ID que la medida actual y es SI
+                                            @if(isset($resp['valor']) && $resp['valor'] == 'SI' && isset($resp['idintegrante']))
+                                                // Verificar si el integrante actual está en el array de integrantes
+                                                if ('{{ $resp['id'] }}' === medidaId && @json($resp['idintegrante']).includes(integrante.idintegrante.toString())) {
+                                                    isChecked = 'checked';
+                                                }
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                    
+                                    htmlIntegrantes += `
+                                        <div class="col-md-6 mb-2">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input integrante-medida-checkbox" 
+                                                       type="checkbox" 
+                                                       id="integrante${letra}_${integrante.idintegrante}" 
+                                                       name="integrantes_medida_${medidaId}[]" 
+                                                       value="${integrante.idintegrante}"
+                                                       data-medida="${medidaId}"
+                                                       role="switch"
+                                                       ${isChecked}>
+                                                <label class="form-check-label" for="integrante${letra}_${integrante.idintegrante}">
+                                                    ${nombreCompleto}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                            });
+                        }
+                        
+                        // Insertar HTML en el contenedor correspondiente
+                        $(`#listaIntegrantesMedida${letra}`).html(htmlIntegrantes);
+                        
+                        // Mostrar/ocultar el panel de integrantes según el estado del checkbox
+                        if ($(`#medida${letra}`).prop('checked')) {
+                            $(`#integrantesMedida${letra}`).show();
+                        } else {
+                            $(`#integrantesMedida${letra}`).hide();
+                        }
+                    });
+                } else {
+                    console.error('Error al cargar integrantes para medidas:', response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error en la petición AJAX para medidas:', error);
             }
         });
     }
@@ -376,7 +548,7 @@
             $('#pregunta2_1Container').show();
         }
         
-        // Manejar cambio en las opciones de respuesta
+        // Manejar cambio en las opciones de respuesta principal
         $('.respuesta-radio').change(function() {
             const respuesta = $(this).val();
             
@@ -390,6 +562,8 @@
                 $('#listaIntegrantesB input[name="integrantes[]"]').prop('checked', false);
                 // Mostrar la pregunta 2.1
                 $('#pregunta2_1Container').show();
+                // Cargar los integrantes para las medidas
+                cargarIntegrantesParaMedidas();
             } else if (respuesta == 41) {
                 $('#integrantesRespuestaB').show();
                 // Desmarcar los integrantes de la opción A
@@ -401,6 +575,29 @@
                 $('input[name="integrantes[]"]').prop('checked', false);
                 // Ocultar la pregunta 2.1
                 $('#pregunta2_1Container').hide();
+            }
+        });
+        
+        // Manejar cambio en los integrantes de la pregunta 2
+        $(document).on('change', 'input[name="integrantes[]"]', function() {
+            // Solo actualizar los integrantes de las medidas si la pregunta 2.1 está visible
+            if ($('#pregunta2_1Container').is(':visible')) {
+                cargarIntegrantesParaMedidas();
+            }
+        });
+        
+        // Manejar cambio en los switches de las medidas de la pregunta 2.1
+        $(document).on('change', '.medida-switch', function() {
+            const medida = $(this).data('medida');
+            const isChecked = $(this).prop('checked');
+            
+            // Mostrar u ocultar el panel de integrantes de esta medida
+            if (isChecked) {
+                $('#integrantesMedida' + medida).show();
+            } else {
+                $('#integrantesMedida' + medida).hide();
+                // Desmarcar todos los integrantes de esta medida
+                $('#listaIntegrantesMedida' + medida + ' input.integrante-medida-checkbox').prop('checked', false);
             }
         });
         
@@ -456,18 +653,62 @@
                 datos.integrantes = integrantes;
             }
             
-            // Agregar la respuesta a la pregunta 2.1 si se seleccionó la opción A (1)
+            // Procesar la pregunta 2.1 si la respuesta es A (1)
             if (respuestaSeleccionada == 1) {
-                const respuesta2_1 = $('input[name="respuesta_2_1"]:checked').val();
-                if (!respuesta2_1) {
+                // Verificar si al menos un switch de medida está activado
+                const hayMedidasSeleccionadas = $('.medida-switch:checked').length > 0;
+                
+                if (!hayMedidasSeleccionadas) {
                     Swal.fire({
                         icon: 'warning',
                         title: 'Validación',
-                        text: 'Debe seleccionar una respuesta para la pregunta 2.1'
+                        text: 'Debe seleccionar al menos una medida de restablecimiento de derechos en la pregunta 2.1'
                     });
                     return false;
                 }
-                datos.respuesta_2_1 = respuesta2_1;
+                
+                // Preparar los datos de las medidas en el formato requerido
+                const medidasData = [];
+                const medidasIds = ['37', '38', '42', '39'];
+                const letras = ["A", "B", "C", "D"];
+                
+                letras.forEach((letra, index) => {
+                    const medidaId = medidasIds[index];
+                    const isChecked = $(`#medida${letra}`).prop('checked');
+                    
+                    // Si está marcado, obtener los integrantes seleccionados
+                    if (isChecked) {
+                        const integrantesMedida = [];
+                        $(`#listaIntegrantesMedida${letra} input.integrante-medida-checkbox:checked`).each(function() {
+                            integrantesMedida.push($(this).val());
+                        });
+                        
+                        // Validar que al menos se haya seleccionado un integrante
+                        if (integrantesMedida.length === 0) {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Validación',
+                                text: `Debe seleccionar al menos un integrante para la medida ${letra}`
+                            });
+                            return false;
+                        }
+                        
+                        medidasData.push({
+                            id: medidaId,
+                            valor: 'SI',
+                            idintegrante: integrantesMedida
+                        });
+                    } else {
+                        // Si no está marcado, guardar como NO sin integrantes
+                        medidasData.push({
+                            id: medidaId,
+                            valor: 'NO',
+                            idintegrante: []
+                        });
+                    }
+                });
+                
+                datos.medidas = medidasData;
             }
             
             // Enviar los datos mediante AJAX
@@ -482,6 +723,9 @@
                             icon: 'success',
                             title: 'Éxito',
                             text: response.message
+                        }).then(() => {
+                            // Recargar la página para reflejar los cambios
+                            window.location.reload();
                         });
                     } else {
                         Swal.fire({
