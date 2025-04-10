@@ -35,6 +35,15 @@ class c_rombointegrantes extends Controller
       ->where('linea', $linea)
       ->where('paso', $paso10020)
       ->exists();
+
+      $paso10025='10025';
+      $existel100p10025 = DB::table('t1_pasosvisita')
+      ->where('folio', $folioDesencriptado)
+      ->where('linea', $linea)
+      ->where('paso', $paso10025)
+      ->exists();
+
+
       $paso10030='10030';
       $existel100p10030 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
@@ -66,7 +75,7 @@ class c_rombointegrantes extends Controller
   
 
         return view('v_rombointegrantes',["variable"=>$folio, 'foliocodificado'=>$foliocodificado,  'existel100p10010' => $existel100p10010 ? 1 : 0, 
-      'existel100p10020' => $existel100p10020 ? 1 : 0, 'existel100p10030' => $existel100p10030 ? 1 : 0,  'existel100p10040' => $existel100p10040 ? 1 : 0, 
+      'existel100p10020' => $existel100p10020 ? 1 : 0, 'existel100p10025' => $existel100p10025 ? 1 : 0, 'existel100p10030' => $existel100p10030 ? 1 : 0,  'existel100p10040' => $existel100p10040 ? 1 : 0, 
       'casillamatriz'=>$casilla,'integrantehogar' => $integrantehogar,
       'metodologia' => $metodologia
         
