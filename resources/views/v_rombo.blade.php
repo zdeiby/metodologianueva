@@ -47,7 +47,10 @@
     </div> -->
 <div class="container">
 <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="isticky-top"  >
-
+<hr>
+<div class="alert alert-primary" style="background:#0dcaf0 !important" role="alert" >
+<label style="color:white">ACCIONES DE ACOMPAÑAMIENTO FAMILIAR</label>
+</div>
     <ul>
         <li class="scene">
             <div class="movie">
@@ -397,15 +400,30 @@
 <div class="accordion" id="accordionExample" >
   <div class="accordion-item" id="l1e1">
     <div class="accordion-header" id="headingOne">
-      <div class="accordion-button d-flex justify-content-between align-items-center" >
-        <div>
-        <!-- <span class="badge bg-primary" id="">CATEGORIAS DE BIENESTAR HERRAMIENTA QT</span>  -->
-        <span class="badge bg-success ms-auto" style="background:#a80a85 !important; cursor:pointer;font-size:18px" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver QT del hogar</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
-        <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $variable }}">folio: {{ $variable }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="accordion-button d-flex justify-content-between align-items-center">
+        <!-- CATEGORÍA AL INICIO -->
+        <span class="badge bg-success me-auto" style="background:#a80a85 !important; cursor:pointer; font-size:18px"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">
+            CATEGORIAS DEL BIENESTAR POR HOGAR
+        </span>
 
+        <!-- FOLIO AL FINAL -->
+        <span class="badge bg-success ms-auto" id="folioContainer" style="font-size:18px" folio="{{ $variable }}">
+            folio: {{ $variable }}
+        </span>
+
+        <!-- INPUT OCULTO -->
+        <input type="text" id="foliobycript" value="{{ $foliobycript }}" style="display:none">
+        </div>
+
+      <!-- <div class="accordion-button d-flex justify-content-between align-items-center" >
+        <div>
+
+        <span class="badge bg-success ms-auto" style="background:#a80a85 !important; cursor:pointer;font-size:18px" data-bs-toggle="modal" data-bs-target="#exampleModal">CATEGORIAS DEL BIENESTAR POR HOGAR</span>       
+        <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $variable }}">folio: {{ $variable }}</span>
         <input type="text" id="foliobycript" value="{{$foliobycript}}" style="display:none">
         </div>
-      </div>
+      </div> -->
       <!-- <div class="progress">
         <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
       </div> -->

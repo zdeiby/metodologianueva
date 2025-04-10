@@ -478,6 +478,15 @@ function soloNumeros(e) {
             <div class="nombre-pagina">
                 <label style=" " id="cloud" >Unidad Familia Medellín</label>
                 
+                
+            </div>
+            <div>
+            @if(isset($foliomenu) && !empty($foliomenu))
+                <span class="badge bg-success ms-auto" id="folioContainer" style="font-size:16px" folio="{{ $variable }}">
+                    folio: {{ $foliomenu }}
+                </span>
+            @endif
+
             </div>
             <label class="boton" >
                 
