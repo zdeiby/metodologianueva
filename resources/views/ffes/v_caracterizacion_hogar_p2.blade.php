@@ -805,13 +805,35 @@
         
         // Manejar el botón "Siguiente"
         $('#siguiente').click(function() {
-            // Aquí puedes redirigir a la siguiente página o formulario
-            // Por ahora, simplemente mostramos un mensaje
-            Swal.fire({
-                icon: 'info',
-                title: 'Información',
-                text: 'Funcionalidad "Siguiente" en desarrollo'
-            });
+            // Verificamos si la pregunta 2 tiene respuestas guardadas
+            @php
+                // La variable $pregunta2Respondida ya está definida arriba en el código,
+                // así que solo la convertimos a JSON para usarla en JavaScript
+                echo "const pregunta2Respondida = " . json_encode($pregunta2Respondida) . ";";
+            @endphp
+            
+            if (pregunta2Respondida) {
+                // Si la pregunta 2 está respondida, redirigir a la pregunta 3
+                // Obtener el folio actual
+                const folio = $('#folioinput').val();
+                
+                // Obtener el idintegrante de la URL actual
+                const urlActual = window.location.href;
+                const match = urlActual.match(/\/caracterizacion_hogar_p2\/[^\/]+\/([^\/]+)/);
+                const idintegrante = match ? match[1] : '0';
+                
+                // Redirigir a la página de caracterización hogar P3
+                window.location.href = "{{ route('caracterizacion_hogar_p3', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
+                    .replace(':folio', folio)
+                    .replace(':idintegrante', idintegrante);
+            } else {
+                // Si no está respondida, mostrar mensaje
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Atención',
+                    text: 'Debe completar y guardar la pregunta 2 antes de continuar con la siguiente pregunta.'
+                });
+            }
         });
         
         // Evento para el enlace de Pregunta 3 (si existe)

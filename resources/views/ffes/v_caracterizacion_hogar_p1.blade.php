@@ -793,9 +793,25 @@
     }
     
     function redirigirACaracterizacionHogarP2() {
-        var folio = $('#folioContainer').attr('folio');
-        var idintegrante = $('#idintegranteinput').val();
-        window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        @php
+            // La variable $mostrarPestaña2 ya está definida arriba en el código,
+            // así que solo la convertimos a JSON para usarla en JavaScript
+            echo "const pregunta1Respondida = " . json_encode($mostrarPestaña2) . ";";
+        @endphp
+        
+        if (pregunta1Respondida) {
+            // Si la pregunta 1 está respondida, redirigir a la pregunta 2
+            var folio = $('#folioContainer').attr('folio');
+            var idintegrante = $('#idintegranteinput').val();
+            window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        } else {
+            // Si no está respondida, mostrar mensaje
+            Swal.fire({
+                icon: 'warning',
+                title: 'Atención',
+                text: 'Debe completar y guardar la pregunta 1 antes de continuar con la siguiente pregunta.'
+            });
+        }
     }
 </script>
 @endsection

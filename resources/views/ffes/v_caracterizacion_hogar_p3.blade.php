@@ -1164,6 +1164,8 @@
         });
         
         // Funcionalidad del botón "Siguiente" (en desarrollo)
+        // Código antiguo reemplazado por nueva implementación abajo
+        /*
         $('#siguiente').click(function() {
             Swal.fire({
                 icon: 'info',
@@ -1171,6 +1173,7 @@
                 text: 'Funcionalidad "Siguiente" en desarrollo'
             });
         });
+        */
         
         // Cargar los integrantes para cada diagnóstico cuando la pregunta 3 tenga algún integrante seleccionado
         function cargarIntegrantesParaDiagnosticos() {
@@ -1330,6 +1333,51 @@
                         clearInterval(checkIntegrantes);
                     }
                 }, 500);
+            }
+        });
+        
+        // Funcionalidad para el botón "Anterior"
+        $('#btnAnterior').click(function() {
+            // Obtener el folio actual
+            const folio = $('#folioinput').val();
+            
+            // Obtener el idintegrante
+            const idintegrante = $('#idintegranteinput').val();
+            
+            // Redirigir a la página de caracterización hogar P2
+            window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
+                .replace(':folio', folio)
+                .replace(':idintegrante', idintegrante);
+        });
+        
+        // Funcionalidad del botón "Siguiente"
+        $('#siguiente').click(function() {
+            // Verificamos si la pregunta 3 tiene respuestas guardadas
+            @php
+                // La variable $pregunta3Respondida ya está definida arriba en el código,
+                // así que solo la convertimos a JSON para usarla en JavaScript
+                echo "const pregunta3Respondida = " . json_encode($pregunta3Respondida) . ";";
+            @endphp
+            
+            if (pregunta3Respondida) {
+                // Si la pregunta 3 está respondida, redirigir a la pregunta 4
+                // Obtener el folio actual
+                const folio = $('#folioinput').val();
+                
+                // Obtener el idintegrante
+                const idintegrante = $('#idintegranteinput').val();
+                
+                // Redirigir a la página de caracterización hogar P4
+                window.location.href = "{{ route('caracterizacion_hogar_p4', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
+                    .replace(':folio', folio)
+                    .replace(':idintegrante', idintegrante);
+            } else {
+                // Si no está respondida, mostrar mensaje
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Atención',
+                    text: 'Debe completar y guardar la pregunta 3 antes de continuar con la siguiente pregunta.'
+                });
             }
         });
     });

@@ -296,7 +296,7 @@
                         <hr class="mt-4 mb-4" style="border-top: 1px solid #dee2e6; width: 98%; margin-left: auto; margin-right: auto;">
                         <div class="row">  
                             <div class="text-start col">
-                                <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
+                                <div class="btn btn-outline-success" onclick="redirigirACaracterizacionHogarP3()">Volver</div>
                             </div>
                             <div class="text-end col">
                                 <button class="btn btn-outline-success" id="btnGuardar" type="button">Guardar</button>
@@ -687,6 +687,14 @@ document.addEventListener('DOMContentLoaded', function() {
 function redirectToIntegrantes() {
     const folio = document.getElementById('folioContainer').getAttribute('folio');
     window.location.href = "{{ route('integrantes', ['folio' => ':folio']) }}".replace(':folio', folio);
+}
+
+function redirigirACaracterizacionHogarP3() {
+    const folio = document.getElementById('folioContainer').getAttribute('folio');
+    const idintegrante = document.getElementById('idintegranteinput').value;
+    window.location.href = "{{ route('caracterizacion_hogar_p3', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
+        .replace(':folio', folio)
+        .replace(':idintegrante', idintegrante);
 }
 </script>
 @endsection
