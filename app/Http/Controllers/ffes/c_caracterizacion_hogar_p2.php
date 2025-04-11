@@ -54,12 +54,100 @@ class c_caracterizacion_hogar_p2 extends Controller
                 $respuestas_2_1 = json_decode($caracterizacionHogar->cuales_medidas_restablecimiento_p2_1, true);
             }
             
+            // Verificar si existe respuesta para la pregunta 1
+            $pregunta1Respondida = false;
+            $respuestaPregunta1 = DB::table('t1_caracterizacion_hogar_ffes')
+                ->where('folio', $folioDesencriptado)
+                ->where('idintegrante', $idintegrante)
+                ->first();
+            
+            if ($respuestaPregunta1 && isset($respuestaPregunta1->situacionesriesgo_hogar_p1) 
+                && $respuestaPregunta1->situacionesriesgo_hogar_p1 != null 
+                && $respuestaPregunta1->situacionesriesgo_hogar_p1 != '[]' 
+                && $respuestaPregunta1->situacionesriesgo_hogar_p1 != '""' 
+                && $respuestaPregunta1->situacionesriesgo_hogar_p1 != '') {
+                // Verificar que el JSON realmente tenga contenido
+                $jsonData = json_decode($respuestaPregunta1->situacionesriesgo_hogar_p1, true);
+                if ($jsonData && !empty($jsonData)) {
+                    $pregunta1Respondida = true;
+                }
+            }
+            
+            // Verificar si existe respuesta para la pregunta 2
+            $pregunta2Respondida = false;
+            $respuestaPregunta2 = DB::table('t1_caracterizacion_hogar_ffes')
+                ->where('folio', $folioDesencriptado)
+                ->where('idintegrante', $idintegrante)
+                ->first();
+            
+            if ($respuestaPregunta2 && isset($respuestaPregunta2->nino_medidas_restablecimiento_p2) 
+                && $respuestaPregunta2->nino_medidas_restablecimiento_p2 != null 
+                && $respuestaPregunta2->nino_medidas_restablecimiento_p2 != '[]' 
+                && $respuestaPregunta2->nino_medidas_restablecimiento_p2 != '""' 
+                && $respuestaPregunta2->nino_medidas_restablecimiento_p2 != '') {
+                // Verificar que el JSON realmente tenga contenido
+                $jsonData = json_decode($respuestaPregunta2->nino_medidas_restablecimiento_p2, true);
+                if ($jsonData && !empty($jsonData)) {
+                    $pregunta2Respondida = true;
+                }
+            }
+            
+            // Verificar si existe respuesta para la pregunta 3
+            $pregunta3Respondida = false;
+            $respuestaPregunta3 = DB::table('t1_caracterizacion_hogar_ffes')
+                ->where('folio', $folioDesencriptado)
+                ->where('idintegrante', $idintegrante)
+                ->first();
+            
+            if ($respuestaPregunta3 && isset($respuestaPregunta3->salud_mental_p3) 
+                && $respuestaPregunta3->salud_mental_p3 != null 
+                && $respuestaPregunta3->salud_mental_p3 != '[]' 
+                && $respuestaPregunta3->salud_mental_p3 != '""' 
+                && $respuestaPregunta3->salud_mental_p3 != '') {
+                // Verificar que el JSON realmente tenga contenido
+                $jsonData = json_decode($respuestaPregunta3->salud_mental_p3, true);
+                if ($jsonData && !empty($jsonData)) {
+                    $pregunta3Respondida = true;
+                }
+            }
+            
+            // Verificar si existe respuesta para la pregunta 4
+            $pregunta4Respondida = false;
+            $respuestaPregunta4 = DB::table('t1_caracterizacion_hogar_ffes')
+                ->where('folio', $folioDesencriptado)
+                ->where('idintegrante', $idintegrante)
+                ->first();
+            
+            if ($respuestaPregunta4 && isset($respuestaPregunta4->hace_parte_instancia_participacion_p4) 
+                && $respuestaPregunta4->hace_parte_instancia_participacion_p4 != null 
+                && $respuestaPregunta4->hace_parte_instancia_participacion_p4 != '[]' 
+                && $respuestaPregunta4->hace_parte_instancia_participacion_p4 != '""' 
+                && $respuestaPregunta4->hace_parte_instancia_participacion_p4 != '') {
+                // Verificar que el JSON realmente tenga contenido
+                $jsonData = json_decode($respuestaPregunta4->hace_parte_instancia_participacion_p4, true);
+                if ($jsonData && !empty($jsonData)) {
+                    $pregunta4Respondida = true;
+                }
+            }
+            
+            // Lógica de visibilidad de pestañas (progresiva)
+            $mostrarPregunta1 = true; // Siempre se puede volver a la pregunta 1
+            $mostrarPregunta3 = $pregunta2Respondida; // Solo si la 2 está respondida
+            $mostrarPregunta4 = $pregunta3Respondida; // Solo si la 3 está respondida
+            
             return view('ffes.v_caracterizacion_hogar_p2', [
                 'folio' => $folioDesencriptado,
                 'idintegrante' => $idintegrante,
                 'datosIntegrante' => $datosIntegrante,
                 'respuestas' => $respuestas,
-                'respuestas_2_1' => $respuestas_2_1
+                'respuestas_2_1' => $respuestas_2_1,
+                'pregunta1Respondida' => $pregunta1Respondida,
+                'pregunta2Respondida' => $pregunta2Respondida,
+                'pregunta3Respondida' => $pregunta3Respondida,
+                'pregunta4Respondida' => $pregunta4Respondida,
+                'mostrarPregunta1' => $mostrarPregunta1,
+                'mostrarPregunta3' => $mostrarPregunta3,
+                'mostrarPregunta4' => $mostrarPregunta4
             ]);
             
         } catch (\Exception $e) {

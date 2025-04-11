@@ -49,15 +49,73 @@
                             <li class="nav-item" role="presentation" style="cursor:pointer">
                                 <a id="legalqt" class="nav-link active">Hogar FFES Pregunta 1</a>
                             </li>
+                            
+                            @php
+                                // Verificamos si la pregunta 1 tiene respuestas válidas para mostrar la pestaña 2
+                                $mostrarPestaña2 = false;
+                                if (isset($respuestas) && !empty($respuestas)) {
+                                    $mostrarPestaña2 = true;
+                                }
+                                
+                                // Verificar si las otras preguntas tienen respuestas para mostrarlas en esta vista
+                                $mostrarPestaña3 = false;
+                                $mostrarPestaña4 = false;
+                                
+                                $respuestaBD = DB::table('t1_caracterizacion_hogar_ffes')
+                                    ->where('folio', $folio)
+                                    ->where('idintegrante', $idintegrante)
+                                    ->first();
+                                
+                                if ($respuestaBD) {
+                                    // Verificar pregunta 2
+                                    $p2 = isset($respuestaBD->nino_medidas_restablecimiento_p2) && 
+                                          !empty($respuestaBD->nino_medidas_restablecimiento_p2) && 
+                                          $respuestaBD->nino_medidas_restablecimiento_p2 != '[]' && 
+                                          $respuestaBD->nino_medidas_restablecimiento_p2 != '""';
+                                    
+                                    if ($p2) {
+                                        $mostrarPestaña2 = true;
+                                    }
+                                    
+                                    // Verificar pregunta 3
+                                    $p3 = isset($respuestaBD->salud_mental_p3) && 
+                                          !empty($respuestaBD->salud_mental_p3) && 
+                                          $respuestaBD->salud_mental_p3 != '[]' && 
+                                          $respuestaBD->salud_mental_p3 != '""';
+                                    
+                                    if ($p3) {
+                                        $mostrarPestaña3 = true;
+                                    }
+                                    
+                                    // Verificar pregunta 4
+                                    $p4 = isset($respuestaBD->hace_parte_instancia_participacion_p4) && 
+                                          !empty($respuestaBD->hace_parte_instancia_participacion_p4) && 
+                                          $respuestaBD->hace_parte_instancia_participacion_p4 != '[]' && 
+                                          $respuestaBD->hace_parte_instancia_participacion_p4 != '""';
+                                    
+                                    if ($p4) {
+                                        $mostrarPestaña4 = true;
+                                    }
+                                }
+                            @endphp
+                            
+                            @if($mostrarPestaña2)
                             <li class="nav-item" role="presentation" style="cursor:pointer">
                                 <a id="linkPregunta2" class="nav-link">Hogar FFES Pregunta 2 - 2.1</a>
                             </li>
+                            @endif
+                            
+                            @if($mostrarPestaña3)
                             <li class="nav-item" role="presentation" style="cursor:pointer">
                                 <a id="linkPregunta3" class="nav-link">Hogar FFES Pregunta 3 - 3.2</a>
                             </li>
+                            @endif
+                            
+                            @if($mostrarPestaña4)
                             <li class="nav-item" role="presentation" style="cursor:pointer">
                                 <a id="linkPregunta4" class="nav-link">Hogar FFES Pregunta 4</a>
                             </li>
+                            @endif
                         </ul>
 
                         <style>
@@ -589,7 +647,11 @@
                             icon: 'success',
                             title: 'Éxito',
                             text: 'Datos guardados correctamente',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            // Recargar la página para que aparezca la pestaña 2
+                            window.location.reload();
                         });
                     } else {
                         Swal.fire({
@@ -711,7 +773,9 @@
         console.log("Edad detectada:", edad);
         
         if (edad > 5 && edad < 18) {
-            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
+                .replace(':folio', folio)
+                .replace(':idintegrante', idintegrante);
         } else {
             Swal.fire({
                 title: 'Atención',
@@ -729,9 +793,25 @@
     }
     
     function redirigirACaracterizacionHogarP2() {
-        var folio = $('#folioContainer').attr('folio');
-        var idintegrante = $('#idintegranteinput').val();
-        window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        @php
+            // La variable $mostrarPestaña2 ya está definida arriba en el código,
+            // así que solo la convertimos a JSON para usarla en JavaScript
+            echo "const pregunta1Respondida = " . json_encode($mostrarPestaña2) . ";";
+        @endphp
+        
+        if (pregunta1Respondida) {
+            // Si la pregunta 1 está respondida, redirigir a la pregunta 2
+            var folio = $('#folioContainer').attr('folio');
+            var idintegrante = $('#idintegranteinput').val();
+            window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        } else {
+            // Si no está respondida, mostrar mensaje
+            Swal.fire({
+                icon: 'warning',
+                title: 'Atención',
+                text: 'Debe completar y guardar la pregunta 1 antes de continuar con la siguiente pregunta.'
+            });
+        }
     }
 </script>
 @endsection
