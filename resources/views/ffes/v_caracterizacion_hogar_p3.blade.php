@@ -70,9 +70,56 @@
                             <li class="nav-item" role="presentation" style="cursor:pointer">
                                 <a id="legalqt" class="nav-link active">Hogar FFES Pregunta 3 - 3.2</a>
                             </li>
+                            
+                            @php
+                                // Verificar si la pregunta 3 tiene respuestas guardadas - lógica mejorada
+                                $pregunta3Respondida = false;
+                                $mostrarPestaña4 = false;
+                                
+                                $respuestaBD = DB::table('t1_caracterizacion_hogar_ffes')
+                                    ->where('folio', $folio)
+                                    ->where('idintegrante', $idintegrante)
+                                    ->first();
+                                
+                                if ($respuestaBD) {
+                                    $p3 = false;
+                                    
+                                    if (isset($respuestaBD->salud_mental_p3) && 
+                                        !empty($respuestaBD->salud_mental_p3) && 
+                                        $respuestaBD->salud_mental_p3 != '[]' && 
+                                        $respuestaBD->salud_mental_p3 != '""') {
+                                        
+                                        $jsonData = json_decode($respuestaBD->salud_mental_p3, true);
+                                        
+                                        if (!empty($jsonData)) {
+                                            $p3 = true;
+                                        }
+                                    }
+                                    
+                                    if ($p3) {
+                                        $pregunta3Respondida = true;
+                                    }
+                                    
+                                    // Verificar si la pregunta 4 tiene respuestas para mostrar su pestaña
+                                    if (isset($respuestaBD->hace_parte_instancia_participacion_p4) && 
+                                        !empty($respuestaBD->hace_parte_instancia_participacion_p4) && 
+                                        $respuestaBD->hace_parte_instancia_participacion_p4 != '[]' && 
+                                        $respuestaBD->hace_parte_instancia_participacion_p4 != '""') {
+                                        
+                                        $jsonData = json_decode($respuestaBD->hace_parte_instancia_participacion_p4, true);
+                                        
+                                        if (!empty($jsonData)) {
+                                            $mostrarPestaña4 = true;
+                                        }
+                                    }
+                                }
+                            @endphp
+                            
+                            @if($pregunta3Respondida || $mostrarPestaña4)
                             <li class="nav-item" role="presentation" style="cursor:pointer">
                                 <a id="linkPregunta4" class="nav-link">Hogar FFES Pregunta 4</a>
                             </li>
+                            @endif
                         </ul>
 
                         <style>
@@ -1091,7 +1138,11 @@
                         Swal.fire({
                             icon: 'success',
                             title: 'Éxito',
-                            text: response.message
+                            text: response.message,
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            // Recargar la página para que aparezca la pestaña 4
+                            window.location.reload();
                         });
                     } else {
                         Swal.fire({

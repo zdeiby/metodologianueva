@@ -69,12 +69,75 @@
                                 <a id="legalqt" class="nav-link active">Hogar FFES Pregunta 2 - 2.1</a>
                             </li>
                             
+                            @php
+                                // Verificar si la pregunta 2 tiene respuestas guardadas
+                                $pregunta2Respondida = false;
+                                $mostrarPestaña3 = false;
+                                $mostrarPestaña4 = false;
+                                
+                                $respuestaBD = DB::table('t1_caracterizacion_hogar_ffes')
+                                    ->where('folio', $folio)
+                                    ->where('idintegrante', $idintegrante)
+                                    ->first();
+                                
+                                if ($respuestaBD) {
+                                    $p2 = false;
+                                    
+                                    if (isset($respuestaBD->nino_medidas_restablecimiento_p2) && 
+                                        !empty($respuestaBD->nino_medidas_restablecimiento_p2) && 
+                                        $respuestaBD->nino_medidas_restablecimiento_p2 != '[]' && 
+                                        $respuestaBD->nino_medidas_restablecimiento_p2 != '""') {
+                                        
+                                        $jsonData = json_decode($respuestaBD->nino_medidas_restablecimiento_p2, true);
+                                        
+                                        if (!empty($jsonData)) {
+                                            $p2 = true;
+                                        }
+                                    }
+                                    
+                                    if ($p2) {
+                                        $pregunta2Respondida = true;
+                                    }
+                                    
+                                    // Verificar pregunta 3
+                                    if (isset($respuestaBD->salud_mental_p3) && 
+                                        !empty($respuestaBD->salud_mental_p3) && 
+                                        $respuestaBD->salud_mental_p3 != '[]' && 
+                                        $respuestaBD->salud_mental_p3 != '""') {
+                                        
+                                        $jsonData = json_decode($respuestaBD->salud_mental_p3, true);
+                                        
+                                        if (!empty($jsonData)) {
+                                            $mostrarPestaña3 = true;
+                                        }
+                                    }
+                                    
+                                    // Verificar pregunta 4
+                                    if (isset($respuestaBD->hace_parte_instancia_participacion_p4) && 
+                                        !empty($respuestaBD->hace_parte_instancia_participacion_p4) && 
+                                        $respuestaBD->hace_parte_instancia_participacion_p4 != '[]' && 
+                                        $respuestaBD->hace_parte_instancia_participacion_p4 != '""') {
+                                        
+                                        $jsonData = json_decode($respuestaBD->hace_parte_instancia_participacion_p4, true);
+                                        
+                                        if (!empty($jsonData)) {
+                                            $mostrarPestaña4 = true;
+                                        }
+                                    }
+                                }
+                            @endphp
+                            
+                            @if($pregunta2Respondida || $mostrarPestaña3)
                             <li class="nav-item" role="presentation" style="cursor:pointer">
                                 <a id="linkPregunta3" class="nav-link">Hogar FFES Pregunta 3 - 3.2</a>
                             </li>
+                            @endif
+                            
+                            @if($mostrarPestaña4)
                             <li class="nav-item" role="presentation" style="cursor:pointer">
                                 <a id="linkPregunta4" class="nav-link">Hogar FFES Pregunta 4</a>
                             </li>
+                            @endif
                         </ul>
 
                         <style>

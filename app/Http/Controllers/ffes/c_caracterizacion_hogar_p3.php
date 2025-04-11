@@ -58,17 +58,94 @@ class c_caracterizacion_hogar_p3 extends Controller
                 $respuestaP3_2 = json_decode($caracterizacionHogar->acedio_servicios_salud_mental_p3_2, true);
             }
             
+            // Verificar si existe respuesta para la pregunta 1
+            $pregunta1Respondida = false;
+            $respuestaPregunta1 = DB::table('t1_caracterizacion_hogar_ffes')
+                ->where('folio', $folioDesencriptado)
+                ->where('idintegrante', $idintegrante)
+                ->first();
+            
+            if ($respuestaPregunta1 && isset($respuestaPregunta1->situacionesriesgo_hogar_p1) 
+                && $respuestaPregunta1->situacionesriesgo_hogar_p1 != null 
+                && $respuestaPregunta1->situacionesriesgo_hogar_p1 != '[]' 
+                && $respuestaPregunta1->situacionesriesgo_hogar_p1 != '""' 
+                && $respuestaPregunta1->situacionesriesgo_hogar_p1 != '') {
+                // Verificar que el JSON realmente tenga contenido
+                $jsonData = json_decode($respuestaPregunta1->situacionesriesgo_hogar_p1, true);
+                if ($jsonData && !empty($jsonData)) {
+                    $pregunta1Respondida = true;
+                }
+            }
+            
             // Verificar si existe respuesta para la pregunta 2
             $pregunta2Respondida = false;
             $respuestaPregunta2 = DB::table('t1_caracterizacion_hogar_ffes')
                 ->where('folio', $folioDesencriptado)
                 ->where('idintegrante', $idintegrante)
-                ->whereNotNull('nino_medidas_restablecimiento_p2')
                 ->first();
             
-            if ($respuestaPregunta2 && $respuestaPregunta2->nino_medidas_restablecimiento_p2 != null) {
-                $pregunta2Respondida = true;
+            if ($respuestaPregunta2 && isset($respuestaPregunta2->nino_medidas_restablecimiento_p2) 
+                && $respuestaPregunta2->nino_medidas_restablecimiento_p2 != null 
+                && $respuestaPregunta2->nino_medidas_restablecimiento_p2 != '[]' 
+                && $respuestaPregunta2->nino_medidas_restablecimiento_p2 != '""' 
+                && $respuestaPregunta2->nino_medidas_restablecimiento_p2 != '') {
+                // Verificar que el JSON realmente tenga contenido
+                $jsonData = json_decode($respuestaPregunta2->nino_medidas_restablecimiento_p2, true);
+                if ($jsonData && !empty($jsonData)) {
+                    $pregunta2Respondida = true;
+                }
             }
+            
+            // Redireccionar a la pregunta 2 si no se ha respondido
+            if (!$pregunta2Respondida) {
+                return redirect()->route('caracterizacion_hogar_p2', [
+                    'folio' => $folio,
+                    'idintegrante' => $idintegrante
+                ])->with('warning', 'Primero debe completar la pregunta 2 antes de avanzar a la pregunta 3.');
+            }
+            
+            // Verificar si existe respuesta para la pregunta 3
+            $pregunta3Respondida = false;
+            $respuestaPregunta3 = DB::table('t1_caracterizacion_hogar_ffes')
+                ->where('folio', $folioDesencriptado)
+                ->where('idintegrante', $idintegrante)
+                ->first();
+            
+            if ($respuestaPregunta3 && isset($respuestaPregunta3->salud_mental_p3) 
+                && $respuestaPregunta3->salud_mental_p3 != null 
+                && $respuestaPregunta3->salud_mental_p3 != '[]' 
+                && $respuestaPregunta3->salud_mental_p3 != '""' 
+                && $respuestaPregunta3->salud_mental_p3 != '') {
+                // Verificar que el JSON realmente tenga contenido
+                $jsonData = json_decode($respuestaPregunta3->salud_mental_p3, true);
+                if ($jsonData && !empty($jsonData)) {
+                    $pregunta3Respondida = true;
+                }
+            }
+            
+            // Verificar si existe respuesta para la pregunta 4
+            $pregunta4Respondida = false;
+            $respuestaPregunta4 = DB::table('t1_caracterizacion_hogar_ffes')
+                ->where('folio', $folioDesencriptado)
+                ->where('idintegrante', $idintegrante)
+                ->first();
+            
+            if ($respuestaPregunta4 && isset($respuestaPregunta4->hace_parte_instancia_participacion_p4) 
+                && $respuestaPregunta4->hace_parte_instancia_participacion_p4 != null 
+                && $respuestaPregunta4->hace_parte_instancia_participacion_p4 != '[]' 
+                && $respuestaPregunta4->hace_parte_instancia_participacion_p4 != '""' 
+                && $respuestaPregunta4->hace_parte_instancia_participacion_p4 != '') {
+                // Verificar que el JSON realmente tenga contenido
+                $jsonData = json_decode($respuestaPregunta4->hace_parte_instancia_participacion_p4, true);
+                if ($jsonData && !empty($jsonData)) {
+                    $pregunta4Respondida = true;
+                }
+            }
+            
+            // Lógica de visibilidad de pestañas (progresiva)
+            $mostrarPregunta1 = true; // Siempre se puede volver a la pregunta 1
+            $mostrarPregunta2 = true; // En la página 3, siempre puedes volver a la 2
+            $mostrarPregunta4 = $pregunta3Respondida; // La 4 solo visible si la 3 está respondida
             
             return view('ffes.v_caracterizacion_hogar_p3', [
                 'folio' => $folioDesencriptado,
@@ -77,7 +154,13 @@ class c_caracterizacion_hogar_p3 extends Controller
                 'respuestas' => $respuestas,
                 'diagnosticos' => $diagnosticos,
                 'respuestaP3_2' => $respuestaP3_2,
-                'pregunta2Respondida' => $pregunta2Respondida
+                'pregunta1Respondida' => $pregunta1Respondida,
+                'pregunta2Respondida' => $pregunta2Respondida,
+                'pregunta3Respondida' => $pregunta3Respondida,
+                'pregunta4Respondida' => $pregunta4Respondida,
+                'mostrarPregunta1' => $mostrarPregunta1,
+                'mostrarPregunta2' => $mostrarPregunta2,
+                'mostrarPregunta4' => $mostrarPregunta4
             ]);
             
         } catch (\Exception $e) {
