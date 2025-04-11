@@ -61,26 +61,20 @@
                 <div class="accordion-body">
                     <div class="row">
                         <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item" role="presentation" style="cursor:pointer">
-    <a id="linkPregunta1" class="nav-link">Caracterización hogar FFES Pregunta1</a>
-</li>
-                            
                             <li class="nav-item" role="presentation" style="cursor:pointer">
-                                <a id="legalqt"  class="nav-link active" >Caracterización hogar FFES Pregunta 2 - 2.1</a>
+                                <a id="linkPregunta1" class="nav-link">Hogar FFES Pregunta 1</a>
                             </li>
                             
-                            @php
-                                // Verificar si la pregunta 2 ya fue respondida
-                                $pregunta2Respondida = false;
-                                if (isset($respuestas) && is_array($respuestas) && count($respuestas) > 0) {
-                                    $pregunta2Respondida = true;
-                                }
-                            @endphp
-                            @if($pregunta2Respondida)
                             <li class="nav-item" role="presentation" style="cursor:pointer">
-                                <a id="linkPregunta3" class="nav-link">Caracterización hogar FFES Pregunta 3</a>
+                                <a id="legalqt" class="nav-link active">Hogar FFES Pregunta 2 - 2.1</a>
                             </li>
-                            @endif
+                            
+                            <li class="nav-item" role="presentation" style="cursor:pointer">
+                                <a id="linkPregunta3" class="nav-link">Hogar FFES Pregunta 3 - 3.2</a>
+                            </li>
+                            <li class="nav-item" role="presentation" style="cursor:pointer">
+                                <a id="linkPregunta4" class="nav-link">Hogar FFES Pregunta 4</a>
+                            </li>
                         </ul>
 
                         <style>
@@ -769,6 +763,22 @@
             
             // Redirigir a la página de caracterización hogar P3
             window.location.href = "{{ route('caracterizacion_hogar_p3', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
+                .replace(':folio', folio)
+                .replace(':idintegrante', idintegrante);
+        });
+        
+        // Evento para el enlace de Pregunta 4
+        $('#linkPregunta4').click(function() {
+            // Obtener el folio actual
+            const folio = $('#folioinput').val();
+            
+            // Obtener el idintegrante de la URL actual
+            const urlActual = window.location.href;
+            const match = urlActual.match(/\/caracterizacion_hogar_p2\/[^\/]+\/([^\/]+)/);
+            const idintegrante = match ? match[1] : '0';
+            
+            // Redirigir a la página de caracterización hogar P4
+            window.location.href = "{{ route('caracterizacion_hogar_p4', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
                 .replace(':folio', folio)
                 .replace(':idintegrante', idintegrante);
         });
