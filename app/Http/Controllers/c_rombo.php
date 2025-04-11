@@ -47,6 +47,7 @@ class c_rombo extends Controller
         ->where('folio', decrypt($cedula))  // Comparamos el folio desencriptado
         ->where('linea', 200)            // Comparamos la línea
         ->first(); 
+       
 
           if ($registro && $registro->estado == 1) {
               $realizado = 1;
@@ -61,6 +62,8 @@ class c_rombo extends Controller
           } else {
               $realizado = 0;
           }
+
+         // dd($realizado);
 
           $realizadosvt1 = (($registrovt1 && $registrovt1->estado == 1)?1:0);
          // dd($realizadovt1);

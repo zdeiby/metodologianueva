@@ -60,6 +60,7 @@ class c_finalizaciont1refuerzo1 extends Controller
 
             return view('espaciodefinalizaciont1refuerzo1/v_actualizacionnovedadest1refuerzo1',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla, 'linea'=>$linea,
                                                                      'paso'=>$paso,
                                                                     
@@ -107,6 +108,7 @@ class c_finalizaciont1refuerzo1 extends Controller
 
             return view('espaciodefinalizaciont1refuerzo1/v_informevisitat1refuerzo1',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla, 'linea'=>$linea,
                                                                      'paso'=>$paso,
                                                                     
@@ -158,6 +160,7 @@ class c_finalizaciont1refuerzo1 extends Controller
 
             return view('espaciodefinalizaciont1refuerzo1/v_finalizaciont1refuerzo1',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,'linea'=>$linea,
                                                                      'paso'=>$paso
                                                                     ]);

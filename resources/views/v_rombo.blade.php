@@ -49,7 +49,7 @@
 <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="isticky-top"  >
 <hr>
 <div class="alert alert-primary" style="background:#0dcaf0 !important" role="alert" >
-<label style="color:white">ACCIONES DE ACOMPAÑAMIENTO FAMILIAR</label>
+<label style="color:white"><b>ACCIONES DE ACOMPAÑAMIENTO FAMILIAR</b></label>
 </div>
     <ul>
         <li class="scene">
@@ -402,7 +402,7 @@
     <div class="accordion-header" id="headingOne">
     <div class="accordion-button d-flex justify-content-between align-items-center">
         <!-- CATEGORÍA AL INICIO -->
-        <span class="badge bg-success me-auto" style="background:#a80a85 !important; cursor:pointer; font-size:18px"
+        <span class="badge bg-success me-auto" style="background:#a80a85 !important; cursor:pointer; font-size:16px"
                 data-bs-toggle="modal" data-bs-target="#exampleModal">
             CATEGORIAS DEL BIENESTAR POR HOGAR
         </span>
@@ -615,19 +615,24 @@
         const folio = $('#folioContainer').attr('folio');
         const folioencriptado= $('#folioencriptado').val();
         localStorage.setItem('folioencriptado',folioencriptado);
-      $.ajax({
-        url:'../index.php/leerintegrantesqtrombo',
-        data:{folio:folio, folioencriptado:folioencriptado},
-        method: "GET",
-        dataType:'JSON',
-        success:function(data){
-          $('#integrantes').html(data.foliosintegrante);
-          paginalista();
-        },
-        error: function(xhr, status, error) {
-                  console.log(xhr.responseText);
-              }
-      })
+        if('<?= $realizado ?>' == '1'){
+             $.ajax({
+                url:'../index.php/leerintegrantesqtrombo',
+                data:{folio:folio, folioencriptado:folioencriptado},
+                method: "GET",
+                dataType:'JSON',
+                success:function(data){
+                $('#integrantes').html(data.foliosintegrante);
+                paginalista();
+                },
+                error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+            })
+        }else{
+            paginalista();
+        }
+     
       })
 
       function iraqt(idintegranteencriptado, folioencriptado){

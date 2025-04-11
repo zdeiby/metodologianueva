@@ -116,6 +116,7 @@ class c_momentoconcientet1refuerzo1 extends Controller
 
             return view('accionesmovilizadorast1refuerzo1/v_momentoconcientet1refuerzo1',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,'linea'=>$linea,
                                                                      'paso'=>$paso, 'momento_conciente'=>$momento_conciente,
                                                                      'momento_concientet1r1'=>$momento_concientet1r1,
@@ -190,6 +191,7 @@ class c_momentoconcientet1refuerzo1 extends Controller
         
                     return view('accionesmovilizadorast1refuerzo1/v_bienestarenfamiliat1refuerzo1',  $datos,['variable'=>$folio,
                                                                             'folio'=>$encodedFolio[0],
+                                                                            'foliomenu'=>$encodedFolio[0],
                                                                              'tabla'=>$tabla, 'linea'=>$linea,
                                                                              'paso'=>$paso,
                                                                              'bienestar'=>$bienestar,
@@ -288,6 +290,7 @@ class c_momentoconcientet1refuerzo1 extends Controller
         
                     return view('accionesmovilizadorast1refuerzo1/v_accionmovilizadoraqtt1refuerzo1',  $datos,['variable'=>$folio,
                                                                             'folio'=>$encodedFolio[0],
+                                                                            'foliomenu'=>$encodedFolio[0],
                                                                              'tabla'=>$tabla,
                                                                               'descripcion'=>$categorias[0]->descripcion,
                                                                               'descripcionant'=>$categoriasant[0]->descripcion,
@@ -370,6 +373,7 @@ class c_momentoconcientet1refuerzo1 extends Controller
         
                     return view('accionesmovilizadorast1refuerzo1/v_accionmovilizadoracompromisost1refuerzo1',  $datos,['variable'=>$folio,
                                                                             'folio'=>$encodedFolio[0],
+                                                                            'foliomenu'=>$encodedFolio[0],
                                                                             'tabla'=>$tabla,
                                                                             'compromisosArray'=>$compromisosArray,
                                                                             'compromisosArray2'=>$compromisosArray2,

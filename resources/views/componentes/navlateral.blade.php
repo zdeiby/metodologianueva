@@ -480,14 +480,19 @@ function soloNumeros(e) {
                 
                 
             </div>
-            <div>
+            @if(isset($foliomenu) && !empty($foliomenu) || !empty($esVisitaT1))
+            <div style="" class="text-center p-2">
             @if(isset($foliomenu) && !empty($foliomenu))
-                <span class="badge bg-success ms-auto" id="folioContainer" style="font-size:16px" folio="{{ $variable }}">
+                <span class="badge bg-light ms-auto" id="folioContainer" style="font-size:15px; color:#0dcaf0 " folio="{{ $variable }}">
                     folio: {{ $foliomenu }}
                 </span>
             @endif
+            @if(!empty($esVisitaT1))
+                <span class="badge badge-primary" style="font-size:15px">Segunda Visita - T1</span>
+            @endif
 
             </div>
+            @endif
             <label class="boton" >
                 
             </label>

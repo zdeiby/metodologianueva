@@ -184,6 +184,10 @@ body {
  
 </style> -->
 
+<div class="alert alert-primary p-1" style="background:#0dcaf0; display:inline-block; font-size:13px;" role="alert">
+    <label style="color:white; margin:0; font-weight:500;"><b>Categoria: {{$descripcion}}</b></label>
+</div>
+
 <div class="swiper mySwiper container">
     <div class="swiper-wrapper">
       <!-- primera tarjeta -->
