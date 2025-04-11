@@ -65,12 +65,14 @@
         <a id="bienestarsaludemocionalqt" class="nav-link active">Primera Infancia
         </a>
       </li>
+      
+      {{-- Solo mostrar la pestaña de Mecanismos de Protección si ya existe información guardada --}}
+      @if(isset($servicioSeleccionado))
        <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="mecanismosqt"  class="nav-link" onclick="redirigirAMecanismosProteccion()" >Mecanismos de Protección</a>
       </li>
-       <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="legalqt"  class="nav-link " >caracterizacion hogar</a>
-      </li>
+      @endif
+       
       <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
       </li> -->
@@ -118,9 +120,22 @@
   <b>Instrucciones:</b> Seleccione el servicio de primera infancia en el que se encuentra recibiendo atención el integrante.
 </div>
 
+          @php
+          $edad = isset($datosIntegrante->edad) ? intval($datosIntegrante->edad) : 0;
+          $esMenorDeSeis = $edad < 6;
+          @endphp
+
+          @if(!$esMenorDeSeis)
+          <div class="alert alert-warning" role="alert">
+            <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este integrante tiene {{$edad}} años. Este formulario solo aplica para niños menores de 6 años. No es necesario seleccionar opciones, simplemente presione "Guardar" para continuar.
+          </div>
+          <input type="hidden" id="mayor_seis_anos" value="1">
+          @else
           <div class="alert alert-warning" role="alert">
             <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este formulario solo aplica para niños menores de 6 años.
           </div>
+          <input type="hidden" id="mayor_seis_anos" value="0">
+          @endif
 
           <div class="card mt-3">
   <div class="card-header bg-light">
@@ -129,7 +144,7 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-12">
-        <select class="form-select" id="servicio_primera_infancia" name="servicio_primera_infancia">
+        <select class="form-select" id="servicio_primera_infancia" name="servicio_primera_infancia" {{ !$esMenorDeSeis ? 'disabled' : '' }}>
           <option value="">Seleccione una opción</option>
           @foreach($serviciosPrimeraInfancia as $servicio)
             <option value="{{ $servicio->id }}" {{ isset($servicioSeleccionado) && $servicioSeleccionado == $servicio->id ? 'selected' : '' }}>
@@ -194,25 +209,33 @@
 $('form').submit(function(e) {
     e.preventDefault();
     
-    // Verificar que se haya seleccionado una opción
-    var servicioSeleccionado = $('#servicio_primera_infancia').val();
-    if(!servicioSeleccionado) {
-        Swal.fire({
-            title: 'Atención',
-            text: 'Por favor seleccione un servicio de primera infancia',
-            icon: 'warning',
-            confirmButtonText: 'Aceptar'
-        });
-        return false;
-    }
+    // Verificar edad del integrante
+    var esMayorDeSeis = $('#mayor_seis_anos').val() == 1;
     
     // Recopilar datos del formulario
     var formData = {
         folio: $('#folioinput').val(),
         idintegrante: $('#idintegranteinput').val(),
-        servicio_primera_infancia: servicioSeleccionado,
         _token: $('meta[name="csrf-token"]').attr('content')
     };
+    
+    // Si es mayor de 6 años, asignar 0 automáticamente
+    if(esMayorDeSeis) {
+        formData.servicio_primera_infancia = 0;
+    } else {
+        // Verificar que se haya seleccionado una opción si es menor de 6 años
+        var servicioSeleccionado = $('#servicio_primera_infancia').val();
+        if(!servicioSeleccionado) {
+            Swal.fire({
+                title: 'Atención',
+                text: 'Por favor seleccione un servicio de primera infancia',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar'
+            });
+            return false;
+        }
+        formData.servicio_primera_infancia = servicioSeleccionado;
+    }
     
     // Mostrar indicador de carga
     Swal.fire({
@@ -240,6 +263,11 @@ $('form').submit(function(e) {
                     text: 'Datos guardados correctamente',
                     icon: 'success',
                     confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    // Recargar la página después de guardar para mostrar la pestaña de Mecanismos de Protección
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
                 });
             } else {
                 Swal.fire({
@@ -265,24 +293,18 @@ $('form').submit(function(e) {
         
         // Manejar el botón "Siguiente"
         $('#siguiente').click(function() {
-            // Mostrar mensaje informativo
-            Swal.fire({
-                title: 'Información',
-                text: 'La navegación al siguiente paso estará disponible cuando se implementen los formularios correspondientes.',
-                icon: 'info',
-                confirmButtonText: 'Aceptar'
-            });
+            // Redirigir a Mecanismos de Protección
+            var folio = $('#folioContainer').attr('folio');
+            var idintegrante = $('#idintegranteinput').val();
+            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
         });
         
         // Función para el botón "Volver"
         $('#volver').click(function() {
-            // Mostrar mensaje informativo
-            Swal.fire({
-                title: 'Información',
-                text: 'La navegación a la vista de integrantes estará disponible cuando se implemente el formulario correspondiente.',
-                icon: 'info',
-                confirmButtonText: 'Aceptar'
-            });
+            // Redirigir a Caracterización Integrantes
+            var folio = $('#folioContainer').attr('folio');
+            var idintegrante = $('#idintegranteinput').val();
+            window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
         });
         
         // Función para validar input
@@ -293,6 +315,13 @@ $('form').submit(function(e) {
     });
 
 
+
+     // Función para redirigir a la vista de caracterización integrantes desde el botón Volver
+     function redirectToIntegrantes() {
+         var folio = $('#folioContainer').attr('folio');
+         var idintegrante = $('#idintegranteinput').val();
+         window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+     }
 
      // Función para redirigir a la vista de caracterización integrantes
      function redirigirACaracterizacionIntegrantes() {

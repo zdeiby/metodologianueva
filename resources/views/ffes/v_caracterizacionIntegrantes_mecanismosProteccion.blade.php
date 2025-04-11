@@ -186,28 +186,17 @@
         var folio = $('#folioContainer').attr('folio');
         var idintegrante = $('#idintegranteinput').val();
         
-        // Obtener el texto de la edad y eliminar la palabra 'años' si está presente
-        var edadTexto = $('#edadintegrante').text().replace('años', '').trim();
-        // Si no hay texto en el elemento con id edadintegrante, intentar obtenerlo del otro elemento
-        if (!edadTexto) {
-            edadTexto = $('.badge.rounded-pill[style*="background-color: #fd7e14"]').text().replace('años', '').trim();
-        }
+        // Redireccionar directamente a Primera Infancia sin validar la edad
+        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+    }
+    
+    // Función para volver a Primera Infancia sin validación de edad
+    function redirectToIntegrantes() {
+        var folio = $('#folioContainer').attr('folio');
+        var idintegrante = $('#idintegranteinput').val();
         
-        var edad = parseInt(edadTexto);
-        
-        // Añadir log para depuración
-        console.log("Edad detectada:", edad);
-        
-        if (edad < 6) {
-            window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
-        } else {
-            Swal.fire({
-                title: 'Atención',
-                text: 'El formulario de primera infancia solo aplica para niños menores de 6 años.',
-                icon: 'warning',
-                confirmButtonText: 'Aceptar'
-            });
-        }
+        // Redireccionar a Primera Infancia sin validar la edad
+        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
     }
     
     function redirigirACaracterizacionIntegrantes() {
