@@ -234,6 +234,7 @@ class c_momentoconcientet1refuerzo1 extends Controller
                     ->get();
             
                     $bienestarant= $categoriasant[0]->categoria;
+                    
                     $bienestar= $categorias[0]->categoria;
             
                    
@@ -249,7 +250,7 @@ class c_momentoconcientet1refuerzo1 extends Controller
                     ->where('paso', $pasoanterior)
                     ->where('bienestar', $bienestarant)
                     ->get();
-
+                   // dd($informacionant);
 
                     $datos['accionmovilizadora'] = '';
                     $datos['accionmovilizadoraant' ] = '';
@@ -285,6 +286,21 @@ class c_momentoconcientet1refuerzo1 extends Controller
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','4');
                     }else if($bienestar == '5' || $bienestarant == '5'){
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','5');
+                    }
+
+
+                    //
+
+                    if( $bienestarant == '1'){
+                        $datos['t_accionesmovilizadoraant'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','1');
+                    }else if( $bienestarant == '2'){
+                        $datos['t_accionesmovilizadoraant'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','2');
+                    }else if( $bienestarant == '3'){
+                        $datos['t_accionesmovilizadoraant'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','3');
+                    }else if( $bienestarant == '4'){
+                        $datos['t_accionesmovilizadoraant'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','4');
+                    }else if( $bienestarant == '5'){
+                        $datos['t_accionesmovilizadoraant'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','5');
                     }
         
         

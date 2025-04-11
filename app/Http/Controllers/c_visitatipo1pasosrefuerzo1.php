@@ -16,12 +16,17 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
             // Si no existe la sesión 'usuario', redirigir al login
             return redirect()->route('login');
         }
+
+        session()->forget(['folio', 'linea']);
       //  $folioDesencriptado = decrypt($folio);
         $hashids = new Hashids('', 10); 
         $folioDesencriptado = $hashids->decode($folio)[0];
+       
         $foliocodificado = $folio;
       $linea='300';
       $paso='30010';
+
+      session(['folio' => $folioDesencriptado, 'linea' => $linea]);
 
       $lineaanterior= 200;
       $pasoanterior= 20040;
@@ -38,6 +43,8 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
       ->where('linea', $linea)
       ->where('paso', $paso30010)
       ->exists();
+
+      //dd($existel300p30010);
 
       $paso30020='30020';
       $existel300p30020 = DB::table('t1_pasosvisita')
