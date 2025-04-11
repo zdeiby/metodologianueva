@@ -478,7 +478,33 @@ function soloNumeros(e) {
             <div class="nombre-pagina">
                 <label style=" " id="cloud" >Unidad Familia Medellín</label>
                 
+                
             </div>
+            @if(isset($foliomenu) && !empty($foliomenu) || !empty($esVisitaT1))
+            <div style="" class="text-center p-2">
+            @if(isset($foliomenu) && !empty($foliomenu))
+                <span class="badge bg-light ms-auto" id="folioContainer" style="font-size:15px; color:#0dcaf0 " folio="{{ $variable }}">
+                    folio: {{ $foliomenu }}
+                </span>
+            @endif
+            @if(!empty($esVisitaT1))
+            <div id="contador-visita"
+                    data-segundos="{{ $totalSegundosT1 ?? 0 }}"
+                    class="text-white text-center"
+                    style="background:#00bfff; padding:6px; border-radius:5px;">
+                    <strong>Segunda Visita T1</strong><br>
+                    Dur: <span id="duracion-texto">
+                        {{ $duracionT1 }}@if($activarContadorT1):{{ sprintf('%02d', $totalSegundosT1 % 60) }}@endif
+                    </span> min
+                </div>
+                @endif
+
+
+            
+
+
+            </div>
+            @endif
             <label class="boton" >
                 
             </label>
@@ -837,6 +863,35 @@ function validateInput(textarea) {
     textarea.value = textarea.value.replace(/\n{2,}/g, '\n\n');
 }
 
+
+
+
+
 </script>
+
+@if(!empty($activarContadorT1) && !empty($totalSegundosT1))
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const contador = document.getElementById('contador-visita');
+        let totalSegundos = parseInt(contador.getAttribute('data-segundos')) || 0;
+
+        function actualizarContador() {
+            totalSegundos++;
+
+            let horas = Math.floor(totalSegundos / 3600);
+            let minutos = Math.floor((totalSegundos % 3600) / 60);
+            let segundos = totalSegundos % 60;
+
+            let texto = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+            document.getElementById('duracion-texto').textContent = texto;
+        }
+
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
+    });
+</script>
+@endif
+
+
 </body>
 </html>

@@ -136,7 +136,7 @@
                     <div class="col-md-6" >
                         <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
                         <select class="form-control form-control-sm" id="accionmovilizadoraant"  aria-describedby="validationServer04Feedback" required="" disabled>
-                        {!! $t_accionesmovilizadora !!}
+                        {!! $t_accionesmovilizadoraant !!}
                         </select>
                       </div>
                     </div>

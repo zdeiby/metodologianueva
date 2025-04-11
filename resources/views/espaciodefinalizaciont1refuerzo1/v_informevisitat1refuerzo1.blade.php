@@ -181,7 +181,7 @@
 
        function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../rombovisitatipo1/:folio";
+           var url = "../rombovisitatipo1refuerzo1/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }

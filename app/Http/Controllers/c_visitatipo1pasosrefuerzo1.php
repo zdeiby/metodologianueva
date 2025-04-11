@@ -16,12 +16,20 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
             // Si no existe la sesión 'usuario', redirigir al login
             return redirect()->route('login');
         }
+
+        session()->forget(['folio', 'linea']);
       //  $folioDesencriptado = decrypt($folio);
         $hashids = new Hashids('', 10); 
         $folioDesencriptado = $hashids->decode($folio)[0];
+       
         $foliocodificado = $folio;
       $linea='300';
       $paso='30010';
+
+      session(['folio' => $folioDesencriptado, 'linea' => $linea]);
+
+      $lineaanterior= 200;
+      $pasoanterior= 20040;
 
       $prioridades = DB::table('t1_ordenprioridadesqt')
         ->select('categoria', 'prioridad')
@@ -35,6 +43,8 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
       ->where('linea', $linea)
       ->where('paso', $paso30010)
       ->exists();
+
+      //dd($existel300p30010);
 
       $paso30020='30020';
       $existel300p30020 = DB::table('t1_pasosvisita')
@@ -82,6 +92,13 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
     //   ->select('t1_principalhogar.*', 't1_integranteshogar.*') // Selecciona los campos que desees
     //   ->first();
 
+                    $categorias = DB::table('t1_ordenprioridadesqt')
+                    ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
+                    ->where('t1_ordenprioridadesqt.folio', $folioDesencriptado)
+                    ->where('t1_ordenprioridadesqt.linea', $lineaanterior)
+                    ->where('t1_ordenprioridadesqt.prioridad', 2)
+                    ->select('t_bienestares.descripcion','t1_ordenprioridadesqt.categoria')
+                    ->get();
 
       $hashids = new Hashids('', 10);
 
@@ -107,7 +124,7 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
         'existel300p30020' => $existel300p30020 ? 1 : 0, 'existel300p30030' => $existel300p30030 ? 1 : 0,  'existel300p30040' => $existel300p30040 ? 1 : 0,
         'existel300p30050' => $existel300p30050 ? 1 : 0,  'existel300p30060' => $existel300p30060 ? 1 : 0,
         'prioridades'=>$prioridades,
-        'folio'=>$decodeFolio[0],
+        'folio'=>$decodeFolio[0], 'descripcion'=>$categorias[0]->descripcion, 'foliomenu'=>$decodeFolio[0],
         'linea'=>$linea,
         'paso'=>$paso,
       ]);

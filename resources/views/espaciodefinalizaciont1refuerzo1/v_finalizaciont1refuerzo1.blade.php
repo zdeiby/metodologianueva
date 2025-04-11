@@ -159,10 +159,12 @@
             <input type="range" id="puntero" min="1" default="1" max="5" width="10%"><hr>
             <label for="">Si no puedes firmar puedes incluir la firma en foto, o un documento que avale</label><br>
                 <label class="btn btn-primary btn-sm" for="file-input">
-                    <i class="fas fa-camera"></i> Seleccionar archivo
+                    <i class="fas fa-camera"></i> Seleccionar archivo de tu equipo 💻
                     <input type="file" id="file-input" accept="image/*" style="display: none;">
 
                 </label>
+                <div id="openCameraModal" class="btn btn-success btn-sm">📸 Tomar Foto desde la cámara</div>
+
 
         </div>
     </div>
@@ -232,6 +234,38 @@
 
  
     </div>
+
+
+    <!-- MODAL PARA TOMAR FOTO -->
+<div class="modal fade" id="cameraModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tomar Foto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" id="closeModal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <!-- Cámara para capturar la foto -->
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <video id="video" autoplay style="width: 100%; max-width: 400px; border: 1px solid black;"></video>
+        </div>
+        <br>
+        <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+          <button id="capturePhoto" class="btn btn-primary">📸 Capturar</button>
+        </div>
+
+        <!-- Donde se mostrará la foto después de tomarla -->
+        <canvas id="photoCanvas" style="display:none;"></canvas>
+        <img id="photoPreview" style="width:100%; display:none; border: 1px solid #000;" />
+      </div>
+      <div class="modal-footer">
+      <button type="button" id="acceptPhoto" class="btn btn-success" disabled>✅ Aceptar</button>
+        <button type="button" id="retakePhoto" class="btn btn-warning" style="display:none;">🔄 Repetir Foto</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelModal">❌ Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
@@ -349,7 +383,6 @@ function agregarpaso(){
 }
 
     </script>
-
 
 
 <script>
@@ -614,4 +647,105 @@ function clearCanvas() {
 }
 
 </script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    let openModalBtn = document.getElementById('openCameraModal');
+    let video = document.getElementById('video');
+    let captureBtn = document.getElementById('capturePhoto');
+    let acceptPhotoBtn = document.getElementById('acceptPhoto');
+    let retakePhotoBtn = document.getElementById('retakePhoto');
+    let photoCanvas = document.getElementById('photoCanvas');
+    let photoCtx = photoCanvas.getContext('2d');
+    let photoPreview = document.getElementById('photoPreview');
+    let drawImage = document.createElement('img'); // Se crea la imagen final para visualizar
+    let photoData = null; // Para almacenar la imagen capturada
+    let cameraModal = new bootstrap.Modal(document.getElementById('cameraModal')); // Inicializar el modal correctamente
+
+    // 📌 ABRIR EL MODAL Y ACTIVAR LA CÁMARA
+    openModalBtn.addEventListener('click', function () {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                cameraModal.show(); // ✅ Abre el modal correctamente
+                resetModalState(); // 🔄 Reinicia el estado del modal
+            })
+            .catch(err => console.error("Error al acceder a la cámara:", err));
+    });
+
+    // 📸 CAPTURAR LA FOTO Y MOSTRARLA EN EL MODAL
+    captureBtn.addEventListener('click', function () {
+        photoCanvas.width = video.videoWidth;
+        photoCanvas.height = video.videoHeight;
+        photoCtx.drawImage(video, 0, 0, photoCanvas.width, photoCanvas.height);
+        photoData = photoCanvas.toDataURL(); // Convertir a Base64
+
+        // 🎯 OCULTAR EL VIDEO Y MOSTRAR LA FOTO CAPTURADA
+        video.style.display = 'none';
+        photoPreview.src = photoData;
+        photoPreview.style.display = 'block';
+
+        // 🔄 OCULTAR EL BOTÓN "CAPTURAR" Y MOSTRAR "REPETIR"
+        captureBtn.style.display = 'none';
+        acceptPhotoBtn.disabled = false;
+        retakePhotoBtn.style.display = 'inline-block';
+    });
+
+    // 🔄 REPETIR LA FOTO
+    retakePhotoBtn.addEventListener('click', function () {
+        video.style.display = 'block';
+        photoPreview.style.display = 'none';
+        captureBtn.style.display = 'block'; // Mostrar Capturar nuevamente
+        acceptPhotoBtn.disabled = true; // Deshabilitar Aceptar
+        retakePhotoBtn.style.display = 'none'; // Ocultar "Repetir"
+    });
+
+   
+
+    
+
+    acceptPhotoBtn.addEventListener('click', function () {
+    if (photoData) {
+        let drawImage = document.getElementById('draw-image'); // Asegurar que estamos usando el ID correcto
+        drawImage.src = photoData; // Enviar la imagen a #draw-image
+    }
+    let modal = bootstrap.Modal.getInstance(document.getElementById('cameraModal'));
+    stopCamera();
+    modal.hide(); // Cerrar el modal
+    
+});
+
+    // ❌ RESETEAR TODO Y DETENER LA CÁMARA AL CERRAR EL MODAL
+    document.getElementById('cancelModal').addEventListener('click', function () {
+        stopCamera(); // 🚫 Apagar la cámara
+        resetModalState(); // 🔄 Reiniciar los botones y la interfaz
+    });
+
+    document.getElementById('closeModal').addEventListener('click', function () {
+        stopCamera(); // 🚫 Apagar la cámara
+        resetModalState();
+    });
+
+    // 🔄 FUNCIÓN PARA REINICIAR EL ESTADO DEL MODAL
+    function resetModalState() {
+        video.style.display = 'block';
+        photoPreview.style.display = 'none';
+        captureBtn.style.display = 'block';
+        acceptPhotoBtn.disabled = true;
+        retakePhotoBtn.style.display = 'none';
+    }
+
+    // 🚫 FUNCIÓN PARA DETENER LA CÁMARA CUANDO SE CIERRA EL MODAL
+    function stopCamera() {
+        let stream = video.srcObject;
+        if (stream) {
+            let tracks = stream.getTracks();
+            tracks.forEach(track => track.stop());
+            video.srcObject = null;
+        }
+    }
+});
+</script>
+
 @endsection

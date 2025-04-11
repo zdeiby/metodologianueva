@@ -36,6 +36,7 @@ class c_oportunidadesvisitat1refuerzo1 extends Controller
 
             return view('espaciodefinalizaciont1refuerzo1/v_ficherodeoportunidadest1refuerzo1', ['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,
                                                                 
                                                                       'linea'=>$linea,
@@ -65,6 +66,7 @@ class c_oportunidadesvisitat1refuerzo1 extends Controller
 
             return view('espaciodefinalizaciont1refuerzo1/v_ficherodeoportunidadeshogart1refuerzo1',  ['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,
                                                                    
                                                                       'linea'=>$linea,
