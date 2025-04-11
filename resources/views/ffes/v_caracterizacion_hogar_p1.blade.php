@@ -374,7 +374,7 @@
                 <hr>
                 <div class="row">  
                     <div class="text-start col">
-                        <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
+                        <!-- <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div> -->
                     </div>
                     <div class="text-end col">
                         <button class="btn btn-outline-success" id="btnGuardar" type="button">Guardar</button>
