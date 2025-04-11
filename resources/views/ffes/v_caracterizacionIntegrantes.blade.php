@@ -74,8 +74,8 @@
         <a id="legalqt"  class="nav-link" onclick="redirigirAPrimeraInfancia()" >Primera Infancia</a>
       </li>
       
-      {{-- Mostrar pestaña Mecanismos de Protección solo si el integrante tiene entre 6 y 18 años --}}
-      @if($edad > 5 && $edad < 18)
+      {{-- Mostrar pestaña Mecanismos de Protección SOLO si ya existen respuestas guardadas --}}
+      @if(isset($existeMecanismosProteccion) && $existeMecanismosProteccion)
       <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="mecanismosqt"  class="nav-link" onclick="redirigirAMecanismosProteccion()" >Mecanismos de Protección</a>
       </li>
@@ -437,28 +437,8 @@
             var folio = $('#folioContainer').attr('folio');
             var idintegrante = $('#idintegranteinput').val();
             
-            // Obtener el texto de la edad y eliminar la palabra 'años' si está presente
-            var edadTexto = $('#edadintegrante').text().replace('años', '').trim();
-            // Si no hay texto en el elemento con id edadintegrante, intentar obtenerlo del otro elemento
-            if (!edadTexto) {
-                edadTexto = $('.badge.rounded-pill[style*="background-color: #fd7e14"]').text().replace('años', '').trim();
-            }
-            
-            var edad = parseInt(edadTexto);
-            
-            // Añadir log para depuración
-            console.log("Edad detectada:", edad);
-            
-            if (edad > 5 && edad < 18) {
-                window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
-            } else {
-                Swal.fire({
-                    title: 'Atención',
-                    text: 'El formulario de mecanismos de protección solo aplica para personas mayores de 5 y menores de 18 años.',
-                    icon: 'warning',
-                    confirmButtonText: 'Aceptar'
-                });
-            }
+            // Redirigir directamente a Mecanismos de Protección sin validar la edad
+            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
         }
    
 

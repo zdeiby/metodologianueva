@@ -60,6 +60,18 @@ class c_caracterizacionIntegrantes extends Controller
         $modelo = new m_caracterizacionIntegrante_estrategia();
         $estrategiasExistentes = $modelo->m_obtenerEstrategias($folioDesencriptado, $idintegranteDesencriptado);
         
+        // Verificar si existen respuestas de primera infancia
+        $existePrimeraInfancia = DB::table('t1_caracterizacionIntegrante_primeraInfancia')
+            ->where('folio', $folioDesencriptado)
+            ->where('idintegrante', $idintegranteDesencriptado)
+            ->exists();
+            
+        // Verificar si existen respuestas de mecanismos de protección
+        $existeMecanismosProteccion = DB::table('t1_caracterizacionIntegrante_conoce_instituciones')
+            ->where('folio', $folioDesencriptado)
+            ->where('idintegrante', $idintegranteDesencriptado)
+            ->exists();
+        
         // Preparar array de estrategias seleccionadas
         $estrategiasSeleccionadas = [];
         $otroEspecificar = '';
@@ -85,7 +97,9 @@ class c_caracterizacionIntegrantes extends Controller
             'idintegranteEncriptado' => $hashids->encode($idintegranteDesencriptado),
             'datosIntegrante' => $datosIntegrante,
             'estrategiasSeleccionadas' => $estrategiasSeleccionadas,
-            'otroEspecificar' => $otroEspecificar
+            'otroEspecificar' => $otroEspecificar,
+            'existePrimeraInfancia' => $existePrimeraInfancia,
+            'existeMecanismosProteccion' => $existeMecanismosProteccion
         ]);
     }
     

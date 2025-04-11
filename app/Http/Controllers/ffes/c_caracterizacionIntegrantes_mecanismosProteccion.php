@@ -64,13 +64,8 @@ class c_caracterizacionIntegrantes_mecanismosProteccion extends Controller
             }
         }
         
-        // Validar edad: solo permitir mayores de 5 y menores de 18 años
-        if ($datosIntegrante->edad <= 5 || $datosIntegrante->edad >= 18) {
-            return redirect()->route('caracterizacion_integrantes', [
-                'folio' => $folio,
-                'idintegrante' => $idintegrante
-            ])->with('error', 'Este formulario solo aplica para personas mayores de 5 y menores de 18 años');
-        }
+        // Eliminamos la validación de edad para permitir el acceso a todos los integrantes,
+        // la validación del formulario se manejará en la vista
         
         // Obtener respuesta existente si la hay
         $modelo = new m_caracterizacionIntegrante_mecanismosProteccion();
