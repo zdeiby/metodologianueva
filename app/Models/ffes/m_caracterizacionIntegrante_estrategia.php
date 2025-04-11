@@ -10,7 +10,7 @@ class m_caracterizacionIntegrante_estrategia extends Model
 {
     use HasFactory;
 
-    protected $table = 't1_caracterizacionIntegrante_estrategia';
+    protected $table = 't1_caracterizacionIntegrante_estrategia_ffes';
     
     public function __construct()
     {

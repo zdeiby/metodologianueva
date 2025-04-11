@@ -10,7 +10,7 @@ class m_caracterizacionIntegrante_primeraInfancia extends Model
 {
     use HasFactory;
 
-    protected $table = 't1_caracterizacionIntegrante_primeraInfancia';
+    protected $table = 't1_caracterizacionIntegrante_primeraInfancia_ffes';
     
    /*  public function __construct(array $attributes = [])
     {

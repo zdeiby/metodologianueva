@@ -61,13 +61,13 @@ class c_caracterizacionIntegrantes extends Controller
         $estrategiasExistentes = $modelo->m_obtenerEstrategias($folioDesencriptado, $idintegranteDesencriptado);
         
         // Verificar si existen respuestas de primera infancia
-        $existePrimeraInfancia = DB::table('t1_caracterizacionIntegrante_primeraInfancia')
+        $existePrimeraInfancia = DB::table('t1_caracterizacionIntegrante_primeraInfancia_ffes')
             ->where('folio', $folioDesencriptado)
             ->where('idintegrante', $idintegranteDesencriptado)
             ->exists();
             
         // Verificar si existen respuestas de mecanismos de protección
-        $existeMecanismosProteccion = DB::table('t1_caracterizacionIntegrante_conoce_instituciones')
+        $existeMecanismosProteccion = DB::table('t1_caracterizacionIntegrante_conoce_instituciones_ffes')
             ->where('folio', $folioDesencriptado)
             ->where('idintegrante', $idintegranteDesencriptado)
             ->exists();

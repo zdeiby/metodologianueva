@@ -67,12 +67,47 @@
         if(isset($datosIntegrante->edad)) {
             $edad = intval($datosIntegrante->edad);
         }
+        
+        // Verificar si existen estrategias guardadas para este integrante
+        $existeEstrategias = false;
+        $estrategiasGuardadas = DB::table('t1_caracterizacionIntegrante_estrategia_ffes')
+            ->where('folio', $folio)
+            ->where('idintegrante', $idintegrante)
+            ->first();
+        
+        if ($estrategiasGuardadas) {
+            $existeEstrategias = true;
+        }
+        
+        // Verificar si existen datos de primera infancia guardados
+        $existePrimeraInfancia = false;
+        $primeraInfanciaGuardada = DB::table('t1_caracterizacionIntegrante_primeraInfancia_ffes')
+            ->where('folio', $folio)
+            ->where('idintegrante', $idintegrante)
+            ->first();
+        
+        if ($primeraInfanciaGuardada) {
+            $existePrimeraInfancia = true;
+        }
+        
+        // Verificar si existen datos de mecanismos de protección guardados
+        $existeMecanismosProteccion = false;
+        $mecanismosProteccionGuardados = DB::table('t1_caracterizacionIntegrante_conoce_instituciones_ffes')
+            ->where('folio', $folio)
+            ->where('idintegrante', $idintegrante)
+            ->first();
+        
+        if ($mecanismosProteccionGuardados) {
+            $existeMecanismosProteccion = true;
+        }
       @endphp
       
-      {{-- Mostrar pestaña Primera Infancia siempre, la validación se hace en la vista --}}
+      {{-- Mostrar pestaña Primera Infancia SOLO si ya existen respuestas guardadas --}}
+      @if(isset($existeEstrategias) && $existeEstrategias)
       <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link" onclick="redirigirAPrimeraInfancia()" >Primera Infancia</a>
       </li>
+      @endif
       
       {{-- Mostrar pestaña Mecanismos de Protección SOLO si ya existen respuestas guardadas --}}
       @if(isset($existeMecanismosProteccion) && $existeMecanismosProteccion)
@@ -279,7 +314,11 @@
             </div>
             <div class="text-end col">
             <button class="btn btn-outline-success" type="submit"  >Guardar</button>
-            <div class="btn btn-outline-primary" id="siguiente"   >Siguiente</div>
+            @if(isset($existeEstrategias) && $existeEstrategias)
+            <div class="btn btn-outline-primary" id="siguiente">Siguiente</div>
+            @else
+            <div class="btn btn-outline-primary disabled" id="siguiente" data-bs-toggle="tooltip" data-bs-placement="top" title="Debe guardar la información antes de continuar">Siguiente</div>
+            @endif
             </div> 
           </div>
 
@@ -403,6 +442,11 @@
                             text: 'Datos guardados correctamente',
                             icon: 'success',
                             confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            // Recargar la página después de cerrar el mensaje de éxito
+                            if (result.isConfirmed || result.isDismissed) {
+                                window.location.reload();
+                            }
                         });
                     } else {
                         Swal.fire({
@@ -455,8 +499,22 @@
             var folio = $('#folioContainer').attr('folio');
             var idintegrante = $('#idintegranteinput').val();
             
-            // Redirigir siempre, independientemente de la edad
-            window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            @php
+                // Convertir la variable PHP a JavaScript
+                echo "var estrategiasGuardadas = " . json_encode($existeEstrategias) . ";";
+            @endphp
+            
+            if (estrategiasGuardadas) {
+                // Solo redirigir si ya existen estrategias guardadas
+                window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            } else {
+                // Mostrar mensaje de advertencia si no hay datos guardados
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Atención',
+                    text: 'Debe completar y guardar las estrategias antes de continuar con la siguiente sección.'
+                });
+            }
         }
         
         // Función para redirigir a la vista de mecanismos de protección
@@ -464,8 +522,30 @@
             var folio = $('#folioContainer').attr('folio');
             var idintegrante = $('#idintegranteinput').val();
             
-            // Redirigir directamente a Mecanismos de Protección sin validar la edad
-            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            @php
+                // Convertir las variables PHP a JavaScript
+                echo "var estrategiasGuardadas = " . json_encode($existeEstrategias) . ";";
+                echo "var primeraInfanciaGuardada = " . json_encode($existePrimeraInfancia) . ";";
+            @endphp
+            
+            if (!estrategiasGuardadas) {
+                // Si no hay estrategias guardadas, mostrar mensaje
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Atención',
+                    text: 'Debe completar y guardar las estrategias antes de continuar.'
+                });
+            } else if (!primeraInfanciaGuardada) {
+                // Si no hay datos de primera infancia guardados, mostrar mensaje
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Atención',
+                    text: 'Debe completar y guardar la sección de Primera Infancia antes de continuar.'
+                });
+            } else {
+                // Si ambas secciones están completas, redirigir
+                window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            }
         }
    
 

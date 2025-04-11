@@ -293,10 +293,26 @@ $('form').submit(function(e) {
         
         // Manejar el botón "Siguiente"
         $('#siguiente').click(function() {
-            // Redirigir a Mecanismos de Protección
-            var folio = $('#folioContainer').attr('folio');
-            var idintegrante = $('#idintegranteinput').val();
-            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            // Verificar si hay datos guardados antes de redirigir
+            @php
+                // Verificar si hay datos de primera infancia guardados
+                $datosPrimeraInfanciaGuardados = isset($servicioSeleccionado);
+                echo "var datosPrimeraInfanciaGuardados = " . json_encode($datosPrimeraInfanciaGuardados) . ";";
+            @endphp
+            
+            if (datosPrimeraInfanciaGuardados) {
+                // Solo redirigir si ya hay datos guardados
+                var folio = $('#folioContainer').attr('folio');
+                var idintegrante = $('#idintegranteinput').val();
+                window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            } else {
+                // Mostrar mensaje de advertencia si no hay datos guardados
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Atención',
+                    text: 'Debe completar y guardar la información de Primera Infancia antes de continuar.'
+                });
+            }
         });
         
         // Función para el botón "Volver"
