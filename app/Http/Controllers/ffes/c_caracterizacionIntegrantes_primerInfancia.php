@@ -56,14 +56,8 @@ class c_caracterizacionIntegrantes_primerInfancia extends Controller
             }
         }
         
-        // Validar que el integrante sea menor de 6 años
-        if (isset($datosIntegrante->edad) && $datosIntegrante->edad >= 6) {
-            // Si el integrante es mayor o igual a 6 años, redirigir con un mensaje
-            return redirect()->route('caracterizacion_integrantes', [
-                'folio' => $folio,
-                'idintegrante' => $idintegrante
-            ])->with('error', 'Este formulario solo aplica para niños menores de 6 años.');
-        }
+        // Eliminamos la validación de edad para permitir el acceso a todos los integrantes,
+        // la validación del formulario se manejará en la vista
         
         // Obtener servicio de primera infancia existente si lo hay
         $modelo = new m_caracterizacionIntegrante_primeraInfancia();
@@ -119,7 +113,8 @@ class c_caracterizacionIntegrantes_primerInfancia extends Controller
         $servicio_primera_infancia = $request->input('servicio_primera_infancia');
         
         // Verificar que ningún dato esencial sea nulo
-        if (empty($folio) || empty($idintegrante) || empty($servicio_primera_infancia)) {
+        // Modificamos la validación para permitir el valor 0
+        if (empty($folio) || empty($idintegrante) || (!isset($servicio_primera_infancia) || $servicio_primera_infancia === '')) {
             return response()->json([
                 'success' => false, 
                 'message' => 'Error: Datos incompletos. Por favor seleccione un servicio.'
@@ -127,7 +122,7 @@ class c_caracterizacionIntegrantes_primerInfancia extends Controller
         }
 
         try {
-            // Verificar que el integrante sea menor de 6 años
+            // Verificar si el integrante existe
             $datosIntegrante = DB::table('t1_integranteshogar')
                 ->where('folio', $folio)
                 ->where('idintegrante', (string)$idintegrante)
@@ -140,12 +135,9 @@ class c_caracterizacionIntegrantes_primerInfancia extends Controller
                 ], 404);
             }
             
-            if (isset($datosIntegrante->edad) && $datosIntegrante->edad >= 6) {
-                return response()->json([
-                    'success' => false, 
-                    'message' => 'Error: Este formulario solo aplica para niños menores de 6 años.'
-                ], 400);
-            }
+            // Ya no validamos la edad, permitimos guardar para cualquier edad
+            // Si el valor es 0, significa que el integrante es mayor de 6 años
+            
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false, 

@@ -56,16 +56,30 @@
       <div class="accordion-body">
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item" role="presentation"  style="cursor:pointer">
+      <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="caracterizacionIntegranteffes" class="nav-link active">caracterizacion integrantes
         </a>
       </li>
-       <li class="nav-item" role="presentation" style="cursor:pointer">
+       
+      @php
+        // Obtener la edad del integrante
+        $edad = 0;
+        if(isset($datosIntegrante->edad)) {
+            $edad = intval($datosIntegrante->edad);
+        }
+      @endphp
+      
+      {{-- Mostrar pestaña Primera Infancia siempre, la validación se hace en la vista --}}
+      <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link" onclick="redirigirAPrimeraInfancia()" >Primera Infancia</a>
       </li>
+      
+      {{-- Mostrar pestaña Mecanismos de Protección SOLO si ya existen respuestas guardadas --}}
+      @if(isset($existeMecanismosProteccion) && $existeMecanismosProteccion)
       <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="mecanismosqt"  class="nav-link" onclick="redirigirAMecanismosProteccion()" >Mecanismos de Protección</a>
       </li>
+      @endif
       <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
       </li> -->
@@ -258,7 +272,7 @@
             <div class="text-start col">
 
 
-             <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
+             <!-- <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div> -->
 
 
 
@@ -387,13 +401,8 @@
         
         // Manejar el botón "Siguiente"
         $('#siguiente').click(function() {
-            // Mostrar mensaje informativo
-            Swal.fire({
-                title: 'Información',
-                text: 'La navegación al siguiente paso estará disponible cuando se implementen los formularios correspondientes.',
-                icon: 'info',
-                confirmButtonText: 'Aceptar'
-            });
+            // Redireccionar a Primera Infancia
+            redirigirAPrimeraInfancia();
         });
         
         // Función para el botón "Volver"
@@ -419,28 +428,8 @@
             var folio = $('#folioContainer').attr('folio');
             var idintegrante = $('#idintegranteinput').val();
             
-            // Obtener el texto de la edad y eliminar la palabra 'años' si está presente
-            var edadTexto = $('#edadintegrante').text().replace('años', '').trim();
-            // Si no hay texto en el elemento con id edadintegrante, intentar obtenerlo del otro elemento
-            if (!edadTexto) {
-                edadTexto = $('.badge.rounded-pill[style*="background-color: #fd7e14"]').text().replace('años', '').trim();
-            }
-            
-            var edad = parseInt(edadTexto);
-            
-            // Añadir log para depuración
-            console.log("Edad detectada:", edad);
-            
-            if (edad < 6) {
-                window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
-            } else {
-                Swal.fire({
-                    title: 'Atención',
-                    text: 'El formulario de primera infancia solo aplica para niños menores de 6 años.',
-                    icon: 'warning',
-                    confirmButtonText: 'Aceptar'
-                });
-            }
+            // Redirigir siempre, independientemente de la edad
+            window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
         }
         
         // Función para redirigir a la vista de mecanismos de protección
@@ -448,28 +437,8 @@
             var folio = $('#folioContainer').attr('folio');
             var idintegrante = $('#idintegranteinput').val();
             
-            // Obtener el texto de la edad y eliminar la palabra 'años' si está presente
-            var edadTexto = $('#edadintegrante').text().replace('años', '').trim();
-            // Si no hay texto en el elemento con id edadintegrante, intentar obtenerlo del otro elemento
-            if (!edadTexto) {
-                edadTexto = $('.badge.rounded-pill[style*="background-color: #fd7e14"]').text().replace('años', '').trim();
-            }
-            
-            var edad = parseInt(edadTexto);
-            
-            // Añadir log para depuración
-            console.log("Edad detectada:", edad);
-            
-            if (edad > 5 && edad < 18) {
-                window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
-            } else {
-                Swal.fire({
-                    title: 'Atención',
-                    text: 'El formulario de mecanismos de protección solo aplica para personas mayores de 5 y menores de 18 años.',
-                    icon: 'warning',
-                    confirmButtonText: 'Aceptar'
-                });
-            }
+            // Redirigir directamente a Mecanismos de Protección sin validar la edad
+            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
         }
    
 

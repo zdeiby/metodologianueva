@@ -111,9 +111,22 @@
   <b>Instrucciones:</b> Seleccione si conoce o no las instituciones y mecanismos que garantizan sus derechos.
 </div>
 
+          @php
+          $edad = isset($datosIntegrante->edad) ? intval($datosIntegrante->edad) : 0;
+          $edadValida = $edad > 5 && $edad < 18;
+          @endphp
+
+          @if(!$edadValida)
+          <div class="alert alert-warning" role="alert">
+            <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este integrante tiene {{$edad}} años. Este formulario solo aplica para personas mayores de 5 y menores de 18 años. No es necesario seleccionar opciones, simplemente presione "Guardar" para continuar.
+          </div>
+          <input type="hidden" id="edad_no_valida" value="1">
+          @else
           <div class="alert alert-warning" role="alert">
             <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este formulario solo aplica para personas mayores de 5 y menores de 18 años.
           </div>
+          <input type="hidden" id="edad_no_valida" value="0">
+          @endif
 
           <div class="card mt-3">
   <div class="card-header bg-light">
@@ -122,7 +135,7 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-12">
-        <select class="form-select" id="conoce_institucion_mecanismo" name="conoce_institucion_mecanismo">
+        <select class="form-select" id="conoce_institucion_mecanismo" name="conoce_institucion_mecanismo" {{ !$edadValida ? 'disabled' : '' }}>
           <option value="">Seleccione una opción</option>
           @foreach($serviciosPrimeraInfancia as $servicio)
             <option value="{{ $servicio->id }}" {{ isset($servicioSeleccionado) && $servicioSeleccionado == $servicio->id ? 'selected' : '' }}>
@@ -186,28 +199,17 @@
         var folio = $('#folioContainer').attr('folio');
         var idintegrante = $('#idintegranteinput').val();
         
-        // Obtener el texto de la edad y eliminar la palabra 'años' si está presente
-        var edadTexto = $('#edadintegrante').text().replace('años', '').trim();
-        // Si no hay texto en el elemento con id edadintegrante, intentar obtenerlo del otro elemento
-        if (!edadTexto) {
-            edadTexto = $('.badge.rounded-pill[style*="background-color: #fd7e14"]').text().replace('años', '').trim();
-        }
+        // Redireccionar directamente a Primera Infancia sin validar la edad
+        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+    }
+    
+    // Función para volver a Primera Infancia sin validación de edad
+    function redirectToIntegrantes() {
+        var folio = $('#folioContainer').attr('folio');
+        var idintegrante = $('#idintegranteinput').val();
         
-        var edad = parseInt(edadTexto);
-        
-        // Añadir log para depuración
-        console.log("Edad detectada:", edad);
-        
-        if (edad < 6) {
-            window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
-        } else {
-            Swal.fire({
-                title: 'Atención',
-                text: 'El formulario de primera infancia solo aplica para niños menores de 6 años.',
-                icon: 'warning',
-                confirmButtonText: 'Aceptar'
-            });
-        }
+        // Redireccionar a Primera Infancia sin validar la edad
+        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
     }
     
     function redirigirACaracterizacionIntegrantes() {
@@ -232,25 +234,33 @@
         $('form').submit(function(e) {
             e.preventDefault();
             
-            // Verificar que se haya seleccionado una opción
-            var servicioSeleccionado = $('#conoce_institucion_mecanismo').val();
-            if(!servicioSeleccionado) {
-                Swal.fire({
-                    title: 'Atención',
-                    text: 'Por favor seleccione una opción sobre el conocimiento de instituciones y mecanismos',
-                    icon: 'warning',
-                    confirmButtonText: 'Aceptar'
-                });
-                return false;
-            }
+            // Verificar si la edad es válida
+            var edadNoValida = $('#edad_no_valida').val() == 1;
             
             // Recopilar datos del formulario
             var formData = {
                 folio: $('#folioinput').val(),
                 idintegrante: $('#idintegranteinput').val(),
-                conoce_institucion_mecanismo: servicioSeleccionado,
                 _token: $('meta[name="csrf-token"]').attr('content')
             };
+            
+            // Si la edad no es válida, asignar 0 automáticamente
+            if(edadNoValida) {
+                formData.conoce_institucion_mecanismo = 0;
+            } else {
+                // Verificar que se haya seleccionado una opción si la edad es válida
+                var servicioSeleccionado = $('#conoce_institucion_mecanismo').val();
+                if(!servicioSeleccionado) {
+                    Swal.fire({
+                        title: 'Atención',
+                        text: 'Por favor seleccione una opción sobre el conocimiento de instituciones y mecanismos',
+                        icon: 'warning',
+                        confirmButtonText: 'Aceptar'
+                    });
+                    return false;
+                }
+                formData.conoce_institucion_mecanismo = servicioSeleccionado;
+            }
             
             // Mostrar indicador de carga
             Swal.fire({
@@ -278,6 +288,11 @@
                             text: 'Datos guardados correctamente',
                             icon: 'success',
                             confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            // Recargar la página después de guardar para mostrar los datos actualizados
+                            if (result.isConfirmed) {
+                                window.location.reload();
+                            }
                         });
                     } else {
                         Swal.fire({
