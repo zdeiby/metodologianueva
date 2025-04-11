@@ -100,15 +100,18 @@
             <input type="text" placeholder="tabla" class="form-control form-control-sm  " id="tabla" name="tabla" value="{{$tabla}}" >
             <input type="text" placeholder="linea" class="form-control form-control-sm  " id="linea" name="linea" value="{{$linea}}" >
             <input type="text" placeholder="paso" class="form-control form-control-sm  " id="paso" name="paso" value="{{$paso}}" >
+            <input type="text" placeholder="lineaanterior" class="form-control form-control-sm  " id="lineaanterior" name="lineaanterior" value="{{$lineaanterior}}" >
+            <input type="text" placeholder="pasoanterior" class="form-control form-control-sm  " id="pasoanterior" name="pasoanterior" value="{{$pasoanterior}}" >
+
           </div>
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">COMPROMISOS DEL HOGAR / INTEGRANTES ANTERIOR.</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">COMPROMISOS ANTERIORES.</span>
 
 
 
 
           <!-- <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">COMPROMISO BIENESTAR PRIORIZADO.</span> -->
-          <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
+          <div class="alert alert-info" role="alert" style="display:none;background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
           El gestor consigna información cualitativa. A que se compromete el hogar en relación a las acciones de autogestión orientadas a mejorar las condiciones de vida, enfocándose en superar indicadores, aprovechar oportunidades acercadas y abordar necesidades específicas de los integrantes del hogar- QT
           </div>
           <div class="row">
@@ -124,9 +127,21 @@
                 </button>
             </h2>
             <div id="flush-collapseOneant" class="accordion-collapse collapse show">
-                <div class="container pt-4 pb-4">
-                    <textarea class="form-control form-control-sm" id="compromiso1ant" rows="5" oninput="validarCompromisos2()" disabled required>{{ $compromisosArray2[1] }}</textarea>
+            <div class="container pt-4 pb-4">
+              <div class="row">
+                <div class="col-md-9">
+                  <textarea class="form-control form-control-sm" id="compromiso1ant" rows="5" oninput="validarCompromisos2()" disabled required>{{ $compromisosArray2[1] }}</textarea>
                 </div>
+                <div class="col-md-3">
+                  <label for="estado_compromiso1" class="form-label">Estado</label>
+                  <select class="form-select form-select-sm" id="estado_compromiso1" name="estado_compromiso[1]" required>
+                      {!! $t_estados_compromisos !!}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+                
             </div>
         </div>
 
@@ -138,9 +153,20 @@
                 </button>
             </h2>
             <div id="flush-collapseTwoant" class="accordion-collapse collapse">
-                <div class="container pt-4 pb-4">
-                    <textarea class="form-control form-control-sm" id="compromiso2ant"  rows="5" oninput="validarCompromisos2()" disabled>{{ $compromisosArray2[2] }}</textarea>
+            <div class="container pt-4 pb-4">
+                <div class="row">
+                  <div class="col-md-9">
+                    <textarea class="form-control form-control-sm" id="compromiso2ant" rows="5" oninput="validarCompromisos2()" disabled>{{ $compromisosArray2[2] }}</textarea>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="estado_compromiso2" class="form-label">Estado</label>
+                    <select class="form-select form-select-sm" id="estado_compromiso2" name="estado_compromiso[2]" required>
+                        {!! $t_estados_compromisos !!}
+                    </select>
+                  </div>
                 </div>
+              </div>
+
             </div>
         </div>
 
@@ -152,9 +178,20 @@
                 </button>
             </h2>
             <div id="flush-collapseThreeant" class="accordion-collapse collapse">
-                <div class="container pt-4 pb-4">
-                    <textarea class="form-control form-control-sm" id="compromiso3ant"  rows="5" oninput="validarCompromisos2()" disabled>{{ $compromisosArray2[3] }}</textarea>
+            <div class="container pt-4 pb-4">
+                <div class="row">
+                  <div class="col-md-9">
+                    <textarea class="form-control form-control-sm" id="compromiso3ant" rows="5" oninput="validarCompromisos2()" disabled>{{ $compromisosArray2[3] }}</textarea>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="estado_compromiso3" class="form-label">Estado</label>
+                    <select class="form-select form-select-sm" id="estado_compromiso3" name="estado_compromiso[3]" required>
+                        {!! $t_estados_compromisos !!}
+                    </select>
+                  </div>
                 </div>
+              </div>
+
             </div>
         </div>
 
@@ -166,22 +203,27 @@
                 </button>
             </h2>
             <div id="flush-collapseFourant" class="accordion-collapse collapse">
-                <div class="container pt-4 pb-4">
-                    <textarea class="form-control form-control-sm" id="compromiso4ant"  rows="5" disabled>{{ $compromisosArray2[4] }}</textarea>
+            <div class="container pt-4 pb-4">
+                <div class="row">
+                  <div class="col-md-9">
+                    <textarea class="form-control form-control-sm" id="compromiso4ant" rows="5" disabled>{{ $compromisosArray2[4] }}</textarea>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="estado_compromiso4" class="form-label">Estado</label>
+                    <select class="form-select form-select-sm" id="estado_compromiso4" name="estado_compromiso[4]" required>
+                        {!! $t_estados_compromisos !!}
+                    </select>
+                  </div>
                 </div>
+              </div>
+
             </div>
         </div>
     
 
-
-
-
-
-  
-
   </div>
 
-  <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">COMPROMISOS DEL HOGAR / INTEGRANTES .</span>
+  <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">COMPROMISOS ACTUALES.</span>
 
 
 
@@ -294,7 +336,12 @@ El gestor consigna información cualitativa. A que se compromete el hogar en rel
 
     <script>
     
-
+    $(document).ready(function() {
+      $('#estado_compromiso1').val("{{ $estado_compromisosArray2[1] ?? '' }}");
+        $('#estado_compromiso2').val("{{ $estado_compromisosArray2[2] ?? '' }}");
+        $('#estado_compromiso3').val("{{ $estado_compromisosArray2[3] ?? '' }}");
+        $('#estado_compromiso4').val("{{ $estado_compromisosArray2[4] ?? '' }}");
+    });
 
 
       $('#siguiente').click(function(){
@@ -385,8 +432,9 @@ El gestor consigna información cualitativa. A que se compromete el hogar en rel
             url: '../guardaraccionesmovilizadorascompromisos?' + params, // Envío en un solo GET
             method: 'GET',
             success: function(response) {
+              enviarCompromisosAnteriores();
               $('#siguiente').css('display','');
-              alertagood();
+             // alertagood();
                 console.log("Compromisos guardados correctamente:", response);
             },
             error: function(xhr, status, error) {
@@ -479,38 +527,102 @@ El gestor consigna información cualitativa. A que se compromete el hogar en rel
     };
 
     function validarCompromisos2() {
-        let compromiso1 = document.getElementById("compromiso1ant");
-        let compromiso2 = document.getElementById("compromiso2ant");
-        let compromiso3 = document.getElementById("compromiso3ant");
-        let compromiso4 = document.getElementById("compromiso4ant");
+    let compromiso1 = document.getElementById("compromiso1ant");
+    let compromiso2 = document.getElementById("compromiso2ant");
+    let compromiso3 = document.getElementById("compromiso3ant");
+    let compromiso4 = document.getElementById("compromiso4ant");
 
-        // Obtener los div de los acordeones
-        let collapseOne = document.getElementById("flush-collapseOneant");
-        let collapseTwo = document.getElementById("flush-collapseTwoant");
-        let collapseThree = document.getElementById("flush-collapseThreeant");
-        let collapseFour = document.getElementById("flush-collapseFourant");
+    let collapseOne = document.getElementById("flush-collapseOneant");
+    let collapseTwo = document.getElementById("flush-collapseTwoant");
+    let collapseThree = document.getElementById("flush-collapseThreeant");
+    let collapseFour = document.getElementById("flush-collapseFourant");
 
-        // Habilitar los campos según la información disponible
-      //  compromiso2.disabled = compromiso1.value.trim() === "";
-      //  compromiso3.disabled = compromiso2.value.trim() === "";
-      //  compromiso4.disabled = compromiso3.value.trim() === "";
+    // Selects
+    let select1 = document.getElementById("estado_compromiso1");
+    let select2 = document.getElementById("estado_compromiso2");
+    let select3 = document.getElementById("estado_compromiso3");
+    let select4 = document.getElementById("estado_compromiso4");
 
-        // Desplegar los acordeones si tienen información
-        if (compromiso1.value.trim() !== "") {
-            collapseOne.classList.add("show");
-        }
-        if (compromiso2.value.trim() !== "") {
-            collapseTwo.classList.add("show");
-        }
-        if (compromiso3.value.trim() !== "") {
-            collapseThree.classList.add("show");
-        }
-        if (compromiso4.value.trim() !== "") {
-            collapseFour.classList.add("show");
-        }
+    // Mostrar acordeones si tienen contenido
+    if (compromiso1.value.trim() !== "") {
+        collapseOne.classList.add("show");
+        select1.setAttribute("required", true);
+    } else {
+        select1.removeAttribute("required");
     }
+
+    if (compromiso2.value.trim() !== "") {
+        collapseTwo.classList.add("show");
+        select2.setAttribute("required", true);
+    } else {
+        select2.removeAttribute("required");
+    }
+
+    if (compromiso3.value.trim() !== "") {
+        collapseThree.classList.add("show");
+        select3.setAttribute("required", true);
+    } else {
+        select3.removeAttribute("required");
+    }
+
+    if (compromiso4.value.trim() !== "") {
+        collapseFour.classList.add("show");
+        select4.setAttribute("required", true);
+    } else {
+        select4.removeAttribute("required");
+    }
+}
+
 
 </script>
 
+<script>
 
+function enviarCompromisosAnteriores() {
+    let compromisosAnteriores = [];
+
+    for (let i = 1; i <= 4; i++) {
+        let compromiso = $(`#compromiso${i}ant`).val()?.trim();
+        let estado = $(`#estado_compromiso${i}`).val();
+
+        if (compromiso !== "") {
+            compromisosAnteriores.push({
+                numero_compromiso: i,
+                compromiso: compromiso, // 👈 clave estándar
+                estado_compromiso: estado // 👈 renombrado para que sea claro y uniforme
+            });
+        }
+    }
+
+    if (compromisosAnteriores.length === 0) {
+        console.log("No hay compromisos anteriores para enviar.");
+        return;
+    }
+
+    let params = $.param({
+        compromisos_anteriores: JSON.stringify(compromisosAnteriores),
+        folio: $('#folioinput').val(),
+        linea: $('#lineaanterior').val(), // 👈 asegúrate que estos IDs existan en el HTML
+        paso: $('#pasoanterior').val(),
+        tabla: $('#tabla').val(),
+        usuario: $('#usuario').val()
+    });
+
+    $.ajax({
+        url: '../guardaraccionesmovilizadorascompromisost1refuerzo1?' + params,
+        method: 'GET',
+        success: function(response) {
+            alertagood();
+            console.log("Compromisos anteriores guardados correctamente:", response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error al guardar compromisos anteriores:", error);
+        }
+    });
+}
+
+
+
+
+</script>
 @endsection

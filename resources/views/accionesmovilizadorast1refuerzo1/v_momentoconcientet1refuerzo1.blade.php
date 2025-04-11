@@ -55,7 +55,7 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">MOMENTO CONSCIENTE
+        <a id="bienestarsaludemocionalqt" class="nav-link active">MOMENTO MOVILIZADOR
         </a>
       </li>
   <li class="nav-item" role="presentation" style="cursor:pointer">
@@ -127,7 +127,7 @@
                 <div class="row g-0" id="indicadorbse1">
                   <div class="col-md-4 d-flex align-items-center border-end border-bottom">
                     <div class="p-2">
-                        MOMENTOS CONCIENTES
+                        MOMENTOS CONSCIENTES
                     </div>
                   </div>
                   <div class="col-md-8 d-flex align-items-stretch  ">
@@ -165,7 +165,7 @@
                 <div class="row g-0" id="indicadorbse1">
                   <div class="col-md-4 d-flex align-items-center border-end border-bottom">
                     <div class="p-2">
-                        MOMENTOS CONCIENTES
+                        MOMENTOS CONSCIENTES
                     </div>
                   </div>
                   <div class="col-md-8 d-flex align-items-stretch  ">

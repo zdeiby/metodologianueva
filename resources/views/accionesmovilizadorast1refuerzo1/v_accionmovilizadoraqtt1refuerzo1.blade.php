@@ -60,7 +60,9 @@
     <a id="legalqt"  class="nav-link " >ACCIÓN MOVILIZADORA BIENESTAR EN LA FAMILIA</a>
   </li>
   <li class="nav-item" role="presentation"  style="cursor:pointer">
-    <a id="financieroqt"  class="nav-link active">ACCIÓN BIENESTAR PRIORIZADO</a>
+    <!-- <a id="financieroqt"  class="nav-link active">ACCIÓN BIENESTAR PRIORIZADO</a> -->
+    <a id="financieroqt"  class="nav-link active">A.M {{$descripcion}}</a>
+
   </li>
 
   <li class="nav-item" role="presentation"  style="cursor:pointer">
@@ -104,9 +106,9 @@
           </div>
 
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO MOVILIZADOR ANTERIOR.</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important; display:none">ACCIÓN MOVILIZADORA ANTERIOR.</span>
 
-            <div class="container mt-4">
+            <div class="container mt-4" style="display:none">
               <div class="border">
                 <!-- Fila de títulos -->
                 <div class="row g-0">
@@ -147,7 +149,7 @@
 
 
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO MOVILIZADOR.</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">ACCIÓN MOVILIZADORA ACTUAL.</span>
 
 
 

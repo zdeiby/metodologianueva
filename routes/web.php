@@ -256,6 +256,7 @@ Route::get('/finalizarvisitat1refuerzo1',[c_finalizaciont1refuerzo1::class,'fc_f
 Route::get('/informevisitat1refuerzo1/{folio}',[c_finalizaciont1refuerzo1::class,'fc_informevisitat1refuerzo1'])->name('informevisitat1refuerzo1');
 
 
+Route::get('/guardaraccionesmovilizadorascompromisost1refuerzo1',[c_momentoconcientet1refuerzo1::class, 'fc_guardaraccionesmovilizadorascompromisost1refuerzo1'])->name('guardaraccionesmovilizadorascompromisost1refuerzo1');
 
 
 //tipo 1 refuerzo 2 

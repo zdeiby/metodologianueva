@@ -123,24 +123,24 @@
          
 
 <!-- FIRMA -->
-<div id="firmaacepta" class="text-center" >
+<div id="firmaacepta" class="text-center">
 
            
-<div class="row">
+<div class="row" style="display:none">
     <div class="col-sm">
         <div class="alert alert-info" role="alert" style="background:#bee5eb">
             En el siguiente cuadro realiza la firma y cuando este firmado oprime el botón <strong>Cargar Firma</strong>
         </div>
     </div>
 </div>
-<div class="row" style="display: none">
+<div class="row" style="display: none" style="display:none">
     <div class="form-group col-sm">
         <label for="nameFirma">firma:</label>
         <input type="text" class="form-control form-control-sm" id="nameFirma" value="">
     </div>
 </div>
 <div class="contenedor" >
-    <div class="row">
+    <div class="row" style="display:none">
         <div class="col-sm" >
             <div class="alert alert-secondary" role="alert">
                 <canvas id="draw-canvas" width="620" height="180" style="border:1px solid #0dcaf0">
@@ -151,13 +151,13 @@
     </div>
     <div class="row" >
         <div class="col-sm">
-            <input type="button" class="btn btn-primary btn-sm" id="draw-submitBtn" value="Cargar Firma"></input>
-            <input type="button" class="btn btn-warning btn-sm" id="draw-clearBtn" value="Limpiar Firma"></input>
-            <label>Color</label>
-            <input type="color" id="color">
-            <label>Tamaño Puntero</label>
-            <input type="range" id="puntero" min="1" default="1" max="5" width="10%"><hr>
-            <label for="">Si no puedes firmar puedes incluir la firma en foto, o un documento que avale</label><br>
+            <input type="button" class="btn btn-primary btn-sm" id="draw-submitBtn" value="Cargar Firma" style="display:none"></input>
+            <input type="button" class="btn btn-warning btn-sm" id="draw-clearBtn" value="Limpiar Firma" style="display:none"></input>
+            <label style="display:none">Color</label>
+            <input type="color" id="color" style="display:none">
+            <label style="display:none">Tamaño Puntero</label>
+            <input type="range" id="puntero" min="1" default="1" max="5" width="10%" style="display:none"><hr>
+            <label for="">Si no puedes tomar registro fotográfico de la visita, <b>recuerde:</b> diligenciar en físico el formato el cual <b>deberá tener la firma o huella y cargue ese como la evidencia</b>.</label><br><hr>
                 <label class="btn btn-primary btn-sm" for="file-input">
                     <i class="fas fa-camera"></i> Seleccionar archivo de tu equipo 💻
                     <input type="file" id="file-input" accept="image/*" style="display: none;">

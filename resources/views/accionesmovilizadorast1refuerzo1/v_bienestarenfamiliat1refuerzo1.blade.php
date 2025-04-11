@@ -105,7 +105,7 @@
           </div>
 
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO MOVILIZADOR ANTERIOR.</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">ACCIÓN MOVILIZADORA ANTERIOR.</span>
 
 
 
@@ -158,7 +158,7 @@
 
 
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">MOMENTO MOVILIZADOR ACTUAL.</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">ACCIÓN MOVILIZADORA ACTUAL.</span>
 
 
 
