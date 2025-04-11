@@ -335,6 +335,33 @@
         $('form').submit(function(e) {
             e.preventDefault();
             
+            // Validar que se haya seleccionado al menos una estrategia o "No implementa ninguna"
+            var haySeleccion = false;
+            
+            // Verificar si "No implementa ninguna" está seleccionado
+            if($('#estrategia_16').is(':checked')) {
+                haySeleccion = true;
+            } else {
+                // Verificar si hay algún otro checkbox seleccionado
+                $('input[name="estrategias[]"]').each(function() {
+                    if($(this).is(':checked')) {
+                        haySeleccion = true;
+                        return false; // Salir del bucle each
+                    }
+                });
+            }
+            
+            // Si no hay selección, mostrar mensaje de error
+            if(!haySeleccion) {
+                Swal.fire({
+                    title: 'Atención',
+                    text: 'Debe seleccionar al menos una estrategia',
+                    icon: 'warning',
+                    confirmButtonText: 'Aceptar'
+                });
+                return false;
+            }
+            
             // Validar que si se seleccionó "Otro", se haya especificado el texto
             if($('#estrategia_15').is(':checked') && $('#otro_especificar').val().trim() === '') {
                 Swal.fire({
