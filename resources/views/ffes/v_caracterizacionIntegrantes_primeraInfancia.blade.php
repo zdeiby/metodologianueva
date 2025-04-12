@@ -304,7 +304,7 @@ $('form').submit(function(e) {
                 // Solo redirigir si ya hay datos guardados
                 var folio = $('#folioContainer').attr('folio');
                 var idintegrante = $('#idintegranteinput').val();
-                window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+                window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
             } else {
                 // Mostrar mensaje de advertencia si no hay datos guardados
                 Swal.fire({
@@ -320,7 +320,7 @@ $('form').submit(function(e) {
             // Redirigir a Caracterización Integrantes
             var folio = $('#folioContainer').attr('folio');
             var idintegrante = $('#idintegranteinput').val();
-            window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
         });
         
         // Función para validar input
@@ -336,14 +336,14 @@ $('form').submit(function(e) {
      function redirectToIntegrantes() {
          var folio = $('#folioContainer').attr('folio');
          var idintegrante = $('#idintegranteinput').val();
-         window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+         window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
      }
 
      // Función para redirigir a la vista de caracterización integrantes
      function redirigirACaracterizacionIntegrantes() {
             var folio = $('#folioContainer').attr('folio');
             var idintegrante = $('#idintegranteinput').val();
-            window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
         }
 
      // Función para redirigir a la vista de mecanismos de protección
@@ -352,7 +352,7 @@ $('form').submit(function(e) {
             var idintegrante = $('#idintegranteinput').val();
             
             // Redireccionar directamente a Mecanismos de Protección sin validar la edad
-            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
         }
 
         // Función para redirigir a la vista de primera infancia
@@ -362,7 +362,7 @@ function redirigirAPrimeraInfancia() {
     var edad = parseInt($('#edadintegrante').text());
     
     if (edad < 6) {
-        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
     } else {
         Swal.fire({
             title: 'Atención',

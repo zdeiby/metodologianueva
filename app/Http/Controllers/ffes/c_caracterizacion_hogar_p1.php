@@ -16,30 +16,33 @@ class c_caracterizacion_hogar_p1 extends Controller
     {
         try {
             // Desencriptar el folio si es necesario
-            $folioDesencriptado = $folio;
+            $hashids = new Hashids('', 10);
+            $decodedFolio = $hashids->decode($folio)[0];
+            $decodedidintegrante = $hashids->decode($idintegrante)[0];
+            $folioDesencriptado = $decodedFolio;
             try {
-                $folioDesencriptado = Crypt::decrypt($folio);
+                $folioDesencriptado = $folioDesencriptado;
             } catch (\Exception $e) {
                 // Si hay error en la desencriptación, usar el valor original
-                $folioDesencriptado = $folio;
+                $folioDesencriptado = $folioDesencriptado;
             }
             
             // Obtener datos del integrante
             $datosIntegrante = DB::table('t1_integranteshogar')
                 ->where('folio', $folioDesencriptado)
-                ->where('idintegrante', $idintegrante)
+                ->where('idintegrante', $decodedidintegrante)
                 ->first();
                 
             if (!$datosIntegrante) {
                 return redirect()->route('caracterizacion_integrantes', [
-                    'folio' => $folio,
-                    'idintegrante' => $idintegrante
+                    'folio' => $decodedFolio,
+                    'idintegrante' => $decodedidintegrante
                 ])->with('error', 'No se encontró ningún integrante con el folio especificado: ' . $folioDesencriptado);
             }
             
             // Obtener datos de caracterización de hogar si existen
             $modelo = new m_caracterizacion_hogar_p1();
-            $caracterizacionHogar = $modelo->m_obtenerCaracterizacionHogar($folioDesencriptado, $idintegrante);
+            $caracterizacionHogar = $modelo->m_obtenerCaracterizacionHogar($folioDesencriptado, $decodedidintegrante);
             
             // Obtener las respuestas si existen
             $respuestas = null;
@@ -51,7 +54,7 @@ class c_caracterizacion_hogar_p1 extends Controller
             $pregunta2Respondida = false;
             $respuestaPregunta2 = DB::table('t1_caracterizacion_hogar_ffes')
                 ->where('folio', $folioDesencriptado)
-                ->where('idintegrante', $idintegrante)
+                ->where('idintegrante', $decodedidintegrante)
                 ->first();
             
             if ($respuestaPregunta2 && $respuestaPregunta2->nino_medidas_restablecimiento_p2 != null 
@@ -69,7 +72,7 @@ class c_caracterizacion_hogar_p1 extends Controller
             $pregunta3Respondida = false;
             $respuestaPregunta3 = DB::table('t1_caracterizacion_hogar_ffes')
                 ->where('folio', $folioDesencriptado)
-                ->where('idintegrante', $idintegrante)
+                ->where('idintegrante', $decodedidintegrante)
                 ->first();
             
             if ($respuestaPregunta3 && $respuestaPregunta3->salud_mental_p3 != null 
@@ -87,7 +90,7 @@ class c_caracterizacion_hogar_p1 extends Controller
             $pregunta4Respondida = false;
             $respuestaPregunta4 = DB::table('t1_caracterizacion_hogar_ffes')
                 ->where('folio', $folioDesencriptado)
-                ->where('idintegrante', $idintegrante)
+                ->where('idintegrante', $decodedidintegrante)
                 ->first();
             
             if ($respuestaPregunta4 && $respuestaPregunta4->hace_parte_instancia_participacion_p4 != null 
@@ -121,8 +124,10 @@ class c_caracterizacion_hogar_p1 extends Controller
             $mostrarPregunta4 = $pregunta3Respondida;
             
             return view('ffes.v_caracterizacion_hogar_p1', [
-                'folio' => $folioDesencriptado,
-                'idintegrante' => $idintegrante,
+                'folio' => $decodedFolio,
+                'foliourl'=>$folio,
+                'idintegranteurl'=>$idintegrante,
+                'idintegrante' => $decodedidintegrante,
                 'datosIntegrante' => $datosIntegrante,
                 'respuestas' => $respuestas,
                 'pregunta1Respondida' => $pregunta1Respondida,

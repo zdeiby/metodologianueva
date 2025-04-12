@@ -174,7 +174,7 @@
             </div>
             <div class="text-end col">
             <button class="btn btn-outline-success" type="submit"  >Guardar</button>
-            <div class="btn btn-outline-primary" id="siguiente"   >Siguiente</div>
+            <div class="btn btn-outline-primary" id="siguiente"   onclick="window.location.href='{{ url('integrantesffes/' . $foliourl) }}'"  >Siguiente</div>
             </div> 
           </div>
 
@@ -200,7 +200,7 @@
         var idintegrante = $('#idintegranteinput').val();
         
         // Redireccionar directamente a Primera Infancia sin validar la edad
-        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
     }
     
     // Función para volver a Primera Infancia sin validación de edad
@@ -209,13 +209,13 @@
         var idintegrante = $('#idintegranteinput').val();
         
         // Redireccionar a Primera Infancia sin validar la edad
-        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
     }
     
     function redirigirACaracterizacionIntegrantes() {
         var folio = $('#folioContainer').attr('folio');
         var idintegrante = $('#idintegranteinput').val();
-        window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
     }
     
     // Función para mostrar alerta de edad

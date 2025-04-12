@@ -92,6 +92,8 @@ class c_caracterizacionIntegrantes extends Controller
         
         return view('ffes.v_caracterizacionIntegrantes', [
             'folio' => $folioDesencriptado,
+            'foliourl'=>$folio,
+            'idintegranteurl'=>$idintegrante,
             'folioEncriptado' => $hashids->encode($folioDesencriptado),
             'idintegrante' => $idintegranteDesencriptado,
             'idintegranteEncriptado' => $hashids->encode($idintegranteDesencriptado),

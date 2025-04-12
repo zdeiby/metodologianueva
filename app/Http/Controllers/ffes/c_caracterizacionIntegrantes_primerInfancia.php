@@ -74,6 +74,8 @@ class c_caracterizacionIntegrantes_primerInfancia extends Controller
         
         return view('ffes.v_caracterizacionIntegrantes_primeraInfancia', [
             'folio' => $folioDesencriptado,
+            'foliourl'=>$folio,
+            'idintegranteurl'=>$idintegrante,
             'folioEncriptado' => $hashids->encode($folioDesencriptado),
             'idintegrante' => $idintegranteDesencriptado,
             'idintegranteEncriptado' => $hashids->encode($idintegranteDesencriptado),

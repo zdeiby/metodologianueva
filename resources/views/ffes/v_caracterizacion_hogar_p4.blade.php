@@ -300,6 +300,7 @@
                             </div>
                             <div class="text-end col">
                                 <button class="btn btn-outline-success" id="btnGuardar" type="button">Guardar</button>
+                                <div class="btn btn-outline-primary" onclick="redirigirAIntegrantes()">Siguiente</div>
                             </div> 
                         </div>
                     </div>
@@ -310,6 +311,15 @@
 </div>
 
 <script>
+
+function redirigirAIntegrantes() {
+        var folio = $('#folioContainer').attr('folio');
+        var idintegrante = $('#idintegranteinput').val();
+        window.location.href = "{{ route('editarintegrantesgeneral', ['folio' => ':folio']) }}"
+            .replace(':folio', '<?= $foliourl ?>');
+    }
+
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log("DOM cargado completamente");
     
@@ -335,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Crear y configurar objeto de petición AJAX
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', '{{ route("obtener_integrantes_menores_p4", ["folio" => ":folio"]) }}'.replace(':folio', folio), true);
+        xhr.open('GET', '{{ route("obtener_integrantes_menores_p4", ["folio" => ":folio"]) }}'.replace(':folio', '<?= $folio ?>'), true);
         
         xhr.onload = function() {
             if (xhr.status >= 200 && xhr.status < 300) {
@@ -659,24 +669,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const folio = folioInput.value;
         const idintegrante = document.getElementById('idintegranteinput').value;
         window.location.href = "{{ route('caracterizacion_hogar_p1', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-            .replace(':folio', folio)
-            .replace(':idintegrante', idintegrante);
+            .replace(':folio', '<?= $foliourl ?>')
+            .replace(':idintegrante', '<?= $idintegranteurl ?>');
     });
     
     document.getElementById('linkPregunta2').addEventListener('click', function() {
         const folio = folioInput.value;
         const idintegrante = document.getElementById('idintegranteinput').value;
         window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-            .replace(':folio', folio)
-            .replace(':idintegrante', idintegrante);
+            .replace(':folio', '<?= $foliourl ?>')
+            .replace(':idintegrante', '<?= $idintegranteurl ?>');
     });
     
     document.getElementById('linkPregunta3').addEventListener('click', function() {
         const folio = folioInput.value;
         const idintegrante = document.getElementById('idintegranteinput').value;
         window.location.href = "{{ route('caracterizacion_hogar_p3', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-            .replace(':folio', folio)
-            .replace(':idintegrante', idintegrante);
+            .replace(':folio', '<?= $foliourl ?>')
+            .replace(':idintegrante', '<?= $idintegranteurl ?>');
     });
     
     // Configurar evento inicial
@@ -693,8 +703,8 @@ function redirigirACaracterizacionHogarP3() {
     const folio = document.getElementById('folioContainer').getAttribute('folio');
     const idintegrante = document.getElementById('idintegranteinput').value;
     window.location.href = "{{ route('caracterizacion_hogar_p3', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-        .replace(':folio', folio)
-        .replace(':idintegrante', idintegrante);
+        .replace(':folio', '<?= $foliourl ?>')
+        .replace(':idintegrante', '<?= $idintegranteurl ?>');
 }
 </script>
 @endsection

@@ -400,7 +400,7 @@
         
         // Realizar petición AJAX para obtener los integrantes del hogar
         $.ajax({
-            url: '{{ route("obtener_integrantes_menores_p2", ["folio" => ":folio"]) }}'.replace(':folio', folio),
+            url: '{{ route("obtener_integrantes_menores_p2", ["folio" => ":folio"]) }}'.replace(':folio', '<?= $folio ?>'),
             type: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -491,7 +491,7 @@
         
         // Realizar petición AJAX para obtener los integrantes del hogar
         $.ajax({
-            url: '{{ route("obtener_integrantes_menores_p2", ["folio" => ":folio"]) }}'.replace(':folio', folio),
+            url: '{{ route("obtener_integrantes_menores_p2", ["folio" => ":folio"]) }}'.replace(':folio', '<?= $folio ?>'),
             type: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -596,8 +596,8 @@
         
         // Redirigir a la página de caracterización hogar P1 con el folio y el idintegrante
         window.location.href = "{{ route('caracterizacion_hogar_p1', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-            .replace(':folio', folio)
-            .replace(':idintegrante', idintegrante);
+            .replace(':folio', '<?= $foliourl ?>')
+            .replace(':idintegrante', '<?= $idintegranteurl ?>');
     });
         
         // Inicializar la pregunta 2.1 si ya está seleccionada la opción A (SI)
@@ -824,8 +824,8 @@
                 
                 // Redirigir a la página de caracterización hogar P3
                 window.location.href = "{{ route('caracterizacion_hogar_p3', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                    .replace(':folio', folio)
-                    .replace(':idintegrante', idintegrante);
+                    .replace(':folio', '<?= $foliourl ?>')
+                    .replace(':idintegrante', '<?= $idintegranteurl ?>');
             } else {
                 // Si no está respondida, mostrar mensaje
                 Swal.fire({
@@ -848,8 +848,8 @@
             
             // Redirigir a la página de caracterización hogar P3
             window.location.href = "{{ route('caracterizacion_hogar_p3', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                .replace(':folio', folio)
-                .replace(':idintegrante', idintegrante);
+                .replace(':folio', '<?= $foliourl ?>')
+                .replace(':idintegrante', '<?= $idintegranteurl ?>');
         });
         
         // Evento para el enlace de Pregunta 4
@@ -864,8 +864,8 @@
             
             // Redirigir a la página de caracterización hogar P4
             window.location.href = "{{ route('caracterizacion_hogar_p4', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                .replace(':folio', folio)
-                .replace(':idintegrante', idintegrante);
+                .replace(':folio', '<?= $foliourl ?>')
+                .replace(':idintegrante', '<?= $idintegranteurl ?>');
         });
     });
 
@@ -874,16 +874,16 @@
         var folio = $('#folioContainer').attr('folio');
         var idintegrante = $('#idintegranteinput').val();
         window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-            .replace(':folio', folio)
-            .replace(':idintegrante', idintegrante);
+            .replace(':folio', '<?= $foliourl ?>')
+            .replace(':idintegrante', '<?= $idintegranteurl ?>');
     }
     
     function redirigirACaracterizacionHogarP1() {
         var folio = $('#folioContainer').attr('folio');
         var idintegrante = $('#idintegranteinput').val();
         window.location.href = "{{ route('caracterizacion_hogar_p1', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-            .replace(':folio', folio)
-            .replace(':idintegrante', idintegrante);
+            .replace(':folio', '<?= $foliourl ?>')
+            .replace(':idintegrante', '<?= $idintegranteurl ?>');
     }
 </script>
 @endsection

@@ -374,9 +374,12 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
             ],
             $dataVisita
         );
+
+        $inicio = Carbon::now();
+        $totalSegundos = $inicio->diffInSeconds(Carbon::now());
     
         // 🎯 Respuesta JSON
-        return response()->json(['message' => "Registro exitoso para folio: {$folio}"]);
+        return response()->json(['message' => "Registro exitoso para folio: {$folio}",  'totalSegundos' => $totalSegundos]);
     }
 
 

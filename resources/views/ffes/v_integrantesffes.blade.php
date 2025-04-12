@@ -1,3 +1,5 @@
+
+
 @extends('componentes.navlateral')
 
 @section('title', 'Agregar Integrantes')
@@ -48,6 +50,11 @@
       </thead>
       <tbody class="text-center">
         @foreach($hogar as $h)
+
+        @php
+          $hashids = new \Hashids\Hashids('', 10); // instancia directa
+          $idCodificado = $hashids->encode($h->idintegrantetitular);
+      @endphp
         <tr>
           <td>{{ $h->folio }}</td>
           <td>{{ $h->documento }}</td>
@@ -58,7 +65,7 @@
           <td>{{ $h->direccion }}</td> -->
           <td>
           <button type="button" class="btn btn-warning btn-sm habilitado" 
-                    onclick="editarIntegrantes('{{ $h->folio }}', '{{ $h->idintegrantetitular }} ')">
+                    onclick="editarIntegranteshogar('{{ $folio }}', '{{$idCodificado }} ')">
               Caracterización
             </button>
           </td>
@@ -228,10 +235,11 @@
            window.location.href = url;
        }
 
-       function editarIntegrantes(folio, idintegrante) {
+       function editarIntegranteshogar(folio, idintegrante) {
     // Redirigir a la ruta con el folio encriptado
           window.location.href = `../caracterizacion_hogar_p1/${folio}/${idintegrante}`;
         }
+        
 
       $('#volver').click(function(){
         redirectToIntegrantes()

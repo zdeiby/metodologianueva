@@ -307,7 +307,7 @@
             <div class="text-start col">
 
 
-             <!-- <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div> -->
+              <div class="btn btn-outline-success" onclick="window.location.href='{{ url('integrantesffes/' . $foliourl) }}'" >Volver</div> 
 
 
 
@@ -506,7 +506,7 @@
             
             if (estrategiasGuardadas) {
                 // Solo redirigir si ya existen estrategias guardadas
-                window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+                window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
             } else {
                 // Mostrar mensaje de advertencia si no hay datos guardados
                 Swal.fire({
@@ -544,7 +544,7 @@
                 });
             } else {
                 // Si ambas secciones están completas, redirigir
-                window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+                window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
             }
         }
    

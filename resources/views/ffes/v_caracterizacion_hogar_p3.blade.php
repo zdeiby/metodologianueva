@@ -828,8 +828,8 @@
             
             // Redirigir a la página de caracterización hogar P1 con el folio y el idintegrante
             window.location.href = "{{ route('caracterizacion_hogar_p1', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                .replace(':folio', folio)
-                .replace(':idintegrante', idintegrante);
+                .replace(':folio', '<?= $foliourl ?>')
+                .replace(':idintegrante','<?= $idintegranteurl ?>');
         });
         
         // Evento para el enlace de Pregunta 2
@@ -842,8 +842,8 @@
             
             // Redirigir a la página de caracterización hogar P2 con el folio y el idintegrante
             window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                .replace(':folio', folio)
-                .replace(':idintegrante', idintegrante);
+                .replace(':folio', '<?= $foliourl ?>')
+                .replace(':idintegrante', '<?= $idintegranteurl ?>');
         });
         
         // Evento para el enlace de Pregunta 4
@@ -856,8 +856,8 @@
             
             // Redirigir a la página de caracterización hogar P4 con el folio y el idintegrante
             window.location.href = "{{ route('caracterizacion_hogar_p4', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                .replace(':folio', folio)
-                .replace(':idintegrante', idintegrante);
+                .replace(':folio', '<?= $foliourl ?>')
+                .replace(':idintegrante', '<?= $idintegranteurl ?>');
         });
         
         // Manejar cambio en las opciones de respuesta
@@ -1346,8 +1346,8 @@
             
             // Redirigir a la página de caracterización hogar P2
             window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                .replace(':folio', folio)
-                .replace(':idintegrante', idintegrante);
+                .replace(':folio', '<?= $foliourl ?>')
+                .replace(':idintegrante', '<?= $idintegranteurl ?>');
         });
         
         // Funcionalidad del botón "Siguiente"
@@ -1369,8 +1369,8 @@
                 
                 // Redirigir a la página de caracterización hogar P4
                 window.location.href = "{{ route('caracterizacion_hogar_p4', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                    .replace(':folio', folio)
-                    .replace(':idintegrante', idintegrante);
+                    .replace(':folio', '<?= $foliourl ?>')
+                    .replace(':idintegrante', '<?= $idintegranteurl ?>');
             } else {
                 // Si no está respondida, mostrar mensaje
                 Swal.fire({

@@ -8,37 +8,42 @@ use App\Models\ffes\m_caracterizacion_hogar_p3;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Hashids\Hashids;
 
 class c_caracterizacion_hogar_p3 extends Controller
 {
     // Método principal para cargar la vista
     public function fc_caracterizacion_hogar_p3($folio, $idintegrante)
     {
+        $hashids = new Hashids('', 10);
+        $decodedFolio = $hashids->decode($folio)[0];
+        $decodedidintegrante = $hashids->decode($idintegrante)[0];
+        $folioDesencriptado = $decodedFolio;
         try {
             // Intentar desencriptar el folio
             try {
-                $folioDesencriptado = Crypt::decrypt($folio);
+                $folioDesencriptado = $decodedFolio;
             } catch (\Exception $e) {
                 // Si hay error en la desencriptación, usar el valor original
-                $folioDesencriptado = $folio;
+                $folioDesencriptado = $decodedFolio;
             }
             
             // Obtener datos del integrante
             $datosIntegrante = DB::table('t1_integranteshogar')
                 ->where('folio', $folioDesencriptado)
-                ->where('idintegrante', $idintegrante)
+                ->where('idintegrante', $decodedidintegrante)
                 ->first();
                 
             if (!$datosIntegrante) {
                 return redirect()->route('caracterizacion_integrantes', [
-                    'folio' => $folio,
-                    'idintegrante' => $idintegrante
+                    'folio' => $folioDesencriptado,
+                    'idintegrante' => $decodedidintegrante
                 ])->with('error', 'No se encontró ningún integrante con el folio especificado: ' . $folioDesencriptado);
             }
             
             // Obtener datos de caracterización de hogar si existen
             $modelo = new m_caracterizacion_hogar_p3();
-            $caracterizacionHogar = $modelo->m_obtenerCaracterizacionHogar($folioDesencriptado, $idintegrante);
+            $caracterizacionHogar = $modelo->m_obtenerCaracterizacionHogar($folioDesencriptado, $decodedidintegrante);
             
             // Obtener las respuestas si existen
             $respuestas = null;
@@ -62,7 +67,7 @@ class c_caracterizacion_hogar_p3 extends Controller
             $pregunta1Respondida = false;
             $respuestaPregunta1 = DB::table('t1_caracterizacion_hogar_ffes')
                 ->where('folio', $folioDesencriptado)
-                ->where('idintegrante', $idintegrante)
+                ->where('idintegrante', $decodedidintegrante)
                 ->first();
             
             if ($respuestaPregunta1 && isset($respuestaPregunta1->situacionesriesgo_hogar_p1) 
@@ -81,7 +86,7 @@ class c_caracterizacion_hogar_p3 extends Controller
             $pregunta2Respondida = false;
             $respuestaPregunta2 = DB::table('t1_caracterizacion_hogar_ffes')
                 ->where('folio', $folioDesencriptado)
-                ->where('idintegrante', $idintegrante)
+                ->where('idintegrante', $decodedidintegrante)
                 ->first();
             
             if ($respuestaPregunta2 && isset($respuestaPregunta2->nino_medidas_restablecimiento_p2) 
@@ -108,7 +113,7 @@ class c_caracterizacion_hogar_p3 extends Controller
             $pregunta3Respondida = false;
             $respuestaPregunta3 = DB::table('t1_caracterizacion_hogar_ffes')
                 ->where('folio', $folioDesencriptado)
-                ->where('idintegrante', $idintegrante)
+                ->where('idintegrante', $folioDesencriptado)
                 ->first();
             
             if ($respuestaPregunta3 && isset($respuestaPregunta3->salud_mental_p3) 
@@ -127,7 +132,7 @@ class c_caracterizacion_hogar_p3 extends Controller
             $pregunta4Respondida = false;
             $respuestaPregunta4 = DB::table('t1_caracterizacion_hogar_ffes')
                 ->where('folio', $folioDesencriptado)
-                ->where('idintegrante', $idintegrante)
+                ->where('idintegrante', $folioDesencriptado)
                 ->first();
             
             if ($respuestaPregunta4 && isset($respuestaPregunta4->hace_parte_instancia_participacion_p4) 
@@ -149,7 +154,9 @@ class c_caracterizacion_hogar_p3 extends Controller
             
             return view('ffes.v_caracterizacion_hogar_p3', [
                 'folio' => $folioDesencriptado,
-                'idintegrante' => $idintegrante,
+                'foliourl'=>$folio,
+                'idintegranteurl'=>$idintegrante,
+                'idintegrante' => $decodedidintegrante,
                 'datosIntegrante' => $datosIntegrante,
                 'respuestas' => $respuestas,
                 'diagnosticos' => $diagnosticos,

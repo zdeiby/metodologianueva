@@ -373,8 +373,8 @@
                 </div>
                 <hr>
                 <div class="row">  
-                    <div class="text-start col">
-                        <!-- <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div> -->
+                <div class="text-start col">
+                        <div class="btn btn-outline-success" onclick="redirigirAIntegrantes()">Volver</div>
                     </div>
                     <div class="text-end col">
                         <button class="btn btn-outline-success" id="btnGuardar" type="button">Guardar</button>
@@ -389,6 +389,14 @@
 <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 
 <script>
+
+function redirigirAIntegrantes() {
+        var folio = $('#folioContainer').attr('folio');
+        var idintegrante = $('#idintegranteinput').val();
+        window.location.href = "{{ route('editarintegrantesgeneral', ['folio' => ':folio']) }}"
+            .replace(':folio', '<?= $foliourl ?>');
+    }
+
     // Función para obtener integrantes menores de 18 años
     function cargarIntegrantesMenores() {
         // Obtener el folio del formulario
@@ -684,8 +692,8 @@
             
             // Redirigir a la página de caracterización hogar P2 con el folio y el idintegrante
             window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                .replace(':folio', folio)
-                .replace(':idintegrante', idintegrante);
+                .replace(':folio', '<?= $foliourl ?>')
+                .replace(':idintegrante', '<?= $idintegranteurl ?>');
         });
         
         // Evento para el enlace de Pregunta 3 (si existe)
@@ -700,8 +708,8 @@
             
             // Redirigir a la página de caracterización hogar P3
             window.location.href = "{{ route('caracterizacion_hogar_p3', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                .replace(':folio', folio)
-                .replace(':idintegrante', idintegrante);
+                .replace(':folio', '<?= $foliourl ?>')
+                .replace(':idintegrante', '<?= $idintegranteurl ?>');
         });
         
         // Evento para el enlace de Pregunta 4
@@ -716,8 +724,8 @@
             
             // Redirigir a la página de caracterización hogar P4
             window.location.href = "{{ route('caracterizacion_hogar_p4', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                .replace(':folio', folio)
-                .replace(':idintegrante', idintegrante);
+                .replace(':folio', '<?= $foliourl ?>')
+                .replace(':idintegrante', '<?= $idintegranteurl ?>');
         });
     });
 
@@ -725,7 +733,7 @@
     function redirigirACaracterizacionIntegrantes() {
         var folio = $('#folioContainer').attr('folio');
         var idintegrante = $('#idintegranteinput').val();
-        window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+        window.location.href = "{{ route('caracterizacion_integrantes', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
     }
 
     function redirigirAPrimeraInfancia() {
@@ -745,7 +753,7 @@
         console.log("Edad detectada:", edad);
         
         if (edad < 6) {
-            window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            window.location.href = "{{ route('primera_infancia', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
         } else {
             Swal.fire({
                 title: 'Atención',
@@ -774,8 +782,8 @@
         
         if (edad > 5 && edad < 18) {
             window.location.href = "{{ route('mecanismos_proteccion', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}"
-                .replace(':folio', folio)
-                .replace(':idintegrante', idintegrante);
+                .replace(':folio', '<?= $foliourl ?>')
+                .replace(':idintegrante', '<?= $idintegranteurl ?>');
         } else {
             Swal.fire({
                 title: 'Atención',
@@ -789,7 +797,7 @@
     // Función para redirigir a la vista de integrantes
     function redirectToIntegrantes() {
         var folio = $('#folioContainer').attr('folio');
-        window.location.href = "{{ route('integrantes', ['folio' => ':folio']) }}".replace(':folio', folio);
+        window.location.href = "{{ route('integrantes', ['folio' => ':folio']) }}".replace(':folio', '<?= $foliourl ?>');
     }
     
     function redirigirACaracterizacionHogarP2() {
@@ -803,7 +811,7 @@
             // Si la pregunta 1 está respondida, redirigir a la pregunta 2
             var folio = $('#folioContainer').attr('folio');
             var idintegrante = $('#idintegranteinput').val();
-            window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', folio).replace(':idintegrante', idintegrante);
+            window.location.href = "{{ route('caracterizacion_hogar_p2', ['folio' => ':folio', 'idintegrante' => ':idintegrante']) }}".replace(':folio', '<?= $foliourl ?>').replace(':idintegrante', '<?= $idintegranteurl ?>');
         } else {
             // Si no está respondida, mostrar mensaje
             Swal.fire({

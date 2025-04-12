@@ -537,7 +537,7 @@ body {
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Aceptar</button>
+        <button type="button" class="btn btn-secondary" id="resultadoencuesta" data-bs-dismiss="modal" >Aceptar</button>
       </div>
     </div>
   </div>
@@ -575,7 +575,7 @@ body {
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="resultadoencuesta">Aceptar</button>
+        <button type="button" class="btn btn-secondary"  id="">Aceptar</button>
       </div>
     </div>
   </div>
@@ -615,10 +615,11 @@ console.log('ya esta')
       data: data, // Envía los datos de manera plana
       success: function(response) {
         //$('#finalizarboton').css('display','');
-     
-          //alertagood();
+        const totalSegundos = response.totalSegundos;
+        iniciarContador(totalSegundos);
+         // alertagood();
           console.log(data);
-          location.reload();
+         // location.reload();
       },
       error: function(xhr, status, error) {
           alertabad();
@@ -654,28 +655,51 @@ console.log('ya esta')
 
 
  
+let contadorActivo = false;
+    let intervaloContador;
+
+    function iniciarContador(totalSegundos) {
+        if (contadorActivo) return; // evitar múltiples contadores
+
+        contadorActivo = true;
+
+        function actualizarContador() {
+            totalSegundos++;
+
+            let horas = Math.floor(totalSegundos / 3600);
+            let minutos = Math.floor((totalSegundos % 3600) / 60);
+            let segundos = totalSegundos % 60;
+
+            let texto = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+            document.getElementById('duracion-texto').textContent = texto;
+        }
+
+        actualizarContador();
+        intervaloContador = setInterval(actualizarContador, 1000);
+    }
 
 
-
-   $('#resultadoencuesta').click(function() {
-     paginacargando();
-     $.ajax({
-       url: '../agregarpasoresultado',
-       data: { folio: '{{$folioDesencriptado}}', usuario:'{{ Session::get('cedula') }}' },
-       method: "GET",
-       dataType: 'JSON',
-       success: function(data) {
-        $('#encuestaqt').prop('disabled',false);
-        paginalista();
-         console.log(data);
-       },
-       error: function(xhr, status, error) {
-         paginalista();
-         alertabad();
-         console.log(xhr.responseText);
-       }
-     });
-   }); 
+  //  $('#resultadoencuesta').click(function() {
+  //    paginacargando();
+  //    iniciarContador(response.totalSegundos);
+    // location.reload();
+    //  $.ajax({
+    //    url: '../agregarpasoresultado',
+    //    data: { folio: '{{$folioDesencriptado}}', usuario:'{{ Session::get('cedula') }}' },
+    //    method: "GET",
+    //    dataType: 'JSON',
+    //    success: function(data) {
+    //     $('#encuestaqt').prop('disabled',false);
+    //     paginalista();
+    //      console.log(data);
+    //    },
+    //    error: function(xhr, status, error) {
+    //      paginalista();
+    //      alertabad();
+    //      console.log(xhr.responseText);
+    //    }
+    //  });
+  //  }); 
  /*}); */
 
 

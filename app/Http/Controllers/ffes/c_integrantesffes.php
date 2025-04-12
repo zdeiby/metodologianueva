@@ -29,7 +29,7 @@ class c_integrantesffes extends Controller
       $hogar= $modeloHogar->m_leerprincipalhogarconfolio($decodedFolio);
       $folioEncriptadolargo = encrypt($decodedFolio);
       
-        return view('ffes/v_integrantesffes',["variable"=>$decodedFolio, 'jefes' => $jefes, 'hogar'=>$hogar, 'folioEncriptado'=>$folioEncriptadolargo]);
+        return view('ffes/v_integrantesffes',["folio"=>$folio,"variable"=>$decodedFolio, 'jefes' => $jefes, 'hogar'=>$hogar, 'folioEncriptado'=>$folioEncriptadolargo]);
       }
 
     public function fc_leerintegrantes(Request $request){
@@ -54,7 +54,7 @@ class c_integrantesffes extends Controller
                     Realizar Encuesta
                   </button></td> -->
                    <td class="align-middle">
-                  <button  class="habilitado btn btn-success btn-sm" '.(($value->validacion == '0')?'':'').' onclick="editarintegrantes('.$folio.','.$value->idintegrante.',`'.$folioencriptado.'`)">
+                  <button  class="habilitado btn btn-success btn-sm" '.(($value->validacion == '0')?'':'').' onclick="editarintegrantes(`'.$folioencriptado.'`,`'. $hashids->encode($value->idintegrante).'`,`'.$folioencriptado.'`)">
                     Caracterización
                   </button>
                   </td>

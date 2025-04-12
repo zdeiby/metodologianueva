@@ -43,6 +43,8 @@ class c_rombointegrantes extends Controller
       ->where('paso', $paso10025)
       ->exists();
 
+      
+
 
       $paso10030='10030';
       $existel100p10030 = DB::table('t1_pasosvisita')
