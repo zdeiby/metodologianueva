@@ -228,7 +228,7 @@ body {
                     <label>Momento movilizador</label>
                   </h3>               
                 </div>
-                <button type="button" id="gestionintegrantes" <?=/* ! */ (($existel300p30010 == '1' && $existel300p30020 == '0' ) /* || ($existel300p30010 == '1' && $existel300p30030 == '0') || ($existel300p30010 == '1' && $existel300p30040 == '0') */  )?'':'disabled'?>  class="btn btn-primary" onclick="window.location.href='../momentoconcientet1refuerzo1/{{$folioencriptado}}/'">Ir a momento movilizador.</button>
+                <button type="button" id="gestionintegrantes" <?= (($existel300p30010 == '1' && $existel300p30020 == '0' ) /* || ($existel300p30010 == '1' && $existel300p30030 == '0') || ($existel300p30010 == '1' && $existel300p30040 == '0') */  )?'':'disabled'?>  class="btn btn-primary" onclick="window.location.href='../momentoconcientet1refuerzo1/{{$folioencriptado}}/'">Ir a momento movilizador.</button>
                 <div class="smCard">
                 </div>
               </div>
@@ -617,6 +617,7 @@ console.log('ya esta')
         //$('#finalizarboton').css('display','');
         const totalSegundos = response.totalSegundos;
         iniciarContador(totalSegundos);
+        $('#gestionintegrantes').attr('disabled', false);
          // alertagood();
           console.log(data);
          // location.reload();
@@ -679,7 +680,10 @@ let contadorActivo = false;
     }
 
 
-  //  $('#resultadoencuesta').click(function() {
+    $('#resultadoencuesta').click(function() {
+     // $('#gestionintegrantes').attr('disabled', false);
+     });
+       
   //    paginacargando();
   //    iniciarContador(response.totalSegundos);
     // location.reload();

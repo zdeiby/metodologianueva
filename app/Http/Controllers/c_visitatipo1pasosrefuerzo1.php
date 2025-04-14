@@ -31,6 +31,10 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
       $lineaanterior= 200;
       $pasoanterior= 20040;
 
+      $metodologia = DB::table('t1_principalhogar')
+      ->where('folio', $folioDesencriptado)
+      ->value('metodologia');
+
       $prioridades = DB::table('t1_ordenprioridadesqt')
         ->select('categoria', 'prioridad')
         ->orderBy('prioridad', 'asc') // Ordenar de menor a mayor prioridad
@@ -109,6 +113,8 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
       ->where('folio',$decodeFolio[0])
       ->first();
 
+      //  dd($existel300p30020);
+
     // calculo de indicadores para BSE
     include(app_path('Http/Complementoscontrollers/calculodeindicadoresporhogar.php'));
     //
@@ -126,7 +132,7 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
         'prioridades'=>$prioridades,
         'folio'=>$decodeFolio[0], 'descripcion'=>$categorias[0]->descripcion, 'foliomenu'=>$decodeFolio[0],
         'linea'=>$linea,
-        'paso'=>$paso,
+        'paso'=>$paso, 'metodologia'=>$metodologia,
       ]);
 
       }

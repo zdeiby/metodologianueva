@@ -243,10 +243,10 @@ body {
                     <label>Encuesta hogar</label>
                   </h3>
              </div>  
-             @if ($metodologia == 1)
-             <button type="button" class="btn btn-primary mef" <?=($existel100p10010 == '1' && $existel100p10020 == '1'   && $existel100p10030 == '0'   )?'':'disabled'?> onclick="window.location.href='../encuestahogarconformacionfamiliar/{{$variable}}'">Ir a encuesta de hogar</button>
-            @else
+             @if ($metodologia == 2)
              <button type="button" class="btn btn-primary ffes" <?=($existel100p10010 == '1' && $existel100p10020 == '1' && $existel100p10025 == '1' && $existel100p10030 == '0'   )?'':'disabled'?> onclick="window.location.href='../encuestahogarconformacionfamiliar/{{$variable}}'">Ir a encuesta de hogar</button>
+            @else
+            <button type="button" class="btn btn-primary mef" <?=($existel100p10010 == '1' && $existel100p10020 == '1'   && $existel100p10030 == '0'   )?'':'disabled'?> onclick="window.location.href='../encuestahogarconformacionfamiliar/{{$variable}}'">Ir a encuesta de hogar</button>
              @endif
              <div class="smCard">
                 </div>

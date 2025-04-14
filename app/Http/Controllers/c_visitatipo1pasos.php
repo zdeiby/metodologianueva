@@ -21,6 +21,10 @@ class c_visitatipo1pasos extends Controller
         $folioDesencriptado = $hashids->decode($folio)[0];
         $foliocodificado = $folio;
       $linea='200';
+
+      $metodologia = DB::table('t1_principalhogar')
+      ->where('folio', $folioDesencriptado)
+      ->value('metodologia');
    
       $paso20010='20010';
       $existel200p20010 = DB::table('t1_pasosvisita')
@@ -95,7 +99,7 @@ class c_visitatipo1pasos extends Controller
         'v_visitatipo1pasos',
         "folioDesencriptado"=>$folioDesencriptado, 'foliocodificado'=>$foliocodificado,  'existel200p20010' => $existel200p20010 ? 1 : 0,
       'existel200p20020' => $existel200p20020 ? 1 : 0, 'existel200p20030' => $existel200p20030 ? 1 : 0,  'existel200p20040' => $existel200p20040 ? 1 : 0,
-      'existel200p20050' => $existel200p20050 ? 1 : 0,  //'existel200p20060' => $existel200p20060 ? 1 : 0,
+      'existel200p20050' => $existel200p20050 ? 1 : 0, 'metodologia'=>$metodologia,  //'existel200p20060' => $existel200p20060 ? 1 : 0,
       ]);
 
       }
