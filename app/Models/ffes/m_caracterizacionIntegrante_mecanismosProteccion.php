@@ -10,7 +10,7 @@ class m_caracterizacionIntegrante_mecanismosProteccion extends Model
 {
     use HasFactory;
 
-    protected $table = 't1_caracterizacionIntegrante_conoce_instituciones';
+    protected $table = 't1_caracterizacionIntegrante_conoce_instituciones_ffes';
     
     // Método para obtener respuesta existente
     public function m_obtenerConoceInstitucion($folio, $idintegrante)
