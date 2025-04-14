@@ -218,12 +218,13 @@ class c_caracterizacion_hogar_p4 extends Controller
                 }
             }
             
-            // Preparar los datos para guardar
+            // Preparar datos para guardar
             $datos = [
                 'folio' => $folio,
                 'idintegrante' => $idintegrante,
                 'hace_parte_instancia_participacion_p4' => json_encode($respuestasData),
-                'documento_profesional' => $documento_profesional
+                'documento_profesional' => $documento_profesional,
+                'estado' => 1 // Se marca como completado al ser la última página
             ];
             
             Log::info('Datos preparados para guardar en P4', [

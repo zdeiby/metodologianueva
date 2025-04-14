@@ -216,12 +216,13 @@ class c_caracterizacion_hogar_p1 extends Controller
                 }
             }
             
-            // Preparar los datos para guardar
+            // Preparar datos para guardar
             $datos = [
                 'folio' => $folio,
                 'idintegrante' => $idintegrante,
                 'situacionesriesgo_hogar_p1' => json_encode($respuestasData),
-                'documento_profesional' => $documento_profesional
+                'documento_profesional' => $documento_profesional,
+                'estado' => 0
             ];
             
             // Guardar en la base de datos

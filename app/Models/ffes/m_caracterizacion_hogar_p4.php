@@ -12,6 +12,17 @@ class m_caracterizacion_hogar_p4 extends Model
     use HasFactory;
 
     protected $table = 't1_caracterizacion_hogar_ffes';
+    public $incrementing = false;
+    protected $primaryKey = ['folio', 'idintegrante'];
+    public $timestamps = true;
+    
+    protected function setKeysForSaveQuery($query)
+    {
+        $query
+            ->where('folio', '=', $this->getAttribute('folio'))
+            ->where('idintegrante', '=', $this->getAttribute('idintegrante'));
+        return $query;
+    }
     
     // Método para obtener respuesta existente
     public function m_obtenerCaracterizacionHogar($folio, $idintegrante)
