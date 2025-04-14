@@ -41,7 +41,7 @@ class m_integrantes extends Model
     public function m_leerintegrantes_ffes($folio)
     {
         // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
-        $folio = "90006273";
+       
 
         $resultado = DB::select("
             SELECT 
