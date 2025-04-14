@@ -202,4 +202,36 @@ class m_index extends Model
  
          return $resultado;
      }
+
+
+     public function m_leerprincipalhogarconfolio_ffes($folio)
+     {
+        $resultado = DB::select('
+        SELECT 
+            ph.folio, 
+            ph.idintegrantetitular, 
+            inte.nombre1, 
+            inte.nombre2, 
+            inte.apellido1, 
+            inte.apellido2, 
+            inte.documento, 
+            CASE 
+                WHEN carac.estado = 1 THEN 1
+                ELSE 0
+            END AS validacion
+        FROM 
+            t1_principalhogar ph
+        JOIN 
+            t1_integranteshogar inte 
+            ON ph.idintegrantetitular = inte.idintegrante
+        LEFT JOIN 
+            t1_caracterizacion_hogar_ffes carac 
+            ON carac.folio = ph.folio
+        WHERE 
+            ph.folio = '.$folio.'
+    ');
+    
+ 
+         return $resultado;
+     }
 }

@@ -16,11 +16,13 @@ class c_rombointegrantes extends Controller
             // Si no existe la sesión 'usuario', redirigir al login
             return redirect()->route('login');
         }
-        $folioDesencriptado = decrypt($folio);
+
+       
+        $folioDesencriptado = decrypt($folio); 
         $hashids = new Hashids('', 10); 
         $foliocodificado = $hashids->encode($folioDesencriptado);
-        
-      $folioDesencriptado = decrypt($folio);
+       
+     // $folioDesencriptado = decrypt($folio);
       $linea='100';
    
       $paso10010='10010';
@@ -161,6 +163,7 @@ class c_rombointegrantes extends Controller
       public function fc_agregarpasoresultado(Request $request){
         $now = Carbon::now();
         $folio = $request->input('folio');
+        $metodologia = $request->input('metodologia');
         $linea = 100;  // poner linea 
         $paso = 10040;  // poner paso
         $usuario = $request->input('usuario'); // Este campo no es clave primaria
@@ -201,7 +204,11 @@ class c_rombointegrantes extends Controller
         DB::select('CALL sp_calcular_indicadores(?)', [$folio]);
         DB::select('CALL sp_indicadores_hogar(?)', [$folio]);
        // DB::select('CALL sp_calcular_indicadores_ffes(?)', [$folio]);
-        DB::select('CALL sp_indicadores_hogar_ffes(?)', [$folio]);
+
+      // dd($metodologia);
+       if($metodologia == 2){
+         DB::select('CALL sp_indicadores_hogar_ffes(?)', [$folio]);
+       }
 
         $integranteshogar=  DB::table('t1_integranteshogar')
         ->where('folio',$folio)
@@ -209,9 +216,10 @@ class c_rombointegrantes extends Controller
 
     foreach ($integranteshogar as $integrante) {
         $idintegrante = $integrante->idintegrante;
-        DB::select('CALL sp_indicadores_integrantes(?,?)', [$folio,$idintegrante]); 
-        DB::select('CALL sp_indicadores_integrantes_ffes(?,?)', [$folio,$idintegrante]);  
- 
+        DB::select('CALL sp_indicadores_integrantes(?,?)', [$folio,$idintegrante]);
+        if($metodologia == 2){
+            DB::select('CALL sp_indicadores_integrantes_ffes(?,?)', [$folio,$idintegrante]);  
+        }
       }
        return response()->json(['message' => $folio]);
 

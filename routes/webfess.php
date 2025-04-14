@@ -105,5 +105,5 @@ Route::get('/test_primera_infancia/{folio_real}/{idintegrante_real}', function($
 
 Route::get('/integrantesffes/{folio}',[c_integrantesffes::class,'fc_integrantes'])->name('editarintegrantesgeneral');
 Route::get('/leerintegrantesgeneralffes',[c_integrantesffes::class,'fc_leerintegrantes'])->name('leerintegrantesgeneral');
-Route::get('/finalizarintegrantesffes',[c_integrantesffes::class,'fc_finalizarintegrantes'])->name('finalizarintegrantesffes');
+Route::get('/finalizarintegrantesffes',[c_integrantesffes::class,'fc_finalizarintegrantesffes'])->name('finalizarintegrantesffes');
 // FIN ESTAS RUTAS SE AGREGARON PARA LISTAR LOS INTEGRANTES ANTES DE RESPONDER LA CARACTERIZACION DE FESS  DEIBY

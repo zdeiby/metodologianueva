@@ -34,7 +34,7 @@
             <div class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <div>
-                <span class="badge bg-primary" id=""  style="font-size:15px">MOMENTO CONSCIENTE</span>
+                <span class="badge bg-primary" id=""  style="font-size:15px">MOMENTO MOVILIZADOR</span>
                 <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
                
               </div>
@@ -55,7 +55,7 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">MOMENTO MOVILIZADOR
+        <a id="bienestarsaludemocionalqt" class="nav-link active">MOMENTO CONSCIENTE
         </a>
       </li>
   <li class="nav-item" role="presentation" style="cursor:pointer">

@@ -22,14 +22,29 @@ class c_cardsqt extends Controller
 
       $decodeFolio = $hashids->decode($folio);
       $jefes=$modelo-> m_veredadrepjefe($decodeFolio[0]);
-      $foliobr=strval($decodeFolio[0]);
-      $foliobycript= encrypt($foliobr);
-      $indicadoreshogar = DB::table('t1_indicadores_hogar')
-      ->where('folio',$decodeFolio[0])
-      ->first();
+      $foliobr=strval($decodeFolio[0]);  
+      
+      $metodologia = DB::table('t1_principalhogar')
+      ->where('folio', $decodeFolio[0])
+      ->value('metodologia');
 
+      $foliobycript= encrypt($foliobr);
+
+        if($metodologia == 2){
+            $indicadoreshogar = DB::table('t1_indicadores_hogar_ffes')
+                ->where('folio',$decodeFolio[0])
+                ->first();
+        }else{
+            $indicadoreshogar = DB::table('t1_indicadores_hogar')
+            ->where('folio',$decodeFolio[0])
+            ->first();
+        }
+
+     
 
       $herramientas = new m_herramientas();
+
+    
 
       $tabla = 't1_v1finalizacion';
       $hashids = new Hashids('', 10); 
@@ -79,7 +94,7 @@ class c_cardsqt extends Controller
         'porcentaje_rojo_bef'=>$porcentaje_rojo_bef, 'porcentaje_verde_bef'=>$porcentaje_verde_bef,// 'porcentaje_gris_bef'=>$porcentaje_gris_bef,
         'porcentaje_rojo_bi'=>$porcentaje_rojo_bi, 'porcentaje_verde_bi'=>$porcentaje_verde_bi, //'porcentaje_gris_bi'=>$porcentaje_gris_bi,
         'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf, //'porcentaje_gris_bf'=>$porcentaje_gris_bf
-        'tabla'=>$tabla,'linea'=>$linea,
+        'tabla'=>$tabla,'linea'=>$linea, 'metodologia' => $metodologia,
         'paso'=>$paso
 
     ]);
@@ -87,6 +102,8 @@ class c_cardsqt extends Controller
 
     public function fc_leerintegrantesqt(Request $request){
         $folio=$request->input('folio');
+        $metodologia=$request->input('metodologia');
+
         $folioencriptado=$request->input('folioencriptado');
         $modelo= new m_cards();
         $integrantes=$modelo-> m_leerintegrantes($folio);
@@ -95,11 +112,18 @@ class c_cardsqt extends Controller
 
         $foliosintegrante = '';
         foreach ($integrantes as $key => $value) {
-            $indicadoresintegrantes = DB::table('t1_indicadores_integrantes')
-            ->where('folio',$folio)
-            ->where('idintegrante',$value->idintegrante)
-            ->first();
-
+            if($metodologia == 2){
+                $indicadoresintegrantes = DB::table('t1_indicadores_integrantes_ffes')
+                ->where('folio',$folio)
+                ->where('idintegrante',$value->idintegrante)
+                ->first();
+            }else{
+                $indicadoresintegrantes = DB::table('t1_indicadores_integrantes')
+                ->where('folio',$folio)
+                ->where('idintegrante',$value->idintegrante)
+                ->first();
+            }
+            
             include(app_path('Http/Complementoscontrollers/calculodeindicadoresporintegrante.php'));
 
 

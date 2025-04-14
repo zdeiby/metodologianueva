@@ -249,6 +249,12 @@ class c_caracterizacion_hogar_p4 extends Controller
             }
             
             if ($resultado) {
+
+
+                    
+
+
+
                 return response()->json([
                     'success' => true,
                     'message' => 'Datos guardados correctamente'

@@ -388,7 +388,7 @@
         localStorage.setItem('folioencriptado',folioencriptado);
       $.ajax({
         url:'../index.php/leerintegrantesqt',
-        data:{folio:folio, folioencriptado:folioencriptado},
+        data:{folio:folio, folioencriptado:folioencriptado, metodologia: '<?= $metodologia ?>'},
         method: "GET",
         dataType:'JSON',
         success:function(data){

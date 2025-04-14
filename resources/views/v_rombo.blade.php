@@ -618,7 +618,7 @@
         if('<?= $realizado ?>' == '1'){
              $.ajax({
                 url:'../index.php/leerintegrantesqtrombo',
-                data:{folio:folio, folioencriptado:folioencriptado},
+                data:{folio:folio, folioencriptado:folioencriptado, 'metodologia': <?= $metodologia ?>},
                 method: "GET",
                 dataType:'JSON',
                 success:function(data){

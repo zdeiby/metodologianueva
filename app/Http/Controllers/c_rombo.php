@@ -47,6 +47,10 @@ class c_rombo extends Controller
         ->where('folio', decrypt($cedula))  // Comparamos el folio desencriptado
         ->where('linea', 200)            // Comparamos la línea
         ->first(); 
+
+        $metodologia = DB::table('t1_principalhogar')
+        ->where('folio', decrypt($cedula))
+        ->value('metodologia');
        
 
           if ($registro && $registro->estado == 1) {
@@ -54,6 +58,17 @@ class c_rombo extends Controller
               $indicadoreshogar = DB::table('t1_indicadores_hogar')
               ->where('folio',decrypt($cedula))
               ->first();
+
+
+              if($metodologia == 2){
+                $indicadoreshogar = DB::table('t1_indicadores_hogar_ffes')
+                    ->where('folio',decrypt($cedula))
+                    ->first();
+            }else{
+                $indicadoreshogar = DB::table('t1_indicadores_hogar')
+                ->where('folio',decrypt($cedula))
+                ->first();
+            }
 
 
               // calculo de indicadores para BSE
@@ -73,6 +88,7 @@ class c_rombo extends Controller
         'porcentaje_rojo_bef'=>$porcentaje_rojo_bef, 'porcentaje_verde_bef'=>$porcentaje_verde_bef,// 'porcentaje_gris_bef'=>$porcentaje_gris_bef,
         'porcentaje_rojo_bi'=>$porcentaje_rojo_bi, 'porcentaje_verde_bi'=>$porcentaje_verde_bi, //'porcentaje_gris_bi'=>$porcentaje_gris_bi,
         'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf,// 'porcentaje_gris_bf'=>$porcentaje_gris_bf, 
+        'metodologia' => $metodologia,
         'folioencriptado'=>decrypt($cedula)]);
       }
 
@@ -81,6 +97,7 @@ class c_rombo extends Controller
       public function fc_leerintegrantesqt_rombo(Request $request){
         $folio=$request->input('folio');
         $folioencriptado=$request->input('folioencriptado');
+        $metodologia=$request->input('metodologia');
         $modelo= new m_cards();
         $integrantes=$modelo-> m_leerintegrantes($folio);
        // dd($integrantes);
@@ -88,10 +105,17 @@ class c_rombo extends Controller
 
         $foliosintegrante = '';
         foreach ($integrantes as $key => $value) {
-            $indicadoresintegrantes = DB::table('t1_indicadores_integrantes')
-            ->where('folio',$folio)
-            ->where('idintegrante',$value->idintegrante)
-            ->first();
+            if($metodologia == 2){
+                $indicadoresintegrantes = DB::table('t1_indicadores_integrantes_ffes')
+                ->where('folio',$folio)
+                ->where('idintegrante',$value->idintegrante)
+                ->first();
+            }else{
+                $indicadoresintegrantes = DB::table('t1_indicadores_integrantes')
+                ->where('folio',$folio)
+                ->where('idintegrante',$value->idintegrante)
+                ->first();
+            }
 
             include(app_path('Http/Complementoscontrollers/calculodeindicadoresporintegrante.php'));
 

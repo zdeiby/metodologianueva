@@ -41,7 +41,9 @@ class c_encuestaintegrantesqt extends Controller
                 ->get();
 
           
-
+            $metodologia = DB::table('t1_principalhogar')
+            ->where('folio', $encodedFolio)
+            ->value('metodologia');
 
 
 
@@ -132,13 +134,39 @@ class c_encuestaintegrantesqt extends Controller
                     $indicador_bse_7=$indicador->codigoindicadorDA;
                 }
 
-
                 
 
+                                //indicador_bse_8_ffes
+                                $t1_indicador_bse_8 = DB::table('t1_indicador_bse_8_ffes')
+                                ->where('folio', $encodedFolio)
+                                ->get();
+                
+                                $indicador_bse_8='';
+                                foreach ($t1_indicador_bse_8 as $indicador) {
+                                    $indicador_bse_8=$indicador->codigoindicadorDA;
+                                }
 
-                    
+                                //indicador_bse_9_ffes
+                                $t1_indicador_bse_9 = DB::table('t1_indicador_bse_9_ffes')
+                                ->where('folio', $encodedFolio)
+                                ->get();
+                
+                                $indicador_bse_9='';
+                                foreach ($t1_indicador_bse_9 as $indicador) {
+                                    $indicador_bse_9=$indicador->codigoindicadorDA;
+                                }
 
+                                                                                                //indicador_bse_8_ffes
+                                $t1_indicador_bse_10 = DB::table('t1_indicador_bse_10_ffes')
+                                ->where('folio', $encodedFolio)
+                                ->get();
+                
+                                $indicador_bse_10='';
+                                foreach ($t1_indicador_bse_10 as $indicador) {
+                                    $indicador_bse_10=$indicador->codigoindicadorDA;
+                                }
 
+                                //dd($t1_indicador_bse_8);
             
             $datos = [
                 'indicadorbse1_1' => '',
@@ -223,6 +251,10 @@ class c_encuestaintegrantesqt extends Controller
                                                                     'integrantecodificado'=>$integrante , 
                                                                      'tabla'=>$tabla, 'indicador_bse_1'=>$indicador_bse_1 ,'indicador_bse_2'=>$indicador_bse_2 , 'indicador_bse_3'=>$indicador_bse_3, 'indicador_bse_4'=>$indicador_bse_4, 'indicador_bse_5'=>$indicador_bse_5,
                                                                      'indicador_bse_6'=>$indicador_bse_6, 'indicador_bse_7'=>$indicador_bse_7,
+                                                                     'indicador_bse_8'=>$indicador_bse_8,
+                                                                     'indicador_bse_9'=>$indicador_bse_9,
+                                                                     'indicador_bse_10'=>$indicador_bse_10,
+                                                                    'metodologia'=>$metodologia,
                                                                      'indicadores_tabla'=>$indicadores_tabla, 'edad'=>$datospersonales[0]->edad
                                                                     
                                                                     ]);
@@ -242,6 +274,10 @@ class c_encuestaintegrantesqt extends Controller
                ->where('idintegrante', $decodeIntegrante)
                ->where('folio', $encodedFolio)
                ->get();
+
+               $metodologia = DB::table('t1_principalhogar')
+               ->where('folio', $encodedFolio)
+               ->value('metodologia');
 
 
                $representante = DB::table('t1_integranteshogar')
@@ -367,6 +403,28 @@ class c_encuestaintegrantesqt extends Controller
             }
 
 
+             //indicador_bl_11 ffes
+             $t1_indicador_bl_11 = DB::table('t1_indicador_bl_11_ffes')
+             ->where('folio', $encodedFolio)
+             ->get();
+ 
+             $indicador_bl_11='';
+             foreach ($t1_indicador_bl_11 as $indicador) {
+                 $indicador_bl_11=$indicador->codigoindicadorDA;
+             }
+
+                //indicador_bl_12 ffes
+                $t1_indicador_bl_12 = DB::table('t1_indicador_bl_12_ffes')
+                ->where('idintegrante', $decodeIntegrante)
+                ->where('folio', $encodedFolio)
+                ->get();
+    
+                $indicador_bl_12='';
+                foreach ($t1_indicador_bl_12 as $indicador) {
+                    $indicador_bl_12=$indicador->codigoindicadorDA;
+                }
+
+
 
             $datos = [
                 'indicadorbl1_1' => '',
@@ -449,7 +507,10 @@ class c_encuestaintegrantesqt extends Controller
   
      return view('formularioqt/v_legalqt', $datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,'indicador_bl_1'=>$indicador_bl_1,'indicador_bl_2'=>$indicador_bl_2,
     'indicador_bl_3'=>$indicador_bl_3, 'indicador_bl_4'=>$indicador_bl_4, 'indicador_bl_5'=>$indicador_bl_5,'indicador_bl_6'=>$indicador_bl_6,'indicador_bl_7'=>$indicador_bl_7,
-'indicador_bl_8'=>$indicador_bl_8, 'indicador_bl_9'=>$indicador_bl_9, 'indicador_bl_10'=>$indicador_bl_10, 'indicadores_tabla'=>$indicadores_tabla
+    'indicador_bl_8'=>$indicador_bl_8, 'indicador_bl_9'=>$indicador_bl_9, 'indicador_bl_10'=>$indicador_bl_10, 
+        'indicador_bl_11'=>$indicador_bl_11,
+        'indicador_bl_12'=>$indicador_bl_12,
+    'indicadores_tabla'=>$indicadores_tabla , 'metodologia'=>$metodologia,
     ]);
     } 
 
@@ -471,6 +532,10 @@ class c_encuestaintegrantesqt extends Controller
         ->where('idintegrante', $decodeIntegrante)
         ->where('folio', $encodedFolio)
         ->get();
+
+        $metodologia = DB::table('t1_principalhogar')
+        ->where('folio', $encodedFolio)
+        ->value('metodologia');
 
         $representante = DB::table('t1_integranteshogar')
             ->where('idintegrante', $decodeIntegrante)
@@ -540,6 +605,16 @@ class c_encuestaintegrantesqt extends Controller
             foreach ($t1_indicador_bef_6 as $indicador) {
                 $indicador_bef_6=$indicador->codigoindicadorDA;
             }
+
+             //indicador_bef_7  ffes
+             $t1_indicador_bef_7 = DB::table('t1_indicador_bef_7_ffes')
+             ->where('folio', $encodedFolio)
+             ->get();
+ 
+             $indicador_bef_7='';
+             foreach ($t1_indicador_bef_7 as $indicador) {
+                 $indicador_bef_7=$indicador->codigoindicadorDA;
+             }
 
 
 
@@ -618,7 +693,8 @@ class c_encuestaintegrantesqt extends Controller
 
                         return view('formularioqt/v_enfamiliaqt',$datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
                     'indicador_bef_1'=>$indicador_bef_1,'indicador_bef_2'=>$indicador_bef_2,'indicador_bef_3'=>$indicador_bef_3,'indicador_bef_4'=>$indicador_bef_4,
-                    'indicador_bef_5'=>$indicador_bef_5,'indicador_bef_6'=>$indicador_bef_6 , 'indicadores_tabla'=>$indicadores_tabla
+                    'indicador_bef_5'=>$indicador_bef_5,'indicador_bef_6'=>$indicador_bef_6 , 'indicador_bef_7'=> $indicador_bef_7, 'metodologia'=>$metodologia,
+                     'indicadores_tabla'=>$indicadores_tabla
                     ]);
                     } 
 

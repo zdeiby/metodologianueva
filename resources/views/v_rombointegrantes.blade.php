@@ -533,7 +533,7 @@ $(document).ready(function() {
     paginacargando();
     $.ajax({
       url: '../agregarpasoresultado',
-      data: { folio: '{{decrypt($variable)}}', usuario:'{{ Session::get('cedula') }}' },
+      data: { folio: '{{decrypt($variable)}}', usuario:'{{ Session::get('cedula') }}' , metodologia: '{{$metodologia}}', },
       method: "GET",
       dataType: 'JSON',
       success: function(data) {

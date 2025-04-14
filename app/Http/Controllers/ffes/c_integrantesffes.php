@@ -26,7 +26,7 @@ class c_integrantesffes extends Controller
       $hashids = new Hashids('', 10);
       $decodedFolio = $hashids->decode($folio)[0];
       $jefes=$modelo-> m_veredadrepjefe($decodedFolio);
-      $hogar= $modeloHogar->m_leerprincipalhogarconfolio($decodedFolio);
+      $hogar= $modeloHogar->m_leerprincipalhogarconfolio_ffes($decodedFolio);
       $folioEncriptadolargo = encrypt($decodedFolio);
       
         return view('ffes/v_integrantesffes',["folio"=>$folio,"variable"=>$decodedFolio, 'jefes' => $jefes, 'hogar'=>$hogar, 'folioEncriptado'=>$folioEncriptadolargo]);
@@ -36,7 +36,7 @@ class c_integrantesffes extends Controller
         $folio=$request->input('folio');
        // $folioencriptado=$request->input('folioencriptado');
         $modelo= new m_integrantes();
-        $integrantes=$modelo-> m_leerintegrantes($folio);
+        $integrantes=$modelo-> m_leerintegrantes_ffes($folio);
         $hashids = new Hashids('', 10);
         $folioencriptado = $hashids->encode($folio);
 
@@ -54,7 +54,7 @@ class c_integrantesffes extends Controller
                     Realizar Encuesta
                   </button></td> -->
                    <td class="align-middle">
-                  <button  class="habilitado btn btn-success btn-sm" '.(($value->validacion == '0')?'':'').' onclick="editarintegrantes(`'.$folioencriptado.'`,`'. $hashids->encode($value->idintegrante).'`,`'.$folioencriptado.'`)">
+                  <button  class="habilitado btn btn-success btn-sm" '.(($value->validacion == '0')?'':'disabled').' onclick="editarintegrantes(`'.$folioencriptado.'`,`'. $hashids->encode($value->idintegrante).'`,`'.$folioencriptado.'`)">
                     Caracterización
                   </button>
                   </td>
@@ -71,7 +71,7 @@ class c_integrantesffes extends Controller
     }
 
 
-    public function fc_finalizarintegrantes(Request $request){
+    public function fc_finalizarintegrantesffes(Request $request){
       $now = Carbon::now();
       $folio = $request->input('folio');
       $linea = 100;  // poner linea 

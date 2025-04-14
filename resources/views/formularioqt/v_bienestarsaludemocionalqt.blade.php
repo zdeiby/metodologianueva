@@ -483,7 +483,7 @@
 
   </div>
 
-   
+   @if ($metodologia == 2)
     <!-- FFES -->
 <!-- LOGRO -->
 <hr>
@@ -516,14 +516,14 @@
 
 
       <!-- Fila de contenido -->
-      <div class="row g-0" id="indicadorbse8" style="display:{{((($indicador_bse_6 == '0'))?'':'none')}}">
+      <div class="row g-0" id="indicadorbse8" style="display:{{((($indicador_bse_8 == '0'))?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los Niños, Niñas y adolescentes del hogar implementan estrategias para  reducir el estrés y para favorecer el bienestar emocional y fisico
         @if($vista != '1')
         <div class="text-center">
           <br>
-            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div>
+            <!-- <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div> -->
           </div>
            @endif
         </div>
@@ -602,14 +602,14 @@
 
 
       <!-- Fila de contenido -->
-      <div class="row g-0" id="indicadorbse9" style="display:{{((($indicador_bse_6 == '0'))?'':'none')}}">
+      <div class="row g-0" id="indicadorbse9" style="display:{{((($indicador_bse_9 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los niños, niñas y adolescentes del hogar expuestos a factores de amenaza, riesgo o vulneración de derechos reconocen y acceden a los servicios de protección y atención.
         @if($vista != '1')
         <div class="text-center">
           <br>
-            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div>
+            <!-- <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div> -->
           </div>
            @endif
         </div>
@@ -681,14 +681,14 @@
  
 
       <!-- Fila de contenido -->
-      <div class="row g-0" id="indicadorbse10" style="display:{{((($indicador_bse_6 == '0'))?'':'none')}}">
+      <div class="row g-0" id="indicadorbse10" style="display:{{((($indicador_bse_10 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los niños, niñas y adolescentes del hogar con necesidades en la salud mental  reciben tratamiento oportuno y adecuado en servicios de salud mental.
         @if($vista != '1')
         <div class="text-center">
           <br>
-            <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div>
+            <!-- <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div> -->
           </div>
            @endif
         </div>
@@ -737,7 +737,9 @@
 
 
 
-  
+  @else
+
+  @endif
 
 
 

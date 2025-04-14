@@ -602,7 +602,7 @@
 
 
 
-
+@if ($metodologia == 2)
 
 
 <!-- LOGRO -->
@@ -631,13 +631,13 @@
       </div>
     </div>
   
-    <div class="row g-0" id="indicadorbef7" style="display:{{((($indicador_bef_5 == '0') && $representante == 'SI')?'':'none')}}">
+    <div class="row g-0" id="indicadorbef7" style="display:{{((($indicador_bef_7 == '0') && $representante == 'SI')?'':'none')}}">
       <div class="col-md-4 d-flex align-items-center border-end border-bottom">
         <div class="p-2">
         Los  niños, niñas y adolescentes del hogar participan de actividades sociales, culturales, recreativas y/o deportivas. 
          @if($vista != '1')
         <br><br><div class="text-center">
-            <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[22]->id_bienestar ?>','<?= $indicadores_tabla[22]->id_subcategoria ?>','<?= $indicadores_tabla[22]->id_indicador ?>')">Mover Indicador</div>
+            <!-- <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[22]->id_bienestar ?>','<?= $indicadores_tabla[22]->id_subcategoria ?>','<?= $indicadores_tabla[22]->id_indicador ?>')">Mover Indicador</div> -->
           </div> 
           @endif
       </div>
@@ -682,7 +682,7 @@
   </div>
 </div>
 
-
+@endif
 
 
 

@@ -60,12 +60,12 @@
           <td>{{ $h->documento }}</td>
           <td>{{ $h->nombre1 }} {{ $h->nombre2 }} {{ $h->apellido1 }} {{ $h->apellido2 }}</td>
          
-          <!-- <td>{{ $h->barrio }}</td>
-          <td>{{ $h->comuna }}</td>
-          <td>{{ $h->direccion }}</td> -->
+          
           <td>
           <button type="button" class="btn btn-warning btn-sm habilitado" 
-                    onclick="editarIntegranteshogar('{{ $folio }}', '{{$idCodificado }} ')">
+                    onclick="editarIntegranteshogar('{{ $folio }}', '{{$idCodificado }} ')"
+                    <?= (($h->validacion == '0')?'':'disabled') ?>
+                    >
               Caracterización
             </button>
           </td>
