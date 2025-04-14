@@ -12,6 +12,9 @@ class m_caracterizacionIntegrante_estrategia extends Model
 
     protected $table = 't1_caracterizacionIntegrante_estrategia_ffes';
     
+    public $incrementing = false;
+    protected $primaryKey = ['folio', 'idintegrante', 'estrategia_implementa_reducir_estres'];
+    
     public function __construct()
     {
         parent::__construct();
@@ -40,16 +43,34 @@ class m_caracterizacionIntegrante_estrategia extends Model
     // Método para guardar una estrategia individual
     public function m_guardarEstrategia($datos)
     {
-        return DB::table($this->table)->insert([
-            'folio' => $datos['folio'],
-            'idintegrante' => $datos['idintegrante'],
-            'estrategia_implementa_reducir_estres' => $datos['estrategia_implementa_reducir_estres'],
-            'otro_cual_estrategia' => $datos['otro_cual_estrategia'],
-            'documento_profesional' => $datos['documento_profesional'],
-            'estado' => 1,
-            'sincro' => 0,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        try {
+            return DB::table($this->table)->insert([
+                'folio' => $datos['folio'],
+                'idintegrante' => $datos['idintegrante'],
+                'estrategia_implementa_reducir_estres' => $datos['estrategia_implementa_reducir_estres'],
+                'otro_cual_estrategia' => $datos['otro_cual_estrategia'] ?? null,
+                'documento_profesional' => $datos['documento_profesional'],
+                'estado' => 1,
+                'sincro' => 0,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        } catch (\Exception $e) {
+            // Si hay un error de llave duplicada, intentamos actualizar
+            if (str_contains($e->getMessage(), 'Duplicate entry')) {
+                return DB::table($this->table)
+                    ->where('folio', $datos['folio'])
+                    ->where('idintegrante', $datos['idintegrante'])
+                    ->where('estrategia_implementa_reducir_estres', $datos['estrategia_implementa_reducir_estres'])
+                    ->update([
+                        'otro_cual_estrategia' => $datos['otro_cual_estrategia'] ?? null,
+                        'documento_profesional' => $datos['documento_profesional'],
+                        'estado' => 1,
+                        'sincro' => 0,
+                        'updated_at' => now()
+                    ]);
+            }
+            throw $e;
+        }
     }
 }
