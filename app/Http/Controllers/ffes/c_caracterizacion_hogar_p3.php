@@ -432,21 +432,20 @@ class c_caracterizacion_hogar_p3 extends Controller
             // Convertir a JSON el array de respuestas
             $respuestasJson = json_encode($respuestasData);
             
-            // Guardar en la base de datos
-            $modelo = new m_caracterizacion_hogar_p3();
-            
-            // Verificar si ya existe un registro para actualizar
-            $documento_profesional = auth()->user()->documento ?? '0';
-            
-            // Guardar en la base de datos manteniendo los valores existentes para otras columnas
-            $resultado = $modelo->m_guardarCaracterizacionHogar([
+            // Preparar datos para guardar
+            $data = [
                 'folio' => $folio,
                 'idintegrante' => $idintegrante,
-                'documento_profesional' => $documento_profesional,
                 'salud_mental_p3' => $respuestasJson,
                 'cualdiagnostico_salud_mental_p3_1' => $diagnosticosJson,
-                'acedio_servicios_salud_mental_p3_2' => $respuesta3_2Json
-            ]);
+                'acedio_servicios_salud_mental_p3_2' => $respuesta3_2Json,
+                'documento_profesional' => auth()->user()->documento ?? '0',
+                'estado' => 0
+            ];
+            
+            // Guardar en la base de datos
+            $modelo = new m_caracterizacion_hogar_p3();
+            $resultado = $modelo->m_guardarCaracterizacionHogar($data);
             
             // Log para depuración
             Log::info('Resultado guardado:', [

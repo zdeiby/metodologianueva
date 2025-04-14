@@ -255,6 +255,16 @@ class c_caracterizacion_hogar_p2 extends Controller
                 }
             }
             
+            // Preparar datos para guardar
+            $data = [
+                'folio' => $folio,
+                'idintegrante' => $idintegrante,
+                'nino_medidas_restablecimiento_p2' => json_encode($respuestasData),
+                'cuales_medidas_restablecimiento_p2_1' => json_encode($respuestas2_1Data),
+                'documento_profesional' => $documento_profesional,
+                'estado' => 0
+            ];
+            
             // Guardar en la base de datos
             $modelo = new m_caracterizacion_hogar_p2();
             
@@ -271,18 +281,12 @@ class c_caracterizacion_hogar_p2 extends Controller
                         'nino_medidas_restablecimiento_p2' => json_encode($respuestasData),
                         'cuales_medidas_restablecimiento_p2_1' => json_encode($respuestas2_1Data),
                         'documento_profesional' => $documento_profesional,
+                        'estado' => 0,
                         'updated_at' => now()
                     ]);
             } else {
                 // Crear nuevo registro
-                $datos = [
-                    'folio' => $folio,
-                    'idintegrante' => $idintegrante,
-                    'nino_medidas_restablecimiento_p2' => json_encode($respuestasData),
-                    'cuales_medidas_restablecimiento_p2_1' => json_encode($respuestas2_1Data),
-                    'documento_profesional' => $documento_profesional
-                ];
-                $resultado = $modelo->m_guardarCaracterizacionHogar($datos);
+                $resultado = $modelo->m_guardarCaracterizacionHogar($data);
             }
             
             if ($resultado) {
