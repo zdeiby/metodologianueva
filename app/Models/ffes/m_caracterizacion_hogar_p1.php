@@ -57,8 +57,6 @@ class m_caracterizacion_hogar_p1 extends Model
             'updated_at' => now(),
             // Valores predeterminados para todas las columnas JSON
             'situacionesriesgo_hogar_p1' => isset($datos['situacionesriesgo_hogar_p1']) ? $datos['situacionesriesgo_hogar_p1'] : json_encode(['situaciones' => [], 'integrantes' => []]),
-            'nino_medidas_restablecimiento_p2' => isset($datos['nino_medidas_restablecimiento_p2']) ? $datos['nino_medidas_restablecimiento_p2'] : json_encode(['respuesta' => 0, 'integrantes' => []]),
-            'cuales_medidas_restablecimiento_p2_1' => isset($datos['cuales_medidas_restablecimiento_p2_1']) ? $datos['cuales_medidas_restablecimiento_p2_1'] : json_encode([]),
             'salud_mental_p3' => isset($datos['salud_mental_p3']) ? $datos['salud_mental_p3'] : json_encode([]),
             'cualdiagnostico_salud_mental_p3_1' => isset($datos['cualdiagnostico_salud_mental_p3_1']) ? $datos['cualdiagnostico_salud_mental_p3_1'] : json_encode([]),
             'acedio_servicios_salud_mental_p3_2' => isset($datos['acedio_servicios_salud_mental_p3_2']) ? $datos['acedio_servicios_salud_mental_p3_2'] : json_encode([]),
@@ -81,14 +79,6 @@ class m_caracterizacion_hogar_p1 extends Model
         // Añadir solo los campos que vienen en los datos
         if (isset($datos['situacionesriesgo_hogar_p1'])) {
             $updateData['situacionesriesgo_hogar_p1'] = $datos['situacionesriesgo_hogar_p1'];
-        }
-        
-        if (isset($datos['nino_medidas_restablecimiento_p2'])) {
-            $updateData['nino_medidas_restablecimiento_p2'] = $datos['nino_medidas_restablecimiento_p2'];
-        }
-        
-        if (isset($datos['cuales_medidas_restablecimiento_p2_1'])) {
-            $updateData['cuales_medidas_restablecimiento_p2_1'] = $datos['cuales_medidas_restablecimiento_p2_1'];
         }
         
         if (isset($datos['salud_mental_p3'])) {

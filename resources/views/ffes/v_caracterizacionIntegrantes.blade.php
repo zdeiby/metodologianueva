@@ -102,8 +102,13 @@
         }
       @endphp
       
+<<<<<<< HEAD
       {{-- Mostrar pestaña Primera Infancia SOLO si ya existen respuestas guardadas --}}
       @if(isset($existeEstrategias) && $existeEstrategias)
+=======
+      {{-- Mostrar pestaña Primera Infancia solo si existen estrategias guardadas --}}
+      @if(!empty($estrategiasSeleccionadas))
+>>>>>>> axldev
       <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link" onclick="redirigirAPrimeraInfancia()" >Primera Infancia</a>
       </li>
@@ -314,10 +319,17 @@
             </div>
             <div class="text-end col">
             <button class="btn btn-outline-success" type="submit"  >Guardar</button>
+<<<<<<< HEAD
             @if(isset($existeEstrategias) && $existeEstrategias)
             <div class="btn btn-outline-primary" id="siguiente">Siguiente</div>
             @else
             <div class="btn btn-outline-primary disabled" id="siguiente" data-bs-toggle="tooltip" data-bs-placement="top" title="Debe guardar la información antes de continuar">Siguiente</div>
+=======
+            @if(!empty($estrategiasSeleccionadas))
+            <div class="btn btn-outline-primary" id="siguiente" onclick="redirigirAPrimeraInfancia()">Siguiente</div>
+            @else
+            <div class="btn btn-outline-primary disabled" style="cursor: not-allowed" title="Debe guardar la información primero">Siguiente</div>
+>>>>>>> axldev
             @endif
             </div> 
           </div>
@@ -443,10 +455,15 @@
                             icon: 'success',
                             confirmButtonText: 'Aceptar'
                         }).then((result) => {
+<<<<<<< HEAD
                             // Recargar la página después de cerrar el mensaje de éxito
                             if (result.isConfirmed || result.isDismissed) {
                                 window.location.reload();
                             }
+=======
+                            // Recargar la página después de guardar exitosamente
+                            window.location.reload();
+>>>>>>> axldev
                         });
                     } else {
                         Swal.fire({

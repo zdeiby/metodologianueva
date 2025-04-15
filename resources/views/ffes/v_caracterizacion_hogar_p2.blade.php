@@ -127,7 +127,8 @@
                                 }
                             @endphp
                             
-                            @if($pregunta2Respondida || $mostrarPestaña3)
+                            {{-- Solo mostrar la pestaña 3 si la pregunta 2 está respondida --}}
+                            @if($pregunta2Respondida)
                             <li class="nav-item" role="presentation" style="cursor:pointer">
                                 <a id="linkPregunta3" class="nav-link">Hogar FFES Pregunta 3 - 3.2</a>
                             </li>
@@ -371,7 +372,11 @@
                     </div>
                     <div class="text-end col">
                         <button class="btn btn-outline-success" id="btnGuardar" type="button">Guardar</button>
+                        @if($pregunta2Respondida)
                         <div class="btn btn-outline-primary" id="siguiente">Siguiente</div>
+                        @else
+                        <div class="btn btn-outline-primary disabled" style="cursor: not-allowed" title="Debe guardar la información primero">Siguiente</div>
+                        @endif
                     </div> 
                 </div>
             </div>
