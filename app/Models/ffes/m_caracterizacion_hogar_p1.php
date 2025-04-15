@@ -55,12 +55,15 @@ class m_caracterizacion_hogar_p1 extends Model
             'sincro' => 0,
             'created_at' => now(),
             'updated_at' => now(),
-            // Valores predeterminados para todas las columnas JSON
-            'situacionesriesgo_hogar_p1' => isset($datos['situacionesriesgo_hogar_p1']) ? $datos['situacionesriesgo_hogar_p1'] : json_encode(['situaciones' => [], 'integrantes' => []]),
-            'salud_mental_p3' => isset($datos['salud_mental_p3']) ? $datos['salud_mental_p3'] : json_encode([]),
-            'cualdiagnostico_salud_mental_p3_1' => isset($datos['cualdiagnostico_salud_mental_p3_1']) ? $datos['cualdiagnostico_salud_mental_p3_1'] : json_encode([]),
-            'acedio_servicios_salud_mental_p3_2' => isset($datos['acedio_servicios_salud_mental_p3_2']) ? $datos['acedio_servicios_salud_mental_p3_2'] : json_encode([]),
-            'hace_parte_instancia_participacion_p4' => isset($datos['hace_parte_instancia_participacion_p4']) ? $datos['hace_parte_instancia_participacion_p4'] : json_encode([])
+            // Solo guardar los campos de la pregunta 1
+            'situacionesriesgo_hogar_p1' => $datos['situacionesriesgo_hogar_p1'],
+            // Campos JSON de otras preguntas como arrays vacíos
+            'nino_medidas_restablecimiento_p2' => '[]',
+            'cuales_medidas_restablecimiento_p2_1' => '[]',
+            'salud_mental_p3' => '[]',
+            'cualdiagnostico_salud_mental_p3_1' => '[]',
+            'acedio_servicios_salud_mental_p3_2' => '[]',
+            'hace_parte_instancia_participacion_p4' => '[]'
         ];
         
         return DB::table($this->table)->insert($insertData);
@@ -79,22 +82,6 @@ class m_caracterizacion_hogar_p1 extends Model
         // Añadir solo los campos que vienen en los datos
         if (isset($datos['situacionesriesgo_hogar_p1'])) {
             $updateData['situacionesriesgo_hogar_p1'] = $datos['situacionesriesgo_hogar_p1'];
-        }
-        
-        if (isset($datos['salud_mental_p3'])) {
-            $updateData['salud_mental_p3'] = $datos['salud_mental_p3'];
-        }
-        
-        if (isset($datos['cualdiagnostico_salud_mental_p3_1'])) {
-            $updateData['cualdiagnostico_salud_mental_p3_1'] = $datos['cualdiagnostico_salud_mental_p3_1'];
-        }
-        
-        if (isset($datos['acedio_servicios_salud_mental_p3_2'])) {
-            $updateData['acedio_servicios_salud_mental_p3_2'] = $datos['acedio_servicios_salud_mental_p3_2'];
-        }
-        
-        if (isset($datos['hace_parte_instancia_participacion_p4'])) {
-            $updateData['hace_parte_instancia_participacion_p4'] = $datos['hace_parte_instancia_participacion_p4'];
         }
         
         return DB::table($this->table)
