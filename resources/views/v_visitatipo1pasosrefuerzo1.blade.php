@@ -581,7 +581,7 @@ body {
   </div>
 </div>
 
-
+<!-- esta es una prueba para ensayar -->
 
    <!-- Swiper JS -->
    <script src="{{ asset('/assets/js/swiper-bundle.min.js') }}"></script>
