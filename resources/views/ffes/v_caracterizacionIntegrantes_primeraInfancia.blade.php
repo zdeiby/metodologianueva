@@ -183,7 +183,11 @@
             </div>
             <div class="text-end col">
             <button class="btn btn-outline-success" type="submit"  >Guardar</button>
-            <div class="btn btn-outline-primary" id="siguiente"   >Siguiente</div>
+            @if(isset($servicioSeleccionado))
+            <div class="btn btn-outline-primary" id="siguiente" onclick="redirigirAMecanismosProteccion()">Siguiente</div>
+            @else
+            <div class="btn btn-outline-primary disabled" style="cursor: not-allowed" title="Debe guardar la información primero">Siguiente</div>
+            @endif
             </div> 
           </div>
 

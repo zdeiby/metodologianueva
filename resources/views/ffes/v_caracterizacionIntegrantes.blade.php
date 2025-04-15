@@ -69,10 +69,12 @@
         }
       @endphp
       
-      {{-- Mostrar pestaña Primera Infancia siempre, la validación se hace en la vista --}}
+      {{-- Mostrar pestaña Primera Infancia solo si existen estrategias guardadas --}}
+      @if(!empty($estrategiasSeleccionadas))
       <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link" onclick="redirigirAPrimeraInfancia()" >Primera Infancia</a>
       </li>
+      @endif
       
       {{-- Mostrar pestaña Mecanismos de Protección SOLO si ya existen respuestas guardadas --}}
       @if(isset($existeMecanismosProteccion) && $existeMecanismosProteccion)
@@ -279,7 +281,11 @@
             </div>
             <div class="text-end col">
             <button class="btn btn-outline-success" type="submit"  >Guardar</button>
-            <div class="btn btn-outline-primary" id="siguiente"   >Siguiente</div>
+            @if(!empty($estrategiasSeleccionadas))
+            <div class="btn btn-outline-primary" id="siguiente" onclick="redirigirAPrimeraInfancia()">Siguiente</div>
+            @else
+            <div class="btn btn-outline-primary disabled" style="cursor: not-allowed" title="Debe guardar la información primero">Siguiente</div>
+            @endif
             </div> 
           </div>
 
@@ -403,6 +409,9 @@
                             text: 'Datos guardados correctamente',
                             icon: 'success',
                             confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            // Recargar la página después de guardar exitosamente
+                            window.location.reload();
                         });
                     } else {
                         Swal.fire({
