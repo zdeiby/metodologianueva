@@ -1124,18 +1124,24 @@
                             id: '1',
                             valor: 'SI',
                             idintegrante: integrantesSIids // Array de IDs (chequeados)
-                        },
-                        {
+                        }
+                    ];
+                    
+                    // Solo agregar el objeto de NO SI si hay integrantes no seleccionados
+                    if (integrantesNOids.length > 0) {
+                        respuestas3_2.push({
                             id: '0',
                             valor: 'SI',
                             idintegrante: integrantesNOids // Array de IDs (no chequeados)
-                        },
-                        {
-                            id: '0',
-                            valor: 'NO',
-                            idintegrante: []
-                        }
-                    ];
+                        });
+                    }
+                    
+                    // Siempre agregar el objeto de NO al final
+                    respuestas3_2.push({
+                        id: '0',
+                        valor: 'NO',
+                        idintegrante: []
+                    });
                 } else if (respuesta3_2 === '0') {
                     // Si la respuesta es NO, guardar solo los dos objetos globales
                     respuestas3_2 = [
