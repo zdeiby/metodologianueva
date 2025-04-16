@@ -1089,66 +1089,72 @@
             
             // Obtener la respuesta de la pregunta 3.2
             const respuesta3_2 = $('input[name="respuesta3_2"]:checked').val();
-            const respuestas3_2 = [];
+            let respuestas3_2 = [];
             
             if (respuestaSeleccionada === '1') {
-                // Solo procesar la pregunta 3.2 si la pregunta 3 tiene respuesta SI
                 if (respuesta3_2 === '1') {
-                    // Si la respuesta es SI, recopilar integrantes seleccionados
-                    const integrantes3_2 = [];
+                    // Obtener integrantes seleccionados en la pregunta 3
+                    const integrantesSeleccionadosPregunta3 = [];
+                    $('input[name="integrantes[]"]:checked').each(function() {
+                        integrantesSeleccionadosPregunta3.push($(this).val());
+                    });
+                    // Obtener integrantes seleccionados en la pregunta 3.2
+                    const integrantes3_2Seleccionados = [];
                     $('input[name="integrantes3_2[]"]:checked').each(function() {
-                        integrantes3_2.push($(this).val());
+                        integrantes3_2Seleccionados.push($(this).val());
                     });
                     
-                    respuestas3_2.push({
-                        id: '1',
-                        valor: 'SI',
-                        idintegrante: integrantes3_2
+                    // Vamos a simplificar y usar directamente el formato que espera el controlador
+                    // En lugar de objetos individuales por integrante, usamos arrays
+                    const integrantesSIids = [];
+                    const integrantesNOids = [];
+                    
+                    // Clasificar cada integrante seleccionado en la pregunta 3
+                    integrantesSeleccionadosPregunta3.forEach(function(idIntegrante) {
+                        if (integrantes3_2Seleccionados.includes(idIntegrante)) {
+                            integrantesSIids.push(idIntegrante); // Está chequeado en 3.2
+                        } else {
+                            integrantesNOids.push(idIntegrante); // No está chequeado en 3.2
+                        }
                     });
-                    respuestas3_2.push({
-                        id: '0',
-                        valor: 'NO',
-                        idintegrante: []
-                    });
+                    
+                    // Construir la respuesta en el formato que espera el controlador
+                    respuestas3_2 = [
+                        {
+                            id: '1',
+                            valor: 'SI',
+                            idintegrante: integrantesSIids // Array de IDs (chequeados)
+                        },
+                        {
+                            id: '0',
+                            valor: 'SI',
+                            idintegrante: integrantesNOids // Array de IDs (no chequeados)
+                        },
+                        {
+                            id: '0',
+                            valor: 'NO',
+                            idintegrante: []
+                        }
+                    ];
                 } else if (respuesta3_2 === '0') {
-                    // Si la respuesta es NO
-                    respuestas3_2.push({
-                        id: '1',
-                        valor: 'NO',
-                        idintegrante: []
-                    });
-                    respuestas3_2.push({
-                        id: '0',
-                        valor: 'SI',
-                        idintegrante: []
-                    });
+                    // Si la respuesta es NO, guardar solo los dos objetos globales
+                    respuestas3_2 = [
+                        {
+                            id: '1',
+                            valor: 'NO',
+                            idintegrante: []
+                        },
+                        {
+                            id: '0',
+                            valor: 'SI',
+                            idintegrante: []
+                        }
+                    ];
                 } else {
-                    // Si no seleccionó nada (no debería pasar debido a la validación)
-                    respuestas3_2.push({
-                        id: '1',
-                        valor: 'NO',
-                        idintegrante: []
-                    });
-                    respuestas3_2.push({
-                        id: '0',
-                        valor: 'SI',
-                        idintegrante: []
-                    });
+                    // Si no se selecciona nada
+                    respuestas3_2 = [];
                 }
-            } else {
-                // Si la respuesta a la pregunta 3 es NO
-                respuestas3_2.push({
-                    id: '1',
-                    valor: 'NO',
-                    idintegrante: []
-                });
-                respuestas3_2.push({
-                    id: '0',
-                    valor: 'SI',
-                    idintegrante: []
-                });
             }
-            
             formData.respuesta3_2 = respuestas3_2;
             
             // Enviar datos mediante AJAX
@@ -1403,6 +1409,49 @@
                     text: 'Debe completar y guardar la pregunta 3 antes de continuar con la siguiente pregunta.'
                 });
             }
+        });
+        
+        // Al cargar la página: mostrar integrantes solo si la respuesta 3.2 es SI, y marcar los que corresponda
+        $(document).ready(function() {
+            // Solo ejecutar esto si hay datos guardados para la pregunta 3.2
+            @if(isset($respuestaP3_2) && is_array($respuestaP3_2) && !empty($respuestaP3_2))
+                console.log('Datos de respuesta 3.2 encontrados:', @json($respuestaP3_2));
+                
+                // Buscar el objeto con id:1 y valor:SI (significa que la respuesta fue SI)
+                const respSI = @json($respuestaP3_2).find(r => r.id === '1' && r.valor === 'SI');
+                
+                // Buscar el objeto con id:1 y valor:NO (significa que la respuesta fue NO)
+                const respNO = @json($respuestaP3_2).find(r => r.id === '1' && r.valor === 'NO');
+                
+                if (respSI && Array.isArray(respSI.idintegrante) && respSI.idintegrante.length > 0) {
+                    // La respuesta es SI y hay integrantes seleccionados
+                    console.log('Respuesta SI con integrantes:', respSI.idintegrante);
+                    
+                    // Marcar el radio button de SI
+                    $('#respuesta3_2A').prop('checked', true);
+                    
+                    // Mostrar el contenedor
+                    setTimeout(function() {
+                        $('#pregunta3_2_container').show();
+                        $('#integrantesRespuesta3_2A').show();
+                        
+                        // Marcar los integrantes seleccionados
+                        respSI.idintegrante.forEach(function(id) {
+                            $(`input[name="integrantes3_2[]"][value="${id}"]`).prop('checked', true);
+                        });
+                    }, 1000); // Pequeño retraso para asegurar que los elementos existen
+                } 
+                else if (respNO) {
+                    // La respuesta es NO
+                    console.log('Respuesta NO');
+                    $('#respuesta3_2B').prop('checked', true);
+                    
+                    setTimeout(function() {
+                        $('#pregunta3_2_container').show();
+                        $('#integrantesRespuesta3_2A').hide();
+                    }, 1000);
+                }
+            @endif
         });
     });
 </script>
