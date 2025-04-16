@@ -941,8 +941,11 @@
             // Validaciones para pregunta 3 y 3.1
             if (respuestaSeleccionada == 1) { // Si la respuesta a la pregunta 3 es SI
                 // Validar que haya al menos un integrante seleccionado en la pregunta 3
-                const integrantesSeleccionados = $('input[name="integrantes[]"]:checked').length;
-                if (integrantesSeleccionados === 0) {
+                const integrantesSeleccionados = [];
+                $('input[name="integrantes[]"]:checked').each(function() {
+                    integrantesSeleccionados.push($(this).val());
+                });
+                if (integrantesSeleccionados.length === 0) {
                     Swal.fire({
                         icon: 'warning',
                         title: 'Validación',
@@ -962,21 +965,42 @@
                     return false;
                 }
                 
+                // NUEVA VALIDACIÓN: Cada integrante debe tener al menos un diagnóstico
+                let integrantesSinDiagnostico = [];
+                integrantesSeleccionados.forEach(function(idIntegrante) {
+                    let tieneDiagnostico = false;
+                    // Recorrer cada diagnóstico (A-N)
+                    const letras = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"];
+                    letras.forEach(function(letra) {
+                        if ($(`input[name='integrantesDiagnostico${letra}[]'][value='${idIntegrante}']`).is(":checked")) {
+                            tieneDiagnostico = true;
+                        }
+                    });
+                    if (!tieneDiagnostico) {
+                        integrantesSinDiagnostico.push(idIntegrante);
+                    }
+                });
+                if (integrantesSinDiagnostico.length > 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validación',
+                        text: 'Cada integrante seleccionado debe tener al menos un diagnóstico en la pregunta 3.1. Por favor, revise su selección.'
+                    });
+                    return false;
+                }
+                
                 // Validar que cada diagnóstico seleccionado tenga al menos un integrante seleccionado
                 let diagnosticosSinIntegrantes = false;
                 let nombreDiagnosticoSinIntegrantes = '';
-                
                 $('.diagnostico-switch:checked').each(function() {
                     const diagnostico = $(this).data('diagnostico');
                     const integrantesDiagnostico = $(`input[name="integrantesDiagnostico${diagnostico}[]"]:checked`).length;
-                    
                     if (integrantesDiagnostico === 0) {
                         diagnosticosSinIntegrantes = true;
                         nombreDiagnosticoSinIntegrantes = $(this).siblings('label').text();
                         return false; // Salir del bucle each
                     }
                 });
-                
                 if (diagnosticosSinIntegrantes) {
                     Swal.fire({
                         icon: 'warning',
