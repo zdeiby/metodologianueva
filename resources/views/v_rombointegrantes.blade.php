@@ -195,38 +195,6 @@ body {
         </div>
       </div>
 
- <!-- FFes -->
-
-  @if ($metodologia == 2)
-  <!-- Segunda tarjeta -->
-  <div class="swiper-slide">
-        <div class="card_wrapper">
-          <div class="card">
-            <div class="content">
-              <div class="front">
-                <img src="{{ asset('assets/img/iconos/card10.jpg')}}" alt="" />
-              </div>
-              <div class="back">
-                <div class="middle">
-                  <h3>
-                    <label>caracterización FFES</label>
-                  </h3>
-             </div>  
-             <button type="button" class="btn btn-primary" <?=($existel100p10010 == '1' && $existel100p10020 == '1'  && $existel100p10025 == '0'  )?'':'disabled'?> onclick="window.location.href='../integrantesffes/{{$foliocodificado}}'">Ir a caracterización FFES</button>
-             <div class="smCard">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
- @endif
-<!-- END FFES -->
-
-
-
-
 
 
       <!-- Segunda tarjeta -->
@@ -243,11 +211,7 @@ body {
                     <label>Encuesta hogar</label>
                   </h3>
              </div>  
-             @if ($metodologia == 2)
-             <button type="button" class="btn btn-primary ffes" <?=($existel100p10010 == '1' && $existel100p10020 == '1' && $existel100p10025 == '1' && $existel100p10030 == '0'   )?'':'disabled'?> onclick="window.location.href='../encuestahogarconformacionfamiliar/{{$variable}}'">Ir a encuesta de hogar</button>
-            @else
             <button type="button" class="btn btn-primary mef" <?=($existel100p10010 == '1' && $existel100p10020 == '1'   && $existel100p10030 == '0'   )?'':'disabled'?> onclick="window.location.href='../encuestahogarconformacionfamiliar/{{$variable}}'">Ir a encuesta de hogar</button>
-             @endif
              <div class="smCard">
                 </div>
               </div>
@@ -255,6 +219,41 @@ body {
           </div>
         </div>
       </div>
+
+
+
+
+ <!-- FFes -->
+
+ @if ($metodologia == 2)
+  <!-- Segunda tarjeta -->
+  <div class="swiper-slide">
+        <div class="card_wrapper">
+          <div class="card">
+            <div class="content">
+              <div class="front">
+                <img src="{{ asset('assets/img/iconos/card10.jpg')}}" alt="" />
+              </div>
+              <div class="back">
+                <div class="middle">
+                  <h3>
+                    <label>caracterización FFES</label>
+                  </h3>
+             </div>  
+             <button type="button" class="btn btn-primary" <?=($existel100p10010 == '1' && $existel100p10020 == '1' && $existel100p10030 =='1'  && $existel100p10025 == '0'  )?'':'disabled'?> onclick="window.location.href='../integrantesffes/{{$foliocodificado}}'">Ir a caracterización FFES</button>
+             <div class="smCard">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+ @endif
+<!-- END FFES -->
+
+
+
 
       <!-- 4ta tarjeta -->
       <div class="swiper-slide">
@@ -269,8 +268,12 @@ body {
                   <h3>
                     <label>Resultado encuesta</label>
                   </h3>
-             </div>  
+             </div> 
+             @if ($metodologia == 2)
+             <button type="button" class="btn btn-primary" id="resultadoencuestabntmodal" <?=($existel100p10010 == '1' && $existel100p10020 == '1'  && $existel100p10030 == '1' && $existel100p10025 == '1' )?'':'disabled'?> data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver resultado encuesta</button>
+            @else
              <button type="button" class="btn btn-primary" id="resultadoencuestabntmodal" <?=($existel100p10010 == '1' && $existel100p10020 == '1'  && $existel100p10030 == '1'   )?'':'disabled'?> data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver resultado encuesta</button>
+             @endif
              <div class="smCard">
                 </div>
               </div>
@@ -281,6 +284,13 @@ body {
 
 
       <!-- 5ta tarjeta -->
+
+
+
+
+
+
+
    <!-- 4ta tarjeta -->
    <div class="swiper-slide">
         <div class="card_wrapper">
