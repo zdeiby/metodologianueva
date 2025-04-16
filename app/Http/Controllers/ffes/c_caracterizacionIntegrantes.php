@@ -196,6 +196,8 @@ class c_caracterizacionIntegrantes extends Controller
             
             // Guardar en la base de datos
             $resultado = $modelo->m_guardarEstrategia($datos);
+            DB::select("CALL sp_indicador_bse_8_ffes(?, ?)", [$folio, $idintegrante]);
+
             if (!$resultado) {
                 $resultadoOk = false;
             }
