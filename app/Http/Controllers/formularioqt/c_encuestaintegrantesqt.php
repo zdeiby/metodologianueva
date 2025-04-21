@@ -138,6 +138,7 @@ class c_encuestaintegrantesqt extends Controller
 
                                 //indicador_bse_8_ffes
                                 $t1_indicador_bse_8 = DB::table('t1_indicador_bse_8_ffes')
+                                ->where('idintegrante', $decodeIntegrante)
                                 ->where('folio', $encodedFolio)
                                 ->get();
                 
