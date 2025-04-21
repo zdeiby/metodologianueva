@@ -55,133 +55,138 @@
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
       <div class="row">
+      @php
+        $edad = isset($datosIntegrante->edad) ? intval($datosIntegrante->edad) : 0;
+        $aplicaMecanismos = ($edad > 5 && $edad < 18);
+      @endphp
       <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="caracterizacionIntegranteffes" class="nav-link" href="{{ route('caracterizacion_integrantes', ['folio' => $folio, 'idintegrante' => $idintegrante]) }}">Caracterización integrantes
-        </a>
-      </li>
-      
-      <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="primeraInfanciaqt" class="nav-link"  onclick="redirigirAPrimeraInfancia()">Primera Infancia</a>
-      </li>
-       <li class="nav-item" role="presentation" style="cursor:pointer">
-        <a id="mecanismosqt"  class="nav-link active" >Mecanismos de Protección</a>
-      </li>
-  
-</ul>
+        @php
+          $edad = isset($datosIntegrante->edad) ? intval($datosIntegrante->edad) : 0;
+        @endphp
+        @if($edad > 5 && $edad < 15)
+        <li class="nav-item" role="presentation" style="cursor:pointer">
+          <a id="caracterizacionIntegranteffes" class="nav-link" onclick="redirigirACaracterizacionIntegrantes()">caracterizacion integrantes</a>
+        </li>
+        @endif
+        <li class="nav-item" role="presentation" style="cursor:pointer">
+          <a id="primeraInfanciaqt" class="nav-link"  onclick="redirigirAPrimeraInfancia()">Primera Infancia</a>
+        </li>
+        <li class="nav-item" role="presentation" style="cursor:pointer">
+          <a id="mecanismosqt"  class="nav-link active" >Mecanismos de Protección</a>
+        </li>
+      </ul>
 
+      <style>
+        .invalid-checkbox {
+            border: 1px solid red;
+            border-radius: 4px;
+            padding: 10px;
+          }
+      </style>
 
+      <div id="myTabContent" class="tab-content"><br>
+        <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="identificacion">
+          <!-- <div class="text-center"><label for="">Avatar</label></div>
+              <div class="avatar text-center" style="cursor:pointer">
+                <img src="{{asset('avatares/blanco.png')}} " id="imagenDinamica" class="rounded-circle" alt="Avatar" style="width: 150px; height: 150px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              </div> -->
 
-<style>
-  .invalid-checkbox {
-      border: 1px solid red;
-      border-radius: 4px;
-      padding: 10px;
-    }
-</style>
+              <form id="formulario" class="row g-3 was-validated">     
+                
+              <input type="hidden" name="folio" id="folioinput" value="{{ $folio }}">
+              <input type="hidden" name="idintegrante" id="idintegranteinput" value="{{ $idintegrante }}">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-<div id="myTabContent" class="tab-content"><br>
-  <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="identificacion">
-    <!-- <div class="text-center"><label for="">Avatar</label></div>
-        <div class="avatar text-center" style="cursor:pointer">
-          <img src="{{asset('avatares/blanco.png')}} " id="imagenDinamica" class="rounded-circle" alt="Avatar" style="width: 150px; height: 150px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        </div> -->
+              <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Mecanismos de Protección</span>
 
-          <form id="formulario" class="row g-3 was-validated">     
-            
-          <input type="hidden" name="folio" id="folioinput" value="{{ $folio }}">
-          <input type="hidden" name="idintegrante" id="idintegranteinput" value="{{ $idintegrante }}">
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <!-- Cabecera con información del integrante -->
+              <div class="mt-2 mb-2">
+                <div style="background-color: #f8f9fa; border-radius: 5px; padding: 8px 15px;">
+                  <div class="d-flex align-items-center">
+                    <span class="badge rounded-pill" style="font-size: 14px; background-color: #28a745; color: white; padding: 8px 12px; margin-right: 10px;">{{ $folio }}</span>
+                    <span class="badge rounded-pill" style="font-size: 14px; background-color: #9c27b0; color: white; padding: 8px 12px; margin-right: 10px; text-transform: uppercase;">{{ trim(($datosIntegrante->nombre1 ?? '') . ' ' . ($datosIntegrante->nombre2 ?? '') . ' ' . ($datosIntegrante->apellido1 ?? '') . ' ' . ($datosIntegrante->apellido2 ?? '')) }}</span>
+                    <span class="badge rounded-pill" style="font-size: 14px; background-color: #fd7e14; color: white; padding: 8px 12px;">{{ isset($datosIntegrante->edad) ? $datosIntegrante->edad . ' años' : 'Edad no disponible' }}</span>
+                  </div>
+                </div>
+              </div>
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Mecanismos de Protección</span>
+              <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
+              <b>Instrucciones:</b> Seleccione si conoce o no las instituciones y mecanismos que garantizan sus derechos.
+              </div>
 
+              @php
+              $edad = isset($datosIntegrante->edad) ? intval($datosIntegrante->edad) : 0;
+              $edadValida = $edad > 5 && $edad < 18;
+              @endphp
 
-          <!-- Cabecera con información del integrante -->
-          <div class="mt-2 mb-2">
-            <div style="background-color: #f8f9fa; border-radius: 5px; padding: 8px 15px;">
-              <div class="d-flex align-items-center">
-                <span class="badge rounded-pill" style="font-size: 14px; background-color: #28a745; color: white; padding: 8px 12px; margin-right: 10px;">{{ $folio }}</span>
-                <span class="badge rounded-pill" style="font-size: 14px; background-color: #9c27b0; color: white; padding: 8px 12px; margin-right: 10px; text-transform: uppercase;">{{ trim(($datosIntegrante->nombre1 ?? '') . ' ' . ($datosIntegrante->nombre2 ?? '') . ' ' . ($datosIntegrante->apellido1 ?? '') . ' ' . ($datosIntegrante->apellido2 ?? '')) }}</span>
-                <span class="badge rounded-pill" style="font-size: 14px; background-color: #fd7e14; color: white; padding: 8px 12px;">{{ isset($datosIntegrante->edad) ? $datosIntegrante->edad . ' años' : 'Edad no disponible' }}</span>
+              @if(!$edadValida)
+              <div class="alert alert-warning" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este integrante tiene {{$edad}} años. Este formulario solo aplica para personas mayores de 5 y menores de 18 años. No es necesario seleccionar opciones, simplemente presione "Guardar" para continuar.
+              </div>
+              <input type="hidden" id="edad_no_valida" value="1">
+              @else
+              <div class="alert alert-warning" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este formulario solo aplica para personas mayores de 5 y menores de 18 años.
+              </div>
+              <input type="hidden" id="edad_no_valida" value="0">
+              @endif
+
+              <div class="card mt-3">
+              <div class="card-header bg-light">
+                <h5 class="card-title mb-0">¿Conoces las instituciones y mecanismos para garantízar tus derechos?</h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <select class="form-select" id="conoce_institucion_mecanismo" name="conoce_institucion_mecanismo" {{ !$edadValida ? 'disabled' : '' }}>
+                      <option value="">Seleccione una opción</option>
+                      @foreach($serviciosPrimeraInfancia as $servicio)
+                        <option value="{{ $servicio->id }}" {{ isset($servicioSeleccionado) && $servicioSeleccionado == $servicio->id ? 'selected' : '' }}>
+                          {{ $servicio->pregunta }}
+                        </option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+              <br>
+              <br>
+              <br>
+              <br>
 
-          <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
-  <b>Instrucciones:</b> Seleccione si conoce o no las instituciones y mecanismos que garantizan sus derechos.
-</div>
-
-          @php
-          $edad = isset($datosIntegrante->edad) ? intval($datosIntegrante->edad) : 0;
-          $edadValida = $edad > 5 && $edad < 18;
-          @endphp
-
-          @if(!$edadValida)
-          <div class="alert alert-warning" role="alert">
-            <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este integrante tiene {{$edad}} años. Este formulario solo aplica para personas mayores de 5 y menores de 18 años. No es necesario seleccionar opciones, simplemente presione "Guardar" para continuar.
-          </div>
-          <input type="hidden" id="edad_no_valida" value="1">
-          @else
-          <div class="alert alert-warning" role="alert">
-            <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este formulario solo aplica para personas mayores de 5 y menores de 18 años.
-          </div>
-          <input type="hidden" id="edad_no_valida" value="0">
-          @endif
-
-          <div class="card mt-3">
-  <div class="card-header bg-light">
-    <h5 class="card-title mb-0">¿Conoces las instituciones y mecanismos para garantízar tus derechos?</h5>
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-12">
-        <select class="form-select" id="conoce_institucion_mecanismo" name="conoce_institucion_mecanismo" {{ !$edadValida ? 'disabled' : '' }}>
-          <option value="">Seleccione una opción</option>
-          @foreach($serviciosPrimeraInfancia as $servicio)
-            <option value="{{ $servicio->id }}" {{ isset($servicioSeleccionado) && $servicioSeleccionado == $servicio->id ? 'selected' : '' }}>
-              {{ $servicio->pregunta }}
-            </option>
-          @endforeach
-        </select>
-      </div>
-    </div>
-  </div>
-</div>
-          <br>
-          <br>
-          <br>
-          <br>
-
-  </div>
-</div>
-
-<br>
-<br>
-<br>
-<br>
-
-  </div>
-  </div>
-          <hr>
-          <div class="row">  
-            <div class="text-start col">
-
-
-             <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
-
-
-
-            </div>
-            <div class="text-end col">
-            <button class="btn btn-outline-success" type="submit"  >Guardar</button>
-            <div class="btn btn-outline-primary" id="siguiente"   onclick="window.location.href='{{ url('integrantesffes/' . $foliourl) }}'"  >Siguiente</div>
-            </div> 
-          </div>
-
-        </form> 
-      </div>
         </div>
       </div>
+
+      <br>
+      <br>
+      <br>
+      <br>
+
+      </div>
+      </div>
+              <hr>
+              <div class="row">  
+                <div class="text-start col">
+
+
+                 <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
+
+
+
+                </div>
+                <div class="text-end col">
+                <button class="btn btn-outline-success" type="submit"  >Guardar</button>
+                <div class="btn btn-outline-primary" id="siguiente"   onclick="window.location.href='{{ url('integrantesffes/' . $foliourl) }}'"  >Siguiente</div>
+                </div> 
+              </div>
+
+            </form> 
+          </div>
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -19,6 +19,18 @@
   }
 </style>
 
+@php
+    $edad = isset($datosIntegrante->edad) ? intval($datosIntegrante->edad) : 0;
+    // Solo pasa si es mayor de 5 y menor de 16
+    $aplicaCaracterizacion = ($edad > 5 && $edad < 16);
+@endphp
+@if(!$aplicaCaracterizacion)
+    <script>
+        // Redirige automáticamente a la vista de primera infancia si no cumple el rango
+        window.location.href = "{{ route('primera_infancia', ['folio' => $folio, 'idintegrante' => $idintegrante]) }}";
+    </script>
+@endif
+
 <div class="container">
   <div class="row justify-content-center">
     
