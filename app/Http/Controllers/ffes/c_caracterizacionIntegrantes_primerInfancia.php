@@ -37,6 +37,16 @@ class c_caracterizacionIntegrantes_primerInfancia extends Controller
             ->where('folio', $folioDesencriptado)
             ->where('idintegrante', (string)$idintegranteDesencriptado)
             ->first();
+        
+        // Obtener niveleducativo1 de la tabla t1_integrantesintelectual
+        $nivelEducativoIntelectual = DB::table('t1_integrantesintelectual')
+            ->where('folio', $folioDesencriptado)
+            ->where('idintegrante', (string)$idintegranteDesencriptado)
+            ->value('niveleducativo1');
+        // Agregarlo como propiedad al objeto $datosIntegrante
+        if ($datosIntegrante) {
+            $datosIntegrante->niveleducativo1 = $nivelEducativoIntelectual;
+        }
             
         if (!$datosIntegrante) {
             Log::info("No se encontró el integrante con folio: {$folioDesencriptado} e idintegrante: {$idintegranteDesencriptado}");

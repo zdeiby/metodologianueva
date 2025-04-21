@@ -57,7 +57,8 @@
       <div class="row">
       @php
         $edad = isset($datosIntegrante->edad) ? intval($datosIntegrante->edad) : 0;
-        $esMenorDeSeis = $edad < 6;
+        $niveleducativo1 = isset($datosIntegrante->niveleducativo1) ? $datosIntegrante->niveleducativo1 : null;
+        $puedeDiligenciar = ($edad < 6 && $niveleducativo1 == '108');
       @endphp
       <ul class="nav nav-tabs" role="tablist">
         @php
@@ -88,97 +89,81 @@
 
       <div id="myTabContent" class="tab-content"><br>
         <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="identificacion">
-          <!-- <div class="text-center"><label for="">Avatar</label></div>
-              <div class="avatar text-center" style="cursor:pointer">
-                <img src="{{asset('avatares/blanco.png')}} " id="imagenDinamica" class="rounded-circle" alt="Avatar" style="width: 150px; height: 150px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              </div> -->
+          <form id="formulario" class="row g-3 was-validated">     
+            <input type="hidden" name="folio" id="folioinput" value="{{ $folio }}">
+            <input type="hidden" name="idintegrante" id="idintegranteinput" value="{{ $idintegrante }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="puedeDiligenciar" id="puedeDiligenciar" value="{{ $puedeDiligenciar ? 1 : 0 }}">
 
-              <form id="formulario" class="row g-3 was-validated">     
-                
-              <input type="hidden" name="folio" id="folioinput" value="{{ $folio }}">
-              <input type="hidden" name="idintegrante" id="idintegranteinput" value="{{ $idintegrante }}">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-              <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Servicios de Primera Infancia</span>
-
-              <!-- Cabecera con información del integrante -->
-              <div class="mt-2 mb-2">
-                <div style="background-color: #f8f9fa; border-radius: 5px; padding: 8px 15px;">
-                  <div class="d-flex align-items-center">
-                    <span class="badge rounded-pill" style="font-size: 14px; background-color: #28a745; color: white; padding: 8px 12px; margin-right: 10px;">{{ $folio }}</span>
-                    <span class="badge rounded-pill" style="font-size: 14px; background-color: #9c27b0; color: white; padding: 8px 12px; margin-right: 10px; text-transform: uppercase;">{{ trim(($datosIntegrante->nombre1 ?? '') . ' ' . ($datosIntegrante->nombre2 ?? '') . ' ' . ($datosIntegrante->apellido1 ?? '') . ' ' . ($datosIntegrante->apellido2 ?? '')) }}</span>
-                    <span class="badge rounded-pill" style="font-size: 14px; background-color: #fd7e14; color: white; padding: 8px 12px;">{{ isset($datosIntegrante->edad) ? $datosIntegrante->edad . ' años' : 'Edad no disponible' }}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
-              <b>Instrucciones:</b> Seleccione el servicio de primera infancia en el que se encuentra recibiendo atención el integrante.
-              </div>
-
-              @php
-              $edad = isset($datosIntegrante->edad) ? intval($datosIntegrante->edad) : 0;
-              $esMenorDeSeis = $edad < 6;
-              @endphp
-
-              @if(!$esMenorDeSeis)
-              <div class="alert alert-warning" role="alert">
-                <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este integrante tiene {{$edad}} años. Este formulario solo aplica para niños menores de 6 años. No es necesario seleccionar opciones, simplemente presione "Guardar" para continuar.
-              </div>
-              <input type="hidden" id="mayor_seis_anos" value="1">
-              @else
-              <div class="alert alert-warning" role="alert">
-                <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este formulario solo aplica para niños menores de 6 años.
-              </div>
-              <input type="hidden" id="mayor_seis_anos" value="0">
-              @endif
-
-              <div class="card mt-3">
-              <div class="card-header bg-light">
-                <h5 class="card-title mb-0">¿En qué servicios de primera infancia se encuentra recibiendo atención?</h5>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12">
-                    <select class="form-select" id="servicio_primera_infancia" name="servicio_primera_infancia" {{ !$esMenorDeSeis ? 'disabled' : '' }}>
-                      <option value="">Seleccione una opción</option>
-                      @foreach($serviciosPrimeraInfancia as $servicio)
-                        <option value="{{ $servicio->id }}" {{ isset($servicioSeleccionado) && $servicioSeleccionado == $servicio->id ? 'selected' : '' }}>
-                          {{ $servicio->pregunta }}
-                        </option>
-                      @endforeach
-                    </select>
-                  </div>
+            <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">Servicios de Primera Infancia</span>
+            <div class="mt-2 mb-2">
+              <div style="background-color: #f8f9fa; border-radius: 5px; padding: 8px 15px;">
+                <div class="d-flex align-items-center">
+                  <span class="badge rounded-pill" style="font-size: 14px; background-color: #28a745; color: white; padding: 8px 12px; margin-right: 10px;">{{ $folio }}</span>
+                  <span class="badge rounded-pill" style="font-size: 14px; background-color: #9c27b0; color: white; padding: 8px 12px; margin-right: 10px; text-transform: uppercase;">{{ trim(($datosIntegrante->nombre1 ?? '') . ' ' . ($datosIntegrante->nombre2 ?? '') . ' ' . ($datosIntegrante->apellido1 ?? '') . ' ' . ($datosIntegrante->apellido2 ?? '')) }}</span>
+                  <span class="badge rounded-pill" style="font-size: 14px; background-color: #fd7e14; color: white; padding: 8px 12px;">{{ isset($datosIntegrante->edad) ? $datosIntegrante->edad . ' años' : 'Edad no disponible' }}</span>
                 </div>
               </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
+            <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
+            <b>Instrucciones:</b> Seleccione el servicio de primera infancia en el que se encuentra recibiendo atención el integrante.
+            </div>
+            @php
+            $edad = isset($datosIntegrante->edad) ? intval($datosIntegrante->edad) : 0;
+            $esMenorDeSeis = $edad < 6;
+            @endphp
+            @if(!$esMenorDeSeis)
+            <div class="alert alert-warning" role="alert">
+              <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este integrante tiene {{$edad}} años. Este formulario solo aplica para niños menores de 6 años. No es necesario seleccionar opciones, simplemente presione "Guardar" para continuar.
+            </div>
+            <input type="hidden" id="mayor_seis_anos" value="1">
+            @else
+            <div class="alert alert-warning" role="alert">
+              <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Este formulario solo aplica para niños menores de 6 años.
+            </div>
+            <input type="hidden" id="mayor_seis_anos" value="0">
+            @endif
 
-      </div>
-    </div>
+            @if(!$puedeDiligenciar)
+            <div class="alert alert-warning mt-2">
+              <i class="fas fa-exclamation-triangle"></i> <b>Importante:</b> Solo pueden diligenciar este formulario los menores de 6 años con nivel educativo b. Servicios de primera infancia. Simplemente presione "Guardar" para continuar.
+            </div>
+            <input type="hidden" name="servicio_primera_infancia" value="0">
+            @endif
 
-    <br>
-    <br>
-    <br>
-    <br>
+            <div class="card mt-3">
+            <div class="card-header bg-light">
+              <h5 class="card-title mb-0">¿En qué servicios de primera infancia se encuentra recibiendo atención?</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <select class="form-select" id="servicio_primera_infancia" name="servicio_primera_infancia" {{ (!$puedeDiligenciar || !$esMenorDeSeis) ? 'disabled' : '' }}>
+                    <option value="">Seleccione una opción</option>
+                    @foreach($serviciosPrimeraInfancia as $servicio)
+                      <option value="{{ $servicio->id }}" {{ isset($servicioSeleccionado) && $servicioSeleccionado == $servicio->id ? 'selected' : '' }}>
+                        {{ $servicio->pregunta }}
+                      </option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <br>
+          <br>
 
       </div>
       </div>
         <hr>
         <div class="row">  
           <div class="text-start col">
-
-
            <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
-
-
-
           </div>
           <div class="text-end col">
-          <button class="btn btn-outline-success" type="submit"  >Guardar</button>
+          <button class="btn btn-outline-success" type="submit">Guardar</button>
           @if(isset($servicioSeleccionado))
           <div class="btn btn-outline-primary" id="siguiente" onclick="redirigirAMecanismosProteccion()">Siguiente</div>
           @else
@@ -206,8 +191,8 @@
 $('form').submit(function(e) {
     e.preventDefault();
     
-    // Verificar edad del integrante
-    var esMayorDeSeis = $('#mayor_seis_anos').val() == 1;
+    // Verificar si cumple condición completa (menor de 6 años Y niveleducativo1 == 108)
+    var puedeDiligenciar = $('#puedeDiligenciar').val() == 1;
     
     // Recopilar datos del formulario
     var formData = {
@@ -216,11 +201,11 @@ $('form').submit(function(e) {
         _token: $('meta[name="csrf-token"]').attr('content')
     };
     
-    // Si es mayor de 6 años, asignar 0 automáticamente
-    if(esMayorDeSeis) {
+    // Si no cumple la condición completa, asignar 0 automáticamente
+    if(!puedeDiligenciar) {
         formData.servicio_primera_infancia = 0;
     } else {
-        // Verificar que se haya seleccionado una opción si es menor de 6 años
+        // Solo verificar que se haya seleccionado una opción si cumple con ambas condiciones
         var servicioSeleccionado = $('#servicio_primera_infancia').val();
         if(!servicioSeleccionado) {
             Swal.fire({
