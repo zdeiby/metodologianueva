@@ -2186,7 +2186,7 @@ $.ajax({
                 actualizarTabla('t1_accionmovilizadoracompromisos', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('90%');
                 $('#barracarga').css('width','90%');                                   
-                t1_saludemocionalqtd();                   
+                t1_indicadores_integrantes_ffesd();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t1_accionmovilizadoracompromisos', 'Descarga de tablas desde el servdor', '3');
@@ -2196,7 +2196,284 @@ $.ajax({
             })
 }
 
-//
+//FFES 
+
+
+
+function t1_indicadores_integrantes_ffesd (){
+  actualizarTabla('t1_indicadores_integrantes_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_indicadores_integrantes_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicadores_integrantes_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicadores_hogar_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicadores_integrantes_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_accionmovilizadoracompromisosd, 't1_indicadores_integrantes_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t1_indicadores_hogar_ffesd (){
+  actualizarTabla('t1_indicadores_hogar_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_indicadores_hogar_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicadores_hogar_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_caracterizacion_hogar_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicadores_hogar_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_indicadores_integrantes_ffesd, 't1_indicadores_hogar_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+
+function t1_caracterizacion_hogar_ffesd (){
+  actualizarTabla('t1_caracterizacion_hogar_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_caracterizacion_hogar_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_caracterizacion_hogar_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bef_7_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_caracterizacion_hogar_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_indicadores_hogar_ffesd, 't1_indicadores_hogar_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+
+
+function t1_indicador_bef_7_ffesd (){
+  actualizarTabla('t1_indicador_bef_7_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_indicador_bef_7_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bef_7_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bl_11_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bef_7_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_indicadores_hogar_ffesd, 't1_indicador_bef_7_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t1_indicador_bl_11_ffesd (){
+  actualizarTabla('t1_indicador_bl_11_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_indicador_bl_11_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bl_11_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bl_12_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bl_11_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_indicadores_hogar_ffesd, 't1_indicador_bl_11_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t1_indicador_bl_12_ffesd (){
+  actualizarTabla('t1_indicador_bl_12_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_indicador_bl_12_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bl_12_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bse_8_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bl_12_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_indicador_bl_11_ffesd, 't1_indicador_bl_12_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_indicador_bse_8_ffesd (){
+  actualizarTabla('t1_indicador_bse_8_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_indicador_bse_8_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bse_8_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bse_9_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bse_8_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_indicador_bl_12_ffesd, 't1_indicador_bse_8_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_indicador_bse_9_ffesd (){
+  actualizarTabla('t1_indicador_bse_9_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_indicador_bse_9_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bse_9_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bse_10_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bse_9_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_indicador_bse_8_ffesd, 't1_indicador_bse_9_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_indicador_bse_10_ffesd (){
+  actualizarTabla('t1_indicador_bse_10_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_indicador_bse_10_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bse_10_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_caracterizacionIntegrante_conoce_instituciones_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bse_10_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_indicador_bse_9_ffesd, 't1_indicador_bse_10_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_caracterizacionIntegrante_conoce_instituciones_ffesd (){
+  actualizarTabla('t1_caracterizacionIntegrante_conoce_instituciones_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_caracterizacionIntegrante_conoce_instituciones_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_caracterizacionIntegrante_conoce_instituciones_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_caracterizacionIntegrante_primeraInfancia_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_caracterizacionIntegrante_conoce_instituciones_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_indicador_bse_10_ffesd, 't1_caracterizacionIntegrante_conoce_instituciones_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t1_caracterizacionIntegrante_primeraInfancia_ffesd (){
+  actualizarTabla('t1_caracterizacionIntegrante_primeraInfancia_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_caracterizacionIntegrante_primeraInfancia_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_caracterizacionIntegrante_primeraInfancia_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_caracterizacionIntegrante_estrategia_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_caracterizacionIntegrante_primeraInfancia_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_caracterizacionIntegrante_conoce_instituciones_ffesd, 't1_caracterizacionIntegrante_primeraInfancia_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_caracterizacionIntegrante_estrategia_ffesd (){
+  actualizarTabla('t1_caracterizacionIntegrante_estrategia_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_caracterizacionIntegrante_estrategia_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_caracterizacionIntegrante_estrategia_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_saludemocionalqtd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_caracterizacionIntegrante_estrategia_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_caracterizacionIntegrante_primeraInfancia_ffesd, 't1_caracterizacionIntegrante_estrategia_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+// FIN FFES
 
 
 

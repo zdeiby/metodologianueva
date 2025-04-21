@@ -80,7 +80,8 @@ public function fc_sincroprivacionesd(Request $request) {
         $created_at =        isset($item['created_at'])        ? $item['created_at'] : null;
         $idoportunidad =        isset($item['idoportunidad'])        ? $item['idoportunidad'] : null;
         $numero_compromiso =        isset($item['numero_compromiso'])        ? $item['numero_compromiso'] : null;
-        
+        $estrategia_implementa_reducir_estres =        isset($item['estrategia_implementa_reducir_estres'])        ? $item['estrategia_implementa_reducir_estres'] : null;
+ 
         
         // Remover el folio y idintegrante del array para evitar duplicados en el updateOrInsert
         $dataToUpdate = $item;
@@ -117,6 +118,12 @@ public function fc_sincroprivacionesd(Request $request) {
             unset($dataToUpdate['numero_compromiso']);
         }
 
+        if ($estrategia_implementa_reducir_estres !== null) {
+            unset($dataToUpdate['estrategia_implementa_reducir_estres']);
+        }
+
+        
+
 
         // Usar updateOrInsert para insertar o actualizar según el caso
         $condition = ['folio' => $folio];
@@ -145,6 +152,13 @@ public function fc_sincroprivacionesd(Request $request) {
         if ($numero_compromiso !== null) {
             $condition['numero_compromiso'] = $numero_compromiso;
         }
+
+        if ($estrategia_implementa_reducir_estres !== null) {
+            $condition['estrategia_implementa_reducir_estres'] = $estrategia_implementa_reducir_estres;
+        }
+
+
+        
 
         if($tabla == 't3_oportunidad_integranteshogar_historico'){
             $condition['created_at'] = $created_at;

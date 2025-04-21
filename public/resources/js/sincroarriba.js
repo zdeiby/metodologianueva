@@ -2186,6 +2186,286 @@ $.ajax({
 }
 
 
+// FESSS
+
+function t1_indicadores_integrantes_ffes (){
+  actualizarTabla('t1_indicadores_integrantes_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_indicadores_integrantes_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicadores_integrantes_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicadores_hogar_ffes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicadores_integrantes_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bse_7, 't1_indicadores_integrantes_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t1_indicadores_hogar_ffes (){
+  actualizarTabla('t1_indicadores_hogar_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_indicadores_hogar_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicadores_hogar_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_caracterizacion_hogar_ffes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicadores_hogar_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_indicadores_integrantes_ffes, 't1_indicadores_hogar_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+
+function t1_caracterizacion_hogar_ffes (){
+  actualizarTabla('t1_caracterizacion_hogar_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_caracterizacion_hogar_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_caracterizacion_hogar_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bef_7_ffes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_caracterizacion_hogar_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_indicadores_hogar_ffes, 't1_indicadores_hogar_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+
+
+function t1_indicador_bef_7_ffes (){
+  actualizarTabla('t1_indicador_bef_7_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_indicador_bef_7_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bef_7_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bl_11_ffes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bef_7_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_indicadores_hogar_ffes, 't1_indicador_bef_7_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t1_indicador_bl_11_ffes (){
+  actualizarTabla('t1_indicador_bl_11_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_indicador_bl_11_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bl_11_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bl_12_ffes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bl_11_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_indicadores_hogar_ffes, 't1_indicador_bl_11_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t1_indicador_bl_12_ffes (){
+  actualizarTabla('t1_indicador_bl_12_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_indicador_bl_12_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bl_12_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bse_8_ffes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bl_12_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_indicador_bl_11_ffes, 't1_indicador_bl_12_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_indicador_bse_8_ffes (){
+  actualizarTabla('t1_indicador_bse_8_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_indicador_bse_8_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bse_8_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bse_9_ffes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bse_8_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_indicador_bl_12_ffes, 't1_indicador_bse_8_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_indicador_bse_9_ffes (){
+  actualizarTabla('t1_indicador_bse_9_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_indicador_bse_9_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bse_9_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_indicador_bse_10_ffes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bse_9_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_indicador_bse_8_ffes, 't1_indicador_bse_9_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_indicador_bse_10_ffes (){
+  actualizarTabla('t1_indicador_bse_10_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_indicador_bse_10_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_indicador_bse_10_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_caracterizacionIntegrante_conoce_instituciones_ffes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_indicador_bse_10_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_indicador_bse_9_ffes, 't1_indicador_bse_10_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_caracterizacionIntegrante_conoce_instituciones_ffes (){
+  actualizarTabla('t1_caracterizacionIntegrante_conoce_instituciones_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_caracterizacionIntegrante_conoce_instituciones_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_caracterizacionIntegrante_conoce_instituciones_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_caracterizacionIntegrante_primeraInfancia_ffes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_caracterizacionIntegrante_conoce_instituciones_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_indicador_bse_10_ffes, 't1_caracterizacionIntegrante_conoce_instituciones_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+function t1_caracterizacionIntegrante_primeraInfancia_ffes (){
+  actualizarTabla('t1_caracterizacionIntegrante_primeraInfancia_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_caracterizacionIntegrante_primeraInfancia_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_caracterizacionIntegrante_primeraInfancia_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_caracterizacionIntegrante_estrategia_ffes();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_caracterizacionIntegrante_primeraInfancia_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_caracterizacionIntegrante_conoce_instituciones_ffes, 't1_caracterizacionIntegrante_primeraInfancia_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_caracterizacionIntegrante_estrategia_ffes (){
+  actualizarTabla('t1_caracterizacionIntegrante_estrategia_ffes', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_caracterizacionIntegrante_estrategia_ffes';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_caracterizacionIntegrante_estrategia_ffes', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t3_sincronizacion();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_caracterizacionIntegrante_estrategia_ffes', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_caracterizacionIntegrante_primeraInfancia_ffes, 't1_caracterizacionIntegrante_estrategia_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+
+// FIN FFES
+
+
 function t3_sincronizacion (){
   actualizarTabla('t3_sincronizacion', 'Subida base de datos al servidor', '1');
  // let tabla= 't3_movimiento_indicadores_integrante_vp_historico';
