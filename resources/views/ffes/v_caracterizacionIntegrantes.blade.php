@@ -24,12 +24,6 @@
     // Solo pasa si es mayor de 5 y menor de 16
     $aplicaCaracterizacion = ($edad > 5 && $edad < 16);
 @endphp
-@if(!$aplicaCaracterizacion)
-    <script>
-        // Redirige automáticamente a la vista de primera infancia si no cumple el rango
-        window.location.href = "{{ route('primera_infancia', ['folio' => $folio, 'idintegrante' => $idintegrante]) }}";
-    </script>
-@endif
 
 <div class="container">
   <div class="row justify-content-center">
@@ -173,6 +167,12 @@
           <b>Instrucciones:</b> Seleccione las estrategias que implementa el integrante para reducir el estrés y favorecer el bienestar emocional y físico.
           </div>
 
+          @if(!$aplicaCaracterizacion)
+            <div class="alert alert-warning" role="alert">
+              <b>Importante:</b> Solo puede seleccionar la opción <b>"No Aplica"</b> para este integrante, ya que no cumple con el rango de edad requerido para las estrategias.
+            </div>
+          @endif
+
           <div class="card mt-3">
             <div class="card-header bg-light">
               <h5 class="card-title mb-0">Seleccione las estrategias que implementa para reducir el estrés</h5>
@@ -184,55 +184,55 @@
                     <div class="card-body">
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_1" value="2" {{ in_array(2, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_1" value="2" {{ in_array(2, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_1"><strong>A. Yoga</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_2" value="3" {{ in_array(3, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_2" value="3" {{ in_array(3, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_2"><strong>B. Técnicas de relajación y meditación</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_3" value="4" {{ in_array(4, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_3" value="4" {{ in_array(4, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_3"><strong>C. Participación en  actividades de grupo</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_4" value="5" {{ in_array(5, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_4" value="5" {{ in_array(5, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_4"><strong>D. Gestión de apoyo social (familiares y amigos)</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_5" value="6" {{ in_array(6, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_5" value="6" {{ in_array(6, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_5"><strong>E. Gestión de ayuda profesional</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_6" value="7" {{ in_array(7, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_6" value="7" {{ in_array(7, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_6"><strong>F. Actividades físicas, el juego.</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_7" value="8" {{ in_array(8, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_7" value="8" {{ in_array(8, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_7"><strong>G.  Alimentación sana</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_8" value="9" {{ in_array(9, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_8" value="9" {{ in_array(9, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_8"><strong>H. Planificación de actividades cotidianas</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_9" value="10" {{ in_array(10, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_9" value="10" {{ in_array(10, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_9"><strong>I. Higiene del sueño</strong></label>
                         </div>
                       </div>
@@ -244,37 +244,37 @@
                     <div class="card-body">
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_10" value="11" {{ in_array(11, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_10" value="11" {{ in_array(11, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_10"><strong>J. Mindfulness</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_11" value="12" {{ in_array(12, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_11" value="12" {{ in_array(12, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_11"><strong>K. Voluntariado</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_12" value="13" {{ in_array(13, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_12" value="13" {{ in_array(13, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_12"><strong>L. Tiempo en la naturaleza</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_13" value="14" {{ in_array(14, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_13" value="14" {{ in_array(14, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_13"><strong>M. Terapia de arte o musicoterapia.</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_14" value="15" {{ in_array(15, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_14" value="15" {{ in_array(15, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_14"><strong>N. Rutinas de autocuidado</strong></label>
                         </div>
                       </div>                     
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_15" value="16" {{ in_array(16, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_15" value="16" {{ in_array(16, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_15"><strong>O. Otro (especificar)</strong></label>
                         </div>
                         <div id="otro_especificar_container" class="mt-2" style="{{ in_array(16, $estrategiasSeleccionadas) ? '' : 'display: none;' }}">
@@ -283,13 +283,13 @@
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" name="estrategias[]" id="estrategia_16" value="17" {{ in_array(17, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input" type="checkbox" name="estrategias[]" id="estrategia_16" value="17" {{ in_array(17, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_16"><strong>P. No implementa ninguna</strong></label>
                         </div>
                       </div>
                       <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_17" value="18" {{ in_array(18, $estrategiasSeleccionadas) ? 'checked' : '' }}>
+                          <input class="form-check-input estrategia-checkbox" type="checkbox" name="estrategias[]" id="estrategia_17" value="18" {{ in_array(18, $estrategiasSeleccionadas) ? 'checked' : '' }} @if(!$aplicaCaracterizacion) disabled @endif>
                           <label class="form-check-label" for="estrategia_17"><strong>Q. Actividades académicas (talleres, cursos)</strong></label>
                         </div>
                       </div>
@@ -297,6 +297,23 @@
                   </div>
                 </div>
               </div>
+              @if(!$aplicaCaracterizacion)
+                <div class="row justify-content-center">
+                  <div class="col-md-8">
+                    <div class="card border-warning shadow-sm mb-2" style="background: #fffbe6;">
+                      <div class="card-body d-flex align-items-center">
+                        <input class="form-check-input me-3" type="radio" name="estrategias_no_aplica" id="estrategia_no_aplica" value="40" required style="transform: scale(1.5);">
+                        <label class="form-check-label fw-bold text-dark" for="estrategia_no_aplica" style="font-size: 1.2em;">
+                          <span style="color:#b8860b"><i class="bi bi-exclamation-circle"></i> No Aplica</span>
+                        </label>
+                      </div>
+                      <div class="px-4 pb-2">
+                        <div class="invalid-feedback" style="display:block; color:#b8860b; font-size:1em;">Debe seleccionar "No Aplica" y guardar para continuar.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              @endif
             </div>
           </div>
           <br>
@@ -386,6 +403,29 @@
         $('form').submit(function(e) {
             e.preventDefault();
             
+            // Verificar si aplica caracterización por edad
+            var aplicaCaracterizacion = @json($aplicaCaracterizacion);
+            
+            // Si no aplica caracterización por edad, verificar si seleccionó No Aplica
+            if(!aplicaCaracterizacion) {
+                var noAplicaSeleccionado = $('#estrategia_no_aplica').is(':checked');
+                if(noAplicaSeleccionado) {
+                    // Continuar con el envío del formulario si No Aplica está seleccionado
+                    enviarFormulario($(this));
+                    return;
+                } else {
+                    // Si no seleccionó No Aplica, mostrar mensaje
+                    Swal.fire({
+                        title: 'Atención',
+                        text: 'Debe seleccionar la opción "No Aplica" para guardar.',
+                        icon: 'warning',
+                        confirmButtonText: 'Aceptar'
+                    });
+                    return false;
+                }
+            }
+            
+            // Si aplica caracterización, continuar con la validación normal
             // Validar que se haya seleccionado al menos una estrategia o "No implementa ninguna"
             var haySeleccion = false;
             
@@ -425,8 +465,14 @@
                 return false;
             }
             
+            // Enviar el formulario si pasa todas las validaciones
+            enviarFormulario($(this));
+        });
+        
+        // Función para enviar el formulario (evita duplicar código)
+        function enviarFormulario(form) {
             // Recopilar datos del formulario
-            var formData = $(this).serialize();
+            var formData = form.serialize();
             
             // Mostrar indicador de carga
             Swal.fire({
@@ -478,7 +524,7 @@
                     });
                 }
             });
-        });
+        }
         
         // Manejar el botón "Siguiente"
         $('#siguiente').click(function() {
@@ -560,5 +606,35 @@
    
 
 
+    </script>
+    <script>
+      (function() {
+        var aplicaCaracterizacion = @json($aplicaCaracterizacion);
+        if (!aplicaCaracterizacion) {
+          document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.estrategia-checkbox').forEach(function(el) {
+              el.disabled = true;
+              el.checked = false;
+            });
+            var noAplicaRadio = document.getElementById('estrategia_no_aplica');
+            if(noAplicaRadio) {
+              noAplicaRadio.checked = true;
+            }
+          });
+          document.getElementById('formulario').addEventListener('submit', function(e) {
+            var noAplicaRadio = document.getElementById('estrategia_no_aplica');
+            if (!noAplicaRadio.checked) {
+              e.preventDefault();
+              Swal.fire({
+                icon: 'warning',
+                title: 'Atención',
+                text: 'Debe seleccionar la opción No Aplica para guardar.',
+                confirmButtonText: 'Aceptar',
+                customClass: { popup: 'animated tada' }
+              });
+            }
+          });
+        }
+      })();
     </script>
 @endsection

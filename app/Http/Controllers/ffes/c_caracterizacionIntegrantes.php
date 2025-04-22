@@ -163,7 +163,41 @@ class c_caracterizacionIntegrantes extends Controller
         // Obtener estrategias seleccionadas
         $estrategiasSeleccionadas = $request->input('estrategias', []);
         $otroEspecificar = $request->input('otro_especificar', '');
-        
+
+        // NUEVO: Revisar si la opción No Aplica fue seleccionada por fuera del rango de edad
+        $noAplica = $request->input('estrategias_no_aplica');
+        // Determinar si el integrante cumple el rango de edad
+        $edad = 0;
+        if ($request->has('edad')) {
+            $edad = intval($request->input('edad'));
+        } elseif ($request->has('idintegrante')) {
+            // Buscar edad desde la base de datos si es necesario
+            $integrante = DB::table('t1_integranteshogar')->where('idintegrante', $idintegrante)->first();
+            if ($integrante && isset($integrante->edad)) {
+                $edad = intval($integrante->edad);
+            }
+        }
+        $aplicaCaracterizacion = ($edad > 5 && $edad < 16);
+
+        // Si NO aplica caracterización y está marcada la opción No Aplica, solo guardar esa opción
+        if (!$aplicaCaracterizacion && $noAplica == '40') {
+            $modelo = new m_caracterizacionIntegrante_estrategia();
+            $modelo->m_eliminarEstrategias($folio, $idintegrante);
+            $datos = [
+                'folio' => $folio,
+                'idintegrante' => $idintegrante,
+                'estrategia_implementa_reducir_estres' => 40,
+                'otro_cual_estrategia' => null,
+                'documento_profesional' => $documento_profesional
+            ];
+            $resultado = $modelo->m_guardarEstrategia($datos);
+            if ($resultado) {
+                return response()->json(['success' => true, 'message' => 'Datos guardados correctamente']);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Error al guardar los datos'], 500);
+            }
+        }
+
         // Verificar si "Otro" está seleccionado pero no se especificó el texto
         if (in_array('16', $estrategiasSeleccionadas) && empty($otroEspecificar)) {
             return response()->json([
