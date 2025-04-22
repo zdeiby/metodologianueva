@@ -217,7 +217,7 @@
                 'Visita',
                 'Grupo',
                 'Gestionar',
-                'Actualizar Datos'
+               // 'Actualizar Datos'
             ],
             columns: [
                 { data: 'folio',
@@ -271,12 +271,12 @@
                     width: 110,
                 }
                 ,
-                {
+               /* {
                     data: 'actualizar',
                     renderer: 'html', // Habilita contenido HTML en esta columna
                     readOnly: true,
                     width: 130,
-                }
+                } */
             ],
             licenseKey: 'non-commercial-and-evaluation', // Cambiar si tienes una licencia comercial
             rowHeaders: true,
