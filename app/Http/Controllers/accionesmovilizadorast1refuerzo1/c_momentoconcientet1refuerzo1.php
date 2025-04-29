@@ -274,20 +274,21 @@ class c_momentoconcientet1refuerzo1 extends Controller
         
         
                      }
-        
+                     
+                    // dd($bienestar);
                     //  $datos['t_accionesmovilizadora'] ='';
-                    if($bienestar == '1' || $bienestarant == '1'){
+                    if($bienestar == '1' ){
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','1');
-                    }else if($bienestar == '2'  || $bienestarant == '2'){
+                    }else if($bienestar == '2'  ){
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','2');
-                    }else if($bienestar == '3' || $bienestarant == '3'){
+                    }else if($bienestar == '3' ){
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','3');
-                    }else if($bienestar == '4' || $bienestarant == '4'){
+                    }else if($bienestar == '4' ){
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','4');
-                    }else if($bienestar == '5' || $bienestarant == '5'){
+                    }else if($bienestar == '5' ){
                         $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','5');
                     }
-
+                       // dd($datos['t_accionesmovilizadora']);
 
                     //
 

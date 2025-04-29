@@ -109,10 +109,18 @@ class c_visitatipo1pasosrefuerzo1 extends Controller
       $decodeFolio = $hashids->decode($folio);
       $foliobr=strval($decodeFolio[0]);
       $foliobycript= encrypt($foliobr);
-      $indicadoreshogar = DB::table('t1_indicadores_hogar')
+      $indicadoreshogar = ''; /*DB::table('t1_indicadores_hogar')
       ->where('folio',$decodeFolio[0])
-      ->first();
-
+      ->first();*/
+      if($metodologia == 2){
+        $indicadoreshogar = DB::table('t1_indicadores_hogar_ffes')
+            ->where('folio',$decodeFolio[0])
+            ->first();
+    }else{
+        $indicadoreshogar = DB::table('t1_indicadores_hogar')
+        ->where('folio',$decodeFolio[0])
+        ->first();
+    }
       //  dd($existel300p30020);
 
     // calculo de indicadores para BSE
