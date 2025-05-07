@@ -2175,7 +2175,7 @@ $.ajax({
                 actualizarTabla('t1_accionmovilizadoracompromisos', 'Subida base de datos al servidor', '2');
                 $('#barracarga').html('90%');
                 $('#barracarga').css('width','90%');                                   
-                t3_sincronizacion();                   
+                t1_indicadores_integrantes_ffes();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t1_accionmovilizadoracompromisos', 'Subida base de datos al servidor', '3');
