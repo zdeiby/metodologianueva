@@ -29,9 +29,9 @@ class c_cobertura extends Controller
 
         $grupoHTML = '';
 
-            if (in_array($item->casillamatriz, [1, 2, 4])) {
+            if (in_array($item->casillamatriz, [1, 2, 4, 5])) {
                 $grupoHTML = '<div class="badge-grupo grupo-1" title="Alta vulnerabilidad: pobreza extrema en IPM e ingresos">Grupo 1</div>';
-            } elseif (in_array($item->casillamatriz, [3, 5, 6])) {
+            } elseif (in_array($item->casillamatriz, [3, 6])) {
                 $grupoHTML = '<div class="badge-grupo grupo-2" title="Vulnerabilidad moderada en ingresos o en IPM">Grupo 2</div>';
             } elseif (in_array($item->casillamatriz, [7, 8])) {
                 $grupoHTML = '<div class="badge-grupo grupo-3" title="Vulnerabilidad moderada solo en IPM">Grupo 3</div>';
