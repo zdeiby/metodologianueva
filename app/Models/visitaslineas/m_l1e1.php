@@ -22,6 +22,14 @@ class m_l1e1 extends Model
         return $resultado;
     }
 
+      public function m_leerrespuestasffes()
+    {
+        $resultado = DB::select('SELECT * FROM t_bancopreguntas_ffes;           
+        ' );
+
+        return $resultado;
+    }
+
     public function m_leerbarrios()
     {
         $resultado = DB::select('SELECT * FROM t_barrios;           

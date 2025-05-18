@@ -627,7 +627,7 @@
         Los niños, niñas y adolescentes en situación de victimización (Violencias y vulneraciones) reciben acompañamiento para el goce efectivo de derechos
           @if($vista != '1')
           <br><br><div class="text-center">
-            <!-- <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[8]->id_bienestar ?>','<?= $indicadores_tabla[8]->id_subcategoria ?>','<?= $indicadores_tabla[8]->id_indicador ?>')">Mover Indicador</div> -->
+             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[37]->id_bienestar ?>','<?= $indicadores_tabla[37]->id_subcategoria ?>','<?= $indicadores_tabla[37]->id_indicador ?>')">Mover Indicador</div>
           </div> 
           @endif
         </div>
@@ -699,7 +699,7 @@
         Los Niños, Niñas y Adolescentes  del hogar de 6 a 17 años reciben orientación para el reconocimiento de las instituciones de administración de justicia y de garantía de sus derechos.
           @if($vista != '1')
           <br><br><div class="text-center">
-            <!-- <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[8]->id_bienestar ?>','<?= $indicadores_tabla[8]->id_subcategoria ?>','<?= $indicadores_tabla[8]->id_indicador ?>')">Mover Indicador</div> -->
+             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[38]->id_bienestar ?>','<?= $indicadores_tabla[38]->id_subcategoria ?>','<?= $indicadores_tabla[38]->id_indicador ?>')">Mover Indicador</div> 
           </div> 
           @endif
         </div>

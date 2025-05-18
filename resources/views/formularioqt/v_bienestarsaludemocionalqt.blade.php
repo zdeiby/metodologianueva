@@ -523,7 +523,7 @@
         @if($vista != '1')
         <div class="text-center">
           <br>
-            <!-- <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div> -->
+             <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[34]->id_bienestar ?>','<?= $indicadores_tabla[34]->id_subcategoria ?>','<?= $indicadores_tabla[34]->id_indicador ?>')">Mover Indicador</div> 
           </div>
            @endif
         </div>
@@ -609,7 +609,7 @@
         @if($vista != '1')
         <div class="text-center">
           <br>
-            <!-- <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div> -->
+             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[35]->id_bienestar ?>','<?= $indicadores_tabla[35]->id_subcategoria ?>','<?= $indicadores_tabla[35]->id_indicador ?>')">Mover Indicador</div> 
           </div>
            @endif
         </div>
@@ -688,7 +688,7 @@
         @if($vista != '1')
         <div class="text-center">
           <br>
-            <!-- <div class="btn btn-success text-center" onclick="abrirmodal('<?= $indicadores_tabla[5]->id_bienestar ?>','<?= $indicadores_tabla[5]->id_subcategoria ?>','<?= $indicadores_tabla[5]->id_indicador ?>')">Mover Indicador</div> -->
+             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[36]->id_bienestar ?>','<?= $indicadores_tabla[36]->id_subcategoria ?>','<?= $indicadores_tabla[36]->id_indicador ?>')">Mover Indicador</div> 
           </div>
            @endif
         </div>
@@ -1041,6 +1041,7 @@ function checkAndSetSwitchValues(divId) {
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
                   initializeCheckboxes();
+                  initializeCheckboxes3();
                   $('#modal2').html(data.modal2);
                  // $('#siguiente').css('display','');
                    // alertagood();
@@ -1489,6 +1490,40 @@ function initializeCheckboxes() {
 }
 
 
+function initializeCheckboxes3() {
+    const checkboxes = document.querySelectorAll('#container-psicosocial3 .form-check-input');
+    const noImplementaNingunaCheckbox = document.querySelector('#psicosocial317'); // ID del checkbox "No implementa ninguna"
+
+    checkboxes.forEach((checkbox) => {
+        // Inicializar todos los checkboxes con valor "NO"
+        checkbox.setAttribute('respuesta', 'NO');
+        checkbox.checked = false;
+
+        // Cambiar valor al seleccionar/deseleccionar
+        checkbox.addEventListener('change', function () {
+            if (checkbox.id === 'psicosocial317' && checkbox.checked) {
+                // Si selecciona "No implementa ninguna", desmarcar todos los demás
+                checkboxes.forEach((otherCheckbox) => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                        otherCheckbox.setAttribute('respuesta', 'NO');
+                    }
+                });
+            } else if (checkbox.checked) {
+                // Si selecciona cualquier otro, desmarcar "No implementa ninguna"
+                if (noImplementaNingunaCheckbox.checked) {
+                    noImplementaNingunaCheckbox.checked = false;
+                    noImplementaNingunaCheckbox.setAttribute('respuesta', 'NO');
+                }
+                checkbox.setAttribute('respuesta', 'SI');
+            } else {
+                checkbox.setAttribute('respuesta', 'NO');
+            }
+        });
+    });
+
+}
+
 
 function moverporpregunta13(folio, id_bienestar, id_indicador) {
 
@@ -1648,6 +1683,112 @@ $.ajax({
   });
 
 }
+
+
+function moverporpregunta18(folio, id_bienestar, id_indicador) {
+//console.log(folio, id_bienestar, id_indicador);
+  let atLeastOneChecked = $('.psicosocial-input:checked').length > 0;
+
+ if (!atLeastOneChecked) {
+     // Si no hay ningún checkbox seleccionado, muestra una alerta
+     Swal.fire({
+         position: "center",
+         icon: "warning",
+         title: "Debes seleccionar al menos una opción",
+         showConfirmButton: true,
+         confirmButtonText: "Aceptar"
+     });
+     return; // Detiene la ejecución de la función
+ }
+  
+           let  p1=$('#psicosocial32').attr('respuesta');
+           let  p2=$('#psicosocial33').attr('respuesta');
+           let  p3=$('#psicosocial34').attr('respuesta');
+           let  p4=$('#psicosocial35').attr('respuesta');
+           let  p5=$('#psicosocial36').attr('respuesta');
+           let  p6=$('#psicosocial37').attr('respuesta');
+           let  p7=$('#psicosocial38').attr('respuesta');
+           let  p8=$('#psicosocial39').attr('respuesta');
+           let  p9=$('#psicosocial310').attr('respuesta');
+           let  p10=$('#psicosocial311').attr('respuesta');
+           let  p11=$('#psicosocial312').attr('respuesta');
+           let  p12=$('#psicosocial313').attr('respuesta');
+           let  p13=$('#psicosocial314').attr('respuesta');
+           let  p14=$('#psicosocial315').attr('respuesta');
+           let  p15=$('#psicosocial316').attr('respuesta');
+           let  p16=$('#psicosocial317').attr('respuesta');
+           let  p17=$('#psicosocial318').attr('respuesta');
+
+
+            console.log({
+                  p1,
+                  p2,
+                  p3,
+                  p4,
+                  p5,
+                  p6,
+                  p7,
+                  p8,
+                  p9,
+                  p10,
+                  p11,
+                  p12,
+                  p13,
+                  p14,
+                  p15,
+                  p16
+              });
+  /*  $.ajax({
+               url: '../../../moverporpregunta13',
+               method: 'GET', // Cambiar a GET si estás usando GET
+               data: {  folio: '<?= $folio ?>',
+                idintegrante: '<?= $integrante ?>',
+                id_bienestar:id_bienestar, 
+                id_indicador:id_indicador, 
+                usuario: '<?= Session::get('cedula')?>',
+                edad:'<?= $edad ?>',
+                p1:p1,
+                p2:p2,
+                p3:p3,
+                p4:p4,
+                p5:p5,
+                p6:p6,
+                p7:p7,
+                p8:p8,
+                p9:p9,
+                p10:p10,
+                p11:p11,
+                p12:p12,
+                p13:p13,
+                p14:p14,
+                p15:p15,
+                p16:p16,
+               // observaciongestor:observaciongestor
+
+
+               }, // Envía los datos de manera plana
+               dataType: 'json',
+               success: function(data) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Indicador movido con éxito",
+                  showConfirmButton: false,
+                  timer: 1000
+                  });
+                setTimeout(() => {
+                  location.reload();
+                }, 1000);
+               // location.reload();
+                  //modalInstance.hide();
+               },
+               error: function(xhr, status, error) {
+                   alertabad();
+                   console.error(error);
+               }
+           }); */
+
+}
      
 
 </script>
@@ -1670,6 +1811,9 @@ function handleCheckboxChange() {
         }
     });
 }
+
+
+
 </script>
 
 <script>

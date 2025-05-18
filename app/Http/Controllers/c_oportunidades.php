@@ -179,6 +179,10 @@ foreach ($oportunidad as $value) {
         $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
             $folio
            // $idintegrante
+        ]);
+        $resultado_ffes = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
+            $folio
+           // $idintegrante
         ]); 
         }
 
@@ -197,6 +201,11 @@ foreach ($oportunidad as $value) {
 
          
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);

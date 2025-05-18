@@ -637,7 +637,7 @@
         Los  niños, niñas y adolescentes del hogar participan de actividades sociales, culturales, recreativas y/o deportivas. 
          @if($vista != '1')
         <br><br><div class="text-center">
-            <!-- <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[22]->id_bienestar ?>','<?= $indicadores_tabla[22]->id_subcategoria ?>','<?= $indicadores_tabla[22]->id_indicador ?>')">Mover Indicador</div> -->
+             <div class="btn btn-success text-center" onclick="abrirmodalhogar('<?= $indicadores_tabla[39]->id_bienestar ?>','<?= $indicadores_tabla[39]->id_subcategoria ?>','<?= $indicadores_tabla[39]->id_indicador ?>')">Mover Indicador</div> 
           </div> 
           @endif
       </div>

@@ -1083,15 +1083,32 @@ class c_encuestaintegrantesqt extends Controller
         ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
        // ->where('aplica_hogar_integrante','374')
         ->get();
-    
-        $t1_integranteshogar = $modelo-> m_listadooportunidadesmovimientoindicadores($folio,$idintegrante,$id_bienestar, $id_indicador);
+
+        $metodologia = DB::table('t1_principalhogar')
+        ->where('folio', $folio)
+        ->value('metodologia');
+
+        $t1_integranteshogar = '';
+        
+        if($metodologia == '1'){
+            $t1_integranteshogar = $modelo-> m_listadooportunidadesmovimientoindicadores($folio,$idintegrante,$id_bienestar, $id_indicador);
+        }else{
+            $t1_integranteshogar = $modelo-> m_listadooportunidadesmovimientoindicadoresffes($folio,$idintegrante,$id_bienestar, $id_indicador);
+        }
+    //dd($metodologia);
+       // $t1_integranteshogar = $modelo-> m_listadooportunidadesmovimientoindicadores($folio,$idintegrante,$id_bienestar, $id_indicador);
         //dd($oportunidad);
          $oportunidades = '';
          $modal2 ='';
 
         $modelo= new m_l1e1();
-        $preguntas=$modelo->m_leerrespuestas();
-         ///movimiento por preguntas
+        //$preguntas='';
+
+            $preguntas=$modelo->m_leerrespuestas();
+       
+            $preguntasffes=$modelo->m_leerrespuestasffes();
+        
+        
         
           ///movimiento por preguntas
           $psicosocial2 = '
@@ -1111,6 +1128,26 @@ class c_encuestaintegrantesqt extends Controller
           
           
           $psicosocial2 .= '
+              </div>
+          </div>';
+
+          $psicosocial3 = '
+          <div class="col-md-12 was-validated" id="psicosocial3div">
+              <div class="form-check form-switch" id="container-psicosocial3">
+                  <label for="validationServer04" class="form-label">¿Qué estrategias implementas para reducir el estrés y para favorecer el bienestar emocional y físico?</label>';
+                  
+          foreach ($preguntasffes as $value) {
+              if (($value->id >= 2 && $value->id <= 18) /*|| $value->id == 347*/) {
+                  $psicosocial3 .= '
+                  <div class="psicosocial3' . $value->id . '">
+                      <label class="form-check-label psicosocial3' . $value->id . '" for="psicosocial3' . $value->id . '">' . htmlspecialchars($value->pregunta, ENT_QUOTES, 'UTF-8') . '</label>
+                      <input class="form-check-input psicosocial-input" onchange="handleCheckboxChange()" type="checkbox" name="psicosocial3[]" id="psicosocial3' . $value->id . '" value="' . $value->id . '" respuesta="NO" required>
+                  </div>';
+              }
+          }
+          
+          
+          $psicosocial3 .= '
               </div>
           </div>';
 
@@ -1256,7 +1293,7 @@ class c_encuestaintegrantesqt extends Controller
                             || $id_bienestar == '4' && $id_indicador == '4' ||  $id_bienestar == '4' && $id_indicador == '5' ||  $id_bienestar == '4' && $id_indicador == '6'
     
                             || $id_bienestar == '5' && $id_indicador == '1' ||  $id_bienestar == '5' && $id_indicador == '2'
-                            || $id_bienestar == '5' && $id_indicador == '3' 
+                            || $id_bienestar == '5' && $id_indicador == '3'        || $id_bienestar == '1' && $id_indicador == '8'   // FFES
 
                    )? '<option value="1">Validación gestor</option>':'' ) .'
 
@@ -1285,12 +1322,14 @@ class c_encuestaintegrantesqt extends Controller
                     || $id_bienestar == '5' && $id_indicador == '1'  
                     || $id_bienestar == '5' && $id_indicador == '2'  
                     || $id_bienestar == '5' && $id_indicador == '5'  
+
+                     || $id_bienestar == '1' && $id_indicador == '8'   // FFES
                 )? '<option value="2">Fichero</option>' : '' ) .'
 
 
                       '  .(($id_bienestar == '1' && $id_indicador == '3'||
                             $id_bienestar == '4' && $id_indicador == '1' ||
-                            $id_bienestar == '5' && $id_indicador == '5')? 
+                            $id_bienestar == '5' && $id_indicador == '5' || $id_bienestar == '1' && $id_indicador == '8')? 
                       '<option value="3">Por preguntas de validación</option>' : '' ) .' 
                             
                         '.(($id_bienestar == '2' && $id_indicador == '7')?
@@ -1336,7 +1375,7 @@ class c_encuestaintegrantesqt extends Controller
                         || $id_bienestar == '4' && $id_indicador == '4' ||  $id_bienestar == '4' && $id_indicador == '5' ||  $id_bienestar == '4' && $id_indicador == '6'
 
                         || $id_bienestar == '5' && $id_indicador == '1' ||  $id_bienestar == '5' && $id_indicador == '2'
-                        || $id_bienestar == '5' && $id_indicador == '3' 
+                        || $id_bienestar == '5' && $id_indicador == '3'       || $id_bienestar == '1' && $id_indicador == '8'   // FFES
 
 
 
@@ -1405,6 +1444,14 @@ class c_encuestaintegrantesqt extends Controller
                                <div class="moverindicadorporpreguntas" style="display:none">  '.$psicosocial2.' 
                                 <div class="text-center" >
                                     <button type="button" class="btn btn-secondary" onclick="moverporpregunta13('.$folio.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button> 
+                                </div>
+                                </div>':
+                                '' ) .'
+
+                                ' .(($id_bienestar == '1' && $id_indicador == '8')? '
+                               <div class="moverindicadorporpreguntas" style="display:none">  '.$psicosocial3.' 
+                                <div class="text-center" >
+                                    <button type="button" class="btn btn-secondary" onclick="moverporpregunta18('.$folio.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button> 
                                 </div>
                                 </div>':
                                 '' ) .'
@@ -2068,8 +2115,17 @@ class c_encuestaintegrantesqt extends Controller
            // $idintegrante
         ]);
 
+        $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
+            $folio
+           // $idintegrante
+        ]);
+
         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
