@@ -1246,6 +1246,7 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
                   $('#example').DataTable().destroy(); // Destruye la instancia existente
                   $('#example').DataTable(); // Vuelve a inicializar
                   initializeCheckboxes();
+                  initializeCheckboxes4();
                  // $('#siguiente').css('display','');
                    // alertagood();
                    $('#modal2').html(data.modal2);
@@ -1524,6 +1525,40 @@ function initializeCheckboxes3() {
 
 }
 
+function initializeCheckboxes4() {
+    const checkboxes = document.querySelectorAll('#container-factoresamenaza .form-check-input');
+    const noImplementaNingunaCheckbox = document.querySelector('#factoresamenaza35'); // ID del checkbox "No implementa ninguna"
+
+    checkboxes.forEach((checkbox) => {
+        // Inicializar todos los checkboxes con valor "NO"
+        checkbox.setAttribute('respuesta', 'NO');
+        checkbox.checked = false;
+
+        // Cambiar valor al seleccionar/deseleccionar
+        checkbox.addEventListener('change', function () {
+            if (checkbox.id === 'factoresamenaza35' && checkbox.checked) {
+                // Si selecciona "No implementa ninguna", desmarcar todos los demás
+                checkboxes.forEach((otherCheckbox) => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                        otherCheckbox.setAttribute('respuesta', 'NO');
+                    }
+                });
+            } else if (checkbox.checked) {
+                // Si selecciona cualquier otro, desmarcar "No implementa ninguna"
+                if (noImplementaNingunaCheckbox.checked) {
+                    noImplementaNingunaCheckbox.checked = false;
+                    noImplementaNingunaCheckbox.setAttribute('respuesta', 'NO');
+                }
+                checkbox.setAttribute('respuesta', 'SI');
+            } else {
+                checkbox.setAttribute('respuesta', 'NO');
+            }
+        });
+    });
+
+}
+
 
 function moverporpregunta13(folio, id_bienestar, id_indicador) {
 
@@ -1685,7 +1720,7 @@ $.ajax({
 }
 
 
-function moverporpregunta18(folio, id_bienestar, id_indicador) {
+function moverporpregunta18(folio, id_bienestar, id_indicador) {  //ffes
 //console.log(folio, id_bienestar, id_indicador);
   let atLeastOneChecked = $('.psicosocial-input:checked').length > 0;
 
@@ -1736,10 +1771,11 @@ function moverporpregunta18(folio, id_bienestar, id_indicador) {
                   p13,
                   p14,
                   p15,
-                  p16
+                  p16,
+                  p17
               });
-  /*  $.ajax({
-               url: '../../../moverporpregunta13',
+    $.ajax({
+               url: '../../../moverporpregunta18',
                method: 'GET', // Cambiar a GET si estás usando GET
                data: {  folio: '<?= $folio ?>',
                 idintegrante: '<?= $integrante ?>',
@@ -1763,6 +1799,7 @@ function moverporpregunta18(folio, id_bienestar, id_indicador) {
                 p14:p14,
                 p15:p15,
                 p16:p16,
+                p17:p17,
                // observaciongestor:observaciongestor
 
 
@@ -1786,9 +1823,105 @@ function moverporpregunta18(folio, id_bienestar, id_indicador) {
                    alertabad();
                    console.error(error);
                }
-           }); */
+           }); 
 
 }
+
+
+function moverporpregunta19(folio, id_bienestar, id_indicador) {  //ffes
+//console.log(folio, id_bienestar, id_indicador);
+  let atLeastOneChecked = $('.psicosocial-input:checked').length > 0;
+
+ if (!atLeastOneChecked) {
+     // Si no hay ningún checkbox seleccionado, muestra una alerta
+     Swal.fire({
+         position: "center",
+         icon: "warning",
+         title: "Debes seleccionar al menos una opción",
+         showConfirmButton: true,
+         confirmButtonText: "Aceptar"
+     });
+     return; // Detiene la ejecución de la función
+ }
+  
+           let  p1=$('#factoresamenaza25').attr('respuesta');
+           let  p2=$('#factoresamenaza26').attr('respuesta');
+           let  p3=$('#factoresamenaza27').attr('respuesta');
+           let  p4=$('#factoresamenaza28').attr('respuesta');
+           let  p5=$('#factoresamenaza29').attr('respuesta');
+           let  p6=$('#factoresamenaza30').attr('respuesta');
+           let  p7=$('#factoresamenaza31').attr('respuesta');
+           let  p8=$('#factoresamenaza32').attr('respuesta');
+           let  p9=$('#factoresamenaza33').attr('respuesta');
+           let  p10=$('#factoresamenaza34').attr('respuesta');
+           let  p11=$('#factoresamenaza35').attr('respuesta');
+          
+
+
+            console.log({
+                  p1,
+                  p2,
+                  p3,
+                  p4,
+                  p5,
+                  p6,
+                  p7,
+                  p8,
+                  p9,
+                  p10,
+                  p11,
+                
+              });
+    $.ajax({
+               url: '../../../moverporpregunta19',
+               method: 'GET', // Cambiar a GET si estás usando GET
+               data: {  folio: '<?= $folio ?>',
+                idintegrante: '<?= $integrante ?>',
+                id_bienestar:id_bienestar, 
+                id_indicador:id_indicador, 
+                usuario: '<?= Session::get('cedula')?>',
+                edad:'<?= $edad ?>',
+                p1:p1,
+                p2:p2,
+                p3:p3,
+                p4:p4,
+                p5:p5,
+                p6:p6,
+                p7:p7,
+                p8:p8,
+                p9:p9,
+                p10:p10,
+                p11:p11,
+
+               // observaciongestor:observaciongestor
+
+
+               }, // Envía los datos de manera plana
+               dataType: 'json',
+               success: function(data) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Indicador movido con éxito",
+                  showConfirmButton: false,
+                  timer: 1000
+                  });
+                setTimeout(() => {
+                  location.reload();
+                }, 1000);
+               // location.reload();
+                  //modalInstance.hide();
+               },
+               error: function(xhr, status, error) {
+                   alertabad();
+                   console.error(error);
+               }
+           }); 
+
+} 
+
+
+
      
 
 </script>

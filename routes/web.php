@@ -173,6 +173,8 @@ Route::get('/moverporpregunta29',[c_encuestaintegrantesqt::class,'fc_moverporpre
 Route::get('/moverporpregunta35',[c_encuestaintegrantesqt::class,'fc_moverporpregunta35'])->name('moverporpregunta35');
 
 
+Route::get('/moverporpregunta18',[c_encuestaintegrantesqt::class,'fc_moverporpregunta18'])->name('moverporpregunta18'); //ffes
+Route::get('/moverporpregunta19',[c_encuestaintegrantesqt::class,'fc_moverporpregunta19'])->name('moverporpregunta19'); //ffes
 
 
 
