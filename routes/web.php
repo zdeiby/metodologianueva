@@ -175,6 +175,10 @@ Route::get('/moverporpregunta35',[c_encuestaintegrantesqt::class,'fc_moverporpre
 
 Route::get('/moverporpregunta18',[c_encuestaintegrantesqt::class,'fc_moverporpregunta18'])->name('moverporpregunta18'); //ffes
 Route::get('/moverporpregunta19',[c_encuestaintegrantesqt::class,'fc_moverporpregunta19'])->name('moverporpregunta19'); //ffes
+Route::get('/moverporpregunta110',[c_encuestaintegrantesqt::class,'fc_moverporpregunta110'])->name('moverporpregunta110'); //ffes
+Route::get('/moverporpregunta211',[c_encuestaintegrantesqt::class,'fc_moverporpregunta211'])->name('moverporpregunta211'); //ffes
+Route::get('/moverporpregunta37',[c_encuestaintegrantesqt::class,'fc_moverporpregunta37'])->name('moverporpregunta37'); //ffes
+Route::get('/moverporpregunta212',[c_encuestaintegrantesqt::class,'fc_moverporpregunta212'])->name('moverporpregunta212'); //ffes
 
 
 

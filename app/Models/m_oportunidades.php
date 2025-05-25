@@ -581,7 +581,8 @@ JOIN
      ".($id_bienestar == 2 && $id_indicador == 7  ? "(o.indicador_bl_7 = 1 AND indin.indicadorintegrantebl_7 = 0)":"") ."       
      ".($id_bienestar == 2 && $id_indicador == 8  ? "(o.indicador_bl_8 = 1 AND indin.indicadorintegrantebl_8 = 0)":"") ."       
      ".($id_bienestar == 2 && $id_indicador == 10  ? "(o.indicador_bl_10 = 1 AND indin.indicadorintegrantebl_10 = 0)":"") ."     
-     
+     ".($id_bienestar == 2 && $id_indicador == 12  ? "(o.indicador_bl_12_ffes = 1 AND indin.indicadorintegrantebl_12_ffes = 0)":"") ."     
+
 
      -- bienestar intelectual
     ".($id_bienestar == 4 && $id_indicador == 1  ? "(o.indicador_bi_1 = 1 AND indin.indicadorintegrantebi_1 = 0)":"") ."     
@@ -950,7 +951,8 @@ JOIN dbmetodologia.t1_indicadores_hogar_ffes as indin
      ".($id_bienestar == 1 && $id_indicador == 6  ? "(o.indicador_bse_6 = 1 AND indin.indicadorbse_6 = 0)":"") ."
      ".($id_bienestar == 1 && $id_indicador == 7  ? "(o.indicador_bse_7 = 1 AND indin.indicadorbse_7 = 0)":"") ."
      ".($id_bienestar == 1 && $id_indicador == 9  ? "(o.indicador_bse_9_ffes = 1 AND indin.indicadorbse_9_ffes = 0)":"") ."   
-   
+     ".($id_bienestar == 1 && $id_indicador == 10  ? "(o.indicador_bse_10_ffes = 1 AND indin.indicadorbse_10_ffes = 0)":"") ."   
+
      
      ".($id_bienestar == 2 && $id_indicador == 1  ? "(o.indicador_bl_1 = 1 AND indin.indicadorbl_1 = 0)":"") ."       
      ".($id_bienestar == 2 && $id_indicador == 2  ? "(o.indicador_bl_2 = 1 AND indin.indicadorbl_2 = 0)":"") ."       
@@ -961,7 +963,9 @@ JOIN dbmetodologia.t1_indicadores_hogar_ffes as indin
      ".($id_bienestar == 2 && $id_indicador == 7  ? "(o.indicador_bl_7 = 1 AND indin.indicadorbl_7 = 0)":"") ."       
      ".($id_bienestar == 2 && $id_indicador == 8  ? "(o.indicador_bl_8 = 1 AND indin.indicadorbl_8 = 0)":"") ." 
      ".($id_bienestar == 2 && $id_indicador == 9  ? "(o.indicador_bl_9 = 1 AND indin.indicadorbl_9 = 0)":"") ."             
-     ".($id_bienestar == 2 && $id_indicador == 10  ? "(o.indicador_bl_10 = 1 AND indin.indicadorbl_10 = 0)":"") ."     
+     ".($id_bienestar == 2 && $id_indicador == 10  ? "(o.indicador_bl_10 = 1 AND indin.indicadorbl_10 = 0)":"") ." 
+     ".($id_bienestar == 2 && $id_indicador == 11  ? "(o.indicador_bl_11_ffes = 1 AND indin.indicadorbl_11_ffes = 0)":"") ."   
+    
      
      ".($id_bienestar == 3 && $id_indicador == 1  ? "(o.indicador_bef_1 = 1 AND indin.indicadorbef_1 = 0)":"") ."     
      ".($id_bienestar == 3 && $id_indicador == 2  ? "(o.indicador_bef_2 = 1 AND indin.indicadorbef_2 = 0)":"") ."     
@@ -969,6 +973,7 @@ JOIN dbmetodologia.t1_indicadores_hogar_ffes as indin
      ".($id_bienestar == 3 && $id_indicador == 4  ? "(o.indicador_bef_4 = 1 AND indin.indicadorbef_4 = 0)":"") ."     
      ".($id_bienestar == 3 && $id_indicador == 5  ? "(o.indicador_bef_5 = 1 AND indin.indicadorbef_5 = 0)":"") ."     
      ".($id_bienestar == 3 && $id_indicador == 6  ? "(o.indicador_bef_6 = 1 AND indin.indicadorbef_6 = 0)":"") ." 
+     ".($id_bienestar == 3 && $id_indicador == 7  ? "(o.indicador_bef_7_ffes = 1 AND indin.indicadorbef_7_ffes = 0)":"") ."   
      -- bienestar intelectual
     ".($id_bienestar == 4 && $id_indicador == 1   ? "(o.indicador_bi_1 = 1 AND indin.indicadorbi_1 = 0)":"") ."     
      ".($id_bienestar == 4 && $id_indicador == 2  ? "(o.indicador_bi_2 = 1 AND indin.indicadorbi_2 = 0)":"") ."     

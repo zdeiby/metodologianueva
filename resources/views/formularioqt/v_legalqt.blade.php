@@ -1461,6 +1461,116 @@ $.ajax({
 }
 
 
+function moverporpregunta211(folio, id_bienestar, id_indicador) {
+ 
+  let  p1=$('#medidarestablecimiento').val();
+ // let  p2=$('#saludmentalninosaccedio').val();
+  //let  p3=$('#accesibilidad').val();
+
+  if (p1 == ''  ) {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes Seleccionar alguna opción",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
+
+
+$.ajax({
+      url: '../../../moverporpregunta211',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: {  folio: '<?= $folio ?>',
+      
+       id_bienestar:id_bienestar, 
+       id_indicador:id_indicador, 
+       usuario: '<?= Session::get('cedula')?>',
+       p1:p1,
+     //  p2:p2,
+
+      }, // Envía los datos de manera plana
+      dataType: 'json',
+      success: function(data) {
+       Swal.fire({
+         position: "center",
+         icon: "success",
+         title: "Indicador movido con éxito",
+         showConfirmButton: false,
+         timer: 1000
+         });
+       setTimeout(() => {
+         location.reload();
+       }, 1000);
+      // location.reload();
+         //modalInstance.hide();
+      },
+      error: function(xhr, status, error) {
+          alertabad();
+          console.error(error);
+      }
+  });
+
+}
+
+
+
+function moverporpregunta212(folio,idintegrante, id_bienestar, id_indicador) {
+ 
+  let  p1=$('#primerainfanciaatencion').val();
+  //let  idintegrante=$('#idintegrante1').val();
+  //let  p3=$('#accesibilidad').val();
+
+  if (p1 == ''  ) {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes Seleccionar alguna opción",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
+
+
+$.ajax({
+      url: '../../../moverporpregunta212',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: {  folio: '<?= $folio ?>',
+       idintegrante:idintegrante,
+       id_bienestar:id_bienestar, 
+       id_indicador:id_indicador, 
+       usuario: '<?= Session::get('cedula')?>',
+       p1:p1,
+      
+
+      }, // Envía los datos de manera plana
+      dataType: 'json',
+      success: function(data) {
+       Swal.fire({
+         position: "center",
+         icon: "success",
+         title: "Indicador movido con éxito",
+         showConfirmButton: false,
+         timer: 1000
+         });
+       setTimeout(() => {
+         location.reload();
+       }, 1000);
+      // location.reload();
+         //modalInstance.hide();
+      },
+      error: function(xhr, status, error) {
+          alertabad();
+          console.error(error);
+      }
+  });
+
+}
+
 
 
 </script>

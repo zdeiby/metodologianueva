@@ -1922,6 +1922,64 @@ function moverporpregunta19(folio, id_bienestar, id_indicador) {  //ffes
 
 
 
+
+function moverporpregunta110(folio, id_bienestar, id_indicador) {
+ 
+  let  p1=$('#saludmentalninospresenta').val();
+  let  p2=$('#saludmentalninosaccedio').val();
+  //let  p3=$('#accesibilidad').val();
+
+  if (p1 == '' || p2 == '' ) {
+    // Si no hay ningún checkbox seleccionado, muestra una alerta
+    Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Debes Seleccionar todas las opciones",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar"
+    });
+    return; // Detiene la ejecución de la función
+}
+
+
+$.ajax({
+      url: '../../../moverporpregunta110',
+      method: 'GET', // Cambiar a GET si estás usando GET
+      data: {  folio: '<?= $folio ?>',
+      
+       id_bienestar:id_bienestar, 
+       id_indicador:id_indicador, 
+       usuario: '<?= Session::get('cedula')?>',
+       p1:p1,
+       p2:p2,
+
+      }, // Envía los datos de manera plana
+      dataType: 'json',
+      success: function(data) {
+       Swal.fire({
+         position: "center",
+         icon: "success",
+         title: "Indicador movido con éxito",
+         showConfirmButton: false,
+         timer: 1000
+         });
+       setTimeout(() => {
+         location.reload();
+       }, 1000);
+      // location.reload();
+         //modalInstance.hide();
+      },
+      error: function(xhr, status, error) {
+          alertabad();
+          console.error(error);
+      }
+  });
+
+}
+
+
+
+
      
 
 </script>

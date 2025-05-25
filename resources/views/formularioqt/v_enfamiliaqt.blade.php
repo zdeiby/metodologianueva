@@ -1152,6 +1152,7 @@ function moverindicadorgestorhogar(folio, idintegrante, id_bienestar, id_indicad
                   $('#example').DataTable(); // Vuelve a inicializar
                   initializeCheckboxes();
                   initializeCheckboxes2();
+                  initializeCheckboxes3();
                   $('#modal2').html(data.modal2);
                  // $('#siguiente').css('display','');
                    // alertagood();
@@ -1406,6 +1407,41 @@ function initializeCheckboxes2() {
 }
 
 
+function initializeCheckboxes3() {
+    const checkboxes = document.querySelectorAll('#container-actividadesculturales .form-check-input');
+    const noImplementaNingunaCheckbox = document.querySelector('#actividadesculturales66'); // ID del checkbox "No implementa ninguna"
+
+    checkboxes.forEach((checkbox) => {
+        // Inicializar todos los checkboxes con valor "NO"
+        checkbox.setAttribute('respuesta', 'NO');
+        checkbox.checked = false;
+
+        // Cambiar valor al seleccionar/deseleccionar
+        checkbox.addEventListener('change', function () {
+            if (checkbox.id === 'actividadesculturales66' && checkbox.checked) {
+                // Si selecciona "No implementa ninguna", desmarcar todos los demás
+                checkboxes.forEach((otherCheckbox) => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                        otherCheckbox.setAttribute('respuesta', 'NO');
+                    }
+                });
+            } else if (checkbox.checked) {
+                // Si selecciona cualquier otro, desmarcar "No implementa ninguna"
+                if (noImplementaNingunaCheckbox.checked) {
+                    noImplementaNingunaCheckbox.checked = false;
+                    noImplementaNingunaCheckbox.setAttribute('respuesta', 'NO');
+                }
+                checkbox.setAttribute('respuesta', 'SI');
+            } else {
+                checkbox.setAttribute('respuesta', 'NO');
+            }
+        });
+    });
+}
+
+
+
 
 function moverporpregunta31(folio, id_bienestar, id_indicador) {
   
@@ -1631,6 +1667,115 @@ $.ajax({
 }
 
 
+
+function moverporpregunta37(folio, id_bienestar, id_indicador) {  //ffes
+//console.log(folio, id_bienestar, id_indicador);
+  let atLeastOneChecked = $('.psicosocial-input:checked').length > 0;
+
+ if (!atLeastOneChecked) {
+     // Si no hay ningún checkbox seleccionado, muestra una alerta
+     Swal.fire({
+         position: "center",
+         icon: "warning",
+         title: "Debes seleccionar al menos una opción",
+         showConfirmButton: true,
+         confirmButtonText: "Aceptar"
+     });
+     return; // Detiene la ejecución de la función
+ }
+  
+           let  p1=$('#actividadesculturales57').attr('respuesta');
+           let  p2=$('#actividadesculturales58').attr('respuesta');
+           let  p3=$('#actividadesculturales59').attr('respuesta');
+           let  p4=$('#actividadesculturales60').attr('respuesta');
+           let  p5=$('#actividadesculturales61').attr('respuesta');
+           let  p6=$('#actividadesculturales62').attr('respuesta');
+           let  p7=$('#actividadesculturales63').attr('respuesta');
+           let  p8=$('#actividadesculturales64').attr('respuesta');
+           let  p9=$('#actividadesculturales65').attr('respuesta');
+           let  p10=$('#actividadesculturales66').attr('respuesta');
+          
+
+
+            console.log({
+                  p1,
+                  p2,
+                  p3,
+                  p4,
+                  p5,
+                  p6,
+                  p7,
+                  p8,
+                  p9,
+                  p10
+                
+                
+              });
+    $.ajax({
+               url: '../../../moverporpregunta37',
+               method: 'GET', // Cambiar a GET si estás usando GET
+               data: {  folio: '<?= $folio ?>',
+                idintegrante: '<?= $integrante ?>',
+                id_bienestar:id_bienestar, 
+                id_indicador:id_indicador, 
+                usuario: '<?= Session::get('cedula')?>',
+                p1:p1,
+                p2:p2,
+                p3:p3,
+                p4:p4,
+                p5:p5,
+                p6:p6,
+                p7:p7,
+                p8:p8,
+                p9:p9,
+                p10:p10,
+
+
+               // observaciongestor:observaciongestor
+
+
+               }, // Envía los datos de manera plana
+               dataType: 'json',
+               success: function(data) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Indicador movido con éxito",
+                  showConfirmButton: false,
+                  timer: 1000
+                  });
+                setTimeout(() => {
+                  location.reload();
+                }, 1000);
+               // location.reload();
+                  //modalInstance.hide();
+               },
+               error: function(xhr, status, error) {
+                   alertabad();
+                   console.error(error);
+               }
+           }); 
+
+} 
+
+
+
+function handleCheckboxChange() {
+    // Selecciona todos los checkboxes con la clase 'psicosocial-input'
+    const checkboxes = document.querySelectorAll('.psicosocial-input');
+
+    // Comprueba si al menos uno está seleccionado
+    const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    // Si al menos uno está seleccionado, elimina 'required' de todos
+    checkboxes.forEach(checkbox => {
+        if (atLeastOneChecked) {
+            checkbox.removeAttribute('required');
+        } else {
+            checkbox.setAttribute('required', true);
+        }
+    });
+}
 
 
 

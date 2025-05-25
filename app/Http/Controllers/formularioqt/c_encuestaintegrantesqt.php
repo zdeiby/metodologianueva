@@ -16,7 +16,18 @@ use Illuminate\Support\Str;
 class c_encuestaintegrantesqt extends Controller
 {
 
+protected $metodologia;
 
+     public function __construct(Request $request)
+    {
+        $folio = $request->input('folio');
+
+        if ($folio) {
+            $this->metodologia = DB::table('t1_principalhogar')
+                ->where('folio', $folio)
+                ->value('metodologia');
+        }
+    }
    
 // IR A LA VISTA BIENESTAR FISICO Y EMOCIONAL
 
@@ -1285,7 +1296,7 @@ class c_encuestaintegrantesqt extends Controller
                             || $id_bienestar == '2' && $id_indicador == '3'|| $id_bienestar == '2' && $id_indicador == '4'
                             || $id_bienestar == '2' && $id_indicador == '5' ||  $id_bienestar == '2' && $id_indicador == '6'
                             || $id_bienestar == '2' && $id_indicador == '8' ||  $id_bienestar == '2' && $id_indicador == '9'
-                            || $id_bienestar == '2' && $id_indicador == '10'
+                            || $id_bienestar == '2' && $id_indicador == '10' || $id_bienestar == '2' && $id_indicador == '12'
     
                             || $id_bienestar == '3' && $id_indicador == '5' ||  $id_bienestar == '3' && $id_indicador == '6'
     
@@ -1311,6 +1322,7 @@ class c_encuestaintegrantesqt extends Controller
                     || $id_bienestar == '2' && $id_indicador == '8'  
                     || $id_bienestar == '2' && $id_indicador == '9'  
                     || $id_bienestar == '2' && $id_indicador == '10'  
+                    || $id_bienestar == '2' && $id_indicador == '12'
                 
                     || $id_bienestar == '3' && $id_indicador == '5'  
                     || $id_bienestar == '4' && $id_indicador == '1'  
@@ -1327,12 +1339,12 @@ class c_encuestaintegrantesqt extends Controller
                 )? '<option value="2">Fichero</option>' : '' ) .'
 
 
-                      '  .(($id_bienestar == '1' && $id_indicador == '3'||
+                      '  .(($id_bienestar == '1' && $id_indicador == '3'|| $id_bienestar == '2' && $id_indicador == '12' ||
                             $id_bienestar == '4' && $id_indicador == '1' ||
                             $id_bienestar == '5' && $id_indicador == '5' || $id_bienestar == '1' && $id_indicador == '8')? 
                       '<option value="3">Por preguntas de validación</option>' : '' ) .' 
                             
-                        '.(($id_bienestar == '2' && $id_indicador == '7')?
+                        '.(($id_bienestar == '2' && $id_indicador == '7'  || $id_bienestar == '2' && $id_indicador == '12')?
                         '<option value="4">Por intervención o acción movilizadora del gestor</option>':'' ) .'
 
 
@@ -1344,6 +1356,7 @@ class c_encuestaintegrantesqt extends Controller
                             || $id_bienestar == '2' && $id_indicador == '4'
                             || $id_bienestar == '2' && $id_indicador == '5'
                             || $id_bienestar == '2' && $id_indicador == '6'
+                           
 
                             || $id_bienestar == '4' && $id_indicador == '1'
                             || $id_bienestar == '4' && $id_indicador == '2'
@@ -1376,7 +1389,7 @@ class c_encuestaintegrantesqt extends Controller
 
                         || $id_bienestar == '5' && $id_indicador == '1' ||  $id_bienestar == '5' && $id_indicador == '2'
                         || $id_bienestar == '5' && $id_indicador == '3'       || $id_bienestar == '1' && $id_indicador == '8'   // FFES
-
+                         || $id_bienestar == '2' && $id_indicador == '12'
 
 
                     )?
@@ -1456,6 +1469,28 @@ class c_encuestaintegrantesqt extends Controller
                                 </div>':
                                 '' ) .'
 
+
+                         ' .(($id_bienestar == '2' && $id_indicador == '12')? ' 
+                                   <div class="moverindicadorporpreguntas" style="display:none">  
+                                <div class="col-md-12 was-validated">
+                                    <label for="validationServer04" class="form-label">¿Conoces las instituciones y mecanismos para garantízar tus derechos?</label>
+                                    <select class="form-control form-control-sm" id="primerainfanciaatencion"  aria-describedby="validationServer04Feedback" required="">
+                                        '.$sino.' 
+                                    </select>
+                                </div> 
+                                <br>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-secondary" onclick="moverporpregunta212('.$folio.','.$idintegrante.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button> 
+                                </div>
+                                </div>':
+                                '' ) .'
+
+
+
+
+
+                                
+
                                    ' .(($id_bienestar == '4' && $id_indicador == '1')? ' 
                                    <div class="moverindicadorporpreguntas" style="display:none">  
                                 <div class="col-md-12 was-validated">
@@ -1516,7 +1551,7 @@ class c_encuestaintegrantesqt extends Controller
                                 </div>':
                                 '' ) .'
 
-                                      '  .((   $id_bienestar == '2' && $id_indicador == '7')?
+                                      '  .((   $id_bienestar == '2' && $id_indicador == '7'  || $id_bienestar == '2' && $id_indicador == '12')?
                                             ' <div class="was-validated" style="display:none" id="moverindicadorporgestorfinal">
                                                     <label class="pb-2">Para mover este indicador por Gestor por favor llena la observacion y luego dar clic en mover indicador.</label><br>
                                                     <!-- <div class="form-check">
@@ -1656,6 +1691,27 @@ class c_encuestaintegrantesqt extends Controller
           $factoresamenaza .= '
               </div>
           </div>';  
+
+
+          $actividadesculturales = '
+          <div class="col-md-12 was-validated" id="actividadesculturalesdiv">
+              <div class="form-check form-switch" id="container-actividadesculturales">
+                  <label for="validationServer04" class="form-label">¿En tu hogar , el niño, niña o adolescente hace parte de algunas de las siguientes instancias de participación?</label>';
+                  
+          foreach ($preguntasffes as $value) {
+              if (($value->id >= 57 && $value->id <= 66) /*|| $value->id == 347*/) {
+                  $actividadesculturales .= '
+                  <div class="actividadesculturales' . $value->id . '">
+                      <label class="form-check-label actividadesculturales' . $value->id . '" for="actividadesculturales' . $value->id . '">' . htmlspecialchars($value->pregunta, ENT_QUOTES, 'UTF-8') . '</label>
+                      <input class="form-check-input psicosocial-input" onchange="handleCheckboxChange()" type="checkbox" name="actividadesculturales[]" id="actividadesculturales' . $value->id . '" value="' . $value->id . '" respuesta="NO" required>
+                  </div>';
+              }
+          }
+          
+          
+          $actividadesculturales .= '
+              </div>
+          </div>'; 
 
           // end ffes
 
@@ -1811,6 +1867,8 @@ class c_encuestaintegrantesqt extends Controller
                     || $id_bienestar == '1' && $id_indicador == '4'  
                     || $id_bienestar == '1' && $id_indicador == '5' 
                     || $id_bienestar == '1' && $id_indicador == '9' 
+                    || $id_bienestar == '1' && $id_indicador == '10' 
+
 
                     || $id_bienestar == '2' && $id_indicador == '1'    
                     || $id_bienestar == '2' && $id_indicador == '2'
@@ -1821,8 +1879,10 @@ class c_encuestaintegrantesqt extends Controller
                     || $id_bienestar == '2' && $id_indicador == '8' 
                     ||  $id_bienestar == '2' && $id_indicador == '9'
                     || $id_bienestar == '2' && $id_indicador == '10'
+                     || $id_bienestar == '2' && $id_indicador == '11'
 
-                    || $id_bienestar == '3' && $id_indicador == '5' ||  $id_bienestar == '3' && $id_indicador == '6'
+                    || $id_bienestar == '3' && $id_indicador == '5' ||  $id_bienestar == '3' && $id_indicador == '6' 
+                    || $id_bienestar == '3' && $id_indicador == '7'
 
                     || $id_bienestar == '4' && $id_indicador == '2' ||  $id_bienestar == '4' && $id_indicador == '3'
                     || $id_bienestar == '4' && $id_indicador == '4' ||  $id_bienestar == '4' && $id_indicador == '5' 
@@ -1839,6 +1899,7 @@ class c_encuestaintegrantesqt extends Controller
                     || $id_bienestar == '1' && $id_indicador == '5'  
 
                      || $id_bienestar == '1' && $id_indicador == '9'  // ffes
+                     || $id_bienestar == '1' && $id_indicador == '10'
 
                     || $id_bienestar == '2' && $id_indicador == '1'  
                     || $id_bienestar == '2' && $id_indicador == '2'  
@@ -1849,9 +1910,12 @@ class c_encuestaintegrantesqt extends Controller
                     || $id_bienestar == '2' && $id_indicador == '7'  
                     || $id_bienestar == '2' && $id_indicador == '8'  
                     || $id_bienestar == '2' && $id_indicador == '9'  
-                    || $id_bienestar == '2' && $id_indicador == '10'  
+                    || $id_bienestar == '2' && $id_indicador == '10' 
+                     || $id_bienestar == '2' && $id_indicador == '11' 
                 
-                    || $id_bienestar == '3' && $id_indicador == '5'  
+                    || $id_bienestar == '3' && $id_indicador == '5' 
+                     || $id_bienestar == '3' && $id_indicador == '7' 
+                    
                     || $id_bienestar == '4' && $id_indicador == '1'  
                     || $id_bienestar == '4' && $id_indicador == '2'  
                     || $id_bienestar == '4' && $id_indicador == '3'  
@@ -1865,8 +1929,13 @@ class c_encuestaintegrantesqt extends Controller
 
 
 
-                      '  .(($id_bienestar == '1' && $id_indicador == '7' || $id_bienestar == '1' && $id_indicador == '9' || $id_bienestar == '3' && $id_indicador == '1'  ||  $id_bienestar == '3' && $id_indicador == '2'  
-                      ||  $id_bienestar == '3' && $id_indicador == '4'  ||  $id_bienestar == '5' && $id_indicador == '4')? 
+                      '  .(($id_bienestar == '1' && $id_indicador == '7' || $id_bienestar == '1' && $id_indicador == '9'  
+                      || $id_bienestar == '1' && $id_indicador == '10'
+                       || $id_bienestar == '3' && $id_indicador == '1'  ||  $id_bienestar == '3' && $id_indicador == '2'  
+                      ||  $id_bienestar == '3' && $id_indicador == '4'  ||  $id_bienestar == '5' && $id_indicador == '4'
+                       || $id_bienestar == '2' && $id_indicador == '11'
+                        || $id_bienestar == '3' && $id_indicador == '7'
+                      )? 
                       '<option value="3">Por preguntas de validación</option>' : '' ) .' 
                             
                         '.(($id_bienestar == '3' && $id_indicador == '3')?
@@ -1901,7 +1970,8 @@ class c_encuestaintegrantesqt extends Controller
                     $id_bienestar == '1' && $id_indicador == '2'  
                     || $id_bienestar == '1' && $id_indicador == '4'  
                     || $id_bienestar == '1' && $id_indicador == '5' 
-                    || $id_bienestar == '1' && $id_indicador == '9' 
+                    || $id_bienestar == '1' && $id_indicador == '9'
+                    || $id_bienestar == '1' && $id_indicador == '10' 
 
                     || $id_bienestar == '2' && $id_indicador == '1'    
                     || $id_bienestar == '2' && $id_indicador == '2'
@@ -1912,8 +1982,9 @@ class c_encuestaintegrantesqt extends Controller
                     || $id_bienestar == '2' && $id_indicador == '8' 
                     ||  $id_bienestar == '2' && $id_indicador == '9'
                     || $id_bienestar == '2' && $id_indicador == '10'
+                     || $id_bienestar == '2' && $id_indicador == '11'
 
-                    || $id_bienestar == '3' && $id_indicador == '5' ||  $id_bienestar == '3' && $id_indicador == '6'
+                    || $id_bienestar == '3' && $id_indicador == '5' ||  $id_bienestar == '3' && $id_indicador == '6'  || $id_bienestar == '3' && $id_indicador == '7'
 
                     || $id_bienestar == '4' && $id_indicador == '2' ||  $id_bienestar == '4' && $id_indicador == '3'
                     || $id_bienestar == '4' && $id_indicador == '4' ||  $id_bienestar == '4' && $id_indicador == '5' 
@@ -2020,6 +2091,56 @@ class c_encuestaintegrantesqt extends Controller
                                 </div>
                                 </div>':
                                 '' ) .' 
+
+                                  ' .(($id_bienestar == '3' && $id_indicador == '7')? '
+                               <div class="moverindicadorporpreguntas" style="display:none">  '.$actividadesculturales.' 
+                                <div class="text-center" >
+                                    <button type="button" class="btn btn-secondary" onclick="moverporpregunta37('.$folio.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button> 
+                                </div>
+                                </div>':
+                                '' ) .' 
+
+                                ' .(($id_bienestar == '1' && $id_indicador == '10')? '
+                                <div class="moverindicadorporpreguntas" style="display:none"> 
+                                    <div class="col-md-12 was-validated "   >
+                                            <label for="validationServer04" class="form-label">¿En tu hogar, alguno de los niños, niñas o adolescentes presenta algún diagnostico en la salud mental?</label>
+                                            <select class="form-control form-control-sm" id="saludmentalninospresenta" aria-describedby="validationServer04Feedback" required="">
+                                                '.$sino.' 
+                                            </select>
+                                        </div> 
+                                        <br>
+                                        <div class="col-md-12 was-validated "   >
+                                            <label for="validationServer04" class="form-label">¿Ha accedido a servicios de atención e intervención  en la salud mental?</label>
+                                            <select class="form-control form-control-sm" id="saludmentalninosaccedio" aria-describedby="validationServer04Feedback" required="">
+                                                '.$sino.' 
+                                            </select>
+                                </div> 
+                                 <br>
+                                 <div class="text-center" >
+                                    <button type="button" class="btn btn-secondary" onclick="moverporpregunta110('.$folio.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button> 
+                                </div>
+                                </div>
+                                ':
+                                '' ) .' 
+
+                                 ' .(($id_bienestar == '2' && $id_indicador == '11')? '
+                                <div class="moverindicadorporpreguntas" style="display:none"> 
+                                    <div class="col-md-12 was-validated "   >
+                                            <label for="validationServer04" class="form-label">¿En tu hogar actualmente alguno de los niños que se encuentran en el hogar estan bajo una medida de restablecimiento de derechos extramural?</label>
+                                            <select class="form-control form-control-sm" id="medidarestablecimiento" aria-describedby="validationServer04Feedback" required="">
+                                                '.$sino.' 
+                                                <option value="36">C.NO, NO LO HA REQUERIDO.</option>
+                                            </select>
+                                        </div> 
+                                        <br> 
+                                 <br>
+                                 <div class="text-center" >
+                                    <button type="button" class="btn btn-secondary" onclick="moverporpregunta211('.$folio.','.$id_bienestar.','.$id_indicador.')">Mover Indicador</button> 
+                                </div>
+                                </div>
+                                ':
+                                '' ) .' 
+
 
                                  '  .(($id_bienestar == '3' && $id_indicador == '1')? '
                                 <div class="moverindicadorporpreguntas" style="display:none"> 
@@ -2147,6 +2268,8 @@ class c_encuestaintegrantesqt extends Controller
         $nombreoportunidad= $request->input('nombreoportunidad');
         $telefono= $request->input('telefono');
 
+    
+
 
         $resultado = DB::select('CALL sp_movimiento_indicador_integrante_vp(?, ?, ?, ?, ?, ?, ? , ? , ?)', [
             $folio, 
@@ -2159,22 +2282,29 @@ class c_encuestaintegrantesqt extends Controller
             $nombreoportunidad,
              $telefono
         ]);
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+
+        if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
-        $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
-            $folio
-           // $idintegrante
-        ]);
-
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
-            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
-            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+        }
+     } else {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
@@ -2219,12 +2349,29 @@ class c_encuestaintegrantesqt extends Controller
             $telefono
            
         ]);
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+
+               
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
@@ -2275,12 +2422,27 @@ class c_encuestaintegrantesqt extends Controller
             $folio,   $idintegrante,  $id_bienestar,   $id_indicador,  $usuario,  $edad,  $p1,   $p2,   $p3,   $p4,   $p5,   $p6,   $p7,   $p8,   $p9,   $p10,   $p11,   $p12,   $p13,   $p14,   $p15,   $p16  
         ]);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
@@ -2331,21 +2493,28 @@ class c_encuestaintegrantesqt extends Controller
         ]);
        // dd($request);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+         if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
-        $resultado3 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
-            $folio
-           // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
-            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
-             $resultadoint = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+        }
+     } else {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
@@ -2391,21 +2560,84 @@ class c_encuestaintegrantesqt extends Controller
         ]);
        // dd($request);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
-        $resultado3 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
-            $folio
-           // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
-             $resultadoint = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+            } 
+        }
+
+        
+
+        // Retornar una respuesta con el resultado
+        return response()->json([
+            'success' => true,
+            'message' => 'Procedimiento ejecutado correctamente.',
+            'data' => $resultado,
+        ]);
+        
+    }
+
+ public function fc_moverporpregunta110(Request $request)
+    {
+
+        $folio = $request->input('folio');
+        $id_bienestar = $request->input('id_bienestar');
+        $id_indicador = $request->input('id_indicador');
+        $usuario = $request->input('usuario');
+        $p1 = $request->input('p1');
+        $p2 = $request->input('p2');
+       // $p3 = $request->input('p3');
+
+
+
+
+        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_bse_10_ffes(?, ?, ?, ?, ?, ?)', [  
+            $folio,  $id_bienestar,   $id_indicador,  $usuario,   $p1,   $p2 
+        ]);
+        
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
+            $folio
+           // $idintegrante
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
+
+       
+    if($this->metodologia == '2'){
+        if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
@@ -2421,6 +2653,191 @@ class c_encuestaintegrantesqt extends Controller
         ]);
         
     }
+
+
+    public function fc_moverporpregunta211(Request $request)
+    {
+
+        $folio = $request->input('folio');
+        $id_bienestar = $request->input('id_bienestar');
+        $id_indicador = $request->input('id_indicador');
+        $usuario = $request->input('usuario');
+        $p1 = $request->input('p1');
+       // $p2 = $request->input('p2');
+       // $p3 = $request->input('p3');
+
+
+
+
+        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_bl_11_ffes(?, ?, ?, ?, ?)', [  
+            $folio,  $id_bienestar,   $id_indicador,  $usuario,   $p1
+        ]);
+        
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
+            $folio
+           // $idintegrante
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
+
+       
+    if($this->metodologia == '2'){
+        if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+
+        
+
+        // Retornar una respuesta con el resultado
+        return response()->json([
+            'success' => true,
+            'message' => 'Procedimiento ejecutado correctamente.',
+            'data' => $resultado,
+        ]);
+        
+    }
+
+
+
+    
+     public function fc_moverporpregunta37(Request $request)
+    {
+
+        $folio = $request->input('folio');
+        $idintegrante = $request->input('idintegrante');
+        $id_bienestar = $request->input('id_bienestar');
+        $id_indicador = $request->input('id_indicador');
+        $usuario = $request->input('usuario');
+        $edad =$request->input('edad');
+        $p1 = $request->input('p1');
+        $p2 = $request->input('p2');
+        $p3 = $request->input('p3');
+        $p4 = $request->input('p4');
+        $p5 = $request->input('p5');
+        $p6 = $request->input('p6');
+        $p7 = $request->input('p7');
+        $p8 = $request->input('p8');
+        $p9 = $request->input('p9');
+        $p10 = $request->input('p10');
+      
+
+        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_bef_7_ffes(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )', [  
+            $folio,   $idintegrante,  $id_bienestar,   $id_indicador,  $usuario,  $p1,   $p2,   $p3,   $p4,   $p5,   $p6,   $p7,   $p8,   $p9,   $p10
+        ]);
+       // dd($request);
+        
+         if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
+            $folio
+           // $idintegrante
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
+
+       
+    if($this->metodologia == '2'){
+        if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+
+        
+
+        // Retornar una respuesta con el resultado
+        return response()->json([
+            'success' => true,
+            'message' => 'Procedimiento ejecutado correctamente.',
+            'data' => $resultado,
+        ]);
+        
+    }
+
+        public function fc_moverporpregunta212(Request $request)
+    {
+
+        $folio = $request->input('folio');
+        $idintegrante = $request->input('idintegrante');
+        $id_bienestar = $request->input('id_bienestar');
+        $id_indicador = $request->input('id_indicador');
+        $usuario = $request->input('usuario');
+        $p1 = $request->input('p1');
+       // $p2 = $request->input('p2');
+       // $p3 = $request->input('p3');
+
+
+
+
+        $resultado = DB::select('CALL sp_movimiento_indicador_integrante_bl_12_ffes(?, ?, ?, ?, ?, ?)', [  
+            $folio, $idintegrante,  $id_bienestar,   $id_indicador,  $usuario,   $p1
+        ]);
+        
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
+            $folio
+           // $idintegrante
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
+
+       
+    if($this->metodologia == '2'){
+        if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
+            $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+
+        
+
+        // Retornar una respuesta con el resultado
+        return response()->json([
+            'success' => true,
+            'message' => 'Procedimiento ejecutado correctamente.',
+            'data' => $resultado,
+        ]);
+        
+    }
+
+
+
+
 
     public function fc_moverporpregunta17(Request $request)
     {
@@ -2440,12 +2857,27 @@ class c_encuestaintegrantesqt extends Controller
             $folio,  $id_bienestar,   $id_indicador,  $usuario,   $p1,   $p2,   $p3
         ]);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
@@ -2493,12 +2925,27 @@ class c_encuestaintegrantesqt extends Controller
             $folio, $id_bienestar, $id_indicador, $usuario, $p1, $p2, $p3, $p4, $p5, $p6, $p7
         ]);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
@@ -2533,12 +2980,27 @@ class c_encuestaintegrantesqt extends Controller
             $folio,  $id_bienestar,   $id_indicador,  $usuario,   $p1, 
         ]);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
@@ -2577,12 +3039,27 @@ class c_encuestaintegrantesqt extends Controller
             $folio,  $id_bienestar,   $id_indicador,  $usuario,   $p1, $p2,$p3,$p4,$p5
         ]);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
@@ -2624,12 +3101,27 @@ class c_encuestaintegrantesqt extends Controller
             $folio, $idintegrante, $id_bienestar,    $id_indicador,  $usuario, $edad,  $p1,   $p2,   $p3, $p4 ,$p5 ,$p6
         ]);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
@@ -2669,12 +3161,27 @@ class c_encuestaintegrantesqt extends Controller
             $folio,  $id_bienestar,   $id_indicador,  $usuario,   $p1, $p2,$p3,$p4
         ]);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
@@ -2719,12 +3226,27 @@ class c_encuestaintegrantesqt extends Controller
             $folio, $idintegrante, $id_bienestar,    $id_indicador,  $usuario, $edad,  $p1,   $p2,   $p3, $p4 ,$p5 ,$p6,$p7 ,$p8,$p9
         ]);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
@@ -2759,12 +3281,27 @@ class c_encuestaintegrantesqt extends Controller
             $folio,  $id_bienestar,   $id_indicador,  $usuario,   $p1, 
         ]);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
@@ -2787,7 +3324,7 @@ class c_encuestaintegrantesqt extends Controller
     {
 
         $folio = $request->input('folio');
-        $id_integrante = $request->input('id_integrante');
+        $idintegrante = $request->input('id_integrante');
         $id_bienestar = $request->input('id_bienestar');
         $id_indicador = $request->input('id_indicador');
         $usuario = $request->input('usuario');
@@ -2797,15 +3334,30 @@ class c_encuestaintegrantesqt extends Controller
 
 
         $resultado = DB::select('CALL sp_movimiento_indicador_integrante_ip(?, ?, ?, ?, ?, ?)', [  
-            $folio, $id_integrante,  $id_bienestar,   $id_indicador,  $usuario,   $p1, 
+            $folio, $idintegrante,  $id_bienestar,   $id_indicador,  $usuario,   $p1, 
         ]);
         
-        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+          if($this->metodologia == '2'){
+           $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
             $folio
            // $idintegrante
-        ]);
+            ]);
+        }else{
+            $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $folio
+                    // $idintegrante
+             ]);
+        }
 
+       
+    if($this->metodologia == '2'){
         if (isset($idintegrante)) {
+            $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                $folio,
+                $idintegrante
+            ]);
+        }
+     } else {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
