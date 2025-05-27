@@ -27,6 +27,10 @@ class c_cobertura extends Controller
 
     $folios = array_map(function ($item) use ($hashids) {
 
+            $metodologia = DB::table('t1_principalhogar')
+             ->where('folio', $item->folio)
+             ->value('metodologia');
+
         $grupoHTML = '';
 
             if (in_array($item->casillamatriz, [1, 2, 4, 5])) {
@@ -56,7 +60,7 @@ class c_cobertura extends Controller
 
 
 
-            'gestion' => ($item->casillamatriz == 9)
+            'gestion' => ($item->casillamatriz == 9 && $metodologia != 2)
                 ? '<button type="submit" style="width:100px" class="btn btn-success btn-sm">Baja vulnerabilidad</button>'
                 : '<button type="submit"  class="btn btn-primary btn-sm"  onclick="habeasdata(\'' . encrypt($item->folio) . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'boton">Gestiónar</button>',
             'actualizar' => '<button type="submit"  class="btn btn-primary btn-sm" style="background:#ff8403 !important; border: 1px solid #ff8403"  onclick="actualizar(\'' . $encodedFolio . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'actualizar">Actualizar</button>',
