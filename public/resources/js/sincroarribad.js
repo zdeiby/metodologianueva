@@ -2163,7 +2163,7 @@ $.ajax({
                 actualizarTabla('t3_movimiento_indicadores_integrante_vp_historico', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('90%');
                 $('#barracarga').css('width','90%');                                   
-                t1_accionmovilizadoracompromisosd();                   
+                t3_movimiento_indicadores_integrante_pv_historico_bse_8_ffes();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t3_movimiento_indicadores_integrante_vp_historico', 'Descarga de tablas desde el servdor', '3');
@@ -2172,6 +2172,171 @@ $.ajax({
                     }
             })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+function t3_movimiento_indicadores_integrante_pv_historico_bse_8_ffesd (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_8_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bse_8_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_8_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bse_9_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_8_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_vp_historicod, 't3_movimiento_indicadores_integrante_pv_historico_bse_8_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bse_9_ffesd (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_9_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bse_9_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_9_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bse_10_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_9_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bse_8_ffesd, 't3_movimiento_indicadores_integrante_pv_historico_bse_9_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bse_10_ffesd (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_10_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bse_10_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_10_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bl_11_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_10_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bse_9_ffesd, 't3_movimiento_indicadores_integrante_pv_historico_bse_10_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bl_11_ffesd (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bl_11_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bl_11_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bl_11_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bef_7_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bl_11_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bse_10_ffesd, 't3_movimiento_indicadores_integrante_pv_historico_bl_11_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bef_7_ffesd (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_7_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bef_7_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_7_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t3_movimiento_indicadores_integrante_pv_historico_bl_12_ffesd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bef_7_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bl_11_ffesd, 't3_movimiento_indicadores_integrante_pv_historico_bef_7_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_integrante_pv_historico_bl_12_ffesd (){
+  actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bl_12_ffes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bl_12_ffes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bl_12_ffes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_accionmovilizadoracompromisosd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bl_12_ffes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t3_movimiento_indicadores_integrante_pv_historico_bef_7_ffesd, 't3_movimiento_indicadores_integrante_pv_historico_bl_12_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function t1_accionmovilizadoracompromisosd (){
