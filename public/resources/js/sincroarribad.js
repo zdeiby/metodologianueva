@@ -2180,10 +2180,6 @@ $.ajax({
 
 
 
-
-
-
-
 function t3_movimiento_indicadores_integrante_pv_historico_bse_8_ffesd (){
   actualizarTabla('t3_movimiento_indicadores_integrante_pv_historico_bse_8_ffes', 'Descarga de tablas desde el servdor', '1');
   let tabla= 't3_movimiento_indicadores_integrante_pv_historico_bse_8_ffes';
