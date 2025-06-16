@@ -2163,7 +2163,7 @@ $.ajax({
                 actualizarTabla('t3_movimiento_indicadores_integrante_vp_historico', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('90%');
                 $('#barracarga').css('width','90%');                                   
-                t3_movimiento_indicadores_integrante_pv_historico_bse_8_ffes();                   
+                t3_movimiento_indicadores_integrante_pv_historico_bse_8_ffesd();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t3_movimiento_indicadores_integrante_vp_historico', 'Descarga de tablas desde el servdor', '3');
