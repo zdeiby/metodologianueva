@@ -1844,7 +1844,7 @@ $.ajax({
                 actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('78%');
                 $('#barracarga').css('width','78%');                                   
-                t3_movimiento_indicadores_hogar_ip_historicod();                   
+                t_cruceinstitucional_hogarintegrantesd();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t3_oportunidad_integranteshogar_historico', 'Descarga de tablas desde el servdor', '3');
@@ -1853,6 +1853,30 @@ $.ajax({
                     }
             })
 }
+
+
+function t_cruceinstitucional_hogarintegrantesd (){
+  actualizarTabla('t_cruceinstitucional_hogarintegrantes', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't_cruceinstitucional_hogarintegrantes';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t_cruceinstitucional_hogarintegrantes', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('78%');
+                $('#barracarga').css('width','78%');                                   
+                t3_movimiento_indicadores_hogar_ip_historicod();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t_cruceinstitucional_hogarintegrantes', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_oportunidad_integrantesd, 't_cruceinstitucional_hogarintegrantes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
 
 
 
