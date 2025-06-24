@@ -1899,7 +1899,7 @@ $.ajax({
                 actualizarTabla('t3_movimiento_indicadores_hogar_ip_historico', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('79%');
                 $('#barracarga').css('width','79%');                                   
-                t3_movimiento_indicadores_hogar_oportunidades_historicod();                   
+                t3_movimiento_in_integrante_cruceinstitucional_historicod();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t3_movimiento_indicadores_hogar_ip_historico', 'Descarga de tablas desde el servdor', '3');
@@ -1909,6 +1909,50 @@ $.ajax({
             })
 }
 
+
+function t3_movimiento_in_integrante_cruceinstitucional_historicod (){
+  actualizarTabla('t3_movimiento_in_integrante_cruceinstitucional_historico', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't3_movimiento_in_integrante_cruceinstitucional_historico';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_in_integrante_cruceinstitucional_historico', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('79%');
+                $('#barracarga').css('width','79%');                                   
+                t3_movimiento_indicadores_hogar_ip_historicod();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_in_integrante_cruceinstitucional_historico', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t3_oportunidad_integranteshogar_historicod, 't3_movimiento_in_integrante_cruceinstitucional_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_hogar_ip_historicod (){
+  actualizarTabla('t3_movimiento_indicadores_hogar_ip_historico', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't3_movimiento_indicadores_hogar_ip_historico';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_hogar_ip_historico', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('79%');
+                $('#barracarga').css('width','79%');                                   
+                t3_movimiento_indicadores_hogar_oportunidades_historicod();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_hogar_ip_historico', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t3_oportunidad_integranteshogar_historicod, 't3_movimiento_indicadores_hogar_ip_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
 
 function t3_movimiento_indicadores_hogar_oportunidades_historicod (){
   actualizarTabla('t3_movimiento_indicadores_hogar_oportunidades_historico', 'Descarga de tablas desde el servdor', '1');

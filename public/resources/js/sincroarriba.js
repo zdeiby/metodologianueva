@@ -1852,7 +1852,7 @@ function t_cruceinstitucional_hogarintegrantes (){
   actualizarTabla('t_cruceinstitucional_hogarintegrantes', 'Subida base de datos al servidor', '1');
   let tabla= 't_cruceinstitucional_hogarintegrantes';
 $.ajax({
-              url:'./sincroprivaciones',
+              url:'./sincroprivacionesd',
               method: "GET",
               data: { tabla: tabla},  
               dataType:'JSON',
@@ -1886,7 +1886,7 @@ $.ajax({
                 actualizarTabla('t3_movimiento_indicadores_hogar_ip_historico', 'Subida base de datos al servidor', '2');
                 $('#barracarga').html('79%');
                 $('#barracarga').css('width','79%');                                   
-                t3_movimiento_indicadores_hogar_oportunidades_historico();                   
+                t3_movimiento_in_integrante_cruceinstitucional_historico();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t3_movimiento_indicadores_hogar_ip_historico', 'Subida base de datos al servidor', '3');
@@ -1895,6 +1895,59 @@ $.ajax({
                     }
             })
 }
+
+
+
+
+function t3_movimiento_in_integrante_cruceinstitucional_historico (){
+  actualizarTabla('t3_movimiento_in_integrante_cruceinstitucional_historico', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_in_integrante_cruceinstitucional_historico';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_in_integrante_cruceinstitucional_historico', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('79%');
+                $('#barracarga').css('width','79%');                                   
+                t3_movimiento_indicadores_hogar_cruce_historico();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_in_integrante_cruceinstitucional_historico', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_oportunidad_integranteshogar_historico, 't3_movimiento_in_integrante_cruceinstitucional_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t3_movimiento_indicadores_hogar_cruce_historico (){
+  actualizarTabla('t3_movimiento_indicadores_hogar_cruce_historico', 'Subida base de datos al servidor', '1');
+  let tabla= 't3_movimiento_indicadores_hogar_cruce_historico';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t3_movimiento_indicadores_hogar_cruce_historico', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('79%');
+                $('#barracarga').css('width','79%');                                   
+                t3_movimiento_indicadores_hogar_oportunidades_historico();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t3_movimiento_indicadores_hogar_cruce_historico', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t3_oportunidad_integranteshogar_historico, 't3_movimiento_indicadores_hogar_cruce_historico');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+
+
+
+
+
 
 
 function t3_movimiento_indicadores_hogar_oportunidades_historico (){

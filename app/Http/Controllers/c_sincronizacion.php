@@ -630,6 +630,9 @@ foreach ($data as $item) {
 }
 
 public function fc_guardarsincro(Request $request) {
+
+    DB::statement("CALL sp_movimiento_indicador_hogar_cruceinstitucional()");
+    DB::statement("CALL sp_movimiento_indicador_integrante_cruceinstitucional()");
    // $tabla='t3_sincronizacion';
     $pdoccogestor = session('cedula');
     $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarriba/fc_guardarsincro?pdoccogestor='.$pdoccogestor.''; 
