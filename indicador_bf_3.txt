@@ -1,0 +1,42 @@
+CREATE DEFINER=`zdeiby`@`%` PROCEDURE `SP_indicador_bf_3`(pfolio bigint)
+BEGIN
+
+
+DELETE FROM t1_indicador_bf_3 WHERE folio = pfolio;
+INSERT INTO t1_indicador_bf_3
+(SELECT 
+3 as idindicador, 
+ti.folio, 
+ti.idintegrante,
+tii.edad,
+ti.ingresos1,
+CASE WHEN ti.ingresos1 = '134' THEN 'A. SI (ocupados: realiza una actividad paga que le genera ingresos económicos)'
+     WHEN ti.ingresos1 = '135' THEN 'B. NO (desempleado: no realiza una actividad paga que le genera ingresos económicos)'
+     WHEN ti.ingresos1 = '136' THEN 'C. Es pensionado.'
+     WHEN ti.ingresos1 = '0' THEN 'NO APLICA'
+END as realiza_actividades_que_generen_ingresos_economicos, 
+ti.desempleo,
+CASE WHEN ti.desempleo = '152' THEN 'A. Deseo emplearme formalmente en una empresa'
+     WHEN ti.desempleo = '153' THEN 'B. Deseo emplearme formalmente desde casa'
+     WHEN ti.desempleo = '154' THEN 'C. Deseo trabajar independiente'
+     WHEN ti.desempleo = '155' THEN 'D. Deseo emprender o mejorar mi emprendimiento.'
+     WHEN ti.desempleo = '156' THEN 'E. No está en mis planes emplearme o generar ingresos'
+     WHEN ti.desempleo = '0' THEN 'NO APLICA'
+END as que_espectativa_tiene_para_generar_ingreso, 
+case when (tii.edad > 17 AND (ti.desempleo = 152 or ti.desempleo = 153)) THEN '0'
+     when (tii.edad > 17 AND (ti.ingresos1 = 134 or ti.ingresos1 = 136)) THEN '1'
+	 else '2'
+end as codigoindicadorDI,
+case when (tii.edad > 17 AND (ti.desempleo = 152 or ti.desempleo = 153)) THEN '0'
+     when (tii.edad > 17 AND (ti.ingresos1 = 134 or ti.ingresos1 = 136)) THEN '1'
+	 else '2'
+end as codigoindicadorDA,
+0 as sincro,
+NOW() as fecharegistroDI, 
+NOW() as fecharegistroDA
+FROM dbmetodologia.t1_integrantesfinanciero ti
+INNER JOIN t1_integranteshogar tii ON ti.idintegrante = tii.idintegrante
+WHERE ti.folio = pfolio);
+
+
+END

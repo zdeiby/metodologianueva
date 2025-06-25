@@ -232,6 +232,14 @@
     $('#ingresos1').change(function(){
              //menor de 14 y opcion sí
 
+             if (parseInt($('#edadintegrante').val()) <= 17) {
+                  // Ocultar opción C
+                  $('#ingresos1 option[value="136"]').hide();
+              } else {
+                  // Mostrar opción C si tiene 18 o más
+                  $('#ingresos1 option[value="136"]').show();
+              }
+
               if($('#ingresos1').val() == '134' && parseInt($('#edadintegrante').val()) <= '17'){
               $('.trabajoinfantil137').css('display','');
               $('#trabajoinfantil137').css('display','');
@@ -320,9 +328,9 @@
               $('#endeudamiento3div').css('display', 'none');
               $('#endeudamiento3').val('0'); 
               $('#endeudamiento3').removeAttr('required');
-              $('#emprendimiento1div').css('display', '');
-              $('#emprendimiento1').val('');
-              $('#emprendimiento1').attr('required','required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').val('0');
+              $('#emprendimiento1').removeAttr('required');
               $('#endeudamiento4div').css('display', 'none');
               $('#endeudamiento4').val('0'); 
               $('#endeudamiento4').removeAttr('required');
@@ -1662,7 +1670,14 @@ console.log(edad)
 
                 // INGRESOS 1 con todas las validaciones por edades 
 
-
+              
+             if (parseInt($('#edadintegrante').val()) <= 17) {
+                  // Ocultar opción C
+                  $('#ingresos1 option[value="136"]').hide();
+              } else {
+                  // Mostrar opción C si tiene 18 o más
+                  $('#ingresos1 option[value="136"]').show();
+              }
 
                 
               if($('#ingresos1').val() == '134' && parseInt($('#edadintegrante').val()) <= '17'){
@@ -1748,8 +1763,9 @@ console.log(edad)
               $('#endeudamiento3div').css('display', 'none');
               $('#endeudamiento3').val('0'); 
               $('#endeudamiento3').removeAttr('required');
-              $('#emprendimiento1div').css('display', '');
-              $('#emprendimiento1').attr('required','required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').val('0');
+              $('#emprendimiento1').removeAttr('required');
               $('#endeudamiento4div').css('display', 'none');
               $('#endeudamiento4').val('0'); 
               $('#endeudamiento4').removeAttr('required');
