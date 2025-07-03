@@ -614,9 +614,9 @@
               $('#intermediacionlaboraldiv').css('display', 'none');
               $('#intermediacionlaboral').val('0'); 
               $('#intermediacionlaboral').removeAttr('required');
-              $('#emprendimiento1div').css('display', '');
-              $('#emprendimiento1').val('');
-              $('#emprendimiento1').attr('required','required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').val('0');
+              $('#emprendimiento1').removeAttr('required');
 
              }
              //entre 15 y 17 y opcion no
@@ -1514,9 +1514,9 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
                       $('#ingresos3div').css('display', '');
                       $('#ingresos3').val('');
                       $('#ingresos3').attr('required','required');
-                      $('#emprendimiento1div').css('display', '');
-                      $('#emprendimiento1').val('');
-                      $('#emprendimiento1').attr('required','required');
+                      $('#emprendimiento1div').css('display', 'none');
+                      $('#emprendimiento1').val('0');
+                      $('#emprendimiento1').removeAttr('required');
                 }
             });
 
@@ -2034,8 +2034,9 @@ console.log(edad)
               $('#intermediacionlaboraldiv').css('display', 'none');
               $('#intermediacionlaboral').val('0'); 
               $('#intermediacionlaboral').removeAttr('required');
-              $('#emprendimiento1div').css('display', '');
-              $('#emprendimiento1').attr('required','required');
+              $('#emprendimiento1div').css('display', 'none');
+              $('#emprendimiento1').removeAttr('required');
+              $('#emprendimiento1').val('0'); 
 
              }
              //entre 15 y 17 y opcion no
