@@ -15,8 +15,26 @@ class c_index extends Controller
             return redirect()->route('login');
         }
       $modelo= new m_index();
-     // $pphogar=$modelo->m_leerprincipalhogar();
+      $pphogar=$modelo->m_leerprincipalhogar();
+
+      
 if(session('nombre') !== null){
+
+    // Normalizamos las prioridades a minúsculas y sin espacios
+        $hogares = collect($pphogar)->map(function ($hogar) {
+            $hogar->prioridad_visita = trim(strtolower($hogar->prioridad_visita ?? ''));
+            return $hogar;
+        });
+
+        
+
+        // Contamos según el valor de prioridad
+        $datos['prioridadAlta'] = $hogares->where('prioridad_visita', 'alta')->count();
+        $datos['prioridadMediaAlta'] = $hogares->where('prioridad_visita', 'media alta')->count();
+        $datos['prioridadMedia'] = $hogares->where('prioridad_visita', 'media')->count();
+        $datos['prioridadBaja'] = $hogares->where('prioridad_visita', 'baja')->count();
+
+//dd($prioridadMediaAlta);
       
     $datos['numerodefolios'] = DB::table('t1_principalhogar')->count();
     $datos['numerodevisitasrealiadas'] = DB::table('t1_visitasrealizadas')->where('estado',1)->count();

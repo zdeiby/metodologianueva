@@ -22,7 +22,7 @@
   <hr>
 
   <div class="row">
-                        <div class="col-md-6 col-xl-3 mb-4">
+                      <!--  <div class="col-md-6 col-xl-3 mb-4">
                             <div class="card shadow border-start-primary py-2">
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
@@ -84,8 +84,105 @@
                             </div>
                         </div>
 
+-->
 
 
+
+        <div class="row">
+        <!-- Columna 1: Totales -->
+        <div class="col-md-8">
+            <div class="row">
+            <!-- Tarjeta 1 -->
+            <div class="col-md-6 mb-3">
+                <div class="card border-start-primary shadow py-2">
+                <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col me-2">
+                                <div class="text-uppercase text-primary fw-bold text-xs mb-1" style="font-size:13px"><span>Total Folios</span></div>
+                                <div class="text-dark fw-bold h5 mb-0"><span id="totalgrupos">{{$numerodefolios}}</span></div>
+                            </div>
+                            <div class="col-auto"><ion-icon  name="home-outline" style="font-size:30px; color:gray"></ion-icon></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+      <!-- Tarjeta 2 -->
+      <div class="col-md-6 mb-3">
+        <div class="card border-start-success shadow py-2">
+          <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col me-2">
+                        <div class="text-uppercase text-primary fw-bold text-xs mb-1" style="font-size:13px"><span>Total Visitas Realizadas</span></div>
+                        <div class="text-dark fw-bold h5 mb-0"><span  id="totalgruposabiertos">{{$numerodevisitasrealiadas}}</span></div>
+                    </div>
+                    <div class="col-auto"><ion-icon  name="home-outline" style="font-size:30px; color:gray"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="col-md-6 mb-3">
+        <div class="card border-start-info shadow py-2">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <div class="text-uppercase text-primary fw-bold text-xs mb-1" style="font-size:13px">Total Visitas Abiertas</div>
+                <div class="text-dark fw-bold h5 mb-0">{{ $numerodevisitasabiertas }}</div>
+              </div>
+              <ion-icon name="home-outline" style="font-size:30px; color:gray"></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 4 -->
+      <div class="col-md-6 mb-3">
+        <div class="card border-start-warning shadow py-2">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <div class="text-uppercase text-primary fw-bold text-xs mb-1" style="font-size:13px">Total Visitas Sin Realizar</div>
+                <div class="text-dark fw-bold h5 mb-0">{{ $numerodevisitassinrealizar }}</div>
+              </div>
+              <ion-icon name="home-outline" style="font-size:30px; color:gray"></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Columna 2: Prioridades -->
+  <div class="col-md-4">
+    <div class="card shadow border-0 p-1" style="border-radius: 20px;">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="text-uppercase text-danger fw-bold text-xs mb-1" style="font-size:13px">PRIORIDAD VISITA</h5>
+          <ion-icon name="notifications-outline" style="font-size:30px; color:orange"></ion-icon>
+        </div>
+        <div class="mb-2 d-flex justify-content-between text-success fw-bold">
+          <span class="text-uppercase text-success fw-bold text-xs mb-1" style="font-size:13px">ALTA:</span>
+          <span class="text-uppercase text-success fw-bold text-xs mb-1" style="font-size:13px">{{ $prioridadAlta ?? 0 }} HOGARES</span>
+        </div>
+        <div class="mb-2 d-flex justify-content-between text-success fw-bold">
+          <span class="text-uppercase text-success fw-bold text-xs mb-1" style="font-size:13px">MEDIA ALTA:</span>
+          <span class="text-uppercase text-success fw-bold text-xs mb-1" style="font-size:13px">{{ $prioridadMediaAlta ?? 0 }} HOGARES</span>
+        </div>
+        <div class="mb-2 d-flex justify-content-between text-success fw-bold">
+          <span class="text-uppercase text-success fw-bold text-xs mb-1" style="font-size:13px">MEDIA:</span>
+          <span class="text-uppercase text-success fw-bold text-xs mb-1" style="font-size:13px">{{ $prioridadMedia ?? 0 }} HOGAR{{ ($prioridadMedia ?? 0) == 1 ? '' : 'ES' }}</span>
+        </div>
+        <div class="mb-2 d-flex justify-content-between text-success fw-bold">
+          <span class="text-uppercase text-success fw-bold text-xs mb-1" style="font-size:13px">BAJA:</span>
+          <span class="text-uppercase text-success fw-bold text-xs mb-1" style="font-size:13px">{{ $prioridadBaja ?? 0 }} HOGAR{{ ($prioridadBaja ?? 0) == 1 ? '' : 'ES' }}</span>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
 
 
 

@@ -32,6 +32,18 @@ class m_index extends Model
         com.comuna as comuna,
         hgeo.direccion as direccion,
         csm.casillamatriz,
+         COALESCE(DATE_FORMAT(hvrdas.created_at, "%Y-%m-%d %H:%i:%s"), "Sin visita") AS fecha_ultima_visita,
+		CASE 
+        WHEN hvrdas.created_at IS NULL THEN "Alta"
+
+        WHEN csm.casillamatriz IN (1,2,4,5,3,6,7,8) AND DATEDIFF(NOW(), hvrdas.created_at) > 180 THEN "Alta"
+
+        WHEN csm.casillamatriz IN (1,2,4,5) AND DATEDIFF(NOW(), hvrdas.created_at) > 30 THEN "Media alta"
+
+        WHEN csm.casillamatriz IN (3,6,7,8) AND DATEDIFF(NOW(), hvrdas.created_at) > 90 THEN "Media"
+
+        ELSE "Baja"
+    END AS prioridad_visita,
         COALESCE(
         CASE 
             WHEN hvrdas.estado = 1 THEN CONCAT(tvrn.descripcion, " finalizada")

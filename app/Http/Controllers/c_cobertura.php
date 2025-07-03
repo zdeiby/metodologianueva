@@ -56,6 +56,16 @@ class c_cobertura extends Controller
             'comuna' => $item->comuna ?? '',
             'direccion' => $item->direccion ?? '',
             'estacion' =>  $item->ultimo_idestacion ?? 'Gestión no especificada',
+            'fecha_ultima_visita' => $item->fecha_ultima_visita ?? '',
+          //  'prioridad_visita' => trim(strtolower($item->prioridad_visita)) ?? '',
+          'prioridad_visita' => match(trim(strtolower($item->prioridad_visita))) {
+            'alta' => '<div class="alert alert-danger py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">🔥 Alta</div>',
+            'media alta' => '<div class="alert alert-warning py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px; color:black;">⚠️ Media alta</div>',
+            'media' => '<div class="alert alert-info py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">💡 Media</div>',
+            'baja' => '<div class="alert alert-secondary py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">💤 Baja</div>',
+            default => '<div class="alert alert-light py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">Sin dato</div>',
+        },
+
           'grupo' => $grupoHTML,
 
 

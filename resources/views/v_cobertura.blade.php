@@ -203,6 +203,7 @@
 
         // Configuración de Handsontable
         const container = document.getElementById('excelTable');
+        
         const hot = new Handsontable(container, {
             data: data,
             colHeaders: [
@@ -215,10 +216,14 @@
                 'Comuna',
                 'Dirección',
                 'Visita',
+                'Fecha Visita',
                 'Grupo',
                 'Gestionar',
+                'Prioridad Visita'
                // 'Actualizar Datos'
             ],
+
+            
             columns: [
                 { data: 'folio',
                   width: 80,
@@ -259,10 +264,17 @@
                   
               },
               {
-              data: 'grupo',
+              data: 'fecha_ultima_visita',
                 width: 130,
                 renderer: 'html',
                 wordWrap: true
+              },
+              {
+              data: 'grupo',
+                width: 130,
+                renderer: 'html',
+                wordWrap: true,
+                filter: false
               },
                 {
                     data: 'gestion',
@@ -270,6 +282,18 @@
                     readOnly: true,
                     width: 110,
                 }
+
+                ,
+                {
+                    data: 'prioridad_visita',
+                    renderer: 'html', // Habilita contenido HTML en esta columna
+                    readOnly: true,
+                    width: 110,
+                    className: 'htCenter htMiddle',
+                    filter: false
+                    
+                }
+
                 ,
                /* {
                     data: 'actualizar',
