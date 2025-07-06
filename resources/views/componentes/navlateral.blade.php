@@ -480,7 +480,7 @@ function soloNumeros(e) {
                 
                 
             </div>
-            @if(isset($foliomenu) && !empty($foliomenu) || !empty($esVisitaT1))
+ @if(isset($foliomenu) && !empty($foliomenu) || !empty($esVisitaT1))
             <div style="" class="text-center p-2">
             @if(isset($foliomenu) && !empty($foliomenu))
                 <span class="badge bg-light ms-auto" id="folioContainer" style="font-size:15px; color:#0dcaf0 " folio="{{ $variable }}">
@@ -498,13 +498,26 @@ function soloNumeros(e) {
                     </span> min
                 </div>
                 @endif
+            </div>
+            @endif
 
 
+    
+            @if(!empty($esVisitaT1R2))
+                <div id="contador-visita-t1r2"
+                    data-segundos="{{ $totalSegundosT1R2 }}"
+                    class="text-white text-center"
+                    style="background:#00bfff; padding:6px; border-radius:5px;">
+                    <strong>Tercera Visita T1</strong><br>
+                    Dur: <span id="duracion-texto-t1r2">
+                        {{ $duracionT1R2 }}@if($activarContadorT1R2):{{ sprintf('%02d', $totalSegundosT1R2 % 60) }}@endif
+                    </span> min
+                </div>
+                @endif
+            
             
 
 
-            </div>
-            @endif
             <label class="boton" >
                 
             </label>
@@ -869,7 +882,7 @@ function validateInput(textarea) {
 
 </script>
 
-@if(!empty($activarContadorT1) && !empty($totalSegundosT1))
+@if(!empty($activarContadorT1) && !empty($totalSegundosT1) )
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const contador = document.getElementById('contador-visita');
@@ -889,6 +902,30 @@ function validateInput(textarea) {
         actualizarContador();
         setInterval(actualizarContador, 1000);
     });
+</script>
+@endif
+
+
+@if(!empty($activarContadorT1R2) && !empty($totalSegundosT1R2))
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const contador = document.getElementById('contador-visita-t1r2');
+    if (!contador) return;
+
+    let totalSegundos = parseInt(contador.getAttribute('data-segundos')) || 0;
+
+    function actualizarContador() {
+        totalSegundos++;
+        let horas = Math.floor(totalSegundos / 3600);
+        let minutos = Math.floor((totalSegundos % 3600) / 60);
+        let segundos = totalSegundos % 60;
+
+        document.getElementById('duracion-texto-t1r2').textContent = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+    }
+
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+});
 </script>
 @endif
 

@@ -34,7 +34,7 @@
             <div class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <div>
-                <span class="badge bg-primary" id=""  style="font-size:15px">MOMENTO CONSCIENTE</span>
+                <span class="badge bg-primary" id=""  style="font-size:15px">MOMENTO MOVILIZADOR</span>
                 <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
                
               </div>
@@ -62,7 +62,11 @@
     <a id="legalqt"  class="nav-link " >ACCIÓN MOVILIZADORA BIENESTAR EN LA FAMILIA</a>
   </li>
   <li class="nav-item" role="presentation"  style="cursor:pointer">
-    <a id="financieroqt"  class="nav-link ">ACCIÓN MOVILIZADORA BIENESTAR PRIORIZADO</a>
+    <a id="financieroqt"  class="nav-link ">ACCIÓN BIENESTAR PRIORIZADO</a>
+  </li>
+
+  <li class="nav-item" role="presentation"  style="cursor:pointer">
+    <a id="compromisos"  class="nav-link ">COMPROMISOS</a>
   </li>
   
 </ul>
@@ -100,48 +104,119 @@
             <input type="text" placeholder="paso" class="form-control form-control-sm  " id="paso" name="paso" value="{{$paso}}" >
           </div>
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO CONSCIENTE.</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO CONSCIENTE VISITA TIPO 1.</span>
+            <div class="container mt-4">
+              <div class="border">
+                <!-- Fila de títulos -->
+                <div class="row g-0">
+                  <div class="col-md-4 d-flex align-items-center border-end border-bottom text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
+                    <div class="p-2">
+                      
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="row g-0">
+                      <div class="col-12 border-bottom p-2 text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
+                        NOMBRE DE LA HERRAMIENTA
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Fila de contenido -->
+                <div class="row g-0" id="indicadorbse1">
+                  <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+                    <div class="p-2">
+                        MOMENTOS CONSCIENTES
+                    </div>
+                  </div>
+                  <div class="col-md-8 d-flex align-items-stretch  ">
+                    <div class="col-12 border-bottom p-2 d-flex align-items-center" style="    text-align: center !important;  display: flex;  flex-direction: column;">
+                    <div class="col-md-6" >
+                              {!! $momento_conciente !!}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
+              <span class="badge bg-success" id="" style="font-size:15px; ">MOMENTO CONSCIENTE SEGUNDA VISITA TIPO 1.</span>
+            <div class="container mt-4">
+              <div class="border">
+                <!-- Fila de títulos -->
+                <div class="row g-0">
+                  <div class="col-md-4 d-flex align-items-center border-end border-bottom text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
+                    <div class="p-2">
+                      
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="row g-0">
+                      <div class="col-12 border-bottom p-2 text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
+                        NOMBRE DE LA HERRAMIENTA
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Fila de contenido -->
+                <div class="row g-0" id="indicadorbse1">
+                  <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+                    <div class="p-2">
+                        MOMENTOS CONSCIENTES
+                    </div>
+                  </div>
+                  <div class="col-md-8 d-flex align-items-stretch  ">
+                    <div class="col-12 border-bottom p-2 d-flex align-items-center" style="    text-align: center !important;  display: flex;  flex-direction: column;">
+                    <div class="col-md-6" >
+                              {!! $momento_concientet1r1 !!}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
-<div class="container mt-4">
-  <div class="border">
-    <!-- Fila de títulos -->
-    <div class="row g-0">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
-        <div class="p-2">
-          
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="row g-0">
-          <div class="col-12 border-bottom p-2 text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
-            NOMBRE DE LA HERRAMIENTA
-          </div>
-        </div>
-      </div>
-    </div>
+            <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">MOMENTO CONSCIENTE VISITA ACTUAL.</span>
+            <div class="container mt-4">
+              <div class="border">
+                <!-- Fila de títulos -->
+                <div class="row g-0">
+                  <div class="col-md-4 d-flex align-items-center border-end border-bottom text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
+                    <div class="p-2">
+                      
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="row g-0">
+                      <div class="col-12 border-bottom p-2 text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
+                        NOMBRE DE LA HERRAMIENTA
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-    <!-- Fila de contenido -->
-    <div class="row g-0" id="indicadorbse1">
-      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
-        <div class="p-2">
-            MOMENTOS CONCIENTES
-        </div>
-      </div>
-      <div class="col-md-8 d-flex align-items-stretch  ">
-        <div class="col-12 border-bottom p-2 d-flex align-items-center" style="    text-align: center !important;  display: flex;  flex-direction: column;">
-        <div class="col-md-6" >
-                  {!! $momento_conciente !!}
-          </div>
-        </div>
-      </div>
-    </div>
+                <!-- Fila de contenido -->
+                <div class="row g-0" id="indicadorbse1">
+                  <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+                    <div class="p-2">
+                        MOMENTOS CONSCIENTES
+                    </div>
+                  </div>
+                  <div class="col-md-8 d-flex align-items-stretch  ">
+                    <div class="col-12 border-bottom p-2 d-flex align-items-center" style="    text-align: center !important;  display: flex;  flex-direction: column;">
+                    <div class="col-md-6" >
+                              {!! $momento_concientet1r2 !!}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-
-  </div>
-</div>
 
 
 
@@ -195,11 +270,11 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../bienestarenfamilia/<?= $variable ?>"; window.location.href = url;
+        var url = "../bienestarenfamiliat1refuerzo2/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../rombovisitatipo1/:folio";
+           var url = "../rombovisitatipo1refuerzo2/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -212,9 +287,10 @@
       });
 
 
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconciente/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../bienestarenfamilia/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../accionmovilizadoraqt/<?= $variable ?>"; window.location.href = url;})
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconcientet1refuerzo2/<?= $variable ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../bienestarenfamiliat1refuerzo2/<?= $variable ?>"; window.location.href = url;})
+    $('#financieroqt').click(function(){var url = "../accionmovilizadoraqtt1refuerzo2/<?= $variable ?>"; window.location.href = url;})
+    $('#compromisos').click(function(){var url = "../accionmovilizadoracompromisost1refuerzo2/<?= $variable ?>"; window.location.href = url;})
 
       
 
@@ -306,7 +382,7 @@ function agregarpaso(datas){
     </script>
 
 
-    <script>
+    <!-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         const form = document.getElementById('myForm');
@@ -338,7 +414,43 @@ function agregarpaso(datas){
             }
         }
     });
+</script> -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Selecciona solo los checkboxes del segundo formulario (momentos[])
+        const checkboxes = document.querySelectorAll('input[name="momentos[]"]');
+        const form = document.getElementById('myForm');
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', validateCheckboxes);
+        });
+
+        function validateCheckboxes() {
+            // Contar los checkboxes seleccionados
+            const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+
+            // Validar selección mínima y máxima
+            if (selectedCount >= 1 && selectedCount <= 2) {
+                // Remover el atributo 'required' si al menos uno está seleccionado
+                checkboxes.forEach(cb => cb.removeAttribute('required'));
+            } else {
+                // Si no hay seleccionados, aplicar 'required' a todos los checkboxes
+                checkboxes.forEach(cb => cb.setAttribute('required', 'required'));
+            }
+
+            // Deshabilitar otros checkboxes si ya hay 2 seleccionados
+            if (selectedCount === 2) {
+                checkboxes.forEach(cb => {
+                    if (!cb.checked) cb.disabled = true;
+                });
+            } else {
+                checkboxes.forEach(cb => cb.disabled = false);
+            }
+        }
+    });
 </script>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

@@ -48,6 +48,20 @@ class c_rombo extends Controller
         ->where('linea', 200)            // Comparamos la línea
         ->first(); 
 
+         $registrovt1r1 = DB::table('t1_visitasrealizadas')
+        ->where('folio', decrypt($cedula))  // Comparamos el folio desencriptado
+        ->where('linea', 300)            // Comparamos la línea
+        ->first(); 
+
+        $registrovt1r2 = DB::table('t1_visitasrealizadas')
+        ->where('folio', decrypt($cedula))  // Comparamos el folio desencriptado
+        ->where('linea', 400)            // Comparamos la línea
+        ->first(); 
+         $registrovt1r3 = DB::table('t1_visitasrealizadas')
+        ->where('folio', decrypt($cedula))  // Comparamos el folio desencriptado
+        ->where('linea', 500)            // Comparamos la línea
+        ->first(); 
+
         $metodologia = DB::table('t1_principalhogar')
         ->where('folio', decrypt($cedula))
         ->value('metodologia');
@@ -80,9 +94,18 @@ class c_rombo extends Controller
 
          // dd($realizado);
 
-          $realizadosvt1 = (($registrovt1 && $registrovt1->estado == 1)?1:0);
+            $realizadosvt1 = (($registrovt1 && $registrovt1->estado == 1)?1:0);
+            $realizadosvt1r1 = (($registrovt1r1 && $registrovt1r1->estado == 1)?1:0);
+            $realizadosvt1r2 = (($registrovt1r2 && $registrovt1r2->estado == 1)?1:0);
+             // dd($realizadosvt1r2);
+            $realizadosvt1r3 = (($registrovt1r3 && $registrovt1r3->estado == 1)?1:0);
          // dd($realizadovt1);
-        return view('v_rombo',["foliomenu"=>decrypt($cedula), 'realizadosvt1'=>$realizadosvt1 ,"variable"=>decrypt($cedula), 'encodeFolio'=>$encodeFolio,"variablebtn"=>$cedula, 'realizado'=>$realizado, 'foliobycript'=>decrypt($cedula),  
+        return view('v_rombo',["foliomenu"=>decrypt($cedula), 
+        'realizadosvt1'=>$realizadosvt1, 
+        'realizadosvt1r1'=>$realizadosvt1r1, 
+        'realizadosvt1r2'=>$realizadosvt1r2, 
+        'realizadosvt1r3'=>$realizadosvt1r3, 
+        "variable"=>decrypt($cedula), 'encodeFolio'=>$encodeFolio,"variablebtn"=>$cedula, 'realizado'=>$realizado, 'foliobycript'=>decrypt($cedula),  
         'porcentaje_rojo_bse'=>$porcentaje_rojo_bse, 'porcentaje_verde_bse'=>$porcentaje_verde_bse, //'porcentaje_gris_bse'=>$porcentaje_gris_bse,
         'porcentaje_rojo_bl'=>$porcentaje_rojo_bl, 'porcentaje_verde_bl'=>$porcentaje_verde_bl, //'porcentaje_gris_bl'=>$porcentaje_gris_bl,
         'porcentaje_rojo_bef'=>$porcentaje_rojo_bef, 'porcentaje_verde_bef'=>$porcentaje_verde_bef,// 'porcentaje_gris_bef'=>$porcentaje_gris_bef,

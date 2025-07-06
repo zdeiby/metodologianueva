@@ -266,7 +266,7 @@ Route::get('/guardaraccionesmovilizadorascompromisost1refuerzo1',[c_momentoconci
 
 
 //tipo 1 refuerzo 2 
-
+Route::get('/accionmovilizadoracompromisost1refuerzo2/{folio}',[c_momentoconcientet1refuerzo2::class, 'fc_accionmovilizadoracompromisost1refuerzo2'])->name('accionmovilizadoracompromisost1refuerzo2');
 Route::get('/rombovisitatipo1refuerzo2/{folio}',[c_visitatipo1pasosrefuerzo2::class,'fc_visitatipo1pasosrefuerzo2'])->name('rombovisitatipo1refuerzo2');
 Route::get('/momentoconcientet1refuerzo2/{folio}',[c_momentoconcientet1refuerzo2::class, 'fc_momentoconcientet1refuerzo2'])->name('momentoconcientet1refuerzo2');
 Route::get('/guardaraccionesmovilizadorast1refuerzo2',[c_momentoconcientet1refuerzo2::class, 'fc_guardaraccionesmovilizadorast1refuerzo2'])->name('guardaraccionesmovilizadorast1refuerzo2');
@@ -285,7 +285,7 @@ Route::get('/finalizarvisitat1refuerzo2',[c_finalizaciont1refuerzo2::class,'fc_f
 Route::get('/informevisitat1refuerzo2/{folio}',[c_finalizaciont1refuerzo2::class,'fc_informevisitat1refuerzo2'])->name('informevisitat1refuerzo2');
 
 //tipo 1 refuerzo 3 
-
+Route::get('/accionmovilizadoracompromisost1refuerzo3/{folio}',[c_momentoconcientet1refuerzo3::class, 'fc_accionmovilizadoracompromisost1refuerzo3'])->name('accionmovilizadoracompromisost1refuerzo3');
 Route::get('/rombovisitatipo1refuerzo3/{folio}',[c_visitatipo1pasosrefuerzo3::class,'fc_visitatipo1pasosrefuerzo3'])->name('rombovisitatipo1refuerzo3');
 Route::get('/momentoconcientet1refuerzo3/{folio}',[c_momentoconcientet1refuerzo3::class, 'fc_momentoconcientet1refuerzo3'])->name('momentoconcientet1refuerzo3');
 Route::get('/guardaraccionesmovilizadorast1refuerzo3',[c_momentoconcientet1refuerzo3::class, 'fc_guardaraccionesmovilizadorast1refuerzo3'])->name('guardaraccionesmovilizadorast1refuerzo3');

@@ -60,7 +60,11 @@
     <a id="legalqt"  class="nav-link active" >ACCIÓN MOVILIZADORA BIENESTAR EN LA FAMILIA</a>
   </li>
   <li class="nav-item" role="presentation"  style="cursor:pointer">
-    <a id="financieroqt"  class="nav-link ">ACCIÓN MOVILIZADORA BIENESTAR PRIORIZADO</a>
+    <a id="financieroqt"  class="nav-link ">ACCIÓN BIENESTAR PRIORIZADO</a>
+  </li>
+
+  <li class="nav-item" role="presentation"  style="cursor:pointer">
+    <a id="compromisos"  class="nav-link ">COMPROMISOS</a>
   </li>
   
 </ul>
@@ -100,7 +104,61 @@
 
           </div>
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO MOVILIZADOR.</span>
+
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">ACCIÓN MOVILIZADORA ANTERIOR.</span>
+
+
+
+
+<div class="container mt-4">
+  <div class="border">
+    <!-- Fila de títulos -->
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
+        <div class="p-2">
+          CATEGORIA DEL BIENESTAR
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row g-0">
+          <div class="col-12 border-bottom p-2 text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
+            NOMBRE DE LAS ACCIONES MOVILIZADORAS
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fila de contenido -->
+    <div class="row g-0" id="indicadorbse1">
+      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+        <div class="p-2">
+        BIENESTAR EN FAMILIA
+        </div>
+      </div>
+      <div class="col-md-8 d-flex align-items-stretch  ">
+        <div class="col-12 border-bottom p-2 d-flex align-items-center " style="    text-align: center !important;  display: flex;  flex-direction: column;">
+        <div class="col-md-6" >
+            <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
+            <select class="form-control form-control-sm" id="accionmovilizadoraant"  aria-describedby="validationServer04Feedback" required="" disabled>
+            {!! $t_accionesmovilizadoras3 !!}
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">ACCIÓN MOVILIZADORA ACTUAL.</span>
 
 
 
@@ -146,28 +204,30 @@
 
   </div>
 </div>
-<span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">COMPROMISO BIENESTAR EN FAMILIA.</span>
+
+@if($compromiso == '')
+
+@else
+<!-- <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">COMPROMISO BIENESTAR EN FAMILIA.</span>
 <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
 El gestor consigna información cualitativa. A qué se comprometen el hogar en relación a lo trabajado en las acciones movilizadoras en Bienestar en la familia.
 </div>
 <div class="row">
             <div class="form-group col-sm" id="divobs">
                 <label for="compromiso"></label>
-                <textarea class="form-control form-control-sm" oninput="validateInput(this)" name="compromiso" id="compromiso" rows="10" cols="20" class="" required>{{$compromiso}}</textarea>
+                <textarea class="form-control form-control-sm" oninput="validateInput(this)"  rows="10" cols="20" class="" readOnly>{{$compromiso}}</textarea>
             </div>
-        </div>
+        </div> -->
+@endif
 <br>
 <br>
 <br>
 <br>
-
-
-
 
   </div>
   </div>
-          <hr>
-          <div class="row">  
+       
+          <div class="row pt-4">  
             <div class="text-start col">
 
 
@@ -203,11 +263,11 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
 
 
       $('#siguiente').click(function(){
-        var url = "../accionmovilizadoraqt/<?= $variable ?>"; window.location.href = url;
+        var url = "../accionmovilizadoraqtt1refuerzo2/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../momentoconciente/:folio";
+           var url = "../momentoconcientet1refuerzo2/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -215,9 +275,10 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
     
 
 
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconciente/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../bienestarenfamilia/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../accionmovilizadoraqt/<?= $variable ?>"; window.location.href = url;})
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconcientet1refuerzo2/<?= $variable ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../bienestarenfamiliat1refuerzo2/<?= $variable ?>"; window.location.href = url;})
+    $('#financieroqt').click(function(){var url = "../accionmovilizadoraqtt1refuerzo2/<?= $variable ?>"; window.location.href = url;})
+    $('#compromisos').click(function(){var url = "../accionmovilizadoracompromisost1refuerzo2/<?= $variable ?>"; window.location.href = url;})
 
       
 
@@ -227,6 +288,7 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
 
 
         $('#accionmovilizadora').val('<?= $accionmovilizadora ?>')
+        $('#accionmovilizadoraant').val('<?= $accionmovilizadoraant ?>')
 
      
         $('#formulario').on('submit', function(event) {
@@ -289,5 +351,17 @@ function agregarpaso(data){
 
     </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const select = document.getElementById('accionmovilizadora');
+        
+        // Revisar todas las opciones generadas dinámicamente
+        Array.from(select.options).forEach(option => {
+            if (option.value === '{{ $accionmovilizadoraant }}') { // Comparar con el valor enviado desde el controlador
+                option.style.display = 'none'; // Ocultar la opción si coincide
+            }
+        });
+    });
+</script>
 
 @endsection

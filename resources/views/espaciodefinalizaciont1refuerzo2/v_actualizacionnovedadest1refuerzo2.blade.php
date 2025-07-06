@@ -170,7 +170,7 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../informevisitat1/<?= $variable ?>"; window.location.href = url;
+        var url = "../informevisitat1refuerzo2/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
@@ -182,9 +182,9 @@
     
 
 
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedades/<?= $variable ?>"; window.location.href = url;})
-     $('#legalqt').click(function(){var url = "../informevisitat1/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedadest1refuerzo2/<?= $variable ?>"; window.location.href = url;})
+     $('#legalqt').click(function(){var url = "../informevisitat1refuerzo2/<?= $variable ?>"; window.location.href = url;})
+    $('#financieroqt').click(function(){var url = "../finalizaciont1refuerzo2/<?= $variable ?>"; window.location.href = url;})
 
       
     $(document).ready(function() {
