@@ -303,7 +303,7 @@ console.log(aplica_hogar_integrante, 'HOLAAAAAAAAAAAAAAA')
          idintegrante: idintegrante,
          idoportunidad:idoportunidad,
          usuario: '<?= Session::get('cedula') ?>',
-         linea:'0',
+         linea:'200',
          tabla:'t1_oportunidad_hogares',
          estado_oportunidad:estado_oportunidad,
          aplica_hogar_integrante:aplica_hogar_integrante,

@@ -105,12 +105,12 @@
           </div>
 
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">ACCIÓN MOVILIZADORA ANTERIOR.</span>
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important; display:none">ACCIÓN MOVILIZADORA ANTERIOR.</span>
 
 
 
 
-<div class="container mt-4">
+<div class="container mt-4" style="display:none">
   <div class="border">
     <!-- Fila de títulos -->
     <div class="row g-0">
@@ -140,7 +140,7 @@
         <div class="col-md-6" >
             <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
             <select class="form-control form-control-sm" id="accionmovilizadoraant"  aria-describedby="validationServer04Feedback" required="" disabled>
-            {!! $t_accionesmovilizadoras3 !!}
+           
             </select>
           </div>
         </div>
@@ -192,9 +192,11 @@
         <div class="col-12 border-bottom p-2 d-flex align-items-center " style="    text-align: center !important;  display: flex;  flex-direction: column;">
         <div class="col-md-6" >
             <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
-            <select class="form-control form-control-sm" id="accionmovilizadora" name="accionmovilizadora" aria-describedby="validationServer04Feedback" required="">
-            {!! $t_accionesmovilizadoras3 !!}
-            </select>
+           <select class="form-control form-control-sm" id="accionmovilizadora" name="accionmovilizadora" required>
+            <option value="">Seleccione</option>
+            {!! $opcionesAccionMovilizadora !!}
+        </select>
+
           </div>
         </div>
       </div>
@@ -205,20 +207,7 @@
   </div>
 </div>
 
-@if($compromiso == '')
 
-@else
-<!-- <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">COMPROMISO BIENESTAR EN FAMILIA.</span>
-<div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
-El gestor consigna información cualitativa. A qué se comprometen el hogar en relación a lo trabajado en las acciones movilizadoras en Bienestar en la familia.
-</div>
-<div class="row">
-            <div class="form-group col-sm" id="divobs">
-                <label for="compromiso"></label>
-                <textarea class="form-control form-control-sm" oninput="validateInput(this)"  rows="10" cols="20" class="" readOnly>{{$compromiso}}</textarea>
-            </div>
-        </div> -->
-@endif
 <br>
 <br>
 <br>
@@ -288,7 +277,7 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
 
 
         $('#accionmovilizadora').val('<?= $accionmovilizadora ?>')
-        $('#accionmovilizadoraant').val('<?= $accionmovilizadoraant ?>')
+      
 
      
         $('#formulario').on('submit', function(event) {
@@ -351,17 +340,6 @@ function agregarpaso(data){
 
     </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const select = document.getElementById('accionmovilizadora');
-        
-        // Revisar todas las opciones generadas dinámicamente
-        Array.from(select.options).forEach(option => {
-            if (option.value === '{{ $accionmovilizadoraant }}') { // Comparar con el valor enviado desde el controlador
-                option.style.display = 'none'; // Ocultar la opción si coincide
-            }
-        });
-    });
-</script>
+
 
 @endsection

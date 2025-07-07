@@ -212,7 +212,7 @@
     // $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
       
 
-    function agregaroportunidad(idoportunidad,aplica_hogar_integrante) {
+    function agregaroportunidad(idoportunidad,aplica_hogar_integrante, estado_oportunidad) {
     // Obtiene el select específico usando el id de oportunidad
     let select = document.getElementById(`speaker_${idoportunidad}`);
     let selectedOption = select.options[select.selectedIndex];
@@ -231,7 +231,8 @@
          idintegrante: idintegrante,
          idoportunidad:idoportunidad,
          usuario: '<?= Session::get('cedula') ?>',
-         linea:'200',
+         estado_oportunidad:estado_oportunidad,
+         linea:$('#linea').val(),
          tabla:'t1_oportunidad_hogares',
          aplica_hogar_integrante:aplica_hogar_integrante,
 

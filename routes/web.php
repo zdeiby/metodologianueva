@@ -274,6 +274,7 @@ Route::get('/bienestarenfamiliat1refuerzo2/{folio}',[c_momentoconcientet1refuerz
 Route::get('/accionmovilizadoraqtt1refuerzo2/{folio}',[c_momentoconcientet1refuerzo2::class, 'fc_accionmovilizadoraqtt1refuerzo2'])->name('accionmovilizadoraqtt1refuerzo2');
 Route::get('/ficherodeoportunidadest1refuerzo2/{folio}',[c_oportunidadesvisitat1refuerzo2::class, 'fc_ficherodeoportunidadest1refuerzo2'])->name('ficherodeoportunidadest1refuerzo2');
 Route::get('/ficherodeoportunidadeshogart1refuerzo2/{folio}',[c_oportunidadesvisitat1refuerzo2::class, 'fc_ficherodeoportunidadeshogart1refuerzo2'])->name('ficherodeoportunidadeshogart1refuerzo2');
+Route::get('/verificarpasost1refuerzo2',[c_momentoconcientet1refuerzo2::class, 'fc_verificarpasost1refuerzo2'])->name('verificarpasost1refuerzo2');
 
 Route::get('/finalizaciont1refuerzo2/{folio}',[c_finalizaciont1refuerzo2::class, 'fc_finalizaciont1refuerzo2'])->name('finalizaciont1refuerzo2');
 Route::get('/guardarfinalizacionest1refuerzo2',[c_finalizaciont1refuerzo2::class, 'fc_guardarfinalizacionest1refuerzo2'])->name('guardarfinalizacionest1refuerzo2');
@@ -283,6 +284,7 @@ Route::post('/guardarfirmat1refuerzo2',[c_finalizaciont1refuerzo2::class, 'fc_gu
 
 Route::get('/finalizarvisitat1refuerzo2',[c_finalizaciont1refuerzo2::class,'fc_finalizarvisitat1refuerzo2'])->name('finalizarvisitat1refuerzo2');
 Route::get('/informevisitat1refuerzo2/{folio}',[c_finalizaciont1refuerzo2::class,'fc_informevisitat1refuerzo2'])->name('informevisitat1refuerzo2');
+Route::get('/guardaraccionesmovilizadorascompromisost1refuerzo2',[c_momentoconcientet1refuerzo2::class, 'fc_guardaraccionesmovilizadorascompromisost1refuerzo2'])->name('guardaraccionesmovilizadorascompromisost1refuerzo2');
 
 //tipo 1 refuerzo 3 
 Route::get('/accionmovilizadoracompromisost1refuerzo3/{folio}',[c_momentoconcientet1refuerzo3::class, 'fc_accionmovilizadoracompromisost1refuerzo3'])->name('accionmovilizadoracompromisost1refuerzo3');

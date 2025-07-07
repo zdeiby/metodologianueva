@@ -23,8 +23,8 @@ class c_visitatipo1pasosrefuerzo2 extends Controller
         $folioDesencriptado = $hashids->decode($folio)[0];
        
         $foliocodificado = $folio;
-      $linea='400';
-      $paso='40010';
+        $linea='400';
+        $paso='40010';
 
       session(['folio' => $folioDesencriptado, 'linea' => $linea]);
 
@@ -71,7 +71,7 @@ class c_visitatipo1pasosrefuerzo2 extends Controller
       ->exists();
 
       $paso40050='40050';
-      $existel300p40050 = DB::table('t1_pasosvisita')
+      $existel400p40050 = DB::table('t1_pasosvisita')
       ->where('folio', $folioDesencriptado)
       ->where('linea', $linea)
       ->where('paso', $paso40050)
@@ -136,7 +136,7 @@ class c_visitatipo1pasosrefuerzo2 extends Controller
         'v_visitatipo1pasos',
         "folioDesencriptado"=>$folioDesencriptado, 'foliocodificado'=>$foliocodificado,  'existel400p40010' => $existel400p40010 ? 1 : 0,
         'existel400p40020' => $existel400p40020 ? 1 : 0, 'existel400p40030' => $existel400p40030 ? 1 : 0,  'existel400p40040' => $existel400p40040 ? 1 : 0,
-        'existel300p40050' => $existel300p40050 ? 1 : 0,  'existel400p40060' => $existel400p40060 ? 1 : 0,
+        'existel400p40050' => $existel400p40050 ? 1 : 0,  'existel400p40060' => $existel400p40060 ? 1 : 0,
         'prioridades'=>$prioridades,
         'folio'=>$decodeFolio[0], 'descripcion'=>$categorias[0]->descripcion, 'foliomenu'=>$decodeFolio[0],
         'linea'=>$linea,

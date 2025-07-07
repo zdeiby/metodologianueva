@@ -32,8 +32,8 @@ class c_finalizaciont1refuerzo2 extends Controller
             $tabla = 't1_v1actualizacionnovedades';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 300;
-            $paso= 30050;
+            $linea= 400;
+            $paso= 40050;
            
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
@@ -80,8 +80,8 @@ class c_finalizaciont1refuerzo2 extends Controller
             $tabla = 't1_informesvisitas';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 300;
-            $paso= 30050;
+            $linea= 400;
+            $paso= 40050;
            
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
@@ -127,8 +127,8 @@ class c_finalizaciont1refuerzo2 extends Controller
             $tabla = 't1_v1finalizacion';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 300;
-            $paso= 30050;
+            $linea= 400;
+            $paso= 40050;
            
            
             $informacion = DB::table($tabla)
@@ -282,7 +282,7 @@ class c_finalizaciont1refuerzo2 extends Controller
           });
       
           // Codificar la imagen en binario en el formato original
-          $processedImageData = (string) $image->encode($imageFormat, 50); // Ajuste de calidad
+          $processedImageData = (string) $image->encode($imageFormat, 45); // Ajuste de calidad
       
           $now = Carbon::now();
           $data = $request->except(['folio', 'tabla', 'linea', 'paso', '_token']);

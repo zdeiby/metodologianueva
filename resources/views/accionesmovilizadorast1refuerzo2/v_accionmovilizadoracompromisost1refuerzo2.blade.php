@@ -105,124 +105,55 @@
 
           </div>
 
+
           <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">COMPROMISOS ANTERIORES.</span>
 
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Compromiso</th>
+                          <th>Estado</th>
+                          <th>Visita</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($compromisosAnteriorTabla as $row)
+                          <tr>
+                              <td>{{ $row['numero'] }}</td>
+                              <td>
+                                  <textarea class="form-control" readonly style="background:#f8f9fa">{{ $row['compromiso'] }}</textarea>
+                              </td>
+                              <td>
+                                  @if($row['editable'])
+                                      <select name="estado_compromiso_anterior[{{ $row['numero'] }}]" class="form-select" required>
+                                        <option value="">Seleccione</option>
+                                          @foreach($estadosMap as $id => $desc)
+                                              <option value="{{ $id }}" {{ $row['estado'] == $id ? 'selected' : '' }}>
+                                                  {{ $desc }}
+                                              </option>
+                                          @endforeach
+                                      </select>
+                                  @else
+                                      <span class="badge" style="background:#e8f1ff; font-weight:bold; color:#1656c1; font-size:16px">
+                                          {{ $estadosMap[$row['estado']] ?? 'Sin avances' }}
+                                      </span>
+                                  @endif
+                              </td>
+                              <td>
+                                  {{ $row['visita'] }}
+                              </td>
+                          </tr>
+                      @endforeach
+                  </tbody>
+              </table>
 
 
-
-          <!-- <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">COMPROMISO BIENESTAR PRIORIZADO.</span> -->
-          <div class="alert alert-info" role="alert" style="display:none;background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
-          El gestor consigna información cualitativa. A que se compromete el hogar en relación a las acciones de autogestión orientadas a mejorar las condiciones de vida, enfocándose en superar indicadores, aprovechar oportunidades acercadas y abordar necesidades específicas de los integrantes del hogar- QT
-          </div>
-          <div class="row">
-            <!-- <div class="form-group col-sm" id="divobs">
-                <label for="compromiso"></label>
-                <textarea class="form-control form-control-sm" oninput="validateInput(this)"  rows="10" cols="20" class="" readOnly>{{$compromiso}}</textarea>
-            </div> -->
-      
-            <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOneant" aria-expanded="true">
-                    <b style="text-decoration: underline;">Compromiso 1</b>
-                </button>
-            </h2>
-            <div id="flush-collapseOneant" class="accordion-collapse collapse show">
-            <div class="container pt-4 pb-4">
-              <div class="row">
-                <div class="col-md-9">
-                  <textarea class="form-control form-control-sm" id="compromiso1ant" rows="5" oninput="validarCompromisos2()" disabled required>{{ $compromisosArray2[1] }}</textarea>
-                </div>
-                <div class="col-md-3">
-                  <label for="estado_compromiso1" class="form-label">Estado</label>
-                  <select class="form-select form-select-sm" id="estado_compromiso1" name="estado_compromiso[1]" required>
-                      {!! $t_estados_compromisos !!}
-                  </select>
-                </div>
-              </div>
-            </div>
-
-                
-            </div>
-        </div>
-
-        <!-- Compromiso 2 (Deshabilitado al inicio) -->
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwoant" aria-expanded="false">
-                    <b style="text-decoration: underline;">Compromiso 2</b>
-                </button>
-            </h2>
-            <div id="flush-collapseTwoant" class="accordion-collapse collapse">
-            <div class="container pt-4 pb-4">
-                <div class="row">
-                  <div class="col-md-9">
-                    <textarea class="form-control form-control-sm" id="compromiso2ant" rows="5" oninput="validarCompromisos2()" disabled>{{ $compromisosArray2[2] }}</textarea>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="estado_compromiso2" class="form-label">Estado</label>
-                    <select class="form-select form-select-sm" id="estado_compromiso2" name="estado_compromiso[2]" required>
-                        {!! $t_estados_compromisos !!}
-                    </select>
-                  </div>
-                </div>
+                  
               </div>
 
             </div>
-        </div>
-
-        <!-- Compromiso 3 (Deshabilitado al inicio) -->
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThreeant" aria-expanded="false">
-                    <b style="text-decoration: underline;">Compromiso 3</b>
-                </button>
-            </h2>
-            <div id="flush-collapseThreeant" class="accordion-collapse collapse">
-            <div class="container pt-4 pb-4">
-                <div class="row">
-                  <div class="col-md-9">
-                    <textarea class="form-control form-control-sm" id="compromiso3ant" rows="5" oninput="validarCompromisos2()" disabled>{{ $compromisosArray2[3] }}</textarea>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="estado_compromiso3" class="form-label">Estado</label>
-                    <select class="form-select form-select-sm" id="estado_compromiso3" name="estado_compromiso[3]" required>
-                        {!! $t_estados_compromisos !!}
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-        </div>
-
-        <!-- Compromiso 4 (Deshabilitado al inicio) -->
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFourant" aria-expanded="false">
-                    <b style="text-decoration: underline;">Compromiso 4</b>
-                </button>
-            </h2>
-            <div id="flush-collapseFourant" class="accordion-collapse collapse">
-            <div class="container pt-4 pb-4">
-                <div class="row">
-                  <div class="col-md-9">
-                    <textarea class="form-control form-control-sm" id="compromiso4ant" rows="5" disabled>{{ $compromisosArray2[4] }}</textarea>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="estado_compromiso4" class="form-label">Estado</label>
-                    <select class="form-select form-select-sm" id="estado_compromiso4" name="estado_compromiso[4]" required>
-                        {!! $t_estados_compromisos !!}
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-        </div>
-    
-
-  </div>
-
+          <hr>
   <span class="badge bg-primary" id="" style="font-size:15px; background:#ff8403 !important">COMPROMISOS ACTUALES.</span>
 
 
@@ -356,7 +287,7 @@ El gestor consigna información cualitativa. A que se compromete el hogar en rel
             //     success: function(response) {
             //       console.log(response.resultado)
             //       if(response.resultado == 1){
-                  var url = "../rombovisitatipo1refuerzo1/<?= $variable ?>"; window.location.href = url;
+                  var url = "../rombovisitatipo1refuerzo2/<?= $variable ?>"; window.location.href = url;
     //               }else{
     //                 Swal.fire({
     //                   icon: "error",
@@ -376,7 +307,7 @@ El gestor consigna información cualitativa. A que se compromete el hogar en rel
        }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../accionmovilizadoraqtt1refuerzo1/:folio";
+           var url = "../accionmovilizadoraqtt1refuerzo2/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -384,10 +315,10 @@ El gestor consigna información cualitativa. A que se compromete el hogar en rel
     
 
 
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconcientet1refuerzo1/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../bienestarenfamiliat1refuerzo1/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../accionmovilizadoraqtt1refuerzo1/<?= $variable ?>"; window.location.href = url;})
-    $('#compromisos').click(function(){var url = "../accionmovilizadoracompromisost1refuerzo1/<?= $variable ?>"; window.location.href = url;})
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconcientet1refuerzo2/<?= $variable ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../bienestarenfamiliat1refuerzo2/<?= $variable ?>"; window.location.href = url;})
+    $('#financieroqt').click(function(){var url = "../accionmovilizadoraqtt1refuerzo2/<?= $variable ?>"; window.location.href = url;})
+    $('#compromisos').click(function(){var url = "../accionmovilizadoracompromisost1refuerzo2/<?= $variable ?>"; window.location.href = url;})
   
 
       
@@ -519,11 +450,11 @@ El gestor consigna información cualitativa. A que se compromete el hogar en rel
         }
         validarCompromisos();
 
-        let compromiso12 = document.getElementById("compromiso1ant");
-      if (compromiso12.value.trim() !== "") {
-        $('#siguiente').css('display','');
-        }
-        validarCompromisos2();
+      //   let compromiso12 = document.getElementById("compromiso1ant");
+      // if (compromiso12.value.trim() !== "") {
+      //   $('#siguiente').css('display','');
+      //   }
+      //   validarCompromisos2();
     };
 
     function validarCompromisos2() {
@@ -581,18 +512,24 @@ El gestor consigna información cualitativa. A que se compromete el hogar en rel
 function enviarCompromisosAnteriores() {
     let compromisosAnteriores = [];
 
-    for (let i = 1; i <= 4; i++) {
-        let compromiso = $(`#compromiso${i}ant`).val()?.trim();
-        let estado = $(`#estado_compromiso${i}`).val();
+    // Recorre las filas de la tabla de compromisos anteriores
+    // Busca la tabla solo dentro del formulario para evitar problemas si tienes varias
+    $('#formulario tbody tr').each(function() {
+        let numero = $(this).find('td:eq(0)').text().trim();
+        let compromiso = $(this).find('textarea').val() || $(this).find('textarea').text();
+        let editable = $(this).find('select').length > 0;
+        let estado = editable 
+            ? $(this).find('select').val() 
+            : $(this).find('span').attr('data-estado') || $(this).find('span').text();
 
-        if (compromiso !== "") {
+        if (compromiso && compromiso.trim() !== '') {
             compromisosAnteriores.push({
-                numero_compromiso: i,
-                compromiso: compromiso, // 👈 clave estándar
-                estado_compromiso: estado // 👈 renombrado para que sea claro y uniforme
+                numero_compromiso: numero,
+                compromiso: compromiso.trim(),
+                estado_compromiso: estado
             });
         }
-    }
+    });
 
     if (compromisosAnteriores.length === 0) {
         console.log("No hay compromisos anteriores para enviar.");
@@ -602,14 +539,14 @@ function enviarCompromisosAnteriores() {
     let params = $.param({
         compromisos_anteriores: JSON.stringify(compromisosAnteriores),
         folio: $('#folioinput').val(),
-        linea: $('#lineaanterior').val(), // 👈 asegúrate que estos IDs existan en el HTML
+        linea: $('#lineaanterior').val(),
         paso: $('#pasoanterior').val(),
         tabla: $('#tabla').val(),
         usuario: $('#usuario').val()
     });
 
     $.ajax({
-        url: '../guardaraccionesmovilizadorascompromisost1refuerzo1?' + params,
+        url: '../guardaraccionesmovilizadorascompromisost1refuerzo2?' + params,
         method: 'GET',
         success: function(response) {
             alertagood();
@@ -620,7 +557,6 @@ function enviarCompromisosAnteriores() {
         }
     });
 }
-
 
 
 

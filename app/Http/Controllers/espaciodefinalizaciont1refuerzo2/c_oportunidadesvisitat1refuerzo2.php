@@ -28,8 +28,8 @@ class c_oportunidadesvisitat1refuerzo2 extends Controller
            $tabla = 't1_oportunidad_integrantes';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 300;
-            $paso= 30040;
+            $linea= 400;
+            $paso= 40040;
     
          
 
@@ -57,8 +57,8 @@ class c_oportunidadesvisitat1refuerzo2 extends Controller
             $tabla = 't1_accionmovilizadoraqt';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 300;
-            $paso= 30040;
+            $linea= 400;
+            $paso= 40040;
             $modelo = new m_oportunidades();
             // $oportunidad = $modelo-> m_listadooportunidades();
 

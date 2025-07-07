@@ -104,8 +104,8 @@
             <input type="text" placeholder="paso" class="form-control form-control-sm  " id="paso" name="paso" value="{{$paso}}" >
           </div>
 
-          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO CONSCIENTE VISITA TIPO 1.</span>
-            <div class="container mt-4">
+          <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important; display:none">MOMENTO CONSCIENTE VISITA TIPO 1.</span>
+            <div class="container mt-4"  style="display:none">
               <div class="border">
                 <!-- Fila de títulos -->
                 <div class="row g-0">
@@ -142,8 +142,8 @@
             </div>
 
 
-              <span class="badge bg-success" id="" style="font-size:15px; ">MOMENTO CONSCIENTE SEGUNDA VISITA TIPO 1.</span>
-            <div class="container mt-4">
+              <span class="badge bg-success" id="" style="font-size:15px; display:none ">MOMENTO CONSCIENTE SEGUNDA VISITA TIPO 1.</span>
+            <div class="container mt-4" style="display:none">
               <div class="border">
                 <!-- Fila de títulos -->
                 <div class="row g-0">

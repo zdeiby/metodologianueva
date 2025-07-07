@@ -242,7 +242,7 @@ console.log(aplica_hogar_integrante, 'HOLAAAAAAAAAAAAAAA')
          idoportunidad:idoportunidad,
          usuario: '<?= Session::get('cedula') ?>',
          estado_oportunidad:estado_oportunidad,
-         linea:'200',
+         linea:$('#linea').val(),
          tabla:'t1_oportunidad_integrantes',
          aplica_hogar_integrante:aplica_hogar_integrante,
 
