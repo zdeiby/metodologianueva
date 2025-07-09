@@ -25,57 +25,124 @@ class c_cobertura extends Controller
     //   }
     
 
-    $folios = array_map(function ($item) use ($hashids) {
+    // $folios = array_map(function ($item) use ($hashids) {
 
-            $metodologia = DB::table('t1_principalhogar')
-             ->where('folio', $item->folio)
-             ->value('metodologia');
+    //         $metodologia = DB::table('t1_principalhogar')
+    //          ->where('folio', $item->folio)
+    //          ->value('metodologia');
 
-        $grupoHTML = '';
+    //     $grupoHTML = '';
 
-            if (in_array($item->casillamatriz, [1, 2, 4, 5])) {
-                $grupoHTML = '<div class="badge-grupo grupo-1" title="Alta vulnerabilidad: pobreza extrema en IPM e ingresos">Grupo 1</div>';
-            } elseif (in_array($item->casillamatriz, [3, 6])) {
-                $grupoHTML = '<div class="badge-grupo grupo-2" title="Vulnerabilidad moderada en ingresos o en IPM">Grupo 2</div>';
-            } elseif (in_array($item->casillamatriz, [7, 8])) {
-                $grupoHTML = '<div class="badge-grupo grupo-3" title="Vulnerabilidad moderada solo en IPM">Grupo 3</div>';
-            } elseif ($item->casillamatriz == 9) {
-                $grupoHTML = '<div class="badge-grupo grupo-4" title="Baja vulnerabilidad o no vulnerable">Grupo 4</div>';
-            } else {
-                $grupoHTML = '<div class="badge-grupo grupo-na" title="Sin información de visita inicial">Sin visita inicial</div>';
-            }
+    //         if (in_array($item->casillamatriz, [1, 2, 4, 5])) {
+    //             $grupoHTML = '<div class="badge-grupo grupo-1" title="Alta vulnerabilidad: pobreza extrema en IPM e ingresos">Grupo 1</div>';
+    //         } elseif (in_array($item->casillamatriz, [3, 6])) {
+    //             $grupoHTML = '<div class="badge-grupo grupo-2" title="Vulnerabilidad moderada en ingresos o en IPM">Grupo 2</div>';
+    //         } elseif (in_array($item->casillamatriz, [7, 8])) {
+    //             $grupoHTML = '<div class="badge-grupo grupo-3" title="Vulnerabilidad moderada solo en IPM">Grupo 3</div>';
+    //         } elseif ($item->casillamatriz == 9) {
+    //             $grupoHTML = '<div class="badge-grupo grupo-4" title="Baja vulnerabilidad o no vulnerable">Grupo 4</div>';
+    //         } else {
+    //             $grupoHTML = '<div class="badge-grupo grupo-na" title="Sin información de visita inicial">Sin visita inicial</div>';
+    //         }
 
-      $encodedFolio = $hashids->encode($item->folio);
-        return [
-            'folio' => $item->folio ?? '',
-            'documento' => $item->documento ?? '',
-            'nombre' => ($item->nombre1 ?? '') . ' ' . ($item->nombre2 ?? '') . ' ' . ($item->apellido1 ?? '') . ' ' . ($item->apellido2 ?? ''),
-            'celular' => $item->celular ?? '',
-            'telefono' => $item->telefono ?? '',
-            'barrio' => $item->barrio ?? '',
-            'comuna' => $item->comuna ?? '',
-            'direccion' => $item->direccion ?? '',
-            'estacion' =>  $item->ultimo_idestacion ?? 'Gestión no especificada',
-            'fecha_ultima_visita' => $item->fecha_ultima_visita ?? '',
-          //  'prioridad_visita' => trim(strtolower($item->prioridad_visita)) ?? '',
-          'prioridad_visita' => match(trim(strtolower($item->prioridad_visita))) {
-            'alta' => '<div class="alert alert-danger py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">🔥 Alta</div>',
-            'media alta' => '<div class="alert alert-warning py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px; color:black;">⚠️ Media alta</div>',
-            'media' => '<div class="alert alert-info py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">💡 Media</div>',
-            'baja' => '<div class="alert alert-secondary py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">💤 Baja</div>',
-            default => '<div class="alert alert-light py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">Sin dato</div>',
-        },
+    //   $encodedFolio = $hashids->encode($item->folio);
+    //     return [
+    //         'folio' => $item->folio ?? '',
+    //         'documento' => $item->documento ?? '',
+    //         'nombre' => ($item->nombre1 ?? '') . ' ' . ($item->nombre2 ?? '') . ' ' . ($item->apellido1 ?? '') . ' ' . ($item->apellido2 ?? ''),
+    //         'celular' => $item->celular ?? '',
+    //         'telefono' => $item->telefono ?? '',
+    //         'barrio' => $item->barrio ?? '',
+    //         'comuna' => $item->comuna ?? '',
+    //         'direccion' => $item->direccion ?? '',
+    //         'estacion' =>  $item->ultimo_idestacion ?? 'Gestión no especificada',
+    //         'fecha_ultima_visita' => $item->fecha_ultima_visita ?? '',
+    //       //  'prioridad_visita' => trim(strtolower($item->prioridad_visita)) ?? '',
+    //       'prioridad_visita' => match(trim(strtolower($item->prioridad_visita))) {
+    //         'alta' => '<div class="alert alert-danger py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">🔥 Alta</div>',
+    //         'media alta' => '<div class="alert alert-warning py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px; color:black;">⚠️ Media alta</div>',
+    //         'media' => '<div class="alert alert-info py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">💡 Media</div>',
+    //         'baja' => '<div class="alert alert-secondary py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">💤 Baja</div>',
+    //         default => '<div class="alert alert-light py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">Sin dato</div>',
+    //     },
 
-          'grupo' => $grupoHTML,
+    //       'grupo' => $grupoHTML,
 
 
 
-            'gestion' => ($item->casillamatriz == 9 && $metodologia != 2)
-                ? '<button type="submit" style="width:100px" class="btn btn-success btn-sm">Baja vulnerabilidad</button>'
-                : '<button type="submit"  class="btn btn-primary btn-sm"  onclick="habeasdata(\'' . encrypt($item->folio) . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'boton">Gestiónar</button>',
-            'actualizar' => '<button type="submit"  class="btn btn-primary btn-sm" style="background:#ff8403 !important; border: 1px solid #ff8403"  onclick="actualizar(\'' . $encodedFolio . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'actualizar">Actualizar</button>',
-        ];
-    }, $pphogar);
+    //         'gestion' => ($item->casillamatriz == 9 && $metodologia != 2)
+    //             ? '<button type="submit" style="width:100px" class="btn btn-success btn-sm">Baja vulnerabilidad</button>'
+    //             : '<button type="submit"  class="btn btn-primary btn-sm"  onclick="habeasdata(\'' . encrypt($item->folio) . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'boton">Gestiónar</button>',
+    //         'actualizar' => '<button type="submit"  class="btn btn-primary btn-sm" style="background:#ff8403 !important; border: 1px solid #ff8403"  onclick="actualizar(\'' . $encodedFolio . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'actualizar">Actualizar</button>',
+    //     ];
+    // }, $pphogar);
+
+
+    // Primero, mapear los datos como ya lo haces
+                $folios = array_map(function ($item) use ($hashids) {
+                    $metodologia = DB::table('t1_principalhogar')
+                        ->where('folio', $item->folio)
+                        ->value('metodologia');
+
+                    $grupoHTML = '';
+                    if (in_array($item->casillamatriz, [1, 2, 4, 5])) {
+                        $grupoHTML = '<div class="badge-grupo grupo-1" title="Alta vulnerabilidad: pobreza extrema en IPM e ingresos">Grupo 1</div>';
+                    } elseif (in_array($item->casillamatriz, [3, 6])) {
+                        $grupoHTML = '<div class="badge-grupo grupo-2" title="Vulnerabilidad moderada en ingresos o en IPM">Grupo 2</div>';
+                    } elseif (in_array($item->casillamatriz, [7, 8])) {
+                        $grupoHTML = '<div class="badge-grupo grupo-3" title="Vulnerabilidad moderada solo en IPM">Grupo 3</div>';
+                    } elseif ($item->casillamatriz == 9) {
+                        $grupoHTML = '<div class="badge-grupo grupo-4" title="Baja vulnerabilidad o no vulnerable">Grupo 4</div>';
+                    } else {
+                        $grupoHTML = '<div class="badge-grupo grupo-na" title="Sin información de visita inicial">Sin visita inicial</div>';
+                    }
+
+                    $prioridadRaw = trim(strtolower($item->prioridad_visita ?? ''));
+
+                    return [
+                        'folio' => $item->folio ?? '',
+                        'documento' => $item->documento ?? '',
+                        'nombre' => ($item->nombre1 ?? '') . ' ' . ($item->nombre2 ?? '') . ' ' . ($item->apellido1 ?? '') . ' ' . ($item->apellido2 ?? ''),
+                        'celular' => $item->celular ?? '',
+                        'telefono' => $item->telefono ?? '',
+                        'barrio' => $item->barrio ?? '',
+                        'comuna' => $item->comuna ?? '',
+                        'direccion' => $item->direccion ?? '',
+                        'estacion' => $item->ultimo_idestacion ?? 'Gestión no especificada',
+                        'fecha_ultima_visita' => $item->fecha_ultima_visita ?? '',
+                        'prioridad_valor' => match($prioridadRaw) {
+                            'alta' => 1,
+                            'media alta' => 2,
+                            'media' => 3,
+                            'baja' => 4,
+                            default => 5,
+                        },
+                        'prioridad_visita' => match($prioridadRaw) {
+                            'alta' => '<div class="alert alert-danger py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">🔥 Alta</div>',
+                            'media alta' => '<div class="alert alert-warning py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px; color:black;">⚠️ Media alta</div>',
+                            'media' => '<div class="alert alert-info py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">💡 Media</div>',
+                            'baja' => '<div class="alert alert-secondary py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">💤 Baja</div>',
+                            default => '<div class="alert alert-light py-1 px-2 m-0 text-center" role="alert" style="font-size:14px; border-radius:8px;">Sin dato</div>',
+                        },
+                        'grupo' => $grupoHTML,
+                        'gestion' => ($item->casillamatriz == 9 && $metodologia != 2)
+                            ? '<button type="submit" style="width:100px" class="btn btn-success btn-sm">Baja vulnerabilidad</button>'
+                            : '<button type="submit" class="btn btn-primary btn-sm" onclick="habeasdata(\'' . encrypt($item->folio) . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'boton">Gestiónar</button>',
+                        'actualizar' => '<button type="submit" class="btn btn-primary btn-sm" style="background:#ff8403 !important; border: 1px solid #ff8403" onclick="actualizar(\'' . $hashids->encode($item->folio) . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'actualizar">Actualizar</button>',
+                    ];
+                }, $pphogar);
+
+                // Luego, ordenarlos por prioridad (1 = Alta, 5 = Sin dato)
+                usort($folios, function ($a, $b) {
+                    return $a['prioridad_valor'] <=> $b['prioridad_valor'];
+                });
+
+                // Opcional: eliminar la clave auxiliar 'prioridad_valor' si no quieres que se muestre
+                $folios = array_map(function ($item) {
+                    unset($item['prioridad_valor']);
+                    return $item;
+                }, $folios);
+
 
 if(session('nombre') !== null){
         $nombre = session('nombre');
