@@ -144,7 +144,7 @@
    @endif
 
     @if ($realizadosvt1r1 == '1')
-  <li class="scene">
+  <li class="scene" style="display:none">
             <div class="movie">
                 <div class="poster" >
                     <div id="imgicon"></div>
@@ -152,7 +152,7 @@
                    
                         <img class="" src="{{ asset('assets/img/iconos/1.jpg')}}" width="100%" alt="">
                         <br> <br>
-                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">SEGUNDA VISITA T1</div>
+                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">TERCERA VISITA T1</div>
 
                     </div>
                 </div>
