@@ -18,12 +18,15 @@ class c_oportunidades extends Controller
 
         $modelo = new m_oportunidades();
        // $oportunidad = $modelo-> m_listadooportunidades();
-       $oportunidad = DB::table('t1_oportunidad')
-          ->join('t1_lista_aliados', 't1_oportunidad.nit', '=', 't1_lista_aliados.nit')
-       ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
-       ->where('aplica_hogar_integrante','373')
-       ->get();
+       $oportunidad = DB::table('vw_listar_oportunidades')
+            ->where('aplica_hogar_integrante', '373')
+            ->get();
        $t1_integranteshogar = $modelo-> m_listadooportunidades('');
+
+       $oportunidades_acercadas_integrantes = DB::table('vw_listado_integrantes_oportunidades')
+            // ->where('aplica_hogar_integrante', '373')
+        ->get();
+       
 
         $oportunidades = '';
         
@@ -37,7 +40,10 @@ foreach ($oportunidad as $value) {
     // Solo incluir la oportunidad si tiene integrantes relacionados
     if (!empty($integrantesRelacionados)) {
         $oportunidades .= '<tr>
+            <td>' . $value->id_oportunidad . '</td>
             <td>' . $value->nombre_oportunidad . '</td>
+            <td>' . $value->nombre_aliado . '</td>
+             <td>' . $value->tipos_bienestar . '</td>
             <td>' . Str::limit($value->fecha_inicio, 10, '') . '</td>
             <td>' . Str::limit($value->fecha_limite_acercamiento, 10, '') . '</td>
             <td class="align-middle text-center">
@@ -63,10 +69,12 @@ foreach ($oportunidad as $value) {
         $oportunidades .= '</select>
                 </div>
             </td>
-            <td style="display: flex; gap: 10px;">
-                <button class="btn btn-primary btn-sm" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',1)" type="button">Acercar</button>
-                <button class="btn btn-success btn-sm" id="efectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',2)" type="button">Efectiva</button>
-                <button class="btn btn-danger btn-sm" id="noefectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',3)" type="button">No Efectiva</button>
+            <td >
+                <div class="d-flex w-100">
+                    <button class="btn btn-primary btn-sm" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',1)" type="button">Acercar</button>&nbsp
+                    <button class="btn btn-success btn-sm" id="efectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',2)" type="button">Efectiva</button>&nbsp
+                    <button class="btn btn-danger btn-sm" id="noefectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',3)" type="button">No Efectiva</button>
+                </div>
                 </td>
         </tr>
 
@@ -93,7 +101,7 @@ foreach ($oportunidad as $value) {
     }
 }
         
-      return view('v_oportunidades',["oportunidades"=>$oportunidades]);
+      return view('v_oportunidades',["oportunidades"=>$oportunidades, 'oportunidades_acercadas_integrantes'=>$oportunidades_acercadas_integrantes]);
         
     }
 
@@ -274,11 +282,9 @@ foreach ($oportunidad as $value) {
 
         $modelo = new m_oportunidades();
        // $oportunidad = $modelo-> m_listadooportunidades();
-       $oportunidad = DB::table('t1_oportunidad')
-          ->join('t1_lista_aliados', 't1_oportunidad.nit', '=', 't1_lista_aliados.nit')
-       ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
-        ->where('aplica_hogar_integrante','374')
-       ->get();
+       $oportunidad = DB::table('vw_listar_oportunidades')
+            ->where('aplica_hogar_integrante', '374')
+            ->get();
        
        $t1_integranteshogar = $modelo-> m_listadooportunidadeshogar('');
 
@@ -295,7 +301,10 @@ foreach ($oportunidad as $value) {
             // Solo incluir la oportunidad si tiene integrantes relacionados
             if (!empty($integrantesRelacionados)) {
                 $oportunidades .= '<tr>
+                   <td>' . $value->id_oportunidad . '</td>
                     <td>' . $value->nombre_oportunidad . '</td>
+                    <td>' . $value->nombre_aliado . '</td>
+                    <td>' . $value->tipos_bienestar . '</td>
                     <td>' . Str::limit($value->fecha_inicio, 10, '') . '</td>
                     <td>' . Str::limit($value->fecha_limite_acercamiento, 10, '') . '</td>
                     <td class="align-middle text-center">
@@ -321,11 +330,13 @@ foreach ($oportunidad as $value) {
                 $oportunidades .= '</select>
                         </div>
                     </td>
-                    <td style="display: flex; gap: 10px;">
-                <button class="btn btn-primary btn-sm" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',1)" type="button">Acercar</button>
-                <button class="btn btn-success btn-sm" id="efectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',2)" type="button">Efectiva</button>
+                    <td>
+            <div class="d-flex w-100">
+                <button class="btn btn-primary btn-sm" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',1)" type="button">Acercar</button>&nbsp
+                <button class="btn btn-success btn-sm" id="efectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',2)" type="button">Efectiva</button>&nbsp
                 <button class="btn btn-danger btn-sm" id="noefectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',3)" type="button">No Efectiva</button>
-                    </td>
+                 </div> 
+                </td>
                 </tr>
         
                 <!-- Modal -->

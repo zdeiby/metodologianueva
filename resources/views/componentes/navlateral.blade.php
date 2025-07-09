@@ -569,7 +569,7 @@ function soloNumeros(e) {
 
 
         <li class="nav-item dropdown" style="cursor:pointer">
-            <a  class="{{ request()->routeIs('oportunidades') ? 'inbox' : '' }} nav-link dropdown-toggle text-white d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#submenuAlertas" aria-expanded="false">
+            <a  class="{{ request()->routeIs('sisben') ? 'inbox' : '' }} nav-link dropdown-toggle text-white d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#submenuAlertas" aria-expanded="false">
                 <ion-icon name="notifications-outline"></ion-icon>
                 <span class="nav-text ms-2">Alertas</span>
             </a>

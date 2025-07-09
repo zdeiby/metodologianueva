@@ -16,21 +16,24 @@
 </div>
 <hr>
 <!-- Vista para PC -->
-<div class="" >
+<div class="table-responsive" >
         <table id="example" class="table table-striped " >
             <thead>
                 <tr>
+                     <th class="align-middle text-center" >ID</th>
                     <th >Nombre de la Oportunidad</th>
+                    <th class="align-middle text-center" >Aliado</th>
+                    <th class="align-middle text-center" >Categoria</th>
                     <!-- <th>Descripción</th>
                     <th>Ruta</th> -->
-                    <th>Fecha Inicio oportunidad</th>
-                    <th>Fecha Límite de Acercamiento</th>
+                    <th class="align-middle text-center">Fecha Inicio oportunidad</th>
+                    <th class="align-middle text-center">Fecha Límite de Acercamiento</th>
                     <th class="align-middle text-center">Ver Oportunidad</th>
                     <th class="align-middle text-center">Integrantes que aplican</th>
-                    <th>Acercar oportunidad</th>
+                    <th class="align-middle text-center">Acercar oportunidad</th>
                 </tr>
             </thead>
-            <tbody style="font-size:15px">
+            <tbody style="font-size:15px" class="align-middle text-center">
                 {!! $oportunidades !!}
             </tbody>
             <tfoot>
