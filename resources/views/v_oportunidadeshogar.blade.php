@@ -15,6 +15,13 @@
     <label for=""><b>Oportunidades para hogares</b></label>
 </div>
 <hr>
+<br>
+<div class="text-center">
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" onclick="actualizarOportunidadesModal()"  data-bs-target="#modalOportunidades">
+  Ver Oportunidades Acercadas
+</button>
+</div>
+<br>
 <!-- Vista para PC -->
 <div class="table-responsive" >
         <table id="example" class="table table-striped " >
@@ -42,18 +49,221 @@
         </table>
     </div>
 
+<div class="modal fade" id="modalOportunidades" tabindex="-1" aria-labelledby="modalOportunidadesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalOportunidadesLabel">Integrantes con Oportunidades</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs mb-3" id="oportunidadTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="acercadas-tab" data-bs-toggle="tab" data-bs-target="#acercadas" type="button" role="tab">Acercadas</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="efectivas-tab" data-bs-toggle="tab" data-bs-target="#efectivas" type="button" role="tab">Efectivas</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="noefectivas-tab" data-bs-toggle="tab" data-bs-target="#noefectivas" type="button" role="tab">No Efectivas</button>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <!-- Acercadas -->
+          <div class="tab-pane fade show active" id="acercadas" role="tabpanel">
+            <table id="tablaAcercadas" class="table table-bordered table-striped" style="width:100%">
+              <thead>
+                <tr>
+                 <th class="text-center">
+                    <input type="checkbox" id="checkAllAcercadas"> Seleccionar Todos
+                  </th>
+                  <th>ID Integrante</th>
+                  <th>Folio</th>
+                  <th>Nombre Completo</th>
+                  <th>Oportunidad</th>
+                  <th>Estado</th>
+                  <th>Aplica a</th>
+                </tr>
+              </thead>
+              <tbody>
+              
+              </tbody>
+            </table>
+          </div>
+<div class="mt-3 text-end">
+  <button class="btn btn-success" onclick="cambiarestado(2)">Marcar como Efectivas</button>
+  <button class="btn btn-danger" onclick="cambiarestado(3)">Marcar como No Efectivas</button>
+</div>
+
+          <!-- Efectivas -->
+          <div class="tab-pane fade" id="efectivas" role="tabpanel">
+            <table id="tablaEfectivas" class="table table-bordered table-striped" style="width:100%">
+              <thead>
+                <tr>
+                  <th>ID Integrante</th>
+                  <th>Folio</th>
+                  <th>Nombre Completo</th>
+                  <th>Oportunidad</th>
+                  <th>Estado</th>
+                  <th>Aplica a</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
+          </div>
+
+          <!-- No efectivas -->
+          <div class="tab-pane fade" id="noefectivas" role="tabpanel">
+            <table id="tablaNoEfectivas" class="table table-bordered table-striped" style="width:100%">
+              <thead>
+                <tr>
+                  <th>ID Integrante</th>
+                  <th>Folio</th>
+                  <th>Nombre Completo</th>
+                  <th>Oportunidad</th>
+                  <th>Estado</th>
+                  <th>Aplica a</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
-<script>
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     // Inicializa el selectpicker
-    //     $('.selectpicker').selectpicker();
-    //     $('.filter-option-inner-inner').css('font-size','13px');
-    // });
-</script>
+
 
 <script>
+
+    $('#modalOportunidades').on('shown.bs.modal', function () {
+        actualizarOportunidadesModal();
+        });
+
+let tablaAcercadas; // global
+
+$('#modalOportunidades').on('shown.bs.modal', function () {
+  actualizarOportunidadesModal();
+});
+
+function actualizarOportunidadesModal() {
+  $.ajax({
+    url: "{{ route('recargaroportunidadesh') }}",
+    type: 'GET',
+    dataType: 'json',
+    success: function(response) {
+
+      // 🔥 Destruir DataTables antes de recargar
+      if ($.fn.DataTable.isDataTable('#tablaAcercadas')) {
+        $('#tablaAcercadas').DataTable().destroy();
+      }
+      if ($.fn.DataTable.isDataTable('#tablaEfectivas')) {
+        $('#tablaEfectivas').DataTable().destroy();
+      }
+      if ($.fn.DataTable.isDataTable('#tablaNoEfectivas')) {
+        $('#tablaNoEfectivas').DataTable().destroy();
+      }
+
+      // 🔄 Actualiza contenido
+      $('#tablaAcercadas tbody').html(response.acercadas);
+      $('#tablaEfectivas tbody').html(response.efectivas);
+      $('#tablaNoEfectivas tbody').html(response.noefectivas);
+
+      // ✅ Vuelve a inicializar
+      tablaAcercadas = $('#tablaAcercadas').DataTable({
+        columnDefs: [
+          { orderable: false, targets: 0 }
+        ]
+      });
+      $('#tablaEfectivas').DataTable();
+      $('#tablaNoEfectivas').DataTable();
+
+      // ✅ Reasigna check all
+      $('#checkAllAcercadas').on('click', function () {
+        let isChecked = $(this).is(':checked');
+        tablaAcercadas.rows().every(function () {
+          let node = this.node();
+          $(node).find('.check-acercada').prop('checked', isChecked);
+        });
+      });
+    },
+    error: function(xhr) {
+      console.error('Error al cargar oportunidades', xhr.responseText);
+    }
+  });
+}
+
+
+
+function cambiarestado(estado) {
+   let seleccionados = [];
+
+  // Usa el API de DataTables para recorrer todas las filas
+  tablaAcercadas.rows().every(function () {
+    let row = this.node();
+    let checkbox = $(row).find('.check-acercada');
+
+    if (checkbox.is(':checked')) {
+      let idIntegrante = $(row).find('td:eq(1)').text().trim();
+      let folio = $(row).find('td:eq(2)').text().trim();
+
+      seleccionados.push({
+        idintegrante: idIntegrante,
+        folio: folio
+      });
+    }
+  });
+
+  if (seleccionados.length === 0) {
+    Swal.fire({
+        title: 'Información',
+        text: "Selecciona como minimo a un integrante para mover",
+        icon: 'info',
+        confirmButtonText: 'Aceptar'
+      });
+
+    return;
+  }
+
+  console.log("Seleccionados:", seleccionados);
+  console.log("Nuevo estado:", estado);
+
+
+  // Ejemplo: enviar al backend (descomenta si tienes la ruta en Laravel)
+  $.ajax({
+    url: '{{ route("cambiarestadooportunidadmasivoh") }}',
+    type: 'get',
+    data: {
+      oportunidades: seleccionados,
+      nuevo_estado: estado
+    },
+    success: function(response) {
+      Swal.fire({
+        title: 'Información',
+        text: response.mensaje,
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
+
+      location.reload();
+    }
+  });
+  
+}
+
 
 function agregaroportunidad(idoportunidad,aplica_hogar_integrante, estado_oportunidad) {
     // Obtiene el select específico usando el id de oportunidad

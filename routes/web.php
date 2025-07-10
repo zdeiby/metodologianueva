@@ -234,6 +234,10 @@ Route::get('/ficherodeoportunidadeshogar/{folio}',[c_oportunidadesvisita::class,
 
 Route::get('/oportunidadesintegrantesglobal',[c_oportunidades::class, 'fc_oportunidadesintegrantesglobal'])->name('oportunidadesintegrantesglobal');
 Route::get('/oportunidadeshogarglobal',[c_oportunidades::class, 'fc_oportunidadeshogarglobal'])->name('oportunidadeshogarglobal');
+Route::get('/cambiarestadooportunidadmasivo',[c_oportunidades::class, 'fc_cambiar_estado_oportunidad_masivo_i'])->name('cambiarestadooportunidadmasivo');
+Route::get('/cambiarestadooportunidadmasivoh',[c_oportunidades::class, 'fc_cambiar_estado_oportunidad_masivo_h'])->name('cambiarestadooportunidadmasivoh');
+Route::get('/recargar-oportunidades', [c_oportunidades::class, 'fc_recargar_oportunidades'])->name('recargaroportunidades');
+Route::get('/recargar-oportunidadesh', [c_oportunidades::class, 'fc_recargar_oportunidadesh'])->name('recargaroportunidadesh');
 
 
 

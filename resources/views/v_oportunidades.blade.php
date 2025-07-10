@@ -14,10 +14,14 @@
 <div class="text-center" style="font-size:20px; color:#0dcaf0">
     <label for=""><b>Oportunidades para integrantes</b></label>
 </div>
-<hr>
-<button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalOportunidades">
+<br>
+<div class="text-center">
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" onclick="actualizarOportunidadesModal()"  data-bs-target="#modalOportunidades">
   Ver Oportunidades Acercadas
 </button>
+</div>
+<br>
+
 <!-- Vista para PC -->
 <!-- <div class="container table-responsive" id="responsivepc" style="font-size:15px"> -->
     <div class="table-responsive" >
@@ -77,7 +81,9 @@
             <table id="tablaAcercadas" class="table table-bordered table-striped" style="width:100%">
               <thead>
                 <tr>
-                  <th> <input type="checkbox" class="text-center">Seleccionar Integrantes </th>
+                 <th class="text-center">
+                    <input type="checkbox" id="checkAllAcercadas"> Seleccionar Todos
+                  </th>
                   <th>ID Integrante</th>
                   <th>Folio</th>
                   <th>Nombre Completo</th>
@@ -87,25 +93,15 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($oportunidades_acercadas_integrantes->where('estado_oportunidad', '1') as $op)
-                  <tr>
-                     <td class="text-center"><input type="checkbox" class="check-acercada"></td>
-                    <td>{{ $op->idintegrante }}</td>
-                    <td>{{ $op->folio }}</td>
-                    <td>{{ trim($op->nombre1 . ' ' . ($op->nombre2 ?? '') . ' ' . $op->apellido1 . ' ' . ($op->apellido2 ?? '')) }}</td>
-                    <td>{{ $op->nombre_oportunidad }}</td>
-                    <td>{{ $op->estado_oportunidad_nombre }}</td>
-                    <td>{{ $op->aplica_hogar_integrante_nombre }}</td>
-                  </tr>
-                @endforeach
+               
               </tbody>
-            </table>
+            </table><div class="mt-3 text-end">
+              <button class="btn btn-success" onclick="cambiarestado(2)">Marcar como Efectivas</button>
+              <button class="btn btn-danger" onclick="cambiarestado(3)">Marcar como No Efectivas</button>
+            </div>
           </div>
 
-                  <div class="mt-3 text-end">
-  <button class="btn btn-success" onclick="cambiarestado(2)">Marcar como Efectivas</button>
-  <button class="btn btn-danger" onclick="cambiarestado(3)">Marcar como No Efectivas</button>
-</div>
+                  
 
           <!-- Efectivas -->
           <div class="tab-pane fade" id="efectivas" role="tabpanel">
@@ -121,16 +117,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($oportunidades_acercadas_integrantes->where('estado_oportunidad', '2') as $op)
-                  <tr>
-                    <td>{{ $op->idintegrante }}</td>
-                    <td>{{ $op->folio }}</td>
-                    <td>{{ trim($op->nombre1 . ' ' . ($op->nombre2 ?? '') . ' ' . $op->apellido1 . ' ' . ($op->apellido2 ?? '')) }}</td>
-                    <td>{{ $op->nombre_oportunidad }}</td>
-                    <td>{{ $op->estado_oportunidad_nombre }}</td>
-                    <td>{{ $op->aplica_hogar_integrante_nombre }}</td>
-                  </tr>
-                @endforeach
+                
               </tbody>
             </table>
           </div>
@@ -149,16 +136,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($oportunidades_acercadas_integrantes->where('estado_oportunidad', '3') as $op)
-                  <tr>
-                    <td>{{ $op->idintegrante }}</td>
-                    <td>{{ $op->folio }}</td>
-                    <td>{{ trim($op->nombre1 . ' ' . ($op->nombre2 ?? '') . ' ' . $op->apellido1 . ' ' . ($op->apellido2 ?? '')) }}</td>
-                    <td>{{ $op->nombre_oportunidad }}</td>
-                    <td>{{ $op->estado_oportunidad_nombre }}</td>
-                    <td>{{ $op->aplica_hogar_integrante_nombre }}</td>
-                  </tr>
-                @endforeach
+               
               </tbody>
             </table>
           </div>
@@ -173,73 +151,158 @@
 <script>
 
 
-  $(document).ready(function () {
-    $('#tablaAcercadas').DataTable({
-      language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' }
-    });
-    $('#tablaEfectivas').DataTable({
-      language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' }
-    });
-    $('#tablaNoEfectivas').DataTable({
-      language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' }
-    });
+$('#modalOportunidades').on('shown.bs.modal', function () {
+  actualizarOportunidadesModal();
+});
 
-      // Checkbox maestro
-    $('#checkAllAcercadas').on('click', function () {
-      let isChecked = $(this).is(':checked');
-      $('.check-acercada').prop('checked', isChecked);
-    });
 
-    // Si se desmarca alguno manualmente, desmarca el "seleccionar todos"
-    $(document).on('click', '.check-acercada', function () {
-      if (!$(this).is(':checked')) {
-        $('#checkAllAcercadas').prop('checked', false);
-      } else {
-        // Si todos están seleccionados, marca el principal
-        let allChecked = $('.check-acercada').length === $('.check-acercada:checked').length;
-        $('#checkAllAcercadas').prop('checked', allChecked);
+
+
+  // var tablaAcercadas; // 🟢 Aquí la declaras global
+
+  // $(document).ready(function () {
+  //   tablaAcercadas = $('#tablaAcercadas').DataTable({
+  //   //  language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' },
+  //     columnDefs: [
+  //       { orderable: false, targets: 0 } // Desactiva orden en checkboxes
+  //     ]
+  //   });
+
+  //    $('#tablaEfectivas').DataTable({
+  //   //  language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' }
+  //   });
+  //   $('#tablaNoEfectivas').DataTable({
+  //  //   language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' }
+  //   });
+
+  //   // ✅ Checkbox seleccionar todos
+  //   $('#checkAllAcercadas').on('click', function () {
+  //     let isChecked = $(this).is(':checked');
+  //     tablaAcercadas.rows().every(function () {
+  //       let node = this.node();
+  //       $(node).find('.check-acercada').prop('checked', isChecked);
+  //     });
+  //   });
+
+  //   // ✅ Checkbox individuales
+  //   $(document).on('click', '.check-acercada', function () {
+  //     let total = tablaAcercadas.rows().nodes().to$().find('.check-acercada').length;
+  //     let checked = tablaAcercadas.rows().nodes().to$().find('.check-acercada:checked').length;
+
+  //     $('#checkAllAcercadas').prop('checked', total === checked);
+  //   });
+  // });
+
+
+let tablaAcercadas; // global
+
+$('#modalOportunidades').on('shown.bs.modal', function () {
+  actualizarOportunidadesModal();
+});
+
+function actualizarOportunidadesModal() {
+  $.ajax({
+    url: "{{ route('recargaroportunidades') }}",
+    type: 'GET',
+    dataType: 'json',
+    success: function(response) {
+
+      // 🔥 Destruir DataTables antes de recargar
+      if ($.fn.DataTable.isDataTable('#tablaAcercadas')) {
+        $('#tablaAcercadas').DataTable().destroy();
       }
-    });
+      if ($.fn.DataTable.isDataTable('#tablaEfectivas')) {
+        $('#tablaEfectivas').DataTable().destroy();
+      }
+      if ($.fn.DataTable.isDataTable('#tablaNoEfectivas')) {
+        $('#tablaNoEfectivas').DataTable().destroy();
+      }
+
+      // 🔄 Actualiza contenido
+      $('#tablaAcercadas tbody').html(response.acercadas);
+      $('#tablaEfectivas tbody').html(response.efectivas);
+      $('#tablaNoEfectivas tbody').html(response.noefectivas);
+
+      // ✅ Vuelve a inicializar
+      tablaAcercadas = $('#tablaAcercadas').DataTable({
+        columnDefs: [
+          { orderable: false, targets: 0 }
+        ]
+      });
+      $('#tablaEfectivas').DataTable();
+      $('#tablaNoEfectivas').DataTable();
+
+      // ✅ Reasigna check all
+      $('#checkAllAcercadas').on('click', function () {
+        let isChecked = $(this).is(':checked');
+        tablaAcercadas.rows().every(function () {
+          let node = this.node();
+          $(node).find('.check-acercada').prop('checked', isChecked);
+        });
+      });
+    },
+    error: function(xhr) {
+      console.error('Error al cargar oportunidades', xhr.responseText);
+    }
   });
+}
+
+
 
 function cambiarestado(estado) {
-  let seleccionados = [];
+   let seleccionados = [];
 
-  $('#tablaAcercadas tbody .check-acercada:checked').each(function () {
-    let fila = $(this).closest('tr');
-    let idIntegrante = fila.find('td:eq(1)').text().trim(); // Columna 1 = ID Integrante
-    let folio = fila.find('td:eq(2)').text().trim();        // Columna 2 = Folio
+  // Usa el API de DataTables para recorrer todas las filas
+  tablaAcercadas.rows().every(function () {
+    let row = this.node();
+    let checkbox = $(row).find('.check-acercada');
 
-    seleccionados.push({
-      idintegrante: idIntegrante,
-      folio: folio
-    });
+    if (checkbox.is(':checked')) {
+      let idIntegrante = $(row).find('td:eq(1)').text().trim();
+      let folio = $(row).find('td:eq(2)').text().trim();
+
+      seleccionados.push({
+        idintegrante: idIntegrante,
+        folio: folio
+      });
+    }
   });
 
   if (seleccionados.length === 0) {
-    alert("Por favor selecciona al menos un integrante.");
+    Swal.fire({
+        title: 'Información',
+        text: "Selecciona como minimo a un integrante para mover",
+        icon: 'info',
+        confirmButtonText: 'Aceptar'
+      });
+
     return;
   }
 
   console.log("Seleccionados:", seleccionados);
   console.log("Nuevo estado:", estado);
 
+
   // Ejemplo: enviar al backend (descomenta si tienes la ruta en Laravel)
-  /*
   $.ajax({
-    url: '/cambiarestado',
-    type: 'POST',
+    url: '{{ route("cambiarestadooportunidadmasivo") }}',
+    type: 'get',
     data: {
-      _token: '{{ csrf_token() }}',
       oportunidades: seleccionados,
       nuevo_estado: estado
     },
     success: function(response) {
-      alert(response.mensaje);
+      Swal.fire({
+        title: 'Información',
+        text: response.mensaje,
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
+
       location.reload();
     }
   });
-  */
+  
 }
 
 

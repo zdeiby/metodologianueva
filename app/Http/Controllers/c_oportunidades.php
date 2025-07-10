@@ -285,6 +285,11 @@ foreach ($oportunidad as $value) {
        $oportunidad = DB::table('vw_listar_oportunidades')
             ->where('aplica_hogar_integrante', '374')
             ->get();
+
+
+         $oportunidades_acercadas_hogar = DB::table('vw_listado_integrantes_oportunidades_hogar')
+            // ->where('aplica_hogar_integrante', '373')
+        ->get();
        
        $t1_integranteshogar = $modelo-> m_listadooportunidadeshogar('');
 
@@ -362,7 +367,7 @@ foreach ($oportunidad as $value) {
             }
         }
         
-      return view('v_oportunidadeshogar',["oportunidades"=>$oportunidades]);
+      return view('v_oportunidadeshogar',["oportunidades"=>$oportunidades, 'oportunidades_acercadas_hogar'=>$oportunidades_acercadas_hogar]);
         
     }
 
@@ -543,4 +548,194 @@ foreach ($oportunidad as $value) {
 
 
     }
+
+
+
+public function fc_cambiar_estado_oportunidad_masivo_i(Request $request)
+{
+    $oportunidades = $request->input('oportunidades');
+    $nuevoEstado   = $request->input('nuevo_estado');
+    $usuario       = auth()->user()->name ?? 'sistema';
+
+    try {
+        foreach ($oportunidades as $item) {
+            // 1. Actualizar primero el estado
+            DB::table('t1_oportunidad_integrantes')
+                ->where('idintegrante', $item['idintegrante'])
+                ->where('folio', $item['folio'])
+                ->update([
+                    'estado_oportunidad' => $nuevoEstado,
+                    'usuario'            => $usuario,
+                    'updated_at'         => now()
+                ]);
+
+            // 2. Luego traer el registro actualizado
+            $registro = DB::table('t1_oportunidad_integrantes')
+                ->where('idintegrante', $item['idintegrante'])
+                ->where('folio', $item['folio'])
+                ->first();
+
+            // 3. Insertar en histórico
+            if ($registro) {
+                DB::table('t3_oportunidad_integranteshogar_historico')->insert([
+                    'idoportunidad'            => $registro->idoportunidad,
+                    'folio'                    => $registro->folio,
+                    'idintegrante'             => $registro->idintegrante,
+                    'estado_oportunidad'       => $registro->estado_oportunidad,
+                    'linea'                    => $registro->linea,
+                    'aplica_hogar_integrante'  => $registro->aplica_hogar_integrante,
+                    'usuario'                  => $usuario,
+                    'estado'                   => $registro->estado,
+                    'sincro'                   => $registro->sincro,
+                    'created_at'               => now(),
+                    'updated_at'               => now(),
+                    'etiqueta'                 => $registro->etiqueta,
+                ]);
+            }
+        }
+
+        return response()->json(['mensaje' => 'Estado actualizado correctamente y registrado en el histórico.']);
+    } catch (\Exception $e) {
+        return response()->json(['mensaje' => 'Error: ' . $e->getMessage()], 500);
+    }
+}
+
+
+public function fc_cambiar_estado_oportunidad_masivo_h(Request $request)
+{
+    $oportunidades = $request->input('oportunidades');
+    $nuevoEstado   = $request->input('nuevo_estado');
+    $usuario       = auth()->user()->name ?? 'sistema';
+
+    try {
+        foreach ($oportunidades as $item) {
+            // 1. Actualizar primero el estado
+            DB::table('t1_oportunidad_hogares')
+                ->where('idintegrante', $item['idintegrante'])
+                ->where('folio', $item['folio'])
+                ->update([
+                    'estado_oportunidad' => $nuevoEstado,
+                    'usuario'            => $usuario,
+                    'updated_at'         => now()
+                ]);
+
+            // 2. Luego traer el registro actualizado
+            $registro = DB::table('t1_oportunidad_hogares')
+                ->where('idintegrante', $item['idintegrante'])
+                ->where('folio', $item['folio'])
+                ->first();
+
+            // 3. Insertar en histórico
+            if ($registro) {
+                DB::table('t3_oportunidad_integranteshogar_historico')->insert([
+                    'idoportunidad'            => $registro->idoportunidad,
+                    'folio'                    => $registro->folio,
+                    'idintegrante'             => $registro->idintegrante,
+                    'estado_oportunidad'       => $registro->estado_oportunidad,
+                    'linea'                    => $registro->linea,
+                    'aplica_hogar_integrante'  => $registro->aplica_hogar_integrante,
+                    'usuario'                  => $usuario,
+                    'estado'                   => $registro->estado,
+                    'sincro'                   => $registro->sincro,
+                    'created_at'               => now(),
+                    'updated_at'               => now(),
+                    'etiqueta'                 => $registro->etiqueta,
+                ]);
+            }
+        }
+
+        return response()->json(['mensaje' => 'Estado actualizado correctamente y registrado en el histórico.']);
+    } catch (\Exception $e) {
+        return response()->json(['mensaje' => 'Error: ' . $e->getMessage()], 500);
+    }
+}
+
+
+public function fc_recargar_oportunidades()
+{
+    try {
+        $data = DB::table('vw_listado_integrantes_oportunidades')->get();
+
+        $acercadas = '';
+        $efectivas = '';
+        $noefectivas = '';
+
+        foreach ($data as $op) {
+            $row = '<tr>';
+            if ($op->estado_oportunidad == '1') {
+                $row .= '<td class="text-center"><input type="checkbox" class="check-acercada"></td>';
+            }
+            $row .= '<td>' . $op->idintegrante . '</td>';
+            $row .= '<td>' . $op->folio . '</td>';
+            $row .= '<td>' . trim($op->nombre1 . ' ' . ($op->nombre2 ?? '') . ' ' . $op->apellido1 . ' ' . ($op->apellido2 ?? '')) . '</td>';
+            $row .= '<td>' . $op->nombre_oportunidad . '</td>';
+            $row .= '<td>' . $op->estado_oportunidad_nombre . '</td>';
+            $row .= '<td>' . $op->aplica_hogar_integrante_nombre . '</td>';
+            $row .= '</tr>';
+
+            if ($op->estado_oportunidad == '1') {
+                $acercadas .= $row;
+            } elseif ($op->estado_oportunidad == '2') {
+                $efectivas .= $row;
+            } elseif ($op->estado_oportunidad == '3') {
+                $noefectivas .= $row;
+            }
+        }
+
+        return response()->json([
+            'acercadas' => $acercadas,
+            'efectivas' => $efectivas,
+            'noefectivas' => $noefectivas
+        ]);
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Error al cargar oportunidades: ' . $e->getMessage()], 500);
+    }
+}
+
+public function fc_recargar_oportunidadesh()
+{
+    try {
+        $data = DB::table('vw_listado_integrantes_oportunidades_hogar')->get();
+
+        $acercadas = '';
+        $efectivas = '';
+        $noefectivas = '';
+
+        foreach ($data as $op) {
+            $row = '<tr>';
+            if ($op->estado_oportunidad == '1') {
+                $row .= '<td class="text-center"><input type="checkbox" class="check-acercada"></td>';
+            }
+            $row .= '<td>' . $op->idintegrante . '</td>';
+            $row .= '<td>' . $op->folio . '</td>';
+            $row .= '<td>' . trim($op->nombre1 . ' ' . ($op->nombre2 ?? '') . ' ' . $op->apellido1 . ' ' . ($op->apellido2 ?? '')) . '</td>';
+            $row .= '<td>' . $op->nombre_oportunidad . '</td>';
+            $row .= '<td>' . $op->estado_oportunidad_nombre . '</td>';
+            $row .= '<td>' . $op->aplica_hogar_integrante_nombre . '</td>';
+            $row .= '</tr>';
+
+            if ($op->estado_oportunidad == '1') {
+                $acercadas .= $row;
+            } elseif ($op->estado_oportunidad == '2') {
+                $efectivas .= $row;
+            } elseif ($op->estado_oportunidad == '3') {
+                $noefectivas .= $row;
+            }
+        }
+
+        return response()->json([
+            'acercadas' => $acercadas,
+            'efectivas' => $efectivas,
+            'noefectivas' => $noefectivas
+        ]);
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Error al cargar oportunidades: ' . $e->getMessage()], 500);
+    }
+}
+
+
+
+
 }
