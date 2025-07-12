@@ -21,6 +21,7 @@ use App\Http\Controllers\editarintegrantesyhogar\c_editarhogardatosgeograficos;
 
 use App\Http\Controllers\c_sincronizacion; 
 use App\Http\Controllers\c_cardsqt;
+use App\Http\Controllers\c_cardsqt_visitas;
 use App\Http\Controllers\formularioqt\c_encuestaintegrantesqt;
 use App\Http\Controllers\c_visitatipo1pasos;   
 use App\Http\Controllers\accionesmovilizadoras\c_momentoconciente;
@@ -119,6 +120,8 @@ Route::get('/rombo/{folio}',[c_rombo::class,'fc_rombo'])->name('rombo');
 Route::get('/rombointegrantes/{folio}',[c_rombointegrantes::class,'fc_rombointegrantes'])->name('rombointegrantes');
 Route::get('/integrantes/{folio}',[c_integrantes::class,'fc_integrantes'])->name('integrantes');
 Route::get('/cardsqt/{folio}',[c_cardsqt::class,'fc_cardsqt'])->name('cardsqt');
+Route::get('/cardsqtvisitas/{folio}/{visita}',[c_cardsqt_visitas::class,'fc_cardsqt'])->name('cardsqtvisitas');
+Route::get('/leerintegrantesqtvisitas',[c_cardsqt_visitas::class,'fc_leerintegrantesqt'])->name('leerintegrantesqtvisitas'); 
 
 
 
