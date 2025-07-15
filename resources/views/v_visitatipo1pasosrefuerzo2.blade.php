@@ -260,7 +260,7 @@ body {
       </div>
 
 
-       <div class="swiper-slide" style="display:">
+       <div class="swiper-slide" style="display:none">
         <div class="card_wrapper">
           <div class="card">
             <div class="content">

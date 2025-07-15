@@ -144,7 +144,7 @@
    @endif
 
     @if ($realizadosvt1r1 == '1')
-  <li class="scene" style="display:none">
+  <li class="scene" style="display:">
             <div class="movie">
                 <div class="poster" >
                     <div id="imgicon"></div>
