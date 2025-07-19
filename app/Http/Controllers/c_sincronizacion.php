@@ -55,7 +55,7 @@ public function fc_t1_principalhogard(){
 }
 
 
-public function fc_sincroprivacionesd(Request $request) {
+/* public function fc_sincroprivacionesd(Request $request) {
     $tabla = $request->input('tabla');
     $pdoccogestor = session('cedula');
     $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarribad/fc_sincroprivacionesd?pdoccogestor='.$pdoccogestor.'&tabla='.urlencode($tabla); 
@@ -198,6 +198,108 @@ public function fc_sincroprivacionesd(Request $request) {
     }
 
     return response()->json($data);
+}   */
+
+public function fc_sincroprivacionesd(Request $request)
+{
+    $tabla = $request->input('tabla');
+    $pdoccogestor = session('cedula');
+    $page = 1;
+    $truncado = false;
+
+    do {
+        // Si es la tabla paginada, se añade el parámetro de página
+        $url = 'https://unidadfamiliamedellin.com.co/apimetodologia/index.php/c_sincroarribad/fc_sincroprivacionesd?pdoccogestor=' . $pdoccogestor . '&tabla=' . urlencode($tabla);
+        if ($tabla === 't1_v1finalizacion') {
+            $url .= '&page=' . $page;
+        }
+
+        $response = file_get_contents($url);
+        $data = json_decode($response, true);
+
+        if (empty($data)) {
+            break;
+        }
+
+        if (!$truncado) {
+            $this->truncateTable($tabla);
+            $truncado = true;
+        }
+
+        foreach ($data as $item) {
+            $folio = $item['folio'];
+
+            $idIntegrante        = $item['idintegrante'] ?? null;
+            $paso                = $item['paso'] ?? null;
+            $linea               = $item['linea'] ?? null;
+            $momentoconciente    = $item['momentoconciente'] ?? null;
+            $categoria           = $item['categoria'] ?? null;
+            $numerocompromiso    = $item['numerocompromiso'] ?? null;
+            $created_at          = $item['created_at'] ?? null;
+            $idoportunidad       = $item['idoportunidad'] ?? null;
+            $numero_compromiso   = $item['numero_compromiso'] ?? null;
+            $estrategia          = $item['estrategia_implementa_reducir_estres'] ?? null;
+
+            $dataToUpdate = $item;
+            unset(
+                $dataToUpdate['folio'],
+                $dataToUpdate['idintegrante'],
+                $dataToUpdate['paso'],
+                $dataToUpdate['linea'],
+                $dataToUpdate['momentoconciente'],
+                $dataToUpdate['categoria'],
+                $dataToUpdate['numerocompromiso'],
+                $dataToUpdate['idoportunidad'],
+                $dataToUpdate['numero_compromiso'],
+                $dataToUpdate['estrategia_implementa_reducir_estres']
+            );
+
+            $condition = ['folio' => $folio];
+            if ($idIntegrante !== null) $condition['idintegrante'] = $idIntegrante;
+            if ($paso !== null) $condition['paso'] = $paso;
+            if ($linea !== null) $condition['linea'] = $linea;
+            if ($momentoconciente !== null) $condition['momentoconciente'] = $momentoconciente;
+            if ($categoria !== null) $condition['categoria'] = $categoria;
+            if ($numerocompromiso !== null) $condition['numerocompromiso'] = $numerocompromiso;
+            if ($numero_compromiso !== null) $condition['numero_compromiso'] = $numero_compromiso;
+            if ($estrategia !== null) $condition['estrategia_implementa_reducir_estres'] = $estrategia;
+            if ($idoportunidad !== null) $condition['idoportunidad'] = $idoportunidad;
+
+            if ($tabla === 't3_oportunidad_integranteshogar_historico') {
+                $condition['created_at'] = $created_at;
+                unset($dataToUpdate['created_at']);
+            }
+
+            if ($tabla === 't1_oportunidad_integrantes') {
+                unset($condition['linea']);
+                $dataToUpdate['linea'] = $linea;
+            }
+
+            if ($tabla === 't1_oportunidad_hogares') {
+                unset($condition['linea'], $condition['idintegrante']);
+                $dataToUpdate['linea'] = $linea;
+                $dataToUpdate['idintegrante'] = $idIntegrante;
+            }
+
+            if (isset($dataToUpdate['url_firma'])) {
+                $dataToUpdate['url_firma'] = base64_decode(
+                    preg_replace('/^data:image\/\w+;base64,/', '', $dataToUpdate['url_firma'])
+                );
+            }
+
+            DB::table($tabla)->updateOrInsert($condition, $dataToUpdate);
+        }
+
+        // Solo avanzar página si es la tabla paginada
+        if ($tabla === 't1_v1finalizacion') {
+            $page++;
+        } else {
+            break; // Las demás tablas solo hacen una petición
+        }
+
+    } while (true);
+
+    return response()->json(['status' => 'ok']);
 }
 
 
