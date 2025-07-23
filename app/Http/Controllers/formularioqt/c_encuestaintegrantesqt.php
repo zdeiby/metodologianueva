@@ -2304,10 +2304,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -2372,10 +2374,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         // Retornar una respuesta con el resultado
@@ -2443,10 +2447,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -2514,10 +2520,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -2580,10 +2588,12 @@ protected $metodologia;
                 $idintegrante
             ]);
         } else {
+             if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
             } 
         }
 
@@ -2637,10 +2647,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -2694,10 +2706,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -2761,10 +2775,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -2818,10 +2834,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -2878,10 +2896,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -2946,10 +2966,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -3001,10 +3023,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -3060,10 +3084,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -3122,10 +3148,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -3182,10 +3210,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -3247,10 +3277,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -3302,10 +3334,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
@@ -3358,10 +3392,12 @@ protected $metodologia;
             ]);
         }
      } else {
+         if (isset($idintegrante)) {
             $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
                 $folio,
                 $idintegrante
             ]);
+            }
         }
 
         
