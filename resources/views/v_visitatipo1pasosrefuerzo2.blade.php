@@ -260,7 +260,7 @@ body {
       </div>
 
 
-       <div class="swiper-slide" style="display:none">
+       <div class="swiper-slide" style="display:">
         <div class="card_wrapper">
           <div class="card">
             <div class="content">
@@ -273,7 +273,7 @@ body {
                     <label>Herramienta QT</label>
                   </h3>
              </div>  
-            <button type="button" class="btn btn-primary"   onclick="window.location.href='../ficherodeoportunidadest1refuerzo2/{{$folioencriptado}}/'">Ir a oportunidades</button> 
+            <button type="button" class="btn btn-primary"   onclick="window.location.href='../ficherodeoportunidadest1refuerzo2/{{$folioencriptado}}/'">Ir a QT</button> 
              <div class="smCard">
                 </div>
               </div>
