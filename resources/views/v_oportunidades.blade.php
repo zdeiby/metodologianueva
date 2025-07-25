@@ -85,6 +85,7 @@
                     <input type="checkbox" id="checkAllAcercadas"> Seleccionar Todos
                   </th>
                   <th>ID Integrante</th>
+                  <td >ID oportunidad</td>
                   <th>Folio</th>
                   <th>Nombre Completo</th>
                   <th>Oportunidad</th>
@@ -109,6 +110,7 @@
               <thead>
                 <tr>
                   <th>ID Integrante</th>
+                  <td >ID oportunidad</td>
                   <th>Folio</th>
                   <th>Nombre Completo</th>
                   <th>Oportunidad</th>
@@ -128,6 +130,7 @@
               <thead>
                 <tr>
                   <th>ID Integrante</th>
+                  <td >ID oportunidad</td>
                   <th>Folio</th>
                   <th>Nombre Completo</th>
                   <th>Oportunidad</th>
@@ -259,11 +262,13 @@ function cambiarestado(estado) {
 
     if (checkbox.is(':checked')) {
       let idIntegrante = $(row).find('td:eq(1)').text().trim();
-      let folio = $(row).find('td:eq(2)').text().trim();
+        let idOportunidad = $(row).find('td:eq(2)').text().trim();
+      let folio = $(row).find('td:eq(3)').text().trim();
 
       seleccionados.push({
         idintegrante: idIntegrante,
-        folio: folio
+        folio: folio,
+        idoportunidad: idOportunidad
       });
     }
   });

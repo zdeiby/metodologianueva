@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
+
 
 class c_oportunidades extends Controller
 {
@@ -376,13 +378,16 @@ foreach ($oportunidad as $value) {
         $folio = $request->input('folio');
         $modelo = new m_oportunidades();
         // $oportunidad = $modelo-> m_listadooportunidades();
-        $oportunidad = DB::table('t1_oportunidad')
-           ->join('t1_lista_aliados', 't1_oportunidad.nit', '=', 't1_lista_aliados.nit')
-        ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
-       // ->where('aplica_hogar_integrante','374')
-        ->get();
+          $oportunidad = DB::table('vw_listar_oportunidades')
+            ->where('aplica_hogar_integrante', '373')
+            ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
+            ->get();
     
         $t1_integranteshogar = $modelo-> m_listadooportunidades($folio);
+
+         $oportunidades_acercadas_integrantes = DB::table('vw_listado_integrantes_oportunidades')
+            // ->where('aplica_hogar_integrante', '373')
+        ->get();
         //dd($oportunidad);
          $oportunidades = '';
          $modal ='';
@@ -397,7 +402,10 @@ foreach ($oportunidad as $value) {
             // Solo incluir la oportunidad si tiene integrantes relacionados
             if (!empty($integrantesRelacionados)) {
                 $oportunidades .= '<tr>
+                 <td>' . $value->id_oportunidad . '</td>
                     <td>' . $value->nombre_oportunidad . '</td>
+                    <td>' . $value->nombre_aliado . '</td>
+                    <td>' . $value->tipos_bienestar . '</td>
                     <td>' . Str::limit($value->fecha_inicio, 10, '') . '</td>
                     <td>' . Str::limit($value->fecha_limite_acercamiento, 10, '') . '</td>
                     <td class="align-middle text-center">
@@ -423,11 +431,13 @@ foreach ($oportunidad as $value) {
                 $oportunidades .= '</select>
                         </div>
                     </td>
-                    <td style="display: flex; gap: 10px;">
-                <button class="btn btn-primary btn-sm" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',1)" type="button">Acercar</button>
-                <button class="btn btn-success btn-sm" id="efectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',2)" type="button">Efectiva</button>
-                <button class="btn btn-danger btn-sm" id="noefectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',3)" type="button">No Efectiva</button>
-                    </td>
+                    <td>
+                      <div class="d-flex w-100">
+                        <button class="btn btn-primary btn-sm" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',1)" type="button">Acercar</button>&nbsp
+                        <button class="btn btn-success btn-sm" id="efectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',2)" type="button">Efectiva</button>&nbsp
+                        <button class="btn btn-danger btn-sm" id="noefectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',3)" type="button">No Efectiva</button>&nbsp
+                    </div>
+                        </td>
                 </tr>
         ';
 
@@ -465,11 +475,10 @@ foreach ($oportunidad as $value) {
         $folio = $request->input('folio');
         $modelo = new m_oportunidades();
         // $oportunidad = $modelo-> m_listadooportunidades();
-        $oportunidad = DB::table('t1_oportunidad')
-           ->join('t1_lista_aliados', 't1_oportunidad.nit', '=', 't1_lista_aliados.nit')
-        ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
-        ->where('aplica_hogar_integrante','374')
-        ->get();
+        $oportunidad = DB::table('vw_listar_oportunidades')
+            ->where('aplica_hogar_integrante', '374')
+            ->whereBetween(DB::raw('DATE(CURRENT_DATE)'), [DB::raw('DATE(fecha_inicio)'), DB::raw('DATE(fecha_limite_acercamiento)')])
+            ->get();
     
         $t1_integranteshogar = $modelo-> m_listadooportunidadeshogar($folio);
         //dd($oportunidad);
@@ -486,7 +495,10 @@ foreach ($oportunidad as $value) {
             // Solo incluir la oportunidad si tiene integrantes relacionados
             if (!empty($integrantesRelacionados)) {
                 $oportunidades .= '<tr>
+                  <td>' . $value->id_oportunidad . '</td>
                     <td>' . $value->nombre_oportunidad . '</td>
+                    <td>' . $value->nombre_aliado . '</td>
+                    <td>' . $value->tipos_bienestar . '</td>
                     <td>' . Str::limit($value->fecha_inicio, 10, '') . '</td>
                     <td>' . Str::limit($value->fecha_limite_acercamiento, 10, '') . '</td>
                     <td class="align-middle text-center">
@@ -512,11 +524,13 @@ foreach ($oportunidad as $value) {
                 $oportunidades .= '</select>
                         </div>
                     </td>
-                    <td style="display: flex; gap: 10px;">
-                <button class="btn btn-primary btn-sm" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',1)" type="button">Acercar</button>
-                <button class="btn btn-success btn-sm" id="efectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',2)" type="button">Efectiva</button>
-                <button class="btn btn-danger btn-sm" id="noefectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',3)" type="button">No Efectiva</button>
-                    </td>
+                    <td>
+                <div class="d-flex w-100">
+                    <button class="btn btn-primary btn-sm" id="acercar' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',1)" type="button">Acercar</button>&nbsp
+                    <button class="btn btn-success btn-sm" id="efectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',2)" type="button">Efectiva</button>&nbsp
+                    <button class="btn btn-danger btn-sm" id="noefectiva' . $value->id_oportunidad . '" onclick="agregaroportunidad(`' . $value->id_oportunidad . '`, ' . $value->aplica_hogar_integrante . ',3)" type="button">No Efectiva</button>
+                   
+                </div></td>
                 </tr>
         
                 <!-- Modal -->
@@ -555,7 +569,9 @@ public function fc_cambiar_estado_oportunidad_masivo_i(Request $request)
 {
     $oportunidades = $request->input('oportunidades');
     $nuevoEstado   = $request->input('nuevo_estado');
-    $usuario       = auth()->user()->name ?? 'sistema';
+    $usuario       = Session::get('cedula') ;
+    $linea = $request->input('linea') ?? '0';
+    $idoportunidad   = $request->input('idoportunidad');
 
     try {
         foreach ($oportunidades as $item) {
@@ -563,9 +579,11 @@ public function fc_cambiar_estado_oportunidad_masivo_i(Request $request)
             DB::table('t1_oportunidad_integrantes')
                 ->where('idintegrante', $item['idintegrante'])
                 ->where('folio', $item['folio'])
+                ->where('idoportunidad', $item['idoportunidad'])
                 ->update([
                     'estado_oportunidad' => $nuevoEstado,
                     'usuario'            => $usuario,
+                     'linea'            => $linea,
                     'updated_at'         => now()
                 ]);
 
@@ -573,6 +591,7 @@ public function fc_cambiar_estado_oportunidad_masivo_i(Request $request)
             $registro = DB::table('t1_oportunidad_integrantes')
                 ->where('idintegrante', $item['idintegrante'])
                 ->where('folio', $item['folio'])
+                ->where('idoportunidad', $item['idoportunidad'])
                 ->first();
 
             // 3. Insertar en histórico
@@ -605,7 +624,9 @@ public function fc_cambiar_estado_oportunidad_masivo_h(Request $request)
 {
     $oportunidades = $request->input('oportunidades');
     $nuevoEstado   = $request->input('nuevo_estado');
-    $usuario       = auth()->user()->name ?? 'sistema';
+    $usuario       = Session::get('cedula') ;
+    $linea = $request->input('linea') ?? '0';
+     $idoportunidad   = $request->input('idoportunidad');
 
     try {
         foreach ($oportunidades as $item) {
@@ -613,9 +634,11 @@ public function fc_cambiar_estado_oportunidad_masivo_h(Request $request)
             DB::table('t1_oportunidad_hogares')
                 ->where('idintegrante', $item['idintegrante'])
                 ->where('folio', $item['folio'])
+                ->where('idoportunidad', $item['idoportunidad'])
                 ->update([
                     'estado_oportunidad' => $nuevoEstado,
                     'usuario'            => $usuario,
+                    'linea'              =>$linea,
                     'updated_at'         => now()
                 ]);
 
@@ -623,6 +646,7 @@ public function fc_cambiar_estado_oportunidad_masivo_h(Request $request)
             $registro = DB::table('t1_oportunidad_hogares')
                 ->where('idintegrante', $item['idintegrante'])
                 ->where('folio', $item['folio'])
+                ->where('idoportunidad', $item['idoportunidad'])
                 ->first();
 
             // 3. Insertar en histórico
@@ -651,10 +675,20 @@ public function fc_cambiar_estado_oportunidad_masivo_h(Request $request)
 }
 
 
-public function fc_recargar_oportunidades()
+public function fc_recargar_oportunidades(Request $request)
 {
+
+        $folio = $request->input('folio'); 
+          $query= DB::table('vw_listado_integrantes_oportunidades');
     try {
-        $data = DB::table('vw_listado_integrantes_oportunidades')->get();
+       
+
+        if (!empty($folio)) {
+            $query->where('folio', $folio);
+        }
+
+        $data = $query->get();
+        
 
         $acercadas = '';
         $efectivas = '';
@@ -666,6 +700,7 @@ public function fc_recargar_oportunidades()
                 $row .= '<td class="text-center"><input type="checkbox" class="check-acercada"></td>';
             }
             $row .= '<td>' . $op->idintegrante . '</td>';
+            $row .= '<td>' . $op->id_oportunidad . '</td>';
             $row .= '<td>' . $op->folio . '</td>';
             $row .= '<td>' . trim($op->nombre1 . ' ' . ($op->nombre2 ?? '') . ' ' . $op->apellido1 . ' ' . ($op->apellido2 ?? '')) . '</td>';
             $row .= '<td>' . $op->nombre_oportunidad . '</td>';
@@ -708,6 +743,7 @@ public function fc_recargar_oportunidadesh()
                 $row .= '<td class="text-center"><input type="checkbox" class="check-acercada"></td>';
             }
             $row .= '<td>' . $op->idintegrante . '</td>';
+             $row .= '<td>' . $op->id_oportunidad . '</td>';
             $row .= '<td>' . $op->folio . '</td>';
             $row .= '<td>' . trim($op->nombre1 . ' ' . ($op->nombre2 ?? '') . ' ' . $op->apellido1 . ' ' . ($op->apellido2 ?? '')) . '</td>';
             $row .= '<td>' . $op->nombre_oportunidad . '</td>';
