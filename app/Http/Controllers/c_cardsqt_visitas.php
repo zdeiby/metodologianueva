@@ -103,7 +103,7 @@ class c_cardsqt_visitas extends Controller
         'porcentaje_rojo_bi'=>$porcentaje_rojo_bi, 'porcentaje_verde_bi'=>$porcentaje_verde_bi, //'porcentaje_gris_bi'=>$porcentaje_gris_bi,
         'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf, //'porcentaje_gris_bf'=>$porcentaje_gris_bf
         'tabla'=>$tabla,'linea'=>$linea, 'metodologia' => $metodologia,
-        'paso'=>$paso
+        'paso'=>$paso, 'visita'=>$visita
 
     ]);
       }
@@ -148,7 +148,7 @@ class c_cardsqt_visitas extends Controller
                     '.$value->nombre1.' '.$value->nombre2.' '.$value->apellido1.' '.$value->apellido2.'
                 </td>
                 <td class="align-middle" >
-                    <button class="habilitado btn btn-'.(($value->validacion == '0')?'light':'warning').' btn-sm" '.(($value->validacion == '0')?'':'disabled').' onclick="iraqt(`'.$hashids->encode($value->idintegrante).'`,`'.$folioencriptado.'`)">
+                    <button class="habilitado btn btn-light btn-sm"  onclick="iraqt(`'.$hashids->encode($value->idintegrante).'`,`'.$folioencriptado.'`)">
                         Ir a QT
                     </button>
                 </td>

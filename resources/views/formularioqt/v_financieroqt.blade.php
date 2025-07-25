@@ -507,8 +507,20 @@
             <div class="text-end col">
             <button class="btn btn-outline-success" type="submit" <?= ($vista != '1')?'disabled':'' ?>>Guardar</button>
            
-            <?= ($vista != '1')? ' <div class="btn btn-outline-primary" id="siguiente2" <?= $siguiente ?>Siguiente</div>':' <div class="btn btn-outline-primary" id="siguiente" <?= $siguiente ?>Siguiente</div>' ?>
-           
+            <!-- <?= ($vista != '1')? ' <div class="btn btn-outline-primary" id="siguiente2" <?= $siguiente ?>Siguiente</div>':' <div class="btn btn-outline-primary" id="siguiente" <?= $siguiente ?>Siguiente</div>' ?> -->
+
+            <?php
+              $botonSiguiente = '';
+              if ($vista == '1') {
+                  $botonSiguiente = '<div class="btn btn-outline-primary" id="siguiente" ' . $siguiente . '>Siguiente</div>';
+              } elseif (in_array($vista, ['200', '300', '400', '500', '600'])) {
+                  $botonSiguiente = '<div class="btn btn-outline-primary" id="siguiente3" ' . $siguiente . '>Siguiente</div>';
+              } else {
+                  $botonSiguiente = '<div class="btn btn-outline-primary" id="siguiente2" ' . $siguiente . '>Siguiente</div>';
+              }
+              echo $botonSiguiente;
+              ?>
+
 
             </div> 
           </div>
@@ -543,6 +555,17 @@
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
+
+       function redirectEspecial() {
+          var folio = `<?= $variable ?>`;
+          var visita = `<?= $vista ?>`;
+
+          var url = `{{ route('cardsqtvisitas', ['folio' => 'FOLIO_TEMP', 'visita' => 'VISITA_TEMP']) }}`;
+          url = url.replace('FOLIO_TEMP', folio).replace('VISITA_TEMP', visita);
+
+          window.location.href = url;
+      }
+
     
 
 
@@ -553,6 +576,12 @@
       $('#siguiente2').click(function(){
         redirectToIntegrantes2()
       });
+
+       $('#siguiente3').click(function () {
+            redirectEspecial();
+        });
+
+        
 
 
       function volversaludemocional() {

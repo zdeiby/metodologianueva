@@ -753,8 +753,19 @@
           <div class="row">  
             <div class="text-start col">
 
+         <?= 
 
-            <?= ($vista != '1')? ' <div class="btn btn-outline-success" onclick="redirectToIntegrantes2()">Volver</div>':' <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>' ?>
+            $boton = '';
+            if ($vista == '1') {
+                $boton = '<div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>';
+            } elseif (in_array($vista, ['200', '300', '400', '500', '600'])) {
+                $boton = '<div class="btn btn-outline-success" onclick="redirectEspecial()">Volver</div>';
+            } else {
+                $boton = '<div class="btn btn-outline-success" onclick="redirectToIntegrantes2()">Volver</div>';
+            }
+            echo $boton;
+
+          ?>
 
 
 
@@ -801,6 +812,12 @@
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
+
+       function redirectEspecial() {
+        var vista = `<?= $vista ?>`;
+        var url = `http://localhost/metodologia/public/cardsqtvisitas/DbDVN3RYel/${vista}`;
+        window.location.href = url;
+    }
     
     
        $('#volver2').click(function(){

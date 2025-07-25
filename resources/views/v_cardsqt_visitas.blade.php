@@ -30,6 +30,7 @@
         <span class="badge bg-success ms-auto" id="folioContainer" value="{{$variable}}" folio="{{ $variable }}">folio: {{ $variable }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span class="badge bg-success ms-auto" style="background:#a80a85 !important; cursor:pointer;font-size:18px" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver QT del hogar</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="text" id="foliobycript" value="{{$foliobycript}}" style="display:none">
+        <input type="text" id="folio" value="{{$folioencriptado}}" style="display:none">
         </div>
       </div>
       <!-- <div class="progress">
@@ -222,6 +223,7 @@
             <input type="text" placeholder="tabla" class="form-control form-control-sm  " id="tabla" name="tabla" value="{{$tabla}}" >
             <input type="text" placeholder="linea" class="form-control form-control-sm  " id="linea" name="linea" value="{{$linea}}" >
             <input type="text" placeholder="paso" class="form-control form-control-sm  " id="paso" name="paso" value="{{$paso}}" >
+             <input type="text" placeholder="paso" class="form-control form-control-sm  " id="visita" name="visita" value="{{$visita}}" >
           </div>
       <div class="modal-body">
   <div id="firmaacepta" class="text-center" >
@@ -402,9 +404,10 @@
       })
 
       function iraqt(idintegranteencriptado, folioencriptado){
-        var url = "../bienestarsaludemocionalqt/:folio/:idintegrante/1";
+        var url = "../../bienestarsaludemocionalqt/:folio/:idintegrante/:visita";
         url = url.replace(':folio', folioencriptado); 
         url = url.replace(':idintegrante', idintegranteencriptado);
+        url = url.replace(':visita', $('#visita').val());
         window.location.href = url;
       } 
       function responderencuesta(folio,idintegrante, folioencriptado, nombre){
@@ -418,21 +421,25 @@
    
 
 
-      function redirectToIntegrantes() {
-           var folio = $('#foliobycript').val();
-           var url = "../cobertura/";
-         //  url = url.replace(':folio', folio);
-           window.location.href = url;
-       }
+      // function redirectToIntegrantes() {
+      //      var folio = $('#foliobycript').val();
+      //      var url = "../cobertura/";
+      //    //  url = url.replace(':folio', folio);
+      //      window.location.href = url;
+      //  }
 
  
 
-      $('#volver').click(function(){
-        var folio = $('#foliobycript').val();
-           var url = "../rombointegrantes/:folio";
-           url = url.replace(':folio', folio);
-           window.location.href = url;
+      $('#volver').click(function () {
+          const folio = $('#folio').val();
+          const visita = $('#visita').val();
+
+          let url = "../../rombovisitatipo1refuerzo2/:folio";
+          url = url.replace(':folio', folio);
+
+          window.location.href = url;
       });
+
     
 
     </script>

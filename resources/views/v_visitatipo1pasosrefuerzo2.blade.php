@@ -265,7 +265,7 @@ body {
           <div class="card">
             <div class="content">
               <div class="front">
-                <img src="{{ asset('assets/img/iconos/card8.jpg')}}" alt="" />
+                <img src="{{ asset('assets/img/iconos/card5.jpg')}}" alt="" />
               </div>
               <div class="back">
                 <div class="middle">
@@ -273,7 +273,7 @@ body {
                     <label>Herramienta QT</label>
                   </h3>
              </div>  
-            <button type="button" class="btn btn-primary"   onclick="window.location.href='../ficherodeoportunidadest1refuerzo2/{{$folioencriptado}}/'">Ir a QT</button> 
+            <button type="button" class="btn btn-primary"   onclick="window.location.href='../cardsqtvisitas/{{$folioencriptado}}/400'">Ir a QT</button> 
              <div class="smCard">
                 </div>
               </div>
