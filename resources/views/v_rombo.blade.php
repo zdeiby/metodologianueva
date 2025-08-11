@@ -39,6 +39,8 @@
         .hidden {
             display: none;
         }
+
+
     </style>
 
     <!-- <div style="text-align: center">
@@ -511,6 +513,97 @@
       <div class="modal-header text-center">
         <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="isticky-top">
       </div>
+
+
+
+
+<style>
+  .box-avance { border-radius:10px; background:#e6efd8; color:#111; overflow:hidden; }
+  .box-avance td { vertical-align:top; } /* <-- Cambiado a top para alinear arriba */
+
+  /* Columna izquierda con separador */
+  .box-left {
+    width:150px;
+    background:#e6efd8;
+    text-align:center;
+    padding:10px 6px;
+    border-right:6px solid #cfdac0;
+  }
+  .box-left img {
+    height:100%;            /* <-- Ocupa el alto de la celda */
+    max-height:64px;        /* Controla tamaño máximo */
+    width:auto;
+    display:block;
+    margin:0 auto;
+    object-fit:contain;     /* Mantiene proporción sin recortar */
+  }
+
+  /* Encabezados */
+  .hdr { padding:8px 12px; text-align:center; font-weight:600; white-space:nowrap; }
+
+  /* Barra de progreso estilo pastilla */
+  .progress {
+    height:28px; width:100%;
+    display:flex;
+    border-radius:999px;
+    overflow:hidden;
+    box-shadow: inset 0 0 0 2px #b7cab2;
+  }
+  .progress-bar {
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:13px; line-height:1;
+    white-space:nowrap;
+    min-width:0;
+  }
+
+  .cell-progress { padding:12px 16px 16px 16px; }
+</style>
+
+<div class="mb-2 container">
+    <label style="font-size:20px;color:#0dcaf0">Registro de avance en las categorías del bienestar</label>
+  <table style="width:100%; border-spacing:0; border-collapse:separate;" class="box-avance">
+    <tr>
+      <!-- Ícono -->
+      <td class="box-left" rowspan="2">
+        <img src="{{ asset('imagenes/iconoavance.jpg') }}" alt="Avance general">
+      </td>
+
+      <!-- Encabezados -->
+      <td class="hdr">D. Inicial.</td>
+      <td class="hdr">Avance: {{ $porcentaje_verde_bef ?? 0 }}%</td>
+      <td class="hdr">Falta por Gestionar</td>
+    </tr>
+
+    <tr>
+      <td colspan="3" class="cell-progress">
+        <div class="progress">
+          <!-- Verde -->
+          <div class="progress-bar"
+               style="width: {{ $porcentaje_verde_bef }}%; background:#14a44d; color:#fff;">
+            {{ $porcentaje_verde_bef }}%
+          </div>
+
+          <!-- Amarillo -->
+          <div class="progress-bar"
+               style="width: {{ $porcentaje_verde_bef }}%; background:#c9e265; color:#111;">
+            {{ $porcentaje_verde_bef }}%
+          </div>
+
+          <!-- Rojo -->
+          <div class="progress-bar"
+               style="width: {{ $porcentaje_rojo_bef }}%; background:#ff1e1e; color:#000;">
+            {{ $porcentaje_rojo_bef }}%
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+
+
+
       <div class="modal-body">
         <div class="text-center">
           <label style="font-size:20px;color:#0dcaf0">Categorías priorizadas por el hogar con mayor vulnerabilidad</label>

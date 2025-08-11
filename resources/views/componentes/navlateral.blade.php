@@ -657,7 +657,7 @@ function soloNumeros(e) {
                 
             </div>
             
-                <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.2.0</label>
+                <label for="" class="d-flex" style="display: flex !important;flex-direction: column;flex-wrap: wrap;align-content: center;color:white">Versión 1.2.1</label>
             <div class="usuario" style="display:none">
                 <img src="" alt="">
                 <div class="info-usuario">

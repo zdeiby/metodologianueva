@@ -124,6 +124,10 @@
             <input type="text" placeholder="usuario" class="form-control form-control-sm  " id="usuario" name="usuario" value="{{ Session::get('cedula') }}" >
           </div>
 
+            <div class="col-md-3" style="display:none">
+            <input type="text" placeholder="estadointegrante" class="form-control form-control-sm  " id="estadointegrante" name="estadointegrante" value="1" >
+          </div>
+
             <label for="validationServer04" class="form-label">¿Cuál es tu nombre completo?</label>
           <div class="col-md-3">
           <input type="text" class="form-control form-control-sm" placeholder="Nombre 1" style="text-transform: uppercase;" onkeypress="return soloLetras(event)"  id="nombre1" name="nombre1" value="" required>
