@@ -131,6 +131,63 @@ if($metodologia == 2){
             $porcentaje_verde_bf = round(($verde_bf / $total_indicadores_bf) * 100);
           //  $porcentaje_gris_bf = round(($gris_bf / $total_indicadores_bf) * 100);
 
+
+         $vi = $vista_indicadoreshogar ?? (object)[];
+
+          /* ---------- Helpers ---------- */
+          $sum = function(array $keys) use ($vi) {
+              return array_sum(array_map(fn($k) => (int)($vi->$k ?? 0), $keys));
+          };
+          $percent = function(int $num, int $den) {
+              return $den ? round(($num / $den) * 100) : 0;
+          };
+
+          /* ---------- Totales (franja superior) ---------- */
+          $total_DI_verde = $sum(['bse_verde_DI','bl_verde_DI','bef_verde_DI','bi_verde_DI','bf_verde_DI']);
+          $total_DI_total = $sum(['bse_total_DI','bl_total_DI','bef_total_DI','bi_total_DI','bf_total_DI']);
+
+          $total_DA_verde = $sum(['bse_verde_DA','bl_verde_DA','bef_verde_DA','bi_verde_DA','bf_verde_DA']);
+          $total_DA_total = $sum(['bse_total_DA','bl_total_DA','bef_total_DA','bi_total_DA','bf_total_DA']);
+
+          $pct_DI_verde = $percent($total_DI_verde, $total_DI_total);
+          $pct_DA_verde = $percent($total_DA_verde, $total_DA_total);
+          $pct_DA_rojo  = max(0, 100 - $pct_DA_verde);
+          $pct_avance   = max(0, $pct_DA_verde - $pct_DI_verde);
+
+          /* ---------- Por familia (filas inferiores) ---------- */
+          $familias = ['bef','bl','bse','bi','bf'];
+          $perFamilia = []; // $perFamilia['bse'] = ['di'=>..,'da_g'=>..,'da_r'=>..]
+
+          foreach ($familias as $fam) {
+              $verde_DI = (int)($vi->{"{$fam}_verde_DI"} ?? 0);
+              $rojo_DI  = (int)($vi->{"{$fam}_rojo_DI"}  ?? 0);
+              $tot_DI   = $verde_DI + $rojo_DI;
+
+              $verde_DA = (int)($vi->{"{$fam}_verde_DA"} ?? 0);
+              $rojo_DA  = (int)($vi->{"{$fam}_rojo_DA"}  ?? 0);
+              $tot_DA   = $verde_DA + $rojo_DA;
+
+              $di_pct   = $percent($verde_DI, $tot_DI);
+              $da_g_pct = $percent($verde_DA, $tot_DA);
+              $da_r_pct = max(0, 100 - $da_g_pct);
+
+              $perFamilia[$fam] = [
+                  'di'   => $di_pct,   // % DI (verde / total DI)
+                  'da_g' => $da_g_pct, // % DA verde
+                  'da_r' => $da_r_pct, // % DA rojo
+              ];
+          }
+
+          // dd([
+          //     'pct_DI_verde' => $pct_DI_verde,
+          //     'pct_DA_verde' => $pct_DA_verde,
+          //     'pct_DA_rojo'  => $pct_DA_rojo,
+          //     'pct_avance'   => $pct_avance,
+          //     'por_familia'  => $perFamilia
+          // ]);
+
+
+
         }
         else{
           $indicadores_bse = [

@@ -508,7 +508,7 @@
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header text-center">
         <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="isticky-top">
@@ -560,8 +560,25 @@
 </style>
 
 <div class="mb-2 container">
-    <label style="font-size:20px;color:#0dcaf0">Registro de avance en las categorías del bienestar</label>
+    <div class="text-center pb-2">
+        <label style="font-size:20px;color:#0dcaf0" >Registro de avance en las categorías del bienestar</label>
+    </div>
   <table style="width:100%; border-spacing:0; border-collapse:separate;" class="box-avance">
+    <tr>
+  <td colspan="4" style="text-align:center; padding:6px;">
+    <span style="
+      display:inline-block;
+      background:#14a44d;
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+      padding:4px 10px;
+      border-radius:12px;
+    ">
+      Porcentaje MCV {{ ($total_indicadoresDA_verdes) }}%
+    </span>
+  </td>
+</tr>
     <tr>
       <!-- Ícono -->
       <td class="box-left" rowspan="2">
@@ -569,9 +586,9 @@
       </td>
 
       <!-- Encabezados -->
-      <td class="hdr">D. Inicial.</td>
-      <td class="hdr">Avance: {{ $porcentaje_verde_bef ?? 0 }}%</td>
-      <td class="hdr">Falta por Gestionar</td>
+      <td class="hdr">D. Inicial: {{ $total_indicadoresDI_verdes}}%.</td>
+      <td class="hdr">Avance: {{ $pct_avance }}%</td>
+      <td class="hdr">Falta por Gestionar: {{ $total_indicadoresDA_rojos}}%.</td>
     </tr>
 
     <tr>
@@ -579,20 +596,20 @@
         <div class="progress">
           <!-- Verde -->
           <div class="progress-bar"
-               style="width: {{ $porcentaje_verde_bef }}%; background:#14a44d; color:#fff;">
-            {{ $porcentaje_verde_bef }}%
+               style="width: {{ $total_indicadoresDI_verdes }}%; background:#14a44d; color:#fff;">
+            {{ $total_indicadoresDI_verdes}}%
           </div>
 
           <!-- Amarillo -->
           <div class="progress-bar"
-               style="width: {{ $porcentaje_verde_bef }}%; background:#c9e265; color:#111;">
-            {{ $porcentaje_verde_bef }}%
+               style="width: {{ $total_indicadoresDA_verdes-$total_indicadoresDI_verdes }}%; background:#c9e265; color:#111;">
+            {{ $pct_avance }}%
           </div>
 
           <!-- Rojo -->
           <div class="progress-bar"
-               style="width: {{ $porcentaje_rojo_bef }}%; background:#ff1e1e; color:#000;">
-            {{ $porcentaje_rojo_bef }}%
+               style="width: {{ $total_indicadoresDA_rojos }}%; background:#ff1e1e; color:#000;">
+            {{ $total_indicadoresDA_rojos }}%
           </div>
         </div>
       </td>

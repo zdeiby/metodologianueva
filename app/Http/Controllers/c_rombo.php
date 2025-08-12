@@ -78,6 +78,10 @@ class c_rombo extends Controller
                 $indicadoreshogar = DB::table('t1_indicadores_hogar_ffes')
                     ->where('folio',decrypt($cedula))
                     ->first();
+
+                    $vista_indicadoreshogar = DB::table('v_indicadores_hogar_ffes_resumen')
+                    ->where('folio',decrypt($cedula))
+                    ->first();
             }else{
                 $indicadoreshogar = DB::table('t1_indicadores_hogar')
                 ->where('folio',decrypt($cedula))
@@ -112,6 +116,10 @@ class c_rombo extends Controller
         'porcentaje_rojo_bi'=>$porcentaje_rojo_bi, 'porcentaje_verde_bi'=>$porcentaje_verde_bi, //'porcentaje_gris_bi'=>$porcentaje_gris_bi,
         'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf,// 'porcentaje_gris_bf'=>$porcentaje_gris_bf, 
         'metodologia' => $metodologia,
+        'total_indicadoresDA_verdes' => $pct_DA_verde ?? 0,
+        'total_indicadoresDI_verdes' => $pct_DI_verde ?? 0,
+        'total_indicadoresDA_rojos'=> $pct_DA_rojo ?? 0,
+        'pct_avance'=>$pct_avance ?? 0,
         'folioencriptado'=>decrypt($cedula)]);
       }
 
