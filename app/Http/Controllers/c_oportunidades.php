@@ -594,6 +594,48 @@ public function fc_cambiar_estado_oportunidad_masivo_i(Request $request)
                 ->where('idoportunidad', $item['idoportunidad'])
                 ->first();
 
+                if ($registro && (int)$registro->aplica_hogar_integrante === 373) {
+                // toma los ids si vienen en el item; si no, déjalos en 0 para que el SP calcule
+                $id_bienestar = (int)($item['id_bienestar']  ?? 0);
+                $id_indicador = (int)($item['id_indicador'] ?? 0);
+
+                // Llamada al SP (si mandas 0,0 el SP deduce desde t1_oportunidad)
+                DB::select(
+                    'CALL sp_movimiento_indicador_integrante_oportunidades(?, ?, ?, ?, ?, ?, ?)',
+                    [
+                        (int)$registro->folio,
+                        $registro->idintegrante,
+                        $id_bienestar,                 // 0 => deducir
+                        $id_indicador,                 // 0 => deducir
+                        $usuario,
+                        (int)$registro->idoportunidad, // ojo: INT
+                        (string)$nuevoEstado
+                    ]
+                );
+
+
+                 $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                        $registro->folio
+                        // $idintegrante
+                    ]); 
+
+                    $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
+                        $registro->folio
+                        // $idintegrante
+                    ]); 
+
+                    
+                        $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                            $registro->folio,
+                            $registro->idintegrante
+                        ]);
+
+                        $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                            $registro->folio,
+                            $registro->idintegrante
+                        ]);
+                        }
+
             // 3. Insertar en histórico
             if ($registro) {
                 DB::table('t3_oportunidad_integranteshogar_historico')->insert([
@@ -648,6 +690,46 @@ public function fc_cambiar_estado_oportunidad_masivo_h(Request $request)
                 ->where('folio', $item['folio'])
                 ->where('idoportunidad', $item['idoportunidad'])
                 ->first();
+
+                 if ($registro && (int)$registro->aplica_hogar_integrante === 374) {
+                // toma los ids si vienen en el item; si no, déjalos en 0 para que el SP calcule
+                $id_bienestar = (int)($item['id_bienestar']  ?? 0);
+                $id_indicador = (int)($item['id_indicador'] ?? 0);
+
+                // Llamada al SP (si mandas 0,0 el SP deduce desde t1_oportunidad)
+                DB::select(
+                    'CALL sp_movimiento_indicador_hogar_oportunidades(?, ?, ?, ?, ?, ?)',
+                    [
+                        (int)$registro->folio,
+                        $id_bienestar,                 // 0 => deducir
+                        $id_indicador,                 // 0 => deducir
+                        $usuario,
+                        (int)$registro->idoportunidad, // ojo: INT
+                        (string)$nuevoEstado
+                    ]
+                );
+
+                        $resultado2 = DB::select('CALL sp_indicadores_hogar(?)', [
+                            $registro->folio
+                            // $idintegrante
+                        ]); 
+
+                        $resultado2 = DB::select('CALL sp_indicadores_hogar_ffes(?)', [
+                            $registro->folio
+                            // $idintegrante
+                        ]);
+
+                    
+                        $resultadoint = DB::select('CALL sp_indicadores_integrantes(?, ?)', [
+                            $registro->folio,
+                            $registro->idintegrante
+                        ]);
+
+                        $resultadoint2 = DB::select('CALL sp_indicadores_integrantes_ffes(?, ?)', [
+                            $registro->folio,
+                            $registro->idintegrante
+                        ]);
+            }
 
             // 3. Insertar en histórico
             if ($registro) {

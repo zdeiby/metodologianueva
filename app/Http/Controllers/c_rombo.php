@@ -86,6 +86,10 @@ class c_rombo extends Controller
                 $indicadoreshogar = DB::table('t1_indicadores_hogar')
                 ->where('folio',decrypt($cedula))
                 ->first();
+
+                $vista_indicadoreshogar = DB::table('v_indicadores_hogar_mef_resumen')
+                    ->where('folio',decrypt($cedula))
+                    ->first();
             }
 
 
@@ -188,7 +192,7 @@ class c_rombo extends Controller
                 </td>
             </tr>
             <tr id="' . $collapseId . '" class="collapse" aria-labelledby="' . $headingId . '" data-bs-parent="#accordionExample" class="bg-light" style="border:1px solid #343a40">
-                <td colspan="5" class="align-middle" >
+                <td colspan="6" class="align-middle" >
                     <!-- Contenido desplegable aquí -->
                         <div style="display: flex; justify-content: space-between; gap: 20px;" class="mb-2">
                             <!-- Primera columna -->
