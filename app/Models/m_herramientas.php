@@ -43,10 +43,35 @@ class m_herramientas extends Model
         $respuestas .= '<option value="' . htmlspecialchars($accion->id) . '">' . htmlspecialchars($accion->descripcion) . '</option>';
     }
     
-
-    
     return $respuestas;
     }
+
+
+    public function m_leeraccionesordenadas($tabla, $idbienestar)
+        {
+            $resultado = DB::select("
+                SELECT * 
+                FROM $tabla 
+                WHERE bienestar = ? AND estado = 1
+                ORDER BY 
+                    CASE 
+                        WHEN metodologia = 1 THEN 0  -- MEF primero
+                        ELSE 1                       -- FFES después
+                    END,
+                    descripcion COLLATE utf8mb4_spanish_ci ASC
+            ", [$idbienestar]);  
+
+            $respuestas = '<option value="">Seleccione</option>'; 
+            
+            foreach ($resultado as $accion) {
+                $respuestas .= '<option value="' . htmlspecialchars($accion->id) . '">' 
+                            . htmlspecialchars($accion->descripcion) 
+                            . '</option>';
+            }
+
+            return $respuestas;
+        }
+
 
 
 }

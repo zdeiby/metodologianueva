@@ -225,7 +225,14 @@ class c_momentoconcientet1refuerzo2 extends Controller
             }
 
             // 4. Trae todas las acciones posibles para ese bienestar
-            $accionesDisponibles = DB::table('t_accionesmovilizadoras')->where('bienestar', $bienestar)->get();
+           // $accionesDisponibles = DB::table('t_accionesmovilizadoras')->where('bienestar', $bienestar)->get();
+            $accionesDisponibles = DB::table('t_accionesmovilizadoras')
+                ->where('bienestar', $bienestar)
+                ->where('estado', 1)
+                ->orderByRaw('CASE WHEN metodologia = 1 THEN 0 ELSE 1 END')  // MEF (1) primero
+                ->orderByRaw('descripcion COLLATE utf8mb4_spanish_ci ASC')    // alfabético con tildes/ñ
+                ->get();
+
 
             // 5. Construye el select SOLO de la acción actual (solo una vez cada opción)
             $opcionesAccionMovilizadora = '';
@@ -252,7 +259,7 @@ class c_momentoconcientet1refuerzo2 extends Controller
             // Si necesitas otras acciones para otros selects, las puedes dejar así (opcional)
             $datos['t_accionesmovilizadoras1'] = $herramientas->m_leeracciones('t_accionesmovilizadoras', '1');
             $datos['t_accionesmovilizadoras2'] = $herramientas->m_leeracciones('t_accionesmovilizadoras', '2');
-            $datos['t_accionesmovilizadoras3'] = $herramientas->m_leeracciones('t_accionesmovilizadoras', '3');
+            $datos['t_accionesmovilizadoras3'] = $herramientas->m_leeraccionesordenadas('t_accionesmovilizadoras', '3');
             $datos['t_accionesmovilizadoras4'] = $herramientas->m_leeracciones('t_accionesmovilizadoras', '4');
             $datos['t_accionesmovilizadoras5'] = $herramientas->m_leeracciones('t_accionesmovilizadoras', '5');
 
