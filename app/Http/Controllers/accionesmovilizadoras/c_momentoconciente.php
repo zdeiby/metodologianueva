@@ -85,6 +85,7 @@ class c_momentoconciente extends Controller
                                                                     'folio'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,'linea'=>$linea,
                                                                      'paso'=>$paso, 'momento_conciente'=>$momento_conciente,
+                                                                     'foliomenu'=>$encodedFolio[0],
                                                                     ]);
     }
 
@@ -142,6 +143,7 @@ class c_momentoconciente extends Controller
                                                                      'tabla'=>$tabla, 'linea'=>$linea,
                                                                      'paso'=>$paso,
                                                                      'bienestar'=>$bienestar,
+                                                                     'foliomenu'=>$encodedFolio[0],
                                                                     ]);
     }
 
@@ -214,6 +216,7 @@ class c_momentoconciente extends Controller
                                                                       'linea'=>$linea,
                                                                      'paso'=>$paso,
                                                                      'bienestar'=>$bienestar,
+                                                                     'foliomenu'=>$encodedFolio[0],
                                                                     ]);
     }
 
@@ -273,6 +276,7 @@ class c_momentoconciente extends Controller
                                                                     'compromisosArray'=>$compromisosArray,
                                                                     'linea'=>$linea,
                                                                     'paso'=>$paso,
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                     
                                                                     ]);
     }

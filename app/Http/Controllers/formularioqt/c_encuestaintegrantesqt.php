@@ -267,7 +267,8 @@ protected $metodologia;
                                                                      'indicador_bse_9'=>$indicador_bse_9,
                                                                      'indicador_bse_10'=>$indicador_bse_10,
                                                                     'metodologia'=>$metodologia,
-                                                                     'indicadores_tabla'=>$indicadores_tabla, 'edad'=>$datospersonales[0]->edad
+                                                                     'indicadores_tabla'=>$indicadores_tabla, 'edad'=>$datospersonales[0]->edad,
+                                                                     'foliomenu'=>$encodedFolio[0],
                                                                     
                                                                     ]);
     }
@@ -523,6 +524,7 @@ protected $metodologia;
         'indicador_bl_11'=>$indicador_bl_11,
         'indicador_bl_12'=>$indicador_bl_12,
     'indicadores_tabla'=>$indicadores_tabla , 'metodologia'=>$metodologia,
+    'foliomenu'=>$encodedFolio[0],
     ]);
     } 
 
@@ -706,7 +708,8 @@ protected $metodologia;
                         return view('formularioqt/v_enfamiliaqt',$datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
                     'indicador_bef_1'=>$indicador_bef_1,'indicador_bef_2'=>$indicador_bef_2,'indicador_bef_3'=>$indicador_bef_3,'indicador_bef_4'=>$indicador_bef_4,
                     'indicador_bef_5'=>$indicador_bef_5,'indicador_bef_6'=>$indicador_bef_6 , 'indicador_bef_7'=> $indicador_bef_7, 'metodologia'=>$metodologia,
-                     'indicadores_tabla'=>$indicadores_tabla
+                     'indicadores_tabla'=>$indicadores_tabla,
+                     'foliomenu'=>$encodedFolio[0],
                     ]);
                     } 
 
@@ -885,7 +888,8 @@ protected $metodologia;
         return view('formularioqt/v_intelectualqt',$datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
         'indicador_bi_1'=>$indicador_bi_1,'indicador_bi_2'=>$indicador_bi_2,
          'indicador_bi_3'=>$indicador_bi_3,'indicador_bi_4'=>$indicador_bi_4,'indicador_bi_5'=>$indicador_bi_5,'indicador_bi_6'=>$indicador_bi_6,
-          'indicadores_tabla'=>$indicadores_tabla, 'edad'=>$datospersonales[0]->edad
+          'indicadores_tabla'=>$indicadores_tabla, 'edad'=>$datospersonales[0]->edad,
+          'foliomenu'=>$encodedFolio[0],
     ]);
     } 
 
@@ -1034,7 +1038,8 @@ protected $metodologia;
 
         return view('formularioqt/v_financieroqt', $datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante, 'tabla'=>$tabla,
     'indicador_bf_1'=>$indicador_bf_1,'indicador_bf_2'=>$indicador_bf_2,'indicador_bf_3'=>$indicador_bf_3,'indicador_bf_4'=>$indicador_bf_4,'indicador_bf_5'=>$indicador_bf_5
-    , 'indicadores_tabla'=>$indicadores_tabla, 'edad'=>$datospersonales[0]->edad
+    , 'indicadores_tabla'=>$indicadores_tabla, 'edad'=>$datospersonales[0]->edad,
+    'foliomenu'=>$encodedFolio[0],
 
     ]);
     } 

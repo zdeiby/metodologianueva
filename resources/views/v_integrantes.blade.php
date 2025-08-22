@@ -101,14 +101,14 @@
         localStorage.setItem('folio',folio);
         localStorage.setItem('idintegrante', idintegrante);
         localStorage.setItem('folioencriptado', folioencriptado);
-        window.location.href = '../editarintegrantes';
+        window.location.href = '../editarintegrantes/' + encodeURIComponent(folioencriptado);
       } 
       function responderencuesta(folio,idintegrante, folioencriptado, nombre){
         localStorage.setItem('folio',folio);
         localStorage.setItem('idintegrante', idintegrante);
         localStorage.setItem('folioencriptado', folioencriptado);
         localStorage.setItem('nombre', nombre);
-        window.location.href = '../encuestaintegrantesfisicoemocional';
+        window.location.href = '../encuestaintegrantesfisicoemocional/' + encodeURIComponent(folioencriptado);
       } 
       
       function eliminarintegrantes(folio, idintegrante){
@@ -169,7 +169,9 @@
         localStorage.setItem('folio',folio);
         localStorage.setItem('idintegrante','');
         localStorage.setItem('folioencriptado', folioencriptado);
-        window.location.href = '../editarintegrantes';
+        window.location.href = '../editarintegrantes/' + encodeURIComponent(folioencriptado);
+
+        //window.location.href = '../editarintegrantes';
       }
 
       function redirectToIntegrantes() {

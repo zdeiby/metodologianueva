@@ -480,10 +480,10 @@ function soloNumeros(e) {
                 
                 
             </div>
- @if(isset($foliomenu) && !empty($foliomenu) || !empty($esVisitaT1))
+ @if(isset($foliomenu) && !empty($foliomenu) || !empty($esVisitaT1) || !empty($esVisita1T1) || !empty($esVisitaTriaje) || !empty($esVisitaTriajeP2)  )
             <div style="" class="text-center p-2">
             @if(isset($foliomenu) && !empty($foliomenu))
-                <span class="badge bg-light ms-auto" id="folioContainer" style="font-size:15px; color:#0dcaf0 " folio="{{ $variable }}">
+                <span class="badge bg-light ms-auto" id="" style="font-size:15px; color:#0dcaf0 " folio="{{ $variable }}">
                     folio: {{ $foliomenu }}
                 </span>
             @endif
@@ -511,6 +511,43 @@ function soloNumeros(e) {
                     <strong>Tercera Visita T1</strong><br>
                     Dur: <span id="duracion-texto-t1r2">
                         {{ $duracionT1R2 }}@if($activarContadorT1R2):{{ sprintf('%02d', $totalSegundosT1R2 % 60) }}@endif
+                    </span> min
+                </div>
+                @endif
+
+
+                 @if(!empty($esVisita1T1))
+                <div id="contador-visita-1t1"
+                    data-segundos="{{ $totalSegundos1T1 }}"
+                    class="text-white text-center"
+                    style="background:#00bfff; padding:6px; border-radius:5px;">
+                    <strong>Primera Visita T1</strong><br>
+                    Dur: <span id="duracion-texto-1t1">
+                        {{ $duracion1T1 }}@if($activarContador1T1):{{ sprintf('%02d', $totalSegundos1T1 % 60) }}@endif
+                    </span> min
+                </div>
+                @endif
+
+                 @if(!empty($esVisitaTriaje))
+                <div id="contador-visita-Triaje"
+                    data-segundos="{{ $totalSegundosTriaje }}"
+                    class="text-white text-center"
+                    style="background:#00bfff; padding:6px; border-radius:5px;">
+                    <strong>Triaje</strong><br>
+                    Dur: <span id="duracion-texto-Triaje">
+                        {{ $duracionTriaje }}@if($activarContadorTriaje):{{ sprintf('%02d', $totalSegundosTriaje % 60) }}@endif
+                    </span> min
+                </div>
+                @endif
+
+                 @if(!empty($esVisitaTriajeP2))
+                <div id="contador-visita-TriajeP2"
+                    data-segundos="{{ $totalSegundosTriajeP2 }}"
+                    class="text-white text-center"
+                    style="background:#00bfff; padding:6px; border-radius:5px;">
+                    <strong>Triaje</strong><br>
+                    Dur: <span id="duracion-texto-TriajeP2">
+                        {{ $duracionTriajeP2 }}@if($activarContadorTriajeP2):{{ sprintf('%02d', $totalSegundosTriajeP2 % 60) }}@endif
                     </span> min
                 </div>
                 @endif
@@ -929,6 +966,76 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 @endif
 
+@if(!empty($activarContador1T1) && !empty($totalSegundos1T1) )
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const contador = document.getElementById('contador-visita-1t1');
+        let totalSegundos = parseInt(contador.getAttribute('data-segundos')) || 0;
+
+        function actualizarContador() {
+            totalSegundos++;
+
+            let horas = Math.floor(totalSegundos / 3600);
+            let minutos = Math.floor((totalSegundos % 3600) / 60);
+            let segundos = totalSegundos % 60;
+
+            let texto = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+            document.getElementById('duracion-texto-1t1').textContent = texto;
+        }
+
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
+    });
+</script>
+@endif
+
+
+@if(!empty($activarContadorTriaje) && !empty($totalSegundosTriaje) )
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const contador = document.getElementById('contador-visita-Triaje');
+        let totalSegundos = parseInt(contador.getAttribute('data-segundos')) || 0;
+
+        function actualizarContador() {
+            totalSegundos++;
+
+            let horas = Math.floor(totalSegundos / 3600);
+            let minutos = Math.floor((totalSegundos % 3600) / 60);
+            let segundos = totalSegundos % 60;
+
+            let texto = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+            document.getElementById('duracion-texto-Triaje').textContent = texto;
+        }
+
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
+    });
+</script>
+@endif
+
+
+@if(!empty($activarContadorTriajeP2) && !empty($totalSegundosTriajeP2) )
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const contador = document.getElementById('contador-visita-TriajeP2');
+        let totalSegundos = parseInt(contador.getAttribute('data-segundos')) || 0;
+
+        function actualizarContador() {
+            totalSegundos++;
+
+            let horas = Math.floor(totalSegundos / 3600);
+            let minutos = Math.floor((totalSegundos % 3600) / 60);
+            let segundos = totalSegundos % 60;
+
+            let texto = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+            document.getElementById('duracion-texto-TriajeP2').textContent = texto;
+        }
+
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
+    });
+</script>
+@endif
 
 </body>
 </html>

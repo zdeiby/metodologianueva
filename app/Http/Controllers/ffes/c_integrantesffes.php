@@ -29,7 +29,10 @@ class c_integrantesffes extends Controller
       $hogar= $modeloHogar->m_leerprincipalhogarconfolio_ffes($decodedFolio);
       $folioEncriptadolargo = encrypt($decodedFolio);
       
-        return view('ffes/v_integrantesffes',["folio"=>$folio,"variable"=>$decodedFolio, 'jefes' => $jefes, 'hogar'=>$hogar, 'folioEncriptado'=>$folioEncriptadolargo]);
+        return view('ffes/v_integrantesffes',["folio"=>$folio,"variable"=>$decodedFolio, 
+        'jefes' => $jefes, 'hogar'=>$hogar, 'folioEncriptado'=>$folioEncriptadolargo,
+        'foliomenu'=>$decodedFolio
+      ]);
       }
 
     public function fc_leerintegrantes(Request $request){

@@ -1563,7 +1563,8 @@ console.log(edad)
         $('#nombre').html(`Nombre: ${nombre} `);
 
         $.ajax({
-        url:'./leerpreguntas',
+        //url:'./leerpreguntas',
+        url: "{{ route('leerpreguntas') }}",
         data:{folio:folio, idintegrante:idintegrante},
         method: "GET",
         dataType:'JSON',
@@ -3005,21 +3006,63 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
  
       
 
-      $('#siguiente').click(function(){
-        var url = "./encuestaintegranteslegal";
-        window.location.href = url;  
+      // $('#siguiente').click(function(){
+      //   var url = "./encuestaintegranteslegal";
+      //   window.location.href = url;  
         
-      });
+      // });
     
-      $('#volver').click(function(){
-        var url = "./encuestaintegrantesintelectual";
+      // $('#volver').click(function(){
+      //   var url = "./encuestaintegrantesintelectual";
+      //   window.location.href = url;
+      // }); 
+
+      $('#siguiente').click(function () {
+          var folio = localStorage.getItem('folioencriptado');
+          var url = "{{ route('encuestaintegranteslegal', ['folio' => ':folio']) }}";
+          url = url.replace(':folio', folio ?? '');
+          window.location.href = url;  
+      });
+
+      $('#volver').click(function () {
+          var folio = localStorage.getItem('folioencriptado');
+          var url = "{{ route('encuestaintegrantesintelectual', ['folio' => ':folio']) }}";
+          url = url.replace(':folio', folio ?? '');
+          window.location.href = url;  
+      });
+
+      // $('#identificacion').click(function(){var url = "./encuestaintegrantesfisicoemocional"; window.location.href = url;})
+      // $('#intelectual').click(function(){var url = "./encuestaintegrantesintelectual"; window.location.href = url;})
+      // $('#legal').click(function(){var url = "./encuestaintegranteslegal"; window.location.href = url;})
+
+       $('#identificacion').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+
+            var url = "{{ route('encuestaintegrantesfisicoemocional', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio ?? '');
+
+            window.location.href = url;
+        });
+        $('#intelectual').click(function () {
+        var folio = localStorage.getItem('folioencriptado');
+        var url = "{{ route('encuestaintegrantesintelectual', ['folio' => ':folio']) }}";
+        url = url.replace(':folio', folio);
         window.location.href = url;
-      }); 
+        });
 
-      $('#identificacion').click(function(){var url = "./encuestaintegrantesfisicoemocional"; window.location.href = url;})
-      $('#intelectual').click(function(){var url = "./encuestaintegrantesintelectual"; window.location.href = url;})
-      $('#legal').click(function(){var url = "./encuestaintegranteslegal"; window.location.href = url;})
+        $('#financiero').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+            var url = "{{ route('encuestaintegrantesfinanciero', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio);
+            window.location.href = url;
+        });
 
+        $('#legal').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+            var url = "{{ route('encuestaintegranteslegal', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio);
+            window.location.href = url;
+        });
 
 
       function convertirAMayusculas(element) {
@@ -3160,7 +3203,8 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
 
         // Enviar los datos usando AJAX
         $.ajax({
-            url: './financiero',
+          url: "{{ route('financiero') }}",
+            //url: './financiero',
             method: $(this).attr('method'),
             data: {data: data},
             success: function(response) {

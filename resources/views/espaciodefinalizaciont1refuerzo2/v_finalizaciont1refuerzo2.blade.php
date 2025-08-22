@@ -178,7 +178,7 @@
     <div class="row">
         <div class="col-sm">
             <div class="alert alert-info" role="alert" style="background:#bee5eb">
-                Acá aparecerá la imagen del usuario cargada.
+                Acá aparecerá la fotografía de la visita o la planilla con la firma del hogar visitado.
             </div>
         </div>
     </div>

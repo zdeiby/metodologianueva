@@ -15,7 +15,7 @@ class c_encuestaintegrantes extends Controller
 
 // IR A LA VISTA BIENESTAR FISICO Y EMOCIONAL
 
-public function fc_encuestaintegrantesfisicoemocional(){
+public function fc_encuestaintegrantesfisicoemocional(Request $request, $cedula = null){
   if (!session('nombre')) {
     // Si no existe la sesión 'usuario', redirigir al login
     return redirect()->route('login');
@@ -122,13 +122,14 @@ public function fc_encuestaintegrantesfisicoemocional(){
             'consumospa3'=>$consumospa3, 'consumospa4'=>$consumospa4,
             'consumospa5'=>$consumospa5,'consumospa6'=>$consumospa6,
             'psicosocial1'=>$psicosocial1,'psicosocial2'=>$psicosocial2,
+            'foliomenu'=>decrypt($cedula), 'variable'=>$cedula
          ]);
           }
 
 
 // VISTA BIENESTAR INTELECTUAL
 
-    public function fc_encuestaintegrantesintelectual(){
+    public function fc_encuestaintegrantesintelectual(Request $request, $cedula = null){
       $modelo= new m_l1e1();
       $preguntas=$modelo->m_leerrespuestas();
 
@@ -154,13 +155,14 @@ public function fc_encuestaintegrantesfisicoemocional(){
 
               return view('encuestaintegrantes/v_encuestaintegrantesintelectual',['sino'=>$sino,
               'niveleducativo1'=>$niveleducativo1,'niveleducativo2'=>$niveleducativo2,
+              'foliomenu'=>decrypt($cedula), 'variable'=>$cedula
            ]);
   }
 
 
 /// BIENESTAR FINANCIERO VISTA 
 
-public function fc_encuestaintegrantesfinanciero(){
+public function fc_encuestaintegrantesfinanciero(Request $request, $cedula = null){
     $modelo= new m_l1e1();
     $preguntas=$modelo->m_leerrespuestas();
     $barrios= $modelo->m_leerbarrios();
@@ -224,11 +226,13 @@ public function fc_encuestaintegrantesfinanciero(){
             return view('/encuestaintegrantes/v_encuestaintegrantesfinanciero',['sino'=>$sino,
           'ingresos1'=>$ingresos1,'trabajoinfantil'=>$trabajoinfantil,'generaciondeingresos'=>$generaciondeingresos,
           'desempleo'=>$desempleo,'bancarizacion'=>$bancarizacion, 'emprendimiento1'=>$emprendimiento1,
-         ]);
+          'foliomenu'=>decrypt($cedula), 'variable'=>$cedula
+        
+        ]);
           }
 //CARGA VISTA LEGAL
 
-          public function fc_encuestaintegranteslegal(){
+          public function fc_encuestaintegranteslegal(Request $request, $cedula = null){
             $modelo= new m_l1e1();
             $preguntas=$modelo->m_leerrespuestas();
       
@@ -251,6 +255,7 @@ public function fc_encuestaintegrantesfinanciero(){
       
                     return view('/encuestaintegrantes/v_encuestaintegranteslegal',['sino'=>$sino,
                   'mecanismosdeproteccionddhh3'=>$mecanismosdeproteccionddhh3,
+                  'foliomenu'=>decrypt($cedula), 'variable'=>$cedula
                  ]);
                   }
 

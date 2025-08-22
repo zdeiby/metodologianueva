@@ -459,7 +459,7 @@ paginacargando();
       folio=localStorage.getItem('folio');
       idintegrante=localStorage.getItem('idintegrante');
       $.ajax({
-        url:'./guardaravatar',
+        url: "{{ route('guardaravatar') }}",
         data:{folio:folio, idintegrante:idintegrante, avatar:imagen},
         method: "GET",
         dataType:'JSON',
@@ -504,7 +504,7 @@ paginacargando();
         }
 
         $.ajax({
-        url:'./responderencuesta',
+        url: "{{ route('responderencuesta') }}",
         data:{folio:folio, idintegrante:idintegrante},
         method: "GET",
         dataType:'JSON',
@@ -945,8 +945,10 @@ paginacargando();
 
       function redirectToIntegrantes() {
            var folio = window.localStorage.getItem('folioencriptado');
-           var url = "../public/integrantes/:folio";
+           //var url = "../public/integrantes/:folio";
+           var url = "{{ route('integrantes', ['folio' => ':folio']) }}";
            url = url.replace(':folio', folio);
+           //url = url.replace(':folio', folio);
            window.location.href = url;
        }
 
@@ -977,7 +979,7 @@ paginacargando();
     function enviarDatos(data) {
         console.log('Datos del formulario:', data);
         $.ajax({
-                    url:'./guardarintegrante',
+          url: "{{ route('guardarintegrante') }}",
                     data:{data},
                     method: "GET",
                     dataType:'JSON',
@@ -1016,7 +1018,7 @@ paginacargando();
     function enviarDatos2(data) {
         console.log('Datos del formulario:', data);
         $.ajax({
-                    url:'./guardaridentitario',
+                    url: "{{ route('guardaridentitario') }}",
                     data:{data},
                     method: "GET",
                     dataType:'JSON',
@@ -1232,7 +1234,7 @@ $('#fechanacimiento').blur(function(){
 let folio= $('#folioinput').val();
 console.log(folio, 'aca va folio')
   $.ajax({
-        url:'./consultarrepresentante',
+     url: "{{ route('consultarrepresentante') }}",
         data:{folio:folio},
         method: "GET",
         dataType:'JSON',

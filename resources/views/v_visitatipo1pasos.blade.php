@@ -679,6 +679,8 @@ window.saveOrder = function() {
                         method: "GET",
                         dataType: 'JSON',
                         success: function(data) {
+                          const totalSegundos = data.totalSegundos;
+                          iniciarContador(totalSegundos);
                           $('#saludoencuadrebtn').attr('disabled', 'disabled');
                           $('#gestionintegrantes').removeAttr('disabled');
                           console.log(data);
@@ -742,6 +744,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Llamar a la función para sincronizar el orden después de que ambas tablas estén completamente cargadas
     sincronizarOrden();
 });
+
+
+let contadorActivo = false;
+    let intervaloContador;
+
+    function iniciarContador(totalSegundos) {
+        if (contadorActivo) return; // evitar múltiples contadores
+
+        contadorActivo = true;
+
+        function actualizarContador() {
+            totalSegundos++;
+
+            let horas = Math.floor(totalSegundos / 3600);
+            let minutos = Math.floor((totalSegundos % 3600) / 60);
+            let segundos = totalSegundos % 60;
+
+            let texto = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+            document.getElementById('duracion-texto-1t1').textContent = texto;
+        }
+
+        actualizarContador();
+        intervaloContador = setInterval(actualizarContador, 1000);
+    }
 </script>
 
 

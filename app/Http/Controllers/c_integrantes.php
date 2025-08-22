@@ -17,7 +17,8 @@ class c_integrantes extends Controller
     }
       $modelo= new m_integrantes();
       $jefes=$modelo-> m_veredadrepjefe(decrypt($cedula));
-        return view('v_integrantes',["variable"=>$cedula, 'jefes' => $jefes]);
+      $foliomenu =decrypt($cedula);
+        return view('v_integrantes',["variable"=>$cedula, 'jefes' => $jefes, 'foliomenu' => $foliomenu]);
       }
 
     public function fc_leerintegrantes(Request $request){

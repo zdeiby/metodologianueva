@@ -227,7 +227,7 @@
   <div id="firmaacepta" class="text-center" >
   
              
-  <div class="row">
+  <div class="row" style="display:none">
       <div class="col-sm">
           <div class="alert alert-info" role="alert" style="background:#bee5eb">
               En el siguiente cuadro realiza la firma y cuando este firmado oprime el botón <strong>Cargar Firma</strong>
@@ -241,8 +241,8 @@
       </div>
   </div>
   <div class="contenedor" >
-      <div class="row">
-          <div class="col-sm" >
+      <div class="row" >
+          <div class="col-sm" style="display:none">
               <div class="alert alert-secondary" role="alert">
                   <canvas id="draw-canvas"  width="620" height="180"  style="border:1px solid #0dcaf0">
                       No tienes un buen navegador.
@@ -252,13 +252,13 @@
       </div>
       <div class="row" >
           <div class="col-sm">
-              <input type="button" class="btn btn-primary btn-sm" id="draw-submitBtn" value="Cargar Firma"></input>
-              <input type="button" class="btn btn-warning btn-sm" id="draw-clearBtn" value="Limpiar Firma"></input>
-              <label>Color</label>
-              <input type="color" id="color">
-              <label>Tamaño Puntero</label>
-              <input type="range" id="puntero" min="1" default="1" max="5" width="10%"><hr>
-              <label for="">Si no puedes firmar puedes incluir la firma en foto, o un documento que avale</label><br>
+              <input style="display:none" type="button" class="btn btn-primary btn-sm" id="draw-submitBtn" value="Cargar Firma"></input>
+              <input style="display:none" type="button" class="btn btn-warning btn-sm" id="draw-clearBtn" value="Limpiar Firma"></input>
+              <label style="display:none">Color</label>
+              <input style="display:none" type="color" id="color">
+              <label style="display:none">Tamaño Puntero</label>
+              <input style="display:none" type="range" id="puntero" min="1" default="1" max="5" width="10%"><hr>
+              <label for="">Si no puedes firmar puedes incluir la firma en foto, o un documento que avale</label><hr><br>
                   <label class="btn btn-primary btn-sm" for="file-input">
                       <i class="fas fa-camera"></i> Seleccionar archivo de tu equipo 💻
                       <input type="file" id="file-input" accept="image/*" style="display: none;">
@@ -279,7 +279,7 @@
       <div class="row">
           <div class="col-sm">
               <div class="alert alert-info" role="alert" style="background:#bee5eb">
-                  Acá aparecerá la firma del usuario cargada.
+                  Acá aparecerá la fotografía de la visita o la planilla con la firma del hogar visitado.
               </div>
           </div>
       </div>

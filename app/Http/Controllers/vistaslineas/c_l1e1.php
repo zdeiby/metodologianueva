@@ -94,16 +94,14 @@ class c_l1e1 extends Controller
                   $documentodepropiedad .= '<option value="' . $value->id . '" class="noaplica'. $value->id.'">' . $value->pregunta . '</option>';
               }
           }
-  
-  
-  
+
     
           return view('vistaslineas/v_encuestahogarhabitabilidad',["variable"=>$folio, 
           'sino'=>$sino,
            'tipovivienda'=>$tipovivienda,'materialesdeparedes'=>$materialesdeparedes,
         'materialestecho'=>$materialesdetecho,'materialsuelo'=>$materialsuelo,
         'serviciospublicos'=>$serviciospublicos,'telecomunicaciones'=>$telecomunicaciones,'tipodetenenciau'=>$tipodetenenciau,
-        'documentodepropiedad'=>$documentodepropiedad,
+        'documentodepropiedad'=>$documentodepropiedad, 'foliomenu'=>decrypt($folio),
       ]);
         }
   
@@ -194,6 +192,7 @@ class c_l1e1 extends Controller
         'sino'=>$sino,'condicionespecial'=>$condicionespecial, 
         'familiacuidadora'=>$familiacuidadora, 
       'integrantes'=>$integrantes,
+      'foliomenu'=>decrypt($folio),
     ]);
       }
 
@@ -246,6 +245,7 @@ class c_l1e1 extends Controller
           return view('vistaslineas/v_encuestahogardatosgeograficos',["variable"=>$folio,
           'sino'=>$sino,
           "comunas"=>$comunas,"barrios"=>$barrios,'estrato'=>$estrato,'ubicacion'=>$ubicacion, 
+          'foliomenu'=>decrypt($folio),
       ]);
         }
 
@@ -269,7 +269,7 @@ class c_l1e1 extends Controller
           }
 
           return view('vistaslineas/v_encuestahogaralimentos',["variable"=>$folio, 
-          'sino'=>$sino,'numerodecomidas'=>$numerodecomidas,
+          'sino'=>$sino,'numerodecomidas'=>$numerodecomidas, 'foliomenu'=>decrypt($folio),
       ]);
         }
 
@@ -404,6 +404,7 @@ foreach ($sorted_preguntas as $value) {
         'planeacionfinanciera4'=>$planeacionfinanciera4,
         'disciplinapositiva'=>$disciplinapositiva,
         'tiempolibre'=>$tiempolibre,
+        'foliomenu'=>decrypt($folio),
       ]);
         }
 

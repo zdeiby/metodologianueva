@@ -62,6 +62,7 @@ class c_finalizacion extends Controller
                                                                     'folio'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla, 'linea'=>$linea,
                                                                      'paso'=>$paso,
+                                                                     'foliomenu'=>$encodedFolio[0],
                                                                     
                                                                     ]);
     }
@@ -109,7 +110,7 @@ class c_finalizacion extends Controller
                                                                     'folio'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla, 'linea'=>$linea,
                                                                      'paso'=>$paso,
-                                                                    
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                     ]);
     }
    
@@ -159,7 +160,8 @@ class c_finalizacion extends Controller
             return view('espaciodefinalizacion/v_finalizacion',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,'linea'=>$linea,
-                                                                     'paso'=>$paso
+                                                                     'paso'=>$paso,
+                                                                     'foliomenu'=>$encodedFolio[0],
                                                                     ]);
     }
 

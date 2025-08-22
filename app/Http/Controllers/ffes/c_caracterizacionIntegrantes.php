@@ -101,7 +101,10 @@ class c_caracterizacionIntegrantes extends Controller
             'estrategiasSeleccionadas' => $estrategiasSeleccionadas,
             'otroEspecificar' => $otroEspecificar,
             'existePrimeraInfancia' => $existePrimeraInfancia,
-            'existeMecanismosProteccion' => $existeMecanismosProteccion
+            'existeMecanismosProteccion' => $existeMecanismosProteccion,
+            'variable' => $folioDesencriptado,
+            'foliomenu' => $folioDesencriptado,
+            
         ]);
     }
     

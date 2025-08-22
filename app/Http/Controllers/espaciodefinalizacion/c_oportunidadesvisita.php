@@ -40,6 +40,7 @@ class c_oportunidadesvisita extends Controller
                                                                 
                                                                       'linea'=>$linea,
                                                                      'paso'=>$paso,
+                                                                     'foliomenu'=>$encodedFolio[0],
                                                                    
                                                                     ]);
     }
@@ -69,6 +70,7 @@ class c_oportunidadesvisita extends Controller
                                                                    
                                                                       'linea'=>$linea,
                                                                      'paso'=>$paso,
+                                                                     'foliomenu'=>$encodedFolio[0],
                                                                      
                                                                     ]);
     }

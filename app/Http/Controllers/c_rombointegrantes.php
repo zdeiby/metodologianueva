@@ -81,7 +81,7 @@ class c_rombointegrantes extends Controller
         return view('v_rombointegrantes',["variable"=>$folio, 'foliocodificado'=>$foliocodificado,  'existel100p10010' => $existel100p10010 ? 1 : 0, 
       'existel100p10020' => $existel100p10020 ? 1 : 0, 'existel100p10025' => $existel100p10025 ? 1 : 0, 'existel100p10030' => $existel100p10030 ? 1 : 0,  'existel100p10040' => $existel100p10040 ? 1 : 0, 
       'casillamatriz'=>$casilla,'integrantehogar' => $integrantehogar,
-      'metodologia' => $metodologia
+      'metodologia' => $metodologia, 'foliomenu'=>$folioDesencriptado,
         
     ]);
       }
@@ -155,8 +155,12 @@ class c_rombointegrantes extends Controller
             ],
             $data
         );
+
+        $inicio = Carbon::now();
+        $totalSegundos = $inicio->diffInSeconds(Carbon::now());
+
     
-        return response()->json(['message' => $folio]);
+        return response()->json(['message' => $folio, 'totalSegundos' => $totalSegundos]);
       }
 
 

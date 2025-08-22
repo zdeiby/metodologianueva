@@ -91,7 +91,9 @@ class c_caracterizacionIntegrantes_primerInfancia extends Controller
             'idintegranteEncriptado' => $hashids->encode($idintegranteDesencriptado),
             'datosIntegrante' => $datosIntegrante,
             'servicioSeleccionado' => $servicioExistente ? $servicioExistente->servicio_primera_infancia : null,
-            'serviciosPrimeraInfancia' => $serviciosPrimeraInfancia
+            'serviciosPrimeraInfancia' => $serviciosPrimeraInfancia,
+            'variable' => $folioDesencriptado,
+            'foliomenu' => $folioDesencriptado,
         ]);
     }
     

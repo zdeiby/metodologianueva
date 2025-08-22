@@ -67,17 +67,17 @@ Route::get('/sincronizacion',[c_sincronizacion::class, 'fc_sincronizacion'])->na
 Route::get('/login',[c_login::class, 'fc_login'])->name('login');
 
 
-Route::get('/editarintegrantes',[c_editarintegrantes::class, 'fc_editarintegrantes'])->name('editarintegrantes');
+Route::get('/editarintegrantes/{folio?}',[c_editarintegrantes::class, 'fc_editarintegrantes'])->name('editarintegrantes');
 Route::get('/responderencuesta',[c_editarintegrantes::class, 'fc_responderencuesta'])->name('responderencuesta'); 
 Route::get('/guardarintegrante',[c_editarintegrantes::class, 'fc_guardarintegrante'])->name('guardarintegrante');   
 Route::get('/guardaravatar',[c_editarintegrantes::class, 'fc_guardaravatar'])->name('guardaravatar');
 Route::get('/guardaridentitario',[c_editarintegrantes::class, 'fc_guardaridentitario'])->name('guardaridentitario');    
 Route::get('/consultarrepresentante',[c_editarintegrantes::class, 'fc_consultarrepresentante'])->name('consultarrepresentante');
 
-Route::get('/encuestaintegrantesfisicoemocional',[c_encuestaintegrantes::class, 'fc_encuestaintegrantesfisicoemocional'])->name('encuestaintegrantesfisicoemocional');
-Route::get('/encuestaintegrantesintelectual',[c_encuestaintegrantes::class, 'fc_encuestaintegrantesintelectual'])->name('encuestaintegrantesintelectual');   
-Route::get('/encuestaintegrantesfinanciero',[c_encuestaintegrantes::class, 'fc_encuestaintegrantesfinanciero'])->name('encuestaintegrantesfinanciero');
-Route::get('/encuestaintegranteslegal',[c_encuestaintegrantes::class, 'fc_encuestaintegranteslegal'])->name('encuestaintegranteslegal');
+Route::get('/encuestaintegrantesfisicoemocional/{folio?}',[c_encuestaintegrantes::class, 'fc_encuestaintegrantesfisicoemocional'])->name('encuestaintegrantesfisicoemocional');
+Route::get('/encuestaintegrantesintelectual/{folio?}',[c_encuestaintegrantes::class, 'fc_encuestaintegrantesintelectual'])->name('encuestaintegrantesintelectual');   
+Route::get('/encuestaintegrantesfinanciero/{folio?}',[c_encuestaintegrantes::class, 'fc_encuestaintegrantesfinanciero'])->name('encuestaintegrantesfinanciero');
+Route::get('/encuestaintegranteslegal/{folio?}',[c_encuestaintegrantes::class, 'fc_encuestaintegranteslegal'])->name('encuestaintegranteslegal');
 
 
 Route::get('/fisicoyemocional',[c_encuestaintegrantes::class, 'fc_fisicoyemocional'])->name('fisicoyemocional');
@@ -111,11 +111,11 @@ Route::get('/agregarpasoresultado',[c_rombointegrantes::class,'fc_agregarpasores
 
 
 Route::get('/register',[c_register::class,'fc_register'])->name('register');
-Route::get('/encuestahogarconformacionfamiliar/{lineaestacion}',[c_l1e1::class,'fc_encuestahogarconformacionfamiliar'])->name('encuestahogarconformacionfamiliar');
-Route::get('/hogarentornofamiliar/{lineaestacion}',[c_l1e1::class,'fc_hogarentornofamiliar'])->name('hogarentornofamiliar');
-Route::get('/encuestahogardatosgeograficos/{lineaestacion}',[c_l1e1::class,'fc_encuestahogardatosgeograficos'])->name('encuestahogardatosgeograficos');
-Route::get('/encuestahogarhabitabilidad/{lineaestacion}',[c_l1e1::class,'fc_encuestahogarhabitabilidad'])->name('encuestahogarhabitabilidad');     
-Route::get('/encuestahogaralimentos/{lineaestacion}',[c_l1e1::class,'fc_encuestahogaralimentos'])->name('encuestahogaralimentos');
+Route::get('/encuestahogarconformacionfamiliar/{folio}',[c_l1e1::class,'fc_encuestahogarconformacionfamiliar'])->name('encuestahogarconformacionfamiliar');
+Route::get('/hogarentornofamiliar/{folio}',[c_l1e1::class,'fc_hogarentornofamiliar'])->name('hogarentornofamiliar');
+Route::get('/encuestahogardatosgeograficos/{folio}',[c_l1e1::class,'fc_encuestahogardatosgeograficos'])->name('encuestahogardatosgeograficos');
+Route::get('/encuestahogarhabitabilidad/{folio}',[c_l1e1::class,'fc_encuestahogarhabitabilidad'])->name('encuestahogarhabitabilidad');     
+Route::get('/encuestahogaralimentos/{folio}',[c_l1e1::class,'fc_encuestahogaralimentos'])->name('encuestahogaralimentos');
 Route::get('/rombo/{folio}',[c_rombo::class,'fc_rombo'])->name('rombo');
 Route::get('/rombointegrantes/{folio}',[c_rombointegrantes::class,'fc_rombointegrantes'])->name('rombointegrantes');
 Route::get('/integrantes/{folio}',[c_integrantes::class,'fc_integrantes'])->name('integrantes');

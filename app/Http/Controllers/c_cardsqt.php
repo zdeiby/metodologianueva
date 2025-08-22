@@ -95,7 +95,8 @@ class c_cardsqt extends Controller
         'porcentaje_rojo_bi'=>$porcentaje_rojo_bi, 'porcentaje_verde_bi'=>$porcentaje_verde_bi, //'porcentaje_gris_bi'=>$porcentaje_gris_bi,
         'porcentaje_rojo_bf'=>$porcentaje_rojo_bf, 'porcentaje_verde_bf'=>$porcentaje_verde_bf, //'porcentaje_gris_bf'=>$porcentaje_gris_bf
         'tabla'=>$tabla,'linea'=>$linea, 'metodologia' => $metodologia,
-        'paso'=>$paso
+        'paso'=>$paso,
+        'foliomenu'=>$decodeFolio[0],
 
     ]);
       }

@@ -238,7 +238,8 @@
       folio=localStorage.getItem('folio');
       idintegrante=localStorage.getItem('idintegrante');
       $.ajax({
-        url:'./guardaravatar',
+        url: "{{ route('guardaravatar') }}",
+        //url:'./guardaravatar',
         data:{folio:folio, idintegrante:idintegrante, avatar:imagen},
         method: "GET",
         dataType:'JSON',
@@ -580,7 +581,8 @@ console.log(edad)
         $('#nombre').html(`Nombre: ${nombre} `);
 
         $.ajax({
-        url:'./leerpreguntas',
+       // url:'./leerpreguntas',
+         url: "{{ route('leerpreguntas') }}",
         data:{folio:folio, idintegrante:idintegrante},
         method: "GET",
         dataType:'JSON',
@@ -886,20 +888,65 @@ console.log(edad)
       })
       })
 
-      $('#siguiente').click(function(){
-        var url = "./encuestaintegrantesfinanciero";
-        window.location.href = url;  
+      // $('#siguiente').click(function(){
+      //   var url = "./encuestaintegrantesfinanciero";
+      //   window.location.href = url;  
         
-      });
-    
-      $('#volver').click(function(){
-        var url = "./encuestaintegrantesfisicoemocional";
-        window.location.href = url;
-      }); 
+      // });
 
-      $('#identificacion').click(function(){var url = "./encuestaintegrantesfisicoemocional"; window.location.href = url;})
-      $('#financiero').click(function(){var url = "./encuestaintegrantesfinanciero"; window.location.href = url;})
-      $('#legal').click(function(){var url = "./encuestaintegranteslegal"; window.location.href = url;})
+      $('#siguiente').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+
+            var url = "{{ route('encuestaintegrantesfinanciero', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio ?? '');
+
+            window.location.href = url;
+        });
+    
+      // $('#volver').click(function(){
+      //   var url = "./encuestaintegrantesfisicoemocional";
+      //   window.location.href = url;
+      // }); 
+      $('#volver').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+
+            var url = "{{ route('encuestaintegrantesfisicoemocional', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio ?? '');
+
+            window.location.href = url;
+        });
+
+      // $('#identificacion').click(function(){var url = "./encuestaintegrantesfisicoemocional"; window.location.href = url;})
+      // $('#financiero').click(function(){var url = "./encuestaintegrantesfinanciero"; window.location.href = url;})
+      // $('#legal').click(function(){var url = "./encuestaintegranteslegal"; window.location.href = url;})
+        $('#identificacion').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+
+            var url = "{{ route('encuestaintegrantesfisicoemocional', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio ?? '');
+
+            window.location.href = url;
+        });
+        $('#identatario').click(function () {
+        var folio = localStorage.getItem('folioencriptado');
+        var url = "{{ route('encuestaintegrantesintelectual', ['folio' => ':folio']) }}";
+        url = url.replace(':folio', folio);
+        window.location.href = url;
+        });
+
+        $('#financiero').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+            var url = "{{ route('encuestaintegrantesfinanciero', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio);
+            window.location.href = url;
+        });
+
+        $('#legal').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+            var url = "{{ route('encuestaintegranteslegal', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio);
+            window.location.href = url;
+        });
 
       function convertirAMayusculas(element) {
             element.value = element.value.toUpperCase();
@@ -938,7 +985,8 @@ console.log(edad)
         });
 
         $.ajax({
-            url: './intelectual',
+          url: "{{ route('intelectual') }}",
+            //url: './intelectual',
             method: $(this).attr('method'),
             data: {data: data},
             success: function(response) {

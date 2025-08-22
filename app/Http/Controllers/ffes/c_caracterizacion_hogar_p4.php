@@ -132,7 +132,9 @@ class c_caracterizacion_hogar_p4 extends Controller
                 'pregunta3Respondida' => $pregunta3Respondida,
                 'mostrarPregunta1' => $mostrarPregunta1,
                 'mostrarPregunta2' => $mostrarPregunta2,
-                'mostrarPregunta3' => $mostrarPregunta3
+                'mostrarPregunta3' => $mostrarPregunta3,
+                'variable' => $decodedFolio,
+                'foliomenu' => $decodedFolio,
             ]);
             
         } catch (\Exception $e) {

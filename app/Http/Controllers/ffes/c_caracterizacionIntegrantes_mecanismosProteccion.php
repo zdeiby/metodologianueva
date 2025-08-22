@@ -90,7 +90,9 @@ class c_caracterizacionIntegrantes_mecanismosProteccion extends Controller
             'idintegranteEncriptado' => $hashids->encode($idintegranteDesencriptado),
             'datosIntegrante' => $datosIntegrante,
             'servicioSeleccionado' => $respuestaExistente ? $respuestaExistente->conoce_institucion_mecanismo : null,
-            'serviciosPrimeraInfancia' => $opcionesConocimiento
+            'serviciosPrimeraInfancia' => $opcionesConocimiento,
+            'variable' => $folioDesencriptado,
+            'foliomenu' => $folioDesencriptado,
         ]);
     }
     

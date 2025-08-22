@@ -291,13 +291,14 @@ paginacargando();
       folio=localStorage.getItem('folio');
       idintegrante=localStorage.getItem('idintegrante');
       $.ajax({
-        url:'./guardaravatar',
+        url: "{{ route('guardaravatar') }}",
+        //url:'./guardaravatar',
         data:{folio:folio, idintegrante:idintegrante, avatar:imagen},
         method: "GET",
         dataType:'JSON',
         success:function(data){
-          $('#imagenDinamica').attr('src',`../public/avatares/${imagen}.png`);
-          localStorage.setItem('imagen',`../public/avatares/${imagen}.png`)
+          $('#imagenDinamica').attr('src',`../../public/avatares/${imagen}.png`);
+          localStorage.setItem('imagen',`../../public/avatares/${imagen}.png`)
           $('#exampleModal').modal('hide');
         },
         error: function(xhr, status, error) {
@@ -539,7 +540,8 @@ $('input[name="psicosocial2[]"]').change(function() {
         $('#nombre').html(`Nombre: ${nombre} `);
 
         $.ajax({
-        url:'./leerpreguntas',
+           url: "{{ route('leerpreguntas') }}",
+       // url:'./leerpreguntas',
         data:{folio:folio, idintegrante:idintegrante},
         method: "GET",
         dataType:'JSON',
@@ -609,11 +611,11 @@ $('input[name="psicosocial2[]"]').change(function() {
         
         // console.log(data.imagen.avatar , 'avatar')
  if(data.imagen.avatar != null){
-   $('#imagenDinamica').attr('src',`../public/avatares/${data.imagen.avatar}.png`) 
+   $('#imagenDinamica').attr('src',`../../public/avatares/${data.imagen.avatar}.png`) 
   
  }else{
   console.log(data.imagen.avatar , 'avatar')
-  $('#imagenDinamica').attr('src',`../public/avatares/${(data.imagen.sexo == '12')?'../avatares/hombre_avatar':'../avatares/mujer_avatar'}.png`)
+  $('#imagenDinamica').attr('src',`../../public/avatares/${(data.imagen.sexo == '12')?'../../avatares/hombre_avatar':'../../avatares/mujer_avatar'}.png`)
  }
     //     let acceso3 = JSON.parse(data.integrantes.acceso3); // ["49", "54"]
           
@@ -1033,25 +1035,65 @@ $('input[name="psicosocial2[]"]').change(function() {
         redirectToIntegrantes()
       });
 
-      $('#identatario').click(function(){var url = "./encuestaintegrantesintelectual"; window.location.href = url;})
-      $('#financiero').click(function(){var url = "./encuestaintegrantesfinanciero"; window.location.href = url;})
-      $('#legal').click(function(){var url = "./encuestaintegranteslegal"; window.location.href = url;})
+      // $('#identatario').click(function(){var url = "./encuestaintegrantesintelectual"; window.location.href = url;})
+      // $('#financiero').click(function(){var url = "./encuestaintegrantesfinanciero"; window.location.href = url;})
+      // $('#legal').click(function(){var url = "./encuestaintegranteslegal"; window.location.href = url;})
+        $('#identatario').click(function () {
+        var folio = localStorage.getItem('folioencriptado');
+        var url = "{{ route('encuestaintegrantesintelectual', ['folio' => ':folio']) }}";
+        url = url.replace(':folio', folio);
+        window.location.href = url;
+        });
+
+        $('#financiero').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+            var url = "{{ route('encuestaintegrantesfinanciero', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio);
+            window.location.href = url;
+        });
+
+        $('#legal').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+            var url = "{{ route('encuestaintegranteslegal', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio);
+            window.location.href = url;
+        });
 
       function convertirAMayusculas(element) {
             element.value = element.value.toUpperCase();
         }
 
+      // function redirectToIntegrantes() {
+      //      var folio = window.localStorage.getItem('folioencriptado');
+      //      var url = "../public/integrantes/:folio";
+      //      url = url.replace(':folio', folio);
+      //      window.location.href = url;
+      //  }
       function redirectToIntegrantes() {
-           var folio = window.localStorage.getItem('folioencriptado');
-           var url = "../public/integrantes/:folio";
-           url = url.replace(':folio', folio);
-           window.location.href = url;
-       }
+            var folio = localStorage.getItem('folioencriptado');
 
-       function redirectToIntelectual() {
-           var url = "./encuestaintegrantesintelectual";
-           window.location.href = url;
-       }
+            // armamos la ruta con placeholder
+            var url = "{{ route('integrantes', ['folio' => ':folio']) }}";
+
+            // reemplazamos el placeholder por el valor real
+            url = url.replace(':folio', folio ?? '');
+
+            window.location.href = url;
+        }
+
+      //  function redirectToIntelectual() {
+      //      var url = "./encuestaintegrantesintelectual";
+      //      window.location.href = url;
+      //  }
+
+      function redirectToIntelectual() {
+          var folio = localStorage.getItem('folioencriptado');
+
+          var url = "{{ route('encuestaintegrantesintelectual', ['folio' => ':folio']) }}";
+          url = url.replace(':folio', folio ?? '');
+
+          window.location.href = url;
+      }
 
        $('input[name="acceso3[]"]').change(function() {
         if ($('input[name="acceso3[]"]:visible:checked').length > 0) {
@@ -1252,7 +1294,8 @@ data['acceso3'].forEach(item => {
 
         // Enviar los datos usando AJAX
         $.ajax({
-            url: './fisicoyemocional',
+          url: "{{ route('fisicoyemocional') }}",
+           // url: './fisicoyemocional',
             method: $(this).attr('method'),
             data: {data: data},
             success: function(response) {

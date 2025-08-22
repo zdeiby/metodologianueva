@@ -12,7 +12,7 @@ use Carbon\Carbon;
 
 class c_editarintegrantes extends Controller
 {
-    public function fc_editarintegrantes(){
+    public function fc_editarintegrantes(Request $request, $cedula = null){
       if (!session('nombre')) {
         // Si no existe la sesión 'usuario', redirigir al login
         return redirect()->route('login');
@@ -103,7 +103,9 @@ class c_editarintegrantes extends Controller
               return view('v_editarintegrantes',['sino'=>$sino,
               'paises'=>$paises,'tipodocumento'=>$tipodocumento,'sexo'=>$sexo,
               'orientacion'=>$orientacion, 'identidad'=>$identidad, 'etnia'=>$etnia,
-               'migrantes2'=>$migrantes2, 'parentesco'=>$parentesco, 'estadocivil'=>$estadocivil]);
+               'migrantes2'=>$migrantes2, 'parentesco'=>$parentesco, 'estadocivil'=>$estadocivil,
+              'foliomenu'=>decrypt($cedula), 'variable'=>$cedula
+              ]);
             }
 
             public function fc_responderencuesta(Request $request)

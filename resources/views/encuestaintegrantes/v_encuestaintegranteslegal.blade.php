@@ -190,7 +190,8 @@ console.log(edad)
         $('#nombre').html(`Nombre: ${nombre} `);
 
         $.ajax({
-        url:'./leerpreguntas',
+          url: "{{ route('leerpreguntas') }}",
+        //url:'./leerpreguntas',
         data:{folio:folio, idintegrante:idintegrante},
         method: "GET",
         dataType:'JSON',
@@ -355,22 +356,68 @@ paginalista();
             element.value = element.value.toUpperCase();
         }
 
-        function redirectToIntegrantes() {
-           var folio = window.localStorage.getItem('folioencriptado');
-           var url = "../public/integrantes/:folio";
-           url = url.replace(':folio', folio);
-           window.location.href = url;
-       }
+      //   function redirectToIntegrantes() {
+      //      var folio = window.localStorage.getItem('folioencriptado');
+      //      var url = "../public/integrantes/:folio";
+      //      url = url.replace(':folio', folio);
+      //      window.location.href = url;
+      //  }
+
+      function redirectToIntegrantes() {
+          var folio = localStorage.getItem('folioencriptado');
+          var url = "{{ route('integrantes', ['folio' => ':folio']) }}";
+          url = url.replace(':folio', folio ?? '');
+          window.location.href = url;
+      }
 
 
-       $('#identificacion').click(function(){var url = "./encuestaintegrantesfisicoemocional"; window.location.href = url;})
-      $('#financiero').click(function(){var url = "./encuestaintegrantesfinanciero"; window.location.href = url;})
-      $('#identatario').click(function(){var url = "./encuestaintegrantesintelectual"; window.location.href = url;})
+      //  $('#identificacion').click(function(){var url = "./encuestaintegrantesfisicoemocional"; window.location.href = url;})
+      // $('#financiero').click(function(){var url = "./encuestaintegrantesfinanciero"; window.location.href = url;})
+      // $('#identatario').click(function(){var url = "./encuestaintegrantesintelectual"; window.location.href = url;})
+
+
+       $('#identificacion').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+
+            var url = "{{ route('encuestaintegrantesfisicoemocional', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio ?? '');
+
+            window.location.href = url;
+        });
+        $('#identatario').click(function () {
+        var folio = localStorage.getItem('folioencriptado');
+        var url = "{{ route('encuestaintegrantesintelectual', ['folio' => ':folio']) }}";
+        url = url.replace(':folio', folio);
+        window.location.href = url;
+        });
+
+        $('#financiero').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+            var url = "{{ route('encuestaintegrantesfinanciero', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio);
+            window.location.href = url;
+        });
+
+        $('#legal').click(function () {
+            var folio = localStorage.getItem('folioencriptado');
+            var url = "{{ route('encuestaintegranteslegal', ['folio' => ':folio']) }}";
+            url = url.replace(':folio', folio);
+            window.location.href = url;
+        });
+
+
+
+      // $('#atras3').click(function(){
+      //   var url = "./encuestaintegrantesfinanciero";
+      //   window.location.href = url;
+      // }); 
 
       $('#atras3').click(function(){
-        var url = "./encuestaintegrantesfinanciero";
-        window.location.href = url;
-      }); 
+          var folio = localStorage.getItem('folioencriptado');
+          var url = "{{ route('encuestaintegrantesfinanciero', ['folio' => ':folio']) }}";
+          url = url.replace(':folio', folio ?? '');
+          window.location.href = url;
+      });
 
      
       $('input[name="mecanismosdeproteccionddhh3[]"]').change(function() {
@@ -458,7 +505,8 @@ paginalista();
   });
 
         $.ajax({
-            url: './legal',
+          url: "{{ route('legal') }}",
+            //url: './legal',
             method: $(this).attr('method'),
             data: {data: data},
             success: function(response) {
