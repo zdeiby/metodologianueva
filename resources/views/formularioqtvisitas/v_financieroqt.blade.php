@@ -89,7 +89,7 @@
                   <!-- Solo mensaje cuando no hay ningún indicador visible -->
                   <span class="badge bg-primary" style="font-size:15px; background:#ff8403 !important">Bienestar financiero</span>
                   <div class="alert alert-success text-center mt-3">
-                    No tienes indicadores en rojo en este bienestar. Pasa al siguiente bienestar.
+                    🚨 No hay indicadores que mover en esta categoría
                   </div>
                 @else
 
