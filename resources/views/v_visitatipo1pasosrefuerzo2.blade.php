@@ -260,7 +260,7 @@ body {
       </div>
 
 
-       <div class="swiper-slide" style="display:">
+       <!-- <div class="swiper-slide" style="display:">
         <div class="card_wrapper">
           <div class="card">
             <div class="content">
@@ -280,7 +280,7 @@ body {
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- 4ta tarjeta -->
       <div class="swiper-slide" style="display:">

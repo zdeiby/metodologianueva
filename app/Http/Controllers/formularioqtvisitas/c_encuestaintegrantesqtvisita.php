@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\formularioqt;
+namespace App\Http\Controllers\formularioqtvisitas;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ use Hashids\Hashids;
 use App\Models\m_herramientas;
 use App\Models\m_oportunidades;
 use Illuminate\Support\Str; 
-class c_encuestaintegrantesqt extends Controller
+class c_encuestaintegrantesqtvisita extends Controller
 {
 
 protected $metodologia;
@@ -258,7 +258,7 @@ protected $metodologia;
             
             
 
-            return view('formularioqt/v_bienestarsaludemocionalqt',  $datos,['representante'=>$representante,'variable'=>$folio,
+            return view('formularioqtvisitas/v_bienestarsaludemocionalqt',  $datos,['representante'=>$representante,'variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] ,
                                                                     'integrantecodificado'=>$integrante , 
                                                                      'tabla'=>$tabla, 'indicador_bse_1'=>$indicador_bse_1 ,'indicador_bse_2'=>$indicador_bse_2 , 'indicador_bse_3'=>$indicador_bse_3, 'indicador_bse_4'=>$indicador_bse_4, 'indicador_bse_5'=>$indicador_bse_5,
@@ -518,7 +518,7 @@ protected $metodologia;
             }
             
   
-     return view('formularioqt/v_legalqt', $datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,'indicador_bl_1'=>$indicador_bl_1,'indicador_bl_2'=>$indicador_bl_2,
+     return view('formularioqtvisitas/v_legalqt', $datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,'indicador_bl_1'=>$indicador_bl_1,'indicador_bl_2'=>$indicador_bl_2,
     'indicador_bl_3'=>$indicador_bl_3, 'indicador_bl_4'=>$indicador_bl_4, 'indicador_bl_5'=>$indicador_bl_5,'indicador_bl_6'=>$indicador_bl_6,'indicador_bl_7'=>$indicador_bl_7,
     'indicador_bl_8'=>$indicador_bl_8, 'indicador_bl_9'=>$indicador_bl_9, 'indicador_bl_10'=>$indicador_bl_10, 
         'indicador_bl_11'=>$indicador_bl_11,
@@ -705,7 +705,7 @@ protected $metodologia;
 
                         
 
-                        return view('formularioqt/v_enfamiliaqt',$datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
+                        return view('formularioqtvisitas/v_enfamiliaqt',$datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
                     'indicador_bef_1'=>$indicador_bef_1,'indicador_bef_2'=>$indicador_bef_2,'indicador_bef_3'=>$indicador_bef_3,'indicador_bef_4'=>$indicador_bef_4,
                     'indicador_bef_5'=>$indicador_bef_5,'indicador_bef_6'=>$indicador_bef_6 , 'indicador_bef_7'=> $indicador_bef_7, 'metodologia'=>$metodologia,
                      'indicadores_tabla'=>$indicadores_tabla,
@@ -885,7 +885,7 @@ protected $metodologia;
 
 
 
-        return view('formularioqt/v_intelectualqt',$datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
+        return view('formularioqtvisitas/v_intelectualqt',$datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante ,  'tabla'=>$tabla,
         'indicador_bi_1'=>$indicador_bi_1,'indicador_bi_2'=>$indicador_bi_2,
          'indicador_bi_3'=>$indicador_bi_3,'indicador_bi_4'=>$indicador_bi_4,'indicador_bi_5'=>$indicador_bi_5,'indicador_bi_6'=>$indicador_bi_6,
           'indicadores_tabla'=>$indicadores_tabla, 'edad'=>$datospersonales[0]->edad,
@@ -1036,7 +1036,7 @@ protected $metodologia;
         
 
 
-        return view('formularioqt/v_financieroqt', $datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante, 'tabla'=>$tabla,
+        return view('formularioqtvisitas/v_financieroqt', $datos,['representante'=>$representante,'variable'=>$folio, 'folio'=>$encodedFolio[0],'integrante'=>$decodeIntegrante[0] , 'integrantecodificado'=>$integrante, 'tabla'=>$tabla,
     'indicador_bf_1'=>$indicador_bf_1,'indicador_bf_2'=>$indicador_bf_2,'indicador_bf_3'=>$indicador_bf_3,'indicador_bf_4'=>$indicador_bf_4,'indicador_bf_5'=>$indicador_bf_5
     , 'indicadores_tabla'=>$indicadores_tabla, 'edad'=>$datospersonales[0]->edad,
     'foliomenu'=>$encodedFolio[0],
@@ -1824,7 +1824,7 @@ protected $metodologia;
 
         $modal2 .=  '<div class="modal fade" id="detalle-modal-'.$value->id_oportunidad.'" tabindex="-1" 
         aria-labelledby="detalle-modalLabel-'.$value->id_oportunidad.'" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="detalle-modalLabel-'.$value->id_oportunidad.'">
@@ -1854,7 +1854,7 @@ protected $metodologia;
         $modal='';
         // Excluir 'folio' e 'idintegrante' del request y guardar el resto en $data
         $modal .=  '<div class="modal fade modal-xl" id="modal-'.$id_indicador.'" tabindex="-1" aria-labelledby="modalLabel-'.$id_indicador.'" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalLabel-'.$id_indicador.'" >Mover indicador</h5>

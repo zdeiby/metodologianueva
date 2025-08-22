@@ -59,9 +59,9 @@
       <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link " >FICHERO DE OPORTUNIDADES (Hogar)</a>
       </li>
-      <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
-      </li> -->
+        <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="indicadores"  class="nav-link ">GESTIÓN INDICADORES</a>
+      </li> 
   
 </ul>
 
@@ -305,7 +305,7 @@
 
       $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidadest1refuerzo2/<?= $variable ?>"; window.location.href = url;})
       $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogart1refuerzo2/<?= $variable ?>"; window.location.href = url;})
-    // $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
+     $('#indicadores').click(function(){var url = "../indicadorest1refuerzo2/<?= $variable ?>"; window.location.href = url;})
       
 
     

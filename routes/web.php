@@ -23,6 +23,9 @@ use App\Http\Controllers\c_sincronizacion;
 use App\Http\Controllers\c_cardsqt;
 use App\Http\Controllers\c_cardsqt_visitas;
 use App\Http\Controllers\formularioqt\c_encuestaintegrantesqt;
+use App\Http\Controllers\formularioqtvisitas\c_encuestaintegrantesqtvisita;
+
+
 use App\Http\Controllers\c_visitatipo1pasos;   
 use App\Http\Controllers\accionesmovilizadoras\c_momentoconciente;
 // use App\Http\Controllers\c_compromisostipo1;
@@ -35,6 +38,8 @@ use App\Http\Controllers\c_visitatipo1pasosrefuerzo2;
 use App\Http\Controllers\accionesmovilizadorast1refuerzo2\c_momentoconcientet1refuerzo2;
 use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_oportunidadesvisitat1refuerzo2;
 use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_finalizaciont1refuerzo2;
+
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_indicadorest1refuerzo2;
 
 // refuerzo t1 1
 use App\Http\Controllers\c_visitatipo1pasosrefuerzo1; 
@@ -329,8 +334,54 @@ Route::get('/consultarrepresentantedatosgeneral',[c_editarintegrantesdatosgenera
 
 Route::get('/editarencuestahogardatosgeograficos/{lineaestacion}',[c_editarhogardatosgeograficos::class,'fc_encuestahogardatosgeograficos'])->name('encuestahogardatosgeograficos');
 
+Route::get('/indicadorest1refuerzo2/{folio}',[c_indicadorest1refuerzo2::class,'fc_indicadorest1refuerzo2'])->name('indicadorest1refuerzo2');
 
 
 
 
 require __DIR__.'/webfess.php'; // rutas para la sincronizacion arriba   busca las rutas en routes/sincroarriba.php
+
+
+
+
+
+
+// RUTAS PARA LA QT VISITAS
+
+Route::get('/bienestarsaludemocionalqtvisita/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqtvisita::class, 'fc_bienestarsaludemocionalqt'])->name('bienestarsaludemocionalqtvisita');
+Route::get('/legalqtvisita/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqtvisita::class, 'fc_legalqt'])->name('legalqtvisita');
+Route::get('/enfamiliaqtvisita/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqtvisita::class, 'fc_enfamiliaqt'])->name('enfamiliaqtvisita');
+Route::get('/intelectualqtvisita/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqtvisita::class, 'fc_intelectualqt'])->name('intelectualqtvisita');
+Route::get('/financieroqtvisita/{folio}/{idintegrante}/{vista}',[c_encuestaintegrantesqtvisita::class, 'fc_financieroqt'])->name('financieroqtvisita');
+// Route::get('/finalizarintegrantesqt',[c_cardsqt::class,'fc_finalizarintegrantesqt'])->name('finalizarintegrantesqt');
+// Route::get('/consultarindicador',[c_encuestaintegrantesqt::class,'fc_consultarindicador'])->name('consultarindicador');
+// Route::get('/consultarindicadorhogar',[c_encuestaintegrantesqt::class,'fc_consultarindicadorhogar'])->name('consultarindicadorhogar');
+// Route::get('/moverindicadorgestor',[c_encuestaintegrantesqt::class,'fc_moverindicadorgestor'])->name('moverindicadorgestor');
+// Route::get('/moverindicadorgestorhogar',[c_encuestaintegrantesqt::class,'fc_moverindicadorgestorhogar'])->name('moverindicadorgestorhogar');
+
+// Route::get('/moverporpregunta13',[c_encuestaintegrantesqt::class,'fc_moverporpregunta13'])->name('moverporpregunta13');
+// Route::get('/moverporpregunta17',[c_encuestaintegrantesqt::class,'fc_moverporpregunta17'])->name('moverporpregunta17');
+// Route::get('/moverporpregunta31',[c_encuestaintegrantesqt::class,'fc_moverporpregunta31'])->name('moverporpregunta31');
+// Route::get('/moverporpregunta32',[c_encuestaintegrantesqt::class,'fc_moverporpregunta32'])->name('moverporpregunta32');
+// Route::get('/moverporpregunta34',[c_encuestaintegrantesqt::class,'fc_moverporpregunta34'])->name('moverporpregunta34');
+// Route::get('/moverporpregunta41',[c_encuestaintegrantesqt::class,'fc_moverporpregunta41'])->name('moverporpregunta41');
+// Route::get('/moverporpregunta54',[c_encuestaintegrantesqt::class,'fc_moverporpregunta54'])->name('moverporpregunta54');
+// Route::get('/moverporpregunta55',[c_encuestaintegrantesqt::class,'fc_moverporpregunta55'])->name('moverporpregunta55');
+
+// Route::get('/moverporpregunta33',[c_encuestaintegrantesqt::class,'fc_moverporpregunta33'])->name('moverporpregunta33');
+// Route::get('/moverporpregunta27',[c_encuestaintegrantesqt::class,'fc_moverporpregunta27'])->name('moverporpregunta27');
+
+// Route::get('/moverporpregunta29',[c_encuestaintegrantesqt::class,'fc_moverporpregunta29'])->name('moverporpregunta29');
+// Route::get('/moverporpregunta35',[c_encuestaintegrantesqt::class,'fc_moverporpregunta35'])->name('moverporpregunta35');
+
+
+// Route::get('/moverporpregunta18',[c_encuestaintegrantesqt::class,'fc_moverporpregunta18'])->name('moverporpregunta18'); //ffes
+// Route::get('/moverporpregunta19',[c_encuestaintegrantesqt::class,'fc_moverporpregunta19'])->name('moverporpregunta19'); //ffes
+// Route::get('/moverporpregunta110',[c_encuestaintegrantesqt::class,'fc_moverporpregunta110'])->name('moverporpregunta110'); //ffes
+// Route::get('/moverporpregunta211',[c_encuestaintegrantesqt::class,'fc_moverporpregunta211'])->name('moverporpregunta211'); //ffes
+// Route::get('/moverporpregunta37',[c_encuestaintegrantesqt::class,'fc_moverporpregunta37'])->name('moverporpregunta37'); //ffes
+// Route::get('/moverporpregunta212',[c_encuestaintegrantesqt::class,'fc_moverporpregunta212'])->name('moverporpregunta212'); //ffes
+
+
+
+// Route::get('/guardarformularioqt',[c_encuestaintegrantesqt::class, 'fc_guardarformularioqt'])->name('guardarformularioqt');
