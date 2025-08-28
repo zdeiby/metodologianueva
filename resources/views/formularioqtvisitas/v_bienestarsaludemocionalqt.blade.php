@@ -70,7 +70,7 @@
                 <div class="col-md-3" style="display:none"><input type="text" class="form-control form-control-sm" id="usuario" name="usuario" value="{{ Session::get('cedula') }}"></div>
                 <div class="col-md-3" style="display:none"><input type="text" class="form-control form-control-sm" id="tabla" name="tabla" value="{{$tabla}}"></div>
 
-                <span class="badge bg-primary" style="font-size:15px; background:#a80a85 !important">Salud y Bienestar</span>
+                <span class="badge bg-primary" style="font-size:15px; background:#a80a85 !important">Bienestar Salud emocional</span>
 
                 {{-- ===== SALUD Y BIENESTAR (1–6) condicional + autowidth ===== --}}
                 @php
@@ -203,7 +203,7 @@
                   </div><!-- /container -->
                 @else
                   <div class="alert alert-success text-center mt-3">
-                    No tienes indicadores en rojo en este bienestar. Pasa al siguiente bienestar.
+                    🚨 No hay indicadores que mover en esta categoría
                   </div>
                 @endif
                 {{-- ===== FIN SALUD Y BIENESTAR ===== --}}

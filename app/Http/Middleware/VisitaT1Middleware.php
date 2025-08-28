@@ -33,7 +33,8 @@ class VisitaT1Middleware
             'ficherodeoportunidadeshogart1refuerzo2',
             'informevisitat1refuerzo2',
             'finalizaciont1refuerzo2',
-            'rombovisitatipo1refuerzo2'
+            'rombovisitatipo1refuerzo2',
+            'indicadorest1refuerzo2'
         ];
 
 

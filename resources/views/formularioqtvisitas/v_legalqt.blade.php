@@ -102,8 +102,11 @@
                   $hayAlgoLegal = $idVisible || $ajVisible || $ffesVisible;
                 @endphp
 
+                <span class="badge bg-primary" style="font-size:15px; background:#a80a85 !important">Bienestar Legal</span>
+
                 @if(!$hayAlgoLegal)
                   <!-- Mostrar SOLO el mensaje cuando no hay ningún indicador -->
+                   
                   <div class="alert alert-success text-center mt-3">
                     🚨 No hay indicadores que mover en esta categoría
                   </div>
