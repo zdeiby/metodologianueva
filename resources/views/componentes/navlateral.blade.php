@@ -515,6 +515,18 @@ function soloNumeros(e) {
                 </div>
                 @endif
 
+                 @if(!empty($esVisitaT1R3))
+                <div id="contador-visita-t1r3"
+                    data-segundos="{{ $totalSegundosT1R3 }}"
+                    class="text-white text-center"
+                    style="background:#00bfff; padding:6px; border-radius:5px;">
+                    <strong>Cuarta Visita T1</strong><br>
+                    Dur: <span id="duracion-texto-t1r3">
+                        {{ $duracionT1R3 }}@if($activarContadorT1R3):{{ sprintf('%02d', $totalSegundosT1R3 % 60) }}@endif
+                    </span> min
+                </div>
+                @endif
+
 
                  @if(!empty($esVisita1T1))
                 <div id="contador-visita-1t1"
@@ -1034,6 +1046,30 @@ document.addEventListener("DOMContentLoaded", function () {
         actualizarContador();
         setInterval(actualizarContador, 1000);
     });
+</script>
+@endif
+
+
+@if(!empty($activarContadorT1R3) && !empty($totalSegundosT1R3))
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const contador = document.getElementById('contador-visita-t1r3');
+    if (!contador) return;
+
+    let totalSegundos = parseInt(contador.getAttribute('data-segundos')) || 0;
+
+    function actualizarContador() {
+        totalSegundos++;
+        let horas = Math.floor(totalSegundos / 3600);
+        let minutos = Math.floor((totalSegundos % 3600) / 60);
+        let segundos = totalSegundos % 60;
+
+        document.getElementById('duracion-texto-t1r3').textContent = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+    }
+
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+});
 </script>
 @endif
 

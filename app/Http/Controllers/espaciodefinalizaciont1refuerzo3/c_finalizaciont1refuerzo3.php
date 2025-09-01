@@ -32,8 +32,8 @@ class c_finalizaciont1refuerzo3 extends Controller
             $tabla = 't1_v1actualizacionnovedades';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 200;
-            $paso= 20050;
+            $linea= 500;
+            $paso= 50050;
            
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
@@ -60,6 +60,7 @@ class c_finalizaciont1refuerzo3 extends Controller
 
             return view('espaciodefinalizaciont1refuerzo3/v_actualizacionnovedadest1refuerzo3',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla, 'linea'=>$linea,
                                                                      'paso'=>$paso,
                                                                     
@@ -79,8 +80,8 @@ class c_finalizaciont1refuerzo3 extends Controller
             $tabla = 't1_informesvisitas';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 200;
-            $paso= 20050;
+            $linea= 500;
+            $paso= 50050;
            
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
@@ -107,6 +108,7 @@ class c_finalizaciont1refuerzo3 extends Controller
 
             return view('espaciodefinalizaciont1refuerzo3/v_informevisitat1refuerzo3',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla, 'linea'=>$linea,
                                                                      'paso'=>$paso,
                                                                     
@@ -125,8 +127,8 @@ class c_finalizaciont1refuerzo3 extends Controller
             $tabla = 't1_v1finalizacion';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 200;
-            $paso= 20050;
+            $linea= 500;
+            $paso= 50050;
            
            
             $informacion = DB::table($tabla)
@@ -158,6 +160,7 @@ class c_finalizaciont1refuerzo3 extends Controller
 
             return view('espaciodefinalizaciont1refuerzo3/v_finalizaciont1refuerzo3',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,'linea'=>$linea,
                                                                      'paso'=>$paso
                                                                     ]);
@@ -166,7 +169,7 @@ class c_finalizaciont1refuerzo3 extends Controller
 
 
     
-     public function fc_guardarfinalizacionest1refuerzo3(Request $request)
+     public function fc_guardarfinalizaciones(Request $request)
      {
          $folio = $request->input('folio');
          $tabla = $request->input('tabla');
@@ -279,7 +282,7 @@ class c_finalizaciont1refuerzo3 extends Controller
           });
       
           // Codificar la imagen en binario en el formato original
-          $processedImageData = (string) $image->encode($imageFormat, 50); // Ajuste de calidad
+          $processedImageData = (string) $image->encode($imageFormat, 45); // Ajuste de calidad
       
           $now = Carbon::now();
           $data = $request->except(['folio', 'tabla', 'linea', 'paso', '_token']);
@@ -308,10 +311,10 @@ class c_finalizaciont1refuerzo3 extends Controller
       
       
 
-      public function fc_finalizarvisita(Request $request){
+      public function fc_finalizarvisitat1refuerzo3(Request $request){
         $now = Carbon::now();
         $folio = $request->input('folio');
-        $linea = 200;  // poner linea 
+        $linea = $request->input('linea');
         //$paso = 20060;  // poner paso
         $usuario = $request->input('usuario'); // Este campo no es clave primaria
   

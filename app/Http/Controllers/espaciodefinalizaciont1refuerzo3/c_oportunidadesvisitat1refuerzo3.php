@@ -28,14 +28,15 @@ class c_oportunidadesvisitat1refuerzo3 extends Controller
            $tabla = 't1_oportunidad_integrantes';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 200;
-            $paso= 20040;
+            $linea= 500;
+            $paso= 50040;
     
          
 
 
             return view('espaciodefinalizaciont1refuerzo3/v_ficherodeoportunidadest1refuerzo3', ['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,
                                                                 
                                                                       'linea'=>$linea,
@@ -56,8 +57,8 @@ class c_oportunidadesvisitat1refuerzo3 extends Controller
             $tabla = 't1_accionmovilizadoraqt';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 200;
-            $paso= 20040;
+            $linea= 500;
+            $paso= 50040;
             $modelo = new m_oportunidades();
             // $oportunidad = $modelo-> m_listadooportunidades();
 
@@ -65,6 +66,7 @@ class c_oportunidadesvisitat1refuerzo3 extends Controller
 
             return view('espaciodefinalizaciont1refuerzo3/v_ficherodeoportunidadeshogart1refuerzo3',  ['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,
                                                                    
                                                                       'linea'=>$linea,

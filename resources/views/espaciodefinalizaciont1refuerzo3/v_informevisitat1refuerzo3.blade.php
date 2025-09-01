@@ -32,7 +32,7 @@
             <div class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <div>
-                <span class="badge bg-primary" id=""  style="font-size:15px">Actualización y/o Novedades del hogar</span> 
+                <span class="badge bg-primary" id=""  style="font-size:15px">ESPACIO DE FINALIZACIÓN</span> 
                 <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
                
               </div>
@@ -52,10 +52,10 @@
       <div class="accordion-body">
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item" role="presentation"  style="cursor:pointer">
+      <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="bienestarsaludemocionalqt" class="nav-link ">ACTUALIZACIÓN Y/O NOVEDADES
         </a>
-      </li>
+      </li> -->
        <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link active" >INFORME DE LA VISITA</a>
       </li>
@@ -105,9 +105,11 @@
 
 
           <div class="alert alert-info" role="alert" style="background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460;">
-            <b>INFORME CUALITATIVO DEL GESTOR SOBRE EL DESARROLLO DE LA VISITA AL HOGAR.</b> Este cuadro permite al gestor detallar el desempeño y resultados obtenidos durante la visita al hogar, proporcionando una visión cualitativa del proceso. <br>
+            <!-- <b>INFORME CUALITATIVO DEL GESTOR SOBRE EL DESARROLLO DE LA VISITA AL HOGAR.</b> Este cuadro permite al gestor detallar el desempeño y resultados obtenidos durante la visita al hogar, proporcionando una visión cualitativa del proceso. <br>
             <b>DESCRIPCIÓN DEL PROCESO.</b> En este espacio, el gestor puede describir de manera libre y detallada cómo se llevó a cabo la visita, los aspectos positivos y áreas de mejora identificadas, así como cualquier circunstancia o interacción relevante que haya influido en el desarrollo de la misma. <br>
-            <b>PROPÓSITO.</b> El objetivo es que el gestor pueda reflejar su experiencia de manera clara, permitiendo una evaluación más completa del impacto de la visita y facilitando la planificación de acciones futuras. 
+            <b>PROPÓSITO.</b> El objetivo es que el gestor pueda reflejar su experiencia de manera clara, permitiendo una evaluación más completa del impacto de la visita y facilitando la planificación de acciones futuras.  -->
+            Gestor describa en modo <b>informe cualitativo el desarrollo de la visita</b> al hogar, destacando tanto <b>los aspectos positivos</b> como las áreas de mejora, siendo estratégicos en lo que se informa y que fue identificado en la visita: <b>interacciones relevantes y circunstancias que hayan influido en su desarrollo</b>.
+
           </div>
 
 
@@ -170,11 +172,18 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;
+        var url = "../finalizaciont1refuerzo3/<?= $variable ?>"; window.location.href = url;
       }); 
-      function redirectToIntegrantes() {
+      // function redirectToIntegrantes() {
+      //      var folio = `<?=$variable ?>`;
+      //      var url = "../actualizacionnovedadest1refuerzo2/:folio";
+      //      url = url.replace(':folio', folio);
+      //      window.location.href = url;
+      //  }
+
+       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../actualizacionnovedades/:folio";
+           var url = "../rombovisitatipo1refuerzo3/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -182,9 +191,9 @@
     
 
 
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedades/<?= $variable ?>"; window.location.href = url;})
-     $('#legalqt').click(function(){var url = "../informevisitat1/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedadest1refuerzo3/<?= $variable ?>"; window.location.href = url;})
+     $('#legalqt').click(function(){var url = "../informevisitat1refuerzo3/<?= $variable ?>"; window.location.href = url;})
+    $('#financieroqt').click(function(){var url = "../finalizaciont1refuerzo3/<?= $variable ?>"; window.location.href = url;})
 
       
     $(document).ready(function() {

@@ -177,6 +177,38 @@
    @endif
 
 
+    @if ($realizadosvt1r2 == '1')
+  <li class="scene" style="display:">
+            <div class="movie">
+                <div class="poster" >
+                    <div id="imgicon"></div>
+                    <div style="text-align: center; padding-top:10px" >
+                   
+                        <img class="" src="{{ asset('assets/img/iconos/2.jpg')}}" width="100%" alt="">
+                        <br> <br>
+                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">CUARTA VISITA T1</div>
+
+                    </div>
+                </div>
+                <div class="info" style="text-align: center;">
+                    <div >
+                      <label for="" style="color:white;font-size:18px">Cuarta visita T1</label>
+                    </div>
+                    <img src="{{ asset('imagenes/banner1.jpg')}}" style="border-radius:10px" width="100%" height="150px" alt="">
+                    <br>
+                    <br> 
+                   
+                    @if($realizadosvt1r3 == '0')
+                    <form method="GET" action="../rombovisitatipo1refuerzo3/{{$encodeFolio}}" ><button type="submit" class="btn btn-primary">Realizar visita</button></form>
+                    @elseif($realizadosvt1r3 == '1')
+                    <form method="GET" ><button type="submit" class="btn btn-primary" disabled>Realizar visita</button></form>
+                    @endif
+                </div>
+            </div>
+        </li> 
+   @endif
+
+
 
         <!-- <li class="scene">
             <div class="movie">

@@ -40,6 +40,7 @@ use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_oportunidadesvisitat
 use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_finalizaciont1refuerzo2;
 
 use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_indicadorest1refuerzo2;
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo3\c_indicadorest1refuerzo3;
 
 // refuerzo t1 1
 use App\Http\Controllers\c_visitatipo1pasosrefuerzo1; 
@@ -307,6 +308,7 @@ Route::get('/bienestarenfamiliat1refuerzo3/{folio}',[c_momentoconcientet1refuerz
 Route::get('/accionmovilizadoraqtt1refuerzo3/{folio}',[c_momentoconcientet1refuerzo3::class, 'fc_accionmovilizadoraqtt1refuerzo3'])->name('accionmovilizadoraqtt1refuerzo3');
 Route::get('/ficherodeoportunidadest1refuerzo3/{folio}',[c_oportunidadesvisitat1refuerzo3::class, 'fc_ficherodeoportunidadest1refuerzo3'])->name('ficherodeoportunidadest1refuerzo3');
 Route::get('/ficherodeoportunidadeshogart1refuerzo3/{folio}',[c_oportunidadesvisitat1refuerzo3::class, 'fc_ficherodeoportunidadeshogart1refuerzo3'])->name('ficherodeoportunidadeshogart1refuerzo3');
+Route::get('/verificarpasost1refuerzo3',[c_momentoconcientet1refuerzo3::class, 'fc_verificarpasost1refuerzo3'])->name('verificarpasost1refuerzo3');
 
 Route::get('/finalizaciont1refuerzo3/{folio}',[c_finalizaciont1refuerzo3::class, 'fc_finalizaciont1refuerzo3'])->name('finalizaciont1refuerzo3');
 Route::get('/guardarfinalizacionest1refuerzo3',[c_finalizaciont1refuerzo3::class, 'fc_guardarfinalizacionest1refuerzo3'])->name('guardarfinalizacionest1refuerzo3');
@@ -316,6 +318,8 @@ Route::post('/guardarfirmat1refuerzo3',[c_finalizaciont1refuerzo3::class, 'fc_gu
 
 Route::get('/finalizarvisitat1refuerzo3',[c_finalizaciont1refuerzo3::class,'fc_finalizarvisitat1refuerzo3'])->name('finalizarvisitat1refuerzo3');
 Route::get('/informevisitat1refuerzo3/{folio}',[c_finalizaciont1refuerzo3::class,'fc_informevisitat1refuerzo3'])->name('informevisitat1refuerzo3');
+Route::get('/guardaraccionesmovilizadorascompromisost1refuerzo3',[c_momentoconcientet1refuerzo3::class, 'fc_guardaraccionesmovilizadorascompromisost1refuerzo3'])->name('guardaraccionesmovilizadorascompromisost1refuerzo3');
+
 
 
 // rutas para editar integrantes y hogar
@@ -335,6 +339,7 @@ Route::get('/consultarrepresentantedatosgeneral',[c_editarintegrantesdatosgenera
 Route::get('/editarencuestahogardatosgeograficos/{lineaestacion}',[c_editarhogardatosgeograficos::class,'fc_encuestahogardatosgeograficos'])->name('encuestahogardatosgeograficos');
 
 Route::get('/indicadorest1refuerzo2/{folio}',[c_indicadorest1refuerzo2::class,'fc_indicadorest1refuerzo2'])->name('indicadorest1refuerzo2');
+Route::get('/indicadorest1refuerzo3/{folio}',[c_indicadorest1refuerzo3::class,'fc_indicadorest1refuerzo3'])->name('indicadorest1refuerzo3');
 
 
 

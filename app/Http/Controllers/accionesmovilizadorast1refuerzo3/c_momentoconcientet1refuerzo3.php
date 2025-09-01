@@ -31,8 +31,17 @@ class c_momentoconcientet1refuerzo3 extends Controller
             $tabla = 't1_momentoconciente';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 200;
-            $paso= 20020;
+            $linea= 500;
+            $paso= 50020;
+
+            $lineat1= 200;
+            $pasot1= 20020;
+
+            $lineat1r1= 300;
+            $pasot1r1= 30020;
+
+            $lineaanterior= 400;
+            $pasoanterior= 40020;
            
            
             $informacion = DB::table($tabla)
@@ -55,25 +64,108 @@ class c_momentoconcientet1refuerzo3 extends Controller
 
              }
 
-             $selectedIds = DB::table('t1_momentoconciente')
-                ->where('folio',$encodedFolio)
-                ->where('linea',$linea)
-                ->where('paso',$paso)
+                        // Obtener los IDs seleccionados del primer formulario (momentoant)
+                $selectedIds = DB::table('t1_momentoconciente')
+                ->where('folio', $encodedFolio)
+                ->where('linea', $lineaanterior)
+                ->where('paso', $pasoanterior)
                 ->pluck('momentoconciente') // Cambia 'momento_id' por la columna que contiene el ID del momento seleccionado
                 ->toArray(); // Convertir a array para facilitar la verificación
 
-             $lista = DB::table('t_momentosconcientes')->get();
-
-             $momento_conciente = '';
-            foreach ($lista as $item) {
+                // Mostrar los momentos concientes seleccionados del primer formulario
+                $lista = DB::table('t_momentosconcientes')->get();
+                $momento_conciente = '';
+                foreach ($lista as $item) {
                 $isChecked = in_array($item->id, $selectedIds) ? 'checked' : '';
-            $momento_conciente .= '
+                $momento_conciente .= '
                 <div class="form-check form-switch d-flex flex-wrap">
-                    <input type="checkbox" class="form-check-input" id="momento" name="momentos[]" value="' . $item->id . '" required ' . $isChecked . '>
-                    <label class="form-check-label" for="item_' . $item->id . '">&nbsp;' . $item->descripcion . '</label>
+                <input type="checkbox" class="form-check-input" id="momentoant" name="momentosant[]" value="' . $item->id . '" required ' . $isChecked . ' disabled>
+                <label class="form-check-label" for="item_' . $item->id . '">&nbsp;' . $item->descripcion . '</label>
                 </div>
-            ';
-        }
+                ';
+                }
+
+                $selectedIdsT1 = DB::table('t1_momentoconciente')
+                    ->where('folio', $encodedFolio)
+                    ->where('linea', $lineat1)   // 200
+                    ->where('paso',  $pasot1)    // 20020
+                    ->pluck('momentoconciente')
+                    ->toArray();
+
+                // Momento conciente t1r1 (sin mostrar los seleccionados en el primer formulario)
+                $selectedIdsT1R1 = DB::table('t1_momentoconciente')
+                    ->where('folio', $encodedFolio)
+                    ->where('linea', $lineat1r1)
+                    ->where('paso', $pasot1r1)
+                    ->pluck('momentoconciente')
+                    ->toArray();
+
+                // Filtrar la lista para que no muestre los IDs seleccionados en el primer formulario
+                $listaT1R1 = DB::table('t_momentosconcientes')
+                ->whereNotIn('id', $selectedIds) // Filtra lo que ya está seleccionado en el primero
+                ->get();
+
+                $momento_concientet1r1 = '';
+                foreach ($listaT1R1 as $item) {
+                $isChecked = in_array($item->id, $selectedIdsT1R1) ? 'checked' : '';
+                $momento_concientet1r1 .= '
+                <div class="form-check form-switch d-flex flex-wrap">
+                <input type="checkbox" class="form-check-input" id="momento" name="momentosant[]" value="' . $item->id . '" required ' . $isChecked . ' disabled>
+                <label class="form-check-label" for="item_' . $item->id . '">&nbsp;' . $item->descripcion . '</label>
+                </div>
+                ';
+                }
+
+
+                $selectedIdsT1R2 = DB::table('t1_momentoconciente')
+                    ->where('folio', $encodedFolio)
+                    ->where('linea', $linea)
+                    ->where('paso', $paso)
+                    ->pluck('momentoconciente')
+                    ->toArray();
+                $ids_excluir = array_merge($selectedIds, $selectedIdsT1R1,$selectedIdsT1);
+                // Filtrar la lista para que no muestre los IDs seleccionados en el primer formulario
+                $listaT1R2 = DB::table('t_momentosconcientes')
+                ->whereNotIn('id', $ids_excluir) // Filtra lo que ya está seleccionado en el primero
+                ->get();
+
+                $listaMomentos = DB::table('t_momentosconcientes')->get();
+
+                
+                
+
+                $momento_concientet1r2 = '';
+                    foreach ($listaMomentos as $item) {
+                        // ¿Ya fue seleccionado en visitas anteriores?
+                        $seleccionadoAntes = in_array($item->id, $selectedIds) || in_array($item->id, $selectedIdsT1R1)  || in_array($item->id, $selectedIdsT1);
+                        // ¿Seleccionado en la actual?
+                        $seleccionadoActual = in_array($item->id, $selectedIdsT1R2);
+
+                        if ($seleccionadoAntes) {
+                            // Checkbox solo visible (ya fue elegido antes), NO editable ni requerido
+                            $momento_concientet1r2 .= '
+                            <div class="form-check form-switch d-flex flex-wrap">
+                                <input type="checkbox" class="form-check-input" checked disabled>
+                                <label class="form-check-label" style="color: #888" for="item_' . $item->id . '">&nbsp;' . $item->descripcion . ' <span style="font-size:11px">(seleccionado antes)</span></label>
+                            </div>
+                            ';
+                        } else {
+                            // Editable y válido para selección en la visita actual
+                            $isChecked = $seleccionadoActual ? 'checked' : '';
+                            $momento_concientet1r2 .= '
+                            <div class="form-check form-switch d-flex flex-wrap">
+                                <input type="checkbox" class="form-check-input" name="momentos[]" value="' . $item->id . '" ' . $isChecked . ' required>
+                                <label class="form-check-label"  for="item_' . $item->id . '">&nbsp;' . $item->descripcion . '</label>
+                            </div>
+                            ';
+                        }
+                    }
+
+
+
+
+
+        //fin t1r1
 
             $datos['t_accionesmovilizadoras2'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','2');
             $datos['t_accionesmovilizadoras3'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','3');
@@ -83,144 +175,476 @@ class c_momentoconcientet1refuerzo3 extends Controller
 
             return view('accionesmovilizadorast1refuerzo3/v_momentoconcientet1refuerzo3',  $datos,['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,'linea'=>$linea,
                                                                      'paso'=>$paso, 'momento_conciente'=>$momento_conciente,
+                                                                     'momento_concientet1r1'=>$momento_concientet1r1,
+                                                                     'momento_concientet1r2'=>$momento_concientet1r2,
                                                                     ]);
     }
 
+        public function fc_bienestarenfamiliat1refuerzo3(Request $request, $folio)
+        {
+            if (!session('nombre')) {
+                return redirect()->route('login');
+            }
 
-    public function fc_bienestarenfamiliat1refuerzo3(Request $request,$folio){
-        if (!session('nombre')) {
-            // Si no existe la sesión 'usuario', redirigir al login
-            return redirect()->route('login');
-        }
-
-         $herramientas = new m_herramientas();
+            $herramientas = new m_herramientas();
 
             $tabla = 't1_accionmovilizadoraqt';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 200;
-            $paso= 20030;
-            $bienestar= 3;
-           
+            $linea = 500;
+            $paso = 50030;
+            $bienestar = 3;
+
+            // 1. Trae todas las acciones seleccionadas antes (en cualquier visita)
+            $informacionant = DB::table($tabla)
+                ->where('folio', $encodedFolio)
+                ->where('bienestar', $bienestar)
+                ->get();
+
+            // 2. Construye un SET con los IDs seleccionados antes (como strings, limpios)
+            $idsSeleccionadas = [];
+            foreach ($informacionant as $registro) {
+                if (!empty($registro->accionmovilizadora)) {
+                    $tmpArr = array_map('trim', explode(',', $registro->accionmovilizadora));
+                    foreach ($tmpArr as $id) {
+                        $idClean = trim((string)$id);
+                        if ($idClean !== '' && $idClean !== null) {
+                            $idsSeleccionadas[$idClean] = true;
+                        }
+                    }
+                }
+            }
+
+            // 3. Trae la acción movilizadora ACTUAL para esta visita (si existe)
+            $accionmovilizadoraActual = '';
+            $datos['accionmovilizadora'] = '';
+            $datos['siguiente'] = 'style="display:none"';
             $informacion = DB::table($tabla)
-                            ->where('folio', $encodedFolio)
-                            ->where('linea', $linea)
-                            ->where('paso', $paso)
-                            ->where('bienestar', $bienestar)
-                            ->get();
+                ->where('folio', $encodedFolio)
+                ->where('linea', $linea)
+                ->where('paso', $paso)
+                ->where('bienestar', $bienestar)
+                ->first();
+            if ($informacion) {
+                $datos['accionmovilizadora'] = $informacion->accionmovilizadora;
+                $accionmovilizadoraActual = trim((string)$informacion->accionmovilizadora);
+                $datos['siguiente'] = (($informacion->estado == '1') ? 'style="display:"' : 'style="display:none"');
+            }
 
-             $datos = [
-                 'accionmovilizadora' => '',
-                 'compromiso'=>'',
-                 'siguiente' => 'style="display:none"', 
-            ];
-
-            
-             foreach ($informacion as $registro) {
-                 // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
-                 
-                 $datos['accionmovilizadora'] = $registro->accionmovilizadora;
-                 $datos['compromiso'] = $registro->compromiso;
-
-
-                 $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
+            // 4. Trae todas las acciones posibles para ese bienestar
+           // $accionesDisponibles = DB::table('t_accionesmovilizadoras')->where('bienestar', $bienestar)->get();
+            $accionesDisponibles = DB::table('t_accionesmovilizadoras')
+                ->where('bienestar', $bienestar)
+                ->where('estado', 1)
+                ->orderByRaw('CASE WHEN metodologia = 1 THEN 0 ELSE 1 END')  // MEF (1) primero
+                ->orderByRaw('descripcion COLLATE utf8mb4_spanish_ci ASC')    // alfabético con tildes/ñ
+                ->get();
 
 
-             }
+            // 5. Construye el select SOLO de la acción actual (solo una vez cada opción)
+            $opcionesAccionMovilizadora = '';
+        foreach ($accionesDisponibles as $accion) {
+            $accionIdStr = trim((string)$accion->id);
+            $esActual = ($accionmovilizadoraActual === $accionIdStr);
+            $yaSeleccionada = isset($idsSeleccionadas[$accionIdStr]);
 
-            $datos['t_accionesmovilizadoras1'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','1');
-            $datos['t_accionesmovilizadoras2'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','2');
-            $datos['t_accionesmovilizadoras3'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','3');
-            $datos['t_accionesmovilizadoras4'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','4');
-            $datos['t_accionesmovilizadoras5'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','5');
+            if ($esActual) {
+                $opcionesAccionMovilizadora .= '<option value="' . $accionIdStr . '" selected>'
+                    . $accion->descripcion . '</option>';
+            } elseif ($yaSeleccionada) {
+                // Agrega color y emoji azul
+                $opcionesAccionMovilizadora .= '<option value="' . $accionIdStr . '" disabled style="color:#0d6efd; font-weight:bold;">'
+                    . '🔵 ' . $accion->descripcion . ' (Seleccionada en visita anterior)' . '</option>';
+            } else {
+                $opcionesAccionMovilizadora .= '<option value="' . $accionIdStr . '">'
+                    . $accion->descripcion . '</option>';
+            }
+        }
+        $datos['opcionesAccionMovilizadora'] = $opcionesAccionMovilizadora;
+
+
+            // Si necesitas otras acciones para otros selects, las puedes dejar así (opcional)
+            $datos['t_accionesmovilizadoras1'] = $herramientas->m_leeracciones('t_accionesmovilizadoras', '1');
+            $datos['t_accionesmovilizadoras2'] = $herramientas->m_leeracciones('t_accionesmovilizadoras', '2');
+            $datos['t_accionesmovilizadoras3'] = $herramientas->m_leeraccionesordenadas('t_accionesmovilizadoras', '3');
+            $datos['t_accionesmovilizadoras4'] = $herramientas->m_leeracciones('t_accionesmovilizadoras', '4');
+            $datos['t_accionesmovilizadoras5'] = $herramientas->m_leeracciones('t_accionesmovilizadoras', '5');
+
+            return view('accionesmovilizadorast1refuerzo3/v_bienestarenfamiliat1refuerzo3', $datos, [
+                'variable' => $folio,
+                'folio' => $encodedFolio[0],
+                'foliomenu' => $encodedFolio[0],
+                'tabla' => $tabla,
+                'linea' => $linea,
+                'paso' => $paso,
+                'bienestar' => $bienestar,
+            ]);
+        }
+
+
+
+
+
+
+            public function fc_accionmovilizadoraqtt1refuerzo3(Request $request,$folio){
+                if (!session('nombre')) {
+                    // Si no existe la sesión 'usuario', redirigir al login
+                    return redirect()->route('login');
+                }
+               
+                 $herramientas = new m_herramientas();
         
+                    $tabla = 't1_accionmovilizadoraqt';
+                    $hashids = new Hashids('', 10); 
+                    $encodedFolio = $hashids->decode($folio);
+                    $lineaanterior= 200;
+                    $pasoanterior= 20040;
 
-            return view('accionesmovilizadorast1refuerzo3/v_bienestarenfamiliat1refuerzo3',  $datos,['variable'=>$folio,
-                                                                    'folio'=>$encodedFolio[0],
-                                                                     'tabla'=>$tabla, 'linea'=>$linea,
-                                                                     'paso'=>$paso,
-                                                                     'bienestar'=>$bienestar,
-                                                                    ]);
-    }
-
-
-    public function fc_accionmovilizadoraqtt1refuerzo3(Request $request,$folio){
-        if (!session('nombre')) {
-            // Si no existe la sesión 'usuario', redirigir al login
-            return redirect()->route('login');
-        }
-       
-         $herramientas = new m_herramientas();
-
-            $tabla = 't1_accionmovilizadoraqt';
-            $hashids = new Hashids('', 10); 
-            $encodedFolio = $hashids->decode($folio);
-            $linea= 200;
-            $paso= 20040;
-    
-            $categorias = DB::table('t1_ordenprioridadesqt')
-            ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
-            ->where('t1_ordenprioridadesqt.folio', $encodedFolio)
-            ->where('t1_ordenprioridadesqt.linea', $linea)
-            ->where('t1_ordenprioridadesqt.prioridad', 1)
-            ->select('t_bienestares.descripcion','t1_ordenprioridadesqt.categoria')
-            ->get();
-    
-            $bienestar= $categorias[0]->categoria;
-    
-           
-            $informacion = DB::table($tabla)
-                            ->where('folio', $encodedFolio)
-                            ->where('linea', $linea)
-                            ->where('paso', $paso)
-                            ->get();
-
-             $datos = [
-                'accionmovilizadora' => '',
-                'compromiso'=>'',
-                 'siguiente' => 'style="display:none"', 
-            ];
-
+                    $linea= 500;
+                    $paso= 50040;
             
-             foreach ($informacion as $registro) {
-                 // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
-                 $datos['accionmovilizadora'] = $registro->accionmovilizadora;
-                    $datos['compromiso'] = $registro->compromiso;
-                 $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
+                    $categoriasant = DB::table('t1_ordenprioridadesqt')
+                    ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
+                    ->where('t1_ordenprioridadesqt.folio', $encodedFolio)
+                    ->where('t1_ordenprioridadesqt.linea', $lineaanterior)
+                    ->where('t1_ordenprioridadesqt.prioridad', 2)
+                    ->select('t_bienestares.descripcion','t1_ordenprioridadesqt.categoria')
+                    ->get();
 
+                    $categorias = DB::table('t1_ordenprioridadesqt')
+                    ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
+                    ->where('t1_ordenprioridadesqt.folio', $encodedFolio)
+                    ->where('t1_ordenprioridadesqt.linea', $lineaanterior)
+                    ->where('t1_ordenprioridadesqt.prioridad', 4)
+                    ->select('t_bienestares.descripcion','t1_ordenprioridadesqt.categoria')
+                    ->get();
+            
+                    // dd($categoriasant, $categorias);
+                    $bienestarant= $categoriasant[0]->categoria;
+                    
+                    $bienestar= $categorias[0]->categoria;
+            
+                   
+                    $informacion = DB::table($tabla)
+                                    ->where('folio', $encodedFolio)
+                                    ->where('linea', $linea)
+                                    ->where('paso', $paso)
+                                    ->get();
 
-             }
+                    $informacionant = DB::table($tabla)
+                    ->where('folio', $encodedFolio)
+                    ->where('linea', $lineaanterior)
+                    ->where('paso', $pasoanterior)
+                    ->where('bienestar', $bienestarant)
+                    ->get();
+                   // dd($informacionant);
 
-            //  $datos['t_accionesmovilizadora'] ='';
-            if($bienestar == '1'){
-                $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','1');
-            }else if($bienestar == '2'){
-                $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','2');
-            }else if($bienestar == '3'){
-                $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','3');
-            }else if($bienestar == '4'){
-                $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','4');
-            }else if($bienestar == '5'){
-                $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','5');
+                    $datos['accionmovilizadora'] = '';
+                    $datos['accionmovilizadoraant' ] = '';
+                    $datos['compromiso'] ='';
+                    $datos['siguiente'] = 'style="display:none"';
+
+                     foreach ($informacionant as $registro) {
+                        // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
+                        
+                        $datos['accionmovilizadoraant'] = $registro->accionmovilizadora;
+                        $datos['compromiso'] = $registro->compromiso;
+    
+                    }
+        
+                    
+                     foreach ($informacion as $registro) {
+                         // Asigna los valores de los indicadores a sus respectivas claves en el array $datos
+                         $datos['accionmovilizadora'] = $registro->accionmovilizadora;
+                         //   $datos['compromiso'] = $registro->compromiso;
+                         $datos['siguiente'] = (($registro->estado == '1')?'style="display:"':'style="display:none"');
+        
+        
+                     }
+                     
+                    // dd($bienestar);
+                    //  $datos['t_accionesmovilizadora'] ='';
+                    if($bienestar == '1' ){
+                        $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','1');
+                    }else if($bienestar == '2'  ){
+                        $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','2');
+                    }else if($bienestar == '3' ){
+                        $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','3');
+                    }else if($bienestar == '4' ){
+                        $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','4');
+                    }else if($bienestar == '5' ){
+                        $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','5');
+                    }
+                       // dd($datos['t_accionesmovilizadora']);
+
+                    //
+
+                    if( $bienestarant == '1'){
+                        $datos['t_accionesmovilizadoraant'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','1');
+                    }else if( $bienestarant == '2'){
+                        $datos['t_accionesmovilizadoraant'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','2');
+                    }else if( $bienestarant == '3'){
+                        $datos['t_accionesmovilizadoraant'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','3');
+                    }else if( $bienestarant == '4'){
+                        $datos['t_accionesmovilizadoraant'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','4');
+                    }else if( $bienestarant == '5'){
+                        $datos['t_accionesmovilizadoraant'] = $herramientas->m_leeracciones('t_accionesmovilizadoras','5');
+                    }
+        
+        
+                    return view('accionesmovilizadorast1refuerzo3/v_accionmovilizadoraqtt1refuerzo3',  $datos,['variable'=>$folio,
+                                                                            'folio'=>$encodedFolio[0],
+                                                                            'foliomenu'=>$encodedFolio[0],
+                                                                             'tabla'=>$tabla,
+                                                                              'descripcion'=>$categorias[0]->descripcion,
+                                                                              'descripcionant'=>$categoriasant[0]->descripcion,
+                                                                              'linea'=>$linea,
+                                                                             'paso'=>$paso,
+                                                                             'bienestar'=>$bienestar,
+                                                                              'bienestarant'=>$bienestarant,
+                                                                             
+                                                                            ]);
             }
 
 
-            return view('accionesmovilizadorast1refuerzo3/v_accionmovilizadoraqtt1refuerzo3',  $datos,['variable'=>$folio,
-                                                                    'folio'=>$encodedFolio[0],
-                                                                     'tabla'=>$tabla,
-                                                                      'descripcion'=>$categorias[0]->descripcion,
-                                                                      'linea'=>$linea,
-                                                                     'paso'=>$paso,
-                                                                     'bienestar'=>$bienestar,
-                                                                    ]);
-    }
+
+         /*   public function fc_accionmovilizadoracompromisost1refuerzo2(Request $request,$folio){
+                if (!session('nombre')) {
+                    // Si no existe la sesión 'usuario', redirigir al login
+                    return redirect()->route('login');
+                }
+               
+                 $herramientas = new m_herramientas();
+        
+                    $tabla = 't1_accionmovilizadoracompromisos';
+                    $hashids = new Hashids('', 10); 
+                    $encodedFolio = $hashids->decode($folio);
+                    $linea= 300;
+                    $paso= 30040;
+
+                    $lineaanterior= 200;
+                    $pasoanterior= 20040;
+            
+                    // $categorias = DB::table('t1_ordenprioridadesqt')
+                    // ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
+                    // ->where('t1_ordenprioridadesqt.folio', $encodedFolio)
+                    // ->where('t1_ordenprioridadesqt.linea', $linea)
+                    // ->where('t1_ordenprioridadesqt.prioridad', 1)
+                    // ->select('t_bienestares.descripcion','t1_ordenprioridadesqt.categoria')
+                    // ->get();
+            
+                    // $bienestar= $categorias[0]->categoria;
+            
+                   
+                    $informacion = DB::table($tabla)
+                        ->where('folio', $encodedFolio)
+                        ->where('linea', $linea)
+                        ->where('paso', $paso)
+                        ->select('compromiso', 'numero_compromiso') // Solo seleccionamos los campos necesarios
+                        ->get();
+        
+                        $compromisosArray = [1 => '', 2 => '', 3 => '', 4 => ''];
+        
+                        foreach ($informacion as $compromiso) {
+                            $compromisosArray[$compromiso->numero_compromiso] = $compromiso->compromiso;
+                        }
+
+
+
+                        $informacionant = DB::table($tabla)
+                        ->where('folio', $encodedFolio)
+                        ->where('linea', $lineaanterior)
+                        ->where('paso', $pasoanterior)
+                        ->select('compromiso', 'numero_compromiso', 'estado_compromiso') // Solo seleccionamos los campos necesarios
+                        ->get();
+        
+                        // $compromisosArray2 = [1 => '', 2 => '', 3 => '', 4 => ''];
+        
+                        // foreach ($informacionant as $compromiso) {
+                        //     $compromisosArray2[$compromiso->numero_compromiso] = $compromiso->compromiso;
+                        // }
+
+                        $compromisosArray2 = [1 => '', 2 => '', 3 => '', 4 => ''];
+                        $estado_compromisosArray2 = [1 => '', 2 => '', 3 => '', 4 => ''];
+                        
+                        foreach ($informacionant as $c) {
+                            $compromisosArray2[$c->numero_compromiso] = $c->compromiso;
+                            $estado_compromisosArray2[$c->numero_compromiso] = $c->estado_compromiso;
+                        }
+                        
+                        
+        
+        
+                       // dd($compromisosArray);
+                     $datos = [
+                        'accionmovilizadora' => '',
+                        'compromiso'=>'',
+                         'siguiente' => 'style="display:none"', 
+                    ];
+        
+                  // dd($informacion);
+
+                  $datos['t_estados_compromisos'] = $herramientas->m_leert1('t_estados_compromisos');
+        
+        
+                    return view('accionesmovilizadorast1refuerzo3/v_accionmovilizadoracompromisost1refuerzo2',  $datos,['variable'=>$folio,
+                                                                            'folio'=>$encodedFolio[0],
+                                                                            'foliomenu'=>$encodedFolio[0],
+                                                                            'tabla'=>$tabla,
+                                                                            'compromisosArray'=>$compromisosArray,
+                                                                            'compromisosArray2'=>$compromisosArray2,
+                                                                            'estado_compromisosArray2'=>$estado_compromisosArray2,
+                                                                            'linea'=>$linea,
+                                                                            'paso'=>$paso,
+                                                                            'lineaanterior'=>$lineaanterior,
+                                                                            'pasoanterior'=>$pasoanterior,
+                                                                            
+                                                                            ]);
+            } */
+
+
+
+
+                public function fc_accionmovilizadoracompromisost1refuerzo3(Request $request, $folio)
+                {
+                    if (!session('nombre')) {
+                        return redirect()->route('login');
+                    }
+
+                    $herramientas = new m_herramientas();
+
+                    $tabla = 't1_accionmovilizadoracompromisos';
+                    $hashids = new \Hashids\Hashids('', 10);
+                    $encodedFolio = $hashids->decode($folio);
+
+                    // Actual
+                    $linea = 500;
+                    $paso = 50040;
+
+                    // Segunda visita (anterior)
+                    $lineaAnteriorT1R1 = 300;
+                    $pasoAnteriorT1R1 = 30040;
+
+                    $lineaAnteriorT1R2 = 400;
+                    $pasoAnteriorT1R2 = 40040;
+
+                    // Primera visita (anterior a la anterior)
+                    $lineaAnteriorT1 = 200;
+                    $pasoAnteriorT1 = 20040;
+
+                    // --- Compromisos ACTUALES
+                    $informacion = DB::table($tabla)
+                        ->where('folio', $encodedFolio)
+                        ->where('linea', $linea)
+                        ->where('paso', $paso)
+                        ->select('compromiso', 'numero_compromiso')
+                        ->get();
+
+                    $compromisosArray = [1 => '', 2 => '', 3 => '', 4 => ''];
+                    foreach ($informacion as $compromiso) {
+                        $compromisosArray[$compromiso->numero_compromiso] = $compromiso->compromiso;
+                    }
+
+                    // --- SEGUNDA VISITA (No editable)
+                    $informacionantT1R1 = DB::table($tabla)
+                        ->where('folio', $encodedFolio)
+                        ->where('linea', $lineaAnteriorT1R1)
+                        ->where('paso', $pasoAnteriorT1R1)
+                        ->where('estado_compromiso', 3)
+                        ->select('compromiso', 'numero_compromiso', 'estado_compromiso')
+                        ->get();
+
+                        $informacionantT1R2 = DB::table($tabla)
+                        ->where('folio', $encodedFolio)
+                        ->where('linea', $lineaAnteriorT1R2)
+                        ->where('paso', $pasoAnteriorT1R2)
+                        ->select('compromiso', 'numero_compromiso', 'estado_compromiso')
+                        ->get();
+
+                    // --- PRIMERA VISITA (solo lectura, solo si estado_compromiso == 3)
+                    $informacionantT1 = DB::table($tabla)
+                        ->where('folio', $encodedFolio)
+                        ->where('linea', $lineaAnteriorT1)
+                        ->where('paso', $pasoAnteriorT1)
+                        ->where('estado_compromiso', 3)
+                        ->select('compromiso', 'numero_compromiso', 'estado_compromiso')
+                        ->get();
+
+                    // --- Construcción de la tabla de compromisos anteriores
+                    $compromisosAnteriorTabla = [];
+
+                    // PRIMERA VISITA (T1, solo lectura)
+                    foreach ($informacionantT1 as $c) {
+                        $compromisosAnteriorTabla[] = [
+                            'numero' => $c->numero_compromiso,
+                            'compromiso' => $c->compromiso,
+                            'estado' => $c->estado_compromiso,
+                            'editable' => false,
+                            'visita' => 'Primera visita T1'
+                        ];
+                    }
+                    // SEGUNDA VISITA (T1R1, editable)
+                    foreach ($informacionantT1R1 as $c) {
+                        $compromisosAnteriorTabla[] = [
+                            'numero' => $c->numero_compromiso,
+                            'compromiso' => $c->compromiso,
+                            'estado' => $c->estado_compromiso,
+                            'editable' => false,
+                            'visita' => 'Segunda visita T1'
+                        ];
+                    }
+
+                    foreach ($informacionantT1R2 as $c) {
+                        $compromisosAnteriorTabla[] = [
+                            'numero' => $c->numero_compromiso,
+                            'compromiso' => $c->compromiso,
+                            'estado' => $c->estado_compromiso,
+                            'editable' => true,
+                            'visita' => 'Tercera visita T1'
+                        ];
+                    }
+
+                    // --- Estados de compromiso (id => descripcion)
+                    $estadosArray = DB::table('t_estados_compromisos')->get();
+                    $estadosMap = [];
+                    foreach ($estadosArray as $estado) {
+                        $estadosMap[$estado->id] = $estado->descripcion;
+                    }
+
+                    $datos = [
+                        'accionmovilizadora' => '',
+                        'compromiso' => '',
+                        'siguiente' => 'style="display:none"',
+                    ];
+                    $datos['t_estados_compromisos'] = $herramientas->m_leert1('t_estados_compromisos');
+
+                    return view('accionesmovilizadorast1refuerzo3/v_accionmovilizadoracompromisost1refuerzo3', $datos, [
+                        'variable' => $folio,
+                        'folio' => $encodedFolio[0],
+                        'foliomenu' => $encodedFolio[0],
+                        'tabla' => $tabla,
+                        'compromisosArray' => $compromisosArray,
+                        'compromisosAnteriorTabla' => $compromisosAnteriorTabla,
+                        'estadosMap' => $estadosMap,
+                        'linea' => $linea,
+                        'paso' => $paso,
+                        'lineaanterior' => $lineaAnteriorT1R2,
+                        'pasoanterior' => $pasoAnteriorT1R2,
+                    ]);
+                }
+
+
+
+
+
 
 
 
     
-     public function fc_guardaraccionesmovilizadoras(Request $request)
+     public function fc_guardaraccionesmovilizadorast1refuerzo3(Request $request)
      {
          $folio = $request->input('folio');
          $tabla = $request->input('tabla');
@@ -366,11 +790,11 @@ class c_momentoconcientet1refuerzo3 extends Controller
 
 
 
-      public function fc_verificarpasos(Request $request)
+      public function fc_verificarpasost1refuerzo3(Request $request)
       {
           $folio = $request->input('folio');
           $linea = $request->input('linea');
-          $pasos = ['20020', '20030', '20040']; // Pasos a verificar
+          $pasos = ['50020', '50030', '50040']; // Pasos a verificar
       
           // Realiza la consulta utilizando el Query Builder
           $resultado = DB::table('t1_pasosvisita')
@@ -384,6 +808,43 @@ class c_momentoconcientet1refuerzo3 extends Controller
           return response()->json(["resultado" => $resultado]);
       }
       
- 
+      public function fc_guardaraccionesmovilizadorascompromisost1refuerzo3(Request $request) {
+        $folio = $request->query('folio');
+        $tabla = $request->query('tabla');
+        $linea = $request->query('linea');
+        $paso = $request->query('paso');
+        $usuario = $request->query('usuario');
+        $compromisos = json_decode($request->query('compromisos_anteriores'), true); // Convertir JSON a array
+
+       // dd($compromisos);
+    
+        if (!$folio || !$linea || !$paso || !$usuario || !$compromisos) {
+            return response()->json(['error' => 'Datos incompletos'], 400);
+        }
+    
+        foreach ($compromisos as $compromiso) {
+            DB::table($tabla)->updateOrInsert(
+                // Condiciones para encontrar el registro
+                [
+                    'folio' => $folio,
+                    'linea' => $linea,
+                    'paso' => $paso,
+                    'numero_compromiso' => $compromiso['numero_compromiso'],
+                    
+                ],
+                // Datos a actualizar o insertar
+                [
+                    'compromiso' => $compromiso['compromiso'],
+                    'estado_compromiso' => $compromiso['estado_compromiso'],
+                    'usuario' => $usuario,
+                    'estado' => '1',
+                    'sincro' => '0',
+                    'updated_at' => now() // Se actualiza, pero `created_at` se mantiene intacto si ya existe
+                ]
+            );
+        }
+    
+        return response()->json(['message' => 'Compromisos guardados o actualizados correctamente']);
+    }
 
 }
