@@ -459,7 +459,7 @@ public function fc_sincroprivaciones(Request $request)
     //  ->toArray(); // Convertir la colección a un array
 
     $datos = DB::table($tabla)
-    // ->where('sincro', 0) // Si necesitas filtrar registros específicos
+     ->where('sincro', 0) // Si necesitas filtrar registros específicos
     ->get()
     ->map(function ($item) {
         // Codificar url_firma si existe
@@ -483,7 +483,7 @@ public function fc_sincroprivaciones(Request $request)
     // Manejar la respuesta de la API
     if ($response->successful()) {
        DB::table($tabla)
-       //->where('sincro', 0)
+       ->where('sincro', 0)
        
        ->update(['sincro' => 1]);
         return response()->json(['message' => 'Datos enviados con éxito', 'data' => $response->json()]);
