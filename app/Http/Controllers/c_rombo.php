@@ -100,6 +100,13 @@ class c_rombo extends Controller
               $realizado = 0;
           }
 
+            $casilla = DB::table('t1_casillamatriz')
+                ->where('folio', decrypt($cedula))
+                ->value('casillamatriz');
+
+            $es_grupo1 = in_array((int)$casilla, [1,2,4,5]);
+
+
          // dd($realizado);
 
             $realizadosvt1 = (($registrovt1 && $registrovt1->estado == 1)?1:0);
@@ -108,7 +115,7 @@ class c_rombo extends Controller
              // dd($realizadosvt1r2);
             $realizadosvt1r3 = (($registrovt1r3 && $registrovt1r3->estado == 1)?1:0);
          // dd($realizadovt1);
-        return view('v_rombo',["foliomenu"=>decrypt($cedula), 
+        return view('v_rombo',["foliomenu"=>decrypt($cedula),  'es_grupo1' => $es_grupo1,
         'realizadosvt1'=>$realizadosvt1, 
         'realizadosvt1r1'=>$realizadosvt1r1, 
         'realizadosvt1r2'=>$realizadosvt1r2, 

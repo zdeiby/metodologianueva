@@ -177,7 +177,7 @@
    @endif
 
 
-    @if ($realizadosvt1r2 == '1')
+    @if (($realizadosvt1r2 == '1' && $es_grupo1) || ($metodologia == 2 && $realizadosvt1r2 == '1'))
   <li class="scene" style="display:">
             <div class="movie">
                 <div class="poster" >
