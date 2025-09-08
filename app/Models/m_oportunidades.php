@@ -149,6 +149,26 @@ SELECT
     )
 )
 
+/* Grupo desde casilla matriz */
+JOIN (
+    SELECT 
+        folio,
+        CASE 
+            WHEN CAST(casillamatriz AS UNSIGNED) IN (1,2,4,5) THEN 1
+            WHEN CAST(casillamatriz AS UNSIGNED) IN (3,6)     THEN 2
+            WHEN CAST(casillamatriz AS UNSIGNED) IN (7,8)     THEN 3
+            WHEN CAST(casillamatriz AS UNSIGNED) = 9          THEN 4
+            ELSE NULL
+        END AS grupo
+    FROM dbmetodologia.t1_casillamatriz
+) AS cm ON cm.folio = ih.folio
+
+/* Metodología desde principalhogar */
+LEFT JOIN dbmetodologia.t1_principalhogar AS ph
+       ON ph.folio = ih.folio
+       -- Si quisieras asegurar el titular específico:
+       -- AND ph.idintegrantetitular = ih.idintegrante
+
 JOIN 
     dbmetodologia.t1_hogardatosgeograficos AS hg
     ON (
@@ -183,6 +203,11 @@ JOIN
         WHERE 
             ih.estado = 1 and hg.folio = ih.folio and o.aplica_hogar_integrante = 373
              AND CURRENT_DATE BETWEEN o.fecha_inicio AND o.fecha_limite_acercamiento  " . ($folio != '' ? "AND ih.folio = $folio" : "") . " 
+             AND (
+                    (cm.grupo IN (1,2,3))
+                OR (cm.grupo = 4 AND COALESCE(ph.metodologia,'') = '2')
+                )
+
         GROUP BY 
             ih.idintegrante, 
             ih.folio, 
@@ -359,6 +384,21 @@ JOIN
        ph.idintegrantetitular = ih.idintegrante 
 
 
+       JOIN (
+                SELECT 
+                    folio,
+                    CASE 
+                        WHEN CAST(casillamatriz AS UNSIGNED) IN (1,2,4,5) THEN 1
+                        WHEN CAST(casillamatriz AS UNSIGNED) IN (3,6)     THEN 2
+                        WHEN CAST(casillamatriz AS UNSIGNED) IN (7,8)     THEN 3
+                        WHEN CAST(casillamatriz AS UNSIGNED) = 9          THEN 4
+                        ELSE NULL
+                    END AS grupo
+                FROM dbmetodologia.t1_casillamatriz
+            ) AS cm
+            ON cm.folio = ph.folio
+
+
 
         LEFT JOIN 
             dbmetodologia.t1_oportunidad_hogares AS oh
@@ -368,6 +408,10 @@ JOIN
         WHERE 
             ih.estado = 1 and hg.folio = ih.folio and o.aplica_hogar_integrante = '374'  " . ($folio != '' ? "AND ih.folio = $folio" : "") . "
              AND CURRENT_DATE BETWEEN o.fecha_inicio AND o.fecha_limite_acercamiento 
+              AND (
+          cm.grupo IN (1,2,3)
+       OR (cm.grupo = 4 AND TRIM(COALESCE(ph.metodologia,'')) = '2')
+    )
         GROUP BY 
             ih.idintegrante, 
             ih.folio, 
