@@ -109,7 +109,7 @@
                               <div class="row g-0" id="indicadorbf1">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Personas 18+ acceden a formación, apoyo al emprendimiento e innovación para iniciar/gestionar negocios.
+                                    Las personas de 18 años y más que lo requieran acceden a  programas de formación, apoyo al emprendimiento e innovación, con el fin de  adquirir habilidades prácticas para iniciar y gestionar sus propios negocios.
                                     @if($vista != '1')
                                       <div class="text-center mt-3">
                                         <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[29]->id_bienestar ?>','<?= $indicadores_tabla[29]->id_subcategoria ?>','<?= $indicadores_tabla[29]->id_indicador ?>')">Mover Indicador</div>
@@ -126,7 +126,7 @@
                               <div class="row g-0" id="indicadorbf2">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Los integrantes del hogar de 18 años y más que lo requieren acceden a servicios de intermediación laboral
+                                    Los integrantes del hogar  de 18 años y más que  lo requieren  acceden a servicios de intermediación laboral 
                                     @if($vista != '1')
                                       <div class="text-center mt-3">
                                         <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[30]->id_bienestar ?>','<?= $indicadores_tabla[30]->id_subcategoria ?>','<?= $indicadores_tabla[30]->id_indicador ?>')">Mover Indicador</div>
@@ -176,7 +176,7 @@
                               <div class="row g-0" id="indicadorbf4">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    El hogar implementa presupuesto familiar participativo, con foco en ahorro e inversión responsable.
+                                    El hogar implementa un sistema de presupuesto familiar participativo, enfocado en el ahorro y la inversión responsable.
                                     @if($vista != '1')
                                       <div class="text-center mt-3">
                                         <div class="btn btn-success" onclick="abrirmodalhogar('<?= $indicadores_tabla[32]->id_bienestar ?>','<?= $indicadores_tabla[32]->id_subcategoria ?>','<?= $indicadores_tabla[32]->id_indicador ?>')">Mover Indicador</div>
@@ -193,7 +193,7 @@
                               <div class="row g-0" id="indicadorbf5">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Integrantes acceden a servicios financieros adecuados que mejoran flujo de dinero y bienestar económico.
+                                    Los integrantes del hogar  acceden  a servicios financieros adaptados a sus necesidades,  que contribuyen a mejorar su flujo de dinero y su bienestar económico. 
                                     @if($vista != '1')
                                       <div class="text-center mt-3">
                                         <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[33]->id_bienestar ?>','<?= $indicadores_tabla[33]->id_subcategoria ?>','<?= $indicadores_tabla[33]->id_indicador ?>')">Mover Indicador</div>

@@ -147,7 +147,7 @@
                             <div class="row g-0" id="indicadorbef2">
                               <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                 <div class="p-2">
-                                  Los integrantes del hogar establecen vínculos y redes de apoyo familiares/comunitarias para resolver necesidades específicas.
+                                  Los integrantes del hogar establecen  vínculos solidarios y de comunicación para resolver necesidades especificas con sus  redes de apoyo familiares y comunitarias 
                                   @if($vista != '1')
                                   <div class="text-center mt-3">
                                     <div class="btn btn-success" onclick="abrirmodalhogar('<?= $indicadores_tabla[18]->id_bienestar ?>','<?= $indicadores_tabla[18]->id_subcategoria ?>','<?= $indicadores_tabla[18]->id_indicador ?>')">Mover Indicador</div>
@@ -178,7 +178,7 @@
                             <div class="row g-0" id="indicadorbef3">
                               <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                 <div class="p-2">
-                                  Los integrantes del hogar conocen las rutas para la prevención e intervención de la violencia intrafamiliar y las VBG.
+                                  Los integrantes del hogar conocen las rutas para la prevención e intervención de la violencia intrafamiliar y las violencias basadas en género.
                                   @if($vista != '1')
                                   <div class="text-center mt-3">
                                     <div class="btn btn-success" onclick="abrirmodalhogar('<?= $indicadores_tabla[19]->id_bienestar ?>','<?= $indicadores_tabla[19]->id_subcategoria ?>','<?= $indicadores_tabla[19]->id_indicador ?>')">Mover Indicador</div>
@@ -240,7 +240,7 @@
                             <div class="row g-0" id="indicadorbef5">
                               <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                 <div class="p-2">
-                                  Integrantes cuidadores acceden a programas que fortalecen estrategias de cuidado y su bienestar emocional.
+                                  Los integrantes del hogar que realizan actividades de cuidado, acceden a programas que favorecen la apropiación de estrategias para facilitar su labor y que promuevan su bienestar emocional. 
                                   @if($vista != '1')
                                   <div class="text-center mt-3">
                                     <div class="btn btn-success" onclick="abrirmodalhogar('<?= $indicadores_tabla[21]->id_bienestar ?>','<?= $indicadores_tabla[21]->id_subcategoria ?>','<?= $indicadores_tabla[21]->id_indicador ?>')">Mover Indicador</div>

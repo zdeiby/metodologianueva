@@ -163,7 +163,7 @@
                               <div class="row g-0" id="indicadorbl3">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Población con enfoque diferencial étnico cuenta con certificado de pertenencia étnica y acceso a programas
+                                    La población con enfoque diferencial etnico (afro e indígena) cuenta con  el certificado de pertenencia etnica, para su reconocimiento como comunidad y acceso  programas específicos para su desarrollo.
                                     @if($vista != '1')
                                     <div class="text-center mt-3">
                                       <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[9]->id_bienestar ?>','<?= $indicadores_tabla[9]->id_subcategoria ?>','<?= $indicadores_tabla[9]->id_indicador ?>')">Mover Indicador</div>
@@ -180,7 +180,7 @@
                               <div class="row g-0" id="indicadorbl4">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Personas refugiadas/migrantes reciben asistencia para regularización e identificación
+                                    Las personas refugiadas y migrantes  reciben asistencia para su regularización e identificación en el territorio nacional, facilitando su integración local y social.
                                     @if($vista != '1')
                                     <div class="text-center mt-3">
                                       <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[10]->id_bienestar ?>','<?= $indicadores_tabla[10]->id_subcategoria ?>','<?= $indicadores_tabla[10]->id_indicador ?>')">Mover Indicador</div>
@@ -197,7 +197,7 @@
                               <div class="row g-0" id="indicadorbl5">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Personas con discapacidad poseen certificado emitido por la entidad de salud competente
+                                    Las personas con discapacidad poseen el certificado emitido por la entidad de salud competente, facilitando su reconocimiento y acceso a servicios y programas de apoyo
                                     @if($vista != '1')
                                     <div class="text-center mt-3">
                                       <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[11]->id_bienestar ?>','<?= $indicadores_tabla[11]->id_subcategoria ?>','<?= $indicadores_tabla[11]->id_indicador ?>')">Mover Indicador</div>
@@ -214,7 +214,7 @@
                               <div class="row g-0" id="indicadorbl6">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Población víctima del conflicto armado cuenta con RUV
+                                    La población victima del conflicto armado cuenta con RUV
                                     @if($vista != '1')
                                     <div class="text-center mt-3">
                                       <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[12]->id_bienestar ?>','<?= $indicadores_tabla[12]->id_subcategoria ?>','<?= $indicadores_tabla[12]->id_indicador ?>')">Mover Indicador</div>
@@ -248,7 +248,7 @@
                               <div class="row g-0" id="indicadorbl7">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Integrantes de 18+ reciben orientación sobre instituciones de justicia en el territorio
+                                    Los integrantes del hogar de 18 años o más reciben orientación para el reconocimiento de las instituciones de administración de justicia y de garantía de derechos existentes en el territorio.
                                     @if($vista != '1')
                                     <div class="text-center mt-3">
                                       <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[13]->id_bienestar ?>','<?= $indicadores_tabla[13]->id_subcategoria ?>','<?= $indicadores_tabla[13]->id_indicador ?>')">Mover Indicador</div>
@@ -265,7 +265,7 @@
                               <div class="row g-0" id="indicadorbl8">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Integrante víctima de conflicto armado recibe acompañamiento para el goce efectivo de derechos
+                                    El integrante victima del  conflicto armado,  recibe acompañamiento para  el goce efectivo de sus derechos
                                     @if($vista != '1')
                                     <div class="text-center mt-3">
                                       <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[14]->id_bienestar ?>','<?= $indicadores_tabla[14]->id_subcategoria ?>','<?= $indicadores_tabla[14]->id_indicador ?>')">Mover Indicador</div>
@@ -282,7 +282,7 @@
                               <div class="row g-0" id="indicadorbl9">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Hogar en victimización (VIF, violencia de género, abuso sexual) recibe acompañamiento para el goce efectivo de derechos
+                                    El hogar en situación de victimización (violencia intrafamiliar, violencia de género, abuso sexual ) recibe acompañamiento para el goce efectivo de derechos
                                     @if($vista != '1')
                                     <div class="text-center mt-3">
                                       <div class="btn btn-success" onclick="abrirmodalhogar('<?= $indicadores_tabla[15]->id_bienestar ?>','<?= $indicadores_tabla[15]->id_subcategoria ?>','<?= $indicadores_tabla[15]->id_indicador ?>')">Mover Indicador</div>
@@ -299,7 +299,7 @@
                               <div class="row g-0" id="indicadorbl10">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Integrantes que lo requieren acceden a servicios de justicia según su necesidad
+                                    Los  integrante del hogar  que lo requieren acceden a servicios de justicia según su necesidad 
                                     @if($vista != '1')
                                     <div class="text-center mt-3">
                                       <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[16]->id_bienestar ?>','<?= $indicadores_tabla[16]->id_subcategoria ?>','<?= $indicadores_tabla[16]->id_indicador ?>')">Mover Indicador</div>
@@ -333,7 +333,7 @@
                           <div class="row g-0" id="indicadorbl11">
                             <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                               <div class="p-2">
-                                NNA en situación de victimización reciben acompañamiento para el goce efectivo de derechos
+                                Los niños, niñas y adolescentes en situación de victimización (Violencias y vulneraciones) reciben acompañamiento para el goce efectivo de derechos
                                 @if($vista != '1')
                                 <div class="text-center mt-3">
                                   <div class="btn btn-success" onclick="abrirmodalhogar('<?= $indicadores_tabla[37]->id_bienestar ?>','<?= $indicadores_tabla[37]->id_subcategoria ?>','<?= $indicadores_tabla[37]->id_indicador ?>')">Mover Indicador</div>
@@ -358,7 +358,7 @@
                           <div class="row g-0" id="indicadorbl12">
                             <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                               <div class="p-2">
-                                NNA de 6 a 17 años reciben orientación sobre instituciones de justicia y garantía de derechos
+                                Los Niños, Niñas y Adolescentes  del hogar de 6 a 17 años reciben orientación para el reconocimiento de las instituciones de administración de justicia y de garantía de sus derechos.
                                 @if($vista != '1')
                                 <div class="text-center mt-3">
                                   <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[38]->id_bienestar ?>','<?= $indicadores_tabla[38]->id_subcategoria ?>','<?= $indicadores_tabla[38]->id_indicador ?>')">Mover Indicador</div>

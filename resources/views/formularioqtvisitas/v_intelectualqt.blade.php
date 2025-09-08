@@ -110,7 +110,7 @@
                               <div class="row g-0" id="indicadorbi1">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Los niños y niñas menores de 5 años están vinculados a programas de atención integral en primera infancia (salud, nutrición y educación inicial).
+                                    Los niños y niñas entre 0 y 5 años están vinculados a programas de atención integral en cuidado a la primera infancia, con acceso a salud, nutrición y educación inicial (IPM)
                                     @if($vista != '1')
                                       <div class="text-center mt-3">
                                         <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[23]->id_bienestar ?>','<?= $indicadores_tabla[23]->id_subcategoria ?>','<?= $indicadores_tabla[23]->id_indicador ?>')">Mover Indicador</div>
@@ -127,7 +127,7 @@
                               <div class="row g-0" id="indicadorbi2">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    NNA de 6 a 17 años están vinculados al sistema educativo formal.
+                                    Los niños,niñas y adolescentes en edad escolar (de 6 a 17 años) estan vinculados  al sistema educativo formal (IPM)
                                     @if($vista != '1')
                                       <div class="text-center mt-3">
                                         <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[24]->id_bienestar ?>','<?= $indicadores_tabla[24]->id_subcategoria ?>','<?= $indicadores_tabla[24]->id_indicador ?>')">Mover Indicador</div>
@@ -144,7 +144,7 @@
                               <div class="row g-0" id="indicadorbi3">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Mayores de 18 sin básica completa acceden a educación formal para adultos.
+                                    Los integrantes del hogar mayores o igual a  18 años que no hayan completado su educación básica acceden a programas  educación formal para adultos.
                                     @if($vista != '1')
                                       <div class="text-center mt-3">
                                         <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[25]->id_bienestar ?>','<?= $indicadores_tabla[25]->id_subcategoria ?>','<?= $indicadores_tabla[25]->id_indicador ?>')">Mover Indicador</div>
@@ -176,7 +176,7 @@
                             <div class="row g-0" id="indicadorbi4">
                               <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                 <div class="p-2">
-                                  Integrantes mayores de 10 años acceden a formación en alfabetización digital con recursos tecnológicos disponibles.
+                                  Los integrantes del hogar mayores de 10 años acceden a formación en alfabetización digital a traves de los recursos tecnológicos disponibles
                                   @if($vista != '1')
                                     <div class="text-center mt-3">
                                       <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[26]->id_bienestar ?>','<?= $indicadores_tabla[26]->id_subcategoria ?>','<?= $indicadores_tabla[26]->id_indicador ?>')">Mover Indicador</div>
@@ -208,7 +208,7 @@
                               <div class="row g-0" id="indicadorbi5">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Mayores de 14 años que lo desean acceden a educación superior (técnica/tecnológica/universitaria/posgrado).
+                                    Los integrantes del hogar mayores de 14 años  que lo desean acceden a  educación superior (tecnica profesional, tecnologias, universitario y postgrado)
                                     @if($vista != '1')
                                       <div class="text-center mt-3">
                                         <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[27]->id_bienestar ?>','<?= $indicadores_tabla[27]->id_subcategoria ?>','<?= $indicadores_tabla[27]->id_indicador ?>')">Mover Indicador</div>
@@ -225,7 +225,7 @@
                               <div class="row g-0" id="indicadorbi6">
                                 <div class="col-md-12 d-flex align-items-center border-end border-bottom">
                                   <div class="p-2">
-                                    Mayores de 14 años acceden a educación para el trabajo y desarrollo humano.
+                                    Los integrantes del hogar de 14 años en adelante que lo desean acceden a  educación para el trabajo y desarrollo humano 
                                     @if($vista != '1')
                                       <div class="text-center mt-3">
                                         <div class="btn btn-success" onclick="abrirmodal('<?= $indicadores_tabla[28]->id_bienestar ?>','<?= $indicadores_tabla[28]->id_subcategoria ?>','<?= $indicadores_tabla[28]->id_indicador ?>')">Mover Indicador</div>
