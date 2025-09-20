@@ -240,6 +240,9 @@ public function fc_sincroprivacionesd(Request $request)
             $numero_compromiso   = $item['numero_compromiso'] ?? null;
             $estrategia          = $item['estrategia_implementa_reducir_estres'] ?? null;
 
+            $numero_alerta          = $item['numero_alerta'] ?? null;
+            $id_alerta          = $item['id_alerta'] ?? null;
+
             $dataToUpdate = $item;
             unset(
                 $dataToUpdate['folio'],
@@ -251,7 +254,10 @@ public function fc_sincroprivacionesd(Request $request)
                 $dataToUpdate['numerocompromiso'],
                 $dataToUpdate['idoportunidad'],
                 $dataToUpdate['numero_compromiso'],
-                $dataToUpdate['estrategia_implementa_reducir_estres']
+                $dataToUpdate['estrategia_implementa_reducir_estres'],
+
+                $dataToUpdate['numero_alerta'],
+                $dataToUpdate['id_alerta'],
             );
 
             $condition = ['folio' => $folio];
@@ -264,6 +270,9 @@ public function fc_sincroprivacionesd(Request $request)
             if ($numero_compromiso !== null) $condition['numero_compromiso'] = $numero_compromiso;
             if ($estrategia !== null) $condition['estrategia_implementa_reducir_estres'] = $estrategia;
             if ($idoportunidad !== null) $condition['idoportunidad'] = $idoportunidad;
+
+            if ($numero_alerta !== null) $condition['numero_alerta'] = $numero_alerta;
+            if ($id_alerta !== null) $condition['id_alerta'] = $id_alerta;
 
             if ($tabla === 't3_oportunidad_integranteshogar_historico') {
                 $condition['created_at'] = $created_at;

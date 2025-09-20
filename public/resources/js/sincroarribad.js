@@ -2692,7 +2692,7 @@ $.ajax({
                 actualizarTabla('t1_caracterizacionIntegrante_estrategia_ffes', 'Descarga de tablas desde el servdor', '2');
                 $('#barracarga').html('90%');
                 $('#barracarga').css('width','90%');                                   
-                t1_saludemocionalqtd();                   
+                t1_alertasgestord();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t1_caracterizacionIntegrante_estrategia_ffes', 'Descarga de tablas desde el servdor', '3');
@@ -2702,6 +2702,29 @@ $.ajax({
             })
 }
 
+
+
+function t1_alertasgestord (){
+  actualizarTabla('t1_alertasgestor', 'Descarga de tablas desde el servdor', '1');
+  let tabla= 't1_alertasgestor';
+$.ajax({
+              url:'./sincroprivacionesd',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_alertasgestor', 'Descarga de tablas desde el servdor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t1_saludemocionalqtd();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_alertasgestor', 'Descarga de tablas desde el servdor', '3');
+                    reintentarfuncion(t1_caracterizacionIntegrante_primeraInfancia_ffesd, 't1_alertasgestor');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
 // FIN FFES
 
 

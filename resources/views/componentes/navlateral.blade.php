@@ -629,12 +629,12 @@ function soloNumeros(e) {
                         <span class="nav-text ms-2">Sisbén</span>
                     </a>
                 </li> 
-                <!-- <li>
-                    <a href="{{route('oportunidadeshogar')}}" class="nav-link text-white d-flex align-items-center">
-                    <ion-icon name="home-outline"></ion-icon>
-                    <span class="nav-text ms-2">Hogar</span>
+                 <li>
+                    <a href="{{route('alertasgestor')}}" class="nav-link text-white d-flex align-items-center">
+                    <ion-icon name="flash-outline" class="siren"></ion-icon>
+                    <span class="nav-text ms-2">Alertas Gestor</span>
                     </a>
-                </li> -->
+                </li> 
             </ul>
         </li>
 

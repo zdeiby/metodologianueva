@@ -18,6 +18,8 @@ use App\Http\Controllers\c_editarintegrantesdatosgeneral;
 use App\Http\Controllers\c_encuestaintegrantes;
 use App\Http\Controllers\vistaslineas\c_l1e1;
 use App\Http\Controllers\editarintegrantesyhogar\c_editarhogardatosgeograficos;
+use App\Http\Controllers\c_alertasgestor;
+
 
 use App\Http\Controllers\c_sincronizacion; 
 use App\Http\Controllers\c_cardsqt;
@@ -67,6 +69,10 @@ Route::get('/guardarhabeasdata',[c_prueba::class, 'fc_guardarhabeasdata'])->name
 //Route::get('/cobertura',[c_prueba::class, 'fc_index'])->name('prueba');
 Route::get('/cobertura',[c_cobertura::class, 'fc_index'])->name('prueba');
 Route::get('/sisben',[c_sisben::class, 'fc_index'])->name('sisben');
+Route::get('/alertasgestor',[c_alertasgestor::class, 'fc_index'])->name('alertasgestor');
+Route::post('/guardar-alertas',[c_alertasgestor::class, 'guardarAlertas'])->name('guardar-alertas');
+
+
 Route::get('/sincronizacion',[c_sincronizacion::class, 'fc_sincronizacion'])->name('sincronizacion');
 
 

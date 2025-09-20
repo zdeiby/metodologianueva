@@ -77,6 +77,7 @@ class c_cobertura extends Controller
     //     ];
     // }, $pphogar);
 
+    
 
     // Primero, mapear los datos como ya lo haces
                 $folios = array_map(function ($item) use ($hashids) {

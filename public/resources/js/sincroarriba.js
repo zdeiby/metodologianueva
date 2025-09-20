@@ -2679,11 +2679,33 @@ $.ajax({
                 actualizarTabla('t1_caracterizacionIntegrante_estrategia_ffes', 'Subida base de datos al servidor', '2');
                 $('#barracarga').html('90%');
                 $('#barracarga').css('width','90%');                                   
-                t3_sincronizacion();                   
+                t1_alertasgestor();                   
               },
               error: function(xhr, status, error) {
                 actualizarTabla('t1_caracterizacionIntegrante_estrategia_ffes', 'Subida base de datos al servidor', '3');
                     reintentarfuncion(t1_caracterizacionIntegrante_primeraInfancia_ffes, 't1_caracterizacionIntegrante_estrategia_ffes');
+                        console.log(xhr.responseText);
+                    }
+            })
+}
+
+function t1_alertasgestor (){
+  actualizarTabla('t1_alertasgestor', 'Subida base de datos al servidor', '1');
+  let tabla= 't1_alertasgestor';
+$.ajax({
+              url:'./sincroprivaciones',
+              method: "GET",
+              data: { tabla: tabla},  
+              dataType:'JSON',
+              success:function(data){ 
+                actualizarTabla('t1_alertasgestor', 'Subida base de datos al servidor', '2');
+                $('#barracarga').html('90%');
+                $('#barracarga').css('width','90%');                                   
+                t3_sincronizacion();                   
+              },
+              error: function(xhr, status, error) {
+                actualizarTabla('t1_alertasgestor', 'Subida base de datos al servidor', '3');
+                    reintentarfuncion(t1_caracterizacionIntegrante_estrategia_ffes, 't1_alertasgestor');
                         console.log(xhr.responseText);
                     }
             })
