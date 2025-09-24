@@ -13,6 +13,7 @@
           url: recargaropotunidades,
           type: 'GET',
           dataType: 'json',
+          data: { folio: $('#folioinput').val() },
           success: function(response) {
 
             // 🔥 Destruir DataTables antes de recargar

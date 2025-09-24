@@ -810,10 +810,19 @@ public function fc_recargar_oportunidades(Request $request)
     }
 }
 
-public function fc_recargar_oportunidadesh()
+public function fc_recargar_oportunidadesh(Request $request)
 {
+
+    $folio = $request->input('folio'); 
+    $query= DB::table('vw_listado_integrantes_oportunidades_hogar');
+
+   // dd($folio);
     try {
-        $data = DB::table('vw_listado_integrantes_oportunidades_hogar')->get();
+        if (!empty($folio)) {
+            $query->where('folio', $folio);
+        }
+
+         $data = $query->get();
 
         $acercadas = '';
         $efectivas = '';
