@@ -58,6 +58,12 @@ use App\Http\Controllers\espaciodefinalizaciont1refuerzo3\c_oportunidadesvisitat
 use App\Http\Controllers\espaciodefinalizaciont1refuerzo3\c_finalizaciont1refuerzo3;
 
 
+//refuerzo t2 1
+use App\Http\Controllers\c_visitatipo2pasosrefuerzo1; 
+use App\Http\Controllers\accionesmovilizadorast2refuerzo1\c_momentoconcientet2refuerzo1;
+use App\Http\Controllers\espaciodefinalizaciont2refuerzo1\c_oportunidadesvisitat2refuerzo1;
+use App\Http\Controllers\espaciodefinalizaciont2refuerzo1\c_finalizaciont2refuerzo1;
+
 Route::get('/',[c_index::class, 'fc_index'])->name('index');
 Route::get('/leerintegrantes',[c_integrantes::class,'fc_leerintegrantes'])->name('leerintegrantes');
 Route::get('/eliminarintegrantes',[c_integrantes::class, 'fc_eliminarintegrantes'])->name('eliminarintegrantes');
@@ -396,3 +402,27 @@ Route::get('/financieroqtvisita/{folio}/{idintegrante}/{vista}',[c_encuestainteg
 
 
 // Route::get('/guardarformularioqt',[c_encuestaintegrantesqt::class, 'fc_guardarformularioqt'])->name('guardarformularioqt');
+
+
+
+
+//tipo 2 refuerzo 1 
+Route::get('/accionmovilizadoracompromisost2refuerzo1/{folio}',[c_momentoconcientet2refuerzo1::class, 'fc_accionmovilizadoracompromisost2refuerzo1'])->name('accionmovilizadoracompromisost2refuerzo1');
+Route::get('/rombovisitatipo2refuerzo1/{folio}',[c_visitatipo2pasosrefuerzo1::class,'fc_visitatipo2pasosrefuerzo1'])->name('rombovisitatipo2refuerzo1');
+Route::get('/momentoconcientet2refuerzo1/{folio}',[c_momentoconcientet2refuerzo1::class, 'fc_momentoconcientet2refuerzo1'])->name('momentoconcientet2refuerzo1');
+Route::get('/guardaraccionesmovilizadorast2refuerzo1',[c_momentoconcientet2refuerzo1::class, 'fc_guardaraccionesmovilizadorast2refuerzo1'])->name('guardaraccionesmovilizadorast2refuerzo1');
+Route::get('/bienestarenfamiliat2refuerzo1/{folio}',[c_momentoconcientet2refuerzo1::class, 'fc_bienestarenfamiliat2refuerzo1'])->name('bienestarenfamiliat2refuerzo1');
+Route::get('/accionmovilizadoraqtt2refuerzo1/{folio}',[c_momentoconcientet2refuerzo1::class, 'fc_accionmovilizadoraqtt2refuerzo1'])->name('accionmovilizadoraqtt2refuerzo1');
+Route::get('/ficherodeoportunidadest2refuerzo1/{folio}',[c_oportunidadesvisitat2refuerzo1::class, 'fc_ficherodeoportunidadest2refuerzo1'])->name('ficherodeoportunidadest2refuerzo1');
+Route::get('/ficherodeoportunidadeshogart2refuerzo1/{folio}',[c_oportunidadesvisitat2refuerzo1::class, 'fc_ficherodeoportunidadeshogart2refuerzo1'])->name('ficherodeoportunidadeshogart2refuerzo1');
+Route::get('/verificarpasost2refuerzo1',[c_momentoconcientet2refuerzo1::class, 'fc_verificarpasost2refuerzo1'])->name('verificarpasost2refuerzo1');
+
+Route::get('/finalizaciont2refuerzo1/{folio}',[c_finalizaciont2refuerzo1::class, 'fc_finalizaciont2refuerzo1'])->name('finalizaciont2refuerzo1');
+Route::get('/guardarfinalizacionest2refuerzo1',[c_finalizaciont2refuerzo1::class, 'fc_guardarfinalizacionest2refuerzo1'])->name('guardarfinalizacionest2refuerzo1');
+Route::get('/actualizacionnovedadest2refuerzo1/{folio}',[c_finalizaciont2refuerzo1::class, 'fc_actualizacionnovedadest2refuerzo1'])->name('actualizacionnovedadest2refuerzo1');
+Route::get('/guardaractualizacionynovedadeshogart2refuerzo1',[c_finalizaciont2refuerzo1::class, 'fc_guardaractualizacionynovedadeshogart2refuerzo1'])->name('guardaractualizacionynovedadeshogart2refuerzo1');
+Route::post('/guardarfirmat2refuerzo1',[c_finalizaciont2refuerzo1::class, 'fc_guardarfirmat2refuerzo1'])->name('guardarfirmat2refuerzo1');
+
+Route::get('/finalizarvisitat2refuerzo1',[c_finalizaciont2refuerzo1::class,'fc_finalizarvisitat2refuerzo1'])->name('finalizarvisitat2refuerzo1');
+Route::get('/informevisitat2refuerzo1/{folio}',[c_finalizaciont2refuerzo1::class,'fc_informevisitat2refuerzo1'])->name('informevisitat2refuerzo1');
+Route::get('/guardaraccionesmovilizadorascompromisost2refuerzo1',[c_momentoconcientet2refuerzo1::class, 'fc_guardaraccionesmovilizadorascompromisost2refuerzo1'])->name('guardaraccionesmovilizadorascompromisost2refuerzo1');

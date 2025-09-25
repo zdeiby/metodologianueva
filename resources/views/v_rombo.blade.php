@@ -230,7 +230,7 @@
                     <br> 
                    
                     @if($realizadosvt1r3 == '1')
-                    <form method="GET" action="../rombovisitatipo1refuerzo3/{{$encodeFolio}}" ><button type="submit" class="btn btn-primary">Realizar visita</button></form>
+                    <form method="GET" action="../rombovisitatipo2refuerzo1/{{$encodeFolio}}" ><button type="submit" class="btn btn-primary">Realizar visita</button></form>
                     @elseif($realizadosvt1r3 == '0')
                     <form method="GET" ><button type="submit" class="btn btn-primary" disabled>Realizar visita</button></form>
                     @endif
