@@ -563,6 +563,19 @@ function soloNumeros(e) {
                     </span> min
                 </div>
                 @endif
+
+
+                @if(!empty($esVisitaT2R1))
+                <div id="contador-visita-t2r1"
+                    data-segundos="{{ $totalSegundosT2R1 }}"
+                    class="text-white text-center"
+                    style="background:#00bfff; padding:6px; border-radius:5px;">
+                    <strong>Cuarta Visita T1</strong><br>
+                    Dur: <span id="duracion-texto-t2r1">
+                        {{ $duracionT2R1 }}@if($activarContadorT2R1):{{ sprintf('%02d', $totalSegundosT2R1 % 60) }}@endif
+                    </span> min
+                </div>
+                @endif
             
             
 
@@ -1065,6 +1078,30 @@ document.addEventListener("DOMContentLoaded", function () {
         let segundos = totalSegundos % 60;
 
         document.getElementById('duracion-texto-t1r3').textContent = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+    }
+
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+});
+</script>
+@endif
+
+
+@if(!empty($activarContadorT2R1) && !empty($totalSegundosT2R1))
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const contador = document.getElementById('contador-visita-t2r1');
+    if (!contador) return;
+
+    let totalSegundos = parseInt(contador.getAttribute('data-segundos')) || 0;
+
+    function actualizarContador() {
+        totalSegundos++;
+        let horas = Math.floor(totalSegundos / 3600);
+        let minutos = Math.floor((totalSegundos % 3600) / 60);
+        let segundos = totalSegundos % 60;
+
+        document.getElementById('duracion-texto-t2r1').textContent = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
     }
 
     actualizarContador();

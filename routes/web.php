@@ -43,6 +43,8 @@ use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_finalizaciont1refuer
 
 use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_indicadorest1refuerzo2;
 use App\Http\Controllers\espaciodefinalizaciont1refuerzo3\c_indicadorest1refuerzo3;
+use App\Http\Controllers\espaciodefinalizaciont2refuerzo1\c_indicadorest2refuerzo1;
+
 
 // refuerzo t1 1
 use App\Http\Controllers\c_visitatipo1pasosrefuerzo1; 
@@ -426,3 +428,4 @@ Route::post('/guardarfirmat2refuerzo1',[c_finalizaciont2refuerzo1::class, 'fc_gu
 Route::get('/finalizarvisitat2refuerzo1',[c_finalizaciont2refuerzo1::class,'fc_finalizarvisitat2refuerzo1'])->name('finalizarvisitat2refuerzo1');
 Route::get('/informevisitat2refuerzo1/{folio}',[c_finalizaciont2refuerzo1::class,'fc_informevisitat2refuerzo1'])->name('informevisitat2refuerzo1');
 Route::get('/guardaraccionesmovilizadorascompromisost2refuerzo1',[c_momentoconcientet2refuerzo1::class, 'fc_guardaraccionesmovilizadorascompromisost2refuerzo1'])->name('guardaraccionesmovilizadorascompromisost2refuerzo1');
+Route::get('/indicadorest2refuerzo1/{folio}',[c_indicadorest2refuerzo1::class,'fc_indicadorest2refuerzo1'])->name('indicadorest2refuerzo1');

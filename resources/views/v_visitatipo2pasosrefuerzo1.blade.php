@@ -250,7 +250,7 @@ body {
                     <label>Oportunidades</label>
                   </h3>
              </div>  
-            <button type="button" class="btn btn-primary"   onclick="window.location.href='../ficherodeoportunidadest1refuerzo3/{{$folioencriptado}}/'">Ir a oportunidades</button> 
+            <button type="button" class="btn btn-primary"   onclick="window.location.href='../ficherodeoportunidadest2refuerzo1/{{$folioencriptado}}/'">Ir a oportunidades</button> 
              <div class="smCard">
                 </div>
               </div>
@@ -296,7 +296,7 @@ body {
                     <label>Espacio de finalización</label>
                   </h3>
              </div>  
-             <button type="button" class="btn btn-primary" <?=($existel600p60010 == '1' && $existel600p60020 == '1'  && $existel600p60030 == '1' && $existel600p60040 == '1' && $existel600p60050 == '0' )?'':'disabled'?> onclick="window.location.href='../informevisitat1refuerzo3/{{$folioencriptado}}/'">Ir a finalización</button>
+             <button type="button" class="btn btn-primary" <?=($existel600p60010 == '1' && $existel600p60020 == '1'  && $existel600p60030 == '1' && $existel600p60040 == '1' && $existel600p60050 == '0' )?'':'disabled'?> onclick="window.location.href='../informevisitat2refuerzo1/{{$folioencriptado}}/'">Ir a finalización</button>
              <div class="smCard">
                 </div>
               </div>
@@ -695,7 +695,7 @@ let contadorActivo = false;
             let segundos = totalSegundos % 60;
 
             let texto = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
-            document.getElementById('duracion-texto-t1r3').textContent = texto;
+            document.getElementById('duracion-texto-t2r1').textContent = texto;
         }
 
         actualizarContador();

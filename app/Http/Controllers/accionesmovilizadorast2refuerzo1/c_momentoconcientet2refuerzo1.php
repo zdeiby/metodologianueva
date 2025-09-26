@@ -222,8 +222,8 @@ class c_momentoconcientet2refuerzo1 extends Controller
             $tabla = 't1_accionmovilizadoraqt';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea = 500;
-            $paso = 50030;
+            $linea = 600;
+            $paso = 60030;
             $bienestar = 3;
 
             // 1. Trae todas las acciones seleccionadas antes (en cualquier visita)
@@ -317,7 +317,7 @@ class c_momentoconcientet2refuerzo1 extends Controller
 
 
 
-            public function fc_accionmovilizadoraqtt2refuerzo1(Request $request,$folio){
+          /*  public function fc_accionmovilizadoraqtt2refuerzo1(Request $request,$folio){
                 if (!session('nombre')) {
                     // Si no existe la sesión 'usuario', redirigir al login
                     return redirect()->route('login');
@@ -331,8 +331,8 @@ class c_momentoconcientet2refuerzo1 extends Controller
                     $lineaanterior= 200;
                     $pasoanterior= 20040;
 
-                    $linea= 500;
-                    $paso= 50040;
+                    $linea= 600;
+                    $paso= 60040;
             
                     $categoriasant = DB::table('t1_ordenprioridadesqt')
                     ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
@@ -435,7 +435,166 @@ class c_momentoconcientet2refuerzo1 extends Controller
                                                                               'bienestarant'=>$bienestarant,
                                                                              
                                                                             ]);
+           } */
+
+             
+
+
+    public function fc_accionmovilizadoraqtt2refuerzo1(Request $request, $folio)
+    {
+        if (!session('nombre')) {
+            return redirect()->route('login');
+        }
+
+        $herramientas = new m_herramientas();
+
+        $tabla = 't1_accionmovilizadoraqt';
+        $hashids = new Hashids('', 10); 
+        $encodedFolio = $hashids->decode($folio);
+        $lineaanterior = 200;
+        $pasoanterior = 20040;
+
+        $linea = 600;
+        $paso = 60040;
+
+        // Categorías anteriores y actuales
+        $categoriasant = DB::table('t1_ordenprioridadesqt')
+            ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
+            ->where('t1_ordenprioridadesqt.folio', $encodedFolio)
+            ->where('t1_ordenprioridadesqt.linea', $lineaanterior)
+            ->where('t1_ordenprioridadesqt.prioridad', 2)
+            ->select('t_bienestares.descripcion', 't1_ordenprioridadesqt.categoria')
+            ->get();
+
+        $categorias = DB::table('t1_ordenprioridadesqt')
+            ->join('t_bienestares', 't1_ordenprioridadesqt.categoria', '=', 't_bienestares.id')
+            ->where('t1_ordenprioridadesqt.folio', $encodedFolio)
+            ->where('t1_ordenprioridadesqt.linea', $lineaanterior)
+            ->where('t1_ordenprioridadesqt.prioridad', 4)
+            ->select('t_bienestares.descripcion', 't1_ordenprioridadesqt.categoria')
+            ->get();
+
+        $accionesAnteriores = DB::table($tabla)
+            ->where('folio', $encodedFolio)
+            ->where('linea', '<', 600)   // 👈 solo las anteriores
+            ->pluck('accionmovilizadora', 'bienestar')
+            ->toArray();
+
+        $bienestarant = $categoriasant[0]->categoria ?? null;
+        $bienestar = $categorias[0]->categoria ?? null;
+
+        // Información actual y anterior
+        $informacion = DB::table($tabla)
+            ->where('folio', $encodedFolio)
+            ->where('linea', $linea)
+            ->where('paso', $paso)
+            ->get();
+
+        $informacionant = DB::table($tabla)
+            ->where('folio', $encodedFolio)
+            ->where('linea', $lineaanterior)
+            ->where('paso', $pasoanterior)
+            ->where('bienestar', $bienestarant)
+            ->get();
+
+        // Inicializar datos
+        $datos['accionmovilizadora'] = '';
+        $datos['accionmovilizadoraant'] = '';
+        $datos['compromiso'] = '';
+        $datos['siguiente'] = 'style="display:none"';
+
+        foreach ($informacionant as $registro) {
+            $datos['accionmovilizadoraant'] = $registro->accionmovilizadora;
+            $datos['compromiso'] = $registro->compromiso;
+        }
+
+        foreach ($informacion as $registro) {
+            $datos['accionmovilizadora'] = $registro->accionmovilizadora;
+            $datos['siguiente'] = (($registro->estado == '1') ? 'style="display:"' : 'style="display:none"');
+        }
+
+        // ---------------------------------------------------
+        // 🔹 Traer TODAS las acciones seleccionadas para ese folio
+        // ---------------------------------------------------
+        $accionesSeleccionadas = DB::table($tabla)
+            ->where('folio', $encodedFolio)
+            ->pluck('accionmovilizadora', 'bienestar') // [bienestar_id => accionmovilizadora]
+            ->toArray();
+
+        // ---------------------------------------------------
+        // 🔹 Obtener TODOS los bienestares
+        // ---------------------------------------------------
+        $todosBienestares = DB::table('t_bienestares')
+            ->select('id', 'descripcion')
+              ->where('id', '!=', 3) 
+            ->orderBy('id', 'asc')
+            ->get();
+
+            $registroGuardado = DB::table($tabla)
+                ->where('folio', $encodedFolio)
+                ->where('linea', 600)
+                ->where('paso', 60040)
+                ->first();
+
+            $datos['bienestar_guardado'] = $registroGuardado->bienestar ?? null;
+            $datos['accion_guardada']   = $registroGuardado->accionmovilizadora ?? null;
+
+
+            foreach ($todosBienestares as $b) {
+                $acciones = $herramientas->m_leeracciones('t_accionesmovilizadoras', $b->id);
+
+                // Acción de visitas anteriores (se pinta en azul)
+                $accionUsada = $accionesAnteriores[$b->id] ?? null;
+
+                if ($accionUsada) {
+                    $acciones = preg_replace(
+                        '/<option value="'.$accionUsada.'">(.*?)<\/option>/',
+                        '<option value="'.$accionUsada.'" disabled style="color:blue;font-weight:bold">$1 (Seleccionada en visita anterior)</option>',
+                        $acciones
+                    );
+                }
+
+                // Guardar en el objeto
+                $b->acciones = $acciones;
             }
+
+
+
+        $datos['todosBienestares'] = $todosBienestares;
+
+        // ---------------------------------------------------
+        // 🔹 Acciones del actual y anterior
+        // ---------------------------------------------------
+        if ($bienestar) {
+            $datos['t_accionesmovilizadora'] = $herramientas->m_leeracciones('t_accionesmovilizadoras', $bienestar);
+        }
+
+        if ($bienestarant) {
+            $datos['t_accionesmovilizadoraant'] = $herramientas->m_leeracciones('t_accionesmovilizadoras', $bienestarant);
+        }
+
+        // ---------------------------------------------------
+        // 🔹 Retornar vista
+        // ---------------------------------------------------
+        return view(
+            'accionesmovilizadorast2refuerzo1/v_accionmovilizadoraqtt2refuerzo1',
+            $datos,
+            [
+                'variable' => $folio,
+                'folio' => $encodedFolio[0],
+                'foliomenu' => $encodedFolio[0],
+                'tabla' => $tabla,
+                'descripcion' => $categorias[0]->descripcion ?? '',
+                'descripcionant' => $categoriasant[0]->descripcion ?? '',
+                'linea' => $linea,
+                'paso' => $paso,
+                'bienestar' => $bienestar,
+                'bienestarant' => $bienestarant,
+            ]
+        );
+    }
+                                           
+
 
 
 
@@ -549,8 +708,8 @@ class c_momentoconcientet2refuerzo1 extends Controller
                     $encodedFolio = $hashids->decode($folio);
 
                     // Actual
-                    $linea = 500;
-                    $paso = 50040;
+                    $linea = 600;
+                    $paso = 60040;
 
                     // Segunda visita (anterior)
                     $lineaAnteriorT1R1 = 300;
@@ -562,6 +721,9 @@ class c_momentoconcientet2refuerzo1 extends Controller
                     // Primera visita (anterior a la anterior)
                     $lineaAnteriorT1 = 200;
                     $pasoAnteriorT1 = 20040;
+
+                     $lineaAnteriorT1R3 = 500; 
+                     $pasoAnteriorT1R3 = 50040;
 
                     // --- Compromisos ACTUALES
                     $informacion = DB::table($tabla)
@@ -589,6 +751,7 @@ class c_momentoconcientet2refuerzo1 extends Controller
                         ->where('folio', $encodedFolio)
                         ->where('linea', $lineaAnteriorT1R2)
                         ->where('paso', $pasoAnteriorT1R2)
+                        ->where('estado_compromiso', 3)
                         ->select('compromiso', 'numero_compromiso', 'estado_compromiso')
                         ->get();
 
@@ -598,6 +761,14 @@ class c_momentoconcientet2refuerzo1 extends Controller
                         ->where('linea', $lineaAnteriorT1)
                         ->where('paso', $pasoAnteriorT1)
                         ->where('estado_compromiso', 3)
+                        ->select('compromiso', 'numero_compromiso', 'estado_compromiso')
+                        ->get();
+
+                    // --- CUARTA VISITA (línea 500 que pediste)
+                    $informacionantT1R3 = DB::table($tabla)
+                        ->where('folio', $encodedFolio)
+                        ->where('linea', $lineaAnteriorT1R3)
+                        ->where('paso', $pasoAnteriorT1R3)
                         ->select('compromiso', 'numero_compromiso', 'estado_compromiso')
                         ->get();
 
@@ -630,8 +801,18 @@ class c_momentoconcientet2refuerzo1 extends Controller
                             'numero' => $c->numero_compromiso,
                             'compromiso' => $c->compromiso,
                             'estado' => $c->estado_compromiso,
-                            'editable' => true,
+                            'editable' => false,
                             'visita' => 'Tercera visita T1'
+                        ];
+                    }
+
+                    foreach ($informacionantT1R3 as $c) {
+                        $compromisosAnteriorTabla[] = [
+                            'numero' => $c->numero_compromiso,
+                            'compromiso' => $c->compromiso,
+                            'estado' => $c->estado_compromiso,
+                            'editable' => true,
+                            'visita' => 'Cuarta visita T1'
                         ];
                     }
 
@@ -659,8 +840,8 @@ class c_momentoconcientet2refuerzo1 extends Controller
                         'estadosMap' => $estadosMap,
                         'linea' => $linea,
                         'paso' => $paso,
-                        'lineaanterior' => $lineaAnteriorT1R2,
-                        'pasoanterior' => $pasoAnteriorT1R2,
+                        'lineaanterior' => $lineaAnteriorT1R3,
+                        'pasoanterior' => $pasoAnteriorT1R3,
                     ]);
                 }
 
@@ -679,7 +860,7 @@ class c_momentoconcientet2refuerzo1 extends Controller
          $linea = $request->input('linea');
          $paso = $request->input('paso');
          $now = Carbon::now();
-         $data = $request->except(['folio', 'tabla','linea','paso']);
+         $data = $request->except(['folio', 'tabla','linea','paso','accionmovilizadora_5','accionmovilizadora_4','accionmovilizadora_2','accionmovilizadora_1','bienestar_seleccionado']);
        
           // Añadir created_at y updated_at
          $data['updated_at'] = $now;
@@ -822,16 +1003,18 @@ class c_momentoconcientet2refuerzo1 extends Controller
       {
           $folio = $request->input('folio');
           $linea = $request->input('linea');
-          $pasos = ['50020', '50030', '50040']; // Pasos a verificar
+          $pasos = [ '60030', '60040']; // Pasos a verificar
       
           // Realiza la consulta utilizando el Query Builder
           $resultado = DB::table('t1_pasosvisita')
               ->where('folio', $folio)
               ->where('linea', $linea)
               ->whereIn('paso', $pasos)
-              ->selectRaw('CASE WHEN COUNT(*) = 3 AND SUM(estado) = 3 THEN 1 ELSE 0 END AS resultado')
+              ->selectRaw('CASE WHEN COUNT(*) = 2 AND SUM(estado) = 2 THEN 1 ELSE 0 END AS resultado')
               ->value('resultado');
-      
+
+
+             // dd($resultado);
           // Responder con el resultado de la validación
           return response()->json(["resultado" => $resultado]);
       }

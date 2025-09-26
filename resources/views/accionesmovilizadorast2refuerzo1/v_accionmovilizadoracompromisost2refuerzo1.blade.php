@@ -287,7 +287,7 @@ El gestor consigna información cualitativa. A que se compromete el hogar en rel
             //     success: function(response) {
             //       console.log(response.resultado)
             //       if(response.resultado == 1){
-                  var url = "../rombovisitatipo1refuerzo3/<?= $variable ?>"; window.location.href = url;
+                  var url = "../rombovisitatipo2refuerzo1/<?= $variable ?>"; window.location.href = url;
     //               }else{
     //                 Swal.fire({
     //                   icon: "error",
@@ -307,7 +307,7 @@ El gestor consigna información cualitativa. A que se compromete el hogar en rel
        }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../accionmovilizadoraqtt1refuerzo3/:folio";
+           var url = "../accionmovilizadoraqtt2refuerzo1/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -315,10 +315,10 @@ El gestor consigna información cualitativa. A que se compromete el hogar en rel
     
 
 
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconcientet1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../bienestarenfamiliat1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../accionmovilizadoraqtt1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-    $('#compromisos').click(function(){var url = "../accionmovilizadoracompromisost1refuerzo3/<?= $variable ?>"; window.location.href = url;})
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconcientet2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../bienestarenfamiliat2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+    $('#financieroqt').click(function(){var url = "../accionmovilizadoraqtt2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+    $('#compromisos').click(function(){var url = "../accionmovilizadoracompromisost2refuerzo1/<?= $variable ?>"; window.location.href = url;})
   
 
       
@@ -546,7 +546,7 @@ function enviarCompromisosAnteriores() {
     });
 
     $.ajax({
-        url: '../guardaraccionesmovilizadorascompromisost1refuerzo3?' + params,
+        url: '../guardaraccionesmovilizadorascompromisost2refuerzo1?' + params,
         method: 'GET',
         success: function(response) {
             alertagood();

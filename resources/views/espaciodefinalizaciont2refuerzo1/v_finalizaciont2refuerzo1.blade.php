@@ -275,7 +275,7 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../informevisitat1refuerzo3/<?= $variable ?>"; window.location.href = url;
+        var url = "../informevisitat2refuerzo1/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
@@ -289,7 +289,7 @@
 
         $('#finalizarboton').click(function(){
               $.ajax({
-                  url: '../finalizarvisitat1refuerzo3',
+                  url: '../finalizarvisitat2refuerzo1',
                   data: { folio: $('#folioinput').val(), usuario:'{{ Session::get('cedula') }}', linea:<?= $linea ?> },
                   method: "GET",
                   dataType: 'JSON',
@@ -312,9 +312,9 @@
       // });
 
 
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedadest1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-    / $('#legalqt').click(function(){var url = "../informevisitat1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../finalizaciont1refuerzo3/<?= $variable ?>"; window.location.href = url;})
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedadest2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+    / $('#legalqt').click(function(){var url = "../informevisitat2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+    $('#financieroqt').click(function(){var url = "../finalizaciont2refuerzo1/<?= $variable ?>"; window.location.href = url;})
 
       
 

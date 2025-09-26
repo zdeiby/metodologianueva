@@ -154,44 +154,72 @@
 
 
 
-                <div class="container mt-4">
-                  <div class="border">
-                    <!-- Fila de títulos -->
-                    <div class="row g-0">
-                      <div class="col-md-4 d-flex align-items-center border-end border-bottom text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
-                        <div class="p-2">
-                          CATEGORIA DEL BIENESTAR
+                  <div class="container mt-4">
+                    <div class="border">
+                      <!-- Fila de títulos -->
+                      <div class="row g-0">
+                        <!-- Categoría -->
+                        <div class="col-md-4 d-flex align-items-center border-end border-bottom text-center" 
+                            style="background: #2fa4e7; color: white; font-weight: bold;">
+                          <div class="p-2">CATEGORÍA DEL BIENESTAR</div>
+                        </div>
+
+                        <!-- Acciones -->
+                        <div class="col-md-6 d-flex align-items-center border-end border-bottom text-center" 
+                            style="background: #2fa4e7; color: white; font-weight: bold;">
+                          <div class="p-2">NOMBRE DE LAS ACCIONES MOVILIZADORAS</div>
+                        </div>
+
+                        <!-- Radio -->
+                        <div class="col-md-2 d-flex align-items-center border-bottom text-center" 
+                            style="background: #2fa4e7; color: white; font-weight: bold;">
+                          <div class="p-2">SELECCIONAR</div>
                         </div>
                       </div>
-                      <div class="col-md-8">
-                        <div class="row g-0">
-                          <div class="col-12 border-bottom p-2 text-center" style="background: #2fa4e7; color: white; font-weight: bold;">
-                            NOMBRE DE LAS ACCIONES MOVILIZADORAS
+
+
+                                  
+
+                  @foreach($todosBienestares as $b)
+                    <div class="row g-0 align-items-center mb-2">
+                      <!-- Columna de bienestar -->
+                      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
+                        <div class="pt-3 pb-2">{{ $b->descripcion }}</div>
+                      </div>
+
+                      <!-- Columna de acciones -->
+                      <div class="col-md-6 d-flex align-items-stretch border-bottom">
+                        <div class="col-12 p-2 d-flex align-items-center" 
+                            style="text-align: center; display: flex; flex-direction: column;">
+                          <div class="col-md-10">
+                           <select class="form-control form-control-sm select-bienestar" 
+                                  name="accionmovilizadora_{{ $b->id }}" 
+                                  @if($bienestar_guardado == $b->id) required @else disabled @endif >
+                             
+                              {!! str_replace('value="'.$accion_guardada.'"', 'value="'.$accion_guardada.'" selected', $b->acciones) !!}
+                          </select>
                           </div>
                         </div>
                       </div>
+
+                      <!-- Columna del radio (derecha) -->
+                    <div class="col-md-2 d-flex align-items-stretch border-bottom border-start">
+                       <div class="col-12 pb-3 pt-2 d-flex align-items-center" 
+                            style="text-align: center; display: flex; flex-direction: column;">
+                          <div class="col-md-10">
+                        <input type="radio" 
+                          name="bienestar_seleccionado" 
+                          value="{{ $b->id }}" 
+                          class="radio-bienestar"
+                          @if($bienestar_guardado == $b->id) checked @endif >
+                    </div>
+                    </div>
                     </div>
 
-                    <!-- Fila de contenido -->
-                    <div class="row g-0" id="indicadorbse1">
-                      <div class="col-md-4 d-flex align-items-center border-end border-bottom">
-                        <div class="p-2">
-                        {{$descripcion}}
-                        </div>
-                      </div>
-                      <div class="col-md-8 d-flex align-items-stretch  ">
-                        <div class="col-12 border-bottom p-2 d-flex align-items-center " style="    text-align: center !important;  display: flex;  flex-direction: column;">
-                        <div class="col-md-6" >
-                            <!-- <label for="validationServer04" class="form-label">¿Tienes permiso del ministerio de trabajo?</label> -->
-                            <select class="form-control form-control-sm" id="accionmovilizadora" name="accionmovilizadora" aria-describedby="validationServer04Feedback" required="">
-                            {!! $t_accionesmovilizadora !!}
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  @endforeach
+
                   </div>
-                </div>
+                  </div>
 
 @if($compromiso == '')
 
@@ -254,7 +282,7 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
       $('#siguiente').click(function(){
 
             $.ajax({
-                url: '../verificarpasost1refuerzo3',
+                url: '../verificarpasost2refuerzo1',
                 method: 'GET', // Cambiar a GET si estás usando GET
                 data: { folio: '{{ $folio }}',
                         linea: '{{ $linea }}',
@@ -263,7 +291,7 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
                 success: function(response) {
                   console.log(response.resultado)
                   if(response.resultado == 1){
-                  url = "../accionmovilizadoracompromisost1refuerzo3/<?= $variable ?>"; window.location.href = url;
+                  url = "../accionmovilizadoracompromisost2refuerzo1/<?= $variable ?>"; window.location.href = url;
                   }else{
                     Swal.fire({
                       icon: "error",
@@ -283,7 +311,7 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../bienestarenfamiliat1refuerzo3/:folio";
+           var url = "../bienestarenfamiliat2refuerzo1/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -291,10 +319,10 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
     
 
 
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconcientet1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../bienestarenfamiliat1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../accionmovilizadoraqtt1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-    $('#compromisos').click(function(){var url = "../accionmovilizadoracompromisost1refuerzo3/<?= $variable ?>"; window.location.href = url;})
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../momentoconcientet2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../bienestarenfamiliat2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+    $('#financieroqt').click(function(){var url = "../accionmovilizadoraqtt2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+    $('#compromisos').click(function(){var url = "../accionmovilizadoracompromisost2refuerzo1/<?= $variable ?>"; window.location.href = url;})
 
 
       
@@ -305,31 +333,55 @@ El gestor consigna información cualitativa. A qué se comprometen el hogar en r
         $('#accionmovilizadora').val('<?= $accionmovilizadora ?>')
         $('#accionmovilizadoraant').val('<?= $accionmovilizadoraant ?>')
         
-        $('#formulario').on('submit', function(event) {
-            event.preventDefault(); // Detiene el envío del formulario
-            
-            var formData = $(this).serializeArray();
-            var data = {};
-            $(formData).each(function(index, obj) {
-                data[obj.name] = obj.value;
-            });
+       $('#formulario').on('submit', function (event) {
+              event.preventDefault(); // 🔹 Evita que el form se envíe de forma tradicional
 
+              // Construir data desde el formulario
+              var formData = $(this).serializeArray();
+              var data = {};
+              $(formData).each(function (index, obj) {
+                  data[obj.name] = obj.value;
+              });
 
-            console.log(data);
+              // 🔹 Obtener bienestar seleccionado
+              const bienestarSeleccionado = $('input[name="bienestar_seleccionado"]:checked').val();
 
-            $.ajax({
-                url: '../guardaraccionesmovilizadoras',
-                method: 'GET', // Cambiar a GET si estás usando GET
-                data: data, // Envía los datos de manera plana
-                success: function(response) {
-                  agregarpaso(data);
-                },
-                error: function(xhr, status, error) {
-                    alertabad();
-                    console.error(error);
-                }
-            });
-        });
+              if (!bienestarSeleccionado) {
+                  Swal.fire({
+                      icon: "warning",
+                      title: "Selecciona un bienestar",
+                      text: "Debes marcar al menos un bienestar antes de guardar.",
+                      confirmButtonText: "Entendido"
+                  });
+                  return; // 🚫 Detener envío si no hay selección
+              }
+
+              if (bienestarSeleccionado) {
+                  // Buscar la acción movilizadora del select correspondiente
+                  const accion = $(`select[name="accionmovilizadora_${bienestarSeleccionado}"]`).val();
+
+                  // Reemplazar valores en data
+                  data['bienestar'] = bienestarSeleccionado;
+                  data['accionmovilizadora'] = accion;
+              }
+
+              console.log(data); // 👉 Aquí ya debe salir como en tu ejemplo limpio
+
+              // 🔹 Enviar por AJAX
+              $.ajax({
+                  url: '../guardaraccionesmovilizadorast2refuerzo1',
+                  method: 'GET', 
+                  data: data,
+                  success: function (response) {
+                      agregarpaso(data);
+                  },
+                  error: function (xhr, status, error) {
+                      alertabad();
+                      console.error(error);
+                  }
+              });
+          });
+
 });
 
 
@@ -363,4 +415,31 @@ function agregarpaso(data){
         });
     });
 </script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const radios = document.querySelectorAll('.radio-bienestar');
+    const selects = document.querySelectorAll('.select-bienestar');
+
+    radios.forEach(radio => {
+        radio.addEventListener('change', function () {
+            // Deshabilitar todos los selects y vaciar su valor
+            selects.forEach(sel => {
+                sel.disabled = true;
+                sel.value = "";
+            });
+
+            // Habilitar solo el select del bienestar marcado
+            const row = this.closest('.row');
+            const select = row.querySelector('.select-bienestar');
+            if (select) {
+                select.disabled = false;
+                select.setAttribute("required", "required");
+            }
+        });
+    });
+});
+</script>
+
 @endsection

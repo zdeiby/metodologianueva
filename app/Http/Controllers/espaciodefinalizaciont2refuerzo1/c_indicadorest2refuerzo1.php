@@ -28,8 +28,8 @@ class c_indicadorest2refuerzo1 extends Controller
            $tabla = 't1_oportunidad_integrantes';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 500;
-            $paso= 50040;
+            $linea= 600;
+            $paso= 60040;
 
              $rows = DB::table('t1_integranteshogar')
                 ->where('folio', $encodedFolio)

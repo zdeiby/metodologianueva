@@ -172,7 +172,7 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../finalizaciont1refuerzo3/<?= $variable ?>"; window.location.href = url;
+        var url = "../finalizaciont2refuerzo1/<?= $variable ?>"; window.location.href = url;
       }); 
       // function redirectToIntegrantes() {
       //      var folio = `<?=$variable ?>`;
@@ -183,7 +183,7 @@
 
        function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../rombovisitatipo1refuerzo3/:folio";
+           var url = "../rombovisitatipo2refuerzo1/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -191,9 +191,9 @@
     
 
 
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedadest1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-     $('#legalqt').click(function(){var url = "../informevisitat1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-    $('#financieroqt').click(function(){var url = "../finalizaciont1refuerzo3/<?= $variable ?>"; window.location.href = url;})
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../actualizacionnovedadest2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+     $('#legalqt').click(function(){var url = "../informevisitat2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+    $('#financieroqt').click(function(){var url = "../finalizaciont2refuerzo1/<?= $variable ?>"; window.location.href = url;})
 
       
     $(document).ready(function() {

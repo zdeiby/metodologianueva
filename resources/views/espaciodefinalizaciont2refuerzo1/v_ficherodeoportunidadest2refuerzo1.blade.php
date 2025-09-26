@@ -291,11 +291,11 @@
 
 
       $('#siguiente').click(function(){
-        var url = "../ficherodeoportunidadeshogart1refuerzo3/<?= $variable ?>"; window.location.href = url;
+        var url = "../ficherodeoportunidadeshogart2refuerzo1/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../rombovisitatipo1refuerzo3/:folio";
+           var url = "../rombovisitatipo2refuerzo1/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
@@ -303,9 +303,9 @@
     
 
 
-      $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidadest1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-      $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogart1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-     $('#indicadores').click(function(){var url = "../indicadorest1refuerzo3/<?= $variable ?>"; window.location.href = url;})
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidadest2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+      $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogart2refuerzo1/<?= $variable ?>"; window.location.href = url;})
+     $('#indicadores').click(function(){var url = "../indicadorest2refuerzo1/<?= $variable ?>"; window.location.href = url;})
       
 
     

@@ -32,8 +32,8 @@ class c_finalizaciont2refuerzo1 extends Controller
             $tabla = 't1_v1actualizacionnovedades';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 500;
-            $paso= 50050;
+            $linea= 600;
+            $paso= 60050;
            
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
@@ -80,8 +80,8 @@ class c_finalizaciont2refuerzo1 extends Controller
             $tabla = 't1_informesvisitas';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 500;
-            $paso= 50050;
+            $linea= 600;
+            $paso= 60050;
            
             $informacion = DB::table($tabla)
                             ->where('folio', $encodedFolio)
@@ -127,8 +127,8 @@ class c_finalizaciont2refuerzo1 extends Controller
             $tabla = 't1_v1finalizacion';
             $hashids = new Hashids('', 10); 
             $encodedFolio = $hashids->decode($folio);
-            $linea= 500;
-            $paso= 50050;
+            $linea= 600;
+            $paso= 60050;
            
            
             $informacion = DB::table($tabla)

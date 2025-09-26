@@ -51,6 +51,7 @@ class VisitaT1Middleware
         ];
 
 
+
          $rutas1T1 = [
             'momentoconciente',
             'bienestarenfamilia',
@@ -103,6 +104,19 @@ class VisitaT1Middleware
             'intelectualqt',
             'financieroqt',
            
+        ];
+
+          $rutasT2R1 = [
+            'momentoconcientet2refuerzo1',
+            'bienestarenfamiliat2refuerzo1',
+            'accionmovilizadoraqtt2refuerzo1',
+            'accionmovilizadoracompromisost2refuerzo1',
+            'ficherodeoportunidadest2refuerzo1',
+            'ficherodeoportunidadeshogart2refuerzo1',
+            'informevisitat2refuerzo1',
+            'finalizaciont2refuerzo1',
+            'rombovisitatipo2refuerzo1',
+            'indicadorest2refuerzo1'
         ];
 
 
@@ -353,6 +367,48 @@ class VisitaT1Middleware
                         view()->share('activarContadorTriajeP2', $activarContador);
                         view()->share('totalSegundosTriajeP2', $totalSegundos);
         }
+
+
+        if (in_array($rutaActual, $rutasT2R1)) {
+            view()->share('esVisitaT2R1', true);
+
+              // 🔐 Desencriptar folio desde la URL tipo /rombovisitatipo1refuerzo1/{folio}
+            $folioCodificado = request()->route('folio'); // viene desde la URL
+            $hashids = new Hashids('', 10);
+            $folio = $folioCodificado ? $hashids->decode($folioCodificado)[0] ?? null : null;
+            $linea = '600';
+            // Consulta de ejemplo: ajusta el nombre de tu tabla y campos
+            $registro = DB::table('t1_visitasrealizadas')
+                        ->where('folio', $folio)
+                        ->where('linea', $linea)
+                        ->select('iniciovisita', 'finvisita')
+                        ->first();
+
+                        $duracion = '0';
+                        $activarContador = false;
+                        $totalSegundos = 0; // 👈 lo agregamos aparte
+
+                        if (!empty($registro) && !empty($registro->iniciovisita)) {
+                            $inicio = Carbon::parse($registro->iniciovisita);
+                            $fin = $registro->finvisita ? Carbon::parse($registro->finvisita) : Carbon::now();
+
+                            if (empty($registro->finvisita)) {
+                                $activarContador = true;
+                            }
+
+                            $totalMinutos = $inicio->diffInMinutes($fin);
+                            $totalSegundos = $inicio->diffInSeconds($fin); // 👈 solo añadimos esto
+                            
+                            $horas = floor($totalMinutos / 60);
+                            $minutos = $totalMinutos % 60;
+                            $duracion = sprintf('%02d:%02d', $horas, $minutos);
+                        }
+                        
+                        view()->share('duracionT2R1', $duracion);
+                        view()->share('activarContadorT2R1', $activarContador);
+                        view()->share('totalSegundosT2R1', $totalSegundos);
+        }
+
 
 
 
