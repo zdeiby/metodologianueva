@@ -208,7 +208,11 @@
         </li> 
    @endif
 
-
+   @if (($realizadosvt1r3 == '1' && $metodologia == 2 ) || ($realizadosvt1r2 == '1' && $es_grupo2 && $total_indicadoresDA_verdes <= '70' ) 
+   || ($realizadosvt1r2 == '1' && $es_grupo3 && $total_indicadoresDA_verdes <= '70' ) || 
+   ($realizadosvt1 == '1' && $es_grupo2 && $alerta1 && $metodologia != 2 ) || ($realizadosvt1 == '1' && $es_grupo3 && $alerta1 && $metodologia != 2 )
+   
+   )
    <li class="scene" style="display:">
             <div class="movie">
                 <div class="poster" >
@@ -229,15 +233,15 @@
                     <br>
                     <br> 
                    
-                    @if($realizadosvt1r3 == '1')
+                    @if($realizadosvt1r4 == '0')
                     <form method="GET" action="../rombovisitatipo2refuerzo1/{{$encodeFolio}}" ><button type="submit" class="btn btn-primary">Realizar visita</button></form>
-                    @elseif($realizadosvt1r3 == '0')
+                    @elseif($realizadosvt1r4 == '1')
                     <form method="GET" ><button type="submit" class="btn btn-primary" disabled>Realizar visita</button></form>
                     @endif
                 </div>
             </div>
         </li> 
-
+  @endif
 
 
         <!-- <li class="scene">

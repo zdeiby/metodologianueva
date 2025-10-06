@@ -570,7 +570,7 @@ function soloNumeros(e) {
                     data-segundos="{{ $totalSegundosT2R1 }}"
                     class="text-white text-center"
                     style="background:#00bfff; padding:6px; border-radius:5px;">
-                    <strong>Cuarta Visita T1</strong><br>
+                    <strong>Primera visita T2</strong><br>
                     Dur: <span id="duracion-texto-t2r1">
                         {{ $duracionT2R1 }}@if($activarContadorT2R1):{{ sprintf('%02d', $totalSegundosT2R1 % 60) }}@endif
                     </span> min
