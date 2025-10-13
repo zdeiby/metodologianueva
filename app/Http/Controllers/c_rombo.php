@@ -109,8 +109,9 @@ class c_rombo extends Controller
                 ->where('folio', decrypt($cedula))
                 ->where('numero_alerta', 1) // Tipo 1 para alerta de grupo 2
                 ->exists(); 
+                
 
-              //  dd($alerta);
+              //  dd($alerta1);
 
             $casilla = DB::table('t1_casillamatriz')
                 ->where('folio', decrypt($cedula))

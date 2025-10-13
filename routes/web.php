@@ -34,6 +34,11 @@ use App\Http\Controllers\accionesmovilizadoras\c_momentoconciente;
 use App\Http\Controllers\espaciodefinalizacion\c_finalizacion;
 use App\Http\Controllers\c_oportunidades;
 use App\Http\Controllers\espaciodefinalizacion\c_oportunidadesvisita;
+use App\Http\Controllers\espaciodefinalizacion\c_alertasgestor1t1;
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo1\c_alertasgestor2t1;
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_alertasgestor3t1;
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo3\c_alertasgestor4t1;
+use App\Http\Controllers\espaciodefinalizaciont2refuerzo1\c_alertasgestor1t2;
 
 //refuerzo t1 2
 use App\Http\Controllers\c_visitatipo1pasosrefuerzo2; 
@@ -41,9 +46,11 @@ use App\Http\Controllers\accionesmovilizadorast1refuerzo2\c_momentoconcientet1re
 use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_oportunidadesvisitat1refuerzo2;
 use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_finalizaciont1refuerzo2;
 
+use App\Http\Controllers\espaciodefinalizacion\c_indicadores;
 use App\Http\Controllers\espaciodefinalizaciont1refuerzo2\c_indicadorest1refuerzo2;
 use App\Http\Controllers\espaciodefinalizaciont1refuerzo3\c_indicadorest1refuerzo3;
 use App\Http\Controllers\espaciodefinalizaciont2refuerzo1\c_indicadorest2refuerzo1;
+use App\Http\Controllers\espaciodefinalizaciont1refuerzo1\c_indicadorest1refuerzo1;
 
 
 // refuerzo t1 1
@@ -277,6 +284,7 @@ Route::get('/bienestarenfamiliat1refuerzo1/{folio}',[c_momentoconcientet1refuerz
 Route::get('/accionmovilizadoraqtt1refuerzo1/{folio}',[c_momentoconcientet1refuerzo1::class, 'fc_accionmovilizadoraqtt1refuerzo1'])->name('accionmovilizadoraqtt1refuerzo1');
 Route::get('/ficherodeoportunidadest1refuerzo1/{folio}',[c_oportunidadesvisitat1refuerzo1::class, 'fc_ficherodeoportunidadest1refuerzo1'])->name('ficherodeoportunidadest1refuerzo1');
 Route::get('/ficherodeoportunidadeshogart1refuerzo1/{folio}',[c_oportunidadesvisitat1refuerzo1::class, 'fc_ficherodeoportunidadeshogart1refuerzo1'])->name('ficherodeoportunidadeshogart1refuerzo1');
+Route::get('/indicadores/{folio}',[c_indicadores::class,'fc_indicadores'])->name('indicadores');
 
 Route::get('/finalizaciont1refuerzo1/{folio}',[c_finalizaciont1refuerzo1::class, 'fc_finalizaciont1refuerzo1'])->name('finalizaciont1refuerzo1');
 Route::get('/guardarfinalizacionest1refuerzo1',[c_finalizaciont1refuerzo1::class, 'fc_guardarfinalizacionest1refuerzo1'])->name('guardarfinalizacionest1refuerzo1');
@@ -290,6 +298,7 @@ Route::get('/informevisitat1refuerzo1/{folio}',[c_finalizaciont1refuerzo1::class
 
 
 Route::get('/guardaraccionesmovilizadorascompromisost1refuerzo1',[c_momentoconcientet1refuerzo1::class, 'fc_guardaraccionesmovilizadorascompromisost1refuerzo1'])->name('guardaraccionesmovilizadorascompromisost1refuerzo1');
+Route::get('/alertasgestor1t1/{folio}',[c_alertasgestor1t1::class, 'fc_index'])->name('alertasgestor1t1');
 
 
 //tipo 1 refuerzo 2 
@@ -312,6 +321,9 @@ Route::post('/guardarfirmat1refuerzo2',[c_finalizaciont1refuerzo2::class, 'fc_gu
 Route::get('/finalizarvisitat1refuerzo2',[c_finalizaciont1refuerzo2::class,'fc_finalizarvisitat1refuerzo2'])->name('finalizarvisitat1refuerzo2');
 Route::get('/informevisitat1refuerzo2/{folio}',[c_finalizaciont1refuerzo2::class,'fc_informevisitat1refuerzo2'])->name('informevisitat1refuerzo2');
 Route::get('/guardaraccionesmovilizadorascompromisost1refuerzo2',[c_momentoconcientet1refuerzo2::class, 'fc_guardaraccionesmovilizadorascompromisost1refuerzo2'])->name('guardaraccionesmovilizadorascompromisost1refuerzo2');
+Route::get('/alertasgestor2t1/{folio}',[c_alertasgestor2t1::class, 'fc_index'])->name('alertasgestor2t1');
+
+
 
 //tipo 1 refuerzo 3 
 Route::get('/accionmovilizadoracompromisost1refuerzo3/{folio}',[c_momentoconcientet1refuerzo3::class, 'fc_accionmovilizadoracompromisost1refuerzo3'])->name('accionmovilizadoracompromisost1refuerzo3');
@@ -333,6 +345,7 @@ Route::post('/guardarfirmat1refuerzo3',[c_finalizaciont1refuerzo3::class, 'fc_gu
 Route::get('/finalizarvisitat1refuerzo3',[c_finalizaciont1refuerzo3::class,'fc_finalizarvisitat1refuerzo3'])->name('finalizarvisitat1refuerzo3');
 Route::get('/informevisitat1refuerzo3/{folio}',[c_finalizaciont1refuerzo3::class,'fc_informevisitat1refuerzo3'])->name('informevisitat1refuerzo3');
 Route::get('/guardaraccionesmovilizadorascompromisost1refuerzo3',[c_momentoconcientet1refuerzo3::class, 'fc_guardaraccionesmovilizadorascompromisost1refuerzo3'])->name('guardaraccionesmovilizadorascompromisost1refuerzo3');
+Route::get('/alertasgestor4t1/{folio}',[c_alertasgestor4t1::class, 'fc_index'])->name('alertasgestor4t1');
 
 
 
@@ -354,6 +367,8 @@ Route::get('/editarencuestahogardatosgeograficos/{lineaestacion}',[c_editarhogar
 
 Route::get('/indicadorest1refuerzo2/{folio}',[c_indicadorest1refuerzo2::class,'fc_indicadorest1refuerzo2'])->name('indicadorest1refuerzo2');
 Route::get('/indicadorest1refuerzo3/{folio}',[c_indicadorest1refuerzo3::class,'fc_indicadorest1refuerzo3'])->name('indicadorest1refuerzo3');
+Route::get('/indicadorest1refuerzo1/{folio}',[c_indicadorest1refuerzo1::class,'fc_indicadorest1refuerzo1'])->name('indicadorest1refuerzo1');
+Route::get('/alertasgestor3t1/{folio}',[c_alertasgestor3t1::class, 'fc_index'])->name('alertasgestor3t1');
 
 
 
@@ -429,3 +444,4 @@ Route::get('/finalizarvisitat2refuerzo1',[c_finalizaciont2refuerzo1::class,'fc_f
 Route::get('/informevisitat2refuerzo1/{folio}',[c_finalizaciont2refuerzo1::class,'fc_informevisitat2refuerzo1'])->name('informevisitat2refuerzo1');
 Route::get('/guardaraccionesmovilizadorascompromisost2refuerzo1',[c_momentoconcientet2refuerzo1::class, 'fc_guardaraccionesmovilizadorascompromisost2refuerzo1'])->name('guardaraccionesmovilizadorascompromisost2refuerzo1');
 Route::get('/indicadorest2refuerzo1/{folio}',[c_indicadorest2refuerzo1::class,'fc_indicadorest2refuerzo1'])->name('indicadorest2refuerzo1');
+Route::get('/alertasgestor1t2/{folio}',[c_alertasgestor1t2::class, 'fc_index'])->name('alertasgestor1t2');

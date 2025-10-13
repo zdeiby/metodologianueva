@@ -56,17 +56,89 @@
     }
 </style>
 
+<style>
+  #imagenDinamica:hover{
+    border:2px solid gray;
+  }
+  .imagenDinamicaselect:hover{
+    border:2px solid gray;
+  }
+
+  .imagenselect{
+    border:2px solid gray;
+    background: transparent;
+    background-color: #e0e0e0;
+  }
+</style>
+
+<div class="container">
+    <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class=""  >
+<!-- <form class="d-flex pb-4" role="search">
+      <input class="form-control me-2" type="search" placeholder="Buscar folio o representante" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form> -->
+
+
+        <div class="accordion" id="accordionExample" >
+        <div class="accordion-item" id="l1e1">
+            <div class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <div>
+                <span class="badge bg-primary" id=""  style="font-size:15px">Alertas Gestor</span>
+                <span class="badge bg-success ms-auto" id="folioContainer" folio="{{ $folio }}" style="font-size:15px">folio: {{ $folio }}</span>
+               
+              </div>
+            
+            </button>
+    <br>
+        </div>
+
+    <div><span class="badge bg-success mt-2" id="folio"></span>
+    <span class="badge bg-primary" style="background:#a80a85 !important; color:white" id="nombre"></span>
+    <span class="badge bg-primary" style="background:#0dcaf0 !important; color:white" id="sexointegrante"></span>
+    <span class="badge bg-primary" style="background:#FF8803 !important; color:white" id="edadintegrante"></span>
+
+    </div>
+
+    <div id="collapseOne" class="accordion-collapse collapse show pb-2" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      <div class="row">
+      <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="bienestarsaludemocionalqt" class="nav-link ">FICHERO (Integrantes)
+        </a>
+      </li>
+      <li class="nav-item" role="presentation" style="cursor:pointer">
+        <a id="legalqt"  class="nav-link " >FICHERO DE OPORTUNIDADES (Hogar)</a>
+      </li>
+       <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="indicadores"  class="nav-link ">GESTIÓN INDICADORES</a>
+      </li> 
+       <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="alertas"  class="nav-link active">ALERTAS GESTOR</a>
+      </li> 
+  
+</ul>
 
 
 
-<div class="container"><img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt="" class="sticky-top"  ></div>
+<style>
+  .invalid-checkbox {
+      border: 1px solid red;
+      border-radius: 4px;
+      padding: 10px;
+    }
+</style>
+
+
+<br>
  <!-- <div class="text-center">
 <button class="btn btn-primary btn-sm mt-1 mb-1" onclick="exportToExcel()">Exportar a Excel</button>
 </div> -->
 <br>
 <div class="container" style="display:" id="responsivepc">
-
-<div class="container mb-2">
+<br>
+<!-- <div class="container mb-2">
   <div class="d-flex justify-content-end">
     <input 
       type="text" 
@@ -75,12 +147,28 @@
       placeholder="🔍 Buscar folio..."
     >
   </div>
-</div>
+</div> -->
 
-    <div class="" id="excelTable" style="width: 100%; height: 450px; overflow: auto;">
+    <div class="" id="excelTable" style="width: 100%; height: 200px; overflow: auto;">
    
     </div>
  </div>
+
+
+  <div class="row">  
+            <div class="text-start col">
+
+
+             <div class="btn btn-outline-success" onclick="redirectToIntegrantes()">Volver</div>
+
+
+
+            </div>
+            <div class="text-end col">
+            <!-- <button class="btn btn-outline-success" type="submit"  >Guardar</button> -->
+            <div class="btn btn-outline-primary" id="siguiente"   >Siguiente</div>
+            </div> 
+          </div>
 
  <div class="modal fade" id="modalDescripcionAlerta" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -94,7 +182,8 @@
   </div>
 </div>
 
- 
+     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
+
  <link rel="stylesheet" href="{{ asset('resources/handsontable/handsontable.full.min.css') }}">
     <!-- Enlace al archivo JS -->
     <script src="{{ asset('resources/handsontable/handsontable.full.min.js') }}"></script>
@@ -122,11 +211,11 @@
                 'Folio',
                 'Documento',
                 'Nombre Completo Integrante',
-                'Celular',
-                'Teléfono',
-                'Barrio',
-                'Comuna',
-                'Dirección',
+                 'Celular',
+                // 'Teléfono',
+                // 'Barrio',
+                // 'Comuna',
+                // 'Dirección',
                 'Grupo',
                 'Alerta',
                 'Registrar Alerta'
@@ -135,11 +224,11 @@
                 { data: 'folio', width: 80 },
                 { data: 'documento', width: 120 },
                 { data: 'nombre', width: 200, wordWrap: true },
-                { data: 'celular', width: 110 },
-                { data: 'telefono', width: 110 },
-                { data: 'barrio', width: 150 },
-                { data: 'comuna', width: 100 },
-                { data: 'direccion', width: 200, wordWrap: true },
+                 { data: 'celular', width: 110 },
+                // { data: 'telefono', width: 110 },
+                // { data: 'barrio', width: 150 },
+                // { data: 'comuna', width: 100 },
+                // { data: 'direccion', width: 200, wordWrap: true },
                 {
                     data: 'grupo',
                     width: 130,
@@ -177,7 +266,7 @@
            // readOnly: true,
             rowHeaderWidth: 28,
         // stretchH: 'all', // Esto asegurará que todas las columnas se ajusten a la tabla
-         height: 410,
+         height: 260,
             language: 'es-MX' // Archivo de idioma
         });
     // });
@@ -202,22 +291,24 @@
 }
 
   // Escuchar el input de búsqueda
-document.getElementById('buscarFolio').addEventListener('keyup', function() {
-    const valor = this.value.toLowerCase();
+// document.getElementById('buscarFolio').addEventListener('keyup', function() {
+//     const valor = this.value.toLowerCase();
 
-    // Filtrar datos según el valor ingresado en "folio"
-    const filtrados = data.filter(item => 
-        item.folio && item.folio.toString().toLowerCase().includes(valor)
-    );
+//     // Filtrar datos según el valor ingresado en "folio"
+//     const filtrados = data.filter(item => 
+//         item.folio && item.folio.toString().toLowerCase().includes(valor)
+//     );
 
-    // Refrescar Handsontable con los datos filtrados
-    hot.loadData(filtrados);
-});
+//     // Refrescar Handsontable con los datos filtrados
+//     hot.loadData(filtrados);
+// });
 
 
 document.getElementById('excelTable').addEventListener('click', function(e) {
     if (e.target && e.target.classList.contains('registrar-alerta')) {
         const folio = e.target.getAttribute('data-folio');
+        let linea = `{{$linea}}`;
+        let paso = `{{$paso}}`;
 
         // Construir los switches dinámicamente
         let htmlSwitches = `
@@ -307,9 +398,9 @@ document.getElementById('excelTable').addEventListener('click', function(e) {
                     method: "POST",
                     data: {
                         folio: folio,
+                        linea:linea,
+                        paso: paso,
                         alertas: seleccionados,
-                        linea: '0',
-                        paso: '0',
                         _token: "{{ csrf_token() }}"
                     },
                     success: function(res) {
@@ -446,6 +537,24 @@ function verDescripcion(id) {
 }
 
 
+
+   $('#siguiente').click(function(){
+        var url = "../rombovisitatipo1refuerzo1/<?= $foliocodificado ?>"; window.location.href = url;
+      }); 
+      function redirectToIntegrantes() {
+           var folio = `<?=$foliocodificado ?>`;
+           var url = "../indicadorest1refuerzo1/:folio";
+           url = url.replace(':folio', folio);
+           window.location.href = url;
+       }
+
+    
+
+
+       $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidadest1refuerzo1/<?= $foliocodificado ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogart1refuerzo1/<?= $foliocodificado ?>"; window.location.href = url;})
+    $('#indicadores').click(function(){var url = "../indicadorest1refuerzo1/<?= $foliocodificado ?>"; window.location.href = url;})
+    $('#alertas').click(function(){var url = "../alertasgestor2t1/<?= $foliocodificado ?>"; window.location.href = url;})
 </script>
 
 @endsection

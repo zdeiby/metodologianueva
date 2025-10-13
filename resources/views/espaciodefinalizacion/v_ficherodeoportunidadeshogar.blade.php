@@ -48,28 +48,23 @@
 
     </div>
 
-         <br>
-<div class="text-center">
-  <button type="button" class="btn btn-success" data-bs-toggle="modal" onclick="actualizarOportunidadesModal()"  data-bs-target="#modalOportunidades">
-  Ver Oportunidades Acercadas
-  </button>
-</div>
-<br>
-
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link ">FICHERO DE OPORTUNIDADES (Integrantes)
+        <a id="bienestarsaludemocionalqt" class="nav-link ">FICHERO (Integrantes)
         </a>
       </li>
       <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link active" >FICHERO DE OPORTUNIDADES (Hogar)</a>
       </li>
-      <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
-      </li> -->
+       <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="indicadores"  class="nav-link ">GESTIÓN INDICADORES</a>
+      </li> 
+       <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="alertas"  class="nav-link">ALERTAS GESTOR</a>
+      </li> 
   
 </ul>
 
@@ -106,11 +101,19 @@
             <input type="text" placeholder="paso" class="form-control form-control-sm  " id="paso" name="paso" value="{{$paso}}" >
           </div>
 
+              <br>
+                <div class="text-center">
+                  <button type="button" class="btn btn-success" data-bs-toggle="modal" onclick="actualizarOportunidadesModal()"  data-bs-target="#modalOportunidades">
+                  Ver Oportunidades Acercadas
+                  </button>
+                </div>
+                <br>
+
           <!-- <span class="badge bg-primary" id="" style="font-size:15px; background:#a80a85 !important">MOMENTO CONSCIENTE.</span> -->
 
             <!-- Vista para PC -->
             <!-- <div class="container table-responsive" id="responsivepc" style="font-size:15px" width="100%"> -->
-                 <div class="table-responsive" >
+                <div class="table-responsive" >
                     <table id="example" class="table table-striped " >
                         <thead>
                             <tr>
@@ -176,6 +179,7 @@
     <div id="modal">
 
 </div>
+
 
 
 
@@ -276,6 +280,7 @@
 </div>
 
 
+
 <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
 <script src="{{ asset('resources/js/jsoportunidadeshogar.js') }}"></script>
 <script>
@@ -286,9 +291,9 @@
   const oportunidadhogarglobal= "{{ route('oportunidadeshogarglobal') }}";
  const usuariogestor= "{{Session::get('cedula') }}";
  const veroportunidad = "{{ route('veroportunidad') }}"; 
-
+   
    $('#siguiente').click(function(){
-        var url = "../rombovisitatipo1/<?= $variable ?>"; window.location.href = url;
+        var url = "../indicadores/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
@@ -302,8 +307,9 @@
 
        $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
     $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogar/<?= $variable ?>"; window.location.href = url;})
-    // $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
-      
+    $('#indicadores').click(function(){var url = "../indicadores/<?= $variable ?>"; window.location.href = url;})
+             $('#alertas').click(function(){var url = "../alertasgestor1t1/<?= $variable ?>"; window.location.href = url;})
+
 
 </script>
 @endsection

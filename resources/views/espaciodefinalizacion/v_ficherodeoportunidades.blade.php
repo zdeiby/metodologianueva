@@ -53,15 +53,18 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">FICHERO DE OPORTUNIDADES (Integrantes)
+        <a id="bienestarsaludemocionalqt" class="nav-link active">FICHERO (Integrantes)
         </a>
       </li>
       <li class="nav-item" role="presentation" style="cursor:pointer">
         <a id="legalqt"  class="nav-link " >FICHERO DE OPORTUNIDADES (Hogar)</a>
       </li>
-      <!-- <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="financieroqt"  class="nav-link ">TOMA DE EVIDENCIAS Y CIERRE</a>
-      </li> -->
+        <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="indicadores"  class="nav-link ">GESTIÓN INDICADORES</a>
+      </li> 
+       <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="alertas"  class="nav-link">ALERTAS GESTOR</a>
+      </li> 
   
 </ul>
 
@@ -75,12 +78,13 @@
     }
 </style>
 
+
 <hr>
-<div class="text-center">
-  <button type="button" class="btn btn-success" data-bs-toggle="modal" onclick="actualizarOportunidadesModal(300)"  data-bs-target="#modalOportunidades">
-  Ver Oportunidades Acercadas
-</button>
-</div>
+  <div class="text-center">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" onclick="actualizarOportunidadesModal(300)"  data-bs-target="#modalOportunidades">
+      Ver Oportunidades Acercadas
+    </button>
+  </div>
 
 <div id="myTabContent" class="tab-content"><br>
   <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="identificacion">
@@ -176,7 +180,6 @@
     </div>
 
 
-    
 
       <div class="modal fade" id="modalOportunidades" tabindex="-1" aria-labelledby="modalOportunidadesLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -276,20 +279,18 @@
       </div>
 
 
-
-
-     <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
     <script src="{{ asset('resources/js/jsoportunidadesintegrantes.js') }}"></script>
 
     <script>
 
+      
     const recargaropotunidades = "{{ route('recargaroportunidades') }}";
     const cambiarestdooportunidadesmasivo = '{{ route("cambiarestadooportunidadmasivo") }}';
     const agregaroportunidadi =  "{{ route('agregaroportunidad') }}";
     const oportunidadintegrantesglobal= "{{ route('oportunidadesintegrantesglobal') }}";
     const usuariogestor= "{{Session::get('cedula') }}";
     const veroportunidad = "{{ route('veroportunidad') }}"; 
-
 
 
       $('#siguiente').click(function(){
@@ -305,11 +306,13 @@
     
 
 
-       $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogar/<?= $variable ?>"; window.location.href = url;})
-    // $('#financieroqt').click(function(){var url = "../finalizacion/<?= $variable ?>"; window.location.href = url;})
-      
+      $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
+      $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogar/<?= $variable ?>"; window.location.href = url;})
+     $('#indicadores').click(function(){var url = "../indicadores/<?= $variable ?>"; window.location.href = url;})
+             $('#alertas').click(function(){var url = "../alertasgestor1t1/<?= $variable ?>"; window.location.href = url;})
 
-   
+
+    
+
 </script>
 @endsection

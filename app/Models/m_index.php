@@ -150,94 +150,94 @@ class m_index extends Model
      }
 
 
-        public function m_leeralertasgestor()
-     {
-         // Utilizando el Query Builder de Laravel para ejecutar el stored procedure
-         $resultado = DB::select("
-        SELECT 
-        ph.folio, 
-        ph.idintegrantetitular, 
-        inte.nombre1, 
-        inte.nombre2, 
-        inte.apellido1, 
-        inte.apellido2, 
-        inte.documento, 
-        inte.celular,
-        inte.telefono, 
-        barr.barriovereda as barrio, 
-        com.comuna as comuna,
-        hgeo.direccion as direccion,
-        csm.casillamatriz,
-         alertas_folio.alertas AS alerta,  
-         COALESCE(DATE_FORMAT(hvrdas.created_at, '%Y-%m-%d %H:%i:%s'), 'Sin visita') AS fecha_ultima_visita,
-		CASE 
-        WHEN hvrdas.created_at IS NULL THEN 'Alta'
+            public function m_leeralertasgestor($folio = '')
+            {
+                $sql = "
+                    SELECT 
+                        ph.folio, 
+                        ph.idintegrantetitular, 
+                        inte.nombre1, 
+                        inte.nombre2, 
+                        inte.apellido1, 
+                        inte.apellido2, 
+                        inte.documento, 
+                        inte.celular,
+                        inte.telefono, 
+                        barr.barriovereda AS barrio, 
+                        com.comuna AS comuna,
+                        hgeo.direccion AS direccion,
+                        csm.casillamatriz,
+                        alertas_folio.alertas AS alerta,  
+                        COALESCE(DATE_FORMAT(hvrdas.created_at, '%Y-%m-%d %H:%i:%s'), 'Sin visita') AS fecha_ultima_visita,
+                        CASE 
+                            WHEN hvrdas.created_at IS NULL THEN 'Alta'
+                            WHEN csm.casillamatriz IN (1,2,4,5,3,6,7,8) AND DATEDIFF(NOW(), hvrdas.created_at) > 180 THEN 'Alta'
+                            WHEN csm.casillamatriz IN (1,2,4,5) AND DATEDIFF(NOW(), hvrdas.created_at) > 30 THEN 'Media alta'
+                            WHEN csm.casillamatriz IN (3,6,7,8) AND DATEDIFF(NOW(), hvrdas.created_at) > 90 THEN 'Media'
+                            ELSE 'Baja'
+                        END AS prioridad_visita,
+                        COALESCE(
+                            CASE 
+                                WHEN hvrdas.estado = 1 THEN CONCAT(tvrn.descripcion, ' finalizada')
+                                WHEN hvrdas.estado = 0 THEN CONCAT(tvrn.descripcion, ' abierta')
+                                ELSE 'Triaje' 
+                            END, 
+                            'visita 100'
+                        ) AS ultimo_idestacion
+                    FROM 
+                        t1_principalhogar ph
+                    JOIN 
+                        t1_integranteshogar inte 
+                        ON ph.idintegrantetitular = inte.idintegrante
+                    LEFT JOIN 
+                        t1_hogardatosgeograficos hgeo 
+                        ON ph.folio = hgeo.folio
+                    LEFT JOIN   
+                        t_barrios barr 
+                        ON hgeo.barrio = barr.codigo
+                    LEFT JOIN 
+                        t_comunas com 
+                        ON hgeo.comuna = com.codigo
+                    LEFT JOIN (
+                        SELECT 
+                            folio, 
+                            MAX(linea) AS max_linea,
+                            MAX(estado) AS estado
+                        FROM 
+                            t1_visitasrealizadas
+                        GROUP BY 
+                            folio
+                    ) AS ultima_visita ON ph.folio = ultima_visita.folio
+                    LEFT JOIN 
+                        t1_visitasrealizadas hvrdas 
+                        ON ph.folio = hvrdas.folio AND hvrdas.linea = ultima_visita.max_linea
+                    LEFT JOIN 
+                        t_visitasrealizadasnombres tvrn ON hvrdas.linea = tvrn.linea
+                    JOIN 
+                        t1_casillamatriz csm ON ph.folio = csm.folio 
+                    LEFT JOIN (
+                        SELECT 
+                            a.folio,
+                            GROUP_CONCAT(CONCAT('⚠ ', ag.pregunta) SEPARATOR '<br><br>') AS alertas
+                        FROM 
+                            t1_alertasgestor a
+                        INNER JOIN 
+                            t_alertasgestor ag ON a.id_alerta = ag.id
+                        GROUP BY 
+                            a.folio
+                    ) AS alertas_folio ON ph.folio = alertas_folio.folio
+                ";
 
-        WHEN csm.casillamatriz IN (1,2,4,5,3,6,7,8) AND DATEDIFF(NOW(), hvrdas.created_at) > 180 THEN 'Alta'
+                // 👇 Solo añade el WHERE si se mandó el folio
+                if (!empty($folio)) {
+                    $sql .= " WHERE ph.folio = ?;";
+                    $resultado = DB::select($sql, [$folio]);
+                } else {
+                    $resultado = DB::select($sql);
+                }
 
-        WHEN csm.casillamatriz IN (1,2,4,5) AND DATEDIFF(NOW(), hvrdas.created_at) > 30 THEN 'Media alta'
-
-        WHEN csm.casillamatriz IN (3,6,7,8) AND DATEDIFF(NOW(), hvrdas.created_at) > 90 THEN 'Media'
-
-        ELSE 'Baja'
-    END AS prioridad_visita,
-        COALESCE(
-        CASE 
-            WHEN hvrdas.estado = 1 THEN CONCAT(tvrn.descripcion, ' finalizada')
-            WHEN hvrdas.estado = 0 THEN CONCAT(tvrn.descripcion, ' abierta')
-            ELSE 'Triaje' 
-        END, 
-        'visita 100'
-                ) AS ultimo_idestacion
-            FROM 
-                t1_principalhogar ph
-            JOIN 
-                t1_integranteshogar inte 
-                ON ph.idintegrantetitular = inte.idintegrante
-            LEFT JOIN 
-                t1_hogardatosgeograficos hgeo 
-                ON ph.folio = hgeo.folio
-            LEFT JOIN   
-                t_barrios barr 
-                ON hgeo.barrio = barr.codigo
-            LEFT JOIN 
-                t_comunas com 
-                ON hgeo.comuna = com.codigo
-            LEFT JOIN (
-                SELECT 
-                    folio, 
-                    MAX(linea) as max_linea,
-                    MAX(estado) as estado -- Asumiendo que quieres el máximo estado; ajusta según sea necesario
-                FROM 
-                    t1_visitasrealizadas
-                GROUP BY 
-                    folio
-            ) AS ultima_visita
-            ON ph.folio = ultima_visita.folio
-            LEFT JOIN 
-                t1_visitasrealizadas hvrdas 
-                ON ph.folio = hvrdas.folio AND hvrdas.linea = ultima_visita.max_linea
-            LEFT JOIN 
-                t_visitasrealizadasnombres tvrn
-                ON hvrdas.linea = tvrn.linea
-             JOIN 
-				t1_casillamatriz csm ON ph.folio = csm.folio 
-              LEFT JOIN (
-                SELECT 
-                    a.folio,
-                    GROUP_CONCAT(CONCAT('⚠ ',  ag.pregunta) SEPARATOR '<br><br>') AS alertas
-                FROM t1_alertasgestor a
-                INNER JOIN t_alertasgestor ag ON a.id_alerta = ag.id
-                GROUP BY a.folio
-            ) AS alertas_folio ON ph.folio = alertas_folio.folio
-;
-     
-
-              
-         " );
-
-         return $resultado;
-     }
+                return $resultado;
+            }
 
 
      public function m_leerprincipalhogarconfolio($folio)

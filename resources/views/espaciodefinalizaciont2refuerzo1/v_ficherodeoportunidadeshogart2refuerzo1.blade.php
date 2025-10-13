@@ -53,7 +53,7 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link ">FICHERO DE OPORTUNIDADES (Integrantes)
+        <a id="bienestarsaludemocionalqt" class="nav-link ">FICHERO (Integrantes)
         </a>
       </li>
       <li class="nav-item" role="presentation" style="cursor:pointer">
@@ -61,7 +61,10 @@
       </li>
        <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="indicadores"  class="nav-link ">GESTIÓN INDICADORES</a>
-      </li> 
+      </li>
+      <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="alertas"  class="nav-link">ALERTAS GESTOR</a>
+      </li>
   
 </ul>
 
@@ -305,7 +308,8 @@
        $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidadest2refuerzo1/<?= $variable ?>"; window.location.href = url;})
     $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogart2refuerzo1/<?= $variable ?>"; window.location.href = url;})
     $('#indicadores').click(function(){var url = "../indicadorest2refuerzo1/<?= $variable ?>"; window.location.href = url;})
-      
+    $('#alertas').click(function(){var url = "../alertasgestor1t2/<?= $variable ?>"; window.location.href = url;})
+
 
 </script>
 @endsection

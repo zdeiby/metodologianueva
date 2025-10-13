@@ -64,7 +64,7 @@
       </li> 
       <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="alertas"  class="nav-link">ALERTAS GESTOR</a>
-      </li>
+      </li> 
   
 </ul>
 
@@ -166,20 +166,20 @@
 
    
    $('#siguiente').click(function(){
-        var url = "../alertasgestor4t1/<?= $variable ?>"; window.location.href = url;
+        var url = "../alertasgestor1t1/<?= $variable ?>"; window.location.href = url;
       }); 
       function redirectToIntegrantes() {
            var folio = `<?=$variable ?>`;
-           var url = "../ficherodeoportunidadeshogart1refuerzo3/:folio";
+           var url = "../ficherodeoportunidadeshogar/:folio";
            url = url.replace(':folio', folio);
            window.location.href = url;
        }
 
-       $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidadest1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-    $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogart1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-     $('#indicadores').click(function(){var url = "../indicadorest1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-    $('#alertas').click(function(){var url = "../alertasgestor4t1/<?= $variable ?>"; window.location.href = url;})
-
+       $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidades/<?= $variable ?>"; window.location.href = url;})
+    $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogar/<?= $variable ?>"; window.location.href = url;})
+     $('#indicadores').click(function(){var url = "../indicadores/<?= $variable ?>"; window.location.href = url;})
+       $('#alertas').click(function(){var url = "../alertasgestor1t1/<?= $variable ?>"; window.location.href = url;})
+    
 
 </script>
 

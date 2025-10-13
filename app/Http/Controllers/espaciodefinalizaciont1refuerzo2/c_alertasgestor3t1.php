@@ -1,24 +1,31 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\espaciodefinalizaciont1refuerzo2;
+
+use App\Http\Controllers\Controller;
 use App\Models\m_index;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Hashids\Hashids;
 
-class c_alertasgestor extends Controller
+class c_alertasgestor3t1 extends Controller
 {
-    public function fc_index(Request $request){
+    public function fc_index(Request $request, $folio){
         if (!session('nombre')) {
             // Si no existe la sesión 'usuario', redirigir al login
             return redirect()->route('login');
         }
-      $modelo= new m_index();
-      $pphogar=$modelo->m_leeralertasgestor();
+        $hashids = new Hashids('', 10); 
+        $encodedFolio = $hashids->decode($folio);
+        $modelo= new m_index();
+        $pphogar=$modelo->m_leeralertasgestor($encodedFolio[0]);
        // dd($pphogar);
-      $folios='';
-      $estacion='';
+        $folios='';
+        $estacion='';
+        $linea='300';
+        $paso='3020';
 
        $alertasGet = DB::table('t_alertasgestor')
         ->select('id', 'pregunta', 'descripcion')
@@ -85,7 +92,10 @@ if(session('nombre') !== null){
                 'cedula'=>$cedula];
                 
       
-        return view('v_alertasgestor',["variable"=>$sesion,"folios"=>$folios,"estacion"=>$estacion,  "alertas"  => $alertas, 'alertasDescripcion' => $alertasDescripcion]);
+        return view('espaciodefinalizaciont1refuerzo2/v_alertasgestor3t1',["variable"=>$sesion,
+        "folios"=>$folios,"estacion"=>$estacion, 'folio'=>$encodedFolio[0], 'foliocodificado'=>$folio, 'linea'=>$linea, 'paso'=>$paso,
+         "alertas"  => $alertas,
+          'alertasDescripcion' => $alertasDescripcion]);
         }else{
             return redirect()->route('login');
         }
@@ -94,50 +104,47 @@ if(session('nombre') !== null){
 
 
 
-    public function guardarAlertas(Request $request)
-    {
-        $folio   = $request->input('folio');
-        $alertas = $request->input('alertas'); // array de id_alerta
-        $linea = $request->input('linea');
-        $paso = $request->input('paso');
+    // public function guardarAlertas(Request $request)
+    // {
+    //     $folio   = $request->input('folio');
+    //     $alertas = $request->input('alertas'); // array de id_alerta
+    //     $usuario = auth()->user()->name ?? 'sistema';
 
-        if (empty($alertas)) {
-            return response()->json([
-                'status'  => 'error',
-                'message' => 'No se seleccionaron alertas'
-            ], 400);
-        }
+    //     if (empty($alertas)) {
+    //         return response()->json([
+    //             'status'  => 'error',
+    //             'message' => 'No se seleccionaron alertas'
+    //         ], 400);
+    //     }
 
-        // Obtener el último numero_alerta para este folio y sumarle 1
-        $ultimoNumero = DB::table('t1_alertasgestor')
-            ->where('folio', $folio)
-            ->max('numero_alerta');
+    //     // Obtener el último numero_alerta para este folio y sumarle 1
+    //     $ultimoNumero = DB::table('t1_alertasgestor')
+    //         ->where('folio', $folio)
+    //         ->max('numero_alerta');
 
-        $nuevoNumero = $ultimoNumero ? $ultimoNumero + 1 : 1;
+    //     $nuevoNumero = $ultimoNumero ? $ultimoNumero + 1 : 1;
 
-        // Insertar todas las alertas seleccionadas
-        $insertData = [];
-        foreach ($alertas as $idAlerta) {
-            $insertData[] = [
-                'folio'         => $folio,
-                'numero_alerta' => $nuevoNumero,
-                'id_alerta'     => $idAlerta,
-                'linea'     => $linea,
-                'paso'     => $paso,
-                'usuario'       => Session::get('cedula'),
-                'sincro'        => 0,
-                'created_at'    => now(),
-                'updated_at'    => now(),
-            ];
-        }
+    //     // Insertar todas las alertas seleccionadas
+    //     $insertData = [];
+    //     foreach ($alertas as $idAlerta) {
+    //         $insertData[] = [
+    //             'folio'         => $folio,
+    //             'numero_alerta' => $nuevoNumero,
+    //             'id_alerta'     => $idAlerta,
+    //             'usuario'       => Session::get('cedula'),
+    //             'sincro'        => 0,
+    //             'created_at'    => now(),
+    //             'updated_at'    => now(),
+    //         ];
+    //     }
 
-        DB::table('t1_alertasgestor')->insert($insertData);
+    //     DB::table('t1_alertasgestor')->insert($insertData);
 
-        return response()->json([
-            'status'  => 'ok',
-            'message' => 'Alertas guardadas correctamente',
-            'numero_alerta' => $nuevoNumero
-        ]);
-    }
+    //     return response()->json([
+    //         'status'  => 'ok',
+    //         'message' => 'Alertas guardadas correctamente',
+    //         'numero_alerta' => $nuevoNumero
+    //     ]);
+    // }
 
 }

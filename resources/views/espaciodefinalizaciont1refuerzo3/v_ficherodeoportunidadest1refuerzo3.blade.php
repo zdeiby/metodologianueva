@@ -53,7 +53,7 @@
       <div class="row">
       <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation"  style="cursor:pointer">
-        <a id="bienestarsaludemocionalqt" class="nav-link active">FICHERO DE OPORTUNIDADES (Integrantes)
+        <a id="bienestarsaludemocionalqt" class="nav-link active">FICHERO (Integrantes)
         </a>
       </li>
       <li class="nav-item" role="presentation" style="cursor:pointer">
@@ -61,6 +61,9 @@
       </li>
         <li class="nav-item" role="presentation"  style="cursor:pointer">
         <a id="indicadores"  class="nav-link ">GESTIÓN INDICADORES</a>
+      </li> 
+       <li class="nav-item" role="presentation"  style="cursor:pointer">
+        <a id="alertas"  class="nav-link">ALERTAS GESTOR</a>
       </li> 
   
 </ul>
@@ -306,7 +309,8 @@
       $('#bienestarsaludemocionalqt').click(function(){var url = "../ficherodeoportunidadest1refuerzo3/<?= $variable ?>"; window.location.href = url;})
       $('#legalqt').click(function(){var url = "../ficherodeoportunidadeshogart1refuerzo3/<?= $variable ?>"; window.location.href = url;})
      $('#indicadores').click(function(){var url = "../indicadorest1refuerzo3/<?= $variable ?>"; window.location.href = url;})
-      
+      $('#alertas').click(function(){var url = "../alertasgestor4t1/<?= $variable ?>"; window.location.href = url;})
+
 
     
 

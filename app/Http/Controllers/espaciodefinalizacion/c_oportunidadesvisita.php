@@ -36,11 +36,11 @@ class c_oportunidadesvisita extends Controller
 
             return view('espaciodefinalizacion/v_ficherodeoportunidades', ['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,
                                                                 
                                                                       'linea'=>$linea,
                                                                      'paso'=>$paso,
-                                                                     'foliomenu'=>$encodedFolio[0],
                                                                    
                                                                     ]);
     }
@@ -66,11 +66,11 @@ class c_oportunidadesvisita extends Controller
 
             return view('espaciodefinalizacion/v_ficherodeoportunidadeshogar',  ['variable'=>$folio,
                                                                     'folio'=>$encodedFolio[0],
+                                                                    'foliomenu'=>$encodedFolio[0],
                                                                      'tabla'=>$tabla,
                                                                    
                                                                       'linea'=>$linea,
                                                                      'paso'=>$paso,
-                                                                     'foliomenu'=>$encodedFolio[0],
                                                                      
                                                                     ]);
     }
