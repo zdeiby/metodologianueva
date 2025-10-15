@@ -108,8 +108,9 @@
             <!-- <b>INFORME CUALITATIVO DEL GESTOR SOBRE EL DESARROLLO DE LA VISITA AL HOGAR.</b> Este cuadro permite al gestor detallar el desempeño y resultados obtenidos durante la visita al hogar, proporcionando una visión cualitativa del proceso. <br>
             <b>DESCRIPCIÓN DEL PROCESO.</b> En este espacio, el gestor puede describir de manera libre y detallada cómo se llevó a cabo la visita, los aspectos positivos y áreas de mejora identificadas, así como cualquier circunstancia o interacción relevante que haya influido en el desarrollo de la misma. <br>
             <b>PROPÓSITO.</b> El objetivo es que el gestor pueda reflejar su experiencia de manera clara, permitiendo una evaluación más completa del impacto de la visita y facilitando la planificación de acciones futuras.  -->
-            Gestor describa en modo <b>informe cualitativo el desarrollo de la visita</b> al hogar, destacando tanto <b>los aspectos positivos</b> como las áreas de mejora, siendo estratégicos en lo que se informa y que fue identificado en la visita: <b>interacciones relevantes y circunstancias que hayan influido en su desarrollo</b>.
+            <!-- Gestor describa en modo <b>informe cualitativo el desarrollo de la visita</b> al hogar, destacando tanto <b>los aspectos positivos</b> como las áreas de mejora, siendo estratégicos en lo que se informa y que fue identificado en la visita: <b>interacciones relevantes y circunstancias que hayan influido en su desarrollo</b>. -->
 
+            Gestor describe en modo <b>informe cualitativo el desarrollo de la visita</b> al hogar, destacando tanto <b>los aspectos positivos</b> como las áreas de mejora, siendo estratégicos en lo que se informa y que fue identificado en la visita: <b>interacciones relevantes y circunstancias que hayan influido en el desarrollo de la visita,</b> además da un recuento de las acciones realizadas como psicosocial para acompañar la situación crítica que presenta el hogar.
           </div>
 
 

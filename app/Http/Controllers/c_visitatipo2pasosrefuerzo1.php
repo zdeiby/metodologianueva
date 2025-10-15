@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Hashids\Hashids;
+use App\Models\m_index;
 
 
 class c_visitatipo2pasosrefuerzo1 extends Controller
@@ -86,6 +87,11 @@ class c_visitatipo2pasosrefuerzo1 extends Controller
        ->where('paso', $paso60060)
        ->exists();
 
+        $modelo = new m_index();
+       $alertas =  $modelo->obtenerAlertasPorFolio($folioDesencriptado, 1);
+
+       
+
     //   $casilla = DB::table('t1_casillamatriz')
     //   ->where('folio', $folioDesencriptado)
     //   ->get();
@@ -123,6 +129,15 @@ class c_visitatipo2pasosrefuerzo1 extends Controller
     }
       //  dd($existel400p40020);
 
+       $indicadores = DB::table('vw_indicadores_hogar_detalle_ffes_mef_uno_a_uno')
+            ->where('folio', $decodeFolio[0])
+            ->where('codigoindicadorDA', 0)
+            ->groupBy('folio', 'id_bienestar', 'id_indicador')
+            ->get();
+
+          //  dd($indicadores);
+
+
     // calculo de indicadores para BSE
     include(app_path('Http/Complementoscontrollers/calculodeindicadoresporhogar.php'));
     //
@@ -140,7 +155,7 @@ class c_visitatipo2pasosrefuerzo1 extends Controller
         'prioridades'=>$prioridades,
         'folio'=>$decodeFolio[0], 'descripcion'=>$categorias[0]->descripcion, 'foliomenu'=>$decodeFolio[0],
         'linea'=>$linea,
-        'paso'=>$paso, 'metodologia'=>$metodologia,
+        'paso'=>$paso, 'metodologia'=>$metodologia,'alertas'=>$alertas, 'indicadores'=>$indicadores
       ]);
 
       }

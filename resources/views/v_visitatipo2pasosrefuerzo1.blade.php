@@ -148,6 +148,9 @@ body {
             cursor: pointer; /* Cambia el cursor al pasar sobre las filas */
             transition: background-color 0.3s ease; /* Suaviza el cambio de color en hover */
         }
+
+          #tabla-bienestar .ind-row{display:none;}
+  #tabla-bienestar .ind-content{background:#f8f9fa;}
 </style>
 
 <!-- <style>
@@ -460,7 +463,7 @@ body {
     </tbody>
 </table> -->
 
-<table class="table table-bordered">
+<!-- <table class="table table-bordered">
     <thead>
         <tr>
             <th>CAT BIENESTAR</th>
@@ -520,12 +523,195 @@ body {
             </td>
         </tr>
     </tbody>
+</table> -->
+
+<table class="table table-bordered align-middle" id="tabla-bienestar">
+  <thead class="table-primary text-center">
+    <tr>
+      <th style="width: 25%;"> CAT BIENESTAR</th>
+      <th style="width: 10%;">VR QT</th>
+      <th style="width: 50%;">PESO</th>
+      <th  style="width: 15%;">INDICADORES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- ===== B FINANCIERO ===== -->
+    <tr>
+      <td>B FINANCIERO</td>
+      <td>{{ $porcentaje_rojo_bf }}</td>
+      <td>
+        <div class="progress">
+          <div class="progress-bar" style="width:{{ $porcentaje_verde_bf }}%;background:#00FF00">{{ $porcentaje_verde_bf }}%</div>
+          <div class="progress-bar" style="width:{{ $porcentaje_rojo_bf }}%;background:#FF0000">{{ $porcentaje_rojo_bf }}%</div>
+        </div>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-sm btn-primary btn-ver" data-target="#ind-financiero">VER</button>
+      </td>
+    </tr>
+    <tr class="ind-row" id="ind-financiero">
+      <td colspan="4" class="ind-content">
+        <div class="fw-bold border-bottom pb-1 mb-2">INDICADORES EN ROJO</div>
+        @foreach($indicadores->where('bienestar', 'BIENESTAR FINANCIERO') as $indicador)
+          <div> {{ $indicador->nombre_indicador }}</div> <hr>
+        @endforeach
+      </td>
+    </tr>
+
+    <!-- ===== B LEGAL ===== -->
+    <tr>
+      <td>B LEGAL</td>
+      <td>{{ $porcentaje_rojo_bl }}</td>
+      <td>
+        <div class="progress">
+          <div class="progress-bar" style="width:{{ $porcentaje_verde_bl }}%;background:#00FF00">{{ $porcentaje_verde_bl }}%</div>
+          <div class="progress-bar" style="width:{{ $porcentaje_rojo_bl }}%;background:#FF0000">{{ $porcentaje_rojo_bl }}%</div>
+        </div>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-sm btn-primary btn-ver" data-target="#ind-legal">VER</button>
+      </td>
+    </tr>
+    <tr class="ind-row" id="ind-legal">
+      <td colspan="4" class="ind-content">
+        <div class="fw-bold border-bottom pb-1 mb-2">INDICADORES EN ROJO</div>
+          @foreach($indicadores->where('bienestar', 'BIENESTAR LEGAL') as $indicador)
+            <div> {{ $indicador->nombre_indicador }}</div> <hr>
+          @endforeach
+      </td>
+    </tr>
+
+    <!-- ===== B SALUD FÍSICA Y EMOCIONAL ===== -->
+    <tr>
+      <td>B SALUD FÍSICA Y EMOCIONAL</td>
+      <td>{{ $porcentaje_rojo_bse }}</td>
+      <td>
+        <div class="progress">
+          <div class="progress-bar" style="width:{{ $porcentaje_verde_bse }}%;background:#00FF00">{{ $porcentaje_verde_bse }}%</div>
+          <div class="progress-bar" style="width:{{ $porcentaje_rojo_bse }}%;background:#FF0000">{{ $porcentaje_rojo_bse }}%</div>
+        </div>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-sm btn-primary btn-ver" data-target="#ind-salud">VER</button>
+      </td>
+    </tr>
+    <tr class="ind-row" id="ind-salud">
+      <td colspan="4" class="ind-content">
+        <div class="fw-bold border-bottom pb-1 mb-2">INDICADORES EN ROJO</div>
+        @foreach($indicadores->where('bienestar', 'BIENESTAR SALUD-EMOCIONAL') as $indicador)
+          <div> {{ $indicador->nombre_indicador }}</div> <hr>
+        @endforeach
+      </td>
+    </tr>
+
+    <!-- ===== B INTELECTUAL ===== -->
+    <tr>
+      <td>B INTELECTUAL</td>
+      <td>{{ $porcentaje_rojo_bi }}</td>
+      <td>
+        <div class="progress">
+          <div class="progress-bar" style="width:{{ $porcentaje_verde_bi }}%;background:#00FF00">{{ $porcentaje_verde_bi }}%</div>
+          <div class="progress-bar" style="width:{{ $porcentaje_rojo_bi }}%;background:#FF0000">{{ $porcentaje_rojo_bi }}%</div>
+        </div>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-sm btn-primary btn-ver" data-target="#ind-intelectual">VER</button>
+      </td>
+    </tr>
+    <tr class="ind-row" id="ind-intelectual">
+      <td colspan="4" class="ind-content">
+        <div class="fw-bold border-bottom pb-1 mb-2">INDICADORES EN ROJO</div>
+        @foreach($indicadores->where('bienestar', 'BIENESTAR INTELECTUAL') as $indicador)
+          <div> {{ $indicador->nombre_indicador }}</div> <hr>
+        @endforeach
+      </td>
+    </tr>
+
+    <!-- ===== B EN FAMILIA ===== -->
+    <tr>
+      <td>B EN FAMILIA</td>
+      <td>{{ $porcentaje_rojo_bef }}</td>
+      <td>
+        <div class="progress">
+          <div class="progress-bar" style="width:{{ $porcentaje_verde_bef }}%;background:#00FF00">{{ $porcentaje_verde_bef }}%</div>
+          <div class="progress-bar" style="width:{{ $porcentaje_rojo_bef }}%;background:#FF0000">{{ $porcentaje_rojo_bef }}%</div>
+        </div>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-sm btn-primary btn-ver" data-target="#ind-familia">VER</button>
+      </td>
+    </tr>
+    <tr class="ind-row" id="ind-familia">
+      <td colspan="4" class="ind-content">
+        <div class="fw-bold border-bottom pb-1 mb-2">INDICADORES EN ROJO</div>
+        @foreach($indicadores->where('bienestar', 'BIENESTAR EN FAMILIA') as $indicador)
+          <div> {{ $indicador->nombre_indicador }}</div> <hr>
+        @endforeach
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 
-        <hr>
-        
 
+
+        <hr>
+
+        @if ($alertas->isEmpty())
+    <div class="text-center mt-3">
+        <span style="color:red; font-weight:bold;">@if($metodologia != 2) No cumplimiento del 70% de los logros o Grupo poblacional 1. @else Componente FFES @endif</span>
+    </div>
+@else
+    <table class="table table-striped table-bordered mt-3" style="font-size:13px;">
+        <thead class="table-info text-center">
+            <tr>
+                <th>#</th>
+                <th>Nombre de la Alerta</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($alertas as $index => $a)
+                <tr>
+                    <td class="text-center">{{ $index + 1 }}</td>
+                    <td>{{ $a->nombre_alerta }}</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-primary"
+                            onclick="mostrarDescripcion(`{{ addslashes($a->nombre_alerta) }}`, `{{addslashes($a->descripcion)}}`)">
+                            ¿Qué hacer?
+                        </button>
+
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endif
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function mostrarDescripcion(nombre, descripcion) {
+    Swal.fire({
+        title: '¿QUÉ HACER? ',
+        html:  `<label>Gestor de Familia recuerde frente a la alerta registrada activar y registrar ruta de emergencia dependiendo del caso en el aplicativo de la UFM. <a href="https://unidadfamiliamedellin.com.co/activacionruta/index.php/user/c_ucasoasignado/fc_vucasoasignado" target="_blank"> Ir a link del aplicativo de alertas</a>.</label>`,
+        icon: 'info',
+        confirmButtonText: 'Entendido',
+        confirmButtonColor: '#0dcaf0'
+    });
+}
+</script>
+
+        
+<script>
+document.addEventListener('click', function (e) {
+  if (!e.target.classList.contains('btn-ver')) return;
+  const table = document.getElementById('tabla-bienestar');
+  const targetSel = e.target.getAttribute('data-target');
+  const row = document.querySelector(targetSel);
+  table.querySelectorAll('.ind-row').forEach(r => { if (r !== row) r.style.display = 'none'; });
+  row.style.display = (row.style.display === 'table-row') ? 'none' : 'table-row';
+});
+</script>
 
         <!-- <div class="container mt-5">
         <label class="text-center">Organice las prioridades segun las especificaciones del hogar</label>

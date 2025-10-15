@@ -43,6 +43,9 @@
 
     </style>
 
+
+
+
     <!-- <div style="text-align: center">
         <a class="hidden" style="color: #5FE0DB; font-family: Bison, Arial; font-size: 13px; font-style: normal" href="#openModal" onclick="">Más información</a>
         <button class="hidden" onclick="aplicar_formulario(100, 456456)">Aplicar</button>
@@ -803,6 +806,55 @@
                                         </table>
                                     </div>
                                 </div>
+
+
+                                <hr>
+                                        <div style="margin-top:15px; text-align:center;">
+                                        <label style="font-size:20px; color:#0dcaf0; font-weight:bold;">
+                                            Categoría a reforzar
+                                        </label>
+
+                                        <div style="
+                                            margin-top:10px;
+                                            display:flex;
+                                            align-items:center;
+                                            justify-content:center;
+                                            gap:10px;
+                                            border:1px solid #ccc;
+                                            border-radius:8px;
+                                            padding:8px 15px;
+                                            width:fit-content;
+                                            margin-left:auto;
+                                            margin-right:auto;
+                                            background-color:#fff;
+                                        ">
+                                            <!-- Nombre de la categoría -->
+                                            <span style="font-size:13px; font-weight:bold; color:#000; min-width:150px; text-align:left;">
+                                            {{ $categoria_reforzar }}
+                                            </span>
+
+                                            <!-- Valor numérico -->
+                                            <span style="font-size:13px; color:#000; min-width:40px; text-align:center;">
+                                            {{ $valor_reforzar }}
+                                            </span>
+
+                                            <!-- Porcentaje rojo -->
+                                            <span style="
+                                                background-color:#ff0000;
+                                                color:#fff;
+                                                font-weight:bold;
+                                                border-radius:6px;
+                                                padding:5px 10px;
+                                                font-size:12px;
+                                                min-width:55px;
+                                                text-align:center;
+                                            ">
+                                            {{ $valor_reforzar }}%
+                                            </span>
+                                        </div>
+                                        </div>
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saludoencuadre1">Aceptar</button>

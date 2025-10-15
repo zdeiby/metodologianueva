@@ -336,4 +336,29 @@ class m_index extends Model
  
          return $resultado;
      }
+
+
+       public function obtenerAlertasPorFolio($folioDesencriptado, $numeroAlerta)
+    {
+        return DB::table('t1_alertasgestor as ag')
+            ->join('t_alertasgestor as ac', 'ac.id', '=', 'ag.id_alerta')
+            ->select(
+                'ag.folio',
+                'ag.numero_alerta',
+                'ag.id_alerta',
+                'ac.pregunta as nombre_alerta',
+                'ac.descripcion',
+                'ag.usuario',
+                'ag.linea',
+                'ag.paso',
+                'ag.created_at'
+            )
+            ->where('ag.folio', $folioDesencriptado)
+            ->where('ag.numero_alerta', $numeroAlerta)
+            ->orderBy('ag.id_alerta')
+            ->get();
+    }
+
+
+
 }

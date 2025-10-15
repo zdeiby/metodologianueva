@@ -131,6 +131,19 @@ class c_rombo extends Controller
             $realizadosvt1r3 = (($registrovt1r3 && $registrovt1r3->estado == 1)?1:0);
             $realizadosvt1r4 = (($registrovt1r4 && $registrovt1r4->estado == 1)?1:0);
 
+
+            $categorias = [
+                'BIENESTAR EN FAMILIA' => $porcentaje_rojo_bef,
+                'BIENESTAR FINANCIERO' => $porcentaje_rojo_bf,
+                'BIENESTAR INTELECTUAL' => $porcentaje_rojo_bi,
+                'BIENESTAR PARA LA SALUD FISICA Y EMOCIONAL' => $porcentaje_rojo_bse,
+                'BIENESTAR LEGAL' => $porcentaje_rojo_bl,
+            ];
+
+            $categoria_reforzar = collect($categorias)->sortDesc()->keys()->first();
+            $valor_reforzar = collect($categorias)->max();
+
+
          // dd($realizadovt1);
         return view('v_rombo',["foliomenu"=>decrypt($cedula),  'es_grupo1' => $es_grupo1, 'es_grupo2' => $es_grupo2, 'es_grupo3' => $es_grupo3, 
         'realizadosvt1'=>$realizadosvt1, 
@@ -149,7 +162,7 @@ class c_rombo extends Controller
         'total_indicadoresDA_verdes' => $pct_DA_verde ?? 0,
         'total_indicadoresDI_verdes' => $pct_DI_verde ?? 0,
         'total_indicadoresDA_rojos'=> $pct_DA_rojo ?? 0,
-        'pct_avance'=>$pct_avance ?? 0,
+        'pct_avance'=>$pct_avance ?? 0, 'valor_reforzar'=>$valor_reforzar, 'categoria_reforzar'=>$categoria_reforzar,
         'folioencriptado'=>decrypt($cedula)]);
       }
 
