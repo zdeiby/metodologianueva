@@ -62,7 +62,7 @@ class c_rombo extends Controller
         ->where('linea', 500)            // Comparamos la línea
         ->first();
         
-        $registrovt1r4 = DB::table('t1_visitasrealizadas')
+        $registrovt2r1 = DB::table('t1_visitasrealizadas')
         ->where('folio', decrypt($cedula))  // Comparamos el folio desencriptado
         ->where('linea', 600)            // Comparamos la línea
         ->first();
@@ -129,7 +129,7 @@ class c_rombo extends Controller
             $realizadosvt1r2 = (($registrovt1r2 && $registrovt1r2->estado == 1)?1:0);
              // dd($realizadosvt1r2);
             $realizadosvt1r3 = (($registrovt1r3 && $registrovt1r3->estado == 1)?1:0);
-            $realizadosvt1r4 = (($registrovt1r4 && $registrovt1r4->estado == 1)?1:0);
+            $realizadosvt2r1 = (($registrovt2r1 && $registrovt2r1->estado == 1)?1:0);
 
 
             $categorias = [
@@ -152,7 +152,7 @@ class c_rombo extends Controller
         'realizadosvt1r1'=>$realizadosvt1r1, 
         'realizadosvt1r2'=>$realizadosvt1r2, 
         'realizadosvt1r3'=>$realizadosvt1r3, 
-        'realizadosvt1r4'=>$realizadosvt1r4, 
+        'realizadosvt2r1'=>$realizadosvt2r1, 
         'alerta1'=>$alerta1,
         "variable"=>decrypt($cedula), 'encodeFolio'=>$encodeFolio,"variablebtn"=>$cedula, 'realizado'=>$realizado, 'foliobycript'=>decrypt($cedula),  
         'porcentaje_rojo_bse'=>$porcentaje_rojo_bse, 'porcentaje_verde_bse'=>$porcentaje_verde_bse, //'porcentaje_gris_bse'=>$porcentaje_gris_bse,

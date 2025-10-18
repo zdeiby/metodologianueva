@@ -56,6 +56,7 @@
 <div class="alert alert-primary" style="background:#0dcaf0 !important" role="alert" >
 <label style="color:white"><b>ACCIONES DE ACOMPAÑAMIENTO FAMILIAR</b></label>
 </div>
+<div id="visitas-container">
     <ul>
         <li class="scene">
             <div class="movie">
@@ -117,7 +118,13 @@
         </li>
     @endif
 
-   @if ($realizadosvt1 == '1')
+   @if (
+    ($realizadosvt1 == '1'  && $es_grupo1) || ($realizadosvt1 == '1' && $metodologia == '2')  || ($realizadosvt1r1 == '1') 
+    
+    || ($realizadosvt1 == '1'  && $es_grupo2 && $alerta1 && $metodologia != '2' && $realizadosvt2r1 == '1' )  || ($realizadosvt1 == '1'  && $es_grupo2 && !$alerta1 && $metodologia != '2') 
+
+   || ($realizadosvt1 == '1'  && $es_grupo3 && $alerta1 && $metodologia != '2' && $realizadosvt2r1 == '1' )  || ($realizadosvt1 == '1'  && $es_grupo3 && !$alerta1 && $metodologia != '2') 
+   )
   <li class="scene">
             <div class="movie">
                 <div class="poster" >
@@ -148,7 +155,12 @@
         </li> 
    @endif
 
-    @if ($realizadosvt1r1 == '1')
+    @if (
+    ($realizadosvt1r1 == '1'  && $es_grupo1) || ($realizadosvt1r1 == '1' && $metodologia == '2')  || ($realizadosvt1r2 == '1') 
+    || ($realizadosvt1r1 == '1'  && $es_grupo2 && $alerta1 && $metodologia != '2' && $realizadosvt2r1 == '1' )  || ($realizadosvt1r1 == '1'  && $es_grupo2 && !$alerta1 && $metodologia != '2') 
+   || ($realizadosvt1r1 == '1'  && $es_grupo3 && $alerta1 && $metodologia != '2' && $realizadosvt2r1 == '1' )  || ($realizadosvt1r1 == '1'  && $es_grupo3 && !$alerta1 && $metodologia != '2') 
+    
+    )
   <li class="scene" style="display:">
             <div class="movie">
                 <div class="poster" >
@@ -238,9 +250,9 @@
                     <br>
                     <br> 
                    
-                    @if($realizadosvt1r4 == '0')
+                    @if($realizadosvt2r1 == '0')
                     <form method="GET" action="../rombovisitatipo2refuerzo1/{{$encodeFolio}}" ><button type="submit" class="btn btn-primary">Realizar visita</button></form>
-                    @elseif($realizadosvt1r4 == '1')
+                    @elseif($realizadosvt2r1 == '1')
                     <form method="GET" ><button type="submit" class="btn btn-primary" disabled>Realizar visita</button></form>
                     @endif
                 </div>
@@ -248,251 +260,9 @@
         </li> 
   @endif
 
-
-        <!-- <li class="scene">
-            <div class="movie">
-                <div class="poster">
-                    <div id="imgicon"></div>
-                    <div style="text-align: center; padding-top:10px" >
-                        <img class="" src="https://fondos.sapiencia.gov.co/convocatorias/frontend_talento_especializado/resources/img/iconos/193.jpg" width="80%" alt="">
-                        <br> <br>
-                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">Visita</div>
-
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-2">
-                            <div class="progress" data-percentage="">
-                                <span class="progress-left">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <span class="progress-right">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <div class="progress-value" >100%</div>
-                            </div>
-                        </div>
-                    </div>
-                    <p>visita</p>
-                </div>
-            </div>
-        </li>
-   
-        <li class="scene">
-            <div class="movie">
-                <div class="poster">
-                    <div id="imgicon"></div>
-                    <div style="text-align: center; padding-top:10px" >
-                        <img class="" src="https://fondos.sapiencia.gov.co/convocatorias/frontend_talento_especializado/resources/img/iconos/193.jpg" width="80%" alt="">
-                        <br> <br>
-                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">Visita</div>
-
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-2">
-                            <div class="progress" data-percentage="">
-                                <span class="progress-left">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <span class="progress-right">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <div class="progress-value">100%</div>
-                            </div>
-                        </div>
-                    </div>
-                    <p>visita</p>
-                </div>
-            </div>
-        </li>
-   
-        <li class="scene">
-            <div class="movie">
-                <div class="poster">
-                    <div id="imgicon"></div>
-                    <div style="text-align: center; padding-top:10px" >
-                        <img class="" src="https://fondos.sapiencia.gov.co/convocatorias/frontend_talento_especializado/resources/img/iconos/193.jpg" width="80%" alt="">
-                        <br> <br>
-                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">Visita</div>
-
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-2">
-                            <div class="progress" data-percentage="">
-                                <span class="progress-left">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <span class="progress-right">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <div class="progress-value">100%</div>
-                            </div>
-                        </div>
-                    </div>
-                    <p>visita</p>
-                </div>
-            </div>
-        </li>
-    
-        <li class="scene">
-            <div class="movie">
-                <div class="poster">
-                    <div id="imgicon"></div>
-                    <div style="text-align: center; padding-top:10px" >
-                        <img class="" src="https://fondos.sapiencia.gov.co/convocatorias/frontend_talento_especializado/resources/img/iconos/193.jpg" width="80%" alt="">
-                        <br> <br>
-                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">Visita</div>
-
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-2">
-                            <div class="progress" data-percentage="">
-                                <span class="progress-left">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <span class="progress-right">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <div class="progress-value">100%</div>
-                            </div>
-                        </div>
-                    </div>
-                    <p>visita</p>
-                </div>
-            </div>
-        </li>
-    
-        <li class="scene">
-            <div class="movie">
-                <div class="poster">
-                    <div id="imgicon"></div>
-                    <div style="text-align: center; padding-top:10px" >
-                        <img class="" src="https://fondos.sapiencia.gov.co/convocatorias/frontend_talento_especializado/resources/img/iconos/193.jpg" width="80%" alt="">
-                        <br> <br>
-                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">Visita</div>
-
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-2">
-                            <div class="progress" data-percentage="">
-                                <span class="progress-left">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <span class="progress-right">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <div class="progress-value">100%</div>
-                            </div>
-                        </div>
-                    </div>
-                    <p>visita</p>
-                </div>
-            </div>
-        </li>
-    
-        <li class="scene">
-            <div class="movie">
-                <div class="poster">
-                    <div id="imgicon"></div>
-                    <div style="text-align: center; padding-top:10px" >
-                        <img class="" src="https://fondos.sapiencia.gov.co/convocatorias/frontend_talento_especializado/resources/img/iconos/193.jpg" width="80%" alt="">
-                        <br> <br>
-                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">Visita</div>
-
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-2">
-                            <div class="progress" data-percentage="">
-                                <span class="progress-left">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <span class="progress-right">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <div class="progress-value">100%</div>
-                            </div>
-                        </div>
-                    </div>
-                    <p>visita</p>
-                </div>
-            </div>
-        </li>
-    
-        <li class="scene">
-            <div class="movie">
-                <div class="poster">
-                    <div id="imgicon"></div>
-                    <div style="text-align: center; padding-top:10px" >
-                        <img class="" src="https://fondos.sapiencia.gov.co/convocatorias/frontend_talento_especializado/resources/img/iconos/193.jpg" width="80%" alt="">
-                        <br>
-                        <div style="color: white; font-family: Bison, Arial; font-size: 16px; font-style: normal">Visita</div>
-
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-2">
-                            <div class="progress" data-percentage="">
-                                <span class="progress-left">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <span class="progress-right">
-                                    <span class="progress-bar"></span>
-                                </span>
-                                <div class="progress-value">100%</div>
-                            </div>
-                        </div>
-                    </div>
-                    <p>hola</p>
-                </div>
-            </div>
-        </li> -->
     </ul>
-
-    <!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header text-center" style="text-align: center; !important">
-      
-        <img width="100%" height="100px" src="{{ asset('imagenes/headers.png') }}" alt=""  class="isticky-top"  >
-
-      
-      </div>
-      <div class="modal-body" >
-        <div class="text-center">
-             <label  for="" style="font-size:20px;color:#0dcaf0">¿Qué es la Visita de ingreso?</label><hr>
-        </div>
-     
-        <label for="">Es donde se recolecta la información de los usuarios, se conoce un poco sobre ellos...</label>
-      </div>
-      <div class="modal-footer">
-       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-
-      </div>
-    </div>
-  </div>
 </div>
-
-   
-</div> -->
-
-
-
-
-<!--  -->
-
+  
 @if ($realizado == '1')
 <div class="container">
 <!-- <form class="d-flex pb-4" role="search">
@@ -973,6 +743,29 @@ $('#finalizarboton').click(function(){
     });
 </script>
 
+<script>
+$(document).ready(function() {
+    const visitas = $('#visitas-container .scene'); // Solo seleccionamos las visitas dentro del contenedor específico
+    let visitasDisponibles = []; // Guardamos las visitas que tienen el botón habilitado
+    let visitasNoDisponibles = []; // Guardamos las visitas que tienen el botón deshabilitado
 
+    visitas.each(function() {
+        const boton = $(this).find('button'); // Obtenemos el botón de cada visita
+        if (boton.prop('disabled')) {
+            visitasNoDisponibles.push(this); // Si el botón está deshabilitado, la añadimos a visitasNoDisponibles
+        } else {
+            visitasDisponibles.push(this); // Si el botón está habilitado, la añadimos a visitasDisponibles
+        }
+    });
+
+    // Colocamos las visitas disponibles al final
+    const todo = visitasNoDisponibles.concat(visitasDisponibles);
+
+    // Reorganizamos el DOM dentro del contenedor específico
+    $(todo).appendTo('#visitas-container ul');
+});
+
+
+</script>
 
 @endsection
