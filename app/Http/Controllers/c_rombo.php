@@ -144,6 +144,8 @@ class c_rombo extends Controller
             $valor_reforzar = collect($categorias)->max();
 
 
+            //dd($realizadosvt1r3);
+
          // dd($realizadovt1);
         return view('v_rombo',["foliomenu"=>decrypt($cedula),  'es_grupo1' => $es_grupo1, 'es_grupo2' => $es_grupo2, 'es_grupo3' => $es_grupo3, 
         'realizadosvt1'=>$realizadosvt1, 

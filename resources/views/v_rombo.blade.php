@@ -214,6 +214,8 @@
    @if (($realizadosvt1r3 == '1' && $metodologia == 2 ) || ($realizadosvt1r2 == '1' && $es_grupo2 && $total_indicadoresDA_verdes <= '70' ) 
    || ($realizadosvt1r2 == '1' && $es_grupo3 && $total_indicadoresDA_verdes <= '70' ) || 
    ($realizadosvt1 == '1' && $es_grupo2 && $alerta1 && $metodologia != 2 ) || ($realizadosvt1 == '1' && $es_grupo3 && $alerta1 && $metodologia != 2 )
+
+   || ($realizadosvt1r3 == '1' && $es_grupo1 && $metodologia != 2 )
    
    )
    <li class="scene" style="display:">
