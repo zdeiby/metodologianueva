@@ -24,8 +24,8 @@ class c_alertasgestor1t2 extends Controller
        // dd($pphogar);
         $folios='';
         $estacion='';
-        $linea='500';
-        $paso='5020';
+        $linea='600';
+        $paso='6020';
 
        $alertasGet = DB::table('t_alertasgestor')
         ->select('id', 'pregunta', 'descripcion')

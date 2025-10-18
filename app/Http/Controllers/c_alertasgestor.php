@@ -94,50 +94,120 @@ if(session('nombre') !== null){
 
 
 
-    public function guardarAlertas(Request $request)
-    {
-        $folio   = $request->input('folio');
-        $alertas = $request->input('alertas'); // array de id_alerta
-        $linea = $request->input('linea');
-        $paso = $request->input('paso');
+    // public function guardarAlertas(Request $request)
+    // {
+    //     $folio   = $request->input('folio');
+    //     $alertas = $request->input('alertas'); // array de id_alerta
+    //     $linea = $request->input('linea');
+    //     $paso = $request->input('paso');
 
-        if (empty($alertas)) {
-            return response()->json([
-                'status'  => 'error',
-                'message' => 'No se seleccionaron alertas'
-            ], 400);
-        }
+    //     if (empty($alertas)) {
+    //         return response()->json([
+    //             'status'  => 'error',
+    //             'message' => 'No se seleccionaron alertas'
+    //         ], 400);
+    //     }
 
-        // Obtener el último numero_alerta para este folio y sumarle 1
-        $ultimoNumero = DB::table('t1_alertasgestor')
-            ->where('folio', $folio)
-            ->max('numero_alerta');
+    //     // Obtener el último numero_alerta para este folio y sumarle 1
+    //     $ultimoNumero = DB::table('t1_alertasgestor')
+    //         ->where('folio', $folio)
+    //         ->max('numero_alerta');
 
-        $nuevoNumero = $ultimoNumero ? $ultimoNumero + 1 : 1;
+    //     $nuevoNumero = $ultimoNumero ? $ultimoNumero + 1 : 1;
 
-        // Insertar todas las alertas seleccionadas
-        $insertData = [];
-        foreach ($alertas as $idAlerta) {
-            $insertData[] = [
-                'folio'         => $folio,
-                'numero_alerta' => $nuevoNumero,
-                'id_alerta'     => $idAlerta,
-                'linea'     => $linea,
-                'paso'     => $paso,
-                'usuario'       => Session::get('cedula'),
-                'sincro'        => 0,
-                'created_at'    => now(),
-                'updated_at'    => now(),
-            ];
-        }
+    //     // Insertar todas las alertas seleccionadas
+    //     $insertData = [];
+    //     foreach ($alertas as $idAlerta) {
+    //         $insertData[] = [
+    //             'folio'         => $folio,
+    //             'numero_alerta' => $nuevoNumero,
+    //             'id_alerta'     => $idAlerta,
+    //             'linea'     => $linea,
+    //             'paso'     => $paso,
+    //             'usuario'       => Session::get('cedula'),
+    //             'sincro'        => 0,
+    //             'created_at'    => now(),
+    //             'updated_at'    => now(),
+    //         ];
+    //     }
 
-        DB::table('t1_alertasgestor')->insert($insertData);
+    //     DB::table('t1_alertasgestor')->insert($insertData);
 
+    //     return response()->json([
+    //         'status'  => 'ok',
+    //         'message' => 'Alertas guardadas correctamente',
+    //         'numero_alerta' => $nuevoNumero
+    //     ]);
+    // }
+
+
+   public function guardarAlertas(Request $request)
+{
+    $folio   = $request->input('folio');
+    $alertas = $request->input('alertas'); // array de id_alerta
+    $linea = $request->input('linea');
+    $paso = $request->input('paso');
+
+    if (empty($alertas)) {
         return response()->json([
-            'status'  => 'ok',
-            'message' => 'Alertas guardadas correctamente',
-            'numero_alerta' => $nuevoNumero
-        ]);
+            'status'  => 'error',
+            'message' => 'No se seleccionaron alertas'
+        ], 400);
     }
+
+    // Inicializar la variable de estado y el número de alerta
+    $numeroAlerta = 1;
+
+    // Verificar si existe un registro con folio y linea 600 y estado != 1
+    $registro600 = DB::table('t1_visitasrealizadas')
+        ->where('folio', $folio)
+        ->where('linea', 600)
+        ->where('estado', 1)
+        ->exists();
+
+    $registro700 = DB::table('t1_visitasrealizadas')
+        ->where('folio', $folio)
+        ->where('linea', 700)
+        ->where('estado', 1)
+        ->exists();
+
+    // Si no existe un registro con linea 600 y estado diferente a 1, asignamos alerta 1
+    if ($registro600) {
+        $numeroAlerta = 2;
+    } 
+    if ($registro700) {
+        $numeroAlerta = 3;
+    } 
+
+       foreach ($alertas as $idAlerta) {
+        DB::table('t1_alertasgestor')->updateOrInsert(
+            [
+                'folio' => $folio,
+                'linea' => $linea,
+                'id_alerta' => $idAlerta,
+                'numero_alerta' => $numeroAlerta
+            ],
+            [
+                
+                'paso' => $paso,
+                'usuario' => Session::get('cedula'),
+                'sincro' => 0,
+                'updated_at' => now(),
+                'created_at' => now()
+            ]
+        );
+    }
+
+
+
+
+    return response()->json([
+        'status'  => 'ok',
+        'message' => 'Alertas guardadas correctamente',
+        'numero_alerta' => $numeroAlerta
+    ]);
+}
+
+
 
 }
