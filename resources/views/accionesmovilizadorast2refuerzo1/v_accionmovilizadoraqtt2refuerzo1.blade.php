@@ -60,8 +60,8 @@
     <a id="legalqt"  class="nav-link " >ACCIÓN MOVILIZADORA BIENESTAR EN LA FAMILIA</a>
   </li>
   <li class="nav-item" role="presentation"  style="cursor:pointer">
-    <!-- <a id="financieroqt"  class="nav-link active">ACCIÓN BIENESTAR PRIORIZADO</a> -->
-    <a id="financieroqt"  class="nav-link active">A.M {{$descripcion}}</a>
+     <a id="financieroqt"  class="nav-link active">A.M BIENESTAR A PRIORIZAR</a> 
+    <!-- <a id="financieroqt"  class="nav-link active">A.M {{$descripcion}}</a> -->
 
   </li>
 

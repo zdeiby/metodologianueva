@@ -811,7 +811,7 @@
                                 <hr>
                                         <div style="margin-top:15px; text-align:center;">
                                         <label style="font-size:20px; color:#0dcaf0; font-weight:bold;">
-                                            Categoría a reforzar
+                                            Categoría sugerida a reforzar
                                         </label>
 
                                         <div style="
