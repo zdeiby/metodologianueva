@@ -2921,7 +2921,7 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
               $('#ingresos2').removeAttr('required');         
               $('#ingresos3div').css('display', 'none');
               $('#ingresos3').val('0'); 
-              $('#ingresos3').attr('required');
+              $('#ingresos3').removeAttr('required');
               $('#desempleodelargaduraciondiv').css('display', 'none');
               $('#desempleodelargaduracion').val('0'); 
               $('#desempleodelargaduracion').removeAttr('required');
