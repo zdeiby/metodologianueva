@@ -2919,9 +2919,9 @@ if(($('#ingresos1').val() == '136' ) && (parseInt($('#edadintegrante').val()) >=
               $('#ingresos2div').css('display', 'none');
               $('#ingresos2').val('0'); 
               $('#ingresos2').removeAttr('required');         
-              $('#ingresos3div').css('display', '');
-              $('#ingresos3').val(''); 
-              $('#ingresos3').attr('required','required');
+              $('#ingresos3div').css('display', 'none');
+              $('#ingresos3').val('0'); 
+              $('#ingresos3').attr('required');
               $('#desempleodelargaduraciondiv').css('display', 'none');
               $('#desempleodelargaduracion').val('0'); 
               $('#desempleodelargaduracion').removeAttr('required');
