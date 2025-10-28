@@ -327,9 +327,9 @@
         // Configuración de pasos
         const steps = [
             { id: 1, title: 'Paso 1', subtitle: 'Inicio del seguimiento', element: document.getElementById('step-1') },
-            { id: 2, title: 'Paso 2', subtitle: 'Actualización de datos', element: document.getElementById('step-2') },
-            { id: 3, title: 'Paso 3', subtitle: 'Movilización de Logros', element: document.getElementById('step-3') },
-            { id: 4, title: 'Paso 4', subtitle: 'Gestión de Oportunidades', element: document.getElementById('step-4') },
+            { id: 2, title: 'Paso 2', subtitle: 'Actualización de Indicadores', element: document.getElementById('step-2') },
+            { id: 3, title: 'Paso 3', subtitle: 'Gestión de Oportunidades', element: document.getElementById('step-3') },
+            { id: 4, title: 'Paso 4', subtitle: 'Alertas del Gestor', element: document.getElementById('step-4') },
         ];
         
         // Estado de la aplicación
