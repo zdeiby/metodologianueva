@@ -445,3 +445,7 @@ Route::get('/informevisitat2refuerzo1/{folio}',[c_finalizaciont2refuerzo1::class
 Route::get('/guardaraccionesmovilizadorascompromisost2refuerzo1',[c_momentoconcientet2refuerzo1::class, 'fc_guardaraccionesmovilizadorascompromisost2refuerzo1'])->name('guardaraccionesmovilizadorascompromisost2refuerzo1');
 Route::get('/indicadorest2refuerzo1/{folio}',[c_indicadorest2refuerzo1::class,'fc_indicadorest2refuerzo1'])->name('indicadorest2refuerzo1');
 Route::get('/alertasgestor1t2/{folio}',[c_alertasgestor1t2::class, 'fc_index'])->name('alertasgestor1t2');
+
+
+// Incluir rutas para llamadas MEF
+require __DIR__.'/llamadaMef.php';
