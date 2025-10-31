@@ -7,6 +7,8 @@ use App\Models\LlamadaMefModel;
 use App\Models\PrincipalHogar;
 use App\Models\PrincipalIntegrante;
 use Illuminate\Support\Facades\DB;
+use Hashids\Hashids;
+
 
 class LlamadasMefController extends Controller
 {
@@ -88,6 +90,16 @@ class LlamadasMefController extends Controller
      */
     public function gestion($folio)
     {
+
+        $hashids = new Hashids('', 10);
+        $decoded = $hashids->decode($folio);
+
+          if (!empty($decoded)) {
+                $folio = $decoded[0];
+            } else {
+                // Manejar error si no se puede decodificar
+                return redirect()->back()->with('error', 'Folio inválido o no encontrado.');
+            }
         // Obtener documento del profesional de la sesión
         $doccogestor = session('documento');
         
@@ -133,6 +145,19 @@ class LlamadasMefController extends Controller
      */
     public function historial($folio)
     {
+
+
+        //dd($folio);
+        //  $hashids = new Hashids('', 10);
+        // $decoded = $hashids->decode($folio);
+
+        //   if (!empty($decoded)) {
+        //         $folio = $decoded[0];
+        //     } else {
+        //         // Manejar error si no se puede decodificar
+        //         return redirect()->back()->with('error', 'Folio inválido o no encontrado.');
+        //     }
+
         try {
             $historial = LlamadaMefModel::obtenerPorFolio($folio);
             
@@ -157,6 +182,17 @@ class LlamadasMefController extends Controller
      */
     public function storeLlamada(Request $request, $folio)
     {
+
+        //  $hashids = new Hashids('', 10);
+        // $decoded = $hashids->decode($folio);
+
+        //   if (!empty($decoded)) {
+        //         $folio = $decoded[0];
+        //     } else {
+        //         // Manejar error si no se puede decodificar
+        //         return redirect()->back()->with('error', 'Folio inválido o no encontrado.');
+        //     }
+
         try {
             $validated = $request->validate([
                 'idintegrante' => 'required',

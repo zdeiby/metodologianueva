@@ -153,11 +153,11 @@
                     <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md mb-6">
                         <div class="flex flex-wrap justify-between items-center gap-4">
                             <div>
-                                <a href="https://unidadfamiliamedellin.com.co/metodologia2servidor/index.php/c_principalhogar/fc_principalhogar" class="text-primary hover:underline mb-2 flex items-center gap-1">
+                                <a href="{{ route('prueba') }}" class="text-primary hover:underline mb-2 flex items-center gap-1">
                                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
                                     Volver
                                 </a>
-                                <h1 class="text-2xl font-bold">Plan de Vida Familiar: <span class="text-primary">{{ $hogar->integranteTitular->nombre_completo ?? 'N/A' }}</span></h1>
+                                <h1 class="text-2xl font-bold">LLamadas Gestor: <span class="text-primary">{{ $hogar->integranteTitular->nombre_completo ?? 'N/A' }}</span></h1>
                                 <div class="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mt-1">
                                     <span>Folio: <strong class="font-mono text-slate-700 dark:text-slate-300">{{ $hogar->folio }}</strong></span>
                                     <span>ID Integrante: <strong class="font-mono text-slate-700 dark:text-slate-300">{{ $hogar->idintegrantetitular }}</strong></span>
@@ -354,17 +354,38 @@
         });
         
         // Inicialización del modo oscuro
+        // function initDarkMode() {
+        //     const storedTheme = localStorage.getItem('familia_medellin_theme');
+            
+        //     if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        //         document.documentElement.classList.add('dark');
+        //         appState.darkMode = true;
+        //     }
+            
+        //     updateThemeIcons();
+        //     document.getElementById('theme-toggle').addEventListener('click', toggleDarkMode);
+        // }
+
         function initDarkMode() {
             const storedTheme = localStorage.getItem('familia_medellin_theme');
-            
-            if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+
+            if (storedTheme === 'dark') {
+                // Si el usuario ya eligió modo oscuro antes
                 document.documentElement.classList.add('dark');
                 appState.darkMode = true;
+            } else {
+                // 🔹 Por defecto: modo claro (blanco)
+                document.documentElement.classList.remove('dark');
+                appState.darkMode = false;
+                if (!storedTheme) {
+                    localStorage.setItem('familia_medellin_theme', 'light');
+                }
             }
-            
+
             updateThemeIcons();
             document.getElementById('theme-toggle').addEventListener('click', toggleDarkMode);
         }
+
         
         // Cambiar entre modo claro y oscuro
         function toggleDarkMode() {

@@ -190,6 +190,15 @@
         window.location.href = url;    
       }
 
+      function llamadas(folioencriptado, folio) {
+        paginacargando();
+        paginalista();
+        let url = `{{ url('efectividadMef/llamadas-mef') }}/${folioencriptado}`;
+        // Redirigir a la URL construida
+        window.location.href = url;
+      }
+
+
     
  </script>
 <!-- Enlace al archivo CSS -->
@@ -221,6 +230,7 @@
                 'Gestionar',
                 'Prioridad Visita'
                // 'Actualizar Datos'
+               , 'llamadas'
             ],
 
             
@@ -301,6 +311,14 @@
                     readOnly: true,
                     width: 130,
                 } */
+
+                    
+                {
+                    data: 'llamadas',
+                    renderer: 'html', // Habilita contenido HTML en esta columna
+                    readOnly: true,
+                    width: 110,
+                }
             ],
             licenseKey: 'non-commercial-and-evaluation', // Cambiar si tienes una licencia comercial
             rowHeaders: true,
