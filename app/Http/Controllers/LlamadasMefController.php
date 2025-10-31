@@ -93,13 +93,29 @@ class LlamadasMefController extends Controller
 
         $hashids = new Hashids('', 10);
         $decoded = $hashids->decode($folio);
+        $folioCodificado = $folio;
 
           if (!empty($decoded)) {
                 $folio = $decoded[0];
+                
             } else {
                 // Manejar error si no se puede decodificar
                 return redirect()->back()->with('error', 'Folio inválido o no encontrado.');
             }
+
+             $rows = DB::table('t1_integranteshogar')
+                ->where('folio', $folio)
+                ->get();
+
+
+                 $options = '<option value="">Seleccione</option>';
+
+                     foreach ($rows as $p) {
+                    $options .= '<option value="'.$hashids->encode($p->idintegrante).'">'.
+                        ($p->nombre1.' '.$p->nombre2.' '.$p->apellido1.' '.$p->apellido2).
+                    '</option>';
+                }
+
         // Obtener documento del profesional de la sesión
         $doccogestor = session('documento');
         
@@ -136,7 +152,9 @@ class LlamadasMefController extends Controller
         return view('llamadas_mef.gestion_hogar', [
             'hogar' => $hogar,
             'porcentaje_total' => $porcentaje_total,
-            'documento_profesional' => $doccogestor
+            'documento_profesional' => $doccogestor,
+            'integrantes_options' => $options,
+            'folio'=> $folioCodificado,
         ]);
     }
 

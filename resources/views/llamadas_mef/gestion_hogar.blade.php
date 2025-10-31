@@ -116,7 +116,7 @@
                     
                     <div class="overflow-y-auto flex-1 p-4">
                         <nav class="space-y-2">
-                            <a href="https://unidadfamiliamedellin.com.co/metodologia2servidor/index.php/c_principalhogar/fc_principalhogar" class="flex items-center px-4 py-2.5 rounded-lg bg-primary text-white transition-colors">
+                            <a href="{{ route('prueba') }}" class="flex items-center px-4 py-2.5 rounded-lg bg-primary text-white transition-colors">
                                 <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                                 </svg>
@@ -258,7 +258,7 @@
                             <!-- Paso 2: Actualización de datos -->
                             <div id="step-2" class="step-content bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md hidden">
                                 <h2 class="text-xl font-bold mb-4">Indicadores</h2>
-                               <p>Al Presionar Clic en el boton para actualizar indicadores.</p>
+                               <!-- <p>Al Presionar Clic en el boton para actualizar indicadores.</p>
                                 <div class="mt-6">
                                     <a href="https://unidadfamiliamedellin.com.co/metodologia2servidor/index.php/perfilproductivo/c_actualizarpp/fc_actualizarpp?folio={{ $hogar->folio }}&idintegrante=0&doccogestor={{ $documento_profesional }}" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary hover:bg-primary/80 text-white font-medium rounded-lg transition-colors duration-300">
                                         <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -266,7 +266,23 @@
                                         </svg>
                                         Indicadores
                                     </a>
-                                </div>
+                                </div> -->
+                                <div class="was-validated">
+                                        <div class="pb-2">
+                                        <label for="">Seleccione integrante a quien le desea mover indicadores</label>
+                                        <br>
+                                        </div>
+                                        <select class="form-control form-control-sm  "  name="integrantes" id="integrantes" required>
+                                        {!! $integrantes_options !!} 
+                                        </select>
+                                    </div>
+                                    
+
+                            <br>
+
+                                    <div id="iframeWrap" style="display:none; margin-top:10px;">
+                                        <iframe id="indicadoresFrame" src="" width="100%" height="650" frameborder="0"></iframe>
+                                    </div>
                             </div>
                             
                             <!-- Paso 3: Logros -->
@@ -274,11 +290,17 @@
                                 <h2 class="text-xl font-bold mb-4">Oportunidades</h2>
                                 <p>Aqui encuentra las oportunidades.</p>
                                 <div class="mt-6">
-                                    <a href="https://unidadfamiliamedellin.com.co/metodologia2servidor/index.php/logros/c_dimensiones/fc_dimensiones?folio={{ $hogar->folio }}&idintegrante=0&doccogestor={{ $documento_profesional }}" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary hover:bg-primary/80 text-white font-medium rounded-lg transition-colors duration-300">
+                                    <a href="{{ route('ficherodeoportunidades', ['folio' => $folio]) }}" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary hover:bg-primary/80 text-white font-medium rounded-lg transition-colors duration-300">
                                         <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                                         </svg>
-                                        Ver oportunidades
+                                        Ver oportunidades Hogar
+                                    </a>
+                                    <a href="{{ route('ficherodeoportunidadeshogar', ['folio' => $folio]) }}" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary hover:bg-primary/80 text-white font-medium rounded-lg transition-colors duration-300">
+                                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                        </svg>
+                                        Ver oportunidades Integrantes
                                     </a>
                                 </div>
                             </div>
@@ -288,7 +310,7 @@
                                 <h2 class="text-xl font-bold mb-4">Alerta gestor</h2>
                                 <p>Al presionar Clic te llevara a las Alertas del gestor.</p>
                                 <div class="mt-6">
-                                    <a href="https://unidadfamiliamedellin.com.co/metodologia2servidor/index.php/c_acercaroportunidad/fc_acercaroportunidad?folio={{ $hogar->folio }}&idintegrante={{ $hogar->idintegrantetitular }}&doccogestor={{ $documento_profesional }}" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary hover:bg-primary/80 text-white font-medium rounded-lg transition-colors duration-300">
+                                    <a href="{{ route('alertasgestor1t1', ['folio' => $folio]) }}" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary hover:bg-primary/80 text-white font-medium rounded-lg transition-colors duration-300">
                                         <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                         </svg>
@@ -764,5 +786,33 @@
             }, 3000);
         }
     </script>
+
+    <script>
+  (function () {
+    const sel   = document.getElementById('integrantes');
+    const wrap  = document.getElementById('iframeWrap');
+    const frame = document.getElementById('indicadoresFrame');
+
+    // folio (primer parámetro) ya codificado que mandas a la vista
+    const folio = '<?= $folio ?>'; // si ese usas
+
+    function updateIframe() {
+      const integrante = sel.value; // ya codificado (ejRAWp4QPe, etc.)
+      if (!integrante) {
+        frame.src = '';
+        wrap.style.display = 'none';
+        return;
+      }
+      const base = @json(url('bienestarsaludemocionalqtvisita'));
+      frame.src = `${base}/${folio}/${integrante}/500`;
+      wrap.style.display = 'block';
+    }
+
+    sel.addEventListener('change', updateIframe);
+
+    // si llega preseleccionado, lo pintamos al cargar
+    if (sel.value) updateIframe();
+  })();
+</script>
 </body>
 </html>
