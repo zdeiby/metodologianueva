@@ -42,6 +42,19 @@ class c_cobertura extends Controller
 
                     $prioridadRaw = trim(strtolower($item->prioridad_visita ?? ''));
 
+                      $botonLlamadas = '';
+                        if ($item->casillamatriz != 9 && $item->casillamatriz != null  && $metodologia != 2) {
+                            $botonLlamadas = '<button type="submit" class="btn btn-primary btn-sm" 
+                                style="background:#00bcd4 !important; border: 1px solid #00bcd4" 
+                                onclick="llamadas(\'' . $hashids->encode($item->folio) . '\', \'' . $item->folio . '\')" 
+                                id="' . $item->folio . 'llamadas">Llamadas Gestor</button>';
+                        } if ($item->casillamatriz != 10 && $item->casillamatriz != null  && $metodologia == 2){ 
+                            $botonLlamadas = '<button type="submit" class="btn btn-primary btn-sm" 
+                                style="background:#00bcd4 !important; border: 1px solid #00bcd4" 
+                                onclick="llamadas(\'' . $hashids->encode($item->folio) . '\', \'' . $item->folio . '\')" 
+                                id="' . $item->folio . 'llamadas">Llamadas Gestor</button>';
+                        }
+
               
 
                     return [
@@ -74,10 +87,7 @@ class c_cobertura extends Controller
                             ? '<button type="submit" style="width:100px" class="btn btn-success btn-sm">Baja vulnerabilidad</button>'
                             : '<button type="submit" class="btn btn-primary btn-sm" onclick="habeasdata(\'' . encrypt($item->folio) . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'boton">Gestiónar</button>',
                         'actualizar' => '<button type="submit" class="btn btn-primary btn-sm" style="background:#ff8403 !important; border: 1px solid #ff8403" onclick="actualizar(\'' . $hashids->encode($item->folio) . '\', \'' . $item->folio . '\')" id="' . $item->folio . 'actualizar">Actualizar</button>',
-                         'llamadas' => '<button type="submit" class="btn btn-primary btn-sm" 
-                            style="background:#00bcd4 !important; border: 1px solid #00bcd4" 
-                            onclick="llamadas(\'' . $hashids->encode($item->folio) . '\', \'' . $item->folio . '\')" 
-                            id="' . $item->folio . 'llamadas">Llamadas Gestor</button>',
+                        'llamadas' => $botonLlamadas,
 
 
 
